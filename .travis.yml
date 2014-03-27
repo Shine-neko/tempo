@@ -12,7 +12,7 @@ before_script:
     # Composer
     - composer self-update
     - composer config --global process-timeout 5000
-    - set "COMPOSER_PROCESS_TIMEOUT=2000"
+    - set "COMPOSER_PROCESS_TIMEOUT=5000"
     - composer install --prefer-source
 
     # For KnpSnappy
