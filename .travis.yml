@@ -9,6 +9,9 @@ before_script:
 
     - cp behat.yml.dist behat.yml
 
+    - npm install
+    - bower update
+
     # Composer
     - composer self-update
     - composer config --global process-timeout 5000
@@ -26,11 +29,12 @@ before_script:
     - sleep 5
 
     # Install database
-    - php app/console do:da:cr -e=test > /dev/null
-    - php app/console do:sc:cr -e=test > /dev/null
-    - php app/console do:fi:lo --no-interaction -e=test > /dev/null
+    - php app/console doctrine:database:create -e=test > /dev/null
+    - php app/console doctrine:schema:create -e=test > /dev/null
+    - php app/console doctrine:fixtures:load --no-interaction -e=test > /dev/null
 
     # Loading web server for selenium
+    - node bin/server.js > error.log &
     - php app/console server:run > error.log &
 
 
