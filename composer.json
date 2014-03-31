@@ -60,8 +60,7 @@
         "nelmio/api-doc-bundle": "dev-master",
         "willdurand/js-translation-bundle": "v2.0.0",
         "sylius/settings-bundle": "1.0.*@dev",
-        "phpoffice/phpexcel": "1.8.0",
-        "yohang/dependency-tools": "dev-master"
+        "phpoffice/phpexcel": "1.8.0"
     },
     "require-dev": {
         "behat/behat": "2.5.*@stable",
@@ -73,15 +72,8 @@
         "willdurand/faker-bundle": "dev-master",
         "elao/web-profiler-extra-bundle": "dev-master"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/Nek-/dependency-tools"
-        }
-    ],
     "scripts": {
         "post-install-cmd": [
-            "Yohang\\DependencyTools::installDeps",
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
@@ -89,7 +81,6 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ],
         "post-update-cmd": [
-            "Yohang\\DependencyTools::updateDeps",
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
