@@ -104,7 +104,7 @@
     },
     "config": {
         "bin-dir": "bin",
-        "process-timeout": "5000"
+        "process-timeout": 5000
     },
     "extra": {
         "symfony-app-dir": "app",
