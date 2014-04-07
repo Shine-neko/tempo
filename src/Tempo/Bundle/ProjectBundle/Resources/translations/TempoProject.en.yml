@@ -1,4 +1,3 @@
-
 submit: Send
 
 organization:
@@ -10,25 +9,25 @@ organization:
   team: Members
   list:
     title: 'Organization List'
-  msg_delete: Once you delete an organization, there is no going back. It will be deleted forever. Please be certain.
+  msg_delete: If you proceed the organization will be permanently deleted. Restoring is not possible so please be certain.
   title_delete: Delete project
   email_contact: E-mail contact
-  web_site: Web site
+  web_site: Website
   undefined_info: undefined
   success_create: Organization created
-  success_modify: Organization successfully edit
+  success_modify: Organization successfully edited
   success_delete: Organization successfully removed
   failed_delete: Unable to delete organization
 
 
 project:
-  label_list: Projects List
+  label_list: Project list
   add: Add new project
   edit: Edit project
   title_subprojects: Sub project
   add_membre: Assignment
   display_projects: Display projects
-  msg_delete: Once you delete an organization, there is no going back. It will be deleted forever. Please be certain.
+  msg_delete: Once you proceed the project will be permanently deleted. Restoring is not possible so please be certain.
   nbr_project: Number of projects
   open: Open
   close: Close
@@ -39,14 +38,14 @@ project:
     label.isactive: Active
     label.created: Created
     label.updated: Updated
-    label.beginning: Beginning
-    label.ending: Ending
+    label.beginning: Starting
+    label.ending: Finishing
     label.type: Type
     label.advancement: Avancement
     label.code: Code
     label.status: Status
     label.priority: Priority
-    label.estimated: Budget estimated
+    label.estimated: Estimated budget
 
 timesheets:
   page_title: Timesheet
@@ -55,7 +54,7 @@ timesheets:
   week: Week
 
 team:
- success_add: The user has been added to the team
+ success_add: The user has been added
 
 buttons:
   edit: Edit
