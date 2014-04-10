@@ -146,7 +146,7 @@ class User extends BaseUser implements UserInterface
     }
 
 
-    public function getName()
+    public function getFullName()
     {
         return $this->firstName .' '. strtoupper($this->lastName);
     }

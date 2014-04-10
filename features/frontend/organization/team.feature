@@ -1,4 +1,4 @@
-Feature:
+Feature: Organisation team
 
   Background:
     Given I am connected as "admin"
