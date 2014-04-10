@@ -87,11 +87,14 @@ class User extends BaseUser implements UserInterface
     }
 
     /**
-     * @return string
+     * set Compagny Name
+     * @param string $company
      */
     public function setCompany($company)
     {
         $this->company = $company;
+
+        return $this;
     }
 
     /**
@@ -140,6 +143,12 @@ class User extends BaseUser implements UserInterface
     public function getLastName()
     {
         return $this->lastName;
+    }
+
+
+    public function getName()
+    {
+        return $this->firstName .' '. strtoupper($this->lastName);
     }
 
     /**

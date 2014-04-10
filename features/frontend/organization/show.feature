@@ -1,4 +1,4 @@
-Feature: dashboard project
+  Feature: dashboard project
 
   Background:
     Given I am connected as "admin"

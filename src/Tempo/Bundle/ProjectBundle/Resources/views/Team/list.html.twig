@@ -1,5 +1,8 @@
 <ul class="list">
     {% for user in users %}
-    <li><a href="{{ path('user_profile_show', { 'slug': user.slug }) }}"> <img src="{{ user.avatar(28) }}" /> <span>{{ user.userName }} </span></a></li>
+    <li>
+        <a href="{{ path('user_profile_show', { 'slug': user.slug }) }}"> <img src="{{ user.avatar(28) }}" /> <span>{{ user.getName }} </span></a>
+        <a href="{{ path(route_deleted, { 'slug' : category.slug, 'user' : app.user.id }) }}" title="Remove {{ user.getName }}"><span class="glyphicon glyphicon-remove"></span></a>
+    </li>
     {% endfor %}
 </ul>
