@@ -31,31 +31,61 @@ class TeamController extends Controller
     {
         $form = $this->createForm(new TeamType());
 
-        if ($request->get('_route') == 'project_team_add') {
-            $category = $this->get('tempo_project.manager.project')->findOneBySlug($slug);
-            $routeSuccess = 'project_show';
-
-        } else {
-            $manager = $this->get('tempo_project.manager.organization');
-            $category = $manager->findOneBySlug($slug);
-            $routeSuccess = 'organization_show';
-        }
+        $objectManager = $this->getSection($request->get('_route'), $slug);
 
         if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
             $formData = $form->getData();
             $findUser = $this->getDoctrine()->getRepository('TempoUserBundle:User')->findOneBy(array('username' => $formData['username']));
 
-            $category->addTeam($findUser);
-            $this->getManager()->persist($category);
-            $this->getManager()->flush();
-            $this->getAclManager()->addObjectPermission($category, MaskBuilder::MASK_VIEW); //set Permission
+            $objectManager['model']->addTeam($findUser);
+            $objectManager['manager']->save($objectManager['model']);
+            $this->getAclManager()->addObjectPermission($objectManager['model'], MaskBuilder::MASK_VIEW); //set Permission
 
             $request->getSession()->getFlashBag()->set('success', $this->getTranslator()->trans('team.success_add', array(), 'TempoProject'));
 
-            return $this->redirect($this->generateUrl($routeSuccess, array('slug' => $category->getSlug())));
+            return $this->redirect($this->generateUrl($objectManager['route'], array('slug' => $objectManager['model']->getSlug())));
         }
 
-        return $this->redirect($this->generateUrl($routeSuccess, array('slug' => $category->getSlug()  )));
+        return $this->redirect($this->generateUrl($objectManager['route'], array('slug' => $objectManager['model']->getSlug() )));
+    }
+
+    /**
+     * @param  Request          $request
+     * @return RedirectResponse
+     */
+    public function deleteAction(Request $request, $slug, $user)
+    {
+        $objectManager = $this->getSection($request->get('_route'), $slug);
+
+        $objectManager['model']->getTeam()->remove($user);
+        $objectManager['manager']->save($objectManager['model']);
+        $this->getAclManager()->revokeAllClassPermissions($objectManager['model']); //remove Permission
+
+        $referer = $request->headers->get('referer');
+
+        return $this->redirect($referer);
+    }
+
+    protected function getSection($route, $slug)
+    {
+        switch ($route) {
+            case 'project_team_add':
+            case 'project_team_delete':
+                $manager = $this->get('tempo_project.manager.project');
+                $routeSuccess = 'project_show';
+            break;
+            case 'organization_team_add':
+            case 'organization_team_delete':
+                $manager = $this->get('tempo_project.manager.organization');
+                $routeSuccess = 'organization_show';
+            break;
+        }
+
+        return array(
+            'route' => $routeSuccess,
+            'model' => $manager->findOneBySlug($slug),
+            'manager' => $manager
+        );
     }
 
     /**
