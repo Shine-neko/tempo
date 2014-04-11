@@ -8,6 +8,10 @@
 */
 
 $(function() {
+    $('select').selectize({
+        sortField: 'text',
+        searchField: 'title'
+    });
     $( "#slider" ).slider({
         slide: function( event, ui ) {
             $('#project_avancement').val(ui.value);

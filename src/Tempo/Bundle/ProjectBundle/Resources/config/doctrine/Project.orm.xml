@@ -25,7 +25,9 @@
             <gedmo:timestampable on="update"/>
         </field>
 
-        <field name="description" column="description" type="text" />
+        <field name="description" column="description" type="text">
+            <gedmo:versioned/>
+        </field>
         <field name="active" column="is_active" type="boolean" default="true" />
 
         <field name="beginning" type="date" nullable="true" />

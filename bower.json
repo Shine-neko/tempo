@@ -13,6 +13,7 @@
         "marionette": "latest",
         "eonasdan-bootstrap-datetimepicker": "latest",
         "blueimp-md5": "latest",
-        "socket.io-client": "latest"
+        "socket.io-client": "latest",
+        "selectize": "latest"
     }
 }
