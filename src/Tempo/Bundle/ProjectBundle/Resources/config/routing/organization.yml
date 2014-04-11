@@ -37,5 +37,6 @@ organization_team_create:
         _method:  GET
 
 organization_team_delete:
-    pattern:  /{slug}/team/delete
+    pattern:  /{slug}/{user}/team/deleted
     defaults: { _controller: TempoProjectBundle:Team:delete }
+

@@ -70,7 +70,7 @@ class Behavior extends Helper
 
         if ($this->behavior) {
             $behavior = json_encode($this->behavior);
-            $this->onload('Tempo.behavior.init('.$behavior.');');
+            $this->onload('Tempo.Behavior.init('.$behavior.');');
             $this->behavior = array();
         }
 
