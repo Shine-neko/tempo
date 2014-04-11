@@ -1,4 +1,4 @@
-Feature: dashboard project
+Feature: Display an organization
 
   Background:
     Given I am connected as "admin"

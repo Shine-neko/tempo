@@ -49,11 +49,12 @@
             {{ form_label(form.advancement) }}
             {{ form_errors(form.advancement) }}
             {{ form_widget(form.advancement, { 'attr' :  { 'disabled' : 'disabled', 'style': 'display: none' }}) }}
-
-            <div id="slider" class="slider form-control">
-                <a class="ui-slider-handle ui-state-default ui-corner-all" href="#">
-                    <span id="knob_value">{{ form.advancement.vars.value }}%</span>
-                </a>
+            <div class="col-lg-9">
+                <div id="slider" class="slider form-control">
+                    <a class="ui-slider-handle ui-state-default ui-corner-all" href="#">
+                        <span id="knob_value">{{ form.advancement.vars.value }}%</span>
+                    </a>
+                </div>
             </div>
 
         </div>
