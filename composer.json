@@ -42,7 +42,6 @@
         "friendsofsymfony/jsrouting-bundle": "1.5.3",
         "hwi/oauth-bundle": "0.3.*",
         "jms/serializer-bundle": "0.12.0",
-        "sylius/resource-bundle": "1.0.*@dev",
         "wisembly/elephant.io": "dev-master",
         "ikimea/browser": "dev-master",
         "yohang/calendr": "1.*",
@@ -55,11 +54,10 @@
 
         "white-october/pagerfanta-bundle": "dev-master",
         "mopa/bootstrap-bundle": "v3.0.0-beta2",
-        "liip/doctrine-cache-bundle": "*",
-        "liip/imagine-bundle": "dev-master",
+        "liip/imagine-bundle": "1.0.*@dev",
         "nelmio/api-doc-bundle": "dev-master",
         "willdurand/js-translation-bundle": "v2.0.0",
-        "sylius/settings-bundle": "1.0.*@dev",
+        "sylius/settings-bundle": "0.9.*",
         "phpoffice/phpexcel": "1.8.0"
     },
     "require-dev": {
