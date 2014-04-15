@@ -1,9 +1,9 @@
 liip_imagine:
     resolvers:
         default:
-        web_path: ~
+            web_path: ~
     filter_sets:
-        #cache: default
+        cache: ~
         project_thumb:
             quality: 75
             filters:
