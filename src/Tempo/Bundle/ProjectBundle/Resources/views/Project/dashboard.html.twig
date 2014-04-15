@@ -14,7 +14,7 @@
                 </ol>
 
                 {% if is_granted('ROLE_ADMIN') %}
-                    <a href="{{ path('organization_new') }}" class="pull-right btn btn-primary" data-target="#" data-toggle="modal" data-title="{{ 'organization.add' |trans({},'TempoProject') }}" >{{ 'organization.add' |trans({},'TempoProject') }}</a>
+                    <a href="{{ path('organization_new') }}" class="pull-right btn btn-primary btn-xs" data-target="#" data-toggle="modal" data-title="{{ 'organization.add' |trans({},'TempoProject') }}" >{{ 'organization.add' |trans({},'TempoProject') }}</a>
                 {% endif %}
 
             </div>
@@ -42,9 +42,6 @@
                        <li> <div class="app-panel">{{ 'organization.not_found_orga'|trans({},'TempoProject') }}.</div></li>
                 {% endfor %}
             </ul>
-        </div>
-        <div class="filters col-md-6 app-panel">
-
         </div>
     {% endblock %}
 {% endblock %}

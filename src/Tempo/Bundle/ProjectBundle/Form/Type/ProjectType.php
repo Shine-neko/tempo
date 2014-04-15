@@ -32,7 +32,8 @@ class ProjectType extends AbstractType
             ))
             ->add('description', 'ckeditor', array(
                 'required' => false,
-                'label'    => 'project.form.label.isactive'
+                'label'    => 'project.form.label.isactive',
+                'config_name' => 'default',
             ))
             ->add('active', null, array(
                 'label' => 'project.form.label.isactive'

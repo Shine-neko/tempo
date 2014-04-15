@@ -3,8 +3,9 @@
 {% block breadcrumb %}
     <ol id="breadcrumb" class="clearfix">
         <li class="first"> <a href="{{ path('project_home') }}">Accueil</a> </li>
-        <li class="first last"> <a href="{{ path('project_home') }}">Project</a> </li>
-        <li class="first last"> Edit </li>
+        <li> <a href="{{ path('project_home') }}">Project</a> </li>
+        <li> <a href="{{ path('project_show', { 'slug': project.slug }) }}">{{ project.name }}</a> </li>
+        <li class="last"> Edit </li>
     </ol>
 {% endblock breadcrumb %}
 {% block javascripts %}
@@ -12,13 +13,12 @@
     <script type="text/javascript" src="{{ asset('bundles/tempoproject/js/project.js') }}"></script>
 {% endblock %}
 
-
 {% block content %}
 <h1 id="page-title" class="col-md-6">{{ project.name }}</h1>
 
 <form id="project_form" name="project_form" class="project_form" action="{{ path('project_update', { 'slug': project.slug }) }}" method="post" {{ form_enctype(form) }}>
     {% include 'TempoProjectBundle::Project/_form.html.twig' with { 'form' : form } %}
-    <button type="submit" class="btn btn-primary">Edit</button>
+    <button type="submit" class="btn btn-primary">{{ 'form.save_changes'|trans }}</button>
 </form>
 {% endblock %}
 {% block right %}

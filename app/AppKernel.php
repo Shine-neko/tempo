@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
+            new \Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
             new FOS\UserBundle\FOSUserBundle(),
@@ -31,7 +32,6 @@ class AppKernel extends Kernel
 
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
-            new Liip\DoctrineCacheBundle\LiipDoctrineCacheBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle($this),
