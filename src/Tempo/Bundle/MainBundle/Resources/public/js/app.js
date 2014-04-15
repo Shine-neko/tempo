@@ -11,9 +11,6 @@
 
 
 var container = new Pimple();
-container.set('router', function (c) {
-    return new RouterManager();
-});
 
 var Tempo = {
     'Settings' : {},
@@ -125,8 +122,7 @@ Tempo.baseObject = {
 $(function() {
     Tempo.run =  function() {
         Tempo.log('Starting application', 'INFO');
-        container.get('router');
-
+        var RouterManager = new TempoRouterManager;
         Backbone.history.start({pushState: true});
 
     };
@@ -185,12 +181,6 @@ $(function() {
                 console.log(fantomas.parent('form'));
             });
         }
-
-        /** modal.find('button.confirm').on('click', function(e) {
-            e.preventDefault();
-            window.location.href = redirect;
-        });**/
-
     });
 
     var flash = $(".flash-container");

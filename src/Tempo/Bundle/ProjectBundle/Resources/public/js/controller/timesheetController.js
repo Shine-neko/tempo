@@ -13,6 +13,7 @@ Tempo.Controller.Timesheet = Backbone.Marionette.Controller.extend({
     //view : new Tempo.View.Timesheet(),
 
     initialize: function() {
+        console.log('timesheet iniatialise');
 
         //this.collection.fetch();
 
