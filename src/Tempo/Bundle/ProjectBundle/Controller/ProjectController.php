@@ -218,7 +218,7 @@ class ProjectController extends Controller
         return $this->get('tempo_project.manager.project');
     }
 
-    public function getProject($key, $right = 'VIEW')
+    protected function getProject($key, $right = 'VIEW')
     {
         $project = $this->getManager()->getProject($key);
 
