@@ -61,8 +61,6 @@ class TimesheetManager extends BaseManager
              );
          }
 
-
-
         foreach($projectsList as $project) {
             $projectName = $project->getName();
 

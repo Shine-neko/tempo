@@ -11,7 +11,6 @@
 
 namespace Tempo\Bundle\ProjectBundle\Controller;
 
-use JMS\Serializer\Annotation\Exclude;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -132,6 +131,15 @@ class TimesheetController extends Controller
         ));
 
     }
+    public function showAction(Request $request, $date)
+    {
+        $date = new \DateTime($date);
+        $timeList = $this->get('tempo_project.manager.timesheet')->repository->findBy(array('period' => $date));
+
+        return $this->render('TempoProjectBundle:Timesheet:show.html.twig', array(
+            'timeList' => $timeList
+        ));
+    }
     public function exportCSVAction(Request $request)
     {
         $form = $this->createForm(new TimesheetExportType(), array(
@@ -207,15 +215,16 @@ class TimesheetController extends Controller
 
     private function processFilter($filterForm, Request $request)
     {
-        $filterForm->submit($request);
+        if ($filterForm->isSubmitted()) {
 
-        if ($filterForm->isValid()) {
-            $dataFilter = $filterForm->getData();
+            if ($filterForm->handleRequest($request)->isValid()) {
+                $dataFilter = $filterForm->getData();
 
-            $dataFilter['from'] = new \DateTime($dataFilter['from']);
-            $dataFilter['to']  = new \DateTime($dataFilter['to']);
+                $dataFilter['from'] = new \DateTime($dataFilter['from']);
+                $dataFilter['to']  = new \DateTime($dataFilter['to']);
 
-            return $dataFilter;
+                return $dataFilter;
+            }
         }
 
         return array();
