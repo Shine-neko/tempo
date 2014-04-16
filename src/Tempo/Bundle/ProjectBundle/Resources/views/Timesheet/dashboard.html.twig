@@ -89,41 +89,10 @@
                             {% if project.cras[day.format('j')]['day'] is defined %}
 
                                 <div class="cra craid_{{ day.format('j') }}">
-                                    <a class="show_cra" href="#" rel="list_{{ project.cras[day.format('j')]['day'] }}">
+                                    <a data-title="Time tracking" data-toggle="modal" data-target="#" href="{{ path('timesheet_show', { 'date' : day.format('Y-m-d') }) }}">
                                         <span class="total"> total {{ project.cras[day.format('j')]['total'] }}</span><br />
                                         <span class="heures">  {{ project.cras[day.format('j')]['hours'] }}:00</span>
                                     </a>
-                                </div>
-
-                                <div id="list_{{project.cras[day.format('j') ]['day'] }}" class="list" style="display: none;">
-                                    <table>
-                                        <thead>
-                                        <tr>
-                                            <th>H.</th>
-                                            <th>Prod</th>
-                                            <th>Description</th>
-                                            <th><a href="#" rel="list_{{project.cras[day.format('j') ]['day'] }}" class="boxclose">X</a></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        {% for cra in project.cras[day.format('j')]['list'] %}
-                                            <tr class="{{ cycle(['t1', 't2'], loop.index) }}">
-                                                <td><strong>{{ cra.time }}:00</strong></td>
-                                                <td><span class="carre {% if cra.billable == 0 %}yellow{% endif %}"> </span></td>
-                                                <td>{{ cra.description }} </td>
-                                                <td class="actions">
-                                                    <ul>
-                                                        <li>
-                                                            <a data-toggle="modal" data-target="#" data-title="Edit" href="{{ path('timesheet_edit', { 'id': cra.id }) }}" >
-                                                                <span class="glyphicon glyphicon-edit"></span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                        {% endfor %}
-                                        </tbody>
-                                    </table>
                                 </div>
 
                             {% else %}
@@ -137,19 +106,5 @@
 
             </tbody>
         </table>
-    </div>
-{% endblock %}
-
-{% block right %}
-    <div id="user_search">
-        <form action="index.html.twig" class="form-horizontal">
-            <label>User</label>
-            <select>
-                {% for user in users %}
-                    <option>{{ user.username }}</option>
-                {% endfor %}
-            </select>
-            <input type="submit" class="btn" />
-        </form>
     </div>
 {% endblock %}

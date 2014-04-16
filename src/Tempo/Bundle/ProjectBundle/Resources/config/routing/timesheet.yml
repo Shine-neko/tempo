@@ -3,7 +3,7 @@ timesheet:
     defaults: { _controller: "TempoProjectBundle:Timesheet:dashboard" }
 
 timesheet_show:
-    pattern:  /{id}/show
+    pattern:  /{date}/show
     defaults: { _controller: "TempoProjectBundle:Timesheet:show" }
 
 timesheet_new:

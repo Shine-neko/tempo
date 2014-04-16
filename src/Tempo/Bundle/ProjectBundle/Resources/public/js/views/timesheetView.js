@@ -3,7 +3,7 @@ Tempo.View.Timesheet = Backbone.View.extend({
     el: $("#content"),
     events: {
         'click .filter': 'filterClick',
-        'keypress #content': 'showKey'
+        'click .cra_load': 'loadCra',
     },
     logKey: function(e) {
         console.log(e.type, e.keyCode);
@@ -12,17 +12,23 @@ Tempo.View.Timesheet = Backbone.View.extend({
     initialize: function() {
         _.bindAll(this, "render","filterClick");
     },
+
+    render: function() {
+    },
     modelAdded: function(model) {
         console.log(model);
     },
 
+
     filterClick: function(e) {
         $('.filter-content').toggle('slow');
     },
-    showKey: function(e){
-        console.log(e.keyCode);
+
+    ShowCra: function(e) {
+        console.log(e);
     },
 
-    render: function() {
+    loadCra: function(e) {
+        console.log(e);
     }
 });
