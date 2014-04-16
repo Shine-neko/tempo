@@ -62,17 +62,31 @@ interface TimesheetInterface
     public function getDescription();
 
     /**
+     * Set state.
+     *
+     * @param integer $state
+     */
+    public function setState($state);
+
+    /**
+     * Get state.
+     *
+     * @return integer
+     */
+    public function getState();
+
+    /**
      * @param boolean $billable
      */
     public function setBillable($billable);
 
     /**
-     * @return boolean
+     * @return Boolean
      */
     public function getBillable();
 
     /**
-     * @return \Tempo\Bundle\ProjectBundle\Model\Projet
+     * @return \Tempo\Bundle\ProjectBundle\Model\Project
      */
     public function getProject();
 

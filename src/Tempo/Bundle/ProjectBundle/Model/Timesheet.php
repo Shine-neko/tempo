@@ -56,6 +56,16 @@ abstract class Timesheet implements TimesheetInterface
      */
     protected $billable;
 
+    /**
+     * @var integer
+     */
+    protected $state;
+
+    public function __construct()
+    {
+        return $this->state = 0;
+    }
+
 
     public function __toString()
     {
@@ -151,6 +161,23 @@ abstract class Timesheet implements TimesheetInterface
     public function getBillable()
     {
         return $this->billable;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+    }
+
+    /**
+    /**
+     * {@inheritdoc}
+     */
+    public function getState()
+    {
+        return $this->state;
     }
 
     /**

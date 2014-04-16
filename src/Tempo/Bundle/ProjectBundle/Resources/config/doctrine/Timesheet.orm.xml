@@ -14,6 +14,7 @@
 
         <field name="time" column="time" type="integer" />
         <field name="period" column="period" type="date" />
+        <field name="state" column="state" type="boolean" default="0" />
         <field name="billable" column="billable" type="boolean" nullable="true" />
         <field name="description" column="description" type="string" nullable="true" />
 
