@@ -130,6 +130,19 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     }
 
     /**
+     * @When /^I am on route "([^"]*)" with query "([^"]*)"$/
+     */
+    public function iAmOnRouteWithQuery($route, $parameters)
+    {
+        parse_str($parameters, $parameters);
+
+        $url = $this->kernel->getContainer()->get('router')->generate($route, $parameters, false);
+
+        $this->getSession()->visit($this->locatePath($url));
+    }
+
+
+    /**
      * Wait
      *
      * @param integer $time
