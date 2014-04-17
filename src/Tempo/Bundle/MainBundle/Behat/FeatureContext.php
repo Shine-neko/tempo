@@ -141,6 +141,21 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
         $this->getSession()->visit($this->locatePath($url));
     }
 
+    /**
+     * @param string $text
+     *
+     * @Then /^I should see (?:a )?flash message "([^"]*)"$/
+     */
+    public function iShouldSeeFlashMessage($text)
+    {
+        if (!$this->assertSession()->elementExists('css', '.flash-message')) {
+            throw new \Exception('No flash messages found');
+        }
+
+        $this->assertSession()->pageTextContains($text);
+
+
+    }
 
     /**
      * Wait

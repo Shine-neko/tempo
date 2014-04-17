@@ -49,6 +49,9 @@ class TimesheetController extends FOSRestController
             $dm->flush();
             $view->setStatusCode(201);
             $view->setData($period);
+
+            $request->getSession()->getFlashBag()->set('success', $this->get('translator')->trans('timesheets.success_add', array(), 'TempoProject'));
+
         } else {
             $view->setData($form);
         }

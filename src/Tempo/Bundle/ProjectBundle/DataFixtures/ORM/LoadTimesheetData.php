@@ -47,7 +47,7 @@ class LoadTimesheetData extends AbstractFixture implements OrderedFixtureInterfa
             $cra->setCreated(new \DateTime());
             $cra->setPeriod(new \DateTime($date));
 
-            $cra->setDescription('Le Lorem Ipsum est simplement du faux texte.');
+            $cra->setDescription('Lorem Ipsum is simply dummy text');
 
             $manager->persist($cra);
             $manager->flush();

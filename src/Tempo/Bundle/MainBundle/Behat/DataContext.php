@@ -12,11 +12,10 @@
 
 namespace Tempo\Bundle\MainBundle\Behat;
 
-use Behat\Behat\Context\BehatContext;
-use Behat\Symfony2Extension\Context\KernelAwareInterface;
 use Faker\Factory as FakerFactory;
-use Symfony\Component\HttpKernel\KernelInterface;
 use Behat\MinkExtension\Context\RawMinkContext;
+use Behat\Gherkin\Node\TableNode;
+
 
 
 class DataContext extends RawMinkContext
@@ -30,5 +29,21 @@ class DataContext extends RawMinkContext
     public function __construct()
     {
         $this->faker = FakerFactory::create();
+    }
+
+    /**
+     * @Given /^I created cra:$/
+     */
+    public function iCreatedCraNameDescription(TableNode $table)
+    {
+        if (!isset($table->getRowsHash()['period'])) {
+            $this->getMainContext()->fillField('timesheet[period]', date('Y-m-d'));
+        }
+
+        foreach ($table->getRowsHash() as $key => $value) {
+           $this->getMainContext()->fillField('timesheet['.$key.']', $value);
+        }
+
+        $this->getMainContext()->pressButton('Save');
     }
 }

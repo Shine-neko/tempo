@@ -17,17 +17,6 @@ Tempo.Controller.Timesheet = Backbone.Marionette.Controller.extend({
 
         this.view  = new Tempo.View.Timesheet();
 
-        $('.cra_load').on('click', function(e) {
-            e.preventDefault();
-
-            var cra_id = $(this).attr('rel');
-            var day_date = cra_id.replace('form-cra-load-', '');
-            var init_date = new Date();
-
-            var projectId = $(this).data('projectid');
-
-        });
-
         $('.cra_load').on('keydown', function(event) {
             if (event.which == 9) {
                 event.preventDefault();
@@ -57,11 +46,5 @@ Tempo.Controller.Timesheet = Backbone.Marionette.Controller.extend({
                });
             }
         });
-
-
-        $('#time-list .boxclose').on('click', function(e) {
-            $('#' + $(this).attr('rel')).hide();
-        });
-
     }
 });
