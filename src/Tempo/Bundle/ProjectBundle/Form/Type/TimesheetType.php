@@ -25,7 +25,7 @@ class TimesheetType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('time')
+            ->add('workedTime')
             ->add('period', 'date', array('widget' => 'single_text'))
             ->add('project', null, array( 'mapped' => false) )
             ->add('description')

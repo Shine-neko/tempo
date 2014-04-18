@@ -21,13 +21,22 @@ class TimesheetManager extends BaseManager
 {
 
     /**
+     * @param \DateTime $date
+     * @return array
+     */
+    public function findByPeriod(\DateTime $date)
+    {
+        return $this->repository->findBy(array('workedDate' => $date));
+    }
+
+    /**
      * @param  null  $weekbegin
      * @param $weekLang
      * @param $userId
      * @param  null  $weekend
      * @return array
      */
-     public function getTimeForPeriod($filter, $curentWeek, $weekLang, $userId)
+     public function getActivitiesForPeriod($activities, $currentWeek, $weekLang, $projectsList)
      {
         $data = array(
             'date' => array(),
@@ -37,7 +46,7 @@ class TimesheetManager extends BaseManager
 
         //date of the week
         $i = 1;
-        foreach ($curentWeek as $day) {
+        foreach ($currentWeek as $day) {
             $data['date'][$i] = $day;
             $i++;
         }
@@ -48,19 +57,6 @@ class TimesheetManager extends BaseManager
            $data['week'][$key] = $week . ' ' . $data['date'][$key]->format('d');
         }
 
-        $projectsList = $this->em->getRepository('TempoProjectBundle:Project')->findAllByUser($userId);
-
-
-        if(!empty($filter)) {
-            $projectsTracList = $this->em->getRepository('TempoProjectBundle:Project')->findTimeEntry(
-                $userId, $filter['from']->format('Y-m-j'), $filter['from']->format('Y-m-j')
-            );
-        }else {
-             $projectsTracList = $this->em->getRepository('TempoProjectBundle:Project')->findTimeEntry(
-                 $userId, $curentWeek->getBegin()->format('Y-m-j'), $curentWeek->getEnd()->format('Y-m-j')
-             );
-         }
-
         foreach($projectsList as $project) {
             $projectName = $project->getName();
 
@@ -70,14 +66,14 @@ class TimesheetManager extends BaseManager
             $data['projects'][$projectName]['cras'][] = array();
         }
 
-        foreach ($projectsTracList as $project) {
+        foreach ($activities as $project) {
 
             $projectName = $project->getName();
 
 
             foreach ($project->getTimesheets() as $timesheet) {
 
-                $dateFormat =  $timesheet->getPeriod()->format('j');
+                $dateFormat =  $timesheet->getWorkedDate()->format('j');
 
                 if (empty($data['projects'][$projectName]['cras'][$dateFormat]['total'])) {
                     $data['projects'][$projectName]['cras'][$dateFormat]['total'] = 0;
@@ -87,7 +83,7 @@ class TimesheetManager extends BaseManager
                     $data['projects'][$projectName]['cras'][$dateFormat]['hours'] = 0;
                 }
 
-                $data['projects'][$projectName]['cras'][$dateFormat]['hours'] += $timesheet->getTime();
+                $data['projects'][$projectName]['cras'][$dateFormat]['hours'] += $timesheet->getWorkedTime();
                 $data['projects'][$projectName]['cras'][$dateFormat]['day'] = $dateFormat;
                 $data['projects'][$projectName]['cras'][$dateFormat]['list'][] = $timesheet;
                 asort($data['projects'][$projectName]['cras'][$dateFormat]['list']);

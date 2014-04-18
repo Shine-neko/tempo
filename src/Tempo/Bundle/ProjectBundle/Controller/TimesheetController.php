@@ -43,8 +43,9 @@ class TimesheetController extends Controller
     }
 
     /**
-     * Displays a form to edit an existing Timesheet.
+     * Edits an existing activity.
      *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function editAction($id)
     {
@@ -61,11 +62,7 @@ class TimesheetController extends Controller
         ));
     }
 
-    /**
-     * Edits an existing Timesheet entity.
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
+
     public function updateAction(Request $request, $id)
     {
         $entity = $this->getManager()->find($id);
@@ -131,15 +128,14 @@ class TimesheetController extends Controller
         ));
 
     }
-    public function showAction(Request $request, $date)
-    {
-        $date = new \DateTime($date);
-        $timeList = $this->get('tempo_project.manager.timesheet')->repository->findBy(array('period' => $date));
 
+    public function showAction($date)
+    {
         return $this->render('TempoProjectBundle:Timesheet:show.html.twig', array(
-            'timeList' => $timeList
+            'activities' => $this->getManager()->findByPeriod(new \DateTime($date))
         ));
     }
+
     public function exportCSVAction(Request $request)
     {
         $form = $this->createForm(new TimesheetExportType(), array(
@@ -156,7 +152,6 @@ class TimesheetController extends Controller
             'form' => $form->createView()
         ));
     }
-
 
     private function getManager()
     {
@@ -194,12 +189,25 @@ class TimesheetController extends Controller
         );
 
         $filter = $this->createForm(new TimesheetFilterType());
+        $processFilter = $this->processFilter($filter, $request);
 
-        $data = $this->getManager()->getTimeForPeriod(
-            $this->processFilter($filter, $request),
+        if(!empty($processFilter)) {
+            $projectsActivityReporting = $this->get('tempo_project.manager.project')->repository->findTimeEntry(
+                $this->getUser()->getId(), $processFilter['from']->format('Y-m-j'), $processFilter['from']->format('Y-m-j')
+            );
+        }else {
+            $projectsActivityReporting = $this->get('tempo_project.manager.project')->repository->findTimeEntry(
+                $this->getUser()->getId(), $factoryWeek->getBegin()->format('Y-m-j'), $factoryWeek->getEnd()->format('Y-m-j')
+            );
+        }
+
+        $projectList = $this->get('tempo_project.manager.project')->repository->findAllByUser($this->getUser()->getId());
+
+        $data = $this->getManager()->getActivitiesForPeriod(
+            $projectsActivityReporting,
             $factoryWeek,
             $weekLang[$locale],
-            $this->getUser()->getId()
+            $projectList
         );
 
 

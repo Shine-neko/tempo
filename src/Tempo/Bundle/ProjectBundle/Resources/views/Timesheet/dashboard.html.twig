@@ -80,10 +80,10 @@
                     {% for day in date %}
                         <td>
                             <form action="{{ path('timesheet_postdata') }}" method="post" class="parent-form" id="parent-form{{ loop.index }}">
-                                <input type="text" maxlength="2" name="timesheet[time]" class="cra_load" size="2" />
+                                <input type="text" maxlength="2" name="timesheet[workedTime]" class="cra_load" size="2" />
                                 <input type="text" name="timesheet[description]" class="cra_desc" rel="form-cra-load-{{ day.format('Y-m-d')}}" />
                                 <input type="text" name="timesheet[project]" class="cra_project" value="{{ project.id }}" style="display: none;" />
-                                <input type="text" name="timesheet[period]" class="cra_date" value="{{ day.format('Y-m-d')}}" style="display: none;" />
+                                <input type="text" name="timesheet[workedDate]" class="cra_date" value="{{ day.format('Y-m-d')}}" style="display: none;" />
                                 <input type="submit" style="display: none" value="{{ 'form.save'|trans }}" />
                             </form>
 

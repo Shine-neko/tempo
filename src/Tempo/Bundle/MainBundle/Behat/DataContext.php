@@ -37,7 +37,7 @@ class DataContext extends RawMinkContext
     public function iCreatedCraNameDescription(TableNode $table)
     {
         if (!isset($table->getRowsHash()['period'])) {
-            $this->getMainContext()->fillField('timesheet[period]', date('Y-m-d'));
+            $this->getMainContext()->fillField('timesheet[workedDate]', date('Y-m-d'));
         }
 
         foreach ($table->getRowsHash() as $key => $value) {

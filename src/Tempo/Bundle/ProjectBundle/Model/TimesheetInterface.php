@@ -11,11 +11,14 @@
 
 namespace Tempo\Bundle\ProjectBundle\Model;
 
+use Sylius\Bundle\ResourceBundle\Model\TimestampableInterface;
+
+
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
 
-interface TimesheetInterface
+interface TimesheetInterface extends TimestampableInterface
 {
     /**
      * @return integer
@@ -23,33 +26,28 @@ interface TimesheetInterface
     public function getId();
 
     /**
-     * @param \DateTime $time
-     */
-    public function getPeriod();
-
-    /**
-     * @return \DateTime
-     */
-    public function getTime();
-
-    /**
-     * Set Date
-     *
-     * @param \DateTime $datetime
-     */
-    public function setCreated(\DateTime $datetime);
-
-    /**
      * Set time
      *
      * @param \DateTime $time
      */
-    public function setTime($time);
+    public function setWorkedTime($time);
+
+    /**
+     * Get worked time
+     *
+     * @return \DateTime
+     */
+    public function getWorkedTime();
 
     /**
      * @param \DateTime $time
      */
-    public function setPeriod($time);
+    public function getWorkedDate();
+
+    /**
+     * @param \DateTime $time
+     */
+    public function setWorkedDate($time);
 
     /**
      * @param string $description

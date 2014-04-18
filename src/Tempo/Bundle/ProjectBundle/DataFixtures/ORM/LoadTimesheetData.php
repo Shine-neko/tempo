@@ -38,14 +38,13 @@ class LoadTimesheetData extends AbstractFixture implements OrderedFixtureInterfa
             $cra->setProject($this->getReference('project' . $i));
             $cra->setUser($this->getReference($userList[array_rand($userList, 1)]));
             $cra->setBillable($i % 2);
-            $nbr = str_shuffle('12345678');
 
-            $cra->setTime($nbr[0]);
+            $cra->setWorkedTime(str_shuffle('12345678')[0]);
 
             $date = date('Y') . '-' . date('m') . '-' . $dateList[array_rand($dateList, 1)];
 
-            $cra->setCreated(new \DateTime());
-            $cra->setPeriod(new \DateTime($date));
+            $cra->setCreatedAt(new \DateTime());
+            $cra->setWorkedDate(new \DateTime($date));
 
             $cra->setDescription('Lorem Ipsum is simply dummy text');
 

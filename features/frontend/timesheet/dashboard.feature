@@ -29,7 +29,7 @@ Feature: dashboard timesheet
     When I am on route "timesheet"
     And I created cra:
       | project  | 1 |
-      | time   | 5   |
+      | workedTime   | 5   |
       | description  | Lorem Ipsum is simply dummy text.  |
     And I should see flash message "activity report successfully created"
     And I am on route "timesheet"

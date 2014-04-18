@@ -46,20 +46,20 @@ class ProjectRepository extends EntityRepository
      * @param $weekend
      * @return array
      */
-    public function findTimeEntry($user, $weekbegin, $weekend)
+    public function findTimeEntry($user, $weekBegin, $weekEnd)
     {
         $query = $this->createQueryBuilder('p');
         $query->leftJoin('p.team', 'pu');
         $query->leftJoin('p.timesheets', 't');
 
-        $query->where('t.period BETWEEN :begin AND :end');
+        $query->where('t.workedDate BETWEEN :begin AND :end');
         $query->AndWhere('pu = :user');
-        $query->setParameter('begin', $weekbegin);
-        $query->setParameter('end', $weekend);
+        $query->setParameter('begin', $weekBegin);
+        $query->setParameter('end', $weekEnd);
         $query->setParameter('user', $user);
 
         /*
-            SELECT p.id, p.name, p.slug, t.id, t.time, t.billable, t.created, t.description FROM project p
+            SELECT p.id, p.name, p.slug, t.id, t.workedTime, t.billable, t.createdAt, t.description FROM project p
             LEFT JOIN project_user pu ON pu.project_id = p.id
             LEFT JOIN timesheet t ON t.project_id = p.id  WHERE pu.user_id = 1
         */
