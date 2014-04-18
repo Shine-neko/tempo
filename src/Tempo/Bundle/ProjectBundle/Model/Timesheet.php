@@ -79,9 +79,9 @@ abstract class Timesheet implements TimesheetInterface
     public function __construct()
     {
         $this->createdAt = new \DateTime();
+
         return $this->state = 0;
     }
-
 
     public function __toString()
     {
@@ -137,7 +137,7 @@ abstract class Timesheet implements TimesheetInterface
      */
     public function setWorkedTime($time)
     {
-        $this->workedTime= $time;
+        $this->workedTime = $time;
     }
 
     /**
@@ -163,7 +163,6 @@ abstract class Timesheet implements TimesheetInterface
     {
         return $this->workedDate;
     }
-
 
     /**
      * {@inheritdoc}

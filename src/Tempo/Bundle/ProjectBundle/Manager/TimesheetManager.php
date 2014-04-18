@@ -21,7 +21,7 @@ class TimesheetManager extends BaseManager
 {
 
     /**
-     * @param \DateTime $date
+     * @param  \DateTime $date
      * @return array
      */
     public function findByPeriod(\DateTime $date)
@@ -30,9 +30,10 @@ class TimesheetManager extends BaseManager
     }
 
     /**
-     * @param  null  $weekbegin
+     * @param  null  $activities
+     * @param  null  $currentWeek
      * @param $weekLang
-     * @param $userId
+     * @param $projectsList
      * @param  null  $weekend
      * @return array
      */
@@ -57,7 +58,7 @@ class TimesheetManager extends BaseManager
            $data['week'][$key] = $week . ' ' . $data['date'][$key]->format('d');
         }
 
-        foreach($projectsList as $project) {
+        foreach ($projectsList as $project) {
             $projectName = $project->getName();
 
             $data['projects'][$projectName]['id'] = $project->getId();
@@ -69,7 +70,6 @@ class TimesheetManager extends BaseManager
         foreach ($activities as $project) {
 
             $projectName = $project->getName();
-
 
             foreach ($project->getTimesheets() as $timesheet) {
 

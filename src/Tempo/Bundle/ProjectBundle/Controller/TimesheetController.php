@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 use CalendR\Period\Week;
 use Tempo\Bundle\ProjectBundle\Form\Type\TimesheetType;
@@ -62,7 +63,6 @@ class TimesheetController extends Controller
         ));
     }
 
-
     public function updateAction(Request $request, $id)
     {
         $entity = $this->getManager()->find($id);
@@ -98,7 +98,6 @@ class TimesheetController extends Controller
         return $this->redirect($this->generateUrl('timesheet'));
     }
 
-
     public function exportPDFAction(Request $request)
     {
         $form = $this->createForm(new TimesheetExportType(), array(
@@ -129,10 +128,15 @@ class TimesheetController extends Controller
 
     }
 
-    public function showAction($date)
+    /**
+     * @ParamConverter("end", options={"format": "Y-m-d"})
+     * @param  \DateTime $date
+     * @return Response
+     */
+    public function showAction(\DateTime $date)
     {
         return $this->render('TempoProjectBundle:Timesheet:show.html.twig', array(
-            'activities' => $this->getManager()->findByPeriod(new \DateTime($date))
+            'activities' => $this->getManager()->findByPeriod($date)
         ));
     }
 
@@ -191,11 +195,11 @@ class TimesheetController extends Controller
         $filter = $this->createForm(new TimesheetFilterType());
         $processFilter = $this->processFilter($filter, $request);
 
-        if(!empty($processFilter)) {
+        if (!empty($processFilter)) {
             $projectsActivityReporting = $this->get('tempo_project.manager.project')->repository->findTimeEntry(
                 $this->getUser()->getId(), $processFilter['from']->format('Y-m-j'), $processFilter['from']->format('Y-m-j')
             );
-        }else {
+        } else {
             $projectsActivityReporting = $this->get('tempo_project.manager.project')->repository->findTimeEntry(
                 $this->getUser()->getId(), $factoryWeek->getBegin()->format('Y-m-j'), $factoryWeek->getEnd()->format('Y-m-j')
             );
@@ -209,7 +213,6 @@ class TimesheetController extends Controller
             $weekLang[$locale],
             $projectList
         );
-
 
         return array(
             'date' => $data['date'],

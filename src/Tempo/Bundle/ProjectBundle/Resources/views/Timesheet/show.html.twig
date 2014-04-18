@@ -7,7 +7,7 @@
     </tr>
     </thead>
     <tbody>
-    {% for cra in timeList %}
+    {% for cra in activities %}
         <tr class="{{ cycle(['t1', 't2'], loop.index) }}">
             <td><strong>{{ cra.workedTime }}:00</strong></td>
             <td><span class="carre {% if cra.billable == 0 %}yellow{% endif %}"> </span></td>
