@@ -74,25 +74,25 @@
             </tr>
             </thead>
             <tbody>
-            {% for project in projects %}
+            {% for proxy in proxiesProject %}
                 <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
-                    <td><a href="{{ path('project_show', {'slug': project.slug }) }}">{{ project.name }}</a></td>
-                    {% for day in date %}
+                    <td><a href="{{ path('project_show', {'slug': proxy.project.slug }) }}">{{ proxy.project.name }}</a></td>
+                    {% for day in daysInWeek %}
                         <td>
                             <form action="{{ path('timesheet_postdata') }}" method="post" class="parent-form" id="parent-form{{ loop.index }}">
                                 <input type="text" maxlength="2" name="timesheet[workedTime]" class="cra_load" size="2" />
                                 <input type="text" name="timesheet[description]" class="cra_desc" rel="form-cra-load-{{ day.format('Y-m-d')}}" />
-                                <input type="text" name="timesheet[project]" class="cra_project" value="{{ project.id }}" style="display: none;" />
+                                <input type="text" name="timesheet[project]" class="cra_project" value="{{ proxy.project.id }}" style="display: none;" />
                                 <input type="text" name="timesheet[workedDate]" class="cra_date" value="{{ day.format('Y-m-d')}}" style="display: none;" />
                                 <input type="submit" style="display: none" value="{{ 'form.save'|trans }}" />
                             </form>
 
-                            {% if project.cras[day.format('j')]['day'] is defined %}
+                            {% if proxy.getDay(day.format('d')) is not null %}
 
                                 <div class="cra craid_{{ day.format('j') }}">
                                     <a data-title="Time tracking" data-toggle="modal" data-target="#" href="{{ path('timesheet_show', { 'date' : day.format('Y-m-d') }) }}">
-                                        <span class="total"> total {{ project.cras[day.format('j')]['total'] }}</span><br />
-                                        <span class="heures">  {{ project.cras[day.format('j')]['hours'] }}:00</span>
+                                        <span class="total"> total {{ proxy.getDay(day.format('d'))|length }}</span><br />
+                                        <span class="hours">  {{ proxy.getDay(day.format('d')).time }}:00</span>
                                     </a>
                                 </div>
 

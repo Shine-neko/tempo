@@ -12,6 +12,8 @@
 namespace Tempo\Bundle\ProjectBundle\Manager;
 
 use Tempo\Bundle\CoreBundle\Manager\BaseManager;
+use Tempo\Bundle\ProjectBundle\Timesheet\ProjectTimesheet;
+use Tempo\Bundle\ProjectBundle\Timesheet\ProjectActivityDayTimesheet;
 
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
@@ -19,6 +21,11 @@ use Tempo\Bundle\CoreBundle\Manager\BaseManager;
 
 class TimesheetManager extends BaseManager
 {
+
+    public function findActivities($user, $weekBegin, $weekEnd)
+    {
+        return $this->repository->findActivities($user, $weekBegin, $weekEnd);
+    }
 
     /**
      * @param  \DateTime $date
@@ -30,70 +37,57 @@ class TimesheetManager extends BaseManager
     }
 
     /**
-     * @param  null  $activities
-     * @param  null  $currentWeek
-     * @param $weekLang
+     * @param $activities
      * @param $projectsList
-     * @param  null  $weekend
      * @return array
      */
-     public function getActivitiesForPeriod($activities, $currentWeek, $weekLang, $projectsList)
+     public function getActivitiesForPeriod($activitiesReport, $projectsList)
      {
-        $data = array(
-            'date' => array(),
-            'week' => array(),
-            'projects' => array(),
-        );
+        $data = array( );
 
-        //date of the week
+         foreach ($projectsList as $project) {
+            $prj = new ProjectTimesheet();
+            $prj->setProject($project);
+            $data[$prj->getProject()->getId()] = $prj;
+        }
+
+         foreach ($activitiesReport as $activity) {
+             $activityReport = new ProjectActivityDayTimesheet($activity->getWorkedDate()->format('j'));
+             $activityReport
+                 ->addActivity($activity)
+                 ->addTime($activity->getWorkedTime());
+
+             $data[$activity->getProject()->getId()]->addDay($activityReport);
+         }
+        return $data;
+    }
+
+    /**
+     * @param $currentWeek
+     * @return array
+     */
+    public function getDaysInWeek($currentWeek)
+    {
         $i = 1;
         foreach ($currentWeek as $day) {
-            $data['date'][$i] = $day;
+            $this->daysInWeek[$i] = $day;
             $i++;
         }
 
-        //weekday
-        foreach ($weekLang as $key => $week) {
-           $key++;
-           $data['week'][$key] = $week . ' ' . $data['date'][$key]->format('d');
+        return $this->daysInWeek;
+    }
+
+    /**
+     * @param $workDay
+     * @return array
+     */
+    public function getWorkday($workDay, $daysInWeek)
+    {
+        foreach ($workDay as $key => $week) {
+            $key++;
+            $this->workday[$key] = $week . ' ' . $daysInWeek[$key]->format('d');
         }
 
-        foreach ($projectsList as $project) {
-            $projectName = $project->getName();
-
-            $data['projects'][$projectName]['id'] = $project->getId();
-            $data['projects'][$projectName]['name'] = $project->getName();
-            $data['projects'][$projectName]['slug'] = $project->getSlug();
-            $data['projects'][$projectName]['cras'][] = array();
-        }
-
-        foreach ($activities as $project) {
-
-            $projectName = $project->getName();
-
-            foreach ($project->getTimesheets() as $timesheet) {
-
-                $dateFormat =  $timesheet->getWorkedDate()->format('j');
-
-                if (empty($data['projects'][$projectName]['cras'][$dateFormat]['total'])) {
-                    $data['projects'][$projectName]['cras'][$dateFormat]['total'] = 0;
-                }
-
-                if (empty($data['projects'][$projectName]['cras'][$dateFormat]['hours'])) {
-                    $data['projects'][$projectName]['cras'][$dateFormat]['hours'] = 0;
-                }
-
-                $data['projects'][$projectName]['cras'][$dateFormat]['hours'] += $timesheet->getWorkedTime();
-                $data['projects'][$projectName]['cras'][$dateFormat]['day'] = $dateFormat;
-                $data['projects'][$projectName]['cras'][$dateFormat]['list'][] = $timesheet;
-                asort($data['projects'][$projectName]['cras'][$dateFormat]['list']);
-
-                $data['projects'][$projectName]['cras'][$dateFormat]['total']++;
-            }
-
-             unset($data['projects'][$projectName]['cras'][0]);     // @TODO fix bug indexe 0
-        }
-
-        return $data;
+        return $this->workday;
     }
 }

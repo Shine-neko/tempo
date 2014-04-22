@@ -82,7 +82,7 @@ class TimesheetController extends Controller
     }
 
     /**
-     * Deletes a Timesheet entity.
+     * Deletes a Activity
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
@@ -177,12 +177,11 @@ class TimesheetController extends Controller
     private function filterData(Request $request)
     {
         $locale = $this->container->getParameter('locale');
-        $weekLang = $this->container->getParameter('tempo_project.week');
+        $workDay = $this->container->getParameter('tempo_project.week');
         $currentYear = $request->query->get('year', date('Y'));
         $currentWeek = $request->query->get('week', date('W'));
 
-        $week = new \DateTime();
-        $week->setISOdate($currentYear, $currentWeek);
+        $week = (new \DateTime())->setISOdate($currentYear, $currentWeek);
         $factoryWeek = new Week($week);
 
         $weekPagination = array(
@@ -192,35 +191,35 @@ class TimesheetController extends Controller
             'year' => $currentYear
         );
 
-        $filter = $this->createForm(new TimesheetFilterType());
-        $processFilter = $this->processFilter($filter, $request);
+        $filterFormType = $this->createForm(new TimesheetFilterType());
+        $processFilter = $this->processFilter($filterFormType, $request);
 
         if (!empty($processFilter)) {
-            $projectsActivityReporting = $this->get('tempo_project.manager.project')->repository->findTimeEntry(
+            $projectsActivityReporting = $this->get('tempo_project.manager.timesheet')->findActivities(
                 $this->getUser()->getId(), $processFilter['from']->format('Y-m-j'), $processFilter['from']->format('Y-m-j')
             );
         } else {
-            $projectsActivityReporting = $this->get('tempo_project.manager.project')->repository->findTimeEntry(
+            $projectsActivityReporting = $this->get('tempo_project.manager.timesheet')->findActivities(
                 $this->getUser()->getId(), $factoryWeek->getBegin()->format('Y-m-j'), $factoryWeek->getEnd()->format('Y-m-j')
             );
         }
 
         $projectList = $this->get('tempo_project.manager.project')->repository->findAllByUser($this->getUser()->getId());
 
-        $data = $this->getManager()->getActivitiesForPeriod(
+        $proxiesProject = $this->getManager()->getActivitiesForPeriod(
             $projectsActivityReporting,
-            $factoryWeek,
-            $weekLang[$locale],
             $projectList
         );
 
+        $daysInWeek = $this->getManager()->getDaysInWeek($factoryWeek);
+
         return array(
-            'date' => $data['date'],
-            'week' => $data['week'],
+            'daysInWeek' => $daysInWeek,
+            'week' => $this->getManager()->getWorkday($workDay[$locale], $daysInWeek),
             'currentWeek' => $week,
-            'projects' => $data['projects'],
+            'proxiesProject' => $proxiesProject,
             'weekPagination' => $weekPagination,
-            'filter' => $filter->createView()
+            'filter' => $filterFormType->createView()
         );
     }
 
