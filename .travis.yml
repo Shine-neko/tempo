@@ -39,5 +39,5 @@ before_script:
 
 
 script:
-    - phpunit -c app/
+    - ./bin/phpunit -c app/
     - ./bin/behat -fprogress --verbose
