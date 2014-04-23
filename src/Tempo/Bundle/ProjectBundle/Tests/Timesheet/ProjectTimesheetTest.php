@@ -36,7 +36,5 @@ class ProjectTimesheetTest extends \PHPUnit_Framework_TestCase
 
         $projectTimesheet = new ProjectTimesheet();
         $projectTimesheet->addDay($day);
-
-        var_dump($projectTimesheet->getDay(date('d')));
     }
 }

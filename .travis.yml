@@ -10,7 +10,7 @@ before_script:
     - cp behat.yml.dist behat.yml
 
     - npm install
-    - bower update
+    - bower update --config.interactive=false
 
     # Composer
     - composer self-update
