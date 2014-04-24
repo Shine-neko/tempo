@@ -16,8 +16,7 @@ use Behat\MinkExtension\Context\RawMinkContext;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Behat\Symfony2Extension\Context\KernelAwareInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Behat\Mink\Driver\Selenium2Driver;
-use Behat\Behat\Exception\BehaviorException;
+use Doctrine\Common\Inflector\Inflector;
 
 abstract class BaseContext extends RawMinkContext implements KernelAwareInterface
 {
