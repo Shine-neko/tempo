@@ -58,7 +58,11 @@
         </div>
         <div class="app-panel clearbox">
             <div class="list_membre">
-                {% include 'TempoProjectBundle:Team:list.html.twig' with { 'users': project.team } %}
+                {% include 'TempoProjectBundle:Team:list.html.twig' with {
+                    'route_deleted' :'project_team_delete',
+                    'users': project.team,
+                    'category': project
+                } %}
             </div>
         </div>
 
