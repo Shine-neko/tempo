@@ -14,6 +14,7 @@
         "eonasdan-bootstrap-datetimepicker": "latest",
         "blueimp-md5": "latest",
         "socket.io-client": "latest",
-        "selectize": "latest"
+        "selectize": "latest",
+        "ckeditor-light-theme": "latest"
     }
 }
