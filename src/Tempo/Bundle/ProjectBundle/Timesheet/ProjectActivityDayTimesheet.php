@@ -17,14 +17,17 @@ class ProjectActivityDayTimesheet
     /**
      * var integer $hours
      */
-    protected  $time;
+    protected $time;
+
+    /**
+     * @var integer $day
+     */
     protected $day;
 
     /**
      * @var Collection
      */
     protected $activities;
-
 
     public function __construct($day)
     {
@@ -41,7 +44,7 @@ class ProjectActivityDayTimesheet
         return $this->day;
     }
 
-    public  function addTime($time)
+    public function addTime($time)
     {
         $this->time = $this->time + $time;
     }
@@ -55,7 +58,7 @@ class ProjectActivityDayTimesheet
     }
 
     /**
-     * @param $activity
+     * @param TimesheetInterface $activity
      * @return $this
      */
     public function addActivity(TimesheetInterface $activity)

@@ -14,13 +14,15 @@ use Tempo\Bundle\ProjectBundle\Model\ProjectInterface;
 
 class ProjectTimesheet
 {
+    /**
+     * @var ProjectInterface $project
+     */
     private $project;
 
     /**
      * var array $days
      */
     private $days;
-
 
     public function __construct()
     {
@@ -50,7 +52,7 @@ class ProjectTimesheet
 
     /**
      * @param ProjectActivityDayTimesheet $day
-     * @return $this
+     *                                         @return $this
      */
     public function addDay(ProjectActivityDayTimesheet $day)
     {
@@ -69,11 +71,12 @@ class ProjectTimesheet
         if (isset($this->days[$day])) {
             return $this->days[$day];
         }
+
         return null;
     }
 
     /**
-     * @param Collection $days
+     * @return Collection $days
      */
     public function getDays()
     {
