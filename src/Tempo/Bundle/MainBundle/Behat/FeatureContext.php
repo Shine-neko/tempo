@@ -130,6 +130,34 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     }
 
     /**
+     * @When /^I am on route "([^"]*)" with query "([^"]*)"$/
+     */
+    public function iAmOnRouteWithQuery($route, $parameters)
+    {
+        parse_str($parameters, $parameters);
+
+        $url = $this->kernel->getContainer()->get('router')->generate($route, $parameters, false);
+
+        $this->getSession()->visit($this->locatePath($url));
+    }
+
+    /**
+     * @param string $text
+     *
+     * @Then /^I should see (?:a )?flash message "([^"]*)"$/
+     */
+    public function iShouldSeeFlashMessage($text)
+    {
+        if (!$this->assertSession()->elementExists('css', '.flash-message')) {
+            throw new \Exception('No flash messages found');
+        }
+
+        $this->assertSession()->pageTextContains($text);
+
+
+    }
+
+    /**
      * Wait
      *
      * @param integer $time

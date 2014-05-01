@@ -13,7 +13,6 @@
 namespace Tempo\Bundle\ProjectBundle\Controller\Api\Rest;
 
 use Symfony\Component\HttpFoundation\Request;
-use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\View\View;
 
@@ -42,16 +41,19 @@ class TimesheetController extends FOSRestController
         $form = $this->createForm(new TimesheetType(), $period);
         $form->submit($request);
 
-
         if ($form->isValid()) {
             $dm = $this->getDoctrine()->getManager();
             $dm->persist($period);
             $dm->flush();
             $view->setStatusCode(201);
             $view->setData($period);
+
+            $request->getSession()->getFlashBag()->set('success', $this->get('translator')->trans('timesheets.success_add', array(), 'TempoProject'));
+
         } else {
             $view->setData($form);
         }
+
         return $view;
     }
 }
