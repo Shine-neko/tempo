@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "be082cd94928d51ec4df1f342022ba3f",
+    "hash": "927dcb1b7c172ae81ae48cc7e6c316b4",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1727,12 +1727,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpMenu.git",
-                "reference": "7d9bcdc29b49c3fc671a9c22885176f0ffe034c5"
+                "reference": "de645e813ddca4a1243db48bce5eaee8adb346a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/7d9bcdc29b49c3fc671a9c22885176f0ffe034c5",
-                "reference": "7d9bcdc29b49c3fc671a9c22885176f0ffe034c5",
+                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/de645e813ddca4a1243db48bce5eaee8adb346a2",
+                "reference": "de645e813ddca4a1243db48bce5eaee8adb346a2",
                 "shasum": ""
             },
             "require": {
@@ -1783,7 +1783,7 @@
                 "menu",
                 "tree"
             ],
-            "time": "2014-04-08 20:25:33"
+            "time": "2014-05-01 19:50:28"
         },
         {
             "name": "knplabs/knp-menu-bundle",
@@ -3087,18 +3087,82 @@
             "time": "2014-03-18 09:03:27"
         },
         {
-            "name": "sylius/resource-bundle",
-            "version": "v0.9.0",
-            "target-dir": "Sylius/Bundle/ResourceBundle",
+            "name": "sylius/resource",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Sylius/SyliusResourceBundle.git",
-                "reference": "b0c19178688ed85087c23a061b985a4bab8c9b5f"
+                "url": "https://github.com/Sylius/Resource.git",
+                "reference": "44a61e4f89d5d7db097e23dc80e9b5902cf65e69"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Sylius/SyliusResourceBundle/zipball/b0c19178688ed85087c23a061b985a4bab8c9b5f",
-                "reference": "b0c19178688ed85087c23a061b985a4bab8c9b5f",
+                "url": "https://api.github.com/repos/Sylius/Resource/zipball/44a61e4f89d5d7db097e23dc80e9b5902cf65e69",
+                "reference": "44a61e4f89d5d7db097e23dc80e9b5902cf65e69",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/collections": "~1.0",
+                "doctrine/common": "~2.3",
+                "php": ">=5.3.3",
+                "yohang/finite": "~1.1@dev"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "~2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.10-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sylius\\Component\\Resource\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Paweł Jędrzejewski",
+                    "email": "pjedrzejewski@diweb.pl",
+                    "homepage": "http://pjedrzejewski.com"
+                },
+                {
+                    "name": "Sylius project",
+                    "homepage": "http://sylius.org"
+                },
+                {
+                    "name": "Community contributions",
+                    "homepage": "http://github.com/Sylius/Sylius/contributors"
+                }
+            ],
+            "description": "Basic resource interfaces for PHP applications.",
+            "homepage": "http://sylius.org",
+            "keywords": [
+                "api",
+                "doctrine",
+                "ecommerce",
+                "resource",
+                "shop",
+                "sylius"
+            ],
+            "time": "2014-04-27 04:02:03"
+        },
+        {
+            "name": "sylius/resource-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Sylius/SyliusResourceBundle.git",
+                "reference": "8a1f7c1220d350bbf602ee25a5f6589ef3b4a1e1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Sylius/SyliusResourceBundle/zipball/8a1f7c1220d350bbf602ee25a5f6589ef3b4a1e1",
+                "reference": "8a1f7c1220d350bbf602ee25a5f6589ef3b4a1e1",
                 "shasum": ""
             },
             "require": {
@@ -3106,6 +3170,7 @@
                 "friendsofsymfony/rest-bundle": "~1.0",
                 "jms/serializer-bundle": "0.12.*",
                 "php": ">=5.3.3",
+                "sylius/resource": "0.10.*@dev",
                 "symfony/expression-language": "~2.4",
                 "symfony/form": "~2.3",
                 "symfony/framework-bundle": "~2.3",
@@ -3126,11 +3191,11 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.9-dev"
+                    "dev-master": "0.10-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
+                "psr-4": {
                     "Sylius\\Bundle\\ResourceBundle\\": ""
                 }
             },
@@ -3161,28 +3226,27 @@
                 "storage",
                 "sylius"
             ],
-            "time": "2014-04-09 23:26:19"
+            "time": "2014-04-27 04:02:03"
         },
         {
             "name": "sylius/settings-bundle",
-            "version": "v0.9.0",
-            "target-dir": "Sylius/Bundle/SettingsBundle",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Sylius/SyliusSettingsBundle.git",
-                "reference": "a9d0391a10eb805cf90dba56001ccb82805e8084"
+                "reference": "dd19548fbebc896568151314a54246a57164c37b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Sylius/SyliusSettingsBundle/zipball/a9d0391a10eb805cf90dba56001ccb82805e8084",
-                "reference": "a9d0391a10eb805cf90dba56001ccb82805e8084",
+                "url": "https://api.github.com/repos/Sylius/SyliusSettingsBundle/zipball/dd19548fbebc896568151314a54246a57164c37b",
+                "reference": "dd19548fbebc896568151314a54246a57164c37b",
                 "shasum": ""
             },
             "require": {
                 "doctrine/doctrine-cache-bundle": "~1.0",
                 "php": ">=5.3.3",
                 "stof/doctrine-extensions-bundle": "1.1.*",
-                "sylius/resource-bundle": "0.9.*@dev",
+                "sylius/resource-bundle": "0.10.*@dev",
                 "symfony/framework-bundle": "~2.3"
             },
             "require-dev": {
@@ -3193,11 +3257,11 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.9-dev"
+                    "dev-master": "0.10-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
+                "psr-4": {
                     "Sylius\\Bundle\\SettingsBundle\\": ""
                 }
             },
@@ -3230,7 +3294,7 @@
                 "shop",
                 "webshop"
             ],
-            "time": "2014-04-09 23:26:19"
+            "time": "2014-04-25 12:12:17"
         },
         {
             "name": "symfony/assetic-bundle",
@@ -3980,6 +4044,76 @@
                 "events"
             ],
             "time": "2013-09-10 14:18:04"
+        },
+        {
+            "name": "yohang/finite",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yohang/Finite.git",
+                "reference": "3c892a6d254a579dad2a1e90f48132a0dfad4aeb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yohang/Finite/zipball/3c892a6d254a579dad2a1e90f48132a0dfad4aeb",
+                "reference": "3c892a6d254a579dad2a1e90f48132a0dfad4aeb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "symfony/event-dispatcher": ">=2.1,<3.0",
+                "symfony/options-resolver": ">=2.1,<3.0",
+                "symfony/property-access": ">=2.3,<3.0"
+            },
+            "require-dev": {
+                "pdepend/pdepend": "*",
+                "phpmd/phpmd": "*",
+                "phpunit/phpunit": ">=3.7,<4.0",
+                "pimple/pimple": ">=1.0,<2.0",
+                "symfony/dependency-injection": ">=2.1,<3.0",
+                "symfony/framework-bundle": ">=2.1,<3.0",
+                "symfony/security": ">=2.1,<3.0",
+                "twig/twig": ">=1.13,<2.0"
+            },
+            "suggest": {
+                "pimple/pimple": "Needed for use with PimpleFactory",
+                "symfony/dependency-injection": "Needed for use with Symfony DependencyInjection Factory",
+                "symfony/security": "Needed for using SecurityAwareStateMachine",
+                "symfony/yaml": "Yaml allows you to define your State graph in YAML"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Finite": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Yohan Giarelli",
+                    "email": "yohan@giarel.li",
+                    "homepage": "http://yohan.giarel.li"
+                }
+            ],
+            "description": "A simple PHP5.3+ Finite State Machine",
+            "homepage": "https://github.com/yohang/Finite",
+            "keywords": [
+                "bundle",
+                "state",
+                "statemachine",
+                "symfony",
+                "transition",
+                "workflow"
+            ],
+            "time": "2014-04-30 12:11:35"
         }
     ],
     "packages-dev": [
@@ -5308,6 +5442,10 @@
         "mopa/bootstrap-bundle": 10,
         "liip/imagine-bundle": 20,
         "nelmio/api-doc-bundle": 20,
+        "sylius/settings-bundle": 20,
+        "sylius/resource-bundle": 20,
+        "sylius/resource": 20,
+        "yohang/finite": 20,
         "behat/behat": 0,
         "behat/mink-extension": 20,
         "doctrine/doctrine-fixtures-bundle": 20,
