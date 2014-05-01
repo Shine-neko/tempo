@@ -26,10 +26,18 @@ class TimesheetType extends AbstractType
     {
         $builder
             ->add('workedTime')
-            ->add('period', 'date', array('widget' => 'single_text'))
-            ->add('project', null, array( 'mapped' => false) )
+            ->add('workedDate', 'date', array('widget' => 'single_text'))
             ->add('description')
         ;
+
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event){
+            $activity = $event->getData();
+            $form = $event->getForm();
+
+            if (!$activity || null === $activity->getId()) {
+                $form->add('project', null, array( 'mapped' => false) );
+            }
+        });
     }
     /**
      * {@inheritdoc}

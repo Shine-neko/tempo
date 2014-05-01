@@ -11,7 +11,6 @@ Tempo.View.Timesheet = Backbone.View.extend({
     render: function() {
     },
     modelAdded: function(model) {
-        console.log(model);
     },
 
     filterClick: function(e) {

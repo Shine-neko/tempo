@@ -24,14 +24,13 @@ class LoadTimesheetData extends AbstractFixture implements OrderedFixtureInterfa
     public function load(ObjectManager $manager)
     {
         $userList = array('admin', 'john.doe');
-        $day = date("w");
 
         for ($i = 1; $i <= 5; $i++) {
 
             $dateList = array();
 
             for ($k = 1; $k < 8; $k++) {
-                $dateList[] = date("d", mktime(0, 0, 0, date("n"), date("d") - $day + $k, date("y")));
+                $dateList[] = date("d", mktime(0, 0, 0, date("n"), date("d") - date("w") + $k, date("y")));
             }
 
             $cra = new Timesheet();
