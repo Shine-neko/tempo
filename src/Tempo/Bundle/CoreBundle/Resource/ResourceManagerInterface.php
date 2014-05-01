@@ -11,7 +11,6 @@
 
 namespace Tempo\Bundle\CoreBundle\Resource;
 
-
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
@@ -19,26 +18,24 @@ namespace Tempo\Bundle\CoreBundle\Resource;
 interface ResourceManagerInterface
 {
     /**
-     * @abstract
      * @param $resource
      */
-    function requireResource($resource);
+    public function requireResource($resource);
 
     /**
-     * @abstract
      * @param array $resources
      */
-    function requireResources(array $resources);
+    public function requireResources(array $resources);
 
     /**
      * return all css
      * @return array
      */
-    function getStylesheets();
+    public function getStylesheets();
 
     /**
      * return all javascripts
      * @return array
      */
-    function getJavascripts();
+    public function getJavascripts();
 }

@@ -11,7 +11,6 @@
 
 namespace Tempo\Bundle\CoreBundle\Resource;
 
-
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  * @todo: Management with Assetics

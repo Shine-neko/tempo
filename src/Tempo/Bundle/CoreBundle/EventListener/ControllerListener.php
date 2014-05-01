@@ -14,8 +14,6 @@ namespace Tempo\Bundle\CoreBundle\EventListener;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
-
-
 class ControllerListener
 {
     /**
@@ -28,7 +26,7 @@ class ControllerListener
             if (is_array($controllers)) {
                 $controller = $controllers[0];
 
-                if(is_object($controller) && method_exists($controller, 'preExecute')) {
+                if (is_object($controller) && method_exists($controller, 'preExecute')) {
                     $controller->preExecute();
                 }
             }
