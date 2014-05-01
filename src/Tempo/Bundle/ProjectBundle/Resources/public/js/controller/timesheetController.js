@@ -10,24 +10,9 @@
 Tempo.Controller.Timesheet = Backbone.Marionette.Controller.extend({
 
     collection: new Tempo.Collection.Timesheet(),
-    //view : new Tempo.View.Timesheet(),
-
     initialize: function() {
 
-        //this.collection.fetch();
-
         this.view  = new Tempo.View.Timesheet();
-
-        $('.cra_load').on('click', function(e) {
-            e.preventDefault();
-
-            var cra_id = $(this).attr('rel');
-            var day_date = cra_id.replace('form-cra-load-', '');
-            var init_date = new Date();
-
-            var projectId = $(this).data('projectid');
-
-        });
 
         $('.cra_load').on('keydown', function(event) {
             if (event.which == 9) {
@@ -58,17 +43,5 @@ Tempo.Controller.Timesheet = Backbone.Marionette.Controller.extend({
                });
             }
         });
-
-        $('a.show_cra').on('click', function(e) {
-            e.preventDefault();
-            $('.list').hide();
-            $('#' + $(this).attr('rel')).show();
-        });
-
-
-        $('#time-list .boxclose').on('click', function(e) {
-            $('#' + $(this).attr('rel')).hide();
-        });
-
     }
 });

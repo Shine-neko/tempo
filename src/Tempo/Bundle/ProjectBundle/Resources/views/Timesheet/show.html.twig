@@ -1,0 +1,27 @@
+<table class="table">
+    <thead>
+    <tr>
+        <th>H.</th>
+        <th>Prod</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for cra in activities %}
+        <tr class="{{ cycle(['t1', 't2'], loop.index) }}">
+            <td><strong>{{ cra.workedTime }}:00</strong></td>
+            <td><span class="carre {% if cra.billable == 0 %}billable{% endif %}"> </span></td>
+            <td>{{ cra.description }} </td>
+            <td class="actions">
+                <ul>
+                    <li>
+                        <a role="dialog" data-toggle="modal" data-target="#" data-title="Edit" href="{{ path('timesheet_edit', { 'id': cra.id }) }}" >
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

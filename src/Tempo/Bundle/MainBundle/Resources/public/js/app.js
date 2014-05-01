@@ -11,9 +11,6 @@
 
 
 var container = new Pimple();
-container.set('router', function (c) {
-    return new RouterManager();
-});
 
 var Tempo = {
     'Settings' : {},
@@ -125,8 +122,7 @@ Tempo.baseObject = {
 $(function() {
     Tempo.run =  function() {
         Tempo.log('Starting application', 'INFO');
-        container.get('router');
-
+        var RouterManager = new TempoRouterManager;
         Backbone.history.start({pushState: true});
 
     };
@@ -142,7 +138,7 @@ $(function() {
     $('body').removeClass('no-js').addClass('js');
     $('.datepicker').datepicker();
 
-    $('[data-toggle="modal"]').click(function(e) {
+    $(document).on('click', '[data-toggle="modal"]', function(e) {
         e.preventDefault();
 
         var btn = $(this),
@@ -155,7 +151,7 @@ $(function() {
 
         modal.attr('id', data_target);
         modal.find('.modal-title').html(title);
-
+        var modalData = '';
 
         if(role != 'dialog') {
             modal.find('.modal-footer button.confirm').remove();
@@ -174,23 +170,12 @@ $(function() {
             });
         }
 
-        var fantomas = modal.find('.modal-body .fantomas');
-        fantomas.on('click', function(){
-            console.log('dddd');
-        })
-
+        var fantomas = $(modal).find('button.fantomas');
         if(fantomas) {
             modal.find('button.confirm').on('click', function(e) {
-                fantomas.parent('form').submit();
-                console.log(fantomas.parent('form'));
+                $(this).closest('.modal').find("form .fantomas").click();
             });
         }
-
-        /** modal.find('button.confirm').on('click', function(e) {
-            e.preventDefault();
-            window.location.href = redirect;
-        });**/
-
     });
 
     var flash = $(".flash-container");

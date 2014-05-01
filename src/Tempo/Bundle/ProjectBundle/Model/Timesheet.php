@@ -33,18 +33,33 @@ abstract class Timesheet implements TimesheetInterface
     /**
      * @var \DateTime
      */
-    protected $period;
+    protected $workedTime;
 
     /**
      * @var \DateTime
      */
-    protected $time;
+    protected $workedDate;
 
     /**
-     * @var integer
-     * @param int $created
+     * Creation time.
+     *
+     * @var \DateTime
      */
-    protected $created;
+    protected $createdAt;
+
+    /**
+     * Last update time.
+     *
+     * @var \DateTime
+     */
+    protected $updatedAt;
+
+    /**
+     * Deletion time.
+     *
+     * @var \DateTime
+     */
+    protected $deletedAt;
 
     /**
      * @var string
@@ -56,26 +71,57 @@ abstract class Timesheet implements TimesheetInterface
      */
     protected $billable;
 
+    /**
+     * @var integer
+     */
+    protected $state;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+
+        return $this->state = 0;
+    }
 
     public function __toString()
     {
-        return $this->time;
+        return $this->workedDate;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setCreated(\DateTime $created)
+    public function getCreatedAt()
     {
-        $this->created = $created;
+        return $this->createdAt;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getCreated()
+    public function setCreatedAt(\DateTime $createdAt)
     {
-        return $this->created;
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setUpdatedAt(\DateTime $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
     }
 
     /**
@@ -89,35 +135,33 @@ abstract class Timesheet implements TimesheetInterface
     /**
      * {@inheritdoc}
      */
-    public function setTime($time)
+    public function setWorkedTime($time)
     {
-        $this->time = $time;
+        $this->workedTime = $time;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setPeriod($period)
+    public function getWorkedTime()
     {
-        $this->period = $period;
+        return $this->workedTime;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getPeriod()
+    public function setWorkedDate($time)
     {
-        return $this->period;
+        $this->workedDate = $time;
     }
 
     /**
-     * Get time
-     *
-     * @return \DateTime
+     * {@inheritdoc}
      */
-    public function getTime()
+    public function getWorkedDate()
     {
-        return $this->time;
+        return $this->workedDate;
     }
 
     /**
@@ -151,6 +195,23 @@ abstract class Timesheet implements TimesheetInterface
     public function getBillable()
     {
         return $this->billable;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+    }
+
+    /**
+    /**
+     * {@inheritdoc}
+     */
+    public function getState()
+    {
+        return $this->state;
     }
 
     /**

@@ -137,6 +137,7 @@ hwi_oauth:
 ivory_ck_editor:
   configs:
     default:
+      skin: 'husky,/vendor/ckeditor-light-theme/'
       toolbar:
         - ['Format']
         - ['Bold','Italic']

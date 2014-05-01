@@ -79,7 +79,7 @@
         {% block flashes %}
             {% for name, flashes in app.session.flashbag.all if name in ['success', 'notice', 'error', 'fos_user_success'] %}
                 {% for flash in flashes %}
-                    <div class="flash-{{ name == 'fos_user_success' ? 'success' : name }}">
+                    <div class="flash-message flash-{{ name == 'fos_user_success' ? 'success' : name }}">
                         <a class="close" data-dismiss="alert" href="#">×</a>
                         {{ flash|trans }}
                     </div>
