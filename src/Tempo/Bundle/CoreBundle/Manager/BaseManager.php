@@ -9,13 +9,9 @@
 * file that was distributed with this source code.
 */
 
-
 namespace Tempo\Bundle\CoreBundle\Manager;
 
 use Doctrine\ORM\EntityManager;
-use Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher;
-use Symfony\Component\HttpKernel\Debug\TraceableEventDispatcher;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
@@ -28,7 +24,6 @@ abstract class BaseManager
     protected $class;
 
     /**
-     * @param $event
      * @param EntityManager $em
      * @param $class
      */
@@ -45,8 +40,7 @@ abstract class BaseManager
      */
     public function find($id)
     {
-        $entity =  $this->repository->find($id);
-        return $this->createNotFoundException($entity);
+        return $this->repository->find($id);
     }
 
     /**
@@ -55,8 +49,7 @@ abstract class BaseManager
      */
     public function findOneBySlug($slug)
     {
-        $entity = $this->repository->findOneBySlug($slug);
-        return $this->createNotFoundException($entity);
+        return $this->repository->findOneBySlug($slug);
     }
 
     /**
@@ -97,18 +90,5 @@ abstract class BaseManager
         if ($doFlush) {
             $this->em->flush();
         }
-    }
-
-    /**
-     * @param $entity
-     * @throws NotFoundHttpException
-     */
-    public function createNotFoundException($entity)
-    {
-        if (!$entity) {
-            throw new NotFoundHttpException(sprintf('Unable to find %s entity.', $this->class));
-        }
-
-        return $entity;
     }
 }
