@@ -15,6 +15,8 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Tempo\Bundle\ProjectBundle\Entity\Timesheet;
+use CalendR\Period\Week;
+
 
 class LoadTimesheetData extends AbstractFixture implements OrderedFixtureInterface
 {
@@ -28,9 +30,10 @@ class LoadTimesheetData extends AbstractFixture implements OrderedFixtureInterfa
         for ($i = 1; $i <= 5; $i++) {
 
             $dateList = array();
+            $week = new Week((new \DateTime())->setISOdate(date('Y'), date('W')));
 
-            for ($k = 1; $k < 8; $k++) {
-                $dateList[] = date("d", mktime(0, 0, 0, date("n"), date("d") - date("w") + $k, date("y")));
+            foreach ($week as $day) {
+                $dateList[] = $day->getBegin();
             }
 
             $cra = new Timesheet();
@@ -40,10 +43,8 @@ class LoadTimesheetData extends AbstractFixture implements OrderedFixtureInterfa
 
             $cra->setWorkedTime(str_shuffle('12345678')[0]);
 
-            $date = date('Y') . '-' . date('m') . '-' . $dateList[array_rand($dateList, 1)];
-
             $cra->setCreatedAt(new \DateTime());
-            $cra->setWorkedDate(new \DateTime($date));
+            $cra->setWorkedDate($dateList[array_rand($dateList)]);
 
             $cra->setDescription('Lorem Ipsum is simply dummy text');
 
