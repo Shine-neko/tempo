@@ -87,7 +87,7 @@
                                 <input type="submit" style="display: none" value="{{ 'form.save'|trans }}" />
                             </form>
 
-                            {% if proxy.getDay(day.format('d')) is not null %}
+                            {% if proxy.getDay(day.format('j')) is not null %}
 
                                 <div class="cra craid_{{ day.format('j') }}">
                                     <a data-title="Time tracking" data-toggle="modal" data-target="#" href="{{ path('timesheet_show', { 'date' : day.format('Y-m-d') }) }}">

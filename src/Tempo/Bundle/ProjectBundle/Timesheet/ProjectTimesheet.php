@@ -52,7 +52,7 @@ class ProjectTimesheet
 
     /**
      * @param ProjectActivityDayTimesheet $day
-     *                                         @return $this
+     * @return $this
      */
     public function addDay(ProjectActivityDayTimesheet $day)
     {
@@ -68,6 +68,8 @@ class ProjectTimesheet
      */
     public function getDay($day)
     {
+        $day = (int) $day;
+
         if (isset($this->days[$day])) {
             return $this->days[$day];
         }

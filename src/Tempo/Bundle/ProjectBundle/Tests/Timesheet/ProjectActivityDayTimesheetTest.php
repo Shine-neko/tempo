@@ -18,7 +18,7 @@ class ProjectActivityDayTimesheetTest extends \PHPUnit_Framework_TestCase
 {
     public function testAddTime()
     {
-        $day = new ProjectActivityDayTimesheet(date('d'));
+        $day = new ProjectActivityDayTimesheet(date('j'));
 
         $day->addTime(0.5);
         $day->addTime(1);
@@ -32,12 +32,14 @@ class ProjectActivityDayTimesheetTest extends \PHPUnit_Framework_TestCase
         $activity
             ->expects($this->any())
             ->method('getWorkedDate')
-            ->willReturn(date('d'))
+            ->willReturn(date('j'))
         ;
 
-        $day = new ProjectActivityDayTimesheet(date('d'));
+        $day = new ProjectActivityDayTimesheet(date('j'));
         $day->addActivity($activity);
 
-        $this->assertEquals($day->getActivities(date('d'))[0]->getWorkedDate(), date('d'));
+        $this->assertTrue($day->getDay() === date('j'));
+
+        $this->assertEquals($day->getActivities(date('j'))[0]->getWorkedDate(), date('j'));
     }
 }

@@ -31,7 +31,7 @@ class ProjectTimesheetTest extends \PHPUnit_Framework_TestCase
         $day
             ->expects($this->any())
             ->method('getDay')
-            ->willReturn(date('d'))
+            ->willReturn(date('j'))
         ;
 
         $projectTimesheet = new ProjectTimesheet();
