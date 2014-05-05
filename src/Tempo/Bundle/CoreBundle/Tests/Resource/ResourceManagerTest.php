@@ -14,6 +14,8 @@ use Tempo\Bundle\CoreBundle\Resource\ResourceManager;
 
 class ResourceManagerTest extends \PHPUnit_Framework_TestCase
 {
+    protected $manager;
+
     protected function setUp()
     {
         $this->manager = new ResourceManager();
@@ -42,4 +44,3 @@ class ResourceManagerTest extends \PHPUnit_Framework_TestCase
         );
     }
 }
-

@@ -70,8 +70,8 @@ swiftmailer:
 sylius_settings:
     driver: doctrine/orm
 
-liip_doctrine_cache:
-    namespaces:
+doctrine_cache:
+    providers:
         sylius_settings:
             type: file_system
 
@@ -137,6 +137,7 @@ hwi_oauth:
 ivory_ck_editor:
   configs:
     default:
+      skin: 'husky,/vendor/ckeditor-light-theme/'
       toolbar:
         - ['Format']
         - ['Bold','Italic']

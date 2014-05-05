@@ -3,7 +3,7 @@
 {% block content %}
 
 <form class="time-form" action="{{ path('timesheet_create') }}" method="post" {{ form_enctype(form) }}>
-    {{ form_row(form.time) }}
+    {{ form_row(form.workedTime) }}
     {{ form_widget(form) }}
     <p>
         <button type="submit">Create</button>

@@ -40,33 +40,6 @@ class ProjectRepository extends EntityRepository
         return $query->getQuery()->getResult();
     }
 
-    /**
-     * @param $user
-     * @param $weekbegin
-     * @param $weekend
-     * @return array
-     */
-    public function findTimeEntry($user, $weekbegin, $weekend)
-    {
-        $query = $this->createQueryBuilder('p');
-        $query->leftJoin('p.team', 'pu');
-        $query->leftJoin('p.timesheets', 't');
-
-        $query->where('t.period BETWEEN :begin AND :end');
-        $query->AndWhere('pu = :user');
-        $query->setParameter('begin', $weekbegin);
-        $query->setParameter('end', $weekend);
-        $query->setParameter('user', $user);
-
-        /*
-            SELECT p.id, p.name, p.slug, t.id, t.time, t.billable, t.created, t.description FROM project p
-            LEFT JOIN project_user pu ON pu.project_id = p.id
-            LEFT JOIN timesheet t ON t.project_id = p.id  WHERE pu.user_id = 1
-        */
-
-        return $query->getQuery()->getResult();
-    }
-
     public function resort()
     {
         foreach ($this->findAllOrderByPriority() as $priority => $project) {

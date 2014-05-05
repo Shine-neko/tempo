@@ -52,6 +52,7 @@ timesheets:
   last_week: Last week
   next_week: Next week
   week: Week
+  success_add: activity report successfully created
 
 team:
  success_add: The user has been added

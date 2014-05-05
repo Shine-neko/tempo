@@ -12,7 +12,7 @@
 namespace Tempo\Bundle\UserBundle\Model;
 
 use FOS\UserBundle\Model\UserInterface as BaseUserInterface;
-use Sylius\Bundle\ResourceBundle\Model\TimestampableInterface;
+use Sylius\Component\Resource\Model\TimestampableInterface;
 
 interface UserInterface extends BaseUserInterface, TimestampableInterface
 {
@@ -22,7 +22,6 @@ interface UserInterface extends BaseUserInterface, TimestampableInterface
      * @return integer
      */
     public function getId();
-
 
     /**
      * get local
@@ -192,7 +191,6 @@ interface UserInterface extends BaseUserInterface, TimestampableInterface
      * @return mixed
      */
     public function getViadeo();
-
 
     public function getGender();
 

@@ -9,14 +9,12 @@
 * file that was distributed with this source code.
 */
 
-
 namespace Tempo\Bundle\CoreBundle\Twig\Extension;
 
 class CoreExtension extends \Twig_Extension
 {
-
     public function getName()
     {
-       return 'coreExtension';
+       return 'core_extension';
     }
 }

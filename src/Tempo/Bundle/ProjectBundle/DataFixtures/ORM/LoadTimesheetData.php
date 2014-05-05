@@ -15,40 +15,38 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Tempo\Bundle\ProjectBundle\Entity\Timesheet;
-use DateTime;
+use CalendR\Period\Week;
+
 
 class LoadTimesheetData extends AbstractFixture implements OrderedFixtureInterface
 {
-
     /**
      * {@inheritdoc}
      */
     public function load(ObjectManager $manager)
     {
         $userList = array('admin', 'john.doe');
-        $jour = date("w");
+
         for ($i = 1; $i <= 5; $i++) {
 
             $dateList = array();
+            $week = new Week((new \DateTime())->setISOdate(date('Y'), date('W')));
 
-            for ($k = 1; $k < 8; $k++) {
-                $dateList[] = date("d", mktime(0, 0, 0, date("n"), date("d") - $jour + $k, date("y")));
+            foreach ($week as $day) {
+                $dateList[] = $day->getBegin();
             }
 
             $cra = new Timesheet();
-            $cra->setProject($this->getReference('project'.$i));
+            $cra->setProject($this->getReference('project' . $i));
             $cra->setUser($this->getReference($userList[array_rand($userList, 1)]));
-            $cra->setBillable($i%2);
-            $nbr = str_shuffle('12345678');
+            $cra->setBillable($i % 2);
 
-            $cra->setTime($nbr[0]);
+            $cra->setWorkedTime(str_shuffle('12345678')[0]);
 
-            $date = date('Y') .'-' . date('m'). '-' . $dateList[array_rand($dateList, 1)];
+            $cra->setCreatedAt(new \DateTime());
+            $cra->setWorkedDate($dateList[array_rand($dateList)]);
 
-            $cra->setCreated(new DateTime());
-            $cra->setPeriod(new DateTime($date));
-
-            $cra->setDescription('Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression.');
+            $cra->setDescription('Lorem Ipsum is simply dummy text');
 
             $manager->persist($cra);
             $manager->flush();

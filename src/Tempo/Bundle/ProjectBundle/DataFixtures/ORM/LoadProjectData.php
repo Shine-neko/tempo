@@ -69,6 +69,8 @@ class LoadProjectData extends AbstractFixture implements ContainerAwareInterface
             $project->setBeginning(new \DateTime());
             $project->setEnding(new \DateTime());
             $project->addTeam($userEntity);
+            $project->addTeam($this->getReference('olivia.pace'));
+
 
             if($i > 5) {
                 $digit = str_shuffle('12345');
