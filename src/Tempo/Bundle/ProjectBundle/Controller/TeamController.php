@@ -35,7 +35,7 @@ class TeamController extends Controller
 
         if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
             $formData = $form->getData();
-            $findUser = $this->getDoctrine()->getRepository('TempoUserBundle:User')->findOneBy(array('username' => $formData['username']));
+            $findUser = $this->findUser(array('username' => $formData['username']));
 
             $objectManager['model']->addTeam($findUser);
             $objectManager['manager']->save($objectManager['model']);
@@ -56,8 +56,9 @@ class TeamController extends Controller
     public function deleteAction(Request $request, $slug, $user)
     {
         $objectManager = $this->getSection($request->get('_route'), $slug);
+        $user = $this->findUser(array('id' => $user));
 
-        $objectManager['model']->getTeam()->remove($user);
+        $objectManager['model']->getTeam()->removeElement($user);
         $objectManager['manager']->save($objectManager['model']);
         $this->getAclManager()->revokeAllClassPermissions($objectManager['model']); //remove Permission
 
@@ -113,5 +114,16 @@ class TeamController extends Controller
     protected function getAclManager()
     {
         return $this->get('problematic.acl_manager');
+    }
+
+    public function findUser($paramters)
+    {
+        $user = $this->getDoctrine()->getRepository('TempoUserBundle:User')->findOneBy($paramters);
+
+        if (!$user) {
+           $this->createNotFoundException('User not found');
+        }
+
+        return $user;
     }
 }
