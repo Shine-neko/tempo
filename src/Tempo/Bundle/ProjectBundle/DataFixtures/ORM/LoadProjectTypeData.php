@@ -15,7 +15,6 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
-
 use Tempo\Bundle\ProjectBundle\Entity\ProjectType;
 
 class LoadProjectTypeData extends AbstractFixture implements OrderedFixtureInterface
@@ -32,8 +31,7 @@ class LoadProjectTypeData extends AbstractFixture implements OrderedFixtureInter
         );
 
         $i = 1;
-        foreach($types as $type)
-        {
+        foreach ($types as $type) {
             $projectType = new ProjectType();
             $projectType->setName($type);
             $manager->persist($projectType);

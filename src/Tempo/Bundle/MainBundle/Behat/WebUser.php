@@ -9,14 +9,11 @@
 * file that was distributed with this source code.
 */
 
-
 namespace Tempo\Bundle\MainBundle\Behat;
 
 use Behat\Behat\Context\Step\When;
 use Behat\Mink\Driver\Selenium2Driver;
 use Behat\MinkExtension\Context\RawMinkContext;
-
-
 
 class WebUser extends RawMinkContext
 {

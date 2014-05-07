@@ -19,7 +19,6 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 
-
 use Tempo\Bundle\ProjectBundle\Entity\Organization;
 
 class LoadOrganizationData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface

@@ -9,7 +9,6 @@
 * file that was distributed with this source code.
 */
 
-
 namespace Tempo\Bundle\MainBundle\Behat;
 
 use Behat\Symfony2Extension\Context\KernelAwareInterface;
@@ -17,8 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 use Behat\MinkExtension\Context\MinkContext;
-
-
+use Doctrine\Common\Inflector;
 
 /**
  * Features context.
@@ -46,7 +44,6 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     {
         $this->useContext('web-user', new WebUser());
         $this->useContext('data', new DataContext());
-
 
         Request::enableHttpMethodParameterOverride();
     }
@@ -242,7 +239,6 @@ JS;
     public function iShouldSeeTheModal($title)
     {
         $this->assertSession()->elementExists('css', '.modal-title');
-
 
         //$this->wait();
         //$this->assertSession()->pageTextContains($title);

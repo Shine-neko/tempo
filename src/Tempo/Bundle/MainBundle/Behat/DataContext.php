@@ -9,14 +9,11 @@
 * file that was distributed with this source code.
 */
 
-
 namespace Tempo\Bundle\MainBundle\Behat;
 
 use Faker\Factory as FakerFactory;
 use Behat\MinkExtension\Context\RawMinkContext;
 use Behat\Gherkin\Node\TableNode;
-
-
 
 class DataContext extends RawMinkContext
 {
