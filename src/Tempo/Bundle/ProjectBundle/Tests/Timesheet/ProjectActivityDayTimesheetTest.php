@@ -20,9 +20,8 @@ class ProjectActivityDayTimesheetTest extends \PHPUnit_Framework_TestCase
     {
         $day = new ProjectActivityDayTimesheet(date('j'));
 
-        $day->addTime(date('j'), 0.5);
-        $day->addTime(date('j'), 1);
-        var_dump($day->getTime(date('j')));
+        $day->addTime(0.5);
+        $day->addTime(1);
         $this->assertEquals(1.5, $day->getTime(date('j')));
     }
 
