@@ -32,5 +32,5 @@ Feature: dashboard timesheet
       | workedTime   | 5   |
       | description  | Lorem Ipsum is simply dummy text.  |
     And I am on route "timesheet"
-    And I should see "total 1 7:00"
+    And I should see "total 1 5:00"
 

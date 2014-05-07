@@ -44,22 +44,33 @@ class TimesheetManager extends BaseManager
      public function getActivitiesForPeriod($activitiesReport, $projectsList)
      {
         $data = array( );
+        $activities = array();
 
-         foreach ($projectsList as $project) {
-            $prj = new ProjectTimesheet();
-            $prj->setProject($project);
-            $data[$prj->getProject()->getId()] = $prj;
-        }
+         foreach ($projectsList as $projectData) {
+             $projectTimesheet = new ProjectTimesheet();
+             $projectTimesheet->setProject($projectData);
+             $data[$projectTimesheet->getProject()->getId()] = $projectTimesheet;
+         }
 
          foreach ($activitiesReport as $activity) {
-             $activityReport = new ProjectActivityDayTimesheet($activity->getWorkedDate()->format('j'));
+
+             $day  = $activity->getWorkedDate()->format('j');
+
+             if (!isset($activities[$day])) {
+                 $activities[$day] = new ProjectActivityDayTimesheet($day);
+             }
+
+             $activityReport = $activities[$day];
              $activityReport
                  ->addActivity($activity)
                  ->addTime($activity->getWorkedTime());
-
-             $data[$activity->getProject()->getId()]->addDay($activityReport);
          }
-        return $data;
+
+         foreach ($activities as $activityDay) {
+             $data[$activityDay->getActivities()[0]->getProject()->getId()]->addDay($activityDay);
+         }
+
+         return $data;
     }
 
     /**

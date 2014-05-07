@@ -124,7 +124,7 @@ class ProjectController extends Controller
 
         $project  = new Project();
         $project->addTeam($this->getUser());
-        $this->getParent($project);
+        $project = $this->getParent($project);
 
         $form  = $this->createForm(new ProjectType(), $project, array('user_id' => $this->getUser()->getId() ));
 

@@ -15,11 +15,9 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
-
 
 use Tempo\Bundle\ProjectBundle\Entity\Project;
 
@@ -47,8 +45,7 @@ class LoadProjectData extends AbstractFixture implements ContainerAwareInterface
             'Nimbus','Spartacus','Gothlauth','Dentless'
         );
 
-        foreach($projectList as $name) {
-
+        foreach ($projectList as $name) {
 
             $userEntity = $this->getReference($userList[array_rand($userList, 1)]);
 
@@ -71,8 +68,7 @@ class LoadProjectData extends AbstractFixture implements ContainerAwareInterface
             $project->addTeam($userEntity);
             $project->addTeam($this->getReference('olivia.pace'));
 
-
-            if($i > 5) {
+            if ($i > 5) {
                 $digit = str_shuffle('12345');
                 $project->setParent($this->getReference('project'.$digit[0]));
             }
@@ -81,6 +77,7 @@ class LoadProjectData extends AbstractFixture implements ContainerAwareInterface
             $manager->flush();
 
             $this->getAclManager()->addObjectPermission($project, MaskBuilder::MASK_OWNER, $userEntity); //set Permission
+            $this->getAclManager()->addObjectPermission($project, MaskBuilder::MASK_OWNER, $this->getReference('olivia.pace')); //set Permission
             $this->addReference('project'.$i, $project);
             $i++;
         }
