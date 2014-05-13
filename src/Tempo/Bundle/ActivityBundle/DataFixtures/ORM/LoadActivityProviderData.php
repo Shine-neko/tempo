@@ -44,6 +44,6 @@ class LoadActivityProviderData extends AbstractFixture implements OrderedFixture
      */
     public function getOrder()
     {
-        return 7;
+        return 70;
     }
 }

@@ -88,7 +88,7 @@ class LoadProjectData extends AbstractFixture implements ContainerAwareInterface
      */
     public function getOrder()
     {
-        return 4;
+        return 40;
     }
 
     protected function getAclManager()

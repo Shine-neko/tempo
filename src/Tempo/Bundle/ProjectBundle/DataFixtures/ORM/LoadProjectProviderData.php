@@ -44,6 +44,6 @@ class LoadProjectProviderData extends AbstractFixture implements OrderedFixtureI
      */
     public function getOrder()
     {
-        return 6;
+        return 60;
     }
 }

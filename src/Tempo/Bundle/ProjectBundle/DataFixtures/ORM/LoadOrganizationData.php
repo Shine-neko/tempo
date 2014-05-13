@@ -77,7 +77,7 @@ class LoadOrganizationData extends AbstractFixture implements OrderedFixtureInte
      */
     public function getOrder()
     {
-        return 2;
+        return 20;
     }
 
     protected function getAclManager()
