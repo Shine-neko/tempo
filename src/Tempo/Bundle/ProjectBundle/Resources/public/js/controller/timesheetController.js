@@ -15,10 +15,16 @@ Tempo.Controller.Timesheet = Backbone.Marionette.Controller.extend({
         this.view  = new Tempo.View.Timesheet();
 
         $('.cra_load').on('keydown', function(event) {
+            var input = $(event.target);
+            if (!$.isNumeric( input.val() )) {
+                input.css('border', '1px solid red');
+            } else {
+                input.css('border', '1px solid #CCC');
+            }
+
             if (event.which == 9) {
                 event.preventDefault();
 
-                var cra_id = $(this).attr('rel');
                 $(this).parent().find('.cra_desc').css('display', 'block');
             }
         });
