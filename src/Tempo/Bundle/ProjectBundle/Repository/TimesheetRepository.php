@@ -25,6 +25,7 @@ class TimesheetRepository extends EntityRepository
 
         $query->where('t.workedDate BETWEEN :begin AND :end');
         $query->AndWhere('pu = :user');
+        $query->AndWhere('t.user = :user');
         $query->setParameter('begin', $weekBegin);
         $query->setParameter('end', $weekEnd);
         $query->setParameter('user', $user);
