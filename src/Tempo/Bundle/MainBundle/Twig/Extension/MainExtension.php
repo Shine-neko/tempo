@@ -144,7 +144,7 @@ class MainExtension extends \Twig_Extension
      */
     public function getBehavior()
     {
-        return $this->container->get('tempo_main.behavior');
+        return $this->container->get('tempo.main.behavior');
     }
 
     /**

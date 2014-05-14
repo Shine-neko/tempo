@@ -44,10 +44,10 @@ class OrganizationController extends Controller
             throw new AccessDeniedException();
         }
 
-        $manager = $this->get('tempo_project.manager.organization');
+        $manager = $this->get('tempo.manager.organization');
         $counter = $manager->getStatusProjects($organization->getId());
 
-        $breadcrumb = $this->get('tempo_main.breadcrumb');
+        $breadcrumb = $this->get('tempo.main.breadcrumb');
         $breadcrumb->addChild('Organization');
         $breadcrumb->addChild($organization->getName());
 
@@ -92,7 +92,7 @@ class OrganizationController extends Controller
             throw new AccessDeniedException();
         }
 
-        $breadcrumb = $this->get('tempo_main.breadcrumb');
+        $breadcrumb = $this->get('tempo.main.breadcrumb');
         $breadcrumb->addChild('Organization');
         $breadcrumb->addChild($organization->getName());
         $breadcrumb->addChild('Editer le organization');
@@ -116,7 +116,7 @@ class OrganizationController extends Controller
      */
     public function updateAction(Request $request, $id)
     {
-        $manager = $this->get('tempo_project.manager.organization');
+        $manager = $this->get('tempo.manager.organization');
 
         $organization = $manager->find($id);
 
@@ -213,7 +213,7 @@ class OrganizationController extends Controller
      */
     protected function getManager()
     {
-        return $this->get('tempo_project.manager.organization');
+        return $this->get('tempo.manager.organization');
     }
 
     /**
@@ -227,15 +227,16 @@ class OrganizationController extends Controller
     }
 
     /**
-     * Get translator.
-     *
-     * @return TranslatorInterface
+     * @return \Symfony\Bundle\FrameworkBundle\Translation\Translator
      */
     protected function getTranslator()
     {
         return $this->get('translator');
     }
 
+    /**
+     * @return \Problematic\AclManagerBundle\Domain\AclManager
+     */
     protected function getAclManager()
     {
         return $this->get('problematic.acl_manager');
