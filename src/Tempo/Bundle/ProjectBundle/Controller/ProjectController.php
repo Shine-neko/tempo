@@ -35,10 +35,10 @@ class ProjectController extends Controller
     public function dashboardAction()
     {
         /* set breadcrumb */
-        $breadcrumb  = $this->get('tempo_main.breadcrumb');
+        $breadcrumb  = $this->get('tempo.main.breadcrumb');
         $breadcrumb->addChild('Project');
 
-        $manager = $this->container->get('tempo_project.manager.organization');
+        $manager = $this->container->get('tempo.manager.organization');
         $organizations = $manager->findAllByUser($this->getUser()->getId());
 
         return $this->render('TempoProjectBundle:Project:dashboard.html.twig', array(
@@ -54,7 +54,7 @@ class ProjectController extends Controller
     public function listAction($slug)
     {
         //find info organization
-        $manageOrganization = $this->get('tempo_project.manager.organization');
+        $manageOrganization = $this->get('tempo.manager.organization');
         $organization = $manageOrganization->findOneBySlug($slug);
 
         if (!$organization) {
@@ -215,7 +215,7 @@ class ProjectController extends Controller
      */
     private function getManager()
     {
-        return $this->get('tempo_project.manager.project');
+        return $this->get('tempo.manager.project');
     }
 
     protected function getProject($key, $right = 'VIEW')
@@ -253,6 +253,9 @@ class ProjectController extends Controller
         return $project;
     }
 
+    /**
+     * @return \Problematic\AclManagerBundle\Domain\AclManager
+     */
     protected function getAclManager()
     {
         return $this->get('problematic.acl_manager');

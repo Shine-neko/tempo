@@ -72,12 +72,12 @@ class TeamController extends Controller
         switch ($route) {
             case 'project_team_add':
             case 'project_team_delete':
-                $manager = $this->get('tempo_project.manager.project');
+                $manager = $this->get('tempo.manager.project');
                 $routeSuccess = 'project_show';
             break;
             case 'organization_team_add':
             case 'organization_team_delete':
-                $manager = $this->get('tempo_project.manager.organization');
+                $manager = $this->get('tempo.manager.organization');
                 $routeSuccess = 'organization_show';
             break;
         }
@@ -90,18 +90,8 @@ class TeamController extends Controller
     }
 
     /**
-     * return Tempo\Bundle\ProjectBundle\Manager\TeamManager
-     * @return mixed
-     */
-    protected function getManager()
-    {
-        return $this->getDoctrine()->getManager();
-    }
-
-    /**
      * Get translator.
-     *
-     * @return TranslatorInterface
+     * @return \Symfony\Bundle\FrameworkBundle\Translation\Translator
      */
     protected function getTranslator()
     {
@@ -109,13 +99,17 @@ class TeamController extends Controller
     }
 
     /**
-     * @return object
+     * @return \Problematic\AclManagerBundle\Domain\AclManager
      */
     protected function getAclManager()
     {
         return $this->get('problematic.acl_manager');
     }
 
+    /**
+     * @param $paramters
+     * @return \Tempo\Bundle\UserBundle\Entity\User
+     */
     public function findUser($paramters)
     {
         $user = $this->getDoctrine()->getRepository('TempoUserBundle:User')->findOneBy($paramters);

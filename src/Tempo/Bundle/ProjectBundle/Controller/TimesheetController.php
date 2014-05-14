@@ -40,7 +40,7 @@ class TimesheetController extends Controller
      */
     public function dashboardAction(Request $request)
     {
-        $breadcrumb  = $this->get('tempo_main.breadcrumb');
+        $breadcrumb  = $this->get('tempo.main.breadcrumb');
         $breadcrumb->addChild('Time Management');
         $breadcrumb->addChild('Dashboard');
 
@@ -151,7 +151,7 @@ class TimesheetController extends Controller
      */
     public function createAction(Request $request, $project)
     {
-        $project = $this->get('tempo_project.manager.project')->find($project);
+        $project = $this->get('tempo.manager.project')->find($project);
 
         $view = View::create();
 
@@ -163,7 +163,7 @@ class TimesheetController extends Controller
         $form->submit($request->request->get('timesheet'));
 
         if ($form->isValid()) {
-            $this->get('tempo_project.manager.timesheet')->save($period);
+            $this->get('tempo.manager.timesheet')->save($period);
             $view->setStatusCode(201);
             $view->setData($period);
 
@@ -193,9 +193,12 @@ class TimesheetController extends Controller
         ));
     }
 
+    /**
+     * @return \Tempo\Bundle\ProjectBundle\Manager\TimesheetManager
+     */
     private function getManager()
     {
-        return $this->get('tempo_project.manager.timesheet');
+        return $this->get('tempo.manager.timesheet');
     }
 
     /**
@@ -235,11 +238,11 @@ class TimesheetController extends Controller
             $processFilter['to'] = $factoryWeek->getEnd();
         }
 
-        $projectsActivityReporting = $this->get('tempo_project.manager.timesheet')->findActivities(
+        $projectsActivityReporting = $this->get('tempo.manager.timesheet')->findActivities(
             $this->getUser()->getId(), $processFilter['from']->format('Y-m-j'), $processFilter['to']->format('Y-m-j')
         );
 
-        $projectList = $this->get('tempo_project.manager.project')->repository->findAllByUser($this->getUser()->getId());
+        $projectList = $this->get('tempo.manager.project')->repository->findAllByUser($this->getUser()->getId());
 
         $proxiesProject = $this->getManager()->getActivitiesForPeriod(
             $projectsActivityReporting,
