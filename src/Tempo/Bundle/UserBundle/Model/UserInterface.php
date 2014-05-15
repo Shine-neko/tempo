@@ -38,7 +38,7 @@ interface UserInterface extends BaseUserInterface, TimestampableInterface
     /**
      * Alias for parent::getUsernameCanonical()
      * @param $slug
-     * @return string
+     * @return string $slug
      */
     public function getSlug();
 
@@ -76,7 +76,7 @@ interface UserInterface extends BaseUserInterface, TimestampableInterface
     public function getCompany();
 
     /**
-     * @return mixed
+     * @param string $compagny
      */
     public function setCompany($company);
 
@@ -127,71 +127,119 @@ interface UserInterface extends BaseUserInterface, TimestampableInterface
      */
     public function getMobilePhone();
 
+    /**
+     * Get at avatar
+     *
+     * @return string
+     */
     public function hasAvatar();
 
+    /**
+     * Get at avatar
+     *
+     * @return string
+     */
     public function hasLocalAvatar();
 
+    /**
+     * Get at gravatar
+     *
+     * @return string
+     */
     public function hasGravatar();
 
-
+    /**
+     * @param  int    $size
+     * @param  string $default
+     * @return string $avatar
+     */
     public function getAvatar($size = 80, $default = 'mm');
 
     /**
+     * Set avatar url
+     *
      * @param string $avatar
      */
     public function setAvatar($avatar);
 
+    /**
+     * get Gravatar url
+     *
+     * @return mixed
+     */
     public function getGravatarUrl();
 
     /**
-     * @param mixed $googleId
+     * Set Google ID
+     *
+     * @param int $googleId
      */
     public function setGoogleId($googleId);
 
     /**
-     * @return mixed
+     * Get Google ID
+     *
+     * @return int $googleId
      */
     public function getGoogleId();
 
     /**
-     * @param mixed $linkedin
+     * set Linkedin ID
+     *
+     * @param string $linkedin
      */
     public function setLinkedin($linkedin);
 
     /**
-     * @return mixed
+     * Get Linkedin ID
+     *
+     * @return string $linkedin
      */
     public function getLinkedin();
+
     /**
-     * @param mixed $skype
+     * Set Skype ID
+     *
+     * @param string $skype
      */
     public function setSkype($skype);
 
     /**
-     * @return mixed
+     * @return string $skype
      */
     public function getSkype();
 
     /**
-     * @param mixed $twitter
+     * Set Twitter ID
+     *
+     * @param string $twitter
      */
     public function setTwitter($twitter);
 
     /**
-     * @return mixed
+     * Get Twitter ID
+     *
+     * @return string $twitter
      */
     public function getTwitter();
 
     /**
-     * @param mixed $viadeo
+     * Set Viadeo ID
+     *
+     * @param string $viadeo
      */
     public function setViadeo($viadeo);
 
     /**
-     * @return mixed
+     * Get Viadeo ID
+     *
+     * @return string $viadeo
      */
     public function getViadeo();
 
+    /**
+     * @return int $gender
+     */
     public function getGender();
 
 }

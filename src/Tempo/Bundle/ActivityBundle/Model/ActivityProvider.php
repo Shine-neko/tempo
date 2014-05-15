@@ -13,7 +13,6 @@ namespace Tempo\Bundle\ActivityBundle\Model;
 
 use Tempo\Bundle\ProjectBundle\Model\ProjectProviderInterface;
 
-
 /**
  * Activity
  *
@@ -24,7 +23,7 @@ class ActivityProvider implements ActivityProviderInterface
      * @var integer
      *
      */
-    protected  $id;
+    protected $id;
 
     /**
      * @var string

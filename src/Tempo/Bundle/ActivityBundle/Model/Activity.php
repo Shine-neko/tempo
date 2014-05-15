@@ -11,9 +11,6 @@
 
 namespace Tempo\Bundle\ActivityBundle\Model;
 
-use Tempo\Bundle\ActivityBundle\Model\ActivityInterface;
-
-
 class Activity implements ActivityInterface
 {
     /**
@@ -80,6 +77,7 @@ class Activity implements ActivityInterface
     public function setTarget($type)
     {
         $this->target = $type;
+
         return $this;
     }
 

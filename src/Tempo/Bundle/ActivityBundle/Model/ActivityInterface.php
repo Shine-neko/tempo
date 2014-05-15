@@ -9,7 +9,6 @@
 * file that was distributed with this source code.
 */
 
-
 namespace Tempo\Bundle\ActivityBundle\Model;
 
 use Tempo\Bundle\UserBundle\Entity\User;
@@ -22,7 +21,6 @@ interface ActivityInterface
      * @return integer
      */
     public function getId();
-
 
     /**
      * Get target.
