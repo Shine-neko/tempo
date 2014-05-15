@@ -41,7 +41,7 @@ class NotificationRepository extends EntityRepository
     /**
      * @param $user
      */
-    public function clearNotifiction($user)
+    public function clearForUser($user)
     {
         $q = $this->createQueryBuilder('notif')
             ->update('TempoUserBundle:Notification', 'notif')

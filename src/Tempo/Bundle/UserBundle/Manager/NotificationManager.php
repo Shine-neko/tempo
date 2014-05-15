@@ -36,8 +36,8 @@ class NotificationManager extends BaseManager
         $this->save($room);
     }
 
-    public function clear($user)
+    public function clearForUser($user)
     {
-        $this->repository->clearNotifiction($user);
+        $this->$this->repository->clearForUser($user);
     }
 }

@@ -50,7 +50,7 @@ class NotificationController extends Controller
 
     public function clearAction()
     {
-        $this->get('tempo.manager.notification')->clear($this->getUser()->getId());
+        $this->get('tempo.manager.notification')->clearForUser($this->getUser()->getId());
 
         return $this->redirect($this->generateUrl('notification_list'));
     }
