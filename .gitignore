@@ -16,8 +16,10 @@ web/bundles/*
 web/vendor/
 !app/config/deploy/*.rb.dist
 behat.yml
+web/*.css
 web/css/
 web/js/
+web/*.js
 node_modules/
 
 # Configuration files

@@ -9,8 +9,17 @@ user_list:
     pattern:  /user/list
     defaults: { _controller: TempoUserBundle:Default:list }
 
+user_autocomplete:
+    type:         rest
+    defaults:
+      version:  latest
+    prefix:       api/{version}/
+    resource: Tempo\Bundle\UserBundle\Controller\NotificationController
 
-#fosUserBundle
+tempo_user_notification:
+    resource: "@TempoUserBundle/Resources/config/routing/notification.yml"
+    prefix: /notifications
+
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 

@@ -133,7 +133,6 @@ interface UserInterface extends BaseUserInterface, TimestampableInterface
 
     public function hasGravatar();
 
-
     public function getAvatar($size = 80, $default = 'mm');
 
     /**
