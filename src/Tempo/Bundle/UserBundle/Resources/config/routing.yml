@@ -9,7 +9,7 @@ user_list:
     pattern:  /user/list
     defaults: { _controller: TempoUserBundle:Default:list }
 
-user_autocomplete:
+user_notification:
     type:         rest
     defaults:
       version:  latest
