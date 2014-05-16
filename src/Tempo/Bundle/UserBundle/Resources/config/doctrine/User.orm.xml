@@ -36,6 +36,8 @@
             <gedmo:timestampable on="update"/>
         </field>
 
+        <one-to-many field="notifications" target-entity="Notification" mapped-by="user" />
+
     </entity>
 
 </doctrine-mapping>

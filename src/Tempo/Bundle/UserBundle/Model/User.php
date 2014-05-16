@@ -102,12 +102,13 @@ class User extends BaseUser implements UserInterface
      * @var Collection
      */
     protected $organizations;
+    protected $notifications;
 
     public function __construct()
     {
         $this->createdAt = new \DateTime();
         $this->organizations = new ArrayCollection();
-
+        $this->notifications = new ArrayCollection();
         parent::__construct();
     }
 
@@ -175,6 +176,8 @@ class User extends BaseUser implements UserInterface
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
+
+        return $this;
     }
 
     /**
@@ -191,6 +194,8 @@ class User extends BaseUser implements UserInterface
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
+
+        return $this;
     }
 
     /**
@@ -389,9 +394,36 @@ class User extends BaseUser implements UserInterface
         return $this->viadeo;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getGender()
     {
         return $this->gender;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setNotifications($notifications)
+    {
+        $this->notifications = $notifications;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addNotification($notification)
+    {
+        $this->notifications[] = $notification;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getNotifications()
+    {
+        return $this->notifications;
     }
 
     /**
@@ -408,6 +440,8 @@ class User extends BaseUser implements UserInterface
     public function setCreatedAt(\DateTime $createdAt)
     {
         $this->createdAt = $createdAt;
+
+        return $this;
     }
 
     /**
@@ -424,5 +458,7 @@ class User extends BaseUser implements UserInterface
     public function setUpdatedAt(\DateTime $updatedAt)
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
     }
 }

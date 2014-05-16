@@ -1,0 +1,54 @@
+{% extends "TempoMainBundle::Layout/web.html.twig" %}
+
+{% block bodyClass %}user notification{% endblock %}
+
+{% block body %}
+
+    <div class="head">
+        {% block breadcrumb %}
+            <ol id="breadcrumb" class="clearfix">
+                <li class="first"> <a href="{{ path('project_home') }}">Accueil</a> </li>
+                <li class="last"> <a href="{{ path('user_profile_edit') }}">Notifications</a> </li>
+            </ol>
+        {% endblock breadcrumb %}
+
+    </div>
+    <div class="container-panel">
+        <div class="col-md-3 app-panel tab-nav">
+            <nav>
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="first active ">
+                        <a href="{{ path('notification_dashboard') }}">Unread</a>
+                    </li>
+                    <li class="last">
+                        <a href="{{ path('notification_dashboard',{ 'all' : 1 }) }}">All notifications</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="col-md-8 app-panel">
+            <div class="head">
+                <h1 id="page-title" class="pull-left" style="font-size: 22px;">Notifications</h1>
+                <a class="pull-right" href="{{ path('notification_clear') }}">Mark everything as read</a>
+            </div>
+            <table class="table">
+                {% for notification in notifications %}
+                <tr>
+                    <td></td>
+                    <td><a href="{{ notification.link }}"> {{ notification.message }} </a></td>
+                </tr>
+                {% else %}
+                    <tr>
+                        <td>No Notifications</td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+        </div>
+        <div style="width: 250px; margin: auto;">
+            {{ pagerfanta(notifications, 'twitter_bootstrap3') }}
+        </div>
+
+    </div>
+{% endblock body %}
