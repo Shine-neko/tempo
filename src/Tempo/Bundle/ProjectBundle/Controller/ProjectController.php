@@ -12,11 +12,11 @@
 namespace Tempo\Bundle\ProjectBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
+use Tempo\Bundle\CoreBundle\Controller\BaseController;
 use Tempo\Bundle\ProjectBundle\Entity\Project;
 use Tempo\Bundle\ProjectBundle\Form\Type\ProjectType;
 use Tempo\Bundle\ProjectBundle\Form\Type\TeamType;
@@ -27,7 +27,7 @@ use Tempo\Bundle\ProjectBundle\Event\ProjectEvent;
  * Project controller.
  * @author Mlanawo Mbechezi <mlanawo.mbechezi@ikimea.com>
  */
-class ProjectController extends Controller
+class ProjectController extends BaseController
 {
     /**
      * @return \Symfony\Component\HttpFoundation\Response
@@ -54,7 +54,7 @@ class ProjectController extends Controller
     public function listAction($slug)
     {
         //find info organization
-        $manageOrganization = $this->get('tempo.manager.organization');
+        $manageOrganization = $this->getManager('organization');
         $organization = $manageOrganization->findOneBySlug($slug);
 
         if (!$organization) {
@@ -132,9 +132,10 @@ class ProjectController extends Controller
             $event = new ProjectEvent($project, $request);
             $this->get('event_dispatcher')->dispatch(TempoProjectEvents::PROJECT_CREATE_INITIALIZE, $event);
 
-            $this->getManager()->save($project);
+            $this->getManager('project')->save($project);
             $this->getAclManager()->addObjectPermission($project, MaskBuilder::MASK_OWNER); //set Permission
             $this->get('event_dispatcher')->dispatch(TempoProjectEvents::PROJECT_CREATE_SUCCESS, $event);
+            $this->addFlash('success', 'project.success_create', 'TempoProject');
 
             return $this->redirect($this->generateUrl('project_show', array('slug' => $project->getSlug())));
         }
@@ -152,7 +153,7 @@ class ProjectController extends Controller
      */
     public function editAction($slug)
     {
-        $project = $this->getManager()->getProject($slug, 'EDIT');
+        $project = $this->getManager('project')->getProject($slug, 'EDIT');
         $editForm = $this->createForm(new ProjectType(), $project);
 
         return $this->render('TempoProjectBundle:Project:edit.html.twig', array(
@@ -175,9 +176,11 @@ class ProjectController extends Controller
             $event = new ProjectEvent($project, $request);
             $this->get('event_dispatcher')->dispatch(TempoProjectEvents::PROJECT_EDIT_INITIALIZE, $event);
 
-            $this->getManager()->save($project);
+            $this->getManager('project')->save($project);
             $this->get('event_dispatcher')->dispatch(TempoProjectEvents::PROJECT_EDIT_SUCCESS, $event);
 
+
+            $this->setFlash('success', 'project.success_updated', 'TempoProject');
             return $this->redirect($this->generateUrl('project_edit', array('slug' => $project->getSlug() )));
         }
 
@@ -196,31 +199,23 @@ class ProjectController extends Controller
     public function deleteAction(Request $request, $slug)
     {
         //check CSRF token
-        if (false === $this->get('form.csrf_provider')->isCsrfTokenValid('delete-organization', $request->get('token'))) {
-            throw new AccessDeniedHttpException('Invalid CSRF token.');
+        if ($this->isTokenValid('delete-organization', $request->get('token'))) {
+
+            $project = $this->getProject($slug, 'DELETE');
+
+            $this->getManager('project')->remove($project);
+            $event = new ProjectEvent($project, $request);
+            $this->get('event_dispatcher')->dispatch(TempoProjectEvents::PROJECT_DELETE_COMPLETED, $event);
+
+            $this->setFlash('success', 'project.success_delete', 'TempoProject');
+
+            return $this->redirect($this->generateUrl('project_home'));
         }
-
-        $project = $this->getProject($slug, 'DELETE');
-
-        $this->getManager()->remove($project);
-        $event = new ProjectEvent($project, $request);
-        $this->get('event_dispatcher')->dispatch(TempoProjectEvents::PROJECT_DELETE_COMPLETED, $event);
-
-        return $this->redirect($this->generateUrl('project_home'));
-    }
-
-    /**
-     * return Tempo\Bundle\ProjectBundle\Manager\ProjectManager
-     * @return mixed
-     */
-    private function getManager()
-    {
-        return $this->get('tempo.manager.project');
     }
 
     protected function getProject($key, $right = 'VIEW')
     {
-        $project = $this->getManager()->getProject($key);
+        $project = $this->getManager('project')->getProject($key);
 
         if(!$project) {
             $this->createNotFoundException();
@@ -244,20 +239,12 @@ class ProjectController extends Controller
         $parent = $this->get('request_stack')->getCurrentRequest()->query->get('parent');
 
         if (!empty($parent)) {
-            $parent = $this->getManager()->getProject(intval($parent));
+            $parent = $this->getManager('project')->getProject(intval($parent));
             if ($parent) {
                 $project->setParent($parent);
             }
         }
 
         return $project;
-    }
-
-    /**
-     * @return \Problematic\AclManagerBundle\Domain\AclManager
-     */
-    protected function getAclManager()
-    {
-        return $this->get('problematic.acl_manager');
     }
 }
