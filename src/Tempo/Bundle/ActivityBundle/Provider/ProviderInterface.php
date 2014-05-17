@@ -9,7 +9,6 @@
 * file that was distributed with this source code.
 */
 
-
 namespace Tempo\Bundle\ActivityBundle\Provider;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 interface ProviderInterface
 {
     /**
-     * @param Request $request
+     * @param  Request $request
      * @return mixed
      */
     public function parse(Request $request);

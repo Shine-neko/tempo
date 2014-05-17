@@ -16,6 +16,7 @@ use Tempo\Bundle\ActivityBundle\Provider\ProviderRegistry;
 class ProviderRegistryTest extends \PHPUnit_Framework_TestCase
 {
     protected $register;
+    protected $provider;
 
     protected function setUp()
     {

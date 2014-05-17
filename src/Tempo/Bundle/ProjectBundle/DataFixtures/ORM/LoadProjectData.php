@@ -60,8 +60,8 @@ class LoadProjectData extends AbstractFixture implements ContainerAwareInterface
             $project->setOrganization( $this->getReference('organization'.$i));
             $project->setStatus( $this->getReference('projectType'.(rand(1, 3))) );
             $project->setAdvancement($digit[0]);
-            $project->setCreated(new \DateTime());
-            $project->setUpdated(new \DateTime());
+            $project->setCreatedAt(new \DateTime());
+            $project->setUpdatedAt(new \DateTime());
             $project->setActive(true);
             $project->setBeginning(new \DateTime());
             $project->setEnding(new \DateTime());

@@ -51,28 +51,28 @@ interface ProjectInterface
      *
      * @param \DateTime $created
      */
-    public function setCreated($created);
+    public function setCreatedAt($created);
 
     /**
      * Get created
      *
      * @return \DateTime
      */
-    public function getCreated();
+    public function getCreatedAt();
 
     /**
      * Set updated
      *
      * @param \DateTime $updated
      */
-    public function setUpdated($updated);
+    public function setUpdatedAt($updated);
 
     /**
      * Get updated
      *
      * @return \DateTime
      */
-    public function getUpdated();
+    public function getUpdatedAt();
 
     /**
      * Get organization

@@ -43,15 +43,15 @@ class ActivityController extends Controller
             $lastActivitiesProvider = $this->getDoctrine()->getRepository('TempoActivityBundle:ActivityProvider')->findByProject($project);
             $lastActivitiesInternal = $this->get('tempo.manager.activity')->render('Project');
 
-            foreach($lastActivitiesProvider as $activity) {
-                $activities[$activity->getCreated()->getTimestamp()] = $activity;
-            }
-
-            foreach($lastActivitiesInternal as $activity) {
+            foreach ($lastActivitiesProvider as $activity) {
                 $activities[$activity->getCreatedAt()->getTimestamp()] = $activity;
             }
 
-        } else if('provider' == $type) {
+            foreach ($lastActivitiesInternal as $activity) {
+                $activities[$activity->getCreatedAt()->getTimestamp()] = $activity;
+            }
+
+        } else if ('provider' == $type) {
             $activities = $this->getDoctrine()->getRepository('TempoActivityBundle:Activity')->findAllWithProvider();
         } else {
             $activities = $this->get('tempo.manager.activity')->render($type, $this->getUser());

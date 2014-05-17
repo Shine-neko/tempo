@@ -19,14 +19,21 @@ use Tempo\Bundle\ActivityBundle\Model\ActivityProviderInterface;
 class ActivityProviderEvent extends Event
 {
 
+    /**
+     * @var \Symfony\Component\HttpFoundation\Request
+     */
     private $request;
+
+    /**
+     * @var \Tempo\Bundle\ActivityBundle\Model\ActivityProviderInterface
+     */
     private $activityProvider;
 
     /**
      * @param ActivityProviderInterface $activityProvider
-     * @param Request $request
+     * @param Request                   $request
      */
-    public function __construct($activityProvider, Request $request)
+    public function __construct(Request $request, $activityProvider)
     {
         $this->activityProvider = $activityProvider;
         $this->request = $request;

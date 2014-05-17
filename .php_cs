@@ -9,15 +9,12 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\ProjectBundle\Repository;
+use Symfony\CS\FixerInterface;
 
-use Doctrine\ORM\EntityRepository;
+$finder = Symfony\CS\Finder\DefaultFinder::create()
+->notName('*.yml')
+->notName('*.xml')
+->exclude('app')
+;
 
-/**
- * ProjectProviderRepository
- *
- */
-class ProjectProviderRepository extends EntityRepository
-{
-
-}
+return Symfony\CS\Config\Config::create()->finder($finder);

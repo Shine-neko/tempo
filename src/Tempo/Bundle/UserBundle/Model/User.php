@@ -17,37 +17,103 @@ use Doctrine\Common\Collections\ArrayCollection;
 class User extends BaseUser implements UserInterface
 {
     protected $id;
+
+    /**
+     * @var string
+     */
     protected $locale;
+
+    /**
+     * @var int
+     */
     protected $googleId;
+
+    /**
+     * @var string
+     */
     protected $firstName;
+
+    /**
+     * @var string
+     */
     protected $lastName;
+
+    /**
+     * @var \DateTime
+     */
     protected $createdAt;
+
+    /**
+     * @var \DateTime
+     */
     protected $updatedAt;
+
+    /**
+     * @var string
+     */
     protected $gender;
+
+    /**
+     * @var string
+     */
     protected $company;
+
+    /**
+     * @var string
+     */
     protected $jobTitle;
+
+    /**
+     * @var string
+     */
     protected $phone;
+
+    /**
+     * @var string
+     */
     protected $mobilePhone;
+
+    /**
+     * @var string
+     */
     protected $avatar;
+
+    /**
+     * @var string
+     */
     protected $skype;
+
+    /**
+     * @var string
+     */
     protected $viadeo;
+
+    /**
+     * @var string
+     */
     protected $linkedin;
+
+    /**
+     * @var string
+     */
     protected $twitter;
+
+    /**
+     * @var Collection
+     */
     protected $organizations;
     protected $notifications;
 
     public function __construct()
     {
         $this->createdAt = new \DateTime();
+        $this->organizations = new ArrayCollection();
         $this->notifications = new ArrayCollection();
-
         parent::__construct();
     }
 
     /**
-     * Get id
-     *
-     * @return integer
+     * {@inheritdoc}
      */
     public function getId()
     {
@@ -71,9 +137,7 @@ class User extends BaseUser implements UserInterface
     }
 
     /**
-     * Alias for parent::getUsernameCanonical()
-     * @param $slug
-     * @return string
+     * {@inheritdoc}
      */
     public function getSlug()
     {
@@ -81,7 +145,7 @@ class User extends BaseUser implements UserInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getCompany()
     {
@@ -89,9 +153,7 @@ class User extends BaseUser implements UserInterface
     }
 
     /**
-     * Set compagny Name
-     * @param string $company
-     *                        @return $this;
+     * {@inheritdoc}
      */
     public function setCompany($company)
     {
@@ -101,7 +163,7 @@ class User extends BaseUser implements UserInterface
     }
 
     /**
-     * @return ArrayCollection
+     * {@inheritdoc}
      */
     public function getOrganizations()
     {
@@ -109,9 +171,7 @@ class User extends BaseUser implements UserInterface
     }
 
     /**
-     * Set firstName
-     *
-     * @param string $firstName
+     * {@inheritdoc}
      */
     public function setFirstName($firstName)
     {
@@ -121,9 +181,7 @@ class User extends BaseUser implements UserInterface
     }
 
     /**
-     * Get firstName
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getFirstName()
     {
@@ -131,9 +189,7 @@ class User extends BaseUser implements UserInterface
     }
 
     /**
-     * Set last name
-     *
-     * @param string $lastName
+     * {@inheritdoc}
      */
     public function setLastName($lastName)
     {
@@ -143,9 +199,7 @@ class User extends BaseUser implements UserInterface
     }
 
     /**
-     * Get last_name
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getLastName()
     {
@@ -153,7 +207,7 @@ class User extends BaseUser implements UserInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getFullName()
     {
@@ -232,6 +286,9 @@ class User extends BaseUser implements UserInterface
         return (boolean) @fopen($this->getGravatarUrl() . '?d=404', 'r');
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getAvatar($size = 80, $default = 'mm')
     {
         if ($this->avatar) {
@@ -282,7 +339,7 @@ class User extends BaseUser implements UserInterface
     }
 
     /**
-     * @return mixed
+     * {@inheritdoc}
      */
     public function getLinkedin()
     {

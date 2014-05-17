@@ -14,16 +14,22 @@ namespace Tempo\Bundle\ProjectBundle\Model;
 interface ProjectTypeInterface
 {
     /**
+     * Get Id
+     *
      * @return integer $id
      */
     public function getId();
 
     /**
+     * Get name
+     *
      * @param string $name
      */
     public function setName($name);
 
     /**
+     * Get name
+     *
      * @return string $name
      */
     public function getName();

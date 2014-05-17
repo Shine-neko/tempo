@@ -9,7 +9,6 @@
 * file that was distributed with this source code.
 */
 
-
 namespace Tempo\Bundle\ActivityBundle\Provider;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -34,7 +33,7 @@ class GithubProvider implements ProviderInterface
     {
         $activity = new ActivityProvider();
         $activity->setMessage('provider.github.commit');
-        $activity->setCreated(new \DateTime());
+        $activity->setCreatedAt(new \DateTime());
         $activity->setParameters($payload);
 
         return $activity;

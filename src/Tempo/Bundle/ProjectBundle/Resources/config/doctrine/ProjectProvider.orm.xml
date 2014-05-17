@@ -16,7 +16,7 @@
         <field name="secret" column="secret" type="string"  nullable="true"  />
         <field name="token" column="token" type="string"  nullable="true"  />
 
-        <field name="created" type="datetime">
+        <field name="createdAt" type="datetime">
             <gedmo:timestampable on="create"/>
         </field>
         <field name="name" column="name" type="string"  nullable="false"  />

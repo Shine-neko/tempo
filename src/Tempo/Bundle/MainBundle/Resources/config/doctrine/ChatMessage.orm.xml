@@ -13,10 +13,12 @@
         </id>
 
         <field name="content" column="content" type="string" nullable="false"  />
-        <field name="created" column="created" type="date" nullable="false"  >
+        <field name="createdAt" column="created" type="date" nullable="false"  >
             <gedmo:timestampable on="create"/>
         </field>
-
+        <field name="updateAt" column="updated_at" type="date" nullable="false"  >
+            <gedmo:timestampable on="update"/>
+        </field>
 
         <many-to-one field="room" inversed-by="chatMessages" target-entity="Room" />
         <many-to-one field="user" target-entity="Tempo\Bundle\UserBundle\Entity\User" />

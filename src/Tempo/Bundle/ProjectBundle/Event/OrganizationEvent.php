@@ -15,28 +15,26 @@ use Tempo\Bundle\ProjectBundle\Model\OrganizationInterface;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Request;
 
-
 class OrganizationEvent extends Event
 {
+    /**
+     * @var \Symfony\Component\HttpFoundation\Request
+     */
     private $request;
+
+    /**
+     * @var \Tempo\Bundle\ProjectBundle\Model\OrganizationInterface
+     */
     private $organization;
 
     /**
      * @param OrganizationInterface $organization
-     * @param Request $request
+     * @param Request               $request
      */
-    public function __construct(OrganizationInterface $organization, Request $request)
+    public function __construct(Request $request, OrganizationInterface $organization)
     {
-        $this->organization = $organization;
         $this->request = $request;
-    }
-
-    /**
-     * @return OrganizationInterface
-     */
-    public function getOrganization()
-    {
-        return $this->organization;
+        $this->organization = $organization;
     }
 
     /**
@@ -47,4 +45,11 @@ class OrganizationEvent extends Event
         return $this->request;
     }
 
+    /**
+     * @return OrganizationInterface
+     */
+    public function getOrganization()
+    {
+        return $this->organization;
+    }
 }
