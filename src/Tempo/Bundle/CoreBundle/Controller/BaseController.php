@@ -18,7 +18,7 @@ class BaseController extends FOSRestController
 {
     protected static $_flashTypes = array('normal', 'success', 'warning', 'danger');
 
-    public function addFlash($type, $message, $domaine = null)
+    protected function addFlash($type, $message, $domaine = null)
     {
         if (!in_array($type, self::$_flashTypes)) {
             throw new \Exception(sprintf(
@@ -41,7 +41,7 @@ class BaseController extends FOSRestController
      * @return bool
      * @throws AccessDeniedException
      */
-    public function tokenIsValid($key, $token)
+    protected function tokenIsValid($key, $token)
     {
         //check token
         if (false === $this->get('form.csrf_provider')->isCsrfTokenValid($key, $token)) {
@@ -57,7 +57,7 @@ class BaseController extends FOSRestController
      * @param null $domaine
      * @return string
      */
-    public function getTranslation($message, $parameter = array(), $domaine = null)
+    protected function getTranslation($message, $parameter = array(), $domaine = null)
     {
         return $this->get('translator')->trans($message, $parameter, $domaine);
     }
@@ -66,7 +66,7 @@ class BaseController extends FOSRestController
      * @param string $name
      * @return \Tempo\Bundle\CoreBundle\Manager\BaseManager
      */
-    public function getManager($name)
+    protected function getManager($name)
     {
         return $this->get('tempo.manager.'. $name);
     }
