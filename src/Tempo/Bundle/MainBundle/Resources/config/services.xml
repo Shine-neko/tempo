@@ -60,7 +60,7 @@
 
         <service id="tempo.main.listener.project" class="%tempo.main.listener.project.class%">
             <argument type="service" id="tempo.manager.room" />
-            <tag name="kernel.event_listener" event="tempo_project.project.create.success" method="createProject" />
+            <tag name="kernel.event_listener" event="tempo.project.create.success" method="createProject" />
         </service>
 
     </services>
