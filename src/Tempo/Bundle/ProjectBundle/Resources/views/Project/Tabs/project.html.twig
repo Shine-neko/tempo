@@ -11,11 +11,11 @@
             </dl>
             <dl>
                 <dt>{{ 'project.form.label.created'|trans({}, 'TempoProject') }}:</dt>
-                <dd>{{ datetime_diff(project.created) }} </dd>
+                <dd>{{ datetime_diff(project.createdAt) }} </dd>
             </dl>
             <dl>
                 <dt>{{ 'project.form.label.updated'|trans({}, 'TempoProject') }}:</dt>
-                <dd>{{ datetime_diff(project.updated) }}</dd>
+                <dd>{{ datetime_diff(project.updatedAt) }}</dd>
             </dl>
         </li>
     </ul>

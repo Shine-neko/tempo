@@ -38,7 +38,7 @@ class ProjectProvider implements ProjectProviderInterface
      * @var \DateTime
      *
      */
-    protected $created;
+    protected $createdAt;
 
     /**
      * @var string
@@ -116,17 +116,17 @@ class ProjectProvider implements ProjectProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function setCreated(\DateTime $created)
+    public function setCreatedAt(\DateTime $created)
     {
-        $this->created = $created;
+        $this->createdAt = $created;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getCreated()
+    public function getCreatedAt()
     {
-        return $this->created;
+        return $this->createdAt;
     }
 
     /**

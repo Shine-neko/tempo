@@ -107,12 +107,12 @@ interface ProjectProviderInterface
      * @param \DateTime $datetime
      * @return ActivityProvider
      */
-    public function setCreated(\Datetime $datetime);
+    public function setCreatedAt(\Datetime $datetime);
 
     /**
      * Get datetime
      *
      * @return \DateTime
      */
-    public function getCreated();
+    public function getCreatedAt();
 }

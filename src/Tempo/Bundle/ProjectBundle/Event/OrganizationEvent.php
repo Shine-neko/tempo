@@ -38,14 +38,6 @@ class OrganizationEvent extends Event
     }
 
     /**
-     * @return OrganizationInterface
-     */
-    public function getOrganization()
-    {
-        return $this->organization;
-    }
-
-    /**
      * @return Request
      */
     public function getRequest()
@@ -53,4 +45,11 @@ class OrganizationEvent extends Event
         return $this->request;
     }
 
+    /**
+     * @return OrganizationInterface
+     */
+    public function getOrganization()
+    {
+        return $this->organization;
+    }
 }

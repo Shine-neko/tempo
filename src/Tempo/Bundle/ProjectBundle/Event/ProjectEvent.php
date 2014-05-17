@@ -38,14 +38,6 @@ class ProjectEvent extends Event
     }
 
     /**
-     * @return ProjectInterface
-     */
-    public function getProject()
-    {
-        return $this->project;
-    }
-
-    /**
      * @return Request
      */
     public function getRequest()
@@ -53,4 +45,11 @@ class ProjectEvent extends Event
         return $this->request;
     }
 
+    /**
+     * @return ProjectInterface
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
 }

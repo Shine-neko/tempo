@@ -17,17 +17,24 @@ use Symfony\Component\HttpFoundation\Request;
 
 class Timesheet extends Event
 {
+    /**
+     * @var \Symfony\Component\HttpFoundation\Request
+     */
     private $request;
+
+    /**
+     * @var \Tempo\Bundle\ProjectBundle\Model\TimesheetInterface
+     */
     private $timesheet;
 
     /**
      * @param TimesheetInterface $timesheet
      * @param Request            $request
      */
-    public function __construct(TimesheetInterface $timesheet, Request $request)
+    public function __construct(Request $request, TimesheetInterface $timesheet)
     {
-        $this->timesheet = $timesheet;
         $this->request = $request;
+        $this->timesheet = $timesheet;
     }
 
     /**
