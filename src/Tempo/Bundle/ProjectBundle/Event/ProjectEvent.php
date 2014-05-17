@@ -28,8 +28,8 @@ class ProjectEvent extends Event
     private $project;
 
     /**
-     * @param ProjectInterface $project
      * @param Request          $request
+     * @param ProjectInterface $project
      */
     public function __construct(Request $request, ProjectInterface $project)
     {

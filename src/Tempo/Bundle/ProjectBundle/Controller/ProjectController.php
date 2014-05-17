@@ -129,7 +129,7 @@ class ProjectController extends BaseController
         $form  = $this->createForm(new ProjectType(), $project, array('user_id' => $this->getUser()->getId() ));
 
         if ($form->submit($request)->isValid()) {
-            $event = new ProjectEvent($project, $request);
+            $event = new ProjectEvent($request, $project);
             $this->get('event_dispatcher')->dispatch(TempoProjectEvents::PROJECT_CREATE_INITIALIZE, $event);
 
             $this->getManager('project')->save($project);
@@ -173,7 +173,7 @@ class ProjectController extends BaseController
         $editForm   = $this->createForm(new ProjectType(), $project);
 
         if ($request->isMethod('POST') && $editForm->submit($request)->isValid()) {
-            $event = new ProjectEvent($project, $request);
+            $event = new ProjectEvent($request, $project);
             $this->get('event_dispatcher')->dispatch(TempoProjectEvents::PROJECT_EDIT_INITIALIZE, $event);
 
             $this->getManager('project')->save($project);
@@ -204,7 +204,7 @@ class ProjectController extends BaseController
             $project = $this->getProject($slug, 'DELETE');
 
             $this->getManager('project')->remove($project);
-            $event = new ProjectEvent($project, $request);
+            $event = new ProjectEvent($request, $project);
             $this->get('event_dispatcher')->dispatch(TempoProjectEvents::PROJECT_DELETE_COMPLETED, $event);
 
             $this->setFlash('success', 'project.success_delete', 'TempoProject');

@@ -28,8 +28,8 @@ class OrganizationEvent extends Event
     private $organization;
 
     /**
-     * @param OrganizationInterface $organization
      * @param Request               $request
+     * @param OrganizationInterface $organization
      */
     public function __construct(Request $request, OrganizationInterface $organization)
     {

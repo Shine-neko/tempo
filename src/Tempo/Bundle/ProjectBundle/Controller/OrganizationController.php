@@ -134,7 +134,7 @@ class OrganizationController extends BaseController
         $editForm = $this->createForm(new OrganizationType(), $organization);
 
         if ($request->isMethod('POST') && $editForm->submit($request)->isValid()) {
-            $event = new OrganizationEvent($organization, $request);
+            $event = new OrganizationEvent($request, $organization);
             $this->get('event_dispatcher')->dispatch(TempoProjectEvents::ORGANIZATION_EDIT_INITIALIZE, $event);
 
             $manager->save($organization);
@@ -173,7 +173,7 @@ class OrganizationController extends BaseController
         $form = $this->createForm(new OrganizationType(), $organization);
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-            $event = new OrganizationEvent($organization, $request);
+            $event = new OrganizationEvent($request, $organization);
             $this->get('event_dispatcher')->dispatch(TempoProjectEvents::ORGANIZATION_CREATE_INITIALIZE, $event);
 
             $this->getManager('organization')->save($organization);
@@ -207,7 +207,7 @@ class OrganizationController extends BaseController
             try {
 
                 $this->getManager('organization')->remove($organization);
-                $event = new ProjectEvent($organization, $request);
+                $event = new OrganizationEvent($request, $organization);
 
                 $this->get('event_dispatcher')->dispatch(TempoProjectEvents::ORGANIZATION_DELETE_COMPLETED, $event);
                 $this->setFlash('success', 'organization.success_delete', 'TempoProject');

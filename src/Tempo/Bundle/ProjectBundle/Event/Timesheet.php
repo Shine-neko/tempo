@@ -23,19 +23,19 @@ class Timesheet extends Event
     private $request;
 
     /**
-     * @var \Tempo\Bundle\ProjectBundle\Model\TimesheetInterface
-     */
-    private $timesheet;
-
-    /**
-     * @param TimesheetInterface $timesheet
      * @param Request            $request
+     * @param TimesheetInterface $timesheet
      */
     public function __construct(Request $request, TimesheetInterface $timesheet)
     {
         $this->request = $request;
         $this->timesheet = $timesheet;
     }
+
+    /**
+     * @var \Tempo\Bundle\ProjectBundle\Model\TimesheetInterface
+     */
+    private $timesheet;
 
     /**
      * @return TimesheetInterface
