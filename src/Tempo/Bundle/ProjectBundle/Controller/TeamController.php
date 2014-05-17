@@ -12,16 +12,16 @@
 namespace Tempo\Bundle\ProjectBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 
+use Tempo\Bundle\CoreBundle\Controller\BaseController;
 use Tempo\Bundle\ProjectBundle\Form\Type\TeamType;
 
 /*
  * @author Mlanawo Mbechezi <mlanawo.mbechezi@ikimea.com>
  */
 
-class TeamController extends Controller
+class TeamController extends BaseController
 {
     /**
      * @param $slug
@@ -41,7 +41,7 @@ class TeamController extends Controller
             $objectManager['manager']->save($objectManager['model']);
             $this->getAclManager()->addObjectPermission($objectManager['model'], MaskBuilder::MASK_VIEW); //set Permission
 
-            $request->getSession()->getFlashBag()->set('success', $this->getTranslator()->trans('team.success_add', array(), 'TempoProject'));
+            $this->addFlash('success', 'team.success_add', 'TempoProject');
 
             return $this->redirect($this->generateUrl($objectManager['route'], array('slug' => $objectManager['model']->getSlug())));
         }
@@ -87,23 +87,6 @@ class TeamController extends Controller
             'model' => $manager->findOneBySlug($slug),
             'manager' => $manager
         );
-    }
-
-    /**
-     * Get translator.
-     * @return \Symfony\Bundle\FrameworkBundle\Translation\Translator
-     */
-    protected function getTranslator()
-    {
-        return $this->get('translator');
-    }
-
-    /**
-     * @return \Problematic\AclManagerBundle\Domain\AclManager
-     */
-    protected function getAclManager()
-    {
-        return $this->get('problematic.acl_manager');
     }
 
     /**

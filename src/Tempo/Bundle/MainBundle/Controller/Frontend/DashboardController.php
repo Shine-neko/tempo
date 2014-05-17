@@ -12,24 +12,24 @@
 namespace Tempo\Bundle\MainBundle\Controller\Frontend;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Tempo\Bundle\MainBundle\Entity\Settings;
-use Tempo\Bundle\MainBundle\Form\SettingsType;
+use Tempo\Bundle\CoreBundle\Controller\BaseController;
 use Tempo\Bundle\MainBundle\Form\Type\ChatMessageType;
 
-class DashboardController extends Controller
+class DashboardController extends BaseController
 {
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function mainAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
+        $manager = $this->getManager('room');
 
-        $rooms = $em->getRepository('TempoMainBundle:Room')->findAll();
+        $rooms = $manager->findAll();
         $roomId = $request->query->get('currentRoom', $rooms[0]->getId());
+
         $request->getSession()->set('currentRoom', $roomId);
-        $currentRoom = $em->getRepository('TempoMainBundle:Room')->find( $request->getSession()->get('currentRoom'));
+        $currentRoom = $this->getManager('room')->find( $request->getSession()->get('currentRoom'));
+
         $form  = $this->createForm(new ChatMessageType());
 
         return $this->render('TempoMainBundle:Default:dashboard.html.twig', array(

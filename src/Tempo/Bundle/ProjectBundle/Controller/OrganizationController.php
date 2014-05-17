@@ -11,6 +11,12 @@
 
 namespace Tempo\Bundle\ProjectBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Security\Acl\Permission\MaskBuilder;
+
+use Tempo\Bundle\CoreBundle\Controller\BaseController;
 use Tempo\Bundle\ProjectBundle\Entity\Organization;
 use Tempo\Bundle\ProjectBundle\Form\Type\OrganizationType;
 use Tempo\Bundle\ProjectBundle\Form\Type\TeamType;
@@ -18,17 +24,22 @@ use Tempo\Bundle\ProjectBundle\TempoProjectEvents;
 use Tempo\Bundle\ProjectBundle\Event\ProjectEvent;
 use Tempo\Bundle\ProjectBundle\Event\OrganizationEvent;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Symfony\Component\Security\Acl\Permission\MaskBuilder;
-
 /**
  * @author Mlanawo Mbechezi <mlanawo.mbechezi@ikimea.com>
  */
 
-class OrganizationController extends Controller
+class OrganizationController extends BaseController
 {
+    private $breadcrumb;
+
+    private function getBreadcrumb()
+    {
+        $breadcrumb = $this->get('tempo.main.breadcrumb');
+        $breadcrumb->addChild('Organization');
+
+        return $breadcrumb;
+    }
+
     /**
      * @param $slug
      * @return \Symfony\Component\HttpFoundation\Response
@@ -47,9 +58,7 @@ class OrganizationController extends Controller
         $manager = $this->get('tempo.manager.organization');
         $counter = $manager->getStatusProjects($organization->getId());
 
-        $breadcrumb = $this->get('tempo.main.breadcrumb');
-        $breadcrumb->addChild('Organization');
-        $breadcrumb->addChild($organization->getName());
+        $this->getBreadcrumb()->addChild($organization->getName());
 
         $teamForm = $this->createForm(new TeamType());
 
@@ -92,10 +101,8 @@ class OrganizationController extends Controller
             throw new AccessDeniedException();
         }
 
-        $breadcrumb = $this->get('tempo.main.breadcrumb');
-        $breadcrumb->addChild('Organization');
-        $breadcrumb->addChild($organization->getName());
-        $breadcrumb->addChild('Editer le organization');
+        $this->getBreadcrumb()->addChild($organization->getName());
+        $this->getBreadcrumb()->addChild('Editer le organization');
 
         $editForm = $this->createForm(new OrganizationType(), $organization);
 
@@ -133,7 +140,7 @@ class OrganizationController extends Controller
             $manager->save($organization);
             $this->get('event_dispatcher')->dispatch(TempoProjectEvents::ORGANIZATION_EDIT_SUCCESS, $event);
 
-            $request->getSession()->getFlashBag()->set('success', $this->getTranslator()->trans('organization.success_deleted', array(), 'TempoProject'));
+            $this->addFlash('success', 'organization.success_update', 'TempoProject');
 
             return $this->redirectToOrganization($organization);
         }
@@ -148,6 +155,12 @@ class OrganizationController extends Controller
      * Create a organization
      * @return array
      */
+
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
+     */
     public function createAction(Request $request)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
@@ -159,18 +172,20 @@ class OrganizationController extends Controller
 
         $form = $this->createForm(new OrganizationType(), $organization);
 
-        if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             $event = new OrganizationEvent($organization, $request);
             $this->get('event_dispatcher')->dispatch(TempoProjectEvents::ORGANIZATION_CREATE_INITIALIZE, $event);
 
-            $this->getManager()->save($organization);
+            $this->getManager('organization')->save($organization);
             $this->get('event_dispatcher')->dispatch(TempoProjectEvents::ORGANIZATION_CREATE_SUCCESS, $event);
 
             $this->getAclManager()->addObjectPermission($organization, MaskBuilder::MASK_OWNER); //set Permission
-            $request->getSession()->getFlashBag()->set('success', $this->getTranslator()->trans('organization.success_create', array(), 'TempoProject'));
+            $this->addFlash('success', 'organization.success_create','TempoProject');
 
             return $this->redirectToOrganization($organization);
         }
+
+        return new Response('', 412);
     }
 
     /**
@@ -188,32 +203,21 @@ class OrganizationController extends Controller
         }
 
         //check CSRF token
-        if (false === $this->get('form.csrf_provider')->isCsrfTokenValid('delete-organization', $request->get('token'))) {
-            throw new AccessDeniedException('Invalid CSRF token.');
+        if ($this->tokenIsValid('delete-organization', $request->get('token'))) {
+            try {
+
+                $this->getManager('organization')->remove($organization);
+                $event = new ProjectEvent($organization, $request);
+
+                $this->get('event_dispatcher')->dispatch(TempoProjectEvents::ORGANIZATION_DELETE_COMPLETED, $event);
+                $this->setFlash('success', 'organization.success_delete', 'TempoProject');
+
+            } catch (\InvalidArgumentException $e) {
+                $this->setFlash('error', 'organization.failed_delete', 'TempoProject');
+
+                return $this->redirectToOrganization($organization);
+            }
         }
-
-        try {
-
-            $this->getManager()->remove($organization);
-            $event = new ProjectEvent($organization, $request);
-            $this->get('event_dispatcher')->dispatch(TempoProjectEvents::ORGANIZATION_DELETE_COMPLETED, $event);
-            $request->getSession()->getFlashBag()->set('success', $this->getTranslator()->trans('organization.success_delete', array(), 'TempoProject'));
-
-        } catch (\InvalidArgumentException $e) {
-            $request->getSession()->getFlashBag()->set('error', $this->getTranslator()->trans('organization.failed_delete', array(), 'TempoProject'));
-
-            return $this->redirectToOrganization($organization);
-        }
-
-    }
-
-    /**
-     * return Tempo\Bundle\ProjectBundle\Manager\OrganizationManager
-     * @return mixed
-     */
-    protected function getManager()
-    {
-        return $this->get('tempo.manager.organization');
     }
 
     /**
@@ -223,23 +227,13 @@ class OrganizationController extends Controller
      */
     protected function findOrganization($slug)
     {
-        return $this->getManager()->findOneBySlug($slug);
-    }
+        $organization =  $this->getManager('organization')->findOneBySlug($slug);
 
-    /**
-     * @return \Symfony\Bundle\FrameworkBundle\Translation\Translator
-     */
-    protected function getTranslator()
-    {
-        return $this->get('translator');
-    }
+        if(!$organization) {
+            $this->createNotFoundException($this->getTranslation('not_found_orga', [], 'TempoProject'));
+        }
 
-    /**
-     * @return \Problematic\AclManagerBundle\Domain\AclManager
-     */
-    protected function getAclManager()
-    {
-        return $this->get('problematic.acl_manager');
+        return $organization;
     }
 
     protected function redirectToOrganization($organization)

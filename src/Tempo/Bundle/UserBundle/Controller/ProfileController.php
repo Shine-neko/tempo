@@ -12,15 +12,15 @@
 
 namespace Tempo\Bundle\UserBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
+use Tempo\Bundle\CoreBundle\Controller\BaseController;
 use Tempo\Bundle\UserBundle\Form\Type\SettingsType;
 use Tempo\Bundle\UserBundle\Form\Type\ProfileType;
 
-class ProfileController extends Controller
+class ProfileController extends BaseController
 {
     /**
      * @param $slug
@@ -36,6 +36,7 @@ class ProfileController extends Controller
      * @param Request $request
      * @param null $id
      * @return mixed
+     * @todo : Urgent refactor
      */
     public function pictureAction(Request $request)
     {
@@ -44,18 +45,23 @@ class ProfileController extends Controller
         $form = $this->get('tempo_user.profile.form.avatar.factory');
         $handler = $this->get('tempo_user.profile.handler.avatar');
 
-        //@todo : Urgent refactor
         if (($retval = $handler->process($user)) !== false) {
 
-            if ($handler::INTERNAL_ERROR === $retval) {
-                $this->get('session')->getFlashBag()->add('error', $this->translate('avatar.failed_internal_error'));
-            } elseif ($handler::WRONG_FORMAT === $retval) {
-                $request->getSession()->getFlashBag()->add('error', $this->translate('avatar.failed_valid_file'));
-            } elseif ($handler::AVATAR_DELETED === $retval) {
-                $this->get('session')->getFlashBag()->add('notice', $this->translate('avatar.success_delete'));
-            } else {
-                $request->getSession()->getFlashBag()->add('success', $this->translate('avatar.success_edit'));
+            switch($retval) {
+                case $handler::INTERNAL_ERROR:
+                    $avatarProcessError = 'avatar.failed_internal_error';
+                    break;
+                case $handler::WRONG_FORMAT:
+                    $avatarProcessError = 'avatar.failed_valid_file';
+                    break;
+                case $handler::AVATAR_DELETED:
+                    $avatarProcessError = 'avatar.success_delete';
+                    break;
+                default:
+                    $avatarProcessError = 'avatar.success_edit';
             }
+
+            $this->addFlash('error', $avatarProcessError, 'TempoUser');
         }
 
         return $this->render('TempoUserBundle:Profile:avatar.html.twig', array(
@@ -85,13 +91,13 @@ class ProfileController extends Controller
      */
     public function showAction($slug)
     {
-        $profile = $this->getDoctrine()->getRepository('TempoUserBundle:User')->findOneBy(array('usernameCanonical' => $slug));
+        $profile = $this->getManager('organization')->repository->findOneBy(array('usernameCanonical' => $slug));
 
         if(!$profile) {
-            throw $this->createNotFoundException('Unable to find User.');
+            throw $this->createNotFoundException('User not found.');
         }
 
-        $organizations = $this->get('tempo_project.manager.organization')->findAllByUser($profile->getId());
+        $organizations = $this->getManager('organization')->findAllByUser($profile->getId());
 
         return $this->render('TempoUserBundle:Profile:show.html.twig', array(
             'profile' => $profile,
@@ -111,20 +117,5 @@ class ProfileController extends Controller
             'profile' => $profile,
             'form' => $form->createView()
         ));
-    }
-
-    /**
-     * Get translator.
-     *
-     * @return TranslatorInterface
-     */
-    private function getTranslator()
-    {
-        return $this->get('translator');
-    }
-
-    private function translate($trans)
-    {
-        $this->getTranslator()->trans($trans, array(), 'TempoUser');
     }
 }
