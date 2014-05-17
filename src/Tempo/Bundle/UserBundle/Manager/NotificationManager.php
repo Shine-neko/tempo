@@ -38,6 +38,6 @@ class NotificationManager extends BaseManager
 
     public function clearForUser($user)
     {
-        $this->$this->repository->clearForUser($user);
+        return $this->repository->clearForUser($user);
     }
 }
