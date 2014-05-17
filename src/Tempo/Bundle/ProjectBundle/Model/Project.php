@@ -16,7 +16,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Project Model
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
- * @todo: fix php documentor
  */
 
 class Project implements ProjectInterface
@@ -77,12 +76,12 @@ class Project implements ProjectInterface
     /**
      * @var \DateTime
      */
-    protected $created;
+    protected $createdAt;
 
     /**
      * @var \DateTime
      */
-    protected $updated;
+    protected $updatedAt;
 
     /**
      * @var string
@@ -191,33 +190,33 @@ class Project implements ProjectInterface
     /**
      * {@inheritdoc}
      */
-    public function setCreated($created)
+    public function setCreatedAt($created)
     {
-        $this->created = $created;
+        $this->createdAt = $created;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getCreated()
+    public function getCreatedAt()
     {
-        return $this->created;
+        return $this->createdAt;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setUpdated($updated)
+    public function setUpdatedAt($updated)
     {
-        $this->updated = $updated;
+        $this->updatedAt = $updated;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getUpdated()
+    public function getUpdatedAt()
     {
-        return $this->updated;
+        return $this->updatedAt;
     }
 
     /**

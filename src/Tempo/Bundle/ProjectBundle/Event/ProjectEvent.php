@@ -15,17 +15,23 @@ use Tempo\Bundle\ProjectBundle\Model\ProjectInterface;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Request;
 
-
 class ProjectEvent extends Event
 {
+    /**
+     * @var \Symfony\Component\HttpFoundation\Request
+     */
     private $request;
+
+    /**
+     * @var \Tempo\Bundle\ProjectBundle\Model\ProjectInterface
+     */
     private $project;
 
     /**
      * @param ProjectInterface $project
-     * @param Request $request
+     * @param Request          $request
      */
-    public function __construct(ProjectInterface $project, Request $request)
+    public function __construct(Request $request, ProjectInterface $project)
     {
         $this->project = $project;
         $this->request = $request;

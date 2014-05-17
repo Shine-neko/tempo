@@ -9,11 +9,9 @@
 * file that was distributed with this source code.
 */
 
-
 namespace Tempo\Bundle\ActivityBundle\Provider;
 
 use Symfony\Component\HttpFoundation\Request;
-use Tempo\Bundle\ActivityBundle\Entity\Activity;
 
 class TrelloProvider  implements ProviderInterface
 {

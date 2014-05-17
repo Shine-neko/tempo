@@ -11,6 +11,9 @@
 
 namespace Tempo\Bundle\ProjectBundle\Model;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
+
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
@@ -42,14 +45,14 @@ interface OrganizationInterface
      *
      * @return \DateTime
      */
-    public function getCreated();
+    public function getCreatedAt();
 
     /**
      * Get updated
      *
      * @return \DateTime
      */
-    public function getUpdated();
+    public function getUpdatedAt();
 
     /**
      * @return $enabled
@@ -97,14 +100,14 @@ interface OrganizationInterface
      *
      * @param \DateTime $created
      */
-    public function setCreated(\DateTime $updated);
+    public function setCreatedAt(\DateTime $updated);
 
     /**
      * Set updated
      *
      * @param \DateTime $updated
      */
-    public function setUpdated(\DateTime $updated);
+    public function setUpdatedAt(\DateTime $updated);
 
     /**
      * @param $enabled
@@ -125,7 +128,7 @@ interface OrganizationInterface
     /**
      * Set users
      *
-     * @param Doctrine_Collection $users
+     * @param ArrayCollection $users
      */
     public function setUsers($users);
 
@@ -146,13 +149,13 @@ interface OrganizationInterface
     /**
      * Set projects
      *
-     * @param Doctrine_Collection $projects
+     * @param ArrayCollection $projects
      */
     public function setProjects($projects);
 
     /**
      * @abstract
-     * @return Doctrine_Collection
+     * @return ArrayCollection
      */
     public function getTeam();
 

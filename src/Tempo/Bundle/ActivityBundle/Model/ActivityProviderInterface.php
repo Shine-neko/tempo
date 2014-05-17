@@ -77,14 +77,14 @@ interface ActivityProviderInterface
      * @param  \DateTime $datetime
      * @return Activity
      */
-    public function setCreated($datetime);
+    public function setCreatedAt($datetime);
 
     /**
      * Get datetime
      *
      * @return \DateTime
      */
-    public function getCreated();
+    public function getCreatedAt();
 
     /**
      * @return Object

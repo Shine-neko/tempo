@@ -35,7 +35,7 @@ class ActivityProvider implements ActivityProviderInterface
      * @var \DateTime
      *
      */
-    protected $created;
+    protected $createdAt;
 
     /**
      * @var string
@@ -119,9 +119,9 @@ class ActivityProvider implements ActivityProviderInterface
     /**
      * {inheritedDoc}
      */
-    public function setCreated($datetime)
+    public function setCreatedAt($datetime)
     {
-        $this->created = $datetime;
+        $this->createdAt = $datetime;
 
         return $this;
     }
@@ -129,9 +129,9 @@ class ActivityProvider implements ActivityProviderInterface
     /**
      * {inheritedDoc}
      */
-    public function getCreated()
+    public function getCreatedAt()
     {
-        return $this->created;
+        return $this->createdAt;
     }
 
     /**
