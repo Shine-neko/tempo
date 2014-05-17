@@ -30,7 +30,7 @@ use Tempo\Bundle\ProjectBundle\Event\OrganizationEvent;
 
 class OrganizationController extends BaseController
 {
-    protected $breadcrumb;
+    private $breadcrumb;
 
     private function getBreadcrumb()
     {

@@ -36,8 +36,8 @@ class BaseController extends FOSRestController
     }
 
     /**
-     * @param $key
-     * @param $token
+     * @param string $key
+     * @param string $token
      * @return bool
      * @throws AccessDeniedException
      */
@@ -63,7 +63,7 @@ class BaseController extends FOSRestController
     }
 
     /**
-     * @param $name
+     * @param string $name
      * @return \Tempo\Bundle\CoreBundle\Manager\BaseManager
      */
     public function getManager($name)
