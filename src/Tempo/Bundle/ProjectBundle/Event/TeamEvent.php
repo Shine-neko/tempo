@@ -11,6 +11,8 @@
 
 namespace Tempo\Bundle\ProjectBundle\Event;
 
+use Tempo\Bundle\ProjectBundle\Entity\Organization;
+use Tempo\Bundle\ProjectBundle\Entity\Project;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Request;
 use Tempo\Bundle\UserBundle\Entity\User;
@@ -44,12 +46,16 @@ class TeamEvent extends Event
 
     /**
      * @param Request $request
-     *                         @param $object
+     * @param Organization|Project $object
+     * @param User $userTo
+     * @param User $userFrom
      */
-    public function __construct(Request $request, $object)
+    public function __construct(Request $request, $object, User $userTo, User $userFrom)
     {
         $this->request = $request;
         $this->model = $object;
+        $this->userTo = $userTo
+        $this->userFrom = $userFrom;
     }
 
     /**

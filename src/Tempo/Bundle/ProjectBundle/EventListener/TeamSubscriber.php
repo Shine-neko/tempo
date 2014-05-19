@@ -11,8 +11,8 @@
 
 namespace Tempo\Bundle\ProjectBundle\EventListener;
 
-use Symfony\Bundle\FrameworkBundle\Translation\Translator;
-use Symfony\Bundle\FrameworkBundle\Routing\Router;
+use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Component\Routing\RouterInterface;
 use Tempo\Bundle\UserBundle\Manager\NotificationManager;
 use Tempo\Bundle\ProjectBundle\TempoProjectEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -30,11 +30,11 @@ class TeamSubscriber implements EventSubscriberInterface
     private $notificationManager;
 
     /**
-     * @param Translator          $translator
-     * @param Router              $router
+     * @param TranslatorInterface $translator
+     * @param RouterInterface     $router
      * @param NotificationManager $notificationManager
      */
-    public function __construct(Translator $translator, Router $router, NotificationManager $notificationManager)
+    public function __construct(TranslatorInterface $translator, RouterInterface $router, NotificationManager $notificationManager)
     {
         $this->translator = $translator;
         $this->router = $router;
@@ -44,54 +44,25 @@ class TeamSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            TempoProjectEvents::ORGANIZATION_ASSIGNING_USER => 'buildToOrganization',
-            TempoProjectEvents::ORGANIZATION_DELETE_USER => 'buildToOrganization',
+            TempoProjectEvents::ORGANIZATION_ASSIGN_USER => 'buildNotification',
+            TempoProjectEvents::ORGANIZATION_DELETE_USER => 'buildNotification',
 
-            TempoProjectEvents::PROJECT_ASSIGNING_USER => 'onBuildToProject',
-            TempoProjectEvents::PROJECT_DELETE_USER => 'onBuildToProject',
+            TempoProjectEvents::PROJECT_ASSIGN_USER => 'buildNotification',
+            TempoProjectEvents::PROJECT_DELETE_USER => 'buildNotification',
         );
     }
 
-    /**
-     * @param \Tempo\Bundle\ProjectBundle\Event\TeamEvent $event
-     */
-    public function buildToOrganization($event)
+    public function buildNotification($event)
     {
-        if ('add' == $event->getType()) {
-            $message = 'tempo.notification.organization.team.add.completed';
-        } else {
-            $message = 'tempo.notification.organization.team.deleted.completed';
-        }
+        $modelName = strtolower((new \ReflectionClass($event->getModel()))->getShortName());
+        $message = sprintf('tempo.notification.%s.team.add.completed', $modelName);
 
-        $this->buildNotification($event, $message, 'organization_show');
-    }
-
-    /**
-     * @param \Tempo\Bundle\ProjectBundle\Event\TeamEvent $event
-     */
-    public function buildToProject($event)
-    {
-        if ('add' == $event->getType()) {
-            $message = 'tempo.notification.project.team.add.completed';
-        } else {
-            $message = 'tempo.notification.project.team.deleted.completed';
-        }
-
-        $this->buildNotification($event, $message, 'project_show');
-
-    }
-
-    /**
-     * @param $model
-     * @param $message
-     * @param $route
-     */
-    protected function buildNotification($event, $message, $route)
-    {
-        $route  = $this->router->generate($route, array('slug' => $event->getModel()->getSlug() ));
-
+        $route  = $this->router->generate($modelName. '_show', array(
+            'slug' => $event->getModel()->getSlug()
+        ));
         $message = $this->translator->trans($message, array('name' => $event->getModel(), 'TempoProject'));
 
         $this->notificationManager->create($event->getUserTo(), $message, $route);
+
     }
 }

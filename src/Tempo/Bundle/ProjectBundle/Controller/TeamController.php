@@ -37,15 +37,12 @@ class TeamController extends BaseController
         $objectManager = $this->getSection($request->get('_route'), $slug);
         $routeRedirect = $this->generateUrl($objectManager['route'], array('slug' => $objectManager['model']->getSlug()));
 
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+        if ($form->handleRequest($request)->isValid()) {
 
             $formData = $form->getData();
             $user = $this->findUser(array('username' => $formData['username']));
 
-            $event = new TeamEvent($request, $objectManager['model']);
-            $event->setType('add')
-                 ->setUserTo($user)
-                 ->setUserFrom($this->getUser());
+            $event = new TeamEvent($request, $objectManager['model'], $user, $this->getUser());
 
             $objectManager['model']->addTeam($user);
             $objectManager['manager']->save($objectManager['model']);
@@ -70,10 +67,7 @@ class TeamController extends BaseController
         $objectManager = $this->getSection($request->get('_route'), $slug);
         $user = $this->findUser(array('id' => $user));
 
-        $event = new TeamEvent($request, $objectManager['model']);
-        $event->setType('delete')
-            ->setUserTo($user)
-            ->setUserFrom($this->getUser());
+        $event = new TeamEvent($request, $objectManager['model'], $user, $this->getUser());
 
         $objectManager['model']->getTeam()->removeElement($user);
         $objectManager['manager']->save($objectManager['model']);
@@ -95,14 +89,14 @@ class TeamController extends BaseController
             case 'project_team_delete':
                 $objectManager['manager'] = $this->getManager('project');
                 $objectManager['route'] = 'project_show';
-                $objectManager['event'] = TempoProjectEvents::PROJECT_ASSIGNING_USER;
+                $objectManager['event'] = TempoProjectEvents::PROJECT_ASSIGN_USER;
 
                 break;
             case 'organization_team_add':
             case 'organization_team_delete':
                 $objectManager['manager'] = $this->getManager('organization');
                 $objectManager['route']  = 'organization_show';
-                $objectManager['event'] = TempoProjectEvents::ORGANIZATION_ASSIGNING_USER;
+                $objectManager['event'] = TempoProjectEvents::ORGANIZATION_ASSIGN_USER;
 
                 break;
         }
@@ -116,9 +110,9 @@ class TeamController extends BaseController
      * @param $paramters
      * @return \Tempo\Bundle\UserBundle\Entity\User
      */
-    public function findUser($paramters)
+    public function findUser($parameters)
     {
-        $user = $this->getManager('User')->repository->findOneBy($paramters);
+        $user = $this->getDoctrine()->getRepository('TempoUserBundle:User')->findOneBy($parameters);
 
         if (!$user) {
            $this->createNotFoundException('User not found');
