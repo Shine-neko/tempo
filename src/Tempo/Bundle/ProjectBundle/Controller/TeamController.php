@@ -17,6 +17,9 @@ use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Tempo\Bundle\CoreBundle\Controller\BaseController;
 use Tempo\Bundle\ProjectBundle\Form\Type\TeamType;
 
+use Tempo\Bundle\ProjectBundle\Event\TeamEvent;
+use Tempo\Bundle\ProjectBundle\TempoProjectEvents;
+
 /*
  * @author Mlanawo Mbechezi <mlanawo.mbechezi@ikimea.com>
  */
@@ -32,21 +35,30 @@ class TeamController extends BaseController
         $form = $this->createForm(new TeamType());
 
         $objectManager = $this->getSection($request->get('_route'), $slug);
+        $routeRedirect = $this->generateUrl($objectManager['route'], array('slug' => $objectManager['model']->getSlug()));
 
-        if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+
             $formData = $form->getData();
-            $findUser = $this->findUser(array('username' => $formData['username']));
+            $user = $this->findUser(array('username' => $formData['username']));
 
-            $objectManager['model']->addTeam($findUser);
+            $event = new TeamEvent($request, $objectManager['model']);
+            $event->setType('add')
+                 ->setUserTo($user)
+                 ->setUserFrom($this->getUser());
+
+            $objectManager['model']->addTeam($user);
             $objectManager['manager']->save($objectManager['model']);
             $this->getAclManager()->addObjectPermission($objectManager['model'], MaskBuilder::MASK_VIEW); //set Permission
 
+            $this->get('event_dispatcher')->dispatch($objectManager['event'], $event);
+
             $this->addFlash('success', 'team.success_add', 'TempoProject');
 
-            return $this->redirect($this->generateUrl($objectManager['route'], array('slug' => $objectManager['model']->getSlug())));
+            return $this->redirect($routeRedirect);
         }
 
-        return $this->redirect($this->generateUrl($objectManager['route'], array('slug' => $objectManager['model']->getSlug() )));
+        return $this->redirect($routeRedirect);
     }
 
     /**
@@ -58,9 +70,16 @@ class TeamController extends BaseController
         $objectManager = $this->getSection($request->get('_route'), $slug);
         $user = $this->findUser(array('id' => $user));
 
+        $event = new TeamEvent($request, $objectManager['model']);
+        $event->setType('delete')
+            ->setUserTo($user)
+            ->setUserFrom($this->getUser());
+
         $objectManager['model']->getTeam()->removeElement($user);
         $objectManager['manager']->save($objectManager['model']);
         $this->getAclManager()->revokeAllClassPermissions($objectManager['model']); //remove Permission
+
+        $this->get('event_dispatcher')->dispatch($objectManager['event'], $event);
 
         $referer = $request->headers->get('referer');
 
@@ -69,24 +88,28 @@ class TeamController extends BaseController
 
     protected function getSection($route, $slug)
     {
+        $objectManager = array();
+
         switch ($route) {
             case 'project_team_add':
             case 'project_team_delete':
-                $manager = $this->get('tempo.manager.project');
-                $routeSuccess = 'project_show';
-            break;
+                $objectManager['manager'] = $this->getManager('project');
+                $objectManager['route'] = 'project_show';
+                $objectManager['event'] = TempoProjectEvents::PROJECT_ASSIGNING_USER;
+
+                break;
             case 'organization_team_add':
             case 'organization_team_delete':
-                $manager = $this->get('tempo.manager.organization');
-                $routeSuccess = 'organization_show';
-            break;
+                $objectManager['manager'] = $this->getManager('organization');
+                $objectManager['route']  = 'organization_show';
+                $objectManager['event'] = TempoProjectEvents::ORGANIZATION_ASSIGNING_USER;
+
+                break;
         }
 
-        return array(
-            'route' => $routeSuccess,
-            'model' => $manager->findOneBySlug($slug),
-            'manager' => $manager
-        );
+        $objectManager['model'] = $objectManager['manager']->findOneBySlug($slug);
+
+        return $objectManager;
     }
 
     /**
