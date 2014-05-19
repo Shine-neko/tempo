@@ -26,8 +26,8 @@ final class TempoProjectEvents
     const PROJECT_EDIT_INITIALIZE          = 'tempo.project.edit.initialize';
     const PROJECT_EDIT_SUCCESS             = 'tempo.project.edit.success';
     const PROJECT_DELETE_COMPLETED         = 'tempo.project.delete.completed';
-    const PROJECT_ASSIGNING_USER           = 'tempo.project.team.completed';
-    const PROJECT_DELETE_USER              = 'tempo.project.team.completed';
+    const PROJECT_ASSIGNING_USER           = 'tempo.project.team.add.completed';
+    const PROJECT_DELETE_USER              = 'tempo.project.team.delete.completed';
 
     const TIMESHEET_CREATE_INITIALIZE      = 'tempo.timesheet.create.initialize';
     const TIMESHEET_CREATE_SUCCESS         = 'tempo.timesheet.create.success';
