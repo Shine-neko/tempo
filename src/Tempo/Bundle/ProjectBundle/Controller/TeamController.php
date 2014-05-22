@@ -34,7 +34,7 @@ class TeamController extends BaseController
     {
         $form = $this->createForm(new TeamType());
 
-        $objectManager = $this->getSection($request->get('_route'), $slug);
+        $objectManager = $this->getObjectManager($request->get('_route'), $slug);
         $routeRedirect = $this->generateUrl($objectManager['route'], array('slug' => $objectManager['model']->getSlug()));
 
         if ($form->handleRequest($request)->isValid()) {
@@ -64,7 +64,7 @@ class TeamController extends BaseController
      */
     public function deleteAction(Request $request, $slug, $user)
     {
-        $objectManager = $this->getSection($request->get('_route'), $slug);
+        $objectManager = $this->getObjectManager($request->get('_route'), $slug);
         $user = $this->findUser(array('id' => $user));
 
         $event = new TeamEvent($request, $objectManager['model'], $user, $this->getUser());
@@ -80,7 +80,7 @@ class TeamController extends BaseController
         return $this->redirect($referer);
     }
 
-    protected function getSection($route, $slug)
+    protected function getObjectManager($route, $slug)
     {
         $objectManager = array();
 
