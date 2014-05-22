@@ -8,6 +8,7 @@
         <parameter key="tempo.core.twig.extension.class">Tempo\Bundle\CoreBundle\Twig\Extension\CoreExtension</parameter>
         <parameter key="tempo.core.elephantio.client.class">Tempo\Bundle\CoreBundle\ElephantIO\Client</parameter>
         <parameter key="tempo.form.type.autocomplete.class">Tempo\Bundle\CoreBundle\Form\Type\AutocompleteType</parameter>
+        <parameter key="tempo.form.type.datetimepicker.class">Tempo\Bundle\CoreBundle\Form\Type\DateTimePickerType</parameter>
         <parameter key="tempo.form.type.list.class">Tempo\Bundle\CoreBundle\Form\Type\ListType</parameter>
     </parameters>
 
@@ -33,6 +34,10 @@
         <service id="tempo.form.type.autocomplete" class="%tempo.form.type.autocomplete.class%">
             <argument type="service" id="tempo.main.behavior" />
             <tag name="form.type" alias="autocomplete" />
+        </service>
+
+        <service id="tempo.form.type.datetimepicker" class="%tempo.form.type.datetimepicker.class%">
+            <tag name="form.type" alias="datetimepicker" />
         </service>
 
         <service id="tempo.form.type.list" class="%tempo.form.type.list.class%">

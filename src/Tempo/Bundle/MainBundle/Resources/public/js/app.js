@@ -136,7 +136,14 @@ $(function() {
     };
 
     $('body').removeClass('no-js').addClass('js');
-    $('.datepicker').datepicker();
+    $('.datetimepicker').datetimepicker({
+        separator: '-',
+        format: 'YYYY/MM/DD'
+    });
+    $('.datepicker').datetimepicker({
+        pickTime: false,
+        format: 'YYYY/MM/DD'
+    });
 
     $(document).on('click', '[data-toggle="modal"]', function(e) {
         e.preventDefault();
