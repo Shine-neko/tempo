@@ -1,26 +1,30 @@
 {% extends "TempoMainBundle::Layout/web.html.twig" %}
 {% block bodyClass %}project edit{% endblock %}
-{% block breadcrumb %}
-    <ol id="breadcrumb" class="clearfix">
-        <li class="first"> <a href="{{ path('project_home') }}">Accueil</a> </li>
-        <li> <a href="{{ path('project_home') }}">Project</a> </li>
-        <li> <a href="{{ path('project_show', { 'slug': project.slug }) }}">{{ project.name }}</a> </li>
-        <li class="last"> Edit </li>
-    </ol>
-{% endblock breadcrumb %}
+
 {% block javascripts %}
     {{ parent() }}
-    <script type="text/javascript" src="{{ asset('bundles/tempoproject/js/project.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/tempoproject/js/views/ProjectView.js') }}"></script>
+    <script>new Tempo.View.Project(); </script>
 {% endblock %}
 
-{% block content %}
-<h1 id="page-title" class="col-md-6">{{ project.name }}</h1>
+{% block body %}
+    {% block breadcrumb %}
+        <ol id="breadcrumb" class="clearfix">
+            <li class="first"> <a href="{{ path('project_home') }}">Accueil</a> </li>
+            <li> <a href="{{ path('project_home') }}">Project</a> </li>
+            <li> <a href="{{ path('project_show', { 'slug': project.slug }) }}">{{ project.name }}</a> </li>
+            <li class="last"> Edit </li>
+        </ol>
+    {% endblock breadcrumb %}
 
-<form id="project_form" name="project_form" class="project_form" action="{{ path('project_update', { 'slug': project.slug }) }}" method="post" {{ form_enctype(form) }}>
-    {% include 'TempoProjectBundle::Project/_form.html.twig' with { 'form' : form } %}
-    <button type="submit" class="btn btn-primary">{{ 'form.save_changes'|trans }}</button>
-</form>
-{% endblock %}
-{% block right %}
+    <form action="{{ path('project_update', { 'slug': project.slug }) }}" method="post" {{ form_enctype(form) }}>
+        {% include 'TempoProjectBundle::Project/_form.html.twig' with {
+            'form' : form,
+            'page_title' : project.name
+        } %}
 
+        <div class="clearbox form_rest">
+            <button type="submit" class="btn btn-primary">{{ 'form.save_changes'|trans }}</button>
+        </div>
+    </form>
 {% endblock %}

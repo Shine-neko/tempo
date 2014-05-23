@@ -38,13 +38,11 @@ class ProjectType extends AbstractType
             ->add('active', null, array(
                 'label' => 'project.form.label.isactive'
             ))
-            ->add('beginning', 'date', array(
+            ->add('beginning', 'datetimepicker', array(
                 'label' => 'project.form.label.beginning',
-                'widget' => 'single_text'
             ))
-            ->add('ending', 'date', array(
+            ->add('ending', 'datetimepicker', array(
                 'label' => 'project.form.label.ending',
-                'widget' => 'single_text'
             ))
             ->add('type', null, array(
                 'label' => 'project.form.label.type',
@@ -54,24 +52,17 @@ class ProjectType extends AbstractType
                 }
             ))
             ->add('advancement', null, array(
-                'label' => 'project.form.label.advancement'
+                'label' => 'project.form.label.advancement',
+                'attr' => array(
+                    'disabled' => 'disabled',
+                    'style' => 'display: none'
+                )
             ))
             ->add('code', null, array(
                 'label' => 'project.form.label.code'
             ))
-            ->add('status', 'choice', array(
-                'label' => 'project.form.label.status',
-                'choices' => Project::getStatusList()
-            ))
             ->add('budget_estimated', null, array(
                 'label' => 'project.form.label.estimated'
-            ))
-            ->add('organization', null, array(
-                'label' => 'project.form.label.organization',
-                'class' => 'TempoProjectBundle:Organization',
-                'query_builder' => function(OrganizationRepository $er) use ($options) {
-                    return $er->findOrganizationByUser($options['user_id']);
-                }
             ))
         ;
     }

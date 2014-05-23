@@ -80,12 +80,18 @@ class ProjectController extends BaseController
         $csrfToken = $this->get('form.csrf_provider')->generateCsrfToken('delete-project');
 
         $project  = $this->getProject($slug, 'VIEW');
+        $organization = $project->getOrganization();
+
+        if (null !== $project->getParent()) {
+            $organization = $project->getParent(-1)->getOrganization();
+        }
 
         $teamForm = $this->createForm(new TeamType());
 
         return $this->render('TempoProjectBundle:Project:show.html.twig', array(
             'teamForm'      => $teamForm->createView(),
             'project'       => $project,
+            'organization'       => $organization,
             'csrfToken'     => $csrfToken,
             'tabProvidersRegistry'   => $this->get('tempo.project.tabProvidersRegistry')
         ));
@@ -211,6 +217,11 @@ class ProjectController extends BaseController
 
             return $this->redirect($this->generateUrl('project_home'));
         }
+    }
+
+    public function versionAction(Request $request, $slug)
+    {
+
     }
 
     protected function getProject($key, $right = 'VIEW')

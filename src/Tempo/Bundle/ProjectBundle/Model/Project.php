@@ -20,12 +20,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 class Project implements ProjectInterface
 {
-
     const STATUS_CREATED = 10;
     const STATUS_OPENING = 20;
     const STATUS_FINISHED = 50;
     const STATUS_DELETED = -10;
 
+    /**
+     * @var integer
+     */
     protected $id;
 
     /**
@@ -190,7 +192,7 @@ class Project implements ProjectInterface
     /**
      * {@inheritdoc}
      */
-    public function setCreatedAt($created)
+    public function setCreatedAt(\DateTime $created)
     {
         $this->createdAt = $created;
     }
@@ -206,7 +208,7 @@ class Project implements ProjectInterface
     /**
      * {@inheritdoc}
      */
-    public function setUpdatedAt($updated)
+    public function setUpdatedAt(\DateTime $updated)
     {
         $this->updatedAt = $updated;
     }
@@ -302,7 +304,7 @@ class Project implements ProjectInterface
     /**
      * {@inheritdoc}
      */
-    public function setType($type)
+    public function setType(ProjectTypeInterface $type = null)
     {
         $this->type = $type;
     }
@@ -419,23 +421,7 @@ class Project implements ProjectInterface
         return $this->timesheets;
     }
 
-    public static function getStatusList()
-    {
-        return array(
-            self::STATUS_CREATED => 'created',
-            self::STATUS_OPENING => 'open',
-            self::STATUS_FINISHED => 'finished',
-            self::STATUS_DELETED => 'deleted'
-        );
-    }
 
-    public function renderStatus()
-    {
-        if(!empty($this->status)) {
-            $status = self::getStatusList();
-            return $status[$this->status];
-        }
-    }
 
     /**
      * {@inheritdoc}

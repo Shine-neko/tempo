@@ -136,6 +136,8 @@ $(function() {
     };
 
     $('body').removeClass('no-js').addClass('js');
+    $('select').selectize();
+
     $('.datetimepicker').datetimepicker({
         separator: '-',
         format: 'YYYY/MM/DD'
@@ -144,6 +146,7 @@ $(function() {
         pickTime: false,
         format: 'YYYY/MM/DD'
     });
+
 
     $(document).on('click', '[data-toggle="modal"]', function(e) {
         e.preventDefault();

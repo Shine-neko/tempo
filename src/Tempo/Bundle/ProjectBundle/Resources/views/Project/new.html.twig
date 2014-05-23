@@ -1,36 +1,28 @@
 {% extends "TempoMainBundle::Layout/web.html.twig" %}
 {% block bodyClass %}project new{% endblock %}
-{% block breadcrumb %}
-    <ol id="breadcrumb" class="clearfix">
-        <li class="first"> <a href="{{ path('homepage') }}">Accueil</a> </li>
-        <li class="first last"> <a href="{{ path('project_home') }}">Project</a> </li>
-        <li class="first last"> new </li>
-    </ol>
-{% endblock breadcrumb %}
 {% block javascripts %}
   {{ parent() }}
   <script type="text/javascript" src="{{ asset('bundles/tempoproject/js/project.js') }}"></script>
 {% endblock %}
 
-{% block content %}
-<h1 id="page-title">Project creation</h1>
+{% block body %}
+    {% block breadcrumb %}
+        <ol id="breadcrumb" class="clearfix">
+            <li class="first"> <a href="{{ path('homepage') }}">Accueil</a> </li>
+            <li> <a href="{{ path('project_home') }}">Project</a> </li>
+            <li class="last"> new </li>
+        </ol>
+    {% endblock breadcrumb %}
     <form id="project_form" name="project_form" action="{{ path('project_create') }}{% if form.vars.value.parent.id is defined %}?parent={{ form.vars.value.parent.id }}{% endif %}" method="post" {{ form_enctype(form) }}>
+       {% include 'TempoProjectBundle::Project/_form.html.twig' with {
+           'form' : form,
+           'page_title' :  'New project'|trans
+       } %}
 
-        {% include 'TempoProjectBundle::Project/_form.html.twig' with { 'form' : form } %}
-
-        <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Create</button>
-            <button type="reset">Reset</button>
+        <div class="clearbox form_rest">
+            <button type="submit" class="btn btn-primary">{{ 'form.new'|trans }}</button>
+            <button type="reset" class="btn btn-default">{{ 'form.reseat'|trans }}</button>
         </div>
     </form>
-{% endblock %}
 
-{% block right %}
-        <ul class="record_actions">
-            <li>
-                <a href="{{ path('project_home') }}">
-                    Back to the list
-                </a>
-            </li>
-        </ul>
 {% endblock %}
