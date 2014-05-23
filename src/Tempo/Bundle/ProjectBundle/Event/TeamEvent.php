@@ -45,16 +45,16 @@ class TeamEvent extends Event
     private $userFrom;
 
     /**
-     * @param Request $request
+     * @param Request              $request
      * @param Organization|Project $object
-     * @param User $userTo
-     * @param User $userFrom
+     * @param User                 $userTo
+     * @param User                 $userFrom
      */
     public function __construct(Request $request, $object, User $userTo, User $userFrom)
     {
         $this->request = $request;
         $this->model = $object;
-        $this->userTo = $userTo
+        $this->userTo = $userTo;
         $this->userFrom = $userFrom;
     }
 
@@ -110,7 +110,7 @@ class TeamEvent extends Event
 
     /**
      * @param User $userTo
-     * @return $this
+     *                     @return $this
      */
     public function setUserTo($userTo)
     {
