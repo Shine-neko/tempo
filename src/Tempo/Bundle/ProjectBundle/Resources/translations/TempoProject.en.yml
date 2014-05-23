@@ -64,3 +64,6 @@ buttons:
   edit: Edit
   submit: Submit
   delete: Delete
+
+tempo.notification.organization.team.add.completed: You have been given read access to %name%
+tempo.notification.project.team.add.completed: You have been given read access to %name%
