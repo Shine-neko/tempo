@@ -6,16 +6,12 @@ project_organization_list:
     pattern:  /{organization}/list
     defaults: { _controller: TempoProjectBundle:Project:list }
 
-project_show:
-    pattern:  /{slug}
-    defaults: { _controller: TempoProjectBundle:Project:show }
-
 project_new:
     pattern:  /{organization}/new
     defaults: { _controller: TempoProjectBundle:Project:new }
 
 project_create:
-    pattern:  /create
+    pattern:  /{organization}/create
     defaults: { _controller: TempoProjectBundle:Project:create }
 
 project_edit:
@@ -55,4 +51,8 @@ project_provider_update:
 
 project_version:
     pattern: /{slug}/version
-    defaults: { _controller: TempoActivityBundle:Project:version }
+    defaults: { _controller: TempoProjectBundle:Project:version }
+
+project_show:
+    pattern:  /{slug}
+    defaults: { _controller: TempoProjectBundle:Project:show }

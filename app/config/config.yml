@@ -55,9 +55,19 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: %kernel.debug%
-        auto_mapping: true
-        mappings:
-            StofDoctrineExtensionsBundle: true
+        entity_managers:
+            default:
+                auto_mapping: true
+                mappings:
+                    StofDoctrineExtensionsBundle: true
+                    gedmo_loggable:
+                        type: annotation
+                        prefix: Gedmo\Loggable\Entity
+                        dir: "%kernel.root_dir%/../src/Tempo/Bundle/CoreBundle/Entity/"
+                        alias: GedmoLoggable
+                        is_bundle: false
+
+
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -80,7 +90,7 @@ stof_doctrine_extensions:
     translation_fallback: true
     orm:
         default:
-          loggable: false
+          loggable: true
           sluggable: true
           timestampable: true
           translatable: false

@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\HttpFoundation\Response;
 
 use Tempo\Bundle\CoreBundle\Controller\BaseController;
 use Tempo\Bundle\ProjectBundle\Entity\Project;
@@ -49,11 +50,10 @@ class ProjectController extends BaseController
     /**
      * Lists all organization projects.
      * @param $organization
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function listAction($slug)
     {
-        //find info organization
         $manageOrganization = $this->getManager('organization');
         $organization = $manageOrganization->findOneBySlug($slug);
 
@@ -61,8 +61,8 @@ class ProjectController extends BaseController
             throw new NotFoundHttpException(sprintf("organization with slug '%s' could not be found.", $organization));
         }
 
-        $projects = $organization->getProjects();   //List Project
-        $organizations = $manageOrganization->findAll();  // List Organization
+        $projects = $organization->getProjects();
+        $organizations = $manageOrganization->findAll();
 
         return $this->render('TempoProjectBundle:Project:list.html.twig', array(
             'organization' => $organization,
@@ -73,7 +73,7 @@ class ProjectController extends BaseController
 
     /**
      * Finds and displays a Project entity.
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function showAction($slug)
     {
@@ -82,7 +82,7 @@ class ProjectController extends BaseController
         $project  = $this->getProject($slug, 'VIEW');
         $organization = $project->getOrganization();
 
-        if (null !== $project->getParent()) {
+        if (null !== $project->getParent() && null !==  $project->getParent()->getName()) {
             $organization = $project->getParent(-1)->getOrganization();
         }
 
@@ -99,42 +99,47 @@ class ProjectController extends BaseController
 
     /**
      * Displays a form to create a new Project entity.
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
-    public function newAction()
+    public function newAction($organization)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
+        $organization = $this->getOrganizaton($organization);
 
         $project = new Project();
+        $project->setOrganization($organization);
         $this->getParent($project);
 
         $form   = $this->createForm(new ProjectType(), $project, array('user_id' => $this->getUser()->getId() ));
 
         return $this->render('TempoProjectBundle:Project:new.html.twig',array(
-            'entity' => $project,
+            'project' => $project,
+            'organization' => $organization,
             'form'   => $form->createView()
         ));
     }
 
     /**
      * Creates a new Project entity.
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, $organization)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
+        $organization = $this->getOrganizaton($organization);
 
         $project  = new Project();
+        $project->setOrganization($organization);
         $project->addTeam($this->getUser());
         $project = $this->getParent($project);
 
         $form  = $this->createForm(new ProjectType(), $project, array('user_id' => $this->getUser()->getId() ));
 
-        if ($form->submit($request)->isValid()) {
+        if ($form->handleRequest($request)->isValid()) {
             $event = new ProjectEvent($request, $project);
             $this->get('event_dispatcher')->dispatch(TempoProjectEvents::PROJECT_CREATE_INITIALIZE, $event);
 
@@ -155,7 +160,7 @@ class ProjectController extends BaseController
     /**
      * Displays a form to edit an existing Project entity.
      * @param $slug string
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function editAction($slug)
     {
@@ -171,14 +176,14 @@ class ProjectController extends BaseController
     /**
      * Edits an existing Project entity.
      * @param $slug
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function updateAction(Request $request, $slug)
     {
         $project = $this->getProject($slug, 'EDIT');
         $editForm   = $this->createForm(new ProjectType(), $project);
 
-        if ($request->isMethod('POST') && $editForm->submit($request)->isValid()) {
+        if ($editForm->handleRequest($request)->isValid()) {
             $event = new ProjectEvent($request, $project);
             $this->get('event_dispatcher')->dispatch(TempoProjectEvents::PROJECT_EDIT_INITIALIZE, $event);
 
@@ -186,7 +191,7 @@ class ProjectController extends BaseController
             $this->get('event_dispatcher')->dispatch(TempoProjectEvents::PROJECT_EDIT_SUCCESS, $event);
 
 
-            $this->setFlash('success', 'project.success_updated', 'TempoProject');
+            $this->addFlash('success', 'project.success_updated', 'TempoProject');
             return $this->redirect($this->generateUrl('project_edit', array('slug' => $project->getSlug() )));
         }
 
@@ -213,7 +218,7 @@ class ProjectController extends BaseController
             $event = new ProjectEvent($request, $project);
             $this->get('event_dispatcher')->dispatch(TempoProjectEvents::PROJECT_DELETE_COMPLETED, $event);
 
-            $this->setFlash('success', 'project.success_delete', 'TempoProject');
+            $this->addFlash('success', 'project.success_delete', 'TempoProject');
 
             return $this->redirect($this->generateUrl('project_home'));
         }
@@ -221,7 +226,15 @@ class ProjectController extends BaseController
 
     public function versionAction(Request $request, $slug)
     {
+        $project = $this->getProject($slug);
 
+        $repo = $this->getDoctrine()->getRepository('Tempo\Bundle\CoreBundle\Entity\LogEntry');
+        $logs = $repo->getLogEntries($project);
+
+        return $this->render('TempoProjectBundle:Project:versions.html.twig', array(
+            'project'      => $project,
+            'logs'      => $logs,
+        ));
     }
 
     protected function getProject($key, $right = 'VIEW')
@@ -240,10 +253,19 @@ class ProjectController extends BaseController
 
         return $project;
     }
+    protected function getOrganizaton($slug)
+    {
+        $organisation = $this->getManager('organization')->findOneBySlug($slug);
+        if(!$organisation) {
+            $this->createNotFoundException();
+        }
+
+        return $organisation;
+    }
 
     /**
-     * @param  \Tempo\Bundle\ProjectBundle\Entity\Project $project
-     * @return \Tempo\Bundle\ProjectBundle\Entity\Project
+     * @param  Project $project
+     * @return Project
      */
     protected function getParent(Project $project)
     {
