@@ -31,7 +31,9 @@ $ php app/console doctrine:fixtures:load
 
 $ php app/console tempo:js-configuration:dump
 
-# Instant messaging
+# Instant messaging ( NodeJs and Npm required)
+$ npm install
+$ bower install
 $ node bin/server.js
 
 
