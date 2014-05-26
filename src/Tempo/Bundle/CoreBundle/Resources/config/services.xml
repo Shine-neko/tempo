@@ -4,7 +4,7 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="tempo.core.eventlister.class">Tempo\Bundle\CoreBundle\EventListener\ControllerListener</parameter>
+        <parameter key="tempo.core.eventlistener.class">Tempo\Bundle\CoreBundle\EventListener\ControllerListener</parameter>
         <parameter key="tempo.core.twig.extension.class">Tempo\Bundle\CoreBundle\Twig\Extension\CoreExtension</parameter>
         <parameter key="tempo.core.elephantio.client.class">Tempo\Bundle\CoreBundle\ElephantIO\Client</parameter>
         <parameter key="tempo.form.type.autocomplete.class">Tempo\Bundle\CoreBundle\Form\Type\AutocompleteType</parameter>
@@ -16,7 +16,7 @@
 
         <service id="tempo.core.entity_manager" factory-service="doctrine" factory-method="getManager" class="Doctrine\ORM\EntityManager" public="false" />
 
-        <service id="tempo.core.listener.controller" class="%tempo.core.eventlister.class%">
+        <service id="tempo.core.listener.controller" class="%tempo.core.eventlistener.class%">
             <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController"/>
         </service>
 
