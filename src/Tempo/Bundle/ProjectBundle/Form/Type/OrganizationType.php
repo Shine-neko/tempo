@@ -14,24 +14,26 @@ namespace Tempo\Bundle\ProjectBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\OptionsResolver\Options;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 class OrganizationType extends AbstractType
 {
-
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
         $builder->add('name');
 
-        if(false === $options['is_new']) {
-            $builder->add('avatar');
-            $builder->add('website');
-            $builder->add('contact', 'email');
-        }
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event) {
+            $form = $event->getForm();
+
+            $form
+                ->add('avatar')
+                ->add('website')
+                ->add('contact', 'email');
+        });
     }
 
     /**
@@ -41,8 +43,6 @@ class OrganizationType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class'      => 'Tempo\Bundle\ProjectBundle\Entity\Organization',
-            'csrf_protection' => false,
-            'is_new' => false,
             'translation_domain' => 'TempoProject'
         ));
     }

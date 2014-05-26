@@ -16,7 +16,7 @@
         <a class="btn btn-xs btn btn-info" href="{{ path('organization_edit', { 'slug' : organization.slug }) }}"> <span class="glyphicon glyphicon-edit"></span> Edit</a>
         {% endif %}
         {% if is_granted('DELETE', organization) %}
-        <a class="btn btn-xs btn-danger" role="dialog" data-toggle="modal" data-target="#" data-title="Delete project" href="#delete-organization" data-redirect="{{ path('organization_delete', { 'slug': organization.slug, 'token' : csrfToken }) }}"> <span class="glyphicon glyphicon-trash"></span> Delete</a>
+        <a class="btn btn-xs btn-danger" role="dialog" data-toggle="modal" data-target="#" data-title="Delete project" href="#delete-organization" data-redirect="{{ path('organization_delete', { 'slug': organization.slug, 'token' : token }) }}"> <span class="glyphicon glyphicon-trash"></span> Delete</a>
         {% endif %}
     </div>
 

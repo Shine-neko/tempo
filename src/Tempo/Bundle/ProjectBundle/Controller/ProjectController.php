@@ -19,6 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 use Tempo\Bundle\CoreBundle\Controller\BaseController;
 use Tempo\Bundle\ProjectBundle\Entity\Project;
+use Tempo\Bundle\ProjectBundle\Entity\Organization;
 use Tempo\Bundle\ProjectBundle\Form\Type\ProjectType;
 use Tempo\Bundle\ProjectBundle\Form\Type\TeamType;
 use Tempo\Bundle\ProjectBundle\TempoProjectEvents;
@@ -52,17 +53,10 @@ class ProjectController extends BaseController
      * @param $organization
      * @return Response
      */
-    public function listAction($slug)
+    public function listAction(Organization $organization)
     {
-        $manageOrganization = $this->getManager('organization');
-        $organization = $manageOrganization->findOneBySlug($slug);
-
-        if (!$organization) {
-            throw new NotFoundHttpException(sprintf("organization with slug '%s' could not be found.", $organization));
-        }
-
         $projects = $organization->getProjects();
-        $organizations = $manageOrganization->findAll();
+        $organizations = $this->getManager('organization')->findAll();
 
         return $this->render('TempoProjectBundle:Project:list.html.twig', array(
             'organization' => $organization,
@@ -75,11 +69,11 @@ class ProjectController extends BaseController
      * Finds and displays a Project entity.
      * @return Response
      */
-    public function showAction($slug)
+    public function showAction(Project $project)
     {
-        $csrfToken = $this->get('form.csrf_provider')->generateCsrfToken('delete-project');
+        $token = $this->get('form.csrf_provider')->generateCsrfToken('delete-project');
 
-        $project  = $this->getProject($slug, 'VIEW');
+        $project  = $this->getProject($project, 'VIEW');
         $organization = $project->getOrganization();
 
         if (null !== $project->getParent() && null !==  $project->getParent()->getName()) {
@@ -92,7 +86,7 @@ class ProjectController extends BaseController
             'teamForm'      => $teamForm->createView(),
             'project'       => $project,
             'organization'       => $organization,
-            'csrfToken'     => $csrfToken,
+            'csrfToken'     => $token,
             'tabProvidersRegistry'   => $this->get('tempo.project.tabProvidersRegistry')
         ));
     }
@@ -152,7 +146,6 @@ class ProjectController extends BaseController
         }
 
         return $this->render('TempoProjectBundle:Project:new.html.twig', array(
-            'entity' => $project,
             'form'   => $form->createView()
         ));
     }
@@ -162,9 +155,9 @@ class ProjectController extends BaseController
      * @param $slug string
      * @return Response
      */
-    public function editAction($slug)
+    public function editAction(Project $project)
     {
-        $project = $this->getManager('project')->getProject($slug, 'EDIT');
+        $project = $this->getManager('project')->getProject($project, 'EDIT');
         $editForm = $this->createForm(new ProjectType(), $project);
 
         return $this->render('TempoProjectBundle:Project:edit.html.twig', array(
@@ -178,9 +171,9 @@ class ProjectController extends BaseController
      * @param $slug
      * @return Response
      */
-    public function updateAction(Request $request, $slug)
+    public function updateAction(Request $request, Project $project)
     {
-        $project = $this->getProject($slug, 'EDIT');
+        $project = $this->getProject($project, 'EDIT');
         $editForm   = $this->createForm(new ProjectType(), $project);
 
         if ($editForm->handleRequest($request)->isValid()) {
@@ -207,12 +200,12 @@ class ProjectController extends BaseController
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    public function deleteAction(Request $request, $slug)
+    public function deleteAction(Request $request, Project $project)
     {
         //check CSRF token
         if ($this->isTokenValid('delete-organization', $request->get('token'))) {
 
-            $project = $this->getProject($slug, 'DELETE');
+            $project = $this->getProject($project, 'DELETE');
 
             $this->getManager('project')->remove($project);
             $event = new ProjectEvent($request, $project);
@@ -224,9 +217,9 @@ class ProjectController extends BaseController
         }
     }
 
-    public function versionAction(Request $request, $slug)
+    public function versionAction(Request $request, Project $project)
     {
-        $project = $this->getProject($slug);
+        $project = $this->getProject($project, 'EDIT');
 
         $repo = $this->getDoctrine()->getRepository('Tempo\Bundle\CoreBundle\Entity\LogEntry');
         $logs = $repo->getLogEntries($project);
@@ -239,10 +232,12 @@ class ProjectController extends BaseController
 
     protected function getProject($key, $right = 'VIEW')
     {
-        $project = $this->getManager('project')->getProject($key);
+        if (is_string($key)) {
+            $project = $this->getManager('project')->getProject($key);
 
-        if(!$project) {
-            $this->createNotFoundException();
+            if(!$project) {
+                $this->createNotFoundException();
+            }
         }
         if (
             false === $this->get('security.context')->isGranted($right, $project) &&

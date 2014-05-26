@@ -21,7 +21,6 @@ use Tempo\Bundle\ProjectBundle\Entity\Organization;
 use Tempo\Bundle\ProjectBundle\Form\Type\OrganizationType;
 use Tempo\Bundle\ProjectBundle\Form\Type\TeamType;
 use Tempo\Bundle\ProjectBundle\TempoProjectEvents;
-use Tempo\Bundle\ProjectBundle\Event\ProjectEvent;
 use Tempo\Bundle\ProjectBundle\Event\OrganizationEvent;
 
 /**
@@ -30,8 +29,6 @@ use Tempo\Bundle\ProjectBundle\Event\OrganizationEvent;
 
 class OrganizationController extends BaseController
 {
-    private $breadcrumb;
-
     private function getBreadcrumb()
     {
         $breadcrumb = $this->get('tempo.main.breadcrumb');
@@ -42,21 +39,19 @@ class OrganizationController extends BaseController
 
     /**
      * @param $slug
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    public function showAction($slug)
+    public function showAction(Organization $organization)
     {
-        $organization = $this->findOrganization($slug);
-        $csrfToken = $this->get('form.csrf_provider')->generateCsrfToken('delete-organization');
+        $token = $this->get('form.csrf_provider')->generateCsrfToken('delete-organization');
 
         if (false === $this->get('security.context')->isGranted('VIEW', $organization) &&
             false === $this->get('security.context')->isGranted('ROLE_ADMIN') ) {
             throw new AccessDeniedException();
         }
 
-        $manager = $this->get('tempo.manager.organization');
-        $counter = $manager->getStatusProjects($organization->getId());
+        $counter = $this->get('tempo.manager.organization')->getStatusProjects($organization->getId());
 
         $this->getBreadcrumb()->addChild($organization->getName());
 
@@ -67,7 +62,7 @@ class OrganizationController extends BaseController
             'counter' => $counter,
             'projects' => $organization->getProjects(),
             'teamForm' => $teamForm->createView(),
-            'csrfToken' => $csrfToken
+            'token' => $token
         ));
     }
 
@@ -81,7 +76,7 @@ class OrganizationController extends BaseController
             throw new AccessDeniedException();
         }
 
-        $form = $this->createForm(new OrganizationType(), new Organization(), array('is_new' => true));
+        $form = $this->createForm(new OrganizationType(), new Organization());
 
         return $this->render('TempoProjectBundle:Organization:new.html.twig', array(
             'form' => $form->createView(),
@@ -90,13 +85,10 @@ class OrganizationController extends BaseController
 
     /**
      * Displays a form to edit an existing Project entity.
-     * @param $slug
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function editAction($slug)
+    public function editAction(Organization $organization)
     {
-        $organization = $this->findOrganization($slug);
-
         if (false === $this->get('security.context')->isGranted('EDIT', $organization)) {
             throw new AccessDeniedException();
         }
@@ -117,27 +109,22 @@ class OrganizationController extends BaseController
 
     /**
      * Edits an existing Organization entity.
-     * @param $id
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return Response
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    public function updateAction(Request $request, $id)
+    public function updateAction(Request $request, Organization $organization)
     {
-        $manager = $this->get('tempo.manager.organization');
-
-        $organization = $manager->find($id);
-
         if (false === $this->get('security.context')->isGranted('EDIT', $organization)) {
             throw new AccessDeniedException();
         }
 
         $editForm = $this->createForm(new OrganizationType(), $organization);
 
-        if ($request->isMethod('POST') && $editForm->submit($request)->isValid()) {
+        if ($editForm->handleRequest($request)->isValid()) {
             $event = new OrganizationEvent($request, $organization);
             $this->get('event_dispatcher')->dispatch(TempoProjectEvents::ORGANIZATION_EDIT_INITIALIZE, $event);
 
-            $manager->save($organization);
+            $this->getManager('organization')->save($organization);
             $this->get('event_dispatcher')->dispatch(TempoProjectEvents::ORGANIZATION_EDIT_SUCCESS, $event);
 
             $this->addFlash('success', 'organization.success_update', 'TempoProject');
@@ -172,7 +159,7 @@ class OrganizationController extends BaseController
 
         $form = $this->createForm(new OrganizationType(), $organization);
 
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+        if ($form->handleRequest($request)->isValid()) {
             $event = new OrganizationEvent($request, $organization);
             $this->get('event_dispatcher')->dispatch(TempoProjectEvents::ORGANIZATION_CREATE_INITIALIZE, $event);
 
@@ -190,19 +177,16 @@ class OrganizationController extends BaseController
 
     /**
      * Delete a organization
-     * @param $slug
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    public function deleteAction(Request $request, $slug)
+    public function deleteAction(Request $request, Organization $organization)
     {
-        $organization = $this->findOrganization($slug);
-
         if (false === $this->get('security.context')->isGranted('DELETE', $organization)) {
             throw new AccessDeniedException();
         }
 
-        //check CSRF token
+        //check token
         if ($this->tokenIsValid('delete-organization', $request->get('token'))) {
             try {
 
@@ -218,22 +202,6 @@ class OrganizationController extends BaseController
                 return $this->redirectToOrganization($organization);
             }
         }
-    }
-
-    /**
-     * @param $slug
-     * @return mixed
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
-     */
-    protected function findOrganization($slug)
-    {
-        $organization =  $this->getManager('organization')->findOneBySlug($slug);
-
-        if(!$organization) {
-            $this->createNotFoundException($this->getTranslation('not_found_orga', [], 'TempoProject'));
-        }
-
-        return $organization;
     }
 
     protected function redirectToOrganization($organization)
