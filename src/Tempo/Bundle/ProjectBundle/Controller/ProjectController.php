@@ -230,10 +230,10 @@ class ProjectController extends BaseController
         ));
     }
 
-    protected function getProject($key, $right = 'VIEW')
+    protected function getProject($project, $right = 'VIEW')
     {
-        if (is_string($key)) {
-            $project = $this->getManager('project')->getProject($key);
+        if (is_string($project)) {
+            $project = $this->getManager('project')->getProject($project);
 
             if(!$project) {
                 $this->createNotFoundException();
