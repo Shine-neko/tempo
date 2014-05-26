@@ -23,11 +23,11 @@
         <many-to-one field="user" target-entity="Tempo\Bundle\UserBundle\Entity\User" />
         <field name="action" length="64" type="string" nullable="false"  />
         <field name="loggedAt" column="logged_at" type="datetime" />
-        <field name="objectId" column="object_id" length="64" />
+        <field name="objectId" column="object_id" length="64" nullable="true" />
         <field name="objectClass" column="object_class" length="255" type="string" />
         <field name="version" type="integer" />
-        <field name="data" type="array" />
-        <field name="username" length="255" />
+        <field name="data" type="array" nullable="true"/>
+        <field name="username" length="255" nullable="true" />
 
     </entity>
 
