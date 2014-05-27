@@ -18,7 +18,6 @@ namespace Tempo\Bundle\CoreBundle\Resource;
 
 class ResourceManager implements ResourceManagerInterface
 {
-
     protected $resources = array(
         'javascripts' => array(),
         'stylesheets' => array()

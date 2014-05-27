@@ -63,6 +63,5 @@ class TeamSubscriber implements EventSubscriberInterface
         $message = $this->translator->trans($message, array('name' => $event->getModel(), 'TempoProject'));
 
         $this->notificationManager->create($event->getUserTo(), $message, $route);
-
     }
 }

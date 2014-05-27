@@ -16,7 +16,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
-
 class ProjectType implements ProjectTypeInterface
 {
     /**
@@ -66,6 +65,8 @@ class ProjectType implements ProjectTypeInterface
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
     }
 
     /**
@@ -82,5 +83,7 @@ class ProjectType implements ProjectTypeInterface
     public function addProject($project)
     {
         $this->projects[] = $project;
+
+        return $this;
     }
 }

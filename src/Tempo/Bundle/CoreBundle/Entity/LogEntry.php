@@ -10,9 +10,9 @@
 */
 
 namespace Tempo\Bundle\CoreBundle\Entity;
+
 use Tempo\Bundle\CoreBundle\Model\LogEntry as BaseLogEntry;
 
 class LogEntry extends BaseLogEntry
 {
-
 }

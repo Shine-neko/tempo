@@ -10,6 +10,7 @@
 */
 
 namespace Tempo\Bundle\ProjectBundle\Timesheet;
+
 use Tempo\Bundle\ProjectBundle\Model\ProjectInterface;
 
 class ProjectTimesheet

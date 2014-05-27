@@ -9,7 +9,6 @@
 * file that was distributed with this source code.
 */
 
-
 namespace Tempo\Bundle\UserBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
@@ -29,6 +28,7 @@ class ProfileController extends BaseController
     public function editAction()
     {
         $form = $this->createForm(new ProfileType(), $this->getUser());
+
         return $this->render( 'TempoUserBundle:Profile:edit.html.twig', array('form' => $form->createView()) );
     }
 
@@ -80,6 +80,7 @@ class ProfileController extends BaseController
            $em->persist($user);
            $em->flush();
         }
+
         return $this->render( 'TempoUserBundle:Profile:edit.html.twig',  array('form' => $form->createView()));
 
     }
@@ -113,6 +114,7 @@ class ProfileController extends BaseController
         $profile = $this->getUser();
 
         $form = $this->createForm(new SettingsType());
+
         return $this->render('TempoUserBundle:Profile:settings.html.twig', array(
             'profile' => $profile,
             'form' => $form->createView()

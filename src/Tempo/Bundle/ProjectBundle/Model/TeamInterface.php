@@ -17,5 +17,4 @@ namespace Tempo\Bundle\ProjectBundle\Model;
 
 interface TeamInterface
 {
-
 }

@@ -19,7 +19,6 @@ use Imagine\Image\ImagineInterface;
 use Tempo\Bundle\UserBundle\Entity\User;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-
 /**
  * Manages the form submission change avatar.
  *

@@ -41,7 +41,6 @@ interface ProjectProviderInterface
      */
     public function setSecret($secret);
 
-
     /**
      * Get Token
      *

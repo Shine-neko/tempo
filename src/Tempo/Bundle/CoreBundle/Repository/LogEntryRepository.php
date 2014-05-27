@@ -15,5 +15,4 @@ use Gedmo\Loggable\Entity\Repository\LogEntryRepository as BaseLogEntryRepositor
 
 class LogEntryRepository extends BaseLogEntryRepository
 {
-
 }

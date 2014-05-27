@@ -24,8 +24,6 @@ class TempoUserExtension  extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
-
-
         $processor = new Processor();
         $configuration = new Configuration();
 

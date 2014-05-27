@@ -44,6 +44,8 @@ abstract class Notification implements NotificationInterface
     public function setUser($user)
     {
         $this->user = $user;
+
+        return $this;
     }
 
     /**
@@ -96,6 +98,8 @@ abstract class Notification implements NotificationInterface
     public function setLink($link)
     {
         $this->link = $link;
+
+        return $this;
     }
 
     /**

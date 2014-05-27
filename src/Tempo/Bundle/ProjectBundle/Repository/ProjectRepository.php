@@ -15,15 +15,14 @@ use Doctrine\ORM\EntityRepository;
 
 class ProjectRepository extends EntityRepository
 {
-
     public function findProjectByUser($user)
     {
-        $query = $this->createQueryBuilder('p');
-        $query->leftJoin('p.team', 'pu');
+        $query = $this->createQueryBuilder('p')
+                    ->leftJoin('p.team', 'pu');
 
         if (null !== $user) {
-            $query->where('pu.id  = ?1');
-            $query->setParameter(1, $user);
+            $query->where('pu.id  = ?1')
+                ->setParameter(1, $user);
         }
 
         return $query;
@@ -105,7 +104,10 @@ class ProjectRepository extends EntityRepository
      */
     public function findAllOrderByCreatedAt()
     {
-        return $this->createQueryBuilder('p')->orderBy('p.createdAt', 'DESC')->getQuery()->execute();
+        return $this->createQueryBuilder('p')
+                ->orderBy('p.createdAt', 'DESC')
+                ->getQuery()
+                ->execute();
     }
 
     /**

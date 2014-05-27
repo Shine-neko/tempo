@@ -27,19 +27,20 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-                $treeBuilder->root('tempo_project', 'array')
-                ->children()
-                     ->arrayNode('week')
-                        ->children()
-                              ->arrayNode('fr')
-                                ->prototype('scalar')->end()
-                              ->end()
-                              ->arrayNode('en')
-                                ->prototype('scalar')->end()
-                              ->end()
-                     ->end()
+        $treeBuilder->root('tempo_project', 'array')
+            ->children()
+                ->arrayNode('week')
+                    ->children()
+                        ->arrayNode('fr')
+                            ->prototype('scalar')->end()
+                        ->end()
+                        ->arrayNode('en')
+                            ->prototype('scalar')->end()
+                        ->end()
+                    ->end()
                 ->end()
-                ;
+            ->end()
+        ;
 
         return $treeBuilder;
     }
