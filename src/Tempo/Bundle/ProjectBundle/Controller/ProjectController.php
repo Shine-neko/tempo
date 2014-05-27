@@ -203,7 +203,7 @@ class ProjectController extends BaseController
     public function deleteAction(Request $request, Project $project)
     {
         //check CSRF token
-        if ($this->isTokenValid('delete-organization', $request->get('token'))) {
+        if ($this->tokenIsValid('delete-organization', $request->get('token'))) {
 
             $project = $this->getProject($project, 'DELETE');
 
