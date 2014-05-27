@@ -15,6 +15,7 @@
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"  />
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}"  />
+    <title>{% block title %}{{ 'Welcome'|trans }}{% endblock %} - Tempo</title>
 </head>
 
 <body class="no-js {{ get_browser() }} {% block bodyClass %}{% endblock %}">
