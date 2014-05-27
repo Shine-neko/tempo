@@ -11,21 +11,18 @@
 
 namespace Tempo\Bundle\ProjectBundle\Entity;
 
+use Tempo\Bundle\ProjectBundle\Model\Timesheet as BaseTimesheet;
+
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
-
-use Tempo\Bundle\ProjectBundle\Model\Timesheet as BaseTimesheet;
-
 class Timesheet extends BaseTimesheet
 {
-
     /**
      * {@inheritdoc}
      */
     public function prePersist()
     {
-
     }
 
     /**
@@ -33,7 +30,5 @@ class Timesheet extends BaseTimesheet
      */
     public function preUpdate()
     {
-
     }
-
 }

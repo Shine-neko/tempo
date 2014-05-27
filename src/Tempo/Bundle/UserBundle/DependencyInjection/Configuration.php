@@ -29,7 +29,6 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $treeBuilder->root('tempo_user', 'array');
 
-
         return $treeBuilder;
     }
 }

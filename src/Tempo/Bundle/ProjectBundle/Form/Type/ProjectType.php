@@ -20,7 +20,6 @@ use Tempo\Bundle\ProjectBundle\Entity\Project;
 
 class ProjectType extends AbstractType
 {
-
     /**
      * {@inheritdoc}
      */
@@ -86,5 +85,4 @@ class ProjectType extends AbstractType
     {
         return 'project';
     }
-
 }

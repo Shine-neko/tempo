@@ -9,12 +9,10 @@
 * file that was distributed with this source code.
 */
 
-
 namespace Tempo\Bundle\MainBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\Translation\Translator;
-
 
 class MenuBuilder
 {
@@ -62,7 +60,7 @@ class MenuBuilder
 
         $home_trans = $this->translator->trans('menu.home', array(), 'TempoMain');
         $menu->addChild($home_trans, array('route' => 'homepage'));
-        
+
         return $menu;
     }
 }

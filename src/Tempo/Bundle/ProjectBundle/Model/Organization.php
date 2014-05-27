@@ -16,7 +16,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
 * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
 */
-
 abstract class Organization implements OrganizationInterface
 {
     /**
@@ -125,6 +124,8 @@ abstract class Organization implements OrganizationInterface
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
     }
 
     /**
@@ -133,6 +134,8 @@ abstract class Organization implements OrganizationInterface
     public function setSlug($slug)
     {
         $this->slug = $slug;
+
+        return $this;
     }
 
     /**
@@ -186,6 +189,8 @@ abstract class Organization implements OrganizationInterface
     public function setAvatar($avatar)
     {
         $this->avatar = $avatar;
+
+        return $this;
     }
 
     protected function getGravatarUrl()
@@ -223,6 +228,8 @@ abstract class Organization implements OrganizationInterface
     public function setProjects($projects)
     {
         $this->projects = $projects;
+
+        return $this;
     }
 
     /**
@@ -239,6 +246,8 @@ abstract class Organization implements OrganizationInterface
     public function setCreatedAt(\DateTime $created)
     {
         $this->createdAt = $created;
+
+        return $this;
     }
 
     /**
@@ -255,6 +264,8 @@ abstract class Organization implements OrganizationInterface
     public function setUpdatedAt(\DateTime $updated)
     {
         $this->updatedAt = $updated;
+
+        return $this;
     }
 
     /**
@@ -287,6 +298,8 @@ abstract class Organization implements OrganizationInterface
     public function addProject( $project)
     {
         $this->projects[] = $project;
+
+        return $this;
     }
 
     /**
@@ -295,6 +308,8 @@ abstract class Organization implements OrganizationInterface
     public function addUser($user)
     {
         $this->users[] = $user;
+
+        return $this;
     }
 
     /**
@@ -303,6 +318,8 @@ abstract class Organization implements OrganizationInterface
     public function setEnabled($enabled)
     {
         $this->enabled = $enabled;
+
+        return $this;
     }
 
     /**
@@ -312,6 +329,8 @@ abstract class Organization implements OrganizationInterface
     {
         $this->deleteAt = $deleteAt;
         $this->setEnabled(false);
+
+        return $this;
     }
 
     /**
@@ -320,6 +339,8 @@ abstract class Organization implements OrganizationInterface
     public function setContact($contact)
     {
         $this->contact = $contact;
+
+        return $this;
     }
 
     /**
@@ -328,6 +349,8 @@ abstract class Organization implements OrganizationInterface
     public function setWebSite($website)
     {
         $this->website = $website;
+
+        return $this;
     }
 
     /**
@@ -336,6 +359,8 @@ abstract class Organization implements OrganizationInterface
     public function setUsers($users)
     {
         $this->users = $users;
+
+        return $this;
     }
 
     /**
@@ -344,6 +369,8 @@ abstract class Organization implements OrganizationInterface
     public function addTeam($user, array $acl = array())
     {
         $this->team[] = $user;
+
+        return $this;
     }
 
     /**

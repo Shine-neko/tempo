@@ -9,12 +9,10 @@
 * file that was distributed with this source code.
 */
 
-
 namespace Tempo\Bundle\UserBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
-
 
 /**
  * NotificationRepository
@@ -31,8 +29,10 @@ class NotificationRepository extends EntityRepository
             ->leftJoin('notif.user', 'user')
             ->where('user = :user')
             ->andWhere('notif.state = :state')
-            ->setParameter('state', $state)
-            ->setParameter('user', $user)
+            ->setParameters(array(
+                'state'  => $state,
+                'user'   => $user
+            ))
             ->getQuery();
 
         return $q;
