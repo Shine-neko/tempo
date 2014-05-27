@@ -54,12 +54,16 @@
                                 <li> <a href="/help"><span class="glyphicon glyphicon-question-sign"></span> Help </a></li>
                             </ul>
                         </li>
+                        {% set notifications_indicator = user_notifications(app.user.id) %}
                         <li class="notifications">
                             <a href="#" data-toggle="dropdown" class="dropdown-toggle">
                                 <span class="glyphicon glyphicon-bell"></span>
+                                {% if notifications_indicator|length >0 %}
+                                <span class="indicator">{{ notifications_indicator|length }}</span>
+                                {% endif %}
                             </a>
                             <ul class="dropdown-menu">
-                                {% for notification in user_notifications(app.user.id) %}
+                                {% for notification in notifications_indicator %}
                                     <li> <a href="#">{{ notification.message }}</a> </li>
                                 {% else %}
                                     <li><a href="{{ path('notification_dashboard') }}">No Notifications</a></li>
