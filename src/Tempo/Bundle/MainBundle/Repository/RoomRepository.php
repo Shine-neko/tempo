@@ -26,7 +26,7 @@ class RoomRepository extends EntityRepository
             $this->createQueryBuilder('r')
                 ->where('r.project = :project')
                 ->setParameter('project', $project)
-                ->getQuery()->getSingleResult();
+                ->getQuery()->getSingleResult()
             ;
     }
 }

@@ -65,6 +65,8 @@ abstract class Room
     public function setName($name)
     {
        $this->name = $name;
+
+       return $this;
     }
 
     /**
@@ -73,6 +75,8 @@ abstract class Room
     public function addChatMessage(ChatMessage $chatMessage)
     {
         $this->chatMessages[] = $chatMessage;
+
+        return $this;
     }
 
     /**
@@ -104,6 +108,8 @@ abstract class Room
     public function setProject($project)
     {
         $this->project = $project;
+
+        return $this;
     }
 
     /**

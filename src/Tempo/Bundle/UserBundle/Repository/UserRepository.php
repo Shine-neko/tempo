@@ -9,12 +9,10 @@
 * file that was distributed with this source code.
 */
 
-
 namespace Tempo\Bundle\UserBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
-
 
 /**
  * UserRepository

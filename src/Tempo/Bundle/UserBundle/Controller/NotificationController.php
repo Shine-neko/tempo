@@ -9,7 +9,6 @@
 * file that was distributed with this source code.
 */
 
-
 namespace Tempo\Bundle\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -19,7 +18,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-
 
 class NotificationController extends Controller
 {

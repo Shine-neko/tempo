@@ -21,7 +21,6 @@ class ActivityTab implements TabProviderInterface
         return "activity";
     }
 
-
     /**
      * {@inheritdoc}
      */

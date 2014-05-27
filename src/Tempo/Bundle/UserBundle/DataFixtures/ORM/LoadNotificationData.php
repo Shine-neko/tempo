@@ -27,7 +27,6 @@ class LoadNotificationData extends AbstractFixture implements OrderedFixtureInte
         $userList = array('admin', 'john.doe', 'olivia.pace');
 
         for ($i = 0; $i < 50; $i++) {
-
             $userEntity = $this->getReference($userList[array_rand($userList, 1)]);
 
             $notification = new Notification();

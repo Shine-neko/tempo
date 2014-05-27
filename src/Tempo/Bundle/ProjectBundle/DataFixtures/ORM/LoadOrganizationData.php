@@ -53,7 +53,6 @@ class LoadOrganizationData extends AbstractFixture implements OrderedFixtureInte
         );
         $i = 1;
         foreach ($organization as $name) {
-
             $userEntity = $this->getReference($userList[array_rand($userList, 1)]);
 
             $organization = new Organization();

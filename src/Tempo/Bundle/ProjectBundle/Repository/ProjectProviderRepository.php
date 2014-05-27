@@ -15,9 +15,7 @@ use Doctrine\ORM\EntityRepository;
 
 /**
  * ProjectProviderRepository
- *
  */
 class ProjectProviderRepository extends EntityRepository
 {
-
 }

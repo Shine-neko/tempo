@@ -16,7 +16,6 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Tempo\Bundle\MainBundle\Entity\Room;
 
-
 class LoadRoomData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**

@@ -16,8 +16,6 @@ use Tempo\Bundle\CoreBundle\Manager\BaseManager;
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
-
 class TeamManager extends BaseManager
 {
-
 }

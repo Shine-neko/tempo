@@ -9,12 +9,10 @@
 * file that was distributed with this source code.
 */
 
-
 namespace Tempo\Bundle\UserBundle\Entity;
 
 use Tempo\Bundle\UserBundle\Model\Group as BaseGroup;
 
 class Group extends BaseGroup
 {
-
 }

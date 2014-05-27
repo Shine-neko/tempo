@@ -18,10 +18,8 @@ use Tempo\Bundle\ProjectBundle\Timesheet\ProjectActivityDayTimesheet;
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
-
 class TimesheetManager extends BaseManager
 {
-
     public function findActivities($user, $weekBegin, $weekEnd)
     {
         return $this->repository->findActivities($user, $weekBegin, $weekEnd);
@@ -53,7 +51,6 @@ class TimesheetManager extends BaseManager
          }
 
          foreach ($activitiesReport as $activity) {
-
              $day  = $activity->getWorkedDate()->format('j');
 
              if (!isset($activities[$day])) {
@@ -66,8 +63,7 @@ class TimesheetManager extends BaseManager
                  ->addTime($activity->getWorkedTime());
          }
 
-         foreach ($activities as $activityDay) {
-             $data[$activityDay->getActivities()[0]->getProject()->getId()]->addDay($activityDay);
+         foreach ($activities as $activityDay) {             $data[$activityDay->getActivities()[0]->getProject()->getId()]->addDay($activityDay);
          }
 
          return $data;

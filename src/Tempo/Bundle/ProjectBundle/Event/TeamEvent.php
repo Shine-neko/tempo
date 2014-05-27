@@ -110,7 +110,7 @@ class TeamEvent extends Event
 
     /**
      * @param User $userTo
-     *                     @return $this
+     * @return $this
      */
     public function setUserTo($userTo)
     {
