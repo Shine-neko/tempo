@@ -31,7 +31,6 @@ class ResourceManagerTest extends \PHPUnit_Framework_TestCase
     {
         $this->manager->requireResource('test.js');
         $this->assertEquals($this->manager->getJavascripts(), array('test.js'));
-
     }
 
     public function testRequireResources()

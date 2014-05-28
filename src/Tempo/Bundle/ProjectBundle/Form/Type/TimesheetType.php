@@ -39,6 +39,7 @@ class TimesheetType extends AbstractType
             }
         });
     }
+
     /**
      * {@inheritdoc}
      */

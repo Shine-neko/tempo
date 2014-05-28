@@ -46,7 +46,6 @@ class LoadProjectData extends AbstractFixture implements ContainerAwareInterface
         );
 
         foreach ($projectList as $name) {
-
             $userEntity = $this->getReference($userList[array_rand($userList, 1)]);
 
             $digit = str_shuffle('123456789');

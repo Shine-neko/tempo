@@ -16,16 +16,13 @@ use Tempo\Bundle\ProjectBundle\Model\Project as BaseProject;
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
-
 class Project extends BaseProject
 {
-
     /**
      * {@inheritdoc}
      */
     public function preUpdate()
     {
-
     }
 
     /**
@@ -33,6 +30,5 @@ class Project extends BaseProject
      */
     public function prePersist()
     {
-
     }
 }

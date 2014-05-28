@@ -129,6 +129,8 @@ abstract class ChatMessage implements ChatMessageInterface
     public function setRoom($room)
     {
         $this->room = $room;
+
+        return $this;
     }
 
     /**

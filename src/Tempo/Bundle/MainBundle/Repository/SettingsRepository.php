@@ -26,6 +26,7 @@ class SettingsRepository extends EntityRepository
     public function getAllOption()
     {
         $query = $this->createQueryBuilder('o');
+
         return $query->getQuery()->execute();
     }
 }

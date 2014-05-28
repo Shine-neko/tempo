@@ -20,7 +20,6 @@ use Tempo\Bundle\CoreBundle\Resource\ResourceManagerInterface;
 
 class Behavior extends Helper
 {
-
     protected $resourceManager;
     protected $router;
     protected $onload = array();

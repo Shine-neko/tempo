@@ -38,6 +38,7 @@ class TimesheetExportType extends AbstractType
             ))
         ;
     }
+
     /**
      * {@inheritdoc}
      */

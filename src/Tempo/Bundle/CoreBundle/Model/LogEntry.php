@@ -16,7 +16,6 @@ use Tempo\Bundle\UserBundle\Entity\User;
 
 class LogEntry extends AbstractLogEntry
 {
-
     protected $user;
 
     /**

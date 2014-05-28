@@ -16,14 +16,12 @@ use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 
 use Tempo\Bundle\CoreBundle\Controller\BaseController;
 use Tempo\Bundle\ProjectBundle\Form\Type\TeamType;
-
 use Tempo\Bundle\ProjectBundle\Event\TeamEvent;
 use Tempo\Bundle\ProjectBundle\TempoProjectEvents;
 
 /*
  * @author Mlanawo Mbechezi <mlanawo.mbechezi@ikimea.com>
  */
-
 class TeamController extends BaseController
 {
     /**

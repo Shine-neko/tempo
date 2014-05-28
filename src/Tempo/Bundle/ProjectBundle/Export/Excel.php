@@ -24,7 +24,6 @@ class Excel
     {
         $phpExcel = new \PHPExcel();
 
-
         $phpExcel->getDefaultStyle()->getFont()->setName('Arial')
             ->setSize(10);
 
@@ -56,12 +55,10 @@ class Excel
 
         $i = 2;
         foreach ($this->data['projects'] as $project) {
-
             $phpExcel->getActiveSheet()->setCellValue('B'.$i, $project['name']);
             $i++;
 
             foreach( $project['cras'] as $time ) {
-
                 if(isset($time['list'])) {
                     foreach($time['list'] as $item) {
                         $phpExcel->getActiveSheet()->setCellValue('A'.$i, $item->getId());

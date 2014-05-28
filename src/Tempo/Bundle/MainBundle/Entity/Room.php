@@ -13,7 +13,6 @@ namespace Tempo\Bundle\MainBundle\Entity;
 
 use Tempo\Bundle\MainBundle\Model\Room as BaseRoom;
 
-
 class Room extends BaseRoom
 {
 }

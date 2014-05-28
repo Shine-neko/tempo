@@ -14,10 +14,8 @@ namespace Tempo\Bundle\ProjectBundle\Model;
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
-
 abstract class Timesheet implements TimesheetInterface
 {
-
     protected $id;
 
     /**
@@ -138,6 +136,8 @@ abstract class Timesheet implements TimesheetInterface
     public function setWorkedTime($time)
     {
         $this->workedTime = $time;
+
+        return $this;
     }
 
     /**
@@ -154,6 +154,8 @@ abstract class Timesheet implements TimesheetInterface
     public function setWorkedDate($time)
     {
         $this->workedDate = $time;
+
+        return $this;
     }
 
     /**
@@ -170,6 +172,8 @@ abstract class Timesheet implements TimesheetInterface
     public function setDescription($description)
     {
         $this->description = $description;
+
+        return $this;
     }
 
     /**
@@ -186,9 +190,10 @@ abstract class Timesheet implements TimesheetInterface
     public function setBillable($billable)
     {
         $this->billable = $billable;
+
+        return $this;
     }
 
-    /**
     /**
      * {@inheritdoc}
      */
@@ -203,9 +208,10 @@ abstract class Timesheet implements TimesheetInterface
     public function setState($state)
     {
         $this->state = $state;
+
+        return $this;
     }
 
-    /**
     /**
      * {@inheritdoc}
      */
@@ -220,6 +226,8 @@ abstract class Timesheet implements TimesheetInterface
     public function setProject(ProjectInterface $project)
     {
         $this->project = $project;
+
+        return $this;
     }
 
     /**
@@ -240,6 +248,8 @@ abstract class Timesheet implements TimesheetInterface
     public function setUser($user)
     {
         $this->user = $user;
+
+        return $this;
     }
 
     /**

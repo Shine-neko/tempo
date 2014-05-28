@@ -13,14 +13,11 @@ namespace Tempo\Bundle\ProjectBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
-
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
-
 interface OrganizationInterface
 {
-
     /**
      * Get id
      *
@@ -165,5 +162,4 @@ interface OrganizationInterface
      * @return mixed
      */
     public function addTeam($user, array $acl = array());
-
 }

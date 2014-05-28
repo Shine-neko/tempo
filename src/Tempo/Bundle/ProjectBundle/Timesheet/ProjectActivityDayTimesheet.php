@@ -10,6 +10,7 @@
 */
 
 namespace Tempo\Bundle\ProjectBundle\Timesheet;
+
 use Tempo\Bundle\ProjectBundle\Model\TimesheetInterface;
 
 class ProjectActivityDayTimesheet
@@ -50,6 +51,8 @@ class ProjectActivityDayTimesheet
     public function addTime($time)
     {
         $this->workedTime = $this->workedTime + $time;
+
+        return $this;
     }
 
     /**

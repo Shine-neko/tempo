@@ -78,7 +78,9 @@ class ProjectProvider implements ProjectProviderInterface
      */
     public function setAppId($appId)
     {
-        return $this->appId = $appId ;
+        $this->appId = $appId;
+
+        return $this;
     }
 
     /**
@@ -95,6 +97,8 @@ class ProjectProvider implements ProjectProviderInterface
     public function setSecret($secret)
     {
         $this->secret = $secret;
+
+        return $this;
     }
 
     /**
@@ -111,6 +115,8 @@ class ProjectProvider implements ProjectProviderInterface
     public function setToken($token)
     {
         $this->token = $token;
+
+        return $this;
     }
 
     /**
@@ -119,6 +125,8 @@ class ProjectProvider implements ProjectProviderInterface
     public function setCreatedAt(\DateTime $created)
     {
         $this->createdAt = $created;
+
+        return $this;
     }
 
     /**
@@ -189,6 +197,8 @@ class ProjectProvider implements ProjectProviderInterface
     public function setActivities($activities)
     {
         $this->activities = $activities;
+
+        return $this;
     }
 
     /**

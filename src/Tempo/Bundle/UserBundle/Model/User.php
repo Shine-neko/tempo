@@ -134,6 +134,8 @@ class User extends BaseUser implements UserInterface
     public function setLocale($locale)
     {
         $this->locale = $locale;
+
+        return $this;
     }
 
     /**
@@ -220,6 +222,8 @@ class User extends BaseUser implements UserInterface
     public function setJobTitle($jobTitle)
     {
         $this->jobTitle = $jobTitle;
+
+        return $this;
     }
 
     /**
@@ -236,6 +240,8 @@ class User extends BaseUser implements UserInterface
     public function setPhone($phone)
     {
         $this->phone = $phone;
+
+        return $this;
     }
 
     /**
@@ -252,6 +258,8 @@ class User extends BaseUser implements UserInterface
     public function setMobilePhone($mobilePhone)
     {
         $this->mobilePhone = $mobilePhone;
+
+        return $this;
     }
 
     /**
@@ -304,6 +312,8 @@ class User extends BaseUser implements UserInterface
     public function setAvatar($avatar)
     {
         $this->avatar = $avatar;
+
+        return $this;
     }
 
     /**
@@ -320,6 +330,8 @@ class User extends BaseUser implements UserInterface
     public function setGoogleId($googleId)
     {
         $this->googleId = $googleId;
+
+        return $this;
     }
 
     /**
@@ -336,6 +348,8 @@ class User extends BaseUser implements UserInterface
     public function setLinkedin($linkedin)
     {
         $this->linkedin = $linkedin;
+
+        return $this;
     }
 
     /**
@@ -352,6 +366,8 @@ class User extends BaseUser implements UserInterface
     public function setSkype($skype)
     {
         $this->skype = $skype;
+
+        return $this;
     }
 
     /**
@@ -368,6 +384,8 @@ class User extends BaseUser implements UserInterface
     public function setTwitter($twitter)
     {
         $this->twitter = $twitter;
+
+        return $this;
     }
 
     /**
@@ -384,6 +402,8 @@ class User extends BaseUser implements UserInterface
     public function setViadeo($viadeo)
     {
         $this->viadeo = $viadeo;
+
+        return $this;
     }
 
     /**
@@ -408,6 +428,8 @@ class User extends BaseUser implements UserInterface
     public function setNotifications($notifications)
     {
         $this->notifications = $notifications;
+
+        return $this;
     }
 
     /**
@@ -416,6 +438,8 @@ class User extends BaseUser implements UserInterface
     public function addNotification($notification)
     {
         $this->notifications[] = $notification;
+
+        return $this;
     }
 
     /**
