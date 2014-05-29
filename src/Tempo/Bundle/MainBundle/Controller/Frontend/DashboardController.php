@@ -18,6 +18,9 @@ use Tempo\Bundle\MainBundle\Form\Type\ChatMessageType;
 class DashboardController extends BaseController
 {
     /**
+     * main Action
+     * 
+     * @param  Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function mainAction(Request $request)
@@ -34,12 +37,8 @@ class DashboardController extends BaseController
 
         return $this->render('TempoMainBundle:Default:dashboard.html.twig', array(
             'rooms' => $rooms,
-            'form' => $form->createView(),
-            'currentRoom' => array(
-                'id' => $currentRoom->getId(),
-                'name' => $currentRoom->getName(),
-            ),
-            'project' => $currentRoom->getProject(),
+            'currentRoom' => $currentRoom,
+            'form' => $form->createView()
         ));
     }
 }
