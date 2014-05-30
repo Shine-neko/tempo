@@ -20,6 +20,11 @@ use Tempo\Bundle\ProjectBundle\Timesheet\ProjectActivityDayTimesheet;
  */
 class TimesheetManager extends BaseManager
 {
+    /**
+     * @param $user
+     * @param $weekBegin
+     * @param $weekEnd
+     */
     public function findActivities($user, $weekBegin, $weekEnd)
     {
         return $this->repository->findActivities($user, $weekBegin, $weekEnd);
@@ -63,7 +68,8 @@ class TimesheetManager extends BaseManager
                  ->addTime($activity->getWorkedTime());
          }
 
-         foreach ($activities as $activityDay) {             $data[$activityDay->getActivities()[0]->getProject()->getId()]->addDay($activityDay);
+         foreach ($activities as $activityDay) {
+            $data[$activityDay->getActivities()[0]->getProject()->getId()]->addDay($activityDay);
          }
 
          return $data;
