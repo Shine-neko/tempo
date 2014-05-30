@@ -25,4 +25,9 @@ interface ProviderInterface
      * @return name
      */
     public function getName();
+
+    /**
+     * @return name
+     */
+    public function getCanonicalName();
 }

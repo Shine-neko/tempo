@@ -11,16 +11,14 @@
 
 namespace Tempo\Bundle\ActivityBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Tempo\Bundle\ActivityBundle\Form\Type\ProviderFormType;
+use Tempo\Bundle\CoreBundle\Controller\BaseController;
 
-
-class ProviderController extends Controller
+class ProviderController extends BaseController
 {
     public function listAction($slug)
     {
-
         return $this->render('TempoActivityBundle:Provider:list.html.twig', array(
             'slug' => $slug,
             'providers' => $this->get('tempo.activity.provider_registry')->getProviders()
@@ -35,7 +33,7 @@ class ProviderController extends Controller
 
         $form = $this->createForm(new ProviderFormType(), $projectProvider);
 
-        if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
+        if ($form->handleRequest($request)->isValid()) {
 
             $this->getDoctrine()->getManager()->persist($projectProvider);
             $this->getDoctrine()->getManager()->flush();

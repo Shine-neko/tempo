@@ -17,19 +17,8 @@ use Tempo\Bundle\ActivityBundle\Entity\Activity;
 
 class ActivityManager extends BaseManager
 {
-    private $userContext;
-
-    public function setSecurityContext($userContext)
+    public function build($actor, $action, $target = '')
     {
-        $this->userContext = $userContext->getToken()->getUser();
-    }
-
-    public function build($action, $target = '', $actor = null)
-    {
-        if(null == $actor) {
-            $actor = $this->userContext;
-        }
-
         $reflected =  new \ReflectionObject($target);
 
         $event = new Activity();
@@ -45,12 +34,9 @@ class ActivityManager extends BaseManager
     /**
      * @param $type
      * @param SecurityContext $user
-     * @return strings
      */
-    public function render($type = null, $user = null)
+    public function findByUser($type = null, $user = null)
     {
-        $fin = $this->repository->findLastActivities($type, $user);
-
-        return $fin;
+        return $this->repository->findLastActivities($type, $user);
     }
 }
