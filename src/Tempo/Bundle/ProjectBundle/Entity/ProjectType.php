@@ -16,16 +16,13 @@ use Tempo\Bundle\ProjectBundle\Model\ProjectType as BaseProjectType;
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
-
 class ProjectType extends BaseProjectType
 {
-
     /**
      * {@inheritdoc}
      */
     public function preUpdate()
     {
-
     }
 
     /**
@@ -33,6 +30,5 @@ class ProjectType extends BaseProjectType
      */
     public function prePersist()
     {
-
     }
 }

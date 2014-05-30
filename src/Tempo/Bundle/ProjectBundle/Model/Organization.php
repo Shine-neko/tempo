@@ -16,7 +16,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
 * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
 */
-
 abstract class Organization implements OrganizationInterface
 {
     /**
@@ -72,12 +71,22 @@ abstract class Organization implements OrganizationInterface
     /**
      * @var \DateTime
      */
-    protected $created;
+    protected $createdAt;
 
     /**
      * @var \DateTime
      */
-    protected $updated;
+    protected $updatedAt;
+
+    /**
+     * @var \DateTime
+     */
+    protected $deleteAt;
+
+    /**
+     * @var ArrayCollection\UserInterface[]
+     */
+    protected $users;
 
     public function __construct()
     {
@@ -115,6 +124,8 @@ abstract class Organization implements OrganizationInterface
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
     }
 
     /**
@@ -123,6 +134,8 @@ abstract class Organization implements OrganizationInterface
     public function setSlug($slug)
     {
         $this->slug = $slug;
+
+        return $this;
     }
 
     /**
@@ -133,26 +146,38 @@ abstract class Organization implements OrganizationInterface
         return $this->slug;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function hasAvatar()
     {
         return $this->hasLocalAvatar() || $this->hasGravatar();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function hasLocalAvatar()
     {
         return (boolean)$this->avatar;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function hasGravatar()
     {
         return (boolean)@fopen($this->getGravatarUrl() . '?d=404', 'r');
     }
 
 
+    /**
+     * {@inheritdoc}
+     */
     public function getAvatar($size = 80, $default = 'mm')
     {
         if ($this->avatar) {
-            return '/uploads/avatars/' . $this->avatar;
+            return '/uploads/covers/' . $this->avatar;
         }
 
         return $this->getGravatarUrl() . '?s=' . $size . '&d=' . $default;
@@ -164,6 +189,8 @@ abstract class Organization implements OrganizationInterface
     public function setAvatar($avatar)
     {
         $this->avatar = $avatar;
+
+        return $this;
     }
 
     protected function getGravatarUrl()
@@ -201,6 +228,8 @@ abstract class Organization implements OrganizationInterface
     public function setProjects($projects)
     {
         $this->projects = $projects;
+
+        return $this;
     }
 
     /**
@@ -214,33 +243,37 @@ abstract class Organization implements OrganizationInterface
     /**
      * {@inheritdoc}
      */
-    public function setCreated(\DateTime $created)
+    public function setCreatedAt(\DateTime $created)
     {
-        $this->created = $created;
+        $this->createdAt = $created;
+
+        return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getCreated()
+    public function getCreatedAt()
     {
-        return $this->created;
+        return $this->createdAt;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setUpdated(\DateTime $updated)
+    public function setUpdatedAt(\DateTime $updated)
     {
-        $this->updated = $updated;
+        $this->updatedAt = $updated;
+
+        return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getUpdated()
+    public function getUpdatedAt()
     {
-        return $this->updated;
+        return $this->updatedAt;
     }
 
     /**
@@ -265,6 +298,8 @@ abstract class Organization implements OrganizationInterface
     public function addProject( $project)
     {
         $this->projects[] = $project;
+
+        return $this;
     }
 
     /**
@@ -273,6 +308,8 @@ abstract class Organization implements OrganizationInterface
     public function addUser($user)
     {
         $this->users[] = $user;
+
+        return $this;
     }
 
     /**
@@ -281,6 +318,8 @@ abstract class Organization implements OrganizationInterface
     public function setEnabled($enabled)
     {
         $this->enabled = $enabled;
+
+        return $this;
     }
 
     /**
@@ -290,6 +329,8 @@ abstract class Organization implements OrganizationInterface
     {
         $this->deleteAt = $deleteAt;
         $this->setEnabled(false);
+
+        return $this;
     }
 
     /**
@@ -298,6 +339,8 @@ abstract class Organization implements OrganizationInterface
     public function setContact($contact)
     {
         $this->contact = $contact;
+
+        return $this;
     }
 
     /**
@@ -306,6 +349,8 @@ abstract class Organization implements OrganizationInterface
     public function setWebSite($website)
     {
         $this->website = $website;
+
+        return $this;
     }
 
     /**
@@ -314,6 +359,8 @@ abstract class Organization implements OrganizationInterface
     public function setUsers($users)
     {
         $this->users = $users;
+
+        return $this;
     }
 
     /**
@@ -322,6 +369,8 @@ abstract class Organization implements OrganizationInterface
     public function addTeam($user, array $acl = array())
     {
         $this->team[] = $user;
+
+        return $this;
     }
 
     /**

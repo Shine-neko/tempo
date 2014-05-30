@@ -3,41 +3,42 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
-        <parameter key="tempo_user.menu_builder.class">Tempo\Bundle\UserBundle\Menu\Tabs</parameter>
-        <parameter key="tempo_user.profile.form.type.avatar.class">Tempo\Bundle\UserBundle\Form\Type\AvatarType</parameter>
-        <parameter key="tempo_user.profile.form.handler.avatar.class">Tempo\Bundle\UserBundle\Form\Handler\AvatarHandler</parameter>
-        <parameter key="tempo_user.oauth.user_provider.class">Tempo\Bundle\UserBundle\OAuth\UserProvider</parameter>
-        <parameter key="tempo_user.security.interactive_login_listener.class">Tempo\Bundle\UserBundle\EventListener\UserListener</parameter>
+        <parameter key="tempo.user.menu_builder.class">Tempo\Bundle\UserBundle\Menu\Tabs</parameter>
+        <parameter key="tempo.user.profile.form.type.avatar.class">Tempo\Bundle\UserBundle\Form\Type\AvatarType</parameter>
+        <parameter key="tempo.user.profile.form.handler.avatar.class">Tempo\Bundle\UserBundle\Form\Handler\AvatarHandler</parameter>
+        <parameter key="tempo.user.oauth.user_provider.class">Tempo\Bundle\UserBundle\OAuth\UserProvider</parameter>
+        <parameter key="tempo.user.security.interactive_login_listener.class">Tempo\Bundle\UserBundle\EventListener\UserListener</parameter>
+        <parameter key="tempo.user.twig.extension.class">Tempo\Bundle\UserBundle\Twig\Extension\UserExtension</parameter>
     </parameters>
 
     <services>
 
-        <service id="tempo_user.oauth.user_provider" class="%tempo_user.oauth.user_provider.class%">
+        <service id="tempo.user.oauth.user_provider" class="%tempo.user.oauth.user_provider.class%">
             <argument type="service" id="fos_user.user_manager" />
             <argument type="collection">
             <argument key="google">googleId</argument>
             <argument key="github">githubId</argument>
             </argument>
         </service>
-        <service id="tempo_user.profil.menu_builder" class="%tempo_user.menu_builder.class%">
+        <service id="tempo.user.profil.menu_builder" class="%tempo.user.menu_builder.class%">
             <argument type="service" id="knp_menu.factory"/>
             <argument type="service" id="translator"/>
         </service>
-        <service id="tempo_user.profil.tabs" class="Knp\Menu\MenuItem" factory-service="tempo_user.profil.menu_builder" factory-method="tabMenu">
+        <service id="tempo.user.profil.tabs" class="Knp\Menu\MenuItem" factory-service="tempo.user.profil.menu_builder" factory-method="tabMenu">
             <tag name="knp_menu.menu" alias="profile_tab"/>
         </service>
 
-        <service id="tempo_user.profile.form.type.avatar" class="%tempo_user.profile.form.type.avatar.class%">
-            <argument type="string">%tempo_user.profile.form.type.avatar.class%</argument>
+        <service id="tempo.user.profile.form.type.avatar" class="%tempo.user.profile.form.type.avatar.class%">
+            <argument type="string">%tempo.user.profile.form.type.avatar.class%</argument>
         </service>
 
-        <service id="tempo_user.profile.form.avatar.factory" class="Symfony\Component\Form\Form"  factory-service="form.factory" factory-method="create">
-            <argument type="service" id="tempo_user.profile.form.type.avatar"></argument>
+        <service id="tempo.user.profile.form.avatar.factory" class="Symfony\Component\Form\Form"  factory-service="form.factory" factory-method="create">
+            <argument type="service" id="tempo.user.profile.form.type.avatar"></argument>
         </service>
 
-        <service id="tempo_user.profile.handler.avatar" class="%tempo_user.profile.form.handler.avatar.class%" scope="request">
+        <service id="tempo.user.profile.handler.avatar" class="%tempo.user.profile.form.handler.avatar.class%" scope="request">
             <argument type="service" id="request"/>
-            <argument type="service" id="tempo_user.profile.form.avatar.factory"/>
+            <argument type="service" id="tempo.user.profile.form.avatar.factory"/>
             <argument type="service" id="doctrine.orm.entity_manager"/>
             <argument type="service" id="liip_imagine"/>
             <call method="setPath">
@@ -45,12 +46,17 @@
             </call>
         </service>
 
-        <service id="tempo_user.security.interactive_login_listener" class="%tempo_user.security.interactive_login_listener.class%" scope="request">
+        <service id="tempo.user.security.interactive_login_listener" class="%tempo.user.security.interactive_login_listener.class%" scope="request">
             <tag name="kernel.event_listener" event="security.interactive_login" method="setLocaleForAuthenticatedUser" />
         </service>
 
-        <service id="tempo_user.security.interactive_login_listener" class="%tempo_user.security.interactive_login_listener.class%" scope="request">
+        <service id="tempo.user.security.interactive_login_listener" class="%tempo.user.security.interactive_login_listener.class%" scope="request">
             <tag name="kernel.event_listener" event="kernel.request" method="setLocaleForUnauthenticatedUser" />
+        </service>
+
+        <service id="tempo.user.twig.extension" class="%tempo.user.twig.extension.class%">
+            <argument type="service" id="tempo.manager.notification" />
+            <tag name="twig.extension" />
         </service>
 
     </services>

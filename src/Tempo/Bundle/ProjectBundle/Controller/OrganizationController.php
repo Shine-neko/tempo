@@ -11,45 +11,49 @@
 
 namespace Tempo\Bundle\ProjectBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Security\Acl\Permission\MaskBuilder;
+
+use Tempo\Bundle\CoreBundle\Controller\BaseController;
 use Tempo\Bundle\ProjectBundle\Entity\Organization;
 use Tempo\Bundle\ProjectBundle\Form\Type\OrganizationType;
 use Tempo\Bundle\ProjectBundle\Form\Type\TeamType;
 use Tempo\Bundle\ProjectBundle\TempoProjectEvents;
-use Tempo\Bundle\ProjectBundle\Event\ProjectEvent;
 use Tempo\Bundle\ProjectBundle\Event\OrganizationEvent;
-
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 
 /**
  * @author Mlanawo Mbechezi <mlanawo.mbechezi@ikimea.com>
  */
 
-class OrganizationController extends Controller
+class OrganizationController extends BaseController
 {
+    private function getBreadcrumb()
+    {
+        $breadcrumb = $this->get('tempo.main.breadcrumb');
+        $breadcrumb->addChild('Organization');
+
+        return $breadcrumb;
+    }
+
     /**
      * @param $slug
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    public function showAction($slug)
+    public function showAction(Organization $organization)
     {
-        $organization = $this->findOrganization($slug);
-        $csrfToken = $this->get('form.csrf_provider')->generateCsrfToken('delete-organization');
+        $token = $this->get('form.csrf_provider')->generateCsrfToken('delete-organization');
 
         if (false === $this->get('security.context')->isGranted('VIEW', $organization) &&
             false === $this->get('security.context')->isGranted('ROLE_ADMIN') ) {
             throw new AccessDeniedException();
         }
 
-        $manager = $this->get('tempo_project.manager.organization');
-        $counter = $manager->getStatusProjects($organization->getId());
+        $counter = $this->get('tempo.manager.organization')->getStatusProjects($organization->getId());
 
-        $breadcrumb = $this->get('tempo_main.breadcrumb');
-        $breadcrumb->addChild('Organization');
-        $breadcrumb->addChild($organization->getName());
+        $this->getBreadcrumb()->addChild($organization->getName());
 
         $teamForm = $this->createForm(new TeamType());
 
@@ -58,7 +62,7 @@ class OrganizationController extends Controller
             'counter' => $counter,
             'projects' => $organization->getProjects(),
             'teamForm' => $teamForm->createView(),
-            'csrfToken' => $csrfToken
+            'token' => $token
         ));
     }
 
@@ -72,7 +76,7 @@ class OrganizationController extends Controller
             throw new AccessDeniedException();
         }
 
-        $form = $this->createForm(new OrganizationType(), new Organization(), array('is_new' => true));
+        $form = $this->createForm(new OrganizationType(), new Organization());
 
         return $this->render('TempoProjectBundle:Organization:new.html.twig', array(
             'form' => $form->createView(),
@@ -81,21 +85,16 @@ class OrganizationController extends Controller
 
     /**
      * Displays a form to edit an existing Project entity.
-     * @param $slug
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function editAction($slug)
+    public function editAction(Organization $organization)
     {
-        $organization = $this->findOrganization($slug);
-
         if (false === $this->get('security.context')->isGranted('EDIT', $organization)) {
             throw new AccessDeniedException();
         }
 
-        $breadcrumb = $this->get('tempo_main.breadcrumb');
-        $breadcrumb->addChild('Organization');
-        $breadcrumb->addChild($organization->getName());
-        $breadcrumb->addChild('Editer le organization');
+        $this->getBreadcrumb()->addChild($organization->getName());
+        $this->getBreadcrumb()->addChild('Editer le organization');
 
         $editForm = $this->createForm(new OrganizationType(), $organization);
 
@@ -110,30 +109,25 @@ class OrganizationController extends Controller
 
     /**
      * Edits an existing Organization entity.
-     * @param $id
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return Response
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    public function updateAction(Request $request, $id)
+    public function updateAction(Request $request, Organization $organization)
     {
-        $manager = $this->get('tempo_project.manager.organization');
-
-        $organization = $manager->find($id);
-
         if (false === $this->get('security.context')->isGranted('EDIT', $organization)) {
             throw new AccessDeniedException();
         }
 
         $editForm = $this->createForm(new OrganizationType(), $organization);
 
-        if ($request->isMethod('POST') && $editForm->submit($request)->isValid()) {
-            $event = new OrganizationEvent($organization, $request);
+        if ($editForm->handleRequest($request)->isValid()) {
+            $event = new OrganizationEvent($request, $organization);
             $this->get('event_dispatcher')->dispatch(TempoProjectEvents::ORGANIZATION_EDIT_INITIALIZE, $event);
 
-            $manager->save($organization);
+            $this->getManager('organization')->save($organization);
             $this->get('event_dispatcher')->dispatch(TempoProjectEvents::ORGANIZATION_EDIT_SUCCESS, $event);
 
-            $request->getSession()->getFlashBag()->set('success', $this->getTranslator()->trans('organization.success_deleted', array(), 'TempoProject'));
+            $this->addFlash('success', 'organization.success_update', 'TempoProject');
 
             return $this->redirectToOrganization($organization);
         }
@@ -148,6 +142,12 @@ class OrganizationController extends Controller
      * Create a organization
      * @return array
      */
+
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
+     */
     public function createAction(Request $request)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
@@ -159,86 +159,49 @@ class OrganizationController extends Controller
 
         $form = $this->createForm(new OrganizationType(), $organization);
 
-        if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
-            $event = new OrganizationEvent($organization, $request);
+        if ($form->handleRequest($request)->isValid()) {
+            $event = new OrganizationEvent($request, $organization);
             $this->get('event_dispatcher')->dispatch(TempoProjectEvents::ORGANIZATION_CREATE_INITIALIZE, $event);
 
-            $this->getManager()->save($organization);
+            $this->getManager('organization')->save($organization);
             $this->get('event_dispatcher')->dispatch(TempoProjectEvents::ORGANIZATION_CREATE_SUCCESS, $event);
 
             $this->getAclManager()->addObjectPermission($organization, MaskBuilder::MASK_OWNER); //set Permission
-            $request->getSession()->getFlashBag()->set('success', $this->getTranslator()->trans('organization.success_create', array(), 'TempoProject'));
+            $this->addFlash('success', 'organization.success_create','TempoProject');
 
             return $this->redirectToOrganization($organization);
         }
+
+        return new Response('', 412);
     }
 
     /**
      * Delete a organization
-     * @param $slug
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    public function deleteAction(Request $request, $slug)
+    public function deleteAction(Request $request, Organization $organization)
     {
-        $organization = $this->findOrganization($slug);
-
         if (false === $this->get('security.context')->isGranted('DELETE', $organization)) {
             throw new AccessDeniedException();
         }
 
-        //check CSRF token
-        if (false === $this->get('form.csrf_provider')->isCsrfTokenValid('delete-organization', $request->get('token'))) {
-            throw new AccessDeniedException('Invalid CSRF token.');
+        //check token
+        if ($this->tokenIsValid('delete-organization', $request->get('token'))) {
+            try {
+
+                $this->getManager('organization')->remove($organization);
+                $event = new OrganizationEvent($request, $organization);
+
+                $this->get('event_dispatcher')->dispatch(TempoProjectEvents::ORGANIZATION_DELETE_COMPLETED, $event);
+                $this->setFlash('success', 'organization.success_delete', 'TempoProject');
+
+            } catch (\InvalidArgumentException $e) {
+                $this->setFlash('error', 'organization.failed_delete', 'TempoProject');
+
+                return $this->redirectToOrganization($organization);
+            }
         }
-
-        try {
-
-            $this->getManager()->remove($organization);
-            $event = new ProjectEvent($organization, $request);
-            $this->get('event_dispatcher')->dispatch(TempoProjectEvents::ORGANIZATION_DELETE_COMPLETED, $event);
-            $request->getSession()->getFlashBag()->set('success', $this->getTranslator()->trans('organization.success_delete', array(), 'TempoProject'));
-
-        } catch (\InvalidArgumentException $e) {
-            $request->getSession()->getFlashBag()->set('error', $this->getTranslator()->trans('organization.failed_delete', array(), 'TempoProject'));
-
-            return $this->redirectToOrganization($organization);
-        }
-
-    }
-
-    /**
-     * return Tempo\Bundle\ProjectBundle\Manager\OrganizationManager
-     * @return mixed
-     */
-    protected function getManager()
-    {
-        return $this->get('tempo_project.manager.organization');
-    }
-
-    /**
-     * @param $slug
-     * @return mixed
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
-     */
-    protected function findOrganization($slug)
-    {
-        return $this->getManager()->findOneBySlug($slug);
-    }
-
-    /**
-     * Get translator.
-     *
-     * @return TranslatorInterface
-     */
-    protected function getTranslator()
-    {
-        return $this->get('translator');
-    }
-
-    protected function getAclManager()
-    {
-        return $this->get('problematic.acl_manager');
     }
 
     protected function redirectToOrganization($organization)

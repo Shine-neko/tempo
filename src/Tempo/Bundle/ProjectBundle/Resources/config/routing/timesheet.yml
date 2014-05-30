@@ -6,20 +6,6 @@ timesheet_show:
     pattern:  /{date}/show
     defaults: { _controller: "TempoProjectBundle:Timesheet:show" }
 
-timesheet_new:
-    pattern:  /new
-    defaults: { _controller: "TempoProjectBundle:Timesheet:new" }
-
-timesheet_create:
-    pattern:  /create
-    defaults: { _controller: "TempoProjectBundle:Timesheet:create" }
-    requirements: { _method: POST }
-
-timesheet_postdata:
-    pattern:  /postData
-    defaults: { _controller: "TempoProjectBundle:Timesheet:postData" }
-    requirements: { _method: POST }
-
 timesheet_edit:
     pattern:  /{id}/edit
     defaults: { _controller: "TempoProjectBundle:Timesheet:edit" }

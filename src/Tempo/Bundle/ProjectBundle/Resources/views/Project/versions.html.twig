@@ -1,0 +1,27 @@
+{% extends "TempoMainBundle::Layout/web.html.twig" %}
+{% block bodyClass %}project show{% endblock %}
+{% block body %}
+    {% block breadcrumb %}
+        <ol id="breadcrumb" class="clearfix">
+            <li class="first"> <a href="{{ path('project_home') }}">Accueil</a> </li>
+            <li> <a href="{{ path('project_home') }}">{{ 'Project'|trans  }}</a> </li>
+            <li class="last"> {{ project.name }} </li>
+        </ol>
+    {% endblock breadcrumb %}
+    <div class="app-panel">
+        <h1>Revisions</h1>
+        <ul>
+            {% for log in logs %}
+                <li>
+                    {% if log.user == null %}
+                        <a href="#">{{ log.username }}</a>,
+                    {% else %}
+                        <a href="{{ path('user_profile_show', {'slug': log.user.slug}) }}">{{ log.user }}</a>,
+                    {% endif %}
+                        {{ log.loggedAt|date('Y-m-d') }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock body %}

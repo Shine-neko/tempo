@@ -32,7 +32,7 @@ class MessagesController extends FOSRestController
 {
     /**
      * Get a single message from this room messages
-     * 
+     *
      * @param Room $room
      * @param string $chatMessageId
      */
@@ -40,14 +40,17 @@ class MessagesController extends FOSRestController
     {
         $message = $room->getChatMessage($chatMessageId);
         if (!$message) {
-            throw $this->createNotFoundException('Could not find message ' . $chatMessageId);
+            throw $this->createNotFoundException(sprintf(
+                'Could not find message %s',
+                $chatMessageId
+            ));
         }
         return $message;
     }
 
     /**
      * Get all messages for a room
-     * 
+     *
      * @param Room $room
      * @param string $chatMessageId
      * @ApiDoc(
@@ -94,6 +97,7 @@ class MessagesController extends FOSRestController
         } else {
             $view->setData($form);
         }
+
         return $view;
     }
 }

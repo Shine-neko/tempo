@@ -4,15 +4,14 @@ Feature: Organisation team
     Given I am connected as "admin"
 
   Scenario: Add member
-    When I am on "organization/ikimea/show"
+    When I am on "organization/ikimea"
     And I should not see "Warren Spencer"
     When I follow "Add membre"
     And I fill in "Username" with "warren.spencer"
     And I press "Save"
-    And I should see "Warren Spencer"
+    And I should see "Warren SPENCER"
 
-
-  Scenario: remove member
-    When I am on "organization/ikimea/show"
-    And I follow "Remove Olivia PACE"
-    And I should not see "remove Olivia PACE"
+  Scenario: Remove member
+    When I am on "organization/ikimea"
+    And I follow "Remove Warren SPENCER"
+    Then I should not see "Warren spencer"

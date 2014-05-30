@@ -4,9 +4,9 @@
 #   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
 #   prefix:   /_internal
 
-_imagine:
-    resource: .
-    type:     imagine
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"
 
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
@@ -19,7 +19,8 @@ homepage:
     defaults: { _controller: TempoMainBundle:Frontend\Dashboard:main }
 
 _tempo_users:
-    resource: "@TempoUserBundle/Resources/config/routing/routing.yml"
+    resource: "@TempoUserBundle/Resources/config/routing.yml"
+    
 hwi_oauth_security:
      resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
      prefix: /connect

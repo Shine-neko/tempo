@@ -2,7 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: imagine.yml }
-    - { resource: tempo.yml }
+    - { resource: @TempoCoreBundle/Resources/config/app/main.yml }
 
 framework:
     #esi:             ~
@@ -55,9 +55,19 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: %kernel.debug%
-        auto_mapping: true
-        mappings:
-            StofDoctrineExtensionsBundle: true
+        entity_managers:
+            default:
+                auto_mapping: true
+                mappings:
+                    StofDoctrineExtensionsBundle: true
+                    gedmo_loggable:
+                        type: annotation
+                        prefix: Gedmo\Loggable\Entity
+                        dir: "%kernel.root_dir%/../src/Tempo/Bundle/CoreBundle/Entity/"
+                        alias: GedmoLoggable
+                        is_bundle: false
+
+
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -65,131 +75,3 @@ swiftmailer:
     host:      %mailer_host%
     username:  %mailer_user%
     password:  %mailer_password%
-
-
-sylius_settings:
-    driver: doctrine/orm
-
-doctrine_cache:
-    providers:
-        sylius_settings:
-            type: file_system
-
-stof_doctrine_extensions:
-    default_locale: %locale%
-    translation_fallback: true
-    orm:
-        default:
-          loggable: false
-          sluggable: true
-          timestampable: true
-          translatable: false
-          tree: false
-
-sensio_framework_extra:
-    view:
-        annotations: false
-
-fos_rest:
-    param_fetcher_listener: true
-    body_listener: true
-    format_listener: true
-    view:
-        view_response_listener: 'force'
-    routing_loader:
-        default_format: json
-    access_denied_listener:
-        json: true
-    exception:
-        codes:
-            'Symfony\Component\Routing\Exception\ResourceNotFoundException': 404
-            'Doctrine\ORM\OptimisticLockException': HTTP_CONFLICT
-
-knp_time: ~  # Enable the helper for use in templates
-
-
-fos_user:
-    db_driver: orm
-    use_listener: false
-    firewall_name: main
-    user_class: Tempo\Bundle\UserBundle\Entity\User
-    group:
-        group_class: Tempo\Bundle\UserBundle\Entity\Group
-
-fos_js_routing:
-    routes_to_expose: ['get_rooms', 'get_room_messages']
-
-hwi_oauth:
-    firewall_name: main
-    resource_owners:
-        google:
-            type:          google
-            client_id:     %oauth.google.clientid%
-            client_secret: %oauth.google.clientsecret%
-            scope:         "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
-
-        github:
-            type: github
-            client_id:     %oauth.github.clientid%
-            client_secret: %oauth.github.clientsecret%
-
-
-ivory_ck_editor:
-  configs:
-    default:
-      skin: 'husky,/vendor/ckeditor-light-theme/'
-      toolbar:
-        - ['Format']
-        - ['Bold','Italic']
-        - ['Outdent','Indent','Blockquote']
-        - ['NumberedList','BulletedList']
-        - ['-','Link','Unlink','Anchor','-','Table']
-        - ['Maximize','Source']
-
-tempo_project:
-  week:
-    fr :
-      - Lundi
-      - Mardi
-      - Mecredi
-      - Jeudi
-      - Vendredi
-      - Samedi
-      - Dimanche
-    en :
-      - Monday
-      - Tuesday
-      - Wednesday
-      - Thursday
-      - Friday
-      - Saturday
-      - Sunday
-
-knp_snappy:
-    pdf:
-        enabled:    true
-        binary:     %knp_snappy.pdf.binary%
-        options:    []
-    image:
-        enabled:    true
-        binary:     %knp_snappy.image.binary%
-        options:    []
-
-mopa_bootstrap:
-    form:
-        show_legend: false # default is true
-        show_child_legend: false # default is true
-        error_type: block # or inline which is default
-        render_optional_text: false
-
-tempo_js_configuration:
-  config_to_expose: [locale]
-
-jms_serializer:
-    metadata:
-      debug: "%kernel.debug%"
-      auto_detection: true
-      directories:
-            FOSUserBundle:
-              namespace_prefix: "FOS\\UserBundle"
-              path: "@TempoUserBundle/Resources/config/serializer/FOSUserBundle"

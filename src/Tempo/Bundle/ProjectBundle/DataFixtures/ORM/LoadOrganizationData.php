@@ -19,7 +19,6 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 
-
 use Tempo\Bundle\ProjectBundle\Entity\Organization;
 
 class LoadOrganizationData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
@@ -54,7 +53,6 @@ class LoadOrganizationData extends AbstractFixture implements OrderedFixtureInte
         );
         $i = 1;
         foreach ($organization as $name) {
-
             $userEntity = $this->getReference($userList[array_rand($userList, 1)]);
 
             $organization = new Organization();
@@ -78,7 +76,7 @@ class LoadOrganizationData extends AbstractFixture implements OrderedFixtureInte
      */
     public function getOrder()
     {
-        return 2;
+        return 20;
     }
 
     protected function getAclManager()

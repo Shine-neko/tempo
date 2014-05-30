@@ -15,11 +15,9 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
-
 
 use Tempo\Bundle\ProjectBundle\Entity\Project;
 
@@ -47,9 +45,7 @@ class LoadProjectData extends AbstractFixture implements ContainerAwareInterface
             'Nimbus','Spartacus','Gothlauth','Dentless'
         );
 
-        foreach($projectList as $name) {
-
-
+        foreach ($projectList as $name) {
             $userEntity = $this->getReference($userList[array_rand($userList, 1)]);
 
             $digit = str_shuffle('123456789');
@@ -63,16 +59,15 @@ class LoadProjectData extends AbstractFixture implements ContainerAwareInterface
             $project->setOrganization( $this->getReference('organization'.$i));
             $project->setStatus( $this->getReference('projectType'.(rand(1, 3))) );
             $project->setAdvancement($digit[0]);
-            $project->setCreated(new \DateTime());
-            $project->setUpdated(new \DateTime());
+            $project->setCreatedAt(new \DateTime());
+            $project->setUpdatedAt(new \DateTime());
             $project->setActive(true);
             $project->setBeginning(new \DateTime());
             $project->setEnding(new \DateTime());
             $project->addTeam($userEntity);
             $project->addTeam($this->getReference('olivia.pace'));
 
-
-            if($i > 5) {
+            if ($i > 5) {
                 $digit = str_shuffle('12345');
                 $project->setParent($this->getReference('project'.$digit[0]));
             }
@@ -81,6 +76,7 @@ class LoadProjectData extends AbstractFixture implements ContainerAwareInterface
             $manager->flush();
 
             $this->getAclManager()->addObjectPermission($project, MaskBuilder::MASK_OWNER, $userEntity); //set Permission
+            $this->getAclManager()->addObjectPermission($project, MaskBuilder::MASK_OWNER, $this->getReference('olivia.pace')); //set Permission
             $this->addReference('project'.$i, $project);
             $i++;
         }
@@ -91,7 +87,7 @@ class LoadProjectData extends AbstractFixture implements ContainerAwareInterface
      */
     public function getOrder()
     {
-        return 4;
+        return 40;
     }
 
     protected function getAclManager()

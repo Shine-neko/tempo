@@ -10,8 +10,8 @@
 */
 
 namespace Tempo\Bundle\MainBundle\Entity;
-use Tempo\Bundle\MainBundle\Model\ChatMessage as BaseChatMessage;
 
+use Tempo\Bundle\MainBundle\Model\ChatMessage as BaseChatMessage;
 
 class ChatMessage extends BaseChatMessage
 {

@@ -17,7 +17,6 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class TeamType extends AbstractType
 {
-
     /**
      * {@inheritdoc}
      */

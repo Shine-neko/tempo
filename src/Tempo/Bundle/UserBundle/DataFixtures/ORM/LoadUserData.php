@@ -15,17 +15,12 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 
-
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Tempo\Bundle\UserBundle\Entity\User;
 
-/**
- *
- */
 class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
-
     private $container;
 
     /**
@@ -43,7 +38,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
     {
         $userManager = $this->container->get('fos_user.user_manager');
         $users = array(
-
             'admin'           => 'Ad Min',
             'john.doe'        => 'John Doe',
             'brian.lester'    => 'Brian Lester',
@@ -63,7 +57,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         );
 
         foreach ($users as $username => $name) {
-
             $account = $userManager->createUser();
             $fullName = explode(' ', $name);
 
@@ -91,6 +84,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      */
     public function getOrder()
     {
-        return 1;
+        return 10;
     }
 }

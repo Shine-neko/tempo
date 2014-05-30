@@ -9,11 +9,9 @@
 * file that was distributed with this source code.
 */
 
-
 namespace Tempo\Bundle\UserBundle\Model;
 
 use FOS\UserBundle\Model\GroupInterface as BaseGroupInterface;
-
 
 interface GroupInterface extends BaseGroupInterface
 {

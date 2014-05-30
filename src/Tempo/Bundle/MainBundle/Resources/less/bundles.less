@@ -328,6 +328,10 @@ table.table-striped tbody .actions .edit {
 	margin-left: 15px;
 }
 
+.user.notification {
+
+}
+
 .dashboard  {
     overflow: hidden;
 }
@@ -673,6 +677,8 @@ table.table-striped tbody .actions .edit {
 .organization.show #organization-list-project ul li {
 	list-style: none;
 	border-top: 1px solid #eee;
+	padding-left: 10px;
+	clear:both;
 }
 
 .organization.show #organization-list-project ul li img.avatar {
@@ -686,7 +692,6 @@ table.table-striped tbody .actions .edit {
 }
 .organization.show #organization-list-project h4 {
     margin-bottom: 5px;
-    text-align: center;
     font-size: 20px;
     font-weight: normal;
 }
@@ -793,6 +798,17 @@ table.table-striped tbody .actions .edit {
 
 .project #content form .formtextField #project_avancement {
     display: none;
+}
+
+.project.show #content #breadcrumb {
+	padding-left: 0;
+}
+
+.project.show #content .app-panel.infos {
+	padding-top: 0;
+}
+.project.show #content .app-panel.infos h1 small.label {
+	font-size: 12px;
 }
 
 .project.show #content #project-tab {
@@ -919,12 +935,59 @@ table.table-striped tbody .actions .edit {
 	list-style: none;
 	padding-left: 0;
 }
+.project.edit #page-title, .project.new #page-title {
+	margin-left: 30px;
+}
 .project.edit .form-block, .project.new .form-block {
 	border: 0px;
 }
 
-.project.edit .form-block select, .project.new .form-block select {
-	width: 250px;
+.project.edit #knob_value, .project.new #knob_value {
+	margin-top: 10px;
+}
+
+.project.new #slider, .project.edit #slider {
+	height: 34px;
+	box-shadow: none;
+}
+.project.new #slider a, .project.edit #slider a {
+	top: 10px;
+}
+
+.project.edit .wysiwyg, .project.new .wysiwyg {
+	margin-top: 40px;
+}
+.project.edit .collapse-panel, .project.new .collapse-panel {
+	padding: 0px;
+	margin-bottom: 10px;
+}
+.project.edit .collapse-panel .inside, .project.new .collapse-panel .inside {
+	padding: 10px;
+}
+
+.project.edit .collapse-panel h3, .project.new .collapse-panel h3 {
+	font-size: 14px;
+	font-weight: bold;
+	padding: 8px 12px;
+	margin: 0;
+	line-height: 1.4;
+	border-bottom: 1px solid #eee;
+}
+.project.edit .inside, .project.new .inside {
+
+}
+
+.project.edit .handlediv, .project.new .handlediv {
+	float: right;
+	height: 30px;
+	width: 27px;
+	padding: 8px 10px;
+}
+
+.project.edit .form_rest, .project.new .form_rest {
+	clear: both;
+	margin: 40px;
+	padding-top: 25px;
 }
 
 .project.edit #content #center form .formtextField input#project_avancement {

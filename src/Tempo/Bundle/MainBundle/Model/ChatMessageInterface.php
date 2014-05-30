@@ -51,19 +51,34 @@ interface ChatMessageInterface
     public function getUser();
 
     /**
-     * Set datetime
+     * Set createdAt
      *
-     * @param  DateTime    $datetime
+     * @param  \DateTime    $datetime
      * @return ChatMessage
      */
-    public function setCreated(\DateTime $datetime);
+    public function setCreatedAt(\DateTime $datetime);
 
     /**
-     * Get datetime
+     * Get createdAt
      *
-     * @return date $datetime
+     * @return \DateTime $datetime
      */
-    public function getCreated();
+    public function getCreatedAt();
+
+    /**
+     * Set updateAt
+     *
+     * @param  \DateTime    $datetime
+     * @return ChatMessage
+     */
+    public function setUpdatedAt(\DateTime $datetime);
+
+    /**
+     * Get updateAt
+     *
+     * @return \DateTime $datetime
+     */
+    public function getUpdatedAt();
 
     /**
      * @param $room

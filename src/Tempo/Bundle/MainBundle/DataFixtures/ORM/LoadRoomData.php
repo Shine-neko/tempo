@@ -16,7 +16,6 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Tempo\Bundle\MainBundle\Entity\Room;
 
-
 class LoadRoomData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
@@ -51,6 +50,6 @@ class LoadRoomData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 7;
+        return 50;
     }
 }

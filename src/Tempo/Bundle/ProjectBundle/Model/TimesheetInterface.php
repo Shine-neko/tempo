@@ -16,7 +16,6 @@ use Sylius\Component\Resource\Model\TimestampableInterface;
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
-
 interface TimesheetInterface extends TimestampableInterface
 {
     /**

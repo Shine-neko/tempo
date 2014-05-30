@@ -1,5 +1,14 @@
 <?php
 
+/*
+* This file is part of the Tempo-project package http://tempo-project.org/>.
+*
+* (c) Mlanawo Mbechezi  <mlanawo.mbechezi@ikimea.com>
+*
+* For the full copyright and license information, please view the LICENSE
+* file that was distributed with this source code.
+*/
+
 namespace Tempo\Bundle\ProjectBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
@@ -19,20 +28,21 @@ class TimesheetRepository extends EntityRepository
      */
     public function findActivities($user, $weekBegin, $weekEnd)
     {
-        $query = $this->createQueryBuilder('t');
-        $query->leftJoin('t.project', 'p');
-        $query->leftJoin('p.team', 'pu');
-
-        $query->where('t.workedDate BETWEEN :begin AND :end');
-        $query->AndWhere('pu = :user');
-        $query->setParameter('begin', $weekBegin);
-        $query->setParameter('end', $weekEnd);
-        $query->setParameter('user', $user);
-
+        $query = $this->createQueryBuilder('t')
+                    ->leftJoin('t.project', 'p')
+                    ->leftJoin('p.team', 'pu')
+                    ->where('t.workedDate BETWEEN :begin AND :end')
+                    ->AndWhere('pu = :user')
+                    ->AndWhere('t.user = :user')
+                    ->setParameters(array(
+                        'begin' => $weekBegin,
+                        'end'   => $weekEnd,
+                        'user'  => $user
+                    ));
         /*
-            SELECT p.id, p.name, p.slug, t.id, t.workedTime, t.billable, t.createdAt, t.description FROM project p
-            LEFT JOIN project_user pu ON pu.project_id = p.id
-            LEFT JOIN timesheet t ON t.project_id = p.id  WHERE pu.user_id = 1
+            SELECT p.id, p.name, p.slug, t.id, t.worked_time, t.billable, t.created_at, t.description FROM tempo_project p
+            LEFT JOIN tempo_project_user pu ON pu.project_id = p.id
+            LEFT JOIN tempo_timesheet t ON t.project_id = p.id  WHERE pu.user_id = 1
         */
 
         return $query->getQuery()->getResult();

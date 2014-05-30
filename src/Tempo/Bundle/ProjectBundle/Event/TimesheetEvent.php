@@ -15,21 +15,27 @@ use Tempo\Bundle\ProjectBundle\Model\TimesheetInterface;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Request;
 
-
-class TimesheetEvent extends Event
+class Timesheet extends Event
 {
+    /**
+     * @var \Symfony\Component\HttpFoundation\Request
+     */
     private $request;
-    private $timesheet;
 
     /**
+     * @param Request            $request
      * @param TimesheetInterface $timesheet
-     * @param Request $request
      */
-    public function __construct(TimesheetInterface $timesheet, Request $request)
+    public function __construct(Request $request, TimesheetInterface $timesheet)
     {
-        $this->timesheet = $timesheet;
         $this->request = $request;
+        $this->timesheet = $timesheet;
     }
+
+    /**
+     * @var \Tempo\Bundle\ProjectBundle\Model\TimesheetInterface
+     */
+    private $timesheet;
 
     /**
      * @return TimesheetInterface

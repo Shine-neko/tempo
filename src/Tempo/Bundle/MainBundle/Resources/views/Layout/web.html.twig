@@ -15,6 +15,7 @@
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"  />
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}"  />
+    <title>{% block title %}{{ 'Welcome'|trans }}{% endblock %} - Tempo</title>
 </head>
 
 <body class="no-js {{ get_browser() }} {% block bodyClass %}{% endblock %}">
@@ -28,7 +29,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="/" class="navbar-brand">{{ sylius_settings_get('general.name')  }} </a></a>
+                    <a href="/" class="navbar-brand">{{ sylius_settings_get('general.name') }} </a>
                 </div>
                 <div id="search">
                     <form method="get" action="/search/index/">
@@ -54,11 +55,27 @@
                                 <li> <a href="/help"><span class="glyphicon glyphicon-question-sign"></span> Help </a></li>
                             </ul>
                         </li>
+                        {% set notifications_indicator = user_notifications(app.user.id) %}
+                        <li class="notifications">
+                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                                <span class="glyphicon glyphicon-bell"></span>
+                                {% if notifications_indicator|length >0 %}
+                                <span class="indicator">{{ notifications_indicator|length }}</span>
+                                {% endif %}
+                            </a>
+                            <ul class="dropdown-menu">
+                                {% for notification in notifications_indicator %}
+                                    <li> <a href="#">{{ notification.message }}</a> </li>
+                                {% else %}
+                                    <li><a href="{{ path('notification_dashboard') }}">No Notifications</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
             </div>
         </header>
-        <div id="content">
+        <div id="content" class="container-fluid">
             <div class="row">
                 {% block body %}
                 <div id="child-content" class="col-md-{{ sidebar is defined ? '10' : '12' }}">

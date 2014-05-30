@@ -9,7 +9,6 @@
 * file that was distributed with this source code.
 */
 
-
 namespace Tempo\Bundle\JsConfigurationBundle\Dumper;
 
 use Symfony\Component\Serializer\Serializer;
@@ -36,7 +35,7 @@ class ConfigurationDumper
 
     /**
      * @param $targetPath
-     * @return int
+     * @return string\boolean
      */
     public function dump($targetPath)
     {

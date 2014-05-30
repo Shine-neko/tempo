@@ -29,7 +29,7 @@ interface ActivityProviderInterface
     /**
      * Set provider
      *
-     * @param string $provider
+     * @param  string   $provider
      * @return Activity
      */
     public function setProvider(ProjectProviderInterface $provider);
@@ -44,7 +44,7 @@ interface ActivityProviderInterface
     /**
      * Set message
      *
-     * @param string $message
+     * @param  string   $message
      * @return Activity
      */
     public function setMessage($message);
@@ -59,7 +59,7 @@ interface ActivityProviderInterface
     /**
      * Set parameters
      *
-     * @param array $parameters
+     * @param  array    $parameters
      * @return Activity
      */
     public function setParameters($parameters);
@@ -74,17 +74,17 @@ interface ActivityProviderInterface
     /**
      * Set datetime
      *
-     * @param \DateTime $datetime
+     * @param  \DateTime $datetime
      * @return Activity
      */
-    public function setCreated($datetime);
+    public function setCreatedAt($datetime);
 
     /**
      * Get datetime
      *
      * @return \DateTime
      */
-    public function getCreated();
+    public function getCreatedAt();
 
     /**
      * @return Object

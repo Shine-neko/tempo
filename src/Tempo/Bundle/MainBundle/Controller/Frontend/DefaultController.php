@@ -9,8 +9,6 @@
 * file that was distributed with this source code.
 */
 
-
-
 namespace Tempo\Bundle\MainBundle\Controller\Frontend;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +16,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Tempo\Bundle\MainBundle\Entity\Settings;
 use Tempo\Bundle\MainBundle\Form\SettingsType;
 use Tempo\Bundle\MainBundle\Form\Type\ChatMessageType;
-
 
 class DefaultController extends Controller
 {

@@ -16,17 +16,17 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Project Model
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
- * @todo: fix php documentor
  */
-
 class Project implements ProjectInterface
 {
-
     const STATUS_CREATED = 10;
     const STATUS_OPENING = 20;
     const STATUS_FINISHED = 50;
     const STATUS_DELETED = -10;
 
+    /**
+     * @var integer
+     */
     protected $id;
 
     /**
@@ -77,12 +77,12 @@ class Project implements ProjectInterface
     /**
      * @var \DateTime
      */
-    protected $created;
+    protected $createdAt;
 
     /**
      * @var \DateTime
      */
-    protected $updated;
+    protected $updatedAt;
 
     /**
      * @var string
@@ -162,6 +162,8 @@ class Project implements ProjectInterface
     public function setSlug($slug)
     {
         $this->slug = $slug;
+
+        return $this;
     }
 
     /**
@@ -170,6 +172,8 @@ class Project implements ProjectInterface
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
     }
 
     /**
@@ -191,33 +195,37 @@ class Project implements ProjectInterface
     /**
      * {@inheritdoc}
      */
-    public function setCreated($created)
+    public function setCreatedAt(\DateTime $created)
     {
-        $this->created = $created;
+        $this->createdAt = $created;
+
+        return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getCreated()
+    public function getCreatedAt()
     {
-        return $this->created;
+        return $this->createdAt;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setUpdated($updated)
+    public function setUpdatedAt(\DateTime $updated)
     {
-        $this->updated = $updated;
+        $this->updatedAt = $updated;
+
+        return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getUpdated()
+    public function getUpdatedAt()
     {
-        return $this->updated;
+        return $this->updatedAt;
     }
 
     /**
@@ -226,6 +234,8 @@ class Project implements ProjectInterface
     public function setOrganization(OrganizationInterface $organization)
     {
         $this->organization = $organization;
+
+        return $this;
     }
 
     /**
@@ -242,6 +252,8 @@ class Project implements ProjectInterface
     public function setDescription($description)
     {
         $this->description = $description;
+
+        return $this;
     }
 
     /**
@@ -258,6 +270,8 @@ class Project implements ProjectInterface
     public function setActive($isActive)
     {
         $this->active = $isActive;
+
+        return $this;
     }
 
     /**
@@ -274,6 +288,8 @@ class Project implements ProjectInterface
     public function setBeginning(\DateTime $beginning)
     {
         $this->beginning = $beginning;
+
+        return $this;
     }
 
     /**
@@ -290,6 +306,8 @@ class Project implements ProjectInterface
     public function setEnding(\DateTime $ending)
     {
         $this->ending = $ending;
+
+        return $this;
     }
 
     /**
@@ -303,9 +321,11 @@ class Project implements ProjectInterface
     /**
      * {@inheritdoc}
      */
-    public function setType($type)
+    public function setType(ProjectTypeInterface $type = null)
     {
         $this->type = $type;
+
+        return $this;
     }
 
     /**
@@ -322,6 +342,8 @@ class Project implements ProjectInterface
     public function setAdvancement($advancement)
     {
         $this->advancement = $advancement;
+
+        return $this;
     }
 
     /**
@@ -338,6 +360,8 @@ class Project implements ProjectInterface
     public function setCode($code)
     {
         $this->code = $code;
+
+        return $this;
     }
 
     /**
@@ -354,6 +378,8 @@ class Project implements ProjectInterface
     public function setStatus($status)
     {
         $this->status = $status;
+
+        return $this;
     }
 
     /**
@@ -370,6 +396,8 @@ class Project implements ProjectInterface
     public function setBudgetEstimated($budgetEstimated)
     {
         $this->budget_estimated = $budgetEstimated;
+
+        return $this;
     }
 
     /**
@@ -386,6 +414,8 @@ class Project implements ProjectInterface
     public function setPriority($priority)
     {
         $this->priority = $priority;
+
+        return $this;
     }
 
     /**
@@ -402,6 +432,8 @@ class Project implements ProjectInterface
     public function addTimesheet(TimesheetInterface $timesheet)
     {
         $this->timesheets[] = $timesheet;
+
+        return $this;
     }
 
     /**
@@ -410,6 +442,8 @@ class Project implements ProjectInterface
     public function setTimesheets($timesheets)
     {
         $this->timesheets = $timesheets;
+
+        return $this;
     }
 
     /**
@@ -420,30 +454,14 @@ class Project implements ProjectInterface
         return $this->timesheets;
     }
 
-    public static function getStatusList()
-    {
-        return array(
-            self::STATUS_CREATED => 'created',
-            self::STATUS_OPENING => 'open',
-            self::STATUS_FINISHED => 'finished',
-            self::STATUS_DELETED => 'deleted'
-        );
-    }
-
-    public function renderStatus()
-    {
-        if(!empty($this->status)) {
-            $status = self::getStatusList();
-            return $status[$this->status];
-        }
-    }
-
     /**
      * {@inheritdoc}
      */
     public function addTeam($user)
     {
         $this->team[] = $user;
+
+        return $this;
     }
 
     /**
@@ -462,6 +480,8 @@ class Project implements ProjectInterface
         $this->children[] = $children;
 
         $children->setParent($this);
+
+        return $this;
     }
 
     /**
@@ -478,6 +498,8 @@ class Project implements ProjectInterface
     public function setChildren($children)
     {
         $this->children = $children;
+
+        return $this;
     }
 
     /**
@@ -486,6 +508,8 @@ class Project implements ProjectInterface
     public function setParent(ProjectInterface $parent = null)
     {
         $this->parent = $parent;
+
+        return $this;
     }
 
     /**
@@ -533,6 +557,8 @@ class Project implements ProjectInterface
     public function addProvider(ProjectProviderInterface $provider)
     {
         $this->providers[] = $provider;
+
+        return $this;
     }
 
     /**
@@ -549,5 +575,7 @@ class Project implements ProjectInterface
     public function setProviders($provider)
     {
         $this->providers = $provider;
+
+        return $this;
     }
 }

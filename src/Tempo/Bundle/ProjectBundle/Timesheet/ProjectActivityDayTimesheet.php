@@ -10,14 +10,15 @@
 */
 
 namespace Tempo\Bundle\ProjectBundle\Timesheet;
+
 use Tempo\Bundle\ProjectBundle\Model\TimesheetInterface;
 
 class ProjectActivityDayTimesheet
 {
     /**
-     * var integer $hours
+     * var integer $time
      */
-    protected $time;
+    protected $workedDate = array();
 
     /**
      * @var integer $day
@@ -25,14 +26,14 @@ class ProjectActivityDayTimesheet
     protected $day;
 
     /**
-     * @var Collection
+     * @var array
      */
     protected $activities;
 
     public function __construct($day)
     {
         $this->day = $day;
-        $this->time = 0;
+        $this->workedTime = 0;
         $this->activities = array();
     }
 
@@ -44,17 +45,22 @@ class ProjectActivityDayTimesheet
         return $this->day;
     }
 
+    /**
+     * @param integer $time
+     */
     public function addTime($time)
     {
-        $this->time = $this->time + $time;
+        $this->workedTime = $this->workedTime + $time;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * @return integer $workedDate
      */
     public function getTime()
     {
-        return $this->time;
+        return $this->workedTime;
     }
 
     /**
@@ -63,17 +69,16 @@ class ProjectActivityDayTimesheet
      */
     public function addActivity(TimesheetInterface $activity)
     {
-        $this->activities[$this->day][] = $activity;
+        $this->activities[] = $activity;
 
         return $this;
     }
 
     /**
-     * @return Collection
+     * @return array
      */
-    public function getActivities($day)
+    public function getActivities()
     {
-        return $this->activities[$day];
+        return $this->activities;
     }
-
 }

@@ -1,6 +1,8 @@
 {% extends 'TempoMainBundle::Layout/web.html.twig' %}
-{% block javascripts %}
+{% trans_default_domain 'TempoMain' %}
+{% block title %}Dashboard{% endblock %}
 
+{% block javascripts %}
     {{ parent() }}
     {% javascripts
         '@TempoMainBundle/Resources/public/js/app/model/chatMessage.js'
@@ -27,8 +29,6 @@
 
 {% block bodyClass %}home dashboard {% endblock %}
 {% block body %}
-    {% trans_default_domain 'TempoMain' %}
-
     <nav class="col-md-12 rooms">
         <ul class="clearfix">
            {% for room in rooms %}
@@ -43,7 +43,7 @@
             {{ render(controller('TempoActivityBundle:Activity:new')) }}
 
             <div id="room-activity-box">
-                {{ render(controller('TempoActivityBundle:Activity:list', {'type': 'all', 'project': project})) }}
+                {{ render(controller('TempoActivityBundle:Activity:list', {'type': 'all', 'project': currentRoom.project})) }}
             </div>
 
         </div>
@@ -53,6 +53,4 @@
             </div>
         </div>
     </div>
-
-
 {% endblock %}

@@ -1,73 +1,74 @@
 {% trans_default_domain 'TempoProjectBundle' %}
-{{ form_errors(form) }}
-<div class="form-block clearfix">
-    <fieldset class="fieldset-block col-md-6">
-        <div class="formtextField">
-            {{ form_label(form.organization) }}
-            {{ form_errors(form.organization) }}
-            {{ form_widget(form.organization, { 'attr': {'class': 'form-control'} }) }}
-        </div>
-        <div class="formtextField">
-            {{ form_label(form.name) }}
-            {{ form_errors(form.name) }}
-            {{ form_widget(form.name, { 'attr': {'class': 'form-control'} }) }}
-        </div>
-        <div class="formtextField">
-            {{ form_label(form.code) }}
-            {{ form_errors(form.code) }}
-            {{ form_widget(form.code, { 'attr': {'class': 'form-control'} }) }}
-        </div>
 
-        <div class="formtextField">
-            {{ form_row(form.beginning, { 'attr': {'class': 'form-control datepicker'} }) }}
-        </div>
+<div class="col-md-10">
 
-        <div class="formtextField">
-            {{ form_label(form.ending) }}
-            {{ form_errors(form.ending) }}
-            {{ form_widget(form.ending, { 'attr': {'class': 'form-control datepicker'} }) }}
-        </div>
-    </fieldset>
+    <div class="app-panel infos">
 
-    <fieldset class="col-md-6">
-        <div class="formtextField">
-            {{ form_row(form.active) }}
-        </div>
-        <div class="formtextField">
-            {{ form_row(form.type) }}
-        </div>
-        <div class="formtextField">
-            {{ form_row(form.status) }}
-        </div>
-        <div class="formtextField">
-            {{ form_label(form.budget_estimated) }}
-            {{ form_errors(form.budget_estimated) }}
-            {{ form_widget(form.budget_estimated, { 'attr': {'class': 'form-control'} }) }}
-        </div>
-        <div class="formtextField">
+        <h1 id="page-title" class="col-md-6">{{ page_title }}</h1>
 
-            {{ form_label(form.advancement) }}
-            {{ form_errors(form.advancement) }}
-            {{ form_widget(form.advancement, { 'attr' :  { 'disabled' : 'disabled', 'style': 'display: none' }}) }}
-            <div class="col-lg-9">
-                <div id="slider" class="slider form-control">
-                    <a class="ui-slider-handle ui-state-default ui-corner-all" href="#">
-                        <span id="knob_value">{{ form.advancement.vars.value }}%</span>
-                    </a>
+        {{ form_errors(form) }}
+
+        <fieldset class="fieldset-block col-md-6">
+
+            {{ form_row(form.name) }}
+
+            {{ form_row(form.code) }}
+
+            {{ form_row(form.beginning) }}
+
+            {{ form_row(form.ending) }}
+        </fieldset>
+
+        <fieldset class="col-md-6">
+
+            {{ form_row(form.budget_estimated) }}
+
+            <div id="project_budget_advancement_control_group" style="clear: both" class="form-group" data-placement="right" data-toggle="popover" data-trigger="hover" data-content="" data-title="">
+                {{ form_label(form.advancement) }}
+                <div style="display: none">
+                    {{ form_widget(form.advancement) }}
+                </div>
+                <div class="col-lg-9">
+                    <div id="slider" class="slider form-control">
+                        <a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: {{ form.advancement.vars.value }}%">
+                            <span id="knob_value" class="label label-primary">{{ form.advancement.vars.value }}%</span>
+                        </a>
+                    </div>
                 </div>
             </div>
+        </fieldset>
+        <div class="clearbox"></div>
+    </div>
+    <div class="wysiwyg clearbox">
+        {{ form_widget(form.description) }}
 
-        </div>
-    </fieldset>
-</div>
-
-<div class="form-block clearfix">
-
-    <div class="formtextField clearfix">
-        {{ form_errors(form.description) }}
-        {{ form_widget(form.description, { 'attr': {'class': 'form-control'} }) }}
     </div>
 </div>
-<p class="pull-right">
-    {{form_rest(form)}}
-</p>
+<div class="col-md-2">
+    <div class="app-panel collapse-panel">
+        <div title="Click to toggle" class="handlediv"><span class="glyphicon glyphicon-chevron-up"></span> </div>
+        <h3>Publish</h3>
+            <div class="inside clearfix">
+                <div>
+                    <label>Active: </label> {{  form.vars.value.active ? 'On' : 'Off'  }}
+                    <a href="#" data-toggle="collapse" data-target="#publish-collapse-active"> Edit</a>
+                    <div id="publish-collapse-active" class="panel-collapse collapse out">
+                        {{ form_widget(form.active) }}
+                    </div>
+
+                </div>
+            </div>
+    </div>
+    <div class="app-panel collapse-panel">
+        <div title="Click to toggle" class="handlediv"><span class="glyphicon glyphicon-chevron-up"></span> </div>
+        <h3>Project Attributes</h3>
+        <div class="inside clearfix">
+            <div>
+                {{ form_row(form.type) }}
+
+            </div>
+        </div>
+    </div>
+
+</div>
+{{form_rest(form)}}

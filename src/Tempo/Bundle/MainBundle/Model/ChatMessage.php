@@ -11,7 +11,7 @@
 
 namespace Tempo\Bundle\MainBundle\Model;
 
-abstract class ChatMessage
+abstract class ChatMessage implements ChatMessageInterface
 {
     /**
      * @var integer
@@ -36,7 +36,12 @@ abstract class ChatMessage
     /**
      * @var \DateTime
      */
-    protected $created;
+    protected $createdAt;
+
+    /**
+     * @var \DateTime
+     */
+    protected $updateAt;
 
     /**
      * {@inheritdoc}
@@ -85,9 +90,9 @@ abstract class ChatMessage
     /**
      * {@inheritdoc}
      */
-    public function setCreated(\DateTime $datetime)
+    public function setCreatedAt(\DateTime $datetime)
     {
-        $this->created = $datetime;
+        $this->createdAt = $datetime;
 
         return $this;
     }
@@ -95,9 +100,27 @@ abstract class ChatMessage
     /**
      * {@inheritdoc}
      */
-    public function getCreated()
+    public function getCreatedAt()
     {
-        return $this->created;
+        return $this->createdAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setUpdatedAt(\DateTime $datetime)
+    {
+        $this->updateAt = $datetime;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updateAt;
     }
 
     /**
@@ -106,6 +129,8 @@ abstract class ChatMessage
     public function setRoom($room)
     {
         $this->room = $room;
+
+        return $this;
     }
 
     /**

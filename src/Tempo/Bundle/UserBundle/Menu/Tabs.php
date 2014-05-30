@@ -9,12 +9,10 @@
 * file that was distributed with this source code.
 */
 
-
 namespace Tempo\Bundle\UserBundle\Menu;
 
 use Symfony\Component\Translation\Translator;
 use Knp\Menu\FactoryInterface;
-
 
 class Tabs
 {
@@ -34,12 +32,10 @@ class Tabs
         $password = $this->translator->trans('profile.tabs.password', array(), 'TempoUser');
         $setting = $this->translator->trans('profile.tabs.settings', array(), 'TempoUser');
 
-
         $menu->addChild($edit, array('route' => 'user_profile_edit'));
         $menu->addChild($profile, array('route' => 'user_profile_picture'));
         $menu->addChild($password, array('route' => 'user_profile_password'));
         $menu->addChild($setting, array('route' => 'user_profile_settings'));
-
 
         return $menu;
     }

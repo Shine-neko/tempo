@@ -26,9 +26,8 @@ class LoadProjectProviderData extends AbstractFixture implements OrderedFixtureI
     public function load(ObjectManager $manager)
     {
         for ($i=1; $i<5; $i++) {
-
             $activityProvider = new ProjectProvider();
-            $activityProvider->setCreated(new \DateTime());
+            $activityProvider->setCreatedAt(new \DateTime());
             $activityProvider->setName('github');
             $activityProvider->setProject($this->getReference('project'.$i));
 
@@ -44,6 +43,6 @@ class LoadProjectProviderData extends AbstractFixture implements OrderedFixtureI
      */
     public function getOrder()
     {
-        return 6;
+        return 60;
     }
 }

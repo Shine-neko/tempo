@@ -41,7 +41,7 @@ class ProviderRegistry
     /**
      * Register a provider for given provider name.
      *
-     * @param string          $namespace
+     * @param string            $namespace
      * @param ProviderInterface $provider
      */
     public function registerProvider($name, $provider)

@@ -6,7 +6,6 @@ Feature: Check login
     Then the response status code should be 200
     And I should see "Login"
 
-
   Scenario: Check user login page when connected
     When I fill in "Username" with "john.does"
     And I fill in "Password" with "john.does"
@@ -18,5 +17,5 @@ Feature: Check login
       | Username    | bar |
       | Password | bar         |
     And I press "Login"
-    Then I should be on login page
+    #Then I should be on login page
     And I should see "Bad credentials"

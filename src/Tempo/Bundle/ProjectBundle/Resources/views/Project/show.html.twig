@@ -2,21 +2,30 @@
 {% block bodyClass %}project show{% endblock %}
 {% block body %}
 
-<div class="app-panel col-md-8">
+<div class="app-panel col-md-8 infos">
     {% block breadcrumb %}
         <ol id="breadcrumb" class="clearfix">
             <li class="first"> <a href="{{ path('project_home') }}">Accueil</a> </li>
             <li> <a href="{{ path('project_home') }}">{{ 'Project'|trans  }}</a> </li>
-            <li> <a href="{{ path('organization_show', {'slug' : project.organization.slug }) }}">{{ project.organization }}</a> </li>
+            <li> <a href="{{ path('organization_show', {'slug' : organization.slug }) }}">{{ organization }}</a> </li>
+
+            {% if project.parent %}
+                <li> <a href="{{ path('organization_show', {'slug' : organization.slug }) }}">{{ 'Sub project of'|trans }} {{ project.parent }}</a> </li>
+            {% endif %}
             <li class="last"> {{ project.name }} </li>
         </ol>
     {% endblock breadcrumb %}
 
-    <h1 id="page-title" class="col-md-6">{{ project.name }}</h1>
+    <h1 id="page-title" class="col-md-6">
+        {{ project.name }} <br />
+        <small class="label label-default">
+            {{ project.code }}
+        </small>
+    </h1>
 
-    <div class="col-md-3">
-        {% if is_granted('EDIT', project.organization) %}
-        <a class="btn btn-xs btn-primary" href="{{ path('project_new', { 'parent' : project.id, 'organization': project.organization.slug }) }}"> <span class="glyphicon glyphicon-plus"></span> {{ 'project.title_subprojects'|trans([], 'TempoProject') }}</a>
+    <div class="col-md-4">
+        {% if is_granted('EDIT', organization) %}
+        <a class="btn btn-xs btn-primary" href="{{ path('project_new', { 'parent' : project.id, 'organization': organization.slug }) }}"> <span class="glyphicon glyphicon-plus"></span> {{ 'project.title_subprojects'|trans([], 'TempoProject') }}</a>
         {% endif %}
         {% if is_granted('EDIT', project) %}
         <a class="btn btn-xs btn-info " href="{{ path('project_edit', { 'slug': project.slug }) }}"> <span class="glyphicon glyphicon-edit"></span> Edit</a>
@@ -25,7 +34,7 @@
         <a class="btn btn-xs btn-danger" data-toggle="modal" data-target="#" data-title="Delete project" href="#delete_project"> <span class="glyphicon glyphicon-trash"></span> Delete</a>
         {% endif %}
         {% if is_granted('EDIT', project) %}
-        <a class="btn btn-xs btn-primary" href="{{ path('project_provider_list', { 'slug': project.slug }) }}"> <span class="glyphicon glyphicon-cog"></span> {{ 'Source'|trans }} </a>
+            <a class="btn btn-xs btn-primary" href="{{ path('project_version', { 'slug': project.slug }) }}"> <span class="glyphicon glyphicon-cog"></span> {{ 'Version'|trans }} </a>
         {% endif %}
     </div>
     <div class="row">

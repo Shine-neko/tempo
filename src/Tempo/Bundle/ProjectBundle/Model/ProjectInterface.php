@@ -17,13 +17,6 @@ namespace Tempo\Bundle\ProjectBundle\Model;
 
 interface ProjectInterface
 {
-
-    /**
-     * Put this method in if your slug should be "editable"
-     * @param string $slug
-     */
-    public function setSlug($slug);
-
     /**
      * @return integer $id
      */
@@ -40,6 +33,12 @@ interface ProjectInterface
     public function getName();
 
     /**
+     * Put this method in if your slug should be "editable"
+     * @param string $slug
+     */
+    public function setSlug($slug);
+
+    /**
      * Get slug
      *
      * @return string
@@ -51,28 +50,28 @@ interface ProjectInterface
      *
      * @param \DateTime $created
      */
-    public function setCreated($created);
+    public function setCreatedAt(\DateTime $created);
 
     /**
      * Get created
      *
      * @return \DateTime
      */
-    public function getCreated();
+    public function getCreatedAt();
 
     /**
      * Set updated
      *
      * @param \DateTime $updated
      */
-    public function setUpdated($updated);
+    public function setUpdatedAt(\DateTime $updated);
 
     /**
      * Get updated
      *
      * @return \DateTime
      */
-    public function getUpdated();
+    public function getUpdatedAt();
 
     /**
      * Get organization
@@ -138,9 +137,9 @@ interface ProjectInterface
     /**
      * Set type
      *
-     * @param integer $type
+     * @param ProjectTypeInterface $type
      */
-    public function setType($type);
+    public function setType(ProjectTypeInterface $type = null);
 
     /**
      * @return integer

@@ -17,35 +17,103 @@ use Doctrine\Common\Collections\ArrayCollection;
 class User extends BaseUser implements UserInterface
 {
     protected $id;
+
+    /**
+     * @var string
+     */
     protected $locale;
+
+    /**
+     * @var int
+     */
     protected $googleId;
+
+    /**
+     * @var string
+     */
     protected $firstName;
+
+    /**
+     * @var string
+     */
     protected $lastName;
+
+    /**
+     * @var \DateTime
+     */
     protected $createdAt;
+
+    /**
+     * @var \DateTime
+     */
     protected $updatedAt;
+
+    /**
+     * @var string
+     */
     protected $gender;
+
+    /**
+     * @var string
+     */
     protected $company;
+
+    /**
+     * @var string
+     */
     protected $jobTitle;
+
+    /**
+     * @var string
+     */
     protected $phone;
+
+    /**
+     * @var string
+     */
     protected $mobilePhone;
+
+    /**
+     * @var string
+     */
     protected $avatar;
+
+    /**
+     * @var string
+     */
     protected $skype;
+
+    /**
+     * @var string
+     */
     protected $viadeo;
+
+    /**
+     * @var string
+     */
     protected $linkedin;
+
+    /**
+     * @var string
+     */
     protected $twitter;
+
+    /**
+     * @var Collection
+     */
     protected $organizations;
+    protected $notifications;
 
     public function __construct()
     {
         $this->createdAt = new \DateTime();
-
+        $this->organizations = new ArrayCollection();
+        $this->notifications = new ArrayCollection();
         parent::__construct();
     }
 
     /**
-     * Get id
-     *
-     * @return integer
+     * {@inheritdoc}
      */
     public function getId()
     {
@@ -66,12 +134,12 @@ class User extends BaseUser implements UserInterface
     public function setLocale($locale)
     {
         $this->locale = $locale;
+
+        return $this;
     }
 
     /**
-     * Alias for parent::getUsernameCanonical()
-     * @param $slug
-     * @return string
+     * {@inheritdoc}
      */
     public function getSlug()
     {
@@ -79,7 +147,7 @@ class User extends BaseUser implements UserInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getCompany()
     {
@@ -87,8 +155,7 @@ class User extends BaseUser implements UserInterface
     }
 
     /**
-     * set Compagny Name
-     * @param string $company
+     * {@inheritdoc}
      */
     public function setCompany($company)
     {
@@ -98,7 +165,7 @@ class User extends BaseUser implements UserInterface
     }
 
     /**
-     * @return ArrayCollection
+     * {@inheritdoc}
      */
     public function getOrganizations()
     {
@@ -106,19 +173,17 @@ class User extends BaseUser implements UserInterface
     }
 
     /**
-     * Set firstName
-     *
-     * @param string $firstName
+     * {@inheritdoc}
      */
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
+
+        return $this;
     }
 
     /**
-     * Get firstName
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getFirstName()
     {
@@ -126,45 +191,43 @@ class User extends BaseUser implements UserInterface
     }
 
     /**
-     * Set last_name
-     *
-     * @param string $lastName
+     * {@inheritdoc}
      */
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
+
+        return $this;
     }
 
     /**
-     * Get last_name
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getLastName()
     {
         return $this->lastName;
     }
 
-
+    /**
+     * {@inheritdoc}
+     */
     public function getFullName()
     {
         return $this->firstName .' '. strtoupper($this->lastName);
     }
 
     /**
-     * Set job_title
-     *
-     * @param string $jobTitle
+     * {@inheritdoc}
      */
     public function setJobTitle($jobTitle)
     {
         $this->jobTitle = $jobTitle;
+
+        return $this;
     }
 
     /**
-     * Get job_title
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getJobTitle()
     {
@@ -172,19 +235,17 @@ class User extends BaseUser implements UserInterface
     }
 
     /**
-     * Set phone
-     *
-     * @param string $phone
+     * {@inheritdoc}
      */
     public function setPhone($phone)
     {
         $this->phone = $phone;
+
+        return $this;
     }
 
     /**
-     * Get phone
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getPhone()
     {
@@ -192,40 +253,50 @@ class User extends BaseUser implements UserInterface
     }
 
     /**
-     * Set phone_mobile
-     *
-     * @param string $mobilePhone
+     * {@inheritdoc}
      */
     public function setMobilePhone($mobilePhone)
     {
         $this->mobilePhone = $mobilePhone;
+
+        return $this;
     }
 
     /**
-     * Get mobile Phone
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getMobilePhone()
     {
         return $this->mobilePhone;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function hasAvatar()
     {
         return $this->hasLocalAvatar() || $this->hasGravatar();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function hasLocalAvatar()
     {
-        return (boolean)$this->avatar;
+        return (boolean) $this->avatar;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function hasGravatar()
     {
-        return (boolean)@fopen($this->getGravatarUrl() . '?d=404', 'r');
+        return (boolean) @fopen($this->getGravatarUrl() . '?d=404', 'r');
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getAvatar($size = 80, $default = 'mm')
     {
         if ($this->avatar) {
@@ -236,28 +307,35 @@ class User extends BaseUser implements UserInterface
     }
 
     /**
-     * @param string $avatar
+     * {@inheritdoc}
      */
     public function setAvatar($avatar)
     {
         $this->avatar = $avatar;
+
+        return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getGravatarUrl()
     {
         return 'http://www.gravatar.com/avatar/' . md5(strtolower(trim($this->email)));
     }
 
     /**
-     * @param mixed $googleId
+     * {@inheritdoc}
      */
     public function setGoogleId($googleId)
     {
         $this->googleId = $googleId;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * {@inheritdoc}
      */
     public function getGoogleId()
     {
@@ -265,15 +343,17 @@ class User extends BaseUser implements UserInterface
     }
 
     /**
-     * @param mixed $linkedin
+     * {@inheritdoc}
      */
     public function setLinkedin($linkedin)
     {
         $this->linkedin = $linkedin;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * {@inheritdoc}
      */
     public function getLinkedin()
     {
@@ -281,15 +361,17 @@ class User extends BaseUser implements UserInterface
     }
 
     /**
-     * @param mixed $skype
+     * {@inheritdoc}
      */
     public function setSkype($skype)
     {
         $this->skype = $skype;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * {@inheritdoc}
      */
     public function getSkype()
     {
@@ -297,15 +379,17 @@ class User extends BaseUser implements UserInterface
     }
 
     /**
-     * @param mixed $twitter
+     * {@inheritdoc}
      */
     public function setTwitter($twitter)
     {
         $this->twitter = $twitter;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * {@inheritdoc}
      */
     public function getTwitter()
     {
@@ -313,24 +397,57 @@ class User extends BaseUser implements UserInterface
     }
 
     /**
-     * @param mixed $viadeo
+     * {@inheritdoc}
      */
     public function setViadeo($viadeo)
     {
         $this->viadeo = $viadeo;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * {@inheritdoc}
      */
     public function getViadeo()
     {
         return $this->viadeo;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getGender()
     {
         return $this->gender;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setNotifications($notifications)
+    {
+        $this->notifications = $notifications;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addNotification($notification)
+    {
+        $this->notifications[] = $notification;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getNotifications()
+    {
+        return $this->notifications;
     }
 
     /**
@@ -347,6 +464,8 @@ class User extends BaseUser implements UserInterface
     public function setCreatedAt(\DateTime $createdAt)
     {
         $this->createdAt = $createdAt;
+
+        return $this;
     }
 
     /**
@@ -363,5 +482,7 @@ class User extends BaseUser implements UserInterface
     public function setUpdatedAt(\DateTime $updatedAt)
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
     }
 }

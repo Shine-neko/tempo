@@ -9,18 +9,13 @@
 * file that was distributed with this source code.
 */
 
-
-
 namespace Tempo\Bundle\MainBundle\Controller\Frontend;
 
 use FOS\RestBundle\Controller\FOSRestController;
-
 use Tempo\Bundle\MainBundle\Entity\Room;
-
 
 class RoomController extends FOSRestController
 {
-
     /**
      * Get a single Board
      */
@@ -28,7 +23,6 @@ class RoomController extends FOSRestController
     {
         return $room;
     }
-
 
     public function getRoomsAction()
     {

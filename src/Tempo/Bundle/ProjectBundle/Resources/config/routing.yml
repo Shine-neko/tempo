@@ -18,8 +18,9 @@ _timesheet:
   resource: "@TempoProjectBundle/Resources/config/routing/timesheet.yml"
   prefix:   /timesheet
 
-
 _timesheet_api:
   type: rest
   prefix:   /api/{version}/timesheet
   resource: "@TempoProjectBundle/Resources/config/routing/timesheet_api.yml"
+  defaults:
+      version: latest

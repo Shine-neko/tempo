@@ -10,6 +10,7 @@
 */
 
 namespace Tempo\Bundle\ProjectBundle\Timesheet;
+
 use Tempo\Bundle\ProjectBundle\Model\ProjectInterface;
 
 class ProjectTimesheet
@@ -26,7 +27,6 @@ class ProjectTimesheet
 
     public function __construct()
     {
-        $this->hours = 0;
         $this->days = array();
     }
 
@@ -64,7 +64,7 @@ class ProjectTimesheet
     /**
      * get Day
      * @param $day
-     * @return null
+     * @return null|$days
      */
     public function getDay($day)
     {

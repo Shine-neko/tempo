@@ -12,16 +12,20 @@
             <generator strategy="AUTO" />
         </id>
 
-        <field name="name" column="name" type="string" length="255" />
-        <field name="code" column="code" type="string" length="255" />
+        <field name="name" column="name" type="string" length="255">
+            <gedmo:versioned/>
+        </field>
+        <field name="code" column="code" type="string" length="255">
+            <gedmo:versioned/>
+        </field>
 
         <field name="slug" type="string" length="156" unique="true">
             <gedmo:slug unique="true" updatable="true" separator="-" fields="name" />
         </field>
-        <field name="created" type="datetime">
+        <field name="createdAt" type="datetime">
             <gedmo:timestampable on="create"/>
         </field>
-        <field name="updated" type="datetime">
+        <field name="updatedAt" type="datetime">
             <gedmo:timestampable on="update"/>
         </field>
 
@@ -64,7 +68,7 @@
         </many-to-many>
 
         <one-to-many field="providers" target-entity="ProjectProvider" mapped-by="project" />
-
+        <gedmo:loggable log-entry-class="Tempo\Bundle\CoreBundle\Entity\LogEntry"/>
 
     </entity>
 

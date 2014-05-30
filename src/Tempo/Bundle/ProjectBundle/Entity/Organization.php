@@ -11,12 +11,11 @@
 
 namespace Tempo\Bundle\ProjectBundle\Entity;
 
+use Tempo\Bundle\ProjectBundle\Model\Organization as BaseOrganization;
+
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
-
-use Tempo\Bundle\ProjectBundle\Model\Organization as BaseOrganization;
-
 class Organization extends BaseOrganization
 {
     public function __construct()
@@ -29,7 +28,5 @@ class Organization extends BaseOrganization
      */
     public function prePersist()
     {
-
     }
-
 }

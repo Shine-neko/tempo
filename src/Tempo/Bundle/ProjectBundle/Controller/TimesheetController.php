@@ -17,18 +17,22 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-
+use FOS\RestBundle\Controller\Annotations\Post;
+use FOS\RestBundle\View\View;
 use CalendR\Period\Week;
+
+use Tempo\Bundle\CoreBundle\Controller\BaseController;
 use Tempo\Bundle\ProjectBundle\Form\Type\TimesheetType;
 use Tempo\Bundle\ProjectBundle\Filter\Type\TimesheetFilterType;
 use Tempo\Bundle\ProjectBundle\Form\Type\TimesheetExportType;
 use Tempo\Bundle\ProjectBundle\Export\Excel as ExportCVS;
+use Tempo\Bundle\ProjectBundle\Entity\Timesheet;
 
 /**
  * Timesheet controller.
  *
  */
-class TimesheetController extends Controller
+class TimesheetController extends BaseController
 {
     /**
      * Lists all Timesheet entities.
@@ -36,7 +40,7 @@ class TimesheetController extends Controller
      */
     public function dashboardAction(Request $request)
     {
-        $breadcrumb  = $this->get('tempo_main.breadcrumb');
+        $breadcrumb  = $this->get('tempo.main.breadcrumb');
         $breadcrumb->addChild('Time Management');
         $breadcrumb->addChild('Dashboard');
 
@@ -50,8 +54,7 @@ class TimesheetController extends Controller
      */
     public function editAction($id)
     {
-
-        $entity = $this->getManager()->find($id);
+        $entity = $this->getManager('timesheet')->find($id);
 
         $editForm = $this->createForm(new TimesheetType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
@@ -65,12 +68,12 @@ class TimesheetController extends Controller
 
     public function updateAction(Request $request, $id)
     {
-        $entity = $this->getManager()->find($id);
+        $entity = $this->getManager('timesheet')->find($id);
 
         $editForm   = $this->createForm(new TimesheetType(), $entity);
 
         if ($request->isMethod('POST') && $editForm->submit($request)->isValid()) {
-            $this->getManager()->save($entity);
+            $this->getManager('timesheet')->save($entity);
 
             return $this->redirect($this->generateUrl('timesheet'));
         }
@@ -91,8 +94,8 @@ class TimesheetController extends Controller
         $form = $this->createDeleteForm($id);
 
         if ($form->submit($request)->isValid()) {
-            $entity = $this->getManager()->find($id);
-            $this->getManager()->remove($entity);
+            $entity = $this->getManager('timesheet')->find($id);
+            $this->getManager('timesheet')->remove($entity);
         }
 
         return $this->redirect($this->generateUrl('timesheet'));
@@ -106,7 +109,7 @@ class TimesheetController extends Controller
 
         if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
 
-            $list = $this->getManager()->repository->findAll();
+            $list = $this->getManager('timesheet')->repository->findAllByUser();
 
             $html = $this->renderView('TempoProjectBundle:Timesheet:export/pdf_tpl.html.twig', array(
                 'list'  => $list
@@ -136,8 +139,41 @@ class TimesheetController extends Controller
     public function showAction(\DateTime $date)
     {
         return $this->render('TempoProjectBundle:Timesheet:show.html.twig', array(
-            'activities' => $this->getManager()->findByPeriod($date)
+            'activities' => $this->getManager('timesheet')->findByPeriod($date)
         ));
+    }
+
+    /**
+     * @param Request $request
+     * @param  $project
+     * @return View
+     * @Post()
+     */
+    public function createAction(Request $request, $project)
+    {
+        $project = $this->getManager('project')->find($project);
+
+        $view = View::create();
+
+        $period = new Timesheet();
+        $period->setProject($project);
+        $period->setUser($this->getUser());
+
+        $form = $this->createForm(new TimesheetType(), $period);
+        $form->submit($request->request->get('timesheet'));
+
+        if ($form->isValid()) {
+            $this->getManager('timesheet')->save($period);
+            $view->setStatusCode(201);
+            $view->setData($period);
+
+            $this->addFlash('success', 'timesheets.success_add', 'TempoProject');
+
+        } else {
+            $view->setData($form);
+        }
+
+        return $view;
     }
 
     public function exportCSVAction(Request $request)
@@ -155,11 +191,6 @@ class TimesheetController extends Controller
         return $this->render('TempoProjectBundle:Timesheet:export/excel.html.twig', array(
             'form' => $form->createView()
         ));
-    }
-
-    private function getManager()
-    {
-        return $this->get('tempo_project.manager.timesheet');
     }
 
     /**
@@ -194,28 +225,27 @@ class TimesheetController extends Controller
         $filterFormType = $this->createForm(new TimesheetFilterType());
         $processFilter = $this->processFilter($filterFormType, $request);
 
-        if (!empty($processFilter)) {
-            $projectsActivityReporting = $this->get('tempo_project.manager.timesheet')->findActivities(
-                $this->getUser()->getId(), $processFilter['from']->format('Y-m-j'), $processFilter['from']->format('Y-m-j')
-            );
-        } else {
-            $projectsActivityReporting = $this->get('tempo_project.manager.timesheet')->findActivities(
-                $this->getUser()->getId(), $factoryWeek->getBegin()->format('Y-m-j'), $factoryWeek->getEnd()->format('Y-m-j')
-            );
+        if (empty($processFilter)) {
+            $processFilter['from'] = $factoryWeek->getBegin();
+            $processFilter['to'] = $factoryWeek->getEnd();
         }
 
-        $projectList = $this->get('tempo_project.manager.project')->repository->findAllByUser($this->getUser()->getId());
+        $projectsActivityReporting = $this->get('tempo.manager.timesheet')->findActivities(
+            $this->getUser()->getId(), $processFilter['from']->format('Y-m-j'), $processFilter['to']->format('Y-m-j')
+        );
 
-        $proxiesProject = $this->getManager()->getActivitiesForPeriod(
+        $projectList = $this->getManager('project')->repository->findAllByUser($this->getUser()->getId());
+
+        $proxiesProject = $this->getManager('timesheet')->getActivitiesForPeriod(
             $projectsActivityReporting,
             $projectList
         );
 
-        $daysInWeek = $this->getManager()->getDaysInWeek($factoryWeek);
+        $daysInWeek = $this->getManager('timesheet')->getDaysInWeek($factoryWeek);
 
         return array(
             'daysInWeek' => $daysInWeek,
-            'week' => $this->getManager()->getWorkday($workDay[$locale], $daysInWeek),
+            'week' => $this->getManager('timesheet')->getWorkday($workDay[$locale], $daysInWeek),
             'currentWeek' => $week,
             'proxiesProject' => $proxiesProject,
             'weekPagination' => $weekPagination,

@@ -3,9 +3,9 @@
     <tr>
         <th>ID</th>
         <th>{{ 'project.form.label.code'|trans({}, 'TempoProject') }}</th>
+        <th>{{ 'project.form.label.status'|trans({}, 'TempoProject') }}</th>
         <th>{{ 'project.form.label.name'|trans({}, 'TempoProject') }}</th>
         <th>{{ 'project.form.label.type'|trans({}, 'TempoProject') }}</th>
-        <th>{{ 'project.form.label.status'|trans({}, 'TempoProject') }}</th>
         <th>{{ 'project.form.label.priority'|trans({}, 'TempoProject') }}</th>
         <th>{{ 'project.form.label.advancement'|trans({}, 'TempoProject') }}</th>
         <th>{{ 'project.form.label.beginning'|trans({}, 'TempoProject') }}</th>
@@ -15,11 +15,18 @@
     <tbody>
     {% for children in project.children %}
         <tr>
-            <td>{{ children.id }}</td>
+            <td>#{{ children.id }}</td>
             <td>{{ children.code }}</td>
+            <td>
+                {% if children.active %}
+                    <span class="label label-default">Inactive</span>
+                {% else %}
+                    <span class="label label-success">Active</span>
+                {% endif %}
+            </td>
             <td><a href="{{ path('project_show', { 'slug' : children.slug } ) }}">{{ children.name }}</a> </td>
             <td>{{ children.type }}</td>
-            <td>{{ children.renderStatus }}</td>
+
             <td>{{ children.priority }}</td>
             <td>{{ children.advancement }}%</td>
             <td>{{ children.beginning.format("Y-m-j") }}</td>

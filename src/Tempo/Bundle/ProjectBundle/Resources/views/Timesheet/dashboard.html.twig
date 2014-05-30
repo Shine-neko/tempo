@@ -1,12 +1,18 @@
 {% extends "TempoMainBundle::Layout/web.html.twig" %}
 {% block javascripts %}
+
     {{ parent() }}
-    <script type="text/javascript" src="{{ asset('bundles/tempoproject/js/model/TimesheetModel.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/tempoproject/js/collection/TimesheetCollection.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/tempoproject/js/views/timesheetView.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/tempoproject/js/controller/timesheetController.js')}}"></script>
+    {% javascripts
+        '@TempoProjectBundle/Resources/public/js/model/TimesheetModel.js'
+        '@TempoProjectBundle/Resources/public/js/collection/TimesheetCollection.js'
+        '@TempoProjectBundle/Resources/public/js/views/timesheetView.js'
+        '@TempoProjectBundle/Resources/public/js/controller/timesheetController.js'
+        output="dashboard-timesheet.js"
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
     <script type="text/javascript">
-          new Tempo.Controller.Timesheet();
+        new Tempo.Controller.Timesheet();
     </script>
 {% endblock %}
 
@@ -79,7 +85,7 @@
                     <td><a href="{{ path('project_show', {'slug': proxy.project.slug }) }}">{{ proxy.project.name }}</a></td>
                     {% for day in daysInWeek %}
                         <td>
-                            <form action="{{ path('timesheet_postdata') }}" method="post" class="parent-form" id="parent-form{{ loop.index }}">
+                            <form action="{{ path('api_timesheet_create',{'project': proxy.project.id}) }}" method="post" class="parent-form" id="parent-form{{ loop.index }}">
                                 <input type="text" maxlength="2" name="timesheet[workedTime]" class="cra_load" size="2" />
                                 <input type="text" name="timesheet[description]" class="cra_desc" rel="form-cra-load-{{ day.format('Y-m-d')}}" />
                                 <input type="text" name="timesheet[project]" class="cra_project" value="{{ proxy.project.id }}" style="display: none;" />
@@ -88,10 +94,9 @@
                             </form>
 
                             {% if proxy.getDay(day.format('j')) is not null %}
-
                                 <div class="cra craid_{{ day.format('j') }}">
                                     <a data-title="Time tracking" data-toggle="modal" data-target="#" href="{{ path('timesheet_show', { 'date' : day.format('Y-m-d') }) }}">
-                                        <span class="total"> total {{ proxy.getDay(day.format('d'))|length }}</span><br />
+                                        <span class="total"> total {{ proxy.getDay(day.format('d')).activities|length }}</span><br />
                                         <span class="hours">  {{ proxy.getDay(day.format('d')).time }}:00</span>
                                     </a>
                                 </div>

@@ -1,0 +1,19 @@
+{% extends 'WebProfilerBundle:Profiler:layout.html.twig' %}
+
+{% block toolbar %}
+    {# Tempo Logo #}
+    {% set icon %}
+    <a href="http://tempo-project.org/">
+        <img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAdCAYAAAC0T3x2AAAACXBIWXMAABcSAAAXEgFnn9JSAAAAIGNIUk0AAG2YAABzjgAA94UAAIT+AAB/zAAA+M0AAC/7AAAR0LkQh1EAAAMlSURBVHjatNZbiJZVFAbg5//nYKbVNB20GtM8NJiZEWSpNYUXpdVN6UVI0QmE6KauoqKMCryIqKCgouiqovPZQrLsMNmARRaZZQcpjJrJTB3ETtrN+8Pm458cHXvhY3/78K13r73ftdZXmzJxkiZYhKswDx0Z+w2b8RlezLPbMFGrEC3ES2hPfzdqearYhmvw/HCI6sX7zViBPbgD09GNKZiDZfi+WH8YnsMDwyFq6ezogKW4Fy9jFvpwGj6Ndz9hJe5P/+zCxmwciTcqtg/J5s/C2pbOjo4uvB1DF2EM/sZ1+BY/ohVjcTRewK+4oEL2Jb4oxl7N0c7HSXXcnolr047CTPTgUdyFg7AVXTgUD2auxPLiKjrjSQM9dVyGtdgUI/PxWi75sdzPphxpb0jruKdCNBlXFArtLeY+qMeDjVHYBNyKG/EKBuLZilx8Y7c92IA3K2RLKiFyG27CktYMthVGGgTL8Au240p8hXOxGqOz/mMsKIyfHjVuww7cWcp7IFIeH8M1nImn8E3mBrELJ+S7jZW2lPyEoeLocczAsfg6x9EZgnaswqSo8ZOsPTnf/9HE5qihiJbn/WkchfejxPV4MuRPxKt1kXoDhzexuSPtjAhiNabV8XuUNjXqWoq/clenJo7m4sIYWFcc2YkVkv5sTOJtLs7BMw3dv5NU8zMeDvlgFm/HMRHDzNzDnhzr7ApRX9qxOK4Y7yqP4buQTcN5aEm22FCsGZfU8iHOyI5LNBLsIB7BDek/VBuiTAyF9qjzh+TG64u5zdloKZB5ic81rcMkmBqhrAlJd3JhibubqLC3WZn4L4xONh+f/i1FkMNHyexDYm8edWELPo9QBnApLi/W7Kr091r4mmFWFCckk5tk7QXJICMi6ivKekv+E8YUWWEO3t3XUt4MfyZ+4HWckvf1OD53Y6RER2BngnMVzs/4fUkv/fsSF83EUIvKtkQMb0XO/bikUtDsr0dteXbi4uS57sTIuP0lqXrUlmQKz2Jx0s/CJNsRoR411UKyKHeyOPEy/UCQNIj+Sby8V/wQ1lKfDhgaR3c1Dk5l3ep/wL8DAIA/tGnOwlAHAAAAAElFTkSuQmCC" />        <span>{{ collector.version }}</span>
+    </a>
+    {% endset %}
+    {% set text %}
+    <div class="sf-toolbar-info-piece">
+        Tempo <b>{{ collector.version }}</b>
+    </div>
+    <div class="sf-toolbar-info-piece">
+        <a href="http://tempo-project.org" rel="help">Tempo Documentation</a>
+    </div>
+    {% endset %}
+    {% include '@WebProfiler/Profiler/toolbar_item.html.twig' with {'link': false} %}
+{% endblock %}
