@@ -9,7 +9,9 @@
         <parameter key="tempo.main.resource_manager.class">Tempo\Bundle\CoreBundle\Resource\ResourceManager</parameter>
         <parameter key="tempo.main.menu.class">Knp\Menu\MenuItem</parameter>
         <parameter key="tempo.model.room.class">Tempo\Bundle\MainBundle\Entity\Room</parameter>
+        <parameter key="tempo.model.room.message.class">Tempo\Bundle\MainBundle\Entity\ChatMessage</parameter>
         <parameter key="tempo.manager.room.class">Tempo\Bundle\MainBundle\Manager\RoomManager</parameter>
+        <parameter key="tempo.manager.room.message.class">Tempo\Bundle\MainBundle\Manager\RoomMessageManager</parameter>
         <parameter key="tempo.main.listener.project.class">Tempo\Bundle\MainBundle\EventListener\ProjectListener</parameter>
         <parameter key="tempo.main.settings_schema.generale.class">Tempo\Bundle\MainBundle\Settings\GeneralSettingsSchema</parameter>
         <parameter key="tempo.main.settings_schema.project.class">Tempo\Bundle\MainBundle\Settings\ProjectSettingsSchema</parameter>
@@ -58,9 +60,9 @@
             <argument>%tempo.model.room.class%</argument>
         </service>
 
-        <service id="tempo_main.manager.room.message" class="%tempo_main.manager.room.message.class%">
+        <service id="tempo.manager.room.message" class="%tempo.manager.room.message.class%">
             <argument type="service" id="doctrine.orm.entity_manager" />
-            <argument>%tempo_main.model.room.message.class%</argument>
+            <argument>%tempo.model.room.message.class%</argument>
         </service>
 
         <service id="tempo.main.listener.project" class="%tempo.main.listener.project.class%">
