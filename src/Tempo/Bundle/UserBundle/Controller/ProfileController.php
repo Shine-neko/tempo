@@ -42,8 +42,8 @@ class ProfileController extends BaseController
     {
         $user = $this->getUser();
 
-        $form = $this->get('tempo_user.profile.form.avatar.factory');
-        $handler = $this->get('tempo_user.profile.handler.avatar');
+        $form = $this->get('tempo.user.profile.form.avatar.factory');
+        $handler = $this->get('tempo.user.profile.handler.avatar');
 
         if (($retval = $handler->process($user)) !== false) {
 
