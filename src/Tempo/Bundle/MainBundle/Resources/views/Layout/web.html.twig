@@ -1,5 +1,4 @@
-{% set behavior = behavior() %}
-
+<!DOCTYPE html>
 <html lang="{{ app.request.locale }}">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -141,12 +140,13 @@
             '@BazingaJsTranslationBundle/Resources/js/translator.js'
             '@FOSJsRoutingBundle/Resources/public/js/router.js'
             'vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
+            'vendor/selectize/dist/js/standalone/selectize.min.js'
             'vendor/infiniscroll/lib/infiniScroll.js'
             '@TempoMainBundle/Resources/public/js/routerManager.js'
             '@TempoMainBundle/Resources/public/js/app.js'
             '@TempoMainBundle/Resources/public/js/behavior.js'
             filter="?yui_js"
-            output="main.js"
+            output="js/main.js"
         %}
         <script src="{{ asset_url }}"></script>
         {% endjavascripts %}

@@ -5,7 +5,7 @@ Tempo\Bundle\MainBundle\Model\ChatMessage:
         expose: true
       content:
         expose: true
-      created:
+      createdAt:
         expose: true
       user:
         expose: true

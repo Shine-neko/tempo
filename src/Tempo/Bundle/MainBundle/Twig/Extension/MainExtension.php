@@ -13,8 +13,6 @@
 namespace Tempo\Bundle\MainBundle\Twig\Extension;
 
 use Knp\Bundle\TimeBundle\Templating\Helper\TimeHelper;
-use Tempo\Bundle\CoreBundle\Imagine\Cache\CacheManager;
-
 use Ikimea\Browser\Browser;
 
 class MainExtension extends \Twig_Extension
@@ -25,6 +23,7 @@ class MainExtension extends \Twig_Extension
 
     /**
      * @param $container
+     * @param TimeHelper $helper
      */
     public function __construct($container, TimeHelper $helper)
     {
@@ -36,7 +35,18 @@ class MainExtension extends \Twig_Extension
     /**
      * {@inheritdoc}
      */
-    public function getFilters() {
+    public function getGlobals()
+    {
+        return array(
+            'behavior'  => $this->container->get('tempo.main.behavior')
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFilters()
+    {
         return array(
             'size' => new \Twig_Filter_Method($this, 'size'),
             'datetime_diff' => new \Twig_Filter_Method($this, 'dateTimeDiff'),
@@ -54,7 +64,6 @@ class MainExtension extends \Twig_Extension
             )),
             'get_browser' => new \Twig_Function_Method($this, 'getBrowser'),
             'truncate' => new \Twig_Function_Method($this, 'truncate'),
-            'behavior' => new \Twig_Function_Method($this, 'getBehavior'),
             'icon' => new \Twig_Function_Method($this, 'getIcon'),
             'gravatar'    => new \Twig_Function_Method($this, 'getGravatar'),
         );
@@ -122,7 +131,6 @@ class MainExtension extends \Twig_Extension
             'secure'  => false,
         );
 
-
         $map = array(
             's' => $size    ?: $defaults['size'],
             'r' => $rating  ?: $defaults['rating'],
@@ -144,7 +152,7 @@ class MainExtension extends \Twig_Extension
      */
     public function getBehavior()
     {
-        return $this->container->get('tempo.main.behavior');
+
     }
 
     /**
@@ -152,6 +160,6 @@ class MainExtension extends \Twig_Extension
      */
     public function getName()
     {
-       return 'MainExtension';
+       return 'main_extension';
     }
 }

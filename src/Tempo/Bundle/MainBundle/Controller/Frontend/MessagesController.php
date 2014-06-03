@@ -61,7 +61,7 @@ class MessagesController extends FOSRestController
      * )
      *
      * @Annotations\QueryParam(name="offset", requirements="\d+", nullable=true, description="Offset from which to start listing pages.")
-     * @Annotations\QueryParam(name="limit", requirements="\d+", default="10", description="How many pages to return.")
+     * @Annotations\QueryParam(name="limit", requirements="\d+", default="100", description="How many pages to return.")
      *
      */
     public function getMessagesAction(Room $room, ParamFetcherInterface $paramFetcher)
@@ -70,7 +70,7 @@ class MessagesController extends FOSRestController
         $offset = null == $offset ? 0 : $offset;
         $limit = $paramFetcher->get('limit');
 
-        return $this->get('tempo_main.manager.room.message')->all($room , $limit, $offset, array());
+        return $this->get('tempo.manager.room.message')->all($room , $limit, $offset, array());
     }
 
     /**
