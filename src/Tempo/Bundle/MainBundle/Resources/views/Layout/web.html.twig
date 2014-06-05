@@ -43,24 +43,15 @@
                 <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
                     {{ knp_menu_render('main') }}
                     <ul id="user-menu" class="nav navbar-nav navbar-right">
-                        <li class="avatar">
-                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">
-                                <img src=" {{ app.user.avatar(30) }}" alt="Avatar" />
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{ path('user_profile_edit') }}"><span class="glyphicon glyphicon-user"></span> {{ 'Profile'|trans({},'TempoMain') }}</a> </li>
-                                <li><a href="{{ path('user_profile_settings') }}"><span class="glyphicon glyphicon-cog"></span> {{ 'Settings'|trans({},'TempoMain') }}</a> </li>
-                                <li><a href="{{ path('fos_user_security_logout') }}"> <span class="glyphicon glyphicon-log-out"></span> {{ 'layout.logout'|trans([], 'FOSUserBundle') }} </a> </li>
-                                <li role="presentation" class="divider"></li>
-                                <li> <a href="/help"><span class="glyphicon glyphicon-question-sign"></span> Help </a></li>
-                            </ul>
-                        </li>
+
                         {% set notifications_indicator = user_notifications(app.user.id) %}
                         <li class="notifications">
                             <a href="#" data-toggle="dropdown" class="dropdown-toggle">
                                 <span class="glyphicon glyphicon-bell"></span>
                                 {% if notifications_indicator|length >0 %}
-                                <span class="indicator">{{ notifications_indicator|length }}</span>
+                                <span class="indicator">
+                                    <span>{{ notifications_indicator|length }}</span>
+                                </span>
                                 {% endif %}
                             </a>
                             <ul class="dropdown-menu">
@@ -69,6 +60,18 @@
                                 {% else %}
                                     <li><a href="{{ path('notification_dashboard') }}">No Notifications</a></li>
                                 {% endfor %}
+                            </ul>
+                        </li>
+                        <li class="avatar">
+                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                                <img src=" {{ app.user.avatar(24) }}" alt="Avatar" />
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ path('user_profile_edit') }}"><span class="glyphicon glyphicon-user"></span> {{ 'Profile'|trans({},'TempoMain') }}</a> </li>
+                                <li><a href="{{ path('user_profile_settings') }}"><span class="glyphicon glyphicon-cog"></span> {{ 'Settings'|trans({},'TempoMain') }}</a> </li>
+                                <li><a href="{{ path('fos_user_security_logout') }}"> <span class="glyphicon glyphicon-log-out"></span> {{ 'layout.logout'|trans([], 'FOSUserBundle') }} </a> </li>
+                                <li role="presentation" class="divider"></li>
+                                <li> <a href="/help"><span class="glyphicon glyphicon-question-sign"></span> Help </a></li>
                             </ul>
                         </li>
                     </ul>
