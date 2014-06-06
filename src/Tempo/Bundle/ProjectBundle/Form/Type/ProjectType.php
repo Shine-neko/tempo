@@ -74,7 +74,6 @@ class ProjectType extends AbstractType
         $resolver->setDefaults(array(
             'user_id' => null,
             'data_class' => 'Tempo\Bundle\ProjectBundle\Entity\Project',
-            'translation_domain' => 'TempoProject'
         ));
     }
 

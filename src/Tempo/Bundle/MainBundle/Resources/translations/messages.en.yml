@@ -1,8 +1,18 @@
-form.show: 'Show'
-form.create: 'Create'
-form.delete: 'delete'
-form.edit: 'Edit'
-form.search: "Search"
-form.cancel: "Cancel"
-form.save: 'Save'
-form.save_changes: 'Save changes'
+tempo:
+  menu:
+    project: Projets
+    home: Home
+    timesheet: Timesheets
+  form:
+    show: 'Show'
+    create: 'Create'
+    delete: 'delete'
+    edit: 'Edit'
+    search: "Search"
+    cancel: "Cancel"
+    save: 'Save'
+    save_changes: 'Save changes'
+    submit: Send
+  dashboard:
+    title: Activity Feed
+    form.status.label: Share something. Use @ to mention people.

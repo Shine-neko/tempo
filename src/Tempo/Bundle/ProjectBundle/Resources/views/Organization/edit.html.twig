@@ -1,18 +1,15 @@
 {% extends "TempoMainBundle::Layout/web.html.twig" %}
 {% block bodyClass %}organization edit{% endblock %}
-{% set sidebar =  false %}
 {% block javascripts %}
     {{ parent() }}
-    <script type="text/javascript" src="{{ asset('bundles/tempoproject/js/organization.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/tempoproject/js/views/organizationView.js')}}"></script>
 {% endblock %}
-
 
 {% block content %}
 <h1 id="page-title">{{ organization.name  }}</h1>
 
-<form action="{{ path('organization_update', { 'id': organization.id }) }}" method="post" {{ form_enctype(form) }} class="clearfix">
+<form action="{{ path('organization_update', { 'id': organization.id }) }}" method="post" class="clearfix">
     <div class="form-block clearfix">
-
         {{ form_widget(form) }}
     </div>
 
@@ -21,8 +18,10 @@
     </div>
 </form>
 
+    {% block right %}
+        {%  include 'TempoProjectBundle::Organization/_sidebar.html.twig' with { 'teamForm': teamForm, 'organization': organization } %}
+    {% endblock %}
+
 {% endblock %}
 
-{% block right %}
-    {%  include 'TempoProjectBundle::Organization/_sidebar.html.twig' with { 'teamForm': teamForm, 'organization': organization } %}
-{% endblock %}
+

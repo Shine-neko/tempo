@@ -8,9 +8,9 @@
         {% block breadcrumb %}
             <div class="head clearfix">
                 <ol id="breadcrumb" class="clearfix">
-                    <li class="first"> <a href="{{ path('homepage') }}">Accueil</a> </li>
-                    <li> <a href="{{ path('project_home') }}">Project</a> </li>
-                    <li class="first last"> Dashboard </li>
+                    <li class="first"> <a href="{{ path('project_home') }}">{{ 'tempo.menu.home'|trans  }}</a> </li>
+                    <li> <a href="{{ path('project_home') }}">{{ 'tempo.menu.project'|trans  }}</a> </li>
+                    <li class="last"> Dashboard </li>
                 </ol>
 
                 {% if is_granted('ROLE_ADMIN') %}
@@ -20,9 +20,9 @@
             </div>
         {% endblock breadcrumb %}
 
-        <div class="list-organizations col-md-6 app-panel">
+        <div class="list-organizations col-md-12 app-panel">
             <div id="choose-organization" class="clearfix">
-                <p class="first"> {{ 'organization.select'|trans({},'TempoProject') }} <span> ↓ </span> </p>
+                <p class="first"> {{ 'tempo.organization.select'|trans }} <span> ↓ </span> </p>
 
             </div>
             <ul>
@@ -39,7 +39,7 @@
                 </li>
 
                 {% else %}
-                       <li> <div class="app-panel">{{ 'organization.not_found_orga'|trans({},'TempoProject') }}.</div></li>
+                       <li> <div class="app-panel">{{ 'tempo.organization.not_found_orga'|trans }}.</div></li>
                 {% endfor %}
             </ul>
         </div>

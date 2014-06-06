@@ -1,7 +1,7 @@
 {% extends app.request.isXmlHttpRequest ? "TempoMainBundle::Layout/ajax.html.twig" : "TempoMainBundle::Layout/web.html.twig" %}
 {% block javascripts %}
 {{ parent() }}
-<script type="text/javascript" src="{{ asset('bundles/tempoproject/js/organization.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/tempoproject/js/views/organizationView.js')}}"></script>
 {% endblock %}
 
 {% block content %}
@@ -10,7 +10,7 @@
         {{ form_widget(form) }}
 
         <div class="rest">
-            <input type="submit" class="submit btn btn-primary" value="{{ 'form.save'|trans }}" />
+            <input type="submit" class="submit btn btn-primary" value="{{ 'tempo.form.save'|trans }}" />
         </div>
     </form>
 {% endblock %}

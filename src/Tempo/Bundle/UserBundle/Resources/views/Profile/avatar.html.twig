@@ -1,7 +1,6 @@
 {% extends "TempoMainBundle::Layout/web.html.twig" %}
 {% block bodyClass %}user profile avatar{% endblock %}
 
-
 {% block body %}
 
     <div class="head">
@@ -20,11 +19,11 @@
     </div>
     <div class="app-panel col-md-8">
         <div class="alert alert-warning alert-dismissable">
-            {{ 'avatar.current_change'|trans({}, 'TempoUser') }}
+            {{ 'tempo.avatar.current_change'|trans }}
             <a href="{{ path('user_profile_show', { 'slug' : user.emailCanonical }) }}">{{ user.getUsername() }}</a>.
         </div>
 
-        <h1 class="page-title" style="font-size: 22px;">{{ 'avatar.admin_change'|trans({}, 'TempoUser') }} {{ user.getUsername() }} </h1>
+        <h1 class="page-title" style="font-size: 22px;">{{ 'tempo.avatar.admin_change'|trans }} {{ user.getUsername() }} </h1>
 
         <form action="{{ path('user_profile_picture') }}" method="post" class="form-horizontal" enctype="multipart/form-data">
             {{ form_errors(form) }}
@@ -34,20 +33,20 @@
                 <div class="control-group">
                     <div class="controls">
                         <div class="avatar" class="pull-right">
-                            <img src="{{ user.getAvatar() }}" alt="{{ 'avatar.actual_avatar'|trans({}, 'TempoUser') }}" />
+                            <img src="{{ user.getAvatar() }}" alt="{{ 'tempo.avatar.actual_avatar'|trans }}" />
                         </div>
                         <div style="margin-left: 110px">
                             <p>
                                 {% if user.hasLocalAvatar() %}
                                     <strong>Cet avatar provient de votre ordinateur.</strong>
                                 {% elseif user.hasGravatar() %}
-                                    <strong>{{ 'avatar.current_gravart'|trans({}, 'TempoUser') }} .</strong>
+                                    <strong>{{ 'tempo.avatar.current_gravart'|trans }} .</strong>
                                 {% else %}
-                                    <em>{{ 'avatar.current_default'|trans({}, 'TempoUser') }}</em>
+                                    <em>{{ 'tempo.avatar.current_default'|trans }}</em>
                                 {% endif %}
                             </p>
                             <p>
-                                {{ 'avatar.avatar_info'|trans({'%balise%' : '<strong>', '%balise2%' : '</strong>', '%balise3%' : '<br/>'}, 'TempoUser')|raw }}
+                                {{ 'tempo.avatar.avatar_info'|trans({'%balise%' : '<strong>', '%balise2%' : '</strong>', '%balise3%' : '<br/>'})|raw }}
                             </p>
                         </div>
                     </div>
@@ -61,7 +60,7 @@
             </div>
 
             <div class="form-actions">
-                <input type="submit" class="btn btn-primary" name="submit" value="{{ 'avatar.submit'|trans({}, 'TempoUser') }}" />
+                <input type="submit" class="btn btn-primary" name="submit" value="{{ 'tempo.avatar.submit'|trans }}" />
             </div>
         </form>
     </div>

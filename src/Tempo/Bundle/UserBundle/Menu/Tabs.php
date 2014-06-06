@@ -11,12 +11,12 @@
 
 namespace Tempo\Bundle\UserBundle\Menu;
 
-use Symfony\Component\Translation\Translator;
+use Symfony\Component\Translation\TranslatorInterface;
 use Knp\Menu\FactoryInterface;
 
 class Tabs
 {
-    public function __construct(FactoryInterface $factory, Translator $translator)
+    public function __construct(FactoryInterface $factory, TranslatorInterface $translator)
     {
         $this->factory = $factory;
         $this->translator = $translator;
@@ -27,16 +27,28 @@ class Tabs
         $menu = $this->factory->createItem('root');
         $menu->setChildrenAttribute('class', 'nav nav-pills nav-stacked');
 
-        $edit = $this->translator->trans('profile.tabs.profil', array(), 'TempoUser');
-        $profile = $this->translator->trans('profile.tabs.avatar', array(), 'TempoUser');
-        $password = $this->translator->trans('profile.tabs.password', array(), 'TempoUser');
-        $setting = $this->translator->trans('profile.tabs.settings', array(), 'TempoUser');
-
-        $menu->addChild($edit, array('route' => 'user_profile_edit'));
-        $menu->addChild($profile, array('route' => 'user_profile_picture'));
-        $menu->addChild($password, array('route' => 'user_profile_password'));
-        $menu->addChild($setting, array('route' => 'user_profile_settings'));
+        $menu->addChild(
+            $this->translate('profile.tabs.profil'),
+            array('route' => 'user_profile_edit')
+        );
+        $menu->addChild(
+            $this->translate('profile.tabs.avatar'),
+            array('route' => 'user_profile_picture')
+        );
+        $menu->addChild(
+            $this->translate('profile.tabs.password'),
+            array('route' => 'user_profile_password')
+        );
+        $menu->addChild(
+            $this->translate('profile.tabs.settings'),
+            array('route' => 'user_profile_settings')
+        );
 
         return $menu;
+    }
+
+    protected function translate($label, $parameters = array())
+    {
+        return $this->translator->trans($label, $parameters);
     }
 }

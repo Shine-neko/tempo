@@ -12,7 +12,8 @@
 namespace Tempo\Bundle\MainBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
-use Symfony\Component\Translation\Translator;
+use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class MenuBuilder
 {
@@ -21,15 +22,18 @@ class MenuBuilder
 
     /**
      * @param FactoryInterface $factory
+     * @param SecurityContextInterface $securityContext
+     * @param TranslatorInterface $translator
      */
-    public function __construct(FactoryInterface $factory, Translator $translator)
+    public function __construct(FactoryInterface $factory, SecurityContextInterface $securityContext, TranslatorInterface $translator)
     {
         $this->factory = $factory;
         $this->translator = $translator;
+        $this->securityContext  = $securityContext;
     }
 
     /**
-     * Generate Menu
+     * Builds main menu.
      * @return \Knp\Menu\ItemInterface
      */
     public function mainMenu()
@@ -38,12 +42,14 @@ class MenuBuilder
         $menu->setChildrenAttribute('class', 'nav navbar-nav');
         $menu->setChildrenAttribute('id', 'menu');
 
-        $projects_trans = $this->translator->trans('menu.project', array(), 'TempoMain');
-        $users_trans = $this->translator->trans('menu.users', array(), 'TempoMain');
-        $timesheet_trans = $this->translator->trans('menu.timesheet', array(), 'TempoMain');
-        $menu->addChild($projects_trans, array('route' => 'project_home'));
-        $menu->addChild($timesheet_trans, array('route' => 'timesheet'));
-        $menu->addChild($users_trans, array('route' => 'user_list'));
+        $menu->addChild(
+            $this->translate('menu.project'),
+            array('route' => 'project_home')
+        );
+        $menu->addChild(
+            $this->translator->trans('menu.timesheet'),
+            array('route' => 'timesheet')
+        );
 
         return $menu;
     }
@@ -58,9 +64,16 @@ class MenuBuilder
         $menu->setChildrenAttribute('id', 'breadcrumb');
         $menu->setChildrenAttribute('class', 'clearfix');
 
-        $home_trans = $this->translator->trans('menu.home', array(), 'TempoMain');
-        $menu->addChild($home_trans, array('route' => 'homepage'));
+        $menu->addChild(
+            $this->translate('menu.home'),
+            array('route' => 'homepage')
+        );
 
         return $menu;
+    }
+
+    protected function translate($label, $parameters = array())
+    {
+        return $this->translator->trans($label, $parameters);
     }
 }

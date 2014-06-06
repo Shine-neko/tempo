@@ -1,0 +1,31 @@
+tempo:
+  errors:
+    internal_error: Une erreur interne est survenue
+    format_file: Le format de votre fichier est invalide
+
+  msg_success:
+    avatar_deleted: %owner% avatar a été supprimé.
+    avatar_modified: %owner% avatar a été modifié.
+
+  profile:
+    tabs:
+      profil: Profil
+      avatar: Avatar
+      email: Adresse email
+      password: Mot de passe
+      settings: Préférences
+
+  avatar:
+    title: Modifier mon avatar
+    title_second: Changez la façon dont les autres utilisateurs vous voient
+    choose_avatar: Choisir un nouvel avatar
+    actual_avatar: Avatar actuel
+    avatar_info: Vous pouvez envoyer une image mesurant jusqu'à <strong>100x100 pixels</strong> aux formats PNG, JPEG ou GIF.%balise3%Si celle-ci est trop grande elle sera automatiquement redimensionnée à la taille maximale autorisée.
+    admin_change: Modifier l'avatar de
+    current_change: Vous êtes entrain de modifier l'avatar de
+    current_gravart: Cet avatar provient de Gravatar.
+    current_default: Cet avatar est l’image par défaut.
+    submit: Modifier l'avatar
+    success_delete: L'avatar a bien été supprimé.
+    success_edit: Your avatar has been changed.
+    failed_internal_error: Une erreur interne est survenue, veuillez réessayer.
