@@ -1,0 +1,18 @@
+tempo:
+  menu:
+    project: Projects
+    home: Accueil
+    timesheet: Timesheets
+  form:
+    show: 'Vue'
+    create: 'Crée'
+    delete: 'Supprimer'
+    edit: 'Editer'
+    search: "Recherche"
+    cancel: "Annuler"
+    save: 'Sauvegard'
+    save_changes: 'Sauvegarde les changements'
+    submit: Valider
+  dashboard:
+    title: Flux d'activité
+    form.status.label: Partagez quelque chose. Utilisez @ pour mentionner des personnes.

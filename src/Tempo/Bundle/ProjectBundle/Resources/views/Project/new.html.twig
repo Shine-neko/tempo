@@ -9,20 +9,20 @@
 {% block body %}
     {% block breadcrumb %}
         <ol id="breadcrumb" class="clearfix">
-            <li class="first"> <a href="{{ path('homepage') }}">Accueil</a> </li>
+            <li class="first"> <a href="{{ path('project_home') }}">{{ 'tempo.menu.home'|trans  }}</a> </li>
             <li> <a href="{{ path('project_home') }}">Project</a> </li>
             <li class="last"> new </li>
         </ol>
     {% endblock breadcrumb %}
     <form id="project_form" name="project_form" action="{{ path('project_create', {'organization': organization.slug }) }}{% if form.vars.value.parent.id is defined %}?parent={{ form.vars.value.parent.id }}{% endif %}" method="post" {{ form_enctype(form) }}>
-       {% include 'TempoProjectBundle::Project/_form.html.twig' with {
+        {% include 'TempoProjectBundle::Project/_form.html.twig' with {
            'form' : form,
-           'page_title' :  'New project'|trans
-       } %}
+           'page_title' :  'tempo.project.title.add'|trans
+        } %}
 
         <div class="clearbox form_rest">
-            <button type="submit" class="btn btn-primary">{{ 'form.new'|trans }}</button>
-            <button type="reset" class="btn btn-default">{{ 'form.reseat'|trans }}</button>
+            <button type="submit" class="btn btn-primary">{{ 'tempo.form.new'|trans }}</button>
+            <button type="reset" class="btn btn-default">{{ 'tempo.form.reseat'|trans }}</button>
         </div>
     </form>
 

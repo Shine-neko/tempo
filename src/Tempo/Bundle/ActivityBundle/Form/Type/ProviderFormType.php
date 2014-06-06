@@ -36,7 +36,6 @@ class ProviderFormType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'Tempo\Bundle\ProjectBundle\Entity\ProjectProvider',
-            'translation_domain' => 'ActivityProject'
         ));
     }
 

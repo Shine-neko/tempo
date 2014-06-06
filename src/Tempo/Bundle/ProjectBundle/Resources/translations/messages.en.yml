@@ -1,0 +1,69 @@
+tempo:
+  organization:
+    select: Select an organization to view its projects
+    not_found_orga: No organization has been found
+    not_found_project: No projects found for this organization
+    add:  New organization
+    edit: Edit organization
+    team: Members
+    list:
+      title: 'Organization List'
+    msg_delete: If you proceed the organization will be permanently deleted. Restoring is not possible so please be certain.
+    title_delete: Delete project
+    email_contact: E-mail contact
+    web_site: Website
+    undefined_info: undefined
+    success_create: Organization created
+    success_updated: Organization successfully edited
+    success_delete: Organization successfully removed
+    failed_delete: Unable to delete organization
+
+
+  project:
+    title_add: Nouveau projet
+    label_list: Project list
+    add: Add new project
+    edit: Edit project
+    title_subprojects: Sub project
+    add_membre: Assignment
+    display_projects: Display projects
+    msg_delete: Once you proceed the project will be permanently deleted. Restoring is not possible so please be certain.
+    nbr_project: Number of projects
+    success_create: Project successfully created
+    success_updated: Project successfully edited
+    success_delete: Project successfully removed
+    open: Open
+    close: Close
+
+    form:
+      label.organization: Organization
+      label.name: Name
+      label.isactive: Active
+      label.created: Created
+      label.updated: Updated
+      label.beginning: Starting
+      label.ending: Finishing
+      label.type: Type
+      label.advancement: Avancement
+      label.code: Code
+      label.status: Status
+      label.priority: Priority
+      label.estimated: Estimated budget
+
+  timesheets:
+    page_title: Timesheet
+    last_week: Last week
+    next_week: Next week
+    week: Week
+    success_add: activity report successfully created
+
+  team:
+   success_add: The user has been added
+
+  buttons:
+    edit: Edit
+    submit: Submit
+    delete: Delete
+
+  notification.organization.team.add.completed: You have been given read access to %name%
+  notification.project.team.add.completed: You have been given read access to %name%

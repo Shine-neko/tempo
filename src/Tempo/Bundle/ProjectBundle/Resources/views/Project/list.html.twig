@@ -2,7 +2,7 @@
 {% block bodyClass %}project list{% endblock %}
 {% block breadcrumb %}
     <ol id="breadcrumb" class="clearfix">
-        <li class="first"> <a href="{{ path('homepage') }}">Accueil</a> </li>
+        <li class="first"> <a href="{{ path('project_home') }}">{{ 'tempo.menu.home'|trans  }}</a> </li>
         <li class="first last"> <a href="{{ path('project_home') }}">Project</a> </li>
         <li class="first last"> Project list </li>
     </ol>
@@ -55,15 +55,5 @@
         {% endfor %}
         </tbody>
 </table>
-
-{% endblock %}
-{% block right %}
-<ul class="record_actions">
-    <li>
-        <a class="btn" href="{{ path('project_new', { 'organization' : organization.slug } ) }}">
-            {{ 'project.add'|trans([], 'project') }}
-        </a>
-    </li>
-</ul>
 
 {% endblock %}

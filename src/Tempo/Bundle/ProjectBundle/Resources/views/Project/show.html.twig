@@ -3,7 +3,7 @@
 {% block body %}
 {% block breadcrumb %}
     <ol id="breadcrumb" class="clearfix">
-        <li class="first"><a href="{{ path('project_home') }}">Accueil</a></li>
+        <li class="first"> <a href="{{ path('project_home') }}">{{ 'tempo.menu.home'|trans  }}</a> </li>
         <li><a href="{{ path('project_home') }}">{{ 'Project'|trans }}</a></li>
         <li><a href="{{ path('organization_show', {'slug' : organization.slug }) }}">{{ organization }}</a></li>
 

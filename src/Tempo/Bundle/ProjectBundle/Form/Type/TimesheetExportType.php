@@ -42,16 +42,6 @@ class TimesheetExportType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $resolver->setDefaults(array(
-            'translation_domain' => 'TempoProject'
-        ));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
         return '';

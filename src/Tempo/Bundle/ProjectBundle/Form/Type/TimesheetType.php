@@ -48,7 +48,6 @@ class TimesheetType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'Tempo\Bundle\ProjectBundle\Entity\Timesheet',
             'csrf_protection' => false,
-            'translation_domain' => 'TempoProject'
         ));
     }
 

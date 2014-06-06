@@ -10,7 +10,7 @@
         </div>
         <div class="message">
             <a href="{{ activity.author.slug }}">{{ activity.author }}</a>
-            {{ activity.action|trans }} {% if activity.target == 'User' %} {{ activity.target }} {% endif %}
+            {{ 'tempo.activity.action'|trans }} {% if activity.target == 'User' %} {{ activity.target }} {% endif %}
         </div>
     </div>
 </div>

@@ -22,28 +22,28 @@
 
     <div class="infos clearfix">
         <ul class="col-md-6">
-            <li> <strong>{{ 'organization.email_contact'|trans({},'TempoProject') }}</strong>
+            <li> <strong>{{ 'tempo.organization.email_contact'|trans }}</strong>
                 {% if organization.contact is empty %}
-                    {{ 'organization.undefined_info'|trans({},'TempoProject') }}
+                    {{ 'tempo.organization.undefined_info'|trans }}
                 {% else %}
                 <a href="mailto:{{ organization.contact }}">{{ organization.contact }}</a>
                 {% endif %}
             </li>
-            <li> <strong>{{ 'organization.web_site'|trans({},'TempoProject') }}</strong>
+            <li> <strong>{{ 'tempo.organization.web_site'|trans }}</strong>
             {% if organization.website is empty %}
-                {{ 'organization.undefined_info'|trans({},'TempoProject') }}
+                {{ 'tempo.organization.undefined_info'|trans }}
             {% else %}
                 <a href="{{ organization.website }}">{{ organization.website }}</a>
             {% endif %}<li>
         </ul>
         <ul class="col-md-6">
             <li>
-                <strong class="nbr-project">{{ 'project.nbr_project' |trans({},'TempoProject') }}</strong>
+                <strong class="nbr-project">{{ 'tempo.project.nbr_project' |trans }}</strong>
                 <div style="height: 30px; margin-top: 10px">
-                    <span class="label label-success">{{ counter.open }} {{ 'project.open'|trans({},'TempoProject') }} </span> <br />
+                    <span class="label label-success">{{ counter.open }} {{ 'tempo.project.open'|trans }} </span> <br />
                 </div>
                 <div style="height: 30px;">
-                    <span class="label label-default">{{ counter.close }} {{ 'project.close'|trans({},'TempoProject') }}   </span>
+                    <span class="label label-default">{{ counter.close }} {{ 'tempo.project.close'|trans }}   </span>
                 </div>
             </li>
         </ul>
@@ -55,7 +55,7 @@
 </div>
 
 <div id="organization-list-project" class="app-panel clearfix col-md-8">
-    <h3>{{ 'project.label_list'|trans({},'TempoProject') }}</h3>
+    <h3>{{ 'tempo.project.label_list'|trans }}</h3>
 
     <ul class="list-project">
     {% for project in projects %}
@@ -69,14 +69,14 @@
             </div>
         </li>
     {% else %}
-        <p>{{ 'organization.not_found_project'|trans({},'TempoProject') }}.</p>
+        <p>{{ 'tempo.organization.not_found_project'|trans }}.</p>
     {% endfor %}
     </ul>
 
 </div>
 
 <div id="delete-organization" style="display: none">
-    {{ 'organization.msg_delete'|trans([], 'TempoProject') }}
+    {{ 'tempo.organization.msg_delete'|trans }}
 </div>
 
 {% endblock %}
