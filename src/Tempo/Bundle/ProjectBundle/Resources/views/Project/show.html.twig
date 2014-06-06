@@ -1,20 +1,22 @@
 {% extends "TempoMainBundle::Layout/web.html.twig" %}
 {% block bodyClass %}project show{% endblock %}
 {% block body %}
+{% block breadcrumb %}
+    <ol id="breadcrumb" class="clearfix">
+        <li class="first"><a href="{{ path('project_home') }}">Accueil</a></li>
+        <li><a href="{{ path('project_home') }}">{{ 'Project'|trans }}</a></li>
+        <li><a href="{{ path('organization_show', {'slug' : organization.slug }) }}">{{ organization }}</a></li>
+
+        {% if project.parent %}
+            <li>
+                <a href="{{ path('organization_show', {'slug' : organization.slug }) }}">{{ 'Sub project of'|trans }} {{ project.parent }}</a>
+            </li>
+        {% endif %}
+        <li class="last"> {{ project.name }} </li>
+    </ol>
+{% endblock breadcrumb %}
 
 <div class="app-panel col-md-8 infos">
-    {% block breadcrumb %}
-        <ol id="breadcrumb" class="clearfix">
-            <li class="first"> <a href="{{ path('project_home') }}">Accueil</a> </li>
-            <li> <a href="{{ path('project_home') }}">{{ 'Project'|trans  }}</a> </li>
-            <li> <a href="{{ path('organization_show', {'slug' : organization.slug }) }}">{{ organization }}</a> </li>
-
-            {% if project.parent %}
-                <li> <a href="{{ path('organization_show', {'slug' : organization.slug }) }}">{{ 'Sub project of'|trans }} {{ project.parent }}</a> </li>
-            {% endif %}
-            <li class="last"> {{ project.name }} </li>
-        </ol>
-    {% endblock breadcrumb %}
 
     <h1 id="page-title" class="col-md-6">
         {{ project.name }} <br />
