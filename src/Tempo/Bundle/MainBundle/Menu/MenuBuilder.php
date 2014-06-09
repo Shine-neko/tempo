@@ -19,11 +19,12 @@ class MenuBuilder
 {
     private $factory;
     private $translator;
+    private $securityContext;
 
     /**
-     * @param FactoryInterface $factory
+     * @param FactoryInterface         $factory
      * @param SecurityContextInterface $securityContext
-     * @param TranslatorInterface $translator
+     * @param TranslatorInterface      $translator
      */
     public function __construct(FactoryInterface $factory, SecurityContextInterface $securityContext, TranslatorInterface $translator)
     {
