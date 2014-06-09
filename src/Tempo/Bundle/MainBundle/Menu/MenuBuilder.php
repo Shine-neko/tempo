@@ -43,11 +43,11 @@ class MenuBuilder
         $menu->setChildrenAttribute('id', 'menu');
 
         $menu->addChild(
-            $this->translate('menu.project'),
+            $this->translate('tempo.menu.project'),
             array('route' => 'project_home')
         );
         $menu->addChild(
-            $this->translator->trans('menu.timesheet'),
+            $this->translate('tempo.menu.timesheet'),
             array('route' => 'timesheet')
         );
 

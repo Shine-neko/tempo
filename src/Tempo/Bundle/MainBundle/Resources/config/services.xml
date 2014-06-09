@@ -36,6 +36,7 @@
 
         <service id="tempo.main.menu_builder" class="%tempo.main.menu_builder.class%">
             <argument type="service" id="knp_menu.factory" />
+            <argument type="service" id="security.context" />
             <argument type="service" id="translator" />
         </service>
 
