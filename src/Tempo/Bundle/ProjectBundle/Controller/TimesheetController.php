@@ -167,7 +167,7 @@ class TimesheetController extends BaseController
             $view->setStatusCode(201);
             $view->setData($period);
 
-            $this->addFlash('success', 'timesheets.success_add', 'TempoProject');
+            $this->addFlash('success', 'tempo.timesheets.success_add', 'TempoProject');
 
         } else {
             $view->setData($form);

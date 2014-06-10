@@ -66,7 +66,7 @@ class MenuBuilder
         $menu->setChildrenAttribute('class', 'clearfix');
 
         $menu->addChild(
-            $this->translate('menu.home'),
+            $this->translate('tempo.menu.home'),
             array('route' => 'homepage')
         );
 

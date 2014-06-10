@@ -4,7 +4,7 @@
 {% block breadcrumb %}
     <ol id="breadcrumb" class="clearfix">
         <li class="first"> <a href="{{ path('project_home') }}">{{ 'tempo.menu.home'|trans  }}</a> </li>
-        <li><a href="{{ path('project_home') }}">{{ 'Project'|trans }}</a></li>
+        <li><a href="{{ path('project_home') }}">{{ 'tempo.menu.project'|trans }}</a></li>
         <li><a href="{{ path('organization_show', {'slug' : organization.slug }) }}">{{ organization }}</a></li>
 
         {% if project.parent %}
@@ -27,7 +27,7 @@
 
     <div class="col-md-4">
         {% if is_granted('EDIT', organization) %}
-        <a class="btn btn-xs btn-primary" href="{{ path('project_new', { 'parent' : project.id, 'organization': organization.slug }) }}"> <span class="glyphicon glyphicon-plus"></span> {{ 'project.title_subprojects'|trans([], 'TempoProject') }}</a>
+        <a class="btn btn-xs btn-primary" href="{{ path('project_new', { 'parent' : project.id, 'organization': organization.slug }) }}"> <span class="glyphicon glyphicon-plus"></span> {{ 'tempo.project.title_subprojects'|trans([], 'TempoProject') }}</a>
         {% endif %}
         {% if is_granted('EDIT', project) %}
         <a class="btn btn-xs btn-info " href="{{ path('project_edit', { 'slug': project.slug }) }}"> <span class="glyphicon glyphicon-edit"></span> Edit</a>
@@ -60,9 +60,9 @@
 <div class="col-md-4">
     <div class="record_actions">
 
-        <h4 class="pull-left">{{ 'organization.team'|trans({},'TempoProject') }} </h4>
+        <h4 class="pull-left">{{ 'tempo.organization.team'|trans }} </h4>
 
-        <a data-toggle="modal" data-target="#" data-title="Adding a team member" href="#add_membre" class="add-member pull-right btn btn-xs btn-info"> <span class="glyphicon glyphicon-plus"></span> {{ 'project.add_membre'|trans([], 'TempoProject') }}</a>
+        <a data-toggle="modal" data-target="#" data-title="Adding a team member" href="#add_membre" class="add-member pull-right btn btn-xs btn-info"> <span class="glyphicon glyphicon-plus"></span> {{ 'tempo.project.add_membre'|trans }}</a>
 
         <div id="add_membre" style="display: none;">
             {% include 'TempoProjectBundle:Team:new.html.twig' with {'form': teamForm, 'category': project, 'route_category' : 'project_team_add' } %}
@@ -77,7 +77,7 @@
             </div>
         </div>
 
-        <h4 class="pull-left">{{ 'Activity'|trans({},'TempoProject') }} </h4>
+        <h4 class="pull-left">{{ 'Activity'|trans }} </h4>
 
         <div class="app-panel clearbox">
             {% include (tabProvidersRegistry.providers[2]).content %}
