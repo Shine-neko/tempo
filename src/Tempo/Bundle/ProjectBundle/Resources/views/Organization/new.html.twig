@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    <form action="{{ path('organization_create') }}" method="post" {{ form_enctype(form) }} class="organization-add clearfix">
+    <form action="{{ path('organization_create') }}" method="post" class="organization-add clearfix">
 
         {{ form_widget(form) }}
 

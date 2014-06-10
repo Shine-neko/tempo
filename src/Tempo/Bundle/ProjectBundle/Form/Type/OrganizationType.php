@@ -28,11 +28,14 @@ class OrganizationType extends AbstractType
 
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event) {
             $form = $event->getForm();
+            $organization = $event->getData();
 
-            $form
-                ->add('avatar')
-                ->add('website')
-                ->add('contact', 'email');
+            if (null !== $organization->getId()) {
+                $form
+                    ->add('avatar')
+                    ->add('website')
+                    ->add('contact', 'email');
+            }
         });
     }
 

@@ -17,7 +17,7 @@
         </ol>
     {% endblock breadcrumb %}
 
-    <form action="{{ path('project_update', { 'slug': project.slug }) }}" method="post" {{ form_enctype(form) }}>
+    <form action="{{ path('project_update', { 'slug': project.slug }) }}" method="post">
         {% include 'TempoProjectBundle::Project/_form.html.twig' with {
             'form' : form,
             'page_title' : project.name
