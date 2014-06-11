@@ -56,10 +56,22 @@
                             </a>
                             <ul class="dropdown-menu">
                                 {% for notification in notifications_indicator %}
-                                    <li> <a href="#">{{ notification.message }}</a> </li>
+                                    <li>
+                                    <a href="{{ path('notification_dashboard') }}">
+                                        {{ truncate(notification.message, 30) }}
+                                        <span class="text-muted small">{{ datetime_diff(notification.createdAt) }}</span>
+                                    </a>
+                                    </li>
                                 {% else %}
                                     <li><a href="{{ path('notification_dashboard') }}">No Notifications</a></li>
                                 {% endfor %}
+                                <li>
+                                    <div class="text-center link-block">
+                                        <a href="{{ path('notification_dashboard') }}">
+                                            <strong>{{ 'tempo.see_all_notification'|trans }}</strong>
+                                        </a>
+                                    </div>
+                                </li>
                             </ul>
                         </li>
                         <li class="avatar">

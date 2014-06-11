@@ -41,14 +41,14 @@ interface NotificationInterface
      * @param  \DateTime             $datetime
      * @return NotificationInterface
      */
-    public function setCreated(\DateTime $datetime);
+    public function setCreatedAt(\DateTime $datetime);
 
     /**
      * Get datetime
      *
      * @return date $datetime
      */
-    public function getCreated();
+    public function getCreatedAt();
 
     /**
      * Set datetime
@@ -93,7 +93,7 @@ interface NotificationInterface
      * Get state
      *
      * @param string $message
-     *                        @return $state
+     * @return $state
      */
     public function getMessage();
 }

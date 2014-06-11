@@ -15,7 +15,7 @@ abstract class Notification implements NotificationInterface
 {
     protected $id;
     protected $user;
-    protected $created;
+    protected $createdAt;
     protected $state;
     protected $link;
     protected $message;
@@ -26,7 +26,7 @@ abstract class Notification implements NotificationInterface
 
     public function __construct()
     {
-        $this->created = new \DateTime();
+        $this->createdAt = new \DateTime();
         $this->state = self::STATE_UNREAD;
     }
 
@@ -59,9 +59,9 @@ abstract class Notification implements NotificationInterface
     /**
      * {@inheritdoc}
      */
-    public function setCreated(\DateTime $datetime)
+    public function setCreatedAt(\DateTime $datetime)
     {
-        $this->created = $datetime;
+        $this->createdAt = $datetime;
 
         return $this;
     }
@@ -69,9 +69,9 @@ abstract class Notification implements NotificationInterface
     /**
      * {@inheritdoc}
      */
-    public function getCreated()
+    public function getCreatedAt()
     {
-        return $this->created;
+        return $this->createdAt;
     }
 
     /**

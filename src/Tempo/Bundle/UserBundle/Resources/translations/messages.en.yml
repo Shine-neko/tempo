@@ -29,3 +29,5 @@ tempo:
     success_edit: Votre avatar a bien été modifié.
     failed_internal_error: An internal error occurred, please try again.
     failed_valid_file: Uploaded file is not a valid
+
+  see_all_notification: See All notification

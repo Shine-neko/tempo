@@ -29,3 +29,5 @@ tempo:
     success_delete: L'avatar a bien été supprimé.
     success_edit: Your avatar has been changed.
     failed_internal_error: Une erreur interne est survenue, veuillez réessayer.
+
+  see_all_notification: See All notification
