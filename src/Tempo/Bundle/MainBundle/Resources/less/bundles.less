@@ -325,6 +325,7 @@ table.table-striped tbody .actions .edit {
 	border-color: #D5D5D5;
 	box-shadow: 0 1px 0 #FFFFFF inset, 0 1px 5px rgba(0, 0, 0, 0.1);
 	margin-bottom: 3px;
+	z-index: 2;
 }
 
 .dashboard .rooms ul{
@@ -411,7 +412,7 @@ table.table-striped tbody .actions .edit {
 .dashboard #chat #chat-messages{
 	overflow: scroll;
 	top: 30px;
-	bottom: 150px;
+	bottom: 60px;
 	width: 100%;
 	position: absolute;
 	border-color: #D5D5D5;
@@ -476,6 +477,12 @@ table.table-striped tbody .actions .edit {
 	margin-left: 30px;
 	font-weight: normal;
 	color: #4a87b6;
+}
+
+.home.dashboard #content,
+.home.dashboard #content .row {
+	margin: 0px;
+	padding: 0px;
 }
 .home.dashboard .events-push {
 	clear: both;
