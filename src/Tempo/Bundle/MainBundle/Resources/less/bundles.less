@@ -778,21 +778,22 @@ table.table-striped tbody .actions .edit {
 	display: none;
 }
 
-.project.show #content #breadcrumb {
-	padding-left: 0;
+.project.show #content .infos .app-panel h1 {
+	position: relative;
 }
-
-.project.show #content .app-panel.infos {
-	padding-top: 0;
-}
-.project.show #content .app-panel.infos h1 small.label {
+.project.show #content .infos .app-panel h1 small.label {
 	font-size: 12px;
+	position: absolute;
 }
 
 .project.show #content #project-tab {
 	margin-bottom: 40px;
 	clear: both;
 }
+.project.show #content #project-tab .nav-tabs > li > a {
+	border-radius: 0;
+}
+
 
 .project.show #content .mod-head {
 	clear: both;

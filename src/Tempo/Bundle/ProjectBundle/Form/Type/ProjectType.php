@@ -27,41 +27,41 @@ class ProjectType extends AbstractType
     {
         $builder
             ->add('name', 'text', array(
-                'label' => 'project.form.label.name',
+                'label' => 'tempo.project.form.label.name',
             ))
             ->add('description', 'ckeditor', array(
                 'required' => false,
-                'label'    => 'project.form.label.isactive',
+                'label'    => 'tempo.project.form.label.isactive',
                 'config_name' => 'default',
             ))
             ->add('active', null, array(
-                'label' => 'project.form.label.isactive'
+                'label' => 'tempo.project.form.label.isactive'
             ))
             ->add('beginning', 'datetimepicker', array(
-                'label' => 'project.form.label.beginning',
+                'label' => 'tempo.project.form.label.beginning',
             ))
             ->add('ending', 'datetimepicker', array(
-                'label' => 'project.form.label.ending',
+                'label' => 'tempo.project.form.label.ending',
             ))
             ->add('type', null, array(
-                'label' => 'project.form.label.type',
+                'label' => 'tempo.project.form.label.type',
                 'class' => 'TempoProjectBundle:ProjectType',
                 'query_builder' => function(ProjectTypeRepository $er) {
                     return $er->findAllTypes();
                 }
             ))
             ->add('advancement', null, array(
-                'label' => 'project.form.label.advancement',
+                'label' => 'tempo.project.form.label.advancement',
                 'attr' => array(
                     'disabled' => 'disabled',
                     'style' => 'display: none'
                 )
             ))
             ->add('code', null, array(
-                'label' => 'project.form.label.code'
+                'label' => 'tempo.project.form.label.code'
             ))
             ->add('budget_estimated', null, array(
-                'label' => 'project.form.label.estimated'
+                'label' => 'tempo.project.form.label.estimated'
             ))
         ;
     }

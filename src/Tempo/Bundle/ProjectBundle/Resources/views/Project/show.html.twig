@@ -16,43 +16,45 @@
     </ol>
 {% endblock breadcrumb %}
 
-<div class="app-panel col-md-8 infos">
+<div class="col-md-8 infos">
+    <div class="app-panel">
 
-    <h1 id="page-title" class="col-md-6">
-        {{ project.name }} <br />
-        <small class="label label-default">
-            {{ project.code }}
-        </small>
-    </h1>
+        <h1 id="page-title" class="col-md-6">
+            {{ project.name }} <br />
+            <small class="label label-default">
+                {{ project.code }}
+            </small>
+        </h1>
 
-    <div class="col-md-4">
-        {% if is_granted('EDIT', organization) %}
-        <a class="btn btn-xs btn-primary" href="{{ path('project_new', { 'parent' : project.id, 'organization': organization.slug }) }}"> <span class="glyphicon glyphicon-plus"></span> {{ 'tempo.project.title_subprojects'|trans([], 'TempoProject') }}</a>
-        {% endif %}
-        {% if is_granted('EDIT', project) %}
-        <a class="btn btn-xs btn-info " href="{{ path('project_edit', { 'slug': project.slug }) }}"> <span class="glyphicon glyphicon-edit"></span> Edit</a>
-        {% endif %}
-        {% if is_granted('DELETE', project) %}
-        <a class="btn btn-xs btn-danger" data-toggle="modal" data-target="#" data-title="Delete project" href="#delete_project"> <span class="glyphicon glyphicon-trash"></span> Delete</a>
-        {% endif %}
-        {% if is_granted('EDIT', project) %}
-            <a class="btn btn-xs btn-primary" href="{{ path('project_version', { 'slug': project.slug }) }}"> <span class="glyphicon glyphicon-cog"></span> {{ 'Version'|trans }} </a>
-        {% endif %}
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <ul class="nav nav-tabs" id="project-tab">
-                {% for provider in tabProvidersRegistry.providers %}
-                <li{% if loop.first %} class="active"{% endif %}><a href="#{{ provider.id }}" data-toggle="tab">{{ provider.name }}</a></li>
-                {% endfor %}
-            </ul>
+        <div class="col-md-4">
+            {% if is_granted('EDIT', organization) %}
+            <a class="btn btn-xs btn-primary" href="{{ path('project_new', { 'parent' : project.id, 'organization': organization.slug }) }}"> <span class="glyphicon glyphicon-plus"></span> {{ 'tempo.project.title_subprojects'|trans }}</a>
+            {% endif %}
+            {% if is_granted('EDIT', project) %}
+            <a class="btn btn-xs btn-info " href="{{ path('project_edit', { 'slug': project.slug }) }}"> <span class="glyphicon glyphicon-edit"></span> Edit</a>
+            {% endif %}
+            {% if is_granted('EDIT', project) %}
+                <a class="btn btn-xs btn-primary" href="{{ path('project_version', { 'slug': project.slug }) }}"> <span class="glyphicon glyphicon-cog"></span> {{ 'Version'|trans }} </a>
+            {% endif %}
+            {% if is_granted('DELETE', project) %}
+            <a class="btn btn-xs btn-danger" data-toggle="modal" data-target="#" data-title="Delete project" href="#delete_project"> <span class="glyphicon glyphicon-trash"></span> Delete</a>
+            {% endif %}
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="nav nav-tabs" id="project-tab">
+                    {% for provider in tabProvidersRegistry.providers %}
+                    <li{% if loop.first %} class="active"{% endif %}><a href="#{{ provider.id }}" data-toggle="tab">{{ provider.name }}</a></li>
+                    {% endfor %}
+                </ul>
 
-            <div class="tab-content">
-                {% for provider in tabProvidersRegistry.providers %}
-                <div class="tab-pane{% if loop.first %} active{% endif %}" id="{{ provider.id }}">
-                    {% include provider.content %}
+                <div class="tab-content">
+                    {% for provider in tabProvidersRegistry.providers %}
+                    <div class="tab-pane{% if loop.first %} active{% endif %}" id="{{ provider.id }}">
+                        {% include provider.content %}
+                    </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
         </div>
     </div>
