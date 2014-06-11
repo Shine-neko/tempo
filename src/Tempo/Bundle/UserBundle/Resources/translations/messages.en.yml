@@ -1,4 +1,4 @@
-Tempo:
+tempo:
   errors:
     internal_error: Internal error
     format_file: Invalid format type

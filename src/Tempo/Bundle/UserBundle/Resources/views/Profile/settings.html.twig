@@ -4,15 +4,13 @@
 
 {% block body %}
 
-    <div class="head">
-        {% block breadcrumb %}
-            <ol id="breadcrumb" class="clearfix">
-                <li class="first"> <a href="{{ path('project_home') }}">Accueil</a> </li>
-                <li> <a href="{{ path('user_profile_edit') }}">Profile</a> </li>
-                <li class="last"> Setting </li>
-            </ol>
-        {% endblock breadcrumb %}
-    </div>
+    {% block breadcrumb %}
+        <ol id="breadcrumb" class="clearfix">
+            <li class="first"> <a href="{{ path('project_home') }}">Accueil</a> </li>
+            <li> <a href="{{ path('user_profile_edit') }}">Profile</a> </li>
+            <li class="last"> Setting </li>
+        </ol>
+    {% endblock breadcrumb %}
 
     <div class="container-panel">
 

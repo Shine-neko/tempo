@@ -3,15 +3,13 @@
 
 {% block body %}
 
-    <div class="head">
-        {% block breadcrumb %}
-            <ol id="breadcrumb" class="clearfix">
-                <li class="first"> <a href="{{ path('project_home') }}">Accueil</a> </li>
-                <li> <a href="{{ path('user_profile_edit') }}">Profile</a> </li>
-                <li class="last"> Edit profile </li>
-            </ol>
-        {% endblock breadcrumb %}
-    </div>
+    {% block breadcrumb %}
+        <ol id="breadcrumb" class="clearfix">
+            <li class="first"><a href="{{ path('project_home') }}">Accueil</a></li>
+            <li><a href="{{ path('user_profile_edit') }}">Profile</a></li>
+            <li class="last"> Edit profile</li>
+        </ol>
+    {% endblock breadcrumb %}
 
     <div class="container-panel">
 
@@ -45,16 +43,10 @@
                </div>
                <div class="form-rest">
                    {{ form_rest(form) }}
-                    <input type="submit" class="btn btn-primary" value="{{ 'form.save_changes'|trans }}" />
+                    <input type="submit" class="btn btn-primary" value="{{ 'tempo.form.save_changes'|trans }}" />
                 </div>
             </form>
         </div>
     </div>
 
-
-{% endblock %}
-
-{% block right %}
-    <h3>Related Settings</h3>
-    {% include "TempoUserBundle:Default:_sidebar-right.html.twig" %}
 {% endblock %}

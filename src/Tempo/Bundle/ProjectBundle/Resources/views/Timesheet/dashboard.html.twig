@@ -18,7 +18,11 @@
 
 {% block bodyClass %}timesheet dashboard{% endblock %}
 
-{% block content %}
+{% block body %}
+    {% block breadcrumb %}
+        {{ parent() }}
+    {% endblock breadcrumb %}
+<div class="app-panel">
     <div class="actions-filter">
         <ul class="actions">
             <li>
@@ -113,4 +117,5 @@
             </tbody>
         </table>
     </div>
+</div>
 {% endblock %}

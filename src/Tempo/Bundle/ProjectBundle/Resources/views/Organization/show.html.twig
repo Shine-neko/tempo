@@ -6,6 +6,9 @@
 {% endblock %}
 
 {% block body %}
+    {% block breadcrumb %}
+        {{ parent() }}
+    {% endblock breadcrumb %}
 
 <div class="col-md-8 app-panel">
     <h1 id="page-title" class="col-md-7"> {{ organization.name }} </h1>

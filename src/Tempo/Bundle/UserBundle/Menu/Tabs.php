@@ -28,19 +28,19 @@ class Tabs
         $menu->setChildrenAttribute('class', 'nav nav-pills nav-stacked');
 
         $menu->addChild(
-            $this->translate('profile.tabs.profil'),
+            $this->translate('tempo.profile.tabs.profil'),
             array('route' => 'user_profile_edit')
         );
         $menu->addChild(
-            $this->translate('profile.tabs.avatar'),
+            $this->translate('tempo.profile.tabs.avatar'),
             array('route' => 'user_profile_picture')
         );
         $menu->addChild(
-            $this->translate('profile.tabs.password'),
+            $this->translate('tempo.profile.tabs.password'),
             array('route' => 'user_profile_password')
         );
         $menu->addChild(
-            $this->translate('profile.tabs.settings'),
+            $this->translate('tempo.profile.tabs.settings'),
             array('route' => 'user_profile_settings')
         );
 
