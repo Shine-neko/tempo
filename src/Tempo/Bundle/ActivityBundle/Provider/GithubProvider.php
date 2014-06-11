@@ -26,6 +26,10 @@ class GithubProvider implements ProviderInterface
 
         $methodName = sprintf('%sEvent', $eventName);
 
+        if (null == $payload) {
+            $payload = $request->request->all();
+        }
+
         return $this->$methodName($payload);
     }
 
@@ -37,6 +41,11 @@ class GithubProvider implements ProviderInterface
         $activity->setParameters($payload);
 
         return $activity;
+    }
+
+    protected function pingEvent($payload)
+    {
+        return $this->pushEvent($payload);
     }
 
     protected function issuesEvent($payload)
@@ -111,8 +120,19 @@ class GithubProvider implements ProviderInterface
         return array();
     }
 
+    /**
+     * {inheritedDoc}
+     */
     public function getName()
     {
         return 'Github';
+    }
+
+    /**
+     * {inheritedDoc}
+     */
+    public function getCanonicalName()
+    {
+        return 'github';
     }
 }

@@ -13,7 +13,7 @@ namespace Tempo\Bundle\ActivityBundle\Provider;
 
 use Symfony\Component\HttpFoundation\Request;
 
-class TrelloProvider  implements ProviderInterface
+class TrelloProvider implements ProviderInterface
 {
     /**
      * {inheritedDoc}
@@ -29,5 +29,13 @@ class TrelloProvider  implements ProviderInterface
     public function getName()
     {
         return 'Trello';
+    }
+
+    /**
+     * {inheritedDoc}
+     */
+    public function getCanonicalName()
+    {
+        return 'trello';
     }
 }

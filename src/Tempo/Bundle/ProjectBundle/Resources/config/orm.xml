@@ -15,11 +15,13 @@
     <parameters>
         <parameter key="tempo.model.organization.class">Tempo\Bundle\ProjectBundle\Entity\Organization</parameter>
         <parameter key="tempo.model.project.class">Tempo\Bundle\ProjectBundle\Entity\Project</parameter>
+        <parameter key="tempo.model.project_provider.class">Tempo\Bundle\ProjectBundle\Entity\ProjectProvider</parameter>
         <parameter key="tempo.model.timesheet.class">Tempo\Bundle\ProjectBundle\Entity\Timesheet</parameter>
         <parameter key="tempo.model.team.class">Tempo\Bundle\ProjectBundle\Model\Team</parameter>
 
         <parameter key="tempo.manager.organization.default.class">Tempo\Bundle\ProjectBundle\Manager\OrganizationManager</parameter>
         <parameter key="tempo.manager.project.default.class">Tempo\Bundle\ProjectBundle\Manager\ProjectManager</parameter>
+        <parameter key="tempo.manager.project_provider.class">Tempo\Bundle\ProjectBundle\Manager\ProjectProviderManager</parameter>
         <parameter key="tempo.manager.timesheet.default.class">Tempo\Bundle\ProjectBundle\Manager\TimesheetManager</parameter>
         <parameter key="tempo.manager.team.default.class">Tempo\Bundle\ProjectBundle\Manager\TeamManager</parameter>
     </parameters>
@@ -39,6 +41,10 @@
         <service id="tempo.manager.project" class="%tempo.manager.project.default.class%">
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument>%tempo.model.project.class%</argument>
+        </service>
+        <service id="tempo.manager.project_provider" class="%tempo.manager.project_provider.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument>%tempo.model.project_provider.class%</argument>
         </service>
 
         <service id="tempo.manager.timesheet" class="%tempo.manager.timesheet.default.class%">

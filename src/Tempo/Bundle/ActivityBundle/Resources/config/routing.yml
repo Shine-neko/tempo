@@ -1,5 +1,5 @@
 activity_provider_ws:
-    pattern: /ws/activity/provider/{id}
+    pattern: /provider/notify/{token}
     defaults:
         _controller: TempoActivityBundle:Activity:provider
 
