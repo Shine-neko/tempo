@@ -59,10 +59,7 @@
         "nelmio/api-doc-bundle": "dev-master",
         "willdurand/js-translation-bundle": "v2.0.0",
 
-        "sylius/settings-bundle": "0.10.*@dev",
-        "sylius/resource-bundle": "0.10.*@dev",
-        "sylius/resource": "0.10.*@dev",
-        "yohang/finite": "dev-sylius",
+        "sylius/settings-bundle": "v0.10.0",
         "phpoffice/phpexcel": "1.8.0"
     },
     "require-dev": {
@@ -76,12 +73,6 @@
         "willdurand/faker-bundle": "dev-master",
         "elao/web-profiler-extra-bundle": "dev-master"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/winzou/Finite"
-        }
-    ],
     "scripts": {
         "post-install-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
@@ -107,16 +98,13 @@
         "bin-dir": "bin"
     },
     "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        },
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
-        },
-        "dependency-tools": {
-            "npm":   true,
-            "bower": {
-                "path": "node_modules/.bin/bower"
-            }
         }
     }
 }

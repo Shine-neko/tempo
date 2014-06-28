@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4eab624ee2833c8bd8c19ab643eacac6",
+    "hash": "a441014bc7e179a766a262ff33f868f7",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -119,7 +119,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan Wage",
+                    "name": "Jonathan H. Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/",
                     "role": "Creator"
@@ -367,16 +367,15 @@
         {
             "name": "doctrine/doctrine-bundle",
             "version": "dev-master",
-            "target-dir": "Doctrine/Bundle/DoctrineBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineBundle.git",
-                "reference": "5173c05e65668449214373f1bf8997f73848d36c"
+                "reference": "e604136b2bfb95cfcade987ec21d69bf65975b71"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/5173c05e65668449214373f1bf8997f73848d36c",
-                "reference": "5173c05e65668449214373f1bf8997f73848d36c",
+                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/e604136b2bfb95cfcade987ec21d69bf65975b71",
+                "reference": "e604136b2bfb95cfcade987ec21d69bf65975b71",
                 "shasum": ""
             },
             "require": {
@@ -408,8 +407,8 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Doctrine\\Bundle\\DoctrineBundle": ""
+                "psr-4": {
+                    "Doctrine\\Bundle\\DoctrineBundle\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -444,7 +443,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2014-05-07 15:48:46"
+            "time": "2014-06-21 16:09:36"
         },
         {
             "name": "doctrine/doctrine-cache-bundle",
@@ -1041,12 +1040,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "a93c355d70fd57a8171faece7969a13cb9387efb"
+                "reference": "71ed2505443f375876a38e82ff0d1929d6078270"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/a93c355d70fd57a8171faece7969a13cb9387efb",
-                "reference": "a93c355d70fd57a8171faece7969a13cb9387efb",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/71ed2505443f375876a38e82ff0d1929d6078270",
+                "reference": "71ed2505443f375876a38e82ff0d1929d6078270",
                 "shasum": ""
             },
             "require": {
@@ -1101,19 +1100,19 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2014-06-08 14:16:45"
+            "time": "2014-06-13 14:56:35"
         },
         {
             "name": "gedmo/doctrine-extensions",
             "version": "v2.3.9",
             "source": {
                 "type": "git",
-                "url": "https://github.com/l3pp4rd/DoctrineExtensions.git",
+                "url": "https://github.com/Atlantic18/DoctrineExtensions.git",
                 "reference": "35adcaae1a3f50d0d5b73aa50ed8fd28ee35ce54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/l3pp4rd/DoctrineExtensions/zipball/35adcaae1a3f50d0d5b73aa50ed8fd28ee35ce54",
+                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/35adcaae1a3f50d0d5b73aa50ed8fd28ee35ce54",
                 "reference": "35adcaae1a3f50d0d5b73aa50ed8fd28ee35ce54",
                 "shasum": ""
             },
@@ -1347,16 +1346,16 @@
         },
         {
             "name": "imagine/imagine",
-            "version": "v0.5.0",
+            "version": "v0.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/avalanche123/Imagine.git",
-                "reference": "f64ec666baaa800edcbf237db41121a569230709"
+                "reference": "725279fd560faa1c7012a80b427b31d7f08f36ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/avalanche123/Imagine/zipball/f64ec666baaa800edcbf237db41121a569230709",
-                "reference": "f64ec666baaa800edcbf237db41121a569230709",
+                "url": "https://api.github.com/repos/avalanche123/Imagine/zipball/725279fd560faa1c7012a80b427b31d7f08f36ff",
+                "reference": "725279fd560faa1c7012a80b427b31d7f08f36ff",
                 "shasum": ""
             },
             "require": {
@@ -1371,6 +1370,11 @@
                 "ext-imagick": "to use the Imagick implementation"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-develop": "0.6-dev"
+                }
+            },
             "autoload": {
                 "psr-0": {
                     "Imagine": "lib/"
@@ -1395,7 +1399,7 @@
                 "image manipulation",
                 "image processing"
             ],
-            "time": "2013-07-10 17:25:36"
+            "time": "2014-06-16 20:53:48"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -1641,7 +1645,7 @@
                 {
                     "name": "Johannes M. Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
+                    "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -1732,12 +1736,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpMenu.git",
-                "reference": "de645e813ddca4a1243db48bce5eaee8adb346a2"
+                "reference": "532a4ad323be54da77179022474e873d307e524c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/de645e813ddca4a1243db48bce5eaee8adb346a2",
-                "reference": "de645e813ddca4a1243db48bce5eaee8adb346a2",
+                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/532a4ad323be54da77179022474e873d307e524c",
+                "reference": "532a4ad323be54da77179022474e873d307e524c",
                 "shasum": ""
             },
             "require": {
@@ -1788,7 +1792,7 @@
                 "menu",
                 "tree"
             ],
-            "time": "2014-05-01 19:50:28"
+            "time": "2014-06-20 09:37:12"
         },
         {
             "name": "knplabs/knp-menu-bundle",
@@ -1797,16 +1801,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpMenuBundle.git",
-                "reference": "d7da4383a20e725a2df99fd9913a076b463c1670"
+                "reference": "e6a0756b80349f04023faaef4ae4d801cbd716df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpMenuBundle/zipball/d7da4383a20e725a2df99fd9913a076b463c1670",
-                "reference": "d7da4383a20e725a2df99fd9913a076b463c1670",
+                "url": "https://api.github.com/repos/KnpLabs/KnpMenuBundle/zipball/e6a0756b80349f04023faaef4ae4d801cbd716df",
+                "reference": "e6a0756b80349f04023faaef4ae4d801cbd716df",
                 "shasum": ""
             },
             "require": {
-                "knplabs/knp-menu": "~2.0, >=2.0.0-alpha2",
+                "knplabs/knp-menu": "~2.0, >=2.0.0-beta1",
                 "symfony/framework-bundle": "~2.0"
             },
             "type": "symfony-bundle",
@@ -1842,7 +1846,7 @@
             "keywords": [
                 "menu"
             ],
-            "time": "2014-06-06 09:54:22"
+            "time": "2014-06-16 19:59:46"
         },
         {
             "name": "knplabs/knp-snappy",
@@ -1910,17 +1914,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpSnappyBundle.git",
-                "reference": "9927cd482cd496d49a58cd153c4a09d9062b8276"
+                "reference": "cefcc47ad095bc4655d3a0151950ada796bc024d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpSnappyBundle/zipball/9927cd482cd496d49a58cd153c4a09d9062b8276",
-                "reference": "9927cd482cd496d49a58cd153c4a09d9062b8276",
+                "url": "https://api.github.com/repos/KnpLabs/KnpSnappyBundle/zipball/cefcc47ad095bc4655d3a0151950ada796bc024d",
+                "reference": "cefcc47ad095bc4655d3a0151950ada796bc024d",
                 "shasum": ""
             },
             "require": {
                 "knplabs/knp-snappy": "*",
                 "php": ">=5.3.2",
+                "symfony/finder": ">=2.0.0",
                 "symfony/framework-bundle": ">=2.0.0"
             },
             "type": "symfony-bundle",
@@ -1957,7 +1962,7 @@
                 "pdf",
                 "snappy"
             ],
-            "time": "2014-03-20 16:17:22"
+            "time": "2014-06-19 09:27:46"
         },
         {
             "name": "knplabs/knp-time-bundle",
@@ -2451,12 +2456,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nelmio/NelmioApiDocBundle.git",
-                "reference": "56124e7c409e80c486c291c624e0f048d2d0184d"
+                "reference": "c92789e00fd6889751d8939656de974605053017"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/56124e7c409e80c486c291c624e0f048d2d0184d",
-                "reference": "56124e7c409e80c486c291c624e0f048d2d0184d",
+                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/c92789e00fd6889751d8939656de974605053017",
+                "reference": "c92789e00fd6889751d8939656de974605053017",
                 "shasum": ""
             },
             "require": {
@@ -2517,7 +2522,7 @@
                 "documentation",
                 "rest"
             ],
-            "time": "2014-06-01 13:56:45"
+            "time": "2014-06-27 12:43:22"
         },
         {
             "name": "pagerfanta/pagerfanta",
@@ -2935,17 +2940,17 @@
         },
         {
             "name": "sensio/generator-bundle",
-            "version": "v2.3.4",
+            "version": "v2.3.5",
             "target-dir": "Sensio/Bundle/GeneratorBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioGeneratorBundle.git",
-                "reference": "4a7b126e9c22f858e3584b19ddce6e5bdd7677ee"
+                "reference": "8b7a33aa3d22388443b6de0b0cf184122e9f60d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/4a7b126e9c22f858e3584b19ddce6e5bdd7677ee",
-                "reference": "4a7b126e9c22f858e3584b19ddce6e5bdd7677ee",
+                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/8b7a33aa3d22388443b6de0b0cf184122e9f60d2",
+                "reference": "8b7a33aa3d22388443b6de0b0cf184122e9f60d2",
                 "shasum": ""
             },
             "require": {
@@ -2981,7 +2986,7 @@
                 }
             ],
             "description": "This bundle generates code for you",
-            "time": "2013-08-21 18:09:35"
+            "time": "2014-04-28 14:01:06"
         },
         {
             "name": "stof/doctrine-extensions-bundle",
@@ -3047,16 +3052,16 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.2.0",
+            "version": "v5.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "043e336b871f17a117f76ef8e190eddfc04c8d48"
+                "reference": "2b9af56cc676c338d52fca4c657e5bdff73bb7af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/043e336b871f17a117f76ef8e190eddfc04c8d48",
-                "reference": "043e336b871f17a117f76ef8e190eddfc04c8d48",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/2b9af56cc676c338d52fca4c657e5bdff73bb7af",
+                "reference": "2b9af56cc676c338d52fca4c657e5bdff73bb7af",
                 "shasum": ""
             },
             "require": {
@@ -3097,20 +3102,20 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2014-05-08 08:11:19"
+            "time": "2014-06-13 11:44:54"
         },
         {
             "name": "sylius/resource",
-            "version": "dev-master",
+            "version": "v0.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Sylius/Resource.git",
-                "reference": "d9fde3613f62bea4144e72e3889f991012a0092f"
+                "reference": "9fed9c3fa82676f2ad71ed3209ba9f6ebaec6c39"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Sylius/Resource/zipball/d9fde3613f62bea4144e72e3889f991012a0092f",
-                "reference": "d9fde3613f62bea4144e72e3889f991012a0092f",
+                "url": "https://api.github.com/repos/Sylius/Resource/zipball/9fed9c3fa82676f2ad71ed3209ba9f6ebaec6c39",
+                "reference": "9fed9c3fa82676f2ad71ed3209ba9f6ebaec6c39",
                 "shasum": ""
             },
             "require": {
@@ -3162,20 +3167,20 @@
                 "shop",
                 "sylius"
             ],
-            "time": "2014-06-09 14:24:33"
+            "time": "2014-06-22 21:14:03"
         },
         {
             "name": "sylius/resource-bundle",
-            "version": "dev-master",
+            "version": "v0.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Sylius/SyliusResourceBundle.git",
-                "reference": "52b074cf8bfd0ff47495f0cad1c6336729032916"
+                "reference": "cba1f77cdda2d1f1ba2dea6e2768b13f55f7eb05"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Sylius/SyliusResourceBundle/zipball/52b074cf8bfd0ff47495f0cad1c6336729032916",
-                "reference": "52b074cf8bfd0ff47495f0cad1c6336729032916",
+                "url": "https://api.github.com/repos/Sylius/SyliusResourceBundle/zipball/cba1f77cdda2d1f1ba2dea6e2768b13f55f7eb05",
+                "reference": "cba1f77cdda2d1f1ba2dea6e2768b13f55f7eb05",
                 "shasum": ""
             },
             "require": {
@@ -3239,20 +3244,20 @@
                 "storage",
                 "sylius"
             ],
-            "time": "2014-06-09 14:24:33"
+            "time": "2014-06-21 12:43:02"
         },
         {
             "name": "sylius/settings-bundle",
-            "version": "dev-master",
+            "version": "v0.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Sylius/SyliusSettingsBundle.git",
-                "reference": "7e8d894d315a20f9d501cb695f0c13b859a45f76"
+                "reference": "1feda0a2bc0a2f0e5717369bfb67af5ada78530d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Sylius/SyliusSettingsBundle/zipball/7e8d894d315a20f9d501cb695f0c13b859a45f76",
-                "reference": "7e8d894d315a20f9d501cb695f0c13b859a45f76",
+                "url": "https://api.github.com/repos/Sylius/SyliusSettingsBundle/zipball/1feda0a2bc0a2f0e5717369bfb67af5ada78530d",
+                "reference": "1feda0a2bc0a2f0e5717369bfb67af5ada78530d",
                 "shasum": ""
             },
             "require": {
@@ -3307,7 +3312,7 @@
                 "shop",
                 "webshop"
             ],
-            "time": "2014-05-23 22:05:51"
+            "time": "2014-06-21 12:43:02"
         },
         {
             "name": "symfony/assetic-bundle",
@@ -4018,12 +4023,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Wisembly/elephant.io.git",
-                "reference": "8e151a58e931c87ef1b7d2d2124f5b8d79637d1e"
+                "reference": "f52135c217cb26d9f9f51952aac452b92de455be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Wisembly/elephant.io/zipball/8e151a58e931c87ef1b7d2d2124f5b8d79637d1e",
-                "reference": "8e151a58e931c87ef1b7d2d2124f5b8d79637d1e",
+                "url": "https://api.github.com/repos/Wisembly/elephant.io/zipball/f52135c217cb26d9f9f51952aac452b92de455be",
+                "reference": "f52135c217cb26d9f9f51952aac452b92de455be",
                 "shasum": ""
             },
             "require": {
@@ -4050,7 +4055,7 @@
                 "nodejs",
                 "websocket"
             ],
-            "time": "2014-04-08 09:08:19"
+            "time": "2014-06-11 19:55:01"
         },
         {
             "name": "yohang/calendr",
@@ -4107,79 +4112,6 @@
                 "events"
             ],
             "time": "2013-09-10 14:18:04"
-        },
-        {
-            "name": "yohang/finite",
-            "version": "dev-sylius",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/winzou/Finite.git",
-                "reference": "8e040db0b801b2f2d5e268c0e0a216aeb1882204"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/winzou/Finite/zipball/8e040db0b801b2f2d5e268c0e0a216aeb1882204",
-                "reference": "8e040db0b801b2f2d5e268c0e0a216aeb1882204",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0",
-                "symfony/event-dispatcher": ">=2.1,<3.0",
-                "symfony/expression-language": "~2.4",
-                "symfony/options-resolver": ">=2.1,<3.0",
-                "symfony/property-access": ">=2.3,<3.0"
-            },
-            "require-dev": {
-                "pdepend/pdepend": "*",
-                "phpmd/phpmd": "*",
-                "phpunit/phpunit": ">=3.7,<4.0",
-                "pimple/pimple": ">=1.0,<2.0",
-                "symfony/dependency-injection": ">=2.1,<3.0",
-                "symfony/framework-bundle": ">=2.1,<3.0",
-                "symfony/security": ">=2.1,<3.0",
-                "twig/twig": ">=1.13,<2.0"
-            },
-            "suggest": {
-                "pimple/pimple": "Needed for use with PimpleFactory",
-                "symfony/dependency-injection": "Needed for use with Symfony DependencyInjection Factory",
-                "symfony/security": "Needed for using SecurityAwareStateMachine",
-                "symfony/yaml": "Yaml allows you to define your State graph in YAML"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Finite": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Yohan Giarelli",
-                    "email": "yohan@giarel.li",
-                    "homepage": "http://yohan.giarel.li"
-                }
-            ],
-            "description": "A simple PHP5.3+ Finite State Machine",
-            "homepage": "https://github.com/yohang/Finite",
-            "keywords": [
-                "bundle",
-                "state",
-                "statemachine",
-                "symfony",
-                "transition",
-                "workflow"
-            ],
-            "support": {
-                "source": "https://github.com/winzou/Finite/tree/sylius"
-            },
-            "time": "2014-05-16 07:54:19"
         }
     ],
     "packages-dev": [
@@ -5489,16 +5421,16 @@
         },
         {
             "name": "phpunit/phpunit-mock-objects",
-            "version": "2.1.3",
+            "version": "2.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "92f4b49d2cd4f2537db7ef969231f3d43c8da957"
+                "reference": "7878b9c41edb3afab92b85edf5f0981014a2713a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/92f4b49d2cd4f2537db7ef969231f3d43c8da957",
-                "reference": "92f4b49d2cd4f2537db7ef969231f3d43c8da957",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/7878b9c41edb3afab92b85edf5f0981014a2713a",
+                "reference": "7878b9c41edb3afab92b85edf5f0981014a2713a",
                 "shasum": ""
             },
             "require": {
@@ -5542,7 +5474,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2014-06-07 12:56:52"
+            "time": "2014-06-12 07:22:15"
         },
         {
             "name": "sebastian/comparator",
@@ -5882,10 +5814,6 @@
         "white-october/pagerfanta-bundle": 20,
         "mopa/bootstrap-bundle": 10,
         "nelmio/api-doc-bundle": 20,
-        "sylius/settings-bundle": 20,
-        "sylius/resource-bundle": 20,
-        "sylius/resource": 20,
-        "yohang/finite": 20,
         "behat/behat": 0,
         "behat/mink-extension": 20,
         "doctrine/doctrine-fixtures-bundle": 20,
