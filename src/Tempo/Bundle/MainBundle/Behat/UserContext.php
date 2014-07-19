@@ -13,9 +13,8 @@ namespace Tempo\Bundle\MainBundle\Behat;
 
 use Behat\Behat\Context\Step\When;
 use Behat\Mink\Driver\Selenium2Driver;
-use Behat\MinkExtension\Context\RawMinkContext;
 
-class WebUser extends RawMinkContext
+class UserContext extends BaseContext
 {
     /**
      * @Given /^I logout$/
@@ -34,12 +33,12 @@ class WebUser extends RawMinkContext
     {
         $password = $password ?: $username;
 
-        $this->getSession()->visit($this->getMainContext()->generateUrl('fos_user_security_login'));
+        $this->getSession()->visit($this->generatePageUrl('fos_user_security_login'));
 
-        $this->getMainContext()->fillField('Username', $username);
-        $this->getMainContext()->fillField('Password', $password);
-        $this->getMainContext()->pressButton('login');
-        $this->getMainContext()->assertPageContainsText('logout');
+        $this->fillField('Username', $username);
+        $this->fillField('Password', $password);
+        $this->pressButton('login');
+        $this->assertPageContainsText('logout');
     }
 
     /**
@@ -47,7 +46,7 @@ class WebUser extends RawMinkContext
      */
     public function iShouldStillBeOnMyAccountPasswordPage()
     {
-        $this->assertSession()->addressEquals($this->getMainContext()->generateUrl('user_profile_password'));
+        $this->assertSession()->addressEquals($this->generateUrl('user_profile_password'));
     }
 
     /**
@@ -55,7 +54,7 @@ class WebUser extends RawMinkContext
      */
     public function iAmOnMyAccountPasswordPage()
     {
-        $this->getSession()->visit($this->getMainContext()->generatePageUrl('user_profile_password'));
+        $this->getSession()->visit($this->generatePageUrl('user_profile_password'));
     }
 
     /**
@@ -63,7 +62,7 @@ class WebUser extends RawMinkContext
      */
     public function iShouldBeOnLoginPage()
     {
-        $this->assertSession()->addressEquals($this->getMainContext()->generateUrl('fos_user_security_login'));
+        $this->assertSession()->addressEquals($this->generateUrl('fos_user_security_login'));
         $this->assertStatusCodeEquals(200);
     }
 

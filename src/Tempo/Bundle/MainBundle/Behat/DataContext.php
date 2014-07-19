@@ -12,10 +12,10 @@
 namespace Tempo\Bundle\MainBundle\Behat;
 
 use Faker\Factory as FakerFactory;
-use Behat\MinkExtension\Context\RawMinkContext;
 use Behat\Gherkin\Node\TableNode;
+use Doctrine\Common\Inflector;
 
-class DataContext extends RawMinkContext
+class DataContext extends BaseContext
 {
     /**
      * Faker.
@@ -34,13 +34,13 @@ class DataContext extends RawMinkContext
     public function iCreatedCraNameDescription(TableNode $table)
     {
         if (!isset($table->getRowsHash()['period'])) {
-            $this->getMainContext()->fillField('timesheet[workedDate]', date('Y-m-d'));
+            $this->fillField('timesheet[workedDate]', date('Y-m-d'));
         }
 
         foreach ($table->getRowsHash() as $key => $value) {
-           $this->getMainContext()->fillField('timesheet['.$key.']', $value);
+           $this->fillField('timesheet['.$key.']', $value);
         }
 
-        $this->getMainContext()->pressButton('Save');
+        $this->pressButton('Save');
     }
 }

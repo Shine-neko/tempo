@@ -1,4 +1,3 @@
-
 {
     "name": "tempo-project/tempo",
     "type":        "project",
@@ -62,13 +61,12 @@
     },
     "require-dev": {
         "phpunit/phpunit": "~4.1",
-        "behat/behat": "2.5.*@stable",
-        "behat/symfony2-extension": "1.1.*",
-        "behat/mink-extension":          "1.3.*@dev",
-        "behat/mink-goutte-driver": "*",
-        "behat/mink-selenium2-driver": "*",
-        "doctrine/doctrine-fixtures-bundle": "2.2.*@dev",
-        "willdurand/faker-bundle": "dev-master"
+        "behat/behat": "~3.0",
+        "behat/symfony2-extension":      "~2.0@dev",
+        "behat/mink-extension":          "~2.0@dev",
+        "behat/mink-browserkit-driver":  "~1.1@dev",
+        "willdurand/faker-bundle": "dev-master",
+        "doctrine/doctrine-fixtures-bundle": "2.2.*@dev"
     },
     "scripts": {
         "post-install-cmd": [
