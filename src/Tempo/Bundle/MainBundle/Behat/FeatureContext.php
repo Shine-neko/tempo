@@ -13,47 +13,16 @@ namespace Tempo\Bundle\MainBundle\Behat;
 
 use Behat\Symfony2Extension\Context\KernelAwareInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\KernelInterface;
-
-use Behat\MinkExtension\Context\MinkContext;
-use Doctrine\Common\Inflector;
 
 /**
  * Features context.
  */
-class FeatureContext extends MinkContext implements KernelAwareInterface
+class FeatureContext extends BaseContext
 {
 
-    /**
-     * @var \Symfony\Component\HttpKernel\KernelInterface
-     */
-    private $kernel;
-
-    /**
-     * @var array
-     */
-    private $parameters;
-
-    /**
-     * Initializes context.
-     * Every scenario gets it's own context object.
-     *
-     * @param array $parameters context parameters (set them up through behat.yml)
-     */
-    public function __construct(array $parameters)
+    public function __construct()
     {
-        $this->useContext('web-user', new WebUser());
-        $this->useContext('data', new DataContext());
-
         Request::enableHttpMethodParameterOverride();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setKernel(KernelInterface $kernel)
-    {
-        $this->kernel = $kernel;
     }
 
     /**
@@ -90,31 +59,6 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     public function generateUrl($route, array $parameters = array(), $absolute = false)
     {
         return $this->getService('router')->generate($route, $parameters, $absolute);
-    }
-
-    /**
-     * Generate page url from name and parameters.
-     *
-     * @param string $page
-     * @param array  $parameters
-     *
-     * @return string
-     */
-    public function generatePageUrl($page, array $parameters = array())
-    {
-        $parts = explode(' ', trim($page), 2);
-        if (2 === count($parts)) {
-            $parts[1] = Inflector::camelize($parts[1]);
-        }
-
-        $route  = implode('_', $parts);
-        $routes = $this->getContainer()->get('router')->getRouteCollection();
-
-        if (null === $routes->get($route)) {
-            $route = 'app_'.$route;
-        }
-
-        return $this->getMinkParameter('base_url').$this->generateUrl($route, $parameters);
     }
 
     /**
