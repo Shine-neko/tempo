@@ -34,21 +34,6 @@
 	margin: 0px 25px 50px 0px;
 }
 
-#feedback {
-	position: fixed;
-	left: -3px;
-	top: 270px;
-	z-index: 750;
-}
-
-#feedback a {
-	background: url("/bundles/tempomain/images/feedback.png") #313131;
-	width: 42px;
-	height: 102px;
-	display: inline-block;
-	display: none;
-}
-
 ul.autocompleter-choices {
 	position: absolute;
 	margin: 0;
@@ -148,8 +133,8 @@ table.table-striped tbody .actions .edit {
 	font: 12px Arial, Verdana, sans-serif;
 }
 
-#user.login #contenair {
-	width: 546px;
+.user.login #container-user {
+	float: none;
 	min-height: 380px;
 	margin: 100px auto 0;
 	background: white;
@@ -158,13 +143,13 @@ table.table-striped tbody .actions .edit {
 	box-shadow: 1px 1px 15px #888;
 }
 
-#user.login #contenair .form-error {
+.user.login #container-user .form-error {
 	color: #ffa500;
 	margin: 10px;
 	text-align: center;
 }
 
-#user.login #contenair h1 {
+.user.login #container-user h1 {
 	color: #000;
 	font-size: 4em;
 	margin-top: 0px;
@@ -174,34 +159,27 @@ table.table-striped tbody .actions .edit {
 	text-shadow: 0 0 1px rgba(0, 0, 0, 0.01);
 }
 
-#user.login #contenair .widget {
+.user.login #container-user .widget {
 	margin: 0 auto;
 	padding-bottom: 18px;
-	width: 456px;
 }
 
-#user.login #contenair .widget.remember {
+.user.login #container-user .widget.remember {
 	margin-bottom: 0px;
-	width: 45%;
-	float: left;
-	margin-left: 26px;
 }
-#user.login #contenair .widget.send {
-	margin-right: 45px;
+.user.login #container-user .widget.send {
 	margin-bottom: 0px;
-	width: 35%;
-	float: right;
 	text-align: right;
 }
 
-#user.login #contenair .widget.reset {
+.user.login #container-user .widget.reset {
 	clear: both;
 }
-#user.login #contenair .widget.pp {
+.user.login #container-user .widget.pp {
 	margin-left: 25px;
 }
 
-#user.login #contenair label {
+.user.login #container-user label {
 	margin-bottom: 8px;
 	color: #888;
 	display: block;
@@ -209,44 +187,47 @@ table.table-striped tbody .actions .edit {
 	font-weight: normal;
 }
 
-#user.login #contenair label#remember_me {
+.user.login #container-user label#remember_me {
 	display: inline;
 }
 
-#user.login #contenair input[type="text"], #user.login #contenair input[type="password"] {
+.user.login #container-user input[type="text"], .user.login #container-user input[type="password"] {
 	font-size: 12px;
 	line-height: 20px;
 	margin: 0;
 	padding: 3px;
-	width: 440px;
 	height: 35px;
 	background-color: #FAFAFA;
 	border: 1px solid #EEE;
+	border-radius: 0;
+	box-shadow: none;
 }
 
-#user.login #contenair .submit {
+.user.login #container-user .submit.btn-default {
 	float: right;
+	color: #666666;
+}
+.user.login #container-user .submit.btn-default:hover {
+	background-color: #fafafa;
+	color: #428bca;
 }
 
-#user.login #contenair .submit input[type="submit"] {
-}
-
-#user.login #contenair .send {
+.user.login #container-user .send {
 	float: left;
 	padding-top: 8px;
 }
 
-#user.login #contenair .send a {
+.user.login #container-user .send a {
 	color: #0066BC;
 	text-decoration: none;
 }
 
-#user #providers {
+.user #providers {
 	width: 45%;
 	padding: 0px;
 	margin: 0px;
 }
-#user #powered {
+.user #powered {
 	width: 45%;
 	float: right;
 	margin: 0px;
@@ -255,11 +236,11 @@ table.table-striped tbody .actions .edit {
 	text-align: right;
 }
 
-#user #powered a {
+.user #powered a {
 	color: #CCC;
 }
 
-#user #powered a:hover {
+.user #powered a:hover {
 	color: #0066BC;
 }
 
