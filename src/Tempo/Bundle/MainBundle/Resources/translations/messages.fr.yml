@@ -3,6 +3,7 @@ tempo:
     project: Projects
     home: Accueil
     timesheet: Timesheets
+    admin: Admin
   form:
     show: 'Vue'
     create: 'Crée'

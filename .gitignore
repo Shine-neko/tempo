@@ -8,6 +8,7 @@ vendor/*
 bin/behat*
 bin/doctrine*
 bin/phpspec
+bin/phpunit
 bin/webunit*
 bin/selenium-server-standalone-*
 app/config/deploy/*
@@ -20,7 +21,7 @@ behat.yml
 web/*.css
 web/css/
 web/js/
-web/*.js
+web/i18n
 node_modules/
 
 # Configuration files
@@ -30,3 +31,5 @@ build/
 .DS_Store
 nbproject/
 composer.phar
+
+bin/java/yuicompressor.jar

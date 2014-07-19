@@ -33,4 +33,9 @@ class ProjectManager extends BaseManager
 
         return $project;
     }
+
+    public function nbTotalProject()
+    {
+        return $this->repository->totalProject();
+    }
 }

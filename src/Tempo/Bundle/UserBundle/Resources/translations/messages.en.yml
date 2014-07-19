@@ -14,6 +14,18 @@ tempo:
       email: Email address
       password: Password
       settings: Settings
+    form:
+      id: ID
+      email: E-Mail
+      registration_date: Registration Date
+      enabled: Enabled
+      firstName: Skype
+      lastName: Skype
+      password: Skype
+      skype: Skype
+      linkedin: Linkedin
+      viadeo: Viadeo
+      twitter: Twitter
 
   avatar:
     title: Change my profile picture
@@ -31,3 +43,7 @@ tempo:
     failed_valid_file: Uploaded file is not a valid
 
   see_all_notification: See All notification
+  user:
+    create: Create User
+    list.page_title : User list
+    create.page_title: Create User

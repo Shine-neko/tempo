@@ -54,4 +54,12 @@ class OrganizationRepository extends EntityRepository
 
         return $counter[0];
     }
+    public function totalOrganisation()
+    {
+        return $this->createQueryBuilder('o')
+        ->select('COUNT(o)')
+        ->getQuery()
+        ->getSingleScalarResult();
+    }
+
 }

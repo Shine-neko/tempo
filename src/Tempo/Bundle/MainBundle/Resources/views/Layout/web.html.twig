@@ -93,10 +93,10 @@
         <div id="content" class="container-fluid">
             <div class="row">
                 {% block body %}
+                {% block breadcrumb %}
+                    {{ knp_menu_render('breadcrumb') }}
+                {% endblock breadcrumb %}
                 <div id="child-content" class="col-md-12">
-                    {% block breadcrumb %}
-                        {{ knp_menu_render('breadcrumb') }}
-                    {% endblock breadcrumb %}
                     {% block content %}  {% endblock %}
                 </div>
 

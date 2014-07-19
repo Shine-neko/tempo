@@ -12,7 +12,6 @@ main_chat:
 
 
 #Backend
-
 tempo_setting_backend:
     resource: "@TempoMainBundle/Resources/config/routing/backend/settings.yml"
     prefix: /admin/settings

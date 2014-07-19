@@ -119,4 +119,12 @@ class ProjectRepository extends EntityRepository
             $this->find($id)->setPriority($priority);
         }
     }
+
+    public function totalProject()
+    {
+        return $this->createQueryBuilder('o')
+            ->select('COUNT(o)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }

@@ -11,26 +11,24 @@
 
 namespace Tempo\Bundle\CoreBundle\Form\Type;
 
+use Tempo\Bundle\CoreBundle\Form\DataTransformer\ArrayToStringTransformer;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormView;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToStringTransformer;
 
-class DateTimePickerType extends AbstractType
+/**
+ * List type.
+ *
+ * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
+ */
+class ListType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder->addModelTransformer(new DateTimeToStringTransformer(null, null, 'Y/m/d'));
-    }
-
     /**
      * {@inheritdoc}
      */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $view->vars['type'] = 'datetime';
+        $builder->addModelTransformer(new ArrayToStringTransformer($options['delimiter']));
     }
 
     /**
@@ -38,21 +36,22 @@ class DateTimePickerType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
-            'widget_addon_append' => array('icon' => 'calendar'),
-            'attr' => array(
-                'class' => 'datepicker'
-            )
-        ));
+        $resolver->setDefaults(array('delimiter' => ', '));
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getParent()
     {
         return 'text';
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
-        return 'datetimepicker';
+        return 'list';
     }
 }

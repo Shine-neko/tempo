@@ -33,4 +33,9 @@ class OrganizationManager extends BaseManager
            'open'  => $counter['prj_open']
        );
    }
+
+    public function nbTotalOrganisation()
+    {
+        return $this->repository->totalOrganisation();
+    }
 }

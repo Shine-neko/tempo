@@ -1,0 +1,30 @@
+timesheet:
+    pattern:  /
+    defaults: { _controller: "TempoProjectBundle:Timesheet:dashboard" }
+
+timesheet_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "TempoProjectBundle:Timesheet:show" }
+
+timesheet_new:
+    pattern:  /new
+    defaults: { _controller: "TempoProjectBundle:Timesheet:new" }
+
+timesheet_create:
+    pattern:  /create
+    defaults: { _controller: "TempoProjectBundle:Timesheet:create" }
+    requirements: { _method: POST }
+
+timesheet_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "TempoProjectBundle:Timesheet:edit" }
+
+timesheet_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "TempoProjectBundle:Timesheet:update" }
+    requirements: { _method: POST }
+
+timesheet_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "TempoProjectBundle:Timesheet:delete" }
+    requirements: { _method: POST }

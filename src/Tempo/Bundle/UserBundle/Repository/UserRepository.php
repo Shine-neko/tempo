@@ -19,6 +19,14 @@ use Doctrine\ORM\Query;
  */
 class UserRepository extends EntityRepository
 {
+    public function totalUsers()
+    {
+        return $this->createQueryBuilder('u')
+            ->select('COUNT(u)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
     public function autocomplete($slug)
     {
         return $this->createQueryBuilder('u')

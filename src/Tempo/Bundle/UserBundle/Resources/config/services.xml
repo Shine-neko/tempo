@@ -9,6 +9,7 @@
         <parameter key="tempo.user.oauth.user_provider.class">Tempo\Bundle\UserBundle\OAuth\UserProvider</parameter>
         <parameter key="tempo.user.security.interactive_login_listener.class">Tempo\Bundle\UserBundle\EventListener\UserListener</parameter>
         <parameter key="tempo.user.twig.extension.class">Tempo\Bundle\UserBundle\Twig\Extension\UserExtension</parameter>
+        <parameter key="tempo.form.type.user_filter.class">Tempo\Bundle\UserBundle\Form\Type\Backend\Filter\UserFilterType</parameter>
     </parameters>
 
     <services>
@@ -30,6 +31,9 @@
 
         <service id="tempo.user.profile.form.type.avatar" class="%tempo.user.profile.form.type.avatar.class%">
             <argument type="string">%tempo.user.profile.form.type.avatar.class%</argument>
+        </service>
+        <service id="tempo.form.type.user_filter" class="%tempo.form.type.user_filter.class%">
+            <tag name="form.type" alias="tempo_user_filter" />
         </service>
 
         <service id="tempo.user.profile.form.avatar.factory" class="Symfony\Component\Form\Form"  factory-service="form.factory" factory-method="create">
