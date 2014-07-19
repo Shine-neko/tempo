@@ -1,14 +1,11 @@
 {% extends 'TempoMainBundle::Layout/web.html.twig' %}
 
-{% block body %}
-
-    {{ form_errors(form) }}
-
+{% block container %}
     <form class="form-block" method="post" action="{{ path('backend_configuration_project') }}">
+        {{ form_errors(form) }}
         <div id="settings">
             {{ form_widget(form.week) }}
             {{ form_rest(form) }}
-
         </div>
 
     <input type="submit" />

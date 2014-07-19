@@ -1,4 +1,4 @@
-{% extends "TempoMainBundle::Layout/web.html.twig" %}
+{% extends "TempoMainBundle::layout.html.twig" %}
 {% block bodyClass %}project edit{% endblock %}
 
 {% block javascripts %}
@@ -7,7 +7,7 @@
     <script>new Tempo.View.Project(); </script>
 {% endblock %}
 
-{% block body %}
+{% block container %}
     {% block breadcrumb %}
         <ol id="breadcrumb" class="clearfix">
             <li class="first"> <a href="{{ path('project_home') }}">{{ 'tempo.menu.home'|trans  }}</a> </li>

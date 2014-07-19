@@ -1,11 +1,11 @@
-{% extends "TempoMainBundle::Layout/web.html.twig" %}
+{% extends "TempoMainBundle::layout.html.twig" %}
 {% block bodyClass %}organization edit{% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript" src="{{ asset('bundles/tempoproject/js/views/organizationView.js')}}"></script>
 {% endblock %}
 
-{% block body %}
+{% block container %}
     {% block breadcrumb %}
         {{ parent() }}
     {% endblock breadcrumb %}
@@ -33,6 +33,6 @@
     </div>
 
 
-{% endblock %}
+{% endblock container %}
 
 

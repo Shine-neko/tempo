@@ -17,9 +17,9 @@
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}"  />
     <title>{% block title %}{{ 'Welcome'|trans }}{% endblock %} - Tempo</title>
 </head>
-
 <body class="no-js {{ get_browser() }} {% block bodyClass %}{% endblock %}">
-    <div id="glob">
+{% block body %}
+<div id="glob">
         <header id="header" class="navbar navbar-static-top" role="banner">
             <div class="container">
                 <div class="navbar-header">
@@ -92,7 +92,7 @@
         </header>
         <div id="content" class="container-fluid">
             <div class="row">
-                {% block body %}
+                {% block container %}
                 {% block breadcrumb %}
                     {{ knp_menu_render('breadcrumb') }}
                 {% endblock breadcrumb %}
@@ -101,7 +101,7 @@
                 </div>
 
             </div>
-            {% endblock body %}
+            {% endblock container %}
         </div>
 
     </div>
@@ -155,9 +155,9 @@
             'vendor/selectize/dist/js/standalone/selectize.min.js'
             'vendor/infiniscroll/lib/infiniScroll.js'
             '../client/js/pimple.js'
-            '../client/js/js/routerManager.js'
-            '../client/js/js/app.js'
-            '../client/js/js/behavior.js'
+            '../client/js/routerManager.js'
+            '../client/js/app.js'
+            '../client/js/behavior.js'
             filter="?yui_js"
             output="js/main.js"
         %}
@@ -170,6 +170,7 @@
         {% endfor %}
         {{ behavior.renderHTML|raw }}
     {% endblock %}
-</body>
 
+{% endblock body %}
+</body>
 </html>
