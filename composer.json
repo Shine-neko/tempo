@@ -44,7 +44,8 @@
         "ikimea/browser": "dev-master",
         "yohang/calendr": "1.*",
         "egeloen/ckeditor-bundle": "2.2.*@dev",
-        "knplabs/knp-menu-bundle": "~2.0",
+        "knplabs/knp-menu-bundle": "2.0.*@dev",
+        "knplabs/knp-menu": "~2.0",
         "knplabs/knp-time-bundle": "1.1.*@dev",
         "knplabs/knp-snappy-bundle": "1.0.*@dev",
         "stof/doctrine-extensions-bundle": "1.1.0",
@@ -53,7 +54,7 @@
         "white-october/pagerfanta-bundle": "v1.0.2",
         "mopa/bootstrap-bundle": "3.*@dev",
         "liip/imagine-bundle": "1.0.0",
-        "nelmio/api-doc-bundle": "2.6.0"
+        "nelmio/api-doc-bundle": "2.6.0",
         "willdurand/js-translation-bundle": "v2.0.0",
 
         "sylius/settings-bundle": "v0.10.0",
