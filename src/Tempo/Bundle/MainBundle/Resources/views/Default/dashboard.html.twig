@@ -5,14 +5,14 @@
 {% block javascripts %}
     {{ parent() }}
     {% javascripts
-        '@TempoMainBundle/Resources/public/js/app/model/chatMessage.js'
-        '@TempoMainBundle/Resources/public/js/app/model/room.js'
-        '@TempoMainBundle/Resources/public/js/app/collection/chatMessage.js'
-        '@TempoMainBundle/Resources/public/js/app/views/chatBox.js'
-        '@TempoMainBundle/Resources/public/js/app/views/chatMessage.js'
-        '@TempoMainBundle/Resources/public/js/app/views/connectedUsers.js'
-        '@TempoMainBundle/Resources/public/js/app/views/room.js'
-        '@TempoMainBundle/Resources/public/js/app/controllers/dashboard.js'
+        '../client/js/src/model/chatMessage.js'
+        '../client/js/src/model/room.js'
+        '../client/js/src/collection/chatMessage.js'
+        '../client/js/src/views/chatBox.js'
+        '../client/js/src/views/chatMessage.js'
+        '../client/js/src/views/connectedUsers.js'
+        '../client/js/src/views/room.js'
+        '../client/js/src/controllers/dashboard.js'
         output="js/dashboard.js" filter="?yui_js"
     %}
     <script src="{{ asset_url }}"></script>

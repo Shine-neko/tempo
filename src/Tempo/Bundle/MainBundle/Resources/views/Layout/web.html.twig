@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     {% stylesheets
-        '@TempoMainBundle/Resources/less/style.less'
+        '../client/styles/style.less'
         filter='less, ?cssrewrite,?yui_css' debug=true
     %}
     <link rel="stylesheet" href="{{ asset_url }}" />
@@ -149,15 +149,15 @@
             'vendor/blueimp-md5/js/md5.js'
             'vendor/backbone/backbone.js'
             'vendor/marionette/lib/backbone.marionette.js'
-            '@TempoMainBundle/Resources/public/js/pimple.js'
             '@BazingaJsTranslationBundle/Resources/js/translator.js'
             '@FOSJsRoutingBundle/Resources/public/js/router.js'
             'vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
             'vendor/selectize/dist/js/standalone/selectize.min.js'
             'vendor/infiniscroll/lib/infiniScroll.js'
-            '@TempoMainBundle/Resources/public/js/routerManager.js'
-            '@TempoMainBundle/Resources/public/js/app.js'
-            '@TempoMainBundle/Resources/public/js/behavior.js'
+            '../client/js/pimple.js'
+            '../client/js/js/routerManager.js'
+            '../client/js/js/app.js'
+            '../client/js/js/behavior.js'
             filter="?yui_js"
             output="js/main.js"
         %}
