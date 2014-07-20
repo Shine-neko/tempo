@@ -16,12 +16,12 @@
         {% endif %}
 
         <form action="{{ path("fos_user_security_check") }}" method="post">
-            <div class="widget">
+            <div class="widget username">
                 <label for="username">{{ 'security.login.username'|trans([], 'FOSUserBundle') }}</label>
                 <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control" /><br />
             </div>
 
-            <div class="widget">
+            <div class="widget password">
                 <label for="password">{{ 'security.login.password'|trans([], 'FOSUserBundle') }}</label>
                 <input type="password" id="password" name="_password" class="form-control" />
             </div>

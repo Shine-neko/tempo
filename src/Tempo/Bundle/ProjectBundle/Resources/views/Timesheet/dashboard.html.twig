@@ -3,11 +3,11 @@
 
     {{ parent() }}
     {% javascripts
-        '@TempoProjectBundle/Resources/public/js/model/TimesheetModel.js'
-        '@TempoProjectBundle/Resources/public/js/collection/TimesheetCollection.js'
-        '@TempoProjectBundle/Resources/public/js/views/timesheetView.js'
-        '@TempoProjectBundle/Resources/public/js/controller/timesheetController.js'
-        output="dashboard-timesheet.js"
+        '../client/js/src/model/TimesheetModel.js'
+        '../client/js/src/collection/TimesheetCollection.js'
+        '../client/js/src/views/timesheetView.js'
+        '../client/js/src/controllers/timesheetController.js'
+        output="js/dashboard-timesheet.js"
     %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}

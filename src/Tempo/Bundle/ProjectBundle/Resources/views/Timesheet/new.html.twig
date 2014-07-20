@@ -1,5 +1,3 @@
-{% extends app.request.isXmlHttpRequest ? 'TempoMainBundle::Layout/ajax.html.twig' : 'TempoMainBundle::Layout/web.html.twig' %}
-
 {% block content %}
 
 <form class="time-form" action="{{ path('timesheet_create') }}" method="post">
@@ -9,7 +7,4 @@
         <button type="submit">Create</button>
     </p>
 </form>
-{% endblock %}
-
-{% block right %}
 {% endblock %}
