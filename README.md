@@ -80,3 +80,26 @@ If something goes wrong, errors & exceptions are logged at the application level
 tail -f app/logs/prod.log
 tail -f app/logs/dev.log
 ````
+
+Docker
+------
+
+You can build a docker image for this project with the following command:
+
+```
+docker build -t tempo .
+```
+
+Then run the container:
+
+```
+docker run -p 80:80 -p 8000:8000 tempo
+```
+
+or with your current working copy:
+
+```
+docker run -p 80:80 -p 8000:8000 -v $(pwd):/var/www/tempo tempo
+```
+
+Tempo should now be available at http://localhost/
