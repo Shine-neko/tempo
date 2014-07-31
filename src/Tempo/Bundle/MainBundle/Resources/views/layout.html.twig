@@ -20,7 +20,7 @@
 <body class="no-js {{ get_browser() }} {% block bodyClass %}{% endblock %}">
 {% block body %}
 <div id="glob">
-        <header id="header" class="navbar navbar-static-top" role="banner">
+        <header id="header" class="navbar" role="banner">
             <div class="container">
                 <div class="navbar-header">
                     <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
@@ -31,7 +31,7 @@
                     </button>
                     <a href="/" class="navbar-brand">{{ sylius_settings_get('general.name') }} </a>
                 </div>
-                <div class="head-inner bs-navbar-collapse collapse">
+                <div class="head-inner navbar-collapse bs-navbar-collapse collapse">
                     <div id="search">
                         <form method="get" action="/search/index/">
                             <label label-default="label-default" for="q"> <a accesskey="4" href="#">{{ 'header.search'|trans({},'TempoMain') }}  </a> :</label>
@@ -41,7 +41,7 @@
                             </button>
                         </form>
                     </div>
-                    <nav class=" navbar-collapse " role="navigation">
+                    <nav role="navigation">
                         {{ knp_menu_render('main') }}
                         <ul id="user-menu" class="nav navbar-nav navbar-right">
 

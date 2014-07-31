@@ -32,7 +32,7 @@
     <nav class="col-md-12 rooms">
         <ul class="clearfix">
            {% for room in rooms %}
-               <li><a href="?currentRoom={{ room.id }}" class="{% if room.id == currentRoom.id %}current{% endif %}">{{ room.name }}</a></li>
+               <li class="{% if room.id == currentRoom.id %}current{% endif %}"><a href="?currentRoom={{ room.id }}">{{ room.name }}</a></li>
            {% endfor %}
         </ul>
     </nav>

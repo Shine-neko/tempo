@@ -329,12 +329,16 @@ table.table-striped tbody .actions .edit {
 	padding: 3px;
 	display: inline-block;
 }
-.dashboard .rooms ul li a.current {
+.dashboard .rooms ul li.current{
 	background-color: #005782;
+	background-image: -moz-linear-gradient(center top , #1a719c 0%, #005782 100%);
+	border-radius: 5px;
+}
+.dashboard .rooms ul li.current a {
 	background: linear-gradient(to bottom, rgba(255, 255, 255, 0.23) 0, rgba(255, 255, 255, 0.2) 100%);
+	color: #484848;
 	font-weight: bold;
 	color: #fff;
-	border-radius: 5px;
 	text-decoration: none;
 
 }
