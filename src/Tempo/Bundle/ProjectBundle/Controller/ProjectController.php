@@ -16,6 +16,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Util\SecureRandom;
 
 use Tempo\Bundle\CoreBundle\Controller\BaseController;
 use Tempo\Bundle\ProjectBundle\Entity\Project;
@@ -24,6 +25,7 @@ use Tempo\Bundle\ProjectBundle\Form\Type\ProjectType;
 use Tempo\Bundle\ProjectBundle\Form\Type\TeamType;
 use Tempo\Bundle\ProjectBundle\TempoProjectEvents;
 use Tempo\Bundle\ProjectBundle\Event\ProjectEvent;
+
 
 /**
  * Project controller.
@@ -228,6 +230,18 @@ class ProjectController extends BaseController
             'project'      => $project,
             'logs'      => $logs,
         ));
+    }
+
+    public function generateTokenAction(Project $project)
+    {
+        $random = sha1(uniqid(rand(), true));
+
+        $project->setToken($random);
+
+        $this->getManager('project')->save($project);
+        $this->addFlash('success', 'the token was added');
+
+        return $this->redirect($this->generateUrl('project_show', array('slug' => $project->getSlug())));
     }
 
     protected function getProject($project, $right = 'VIEW')

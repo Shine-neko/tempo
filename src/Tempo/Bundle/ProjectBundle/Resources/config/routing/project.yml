@@ -53,6 +53,10 @@ project_version:
     pattern: /{slug}/version
     defaults: { _controller: TempoProjectBundle:Project:version }
 
+project_generate_token:
+    pattern: /{slug}/generate-token
+    defaults: { _controller: TempoProjectBundle:Project:generateToken }
+
 project_show:
     pattern:  /{slug}
     defaults: { _controller: TempoProjectBundle:Project:show }
