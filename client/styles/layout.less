@@ -105,7 +105,7 @@ a {
 #header #search {
 	float: left;
 	margin-right: 30px;
-	margin-top: 11px;
+	margin-top: 5px;
 }
 
 #header #search a {
@@ -166,6 +166,10 @@ a {
 
 #header #user-menu li.notification, #header #user-menu li.avatar {
 	height: 30px;
+	position: relative;
+}
+#header #user-menu li.avatar .dropdown-menu {
+	margin-top: 8px;
 }
 
 #header #user-menu li.notification a, #header #user-menu li.avatar a {
@@ -180,7 +184,7 @@ a {
 }
 
 #header #user-menu li.notifications {
-	margin-righs: 5px;
+	margin-right: 5px;
 	position: relative;
 }
 #header #user-menu li.notifications .indicator {
@@ -196,6 +200,9 @@ a {
 	text-shadow: none;
 	top: 1px;
 	z-index: 100;
+}
+#header #user-menu li.notifications .dropdown-menu {
+	margin-top: 14;
 }
 
 #header #user-menu li.notifications .indicator span {
@@ -424,4 +431,26 @@ a {
 
 .modal-body .fantomas {
 	display: none;
+}
+
+
+@media (max-width: @screen-xs-min) {
+	#header #search {
+		float: left;
+	}
+	#header #user-menu {
+		position: absolute;
+		top: 56px;
+		right: 25px;
+		li {
+			float: left;
+		}
+	}
+	#header nav{
+		clear: both;
+		ul#menu li{
+			float: left;
+		}
+	}
+
 }

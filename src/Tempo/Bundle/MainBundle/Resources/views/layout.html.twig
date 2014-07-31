@@ -31,63 +31,65 @@
                     </button>
                     <a href="/" class="navbar-brand">{{ sylius_settings_get('general.name') }} </a>
                 </div>
-                <div id="search">
-                    <form method="get" action="/search/index/">
-                        <label label-default="label-default" for="q"> <a accesskey="4" href="#">{{ 'header.search'|trans({},'TempoMain') }}  </a> :</label>
-                        <input  type="text" size="20" name="q" id="q" class="form-control small" accesskey="f" />
-                        <button type="submit" class="submit">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </form>
-                </div>
-                <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-                    {{ knp_menu_render('main') }}
-                    <ul id="user-menu" class="nav navbar-nav navbar-right">
+                <div class="head-inner bs-navbar-collapse collapse">
+                    <div id="search">
+                        <form method="get" action="/search/index/">
+                            <label label-default="label-default" for="q"> <a accesskey="4" href="#">{{ 'header.search'|trans({},'TempoMain') }}  </a> :</label>
+                            <input  type="text" size="20" name="q" id="q" class="form-control small" accesskey="f" />
+                            <button type="submit" class="submit">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </form>
+                    </div>
+                    <nav class=" navbar-collapse " role="navigation">
+                        {{ knp_menu_render('main') }}
+                        <ul id="user-menu" class="nav navbar-nav navbar-right">
 
-                        {% set notifications_indicator = user_notifications(app.user.id) %}
-                        <li class="notifications">
-                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">
-                                <span class="glyphicon glyphicon-bell"></span>
-                                {% if notifications_indicator|length >0 %}
-                                <span class="indicator">
-                                    <span>{{ notifications_indicator|length }}</span>
-                                </span>
-                                {% endif %}
-                            </a>
-                            <ul class="dropdown-menu">
-                                {% for notification in notifications_indicator %}
-                                    <li>
-                                    <a href="{{ path('notification_dashboard') }}">
-                                        {{ truncate(notification.message, 30) }}
-                                        <span class="text-muted small">{{ datetime_diff(notification.createdAt) }}</span>
-                                    </a>
-                                    </li>
-                                {% else %}
-                                    <li><a href="{{ path('notification_dashboard') }}">No Notifications</a></li>
-                                {% endfor %}
-                                <li>
-                                    <div class="text-center link-block">
+                            {% set notifications_indicator = user_notifications(app.user.id) %}
+                            <li class="notifications">
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                                    <span class="glyphicon glyphicon-bell"></span>
+                                    {% if notifications_indicator|length >0 %}
+                                    <span class="indicator">
+                                        <span>{{ notifications_indicator|length }}</span>
+                                    </span>
+                                    {% endif %}
+                                </a>
+                                <ul class="dropdown-menu">
+                                    {% for notification in notifications_indicator %}
+                                        <li>
                                         <a href="{{ path('notification_dashboard') }}">
-                                            <strong>{{ 'tempo.see_all_notification'|trans }}</strong>
+                                            {{ truncate(notification.message, 30) }}
+                                            <span class="text-muted small">{{ datetime_diff(notification.createdAt) }}</span>
                                         </a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="avatar">
-                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">
-                                <img src=" {{ app.user.avatar(24) }}" alt="Avatar" />
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{ path('user_profile_edit') }}"><span class="glyphicon glyphicon-user"></span> {{ 'Profile'|trans({},'TempoMain') }}</a> </li>
-                                <li><a href="{{ path('user_profile_settings') }}"><span class="glyphicon glyphicon-cog"></span> {{ 'Settings'|trans({},'TempoMain') }}</a> </li>
-                                <li><a href="{{ path('fos_user_security_logout') }}"> <span class="glyphicon glyphicon-log-out"></span> {{ 'layout.logout'|trans([], 'FOSUserBundle') }} </a> </li>
-                                <li role="presentation" class="divider"></li>
-                                <li> <a href="/help"><span class="glyphicon glyphicon-question-sign"></span> Help </a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
+                                        </li>
+                                    {% else %}
+                                        <li><a href="{{ path('notification_dashboard') }}">No Notifications</a></li>
+                                    {% endfor %}
+                                    <li>
+                                        <div class="text-center link-block">
+                                            <a href="{{ path('notification_dashboard') }}">
+                                                <strong>{{ 'tempo.see_all_notification'|trans }}</strong>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="avatar">
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                                    <img src=" {{ app.user.avatar(24) }}" alt="Avatar" />
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ path('user_profile_edit') }}"><span class="glyphicon glyphicon-user"></span> {{ 'Profile'|trans({},'TempoMain') }}</a> </li>
+                                    <li><a href="{{ path('user_profile_settings') }}"><span class="glyphicon glyphicon-cog"></span> {{ 'Settings'|trans({},'TempoMain') }}</a> </li>
+                                    <li><a href="{{ path('fos_user_security_logout') }}"> <span class="glyphicon glyphicon-log-out"></span> {{ 'layout.logout'|trans([], 'FOSUserBundle') }} </a> </li>
+                                    <li role="presentation" class="divider"></li>
+                                    <li> <a href="/help"><span class="glyphicon glyphicon-question-sign"></span> Help </a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </header>
         <div id="content" class="container-fluid">
