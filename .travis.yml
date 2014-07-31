@@ -15,7 +15,7 @@ before_script:
     - mv yuicompressor-2.4.8.jar bin/java/yuicompressor.jar
 
     - npm install
-    - bower update --config.interactive=false
+    - bower update --config.interactive=false --allow-root
 
     # Composer
     - composer self-update
