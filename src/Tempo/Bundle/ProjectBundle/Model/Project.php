@@ -134,6 +134,11 @@ class Project implements ProjectInterface
      */
     protected $providers;
 
+    /**
+     * @var string
+     */
+    protected $token;
+
     public function __construct()
     {
         $this->active = true;
@@ -577,5 +582,21 @@ class Project implements ProjectInterface
         $this->providers = $provider;
 
         return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getToken()
+    {
+        return $this->token;
     }
 }

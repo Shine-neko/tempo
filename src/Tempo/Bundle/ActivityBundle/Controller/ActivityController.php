@@ -28,7 +28,7 @@ class ActivityController extends BaseController
     public function providerAction(Request $request, $token)
     {
         $manager = $this->getManager('activity_provider');
-        $projectProvider = $this->getManager('project_provider')->find($token);
+        $projectProvider = $this->getManager('project_provider')->repository->findOneBy(array('token' => $token));
         $provider = $this->getProvider(strtoupper($projectProvider->getName()));
 
         $event = new ActivityProviderEvent($request, $projectProvider);

@@ -64,6 +64,7 @@ class LoadProjectData extends AbstractFixture implements ContainerAwareInterface
             $project->setActive(true);
             $project->setBeginning(new \DateTime());
             $project->setEnding(new \DateTime());
+            $project->setToken(sha1(uniqid(rand(), true)));
             $project->addTeam($userEntity);
             $project->addTeam($this->getReference('olivia.pace'));
 
