@@ -31,7 +31,6 @@ tempo:
     success_delete: Organisation supprimé avec succès
     failed_delete: Impossible de supprimer l'organization
 
-
   project:
     title_add: new Project
     label_list: Liste des projets
@@ -46,8 +45,8 @@ tempo:
     close: Fermé
 
     form:
-      label_name: Nom
-      label_isactive: Actif
+      label.name: Nom
+      label.isactive: Actif
       label.created: Crée le
       label.updated: Mise à jour
       label.beginning: Commence

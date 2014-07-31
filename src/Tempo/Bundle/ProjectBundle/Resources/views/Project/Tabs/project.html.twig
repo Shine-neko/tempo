@@ -6,11 +6,11 @@
     <ul class="item-details col-md-6">
         <li>
             <dl>
-                <dt>{{ 'project.form.label.created'|trans({}, 'TempoProject') }}:</dt>
+                <dt>{{ 'tempo.project.form.label.created'|trans }}:</dt>
                 <dd>{{ datetime_diff(project.createdAt) }} </dd>
             </dl>
             <dl>
-                <dt>{{ 'project.form.label.updated'|trans({}, 'TempoProject') }}:</dt>
+                <dt>{{ 'tempo.project.form.label.updated'|trans }}:</dt>
                 <dd>{{ datetime_diff(project.updatedAt) }}</dd>
             </dl>
         </li>
@@ -18,11 +18,11 @@
     <ul class="item-details col-md-6">
         <li>
             <dl>
-                <dt>{{ 'project.form.label.beginning'|trans({}, 'TempoProject') }}:</dt>
+                <dt>{{ 'tempo.project.form.label.beginning'|trans }}:</dt>
                 <dd> {{ datetime_diff(project.beginning, null, false) }} </dd>
             </dl>
             <dl>
-                <dt>{{ 'project.form.label.ending'|trans({}, 'TempoProject') }}:</dt>
+                <dt>{{ 'tempo.project.form.label.ending'|trans }}:</dt>
                 <dd>{{ datetime_diff(project.ending, null, false) }}</dd>
             </dl>
         </li>
