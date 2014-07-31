@@ -242,7 +242,23 @@ interface ProjectInterface
     public function getParent($level = -1);
 
     /**
+     * Get parents
+     *
      * @return array
      */
     public function getParents();
+
+    /**
+     * Get token
+     *
+     * @return string
+     */
+    public function setToken($token);
+
+    /**
+     * Set token
+     *
+     * @param string $token
+     */
+    public function getToken();
 }

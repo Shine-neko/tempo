@@ -41,6 +41,7 @@
         <field name="advancement" column="advancement" type="integer" nullable="true"  />
 
         <field name="budget_estimated" column="budget_estimated" type="decimal" nullable="true" />
+        <field name="token" column="token" type="text" nullable="false" />
 
         <lifecycle-callbacks>
             <lifecycle-callback type="prePersist" method="prePersist"/>
