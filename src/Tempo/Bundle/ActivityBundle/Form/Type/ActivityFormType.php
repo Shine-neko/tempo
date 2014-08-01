@@ -23,7 +23,7 @@ class ActivityFormType extends AbstractType
     {
         $builder ->add('status', null, array(
             'attr' => array(
-                'placeholder' => 'tempo.activity.dashboard.form.status.label'
+                'placeholder' => 'activity.dashboard.form.status.label'
             )
         )) ;
     }
