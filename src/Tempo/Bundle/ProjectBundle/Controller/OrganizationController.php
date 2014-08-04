@@ -42,7 +42,7 @@ class OrganizationController extends BaseController
      * @return Response
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    public function showAction(Organization $organization)
+    public function showAction(Organization $organization, $_format)
     {
         $token = $this->get('form.csrf_provider')->generateCsrfToken('delete-organization');
 
@@ -57,54 +57,23 @@ class OrganizationController extends BaseController
 
         $teamForm = $this->createForm(new TeamType());
 
-        return $this->render('TempoProjectBundle:Organization:show.html.twig', array(
+        $data =  array(
             'organization' => $organization,
             'counter' => $counter,
             'projects' => $organization->getProjects(),
             'teamForm' => $teamForm->createView(),
             'token' => $token
-        ));
-    }
+        );
 
-    /**
-     * Create new organization
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function newAction()
-    {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            throw new AccessDeniedException();
+        if ($_format == 'json') {
+           $data = array('organization' => $organization);
         }
 
-        $form = $this->createForm(new OrganizationType(), new Organization());
+        $view = $this->view($data, 200)
+            ->setTemplate('TempoProjectBundle:Organization:show.html.twig')
+        ;
 
-        return $this->render('TempoProjectBundle:Organization:new.html.twig', array(
-            'form' => $form->createView(),
-        ));
-    }
-
-    /**
-     * Displays a form to edit an existing Project entity.
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function editAction(Organization $organization)
-    {
-        if (false === $this->get('security.context')->isGranted('EDIT', $organization)) {
-            throw new AccessDeniedException();
-        }
-
-        $this->getBreadcrumb()->addChild($organization->getName());
-        $this->getBreadcrumb()->addChild('Editer le organization');
-
-        $editForm = $this->createForm(new OrganizationType(), $organization);
-
-        $teamForm = $this->createForm(new TeamType());
-
-        return $this->render('TempoProjectBundle:Organization:edit.html.twig', array(
-            'organization' => $organization,
-            'form' => $editForm->createView(),
-            'teamForm' => $teamForm->createView(),
-        ));
+        return $this->handleView($view);
     }
 
     /**
@@ -132,7 +101,7 @@ class OrganizationController extends BaseController
             return $this->redirectToOrganization($organization);
         }
 
-        return $this->render('TempoProjectBundle:Organization:edit.html.twig', array(
+        return $this->render('TempoProjectBundle:Organization:update.html.twig', array(
             'organization' => $organization,
             'edit_form' => $editForm->createView(),
         ));
@@ -172,7 +141,9 @@ class OrganizationController extends BaseController
             return $this->redirectToOrganization($organization);
         }
 
-        return new Response('', 412);
+        return $this->render('TempoProjectBundle:Organization:create.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 
     /**

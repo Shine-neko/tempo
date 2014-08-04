@@ -19,9 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
-
 use Symfony\Component\Security\Http\HttpUtils;
-
 
 class TokenAuthenticator implements SimplePreAuthenticatorInterface
 {
@@ -35,7 +33,6 @@ class TokenAuthenticator implements SimplePreAuthenticatorInterface
 
     public function createToken(Request $request, $providerKey)
     {
-
         if (!$request->query->has('access_token')) {
             throw new BadCredentialsException('No API key found');
         }
@@ -51,6 +48,10 @@ class TokenAuthenticator implements SimplePreAuthenticatorInterface
     {
         $apiKey = $token->getCredentials();
 
+        if(is_object($apiKey)) {
+            $apiKey = $apiKey->getToken();
+        }
+
         $user = $this->userProvider->getUsernameForApiKey($apiKey);
 
         if (!$user) {
@@ -58,7 +59,6 @@ class TokenAuthenticator implements SimplePreAuthenticatorInterface
                 sprintf('API Token "%s" does not exist.', $apiKey)
             );
         }
-
 
         return new PreAuthenticatedToken(
             $user,

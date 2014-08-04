@@ -18,7 +18,7 @@ security:
             pattern: ^/api
             stateless: false
             simple_preauth:
-              authenticator: tempo.user.security.apikey_authenticator
+                authenticator: tempo.user.security.api_token_authenticator
         main:
             pattern: ^/
             switch_user: false

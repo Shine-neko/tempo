@@ -5,3 +5,7 @@ Tempo\Bundle\ProjectBundle\Model\Project:
         expose: true
       name:
         expose: true
+      slug:
+        expose: true
+      description:
+        expose: true

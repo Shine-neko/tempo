@@ -10,6 +10,14 @@ main_chat:
   type: rest
   resource: "@TempoMainBundle/Resources/config/routing/chat.yml"
 
+main_chat_api:
+  type: rest
+  prefix:   /api/{version}/timesheet
+  resource: "@TempoMainBundle/Resources/config/routing/chat.yml"
+  defaults:
+        version: v1
+
+
 #Backend
 tempo_setting_backend:
     resource: "@TempoMainBundle/Resources/config/routing/backend/settings.yml"

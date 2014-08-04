@@ -10,9 +10,23 @@ _project_settings:
         namespace: general
         template: TempoMainBundle:Backend/Settings:general.html.twig
 
+_project_api:
+  type: rest
+  prefix:   /api/{version}/project
+  resource: "@TempoProjectBundle/Resources/config/routing/project_api.yml"
+  defaults:
+      version: v1
+
 _organization:
   resource: "@TempoProjectBundle/Resources/config/routing/organization.yml"
   prefix:   /organization
+
+_organization_api:
+  type: rest
+  resource: "@TempoProjectBundle/Resources/config/routing/organization_api.yml"
+  prefix:   /api/{version}/organization
+  defaults:
+      version: v1
 
 _timesheet:
   resource: "@TempoProjectBundle/Resources/config/routing/timesheet.yml"
@@ -23,4 +37,4 @@ _timesheet_api:
   prefix:   /api/{version}/timesheet
   resource: "@TempoProjectBundle/Resources/config/routing/timesheet_api.yml"
   defaults:
-      version: latest
+      version: v1

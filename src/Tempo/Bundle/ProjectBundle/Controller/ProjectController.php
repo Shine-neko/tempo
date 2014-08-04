@@ -17,6 +17,9 @@ use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Response;
 
+use FOS\RestBundle\View\View;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+
 use Tempo\Bundle\CoreBundle\Controller\BaseController;
 use Tempo\Bundle\ProjectBundle\Entity\Project;
 use Tempo\Bundle\ProjectBundle\Entity\Organization;
@@ -69,7 +72,7 @@ class ProjectController extends BaseController
      * Finds and displays a Project entity.
      * @return Response
      */
-    public function showAction(Project $project)
+    public function showAction(Project $project, $_format)
     {
         $token = $this->get('form.csrf_provider')->generateCsrfToken('delete-project');
 
@@ -82,37 +85,23 @@ class ProjectController extends BaseController
 
         $teamForm = $this->createForm(new TeamType());
 
-        return $this->render('TempoProjectBundle:Project:show.html.twig', array(
+        $data =  array(
             'teamForm'      => $teamForm->createView(),
             'project'       => $project,
             'organization'       => $organization,
             'csrfToken'     => $token,
             'tabProvidersRegistry'   => $this->get('tempo.project.tabProvidersRegistry')
-        ));
-    }
+        );
 
-    /**
-     * Displays a form to create a new Project entity.
-     * @return Response
-     */
-    public function newAction($organization)
-    {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            throw new AccessDeniedException();
+        if ($_format == 'json') {
+            $data = array('project' => $project);
         }
-        $organization = $this->getOrganizaton($organization);
 
-        $project = new Project();
-        $project->setOrganization($organization);
-        $this->getParent($project);
+        $view = $this->view($data, 200)
+            ->setTemplate('TempoProjectBundle:Project:show.html.twig')
+        ;
 
-        $form   = $this->createForm(new ProjectType(), $project, array('user_id' => $this->getUser()->getId() ));
-
-        return $this->render('TempoProjectBundle:Project:new.html.twig',array(
-            'project' => $project,
-            'organization' => $organization,
-            'form'   => $form->createView()
-        ));
+        return $this->handleView($view);
     }
 
     /**
@@ -145,24 +134,8 @@ class ProjectController extends BaseController
             return $this->redirect($this->generateUrl('project_show', array('slug' => $project->getSlug())));
         }
 
-        return $this->render('TempoProjectBundle:Project:new.html.twig', array(
+        return $this->render('TempoProjectBundle:Project:create.html.twig', array(
             'form'   => $form->createView()
-        ));
-    }
-
-    /**
-     * Displays a form to edit an existing Project entity.
-     * @param $slug string
-     * @return Response
-     */
-    public function editAction(Project $project)
-    {
-        $project = $this->getManager('project')->getProject($project, 'EDIT');
-        $editForm = $this->createForm(new ProjectType(), $project);
-
-        return $this->render('TempoProjectBundle:Project:edit.html.twig', array(
-            'project'      => $project,
-            'form'   => $editForm->createView(),
         ));
     }
 
@@ -183,14 +156,13 @@ class ProjectController extends BaseController
             $this->getManager('project')->save($project);
             $this->get('event_dispatcher')->dispatch(TempoProjectEvents::PROJECT_EDIT_SUCCESS, $event);
 
-
             $this->addFlash('success', 'project.success_updated', 'TempoProject');
-            return $this->redirect($this->generateUrl('project_edit', array('slug' => $project->getSlug() )));
+            return $this->redirect($this->generateUrl('project_update', array('slug' => $project->getSlug() )));
         }
 
-        return $this->render('TempoProjectBundle:Project:edit.html.twig', array(
+        return $this->render('TempoProjectBundle:Project:update.html.twig', array(
             'project'     =>  $project,
-            'edit_form'   =>  $editForm->createView(),
+            'form'   =>  $editForm->createView(),
         ));
     }
 

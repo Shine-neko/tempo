@@ -1,5 +1,9 @@
 {% block javascripts %}
-    <script type="text/javascript" src="{{ asset('bundles/tempoproject/js/views/organizationView.js')}}"></script>
+    {% javascripts
+        '../client/js/src/views/organizationView.js'
+    %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}
 
 {% block content %}
