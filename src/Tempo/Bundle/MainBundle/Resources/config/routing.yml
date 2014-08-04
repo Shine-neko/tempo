@@ -10,7 +10,6 @@ main_chat:
   type: rest
   resource: "@TempoMainBundle/Resources/config/routing/chat.yml"
 
-
 #Backend
 tempo_setting_backend:
     resource: "@TempoMainBundle/Resources/config/routing/backend/settings.yml"

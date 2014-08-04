@@ -29,7 +29,10 @@ class ProfileController extends BaseController
     {
         $form = $this->createForm(new ProfileType(), $this->getUser());
 
-        return $this->render( 'TempoUserBundle:Profile:edit.html.twig', array('form' => $form->createView()) );
+        return $this->render('TempoUserBundle:Profile:edit.html.twig', array(
+            'user' => $this->getUser(),
+            'form' => $form->createView()
+        ));
     }
 
     /**
@@ -81,7 +84,10 @@ class ProfileController extends BaseController
            $em->flush();
         }
 
-        return $this->render( 'TempoUserBundle:Profile:edit.html.twig',  array('form' => $form->createView()));
+        return $this->render( 'TempoUserBundle:Profile:edit.html.twig',  array(
+            'user' => $this->getUser(),
+            'form' => $form->createView(),
+        ));
 
     }
 
@@ -120,4 +126,21 @@ class ProfileController extends BaseController
             'form' => $form->createView()
         ));
     }
+
+   public function generateTokenAction()
+   {
+        $user = $this->getUser();
+
+        $random = sha1(uniqid(rand(), true));
+
+        $user->setToken($random);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+
+        $this->addFlash('success', 'the token was added');
+
+        return $this->redirect($this->generateUrl('user_profile_edit'));
+   }
 }

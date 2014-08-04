@@ -20,6 +20,10 @@ user_profile_settings:
    pattern: /edit/settings
    defaults: { _controller: TempoUserBundle:Profile:setting }
 
+user_profile_token:
+    pattern: /generate-token
+    defaults: { _controller: TempoUserBundle:Profile:generateToken }
+
 user_profile_show:
    pattern: /{slug}
    defaults: { _controller: TempoUserBundle:Profile:show }

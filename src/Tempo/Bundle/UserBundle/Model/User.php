@@ -19,6 +19,11 @@ class User extends BaseUser implements UserInterface
     protected $id;
 
     /**
+     * @var token
+     */
+    protected $token;
+
+    /**
      * @var string
      */
     protected $locale;
@@ -118,6 +123,22 @@ class User extends BaseUser implements UserInterface
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getToken()
+    {
+        return $this->token;
     }
 
     /**
