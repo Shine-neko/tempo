@@ -5,7 +5,7 @@ security:
 
     providers:
         fos_userbundle:
-            id: fos_user.user_provider.username
+            id: tempo.user.user_provider.username
 
     encoders:
         "FOS\UserBundle\Model\UserInterface": sha512
@@ -14,6 +14,11 @@ security:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        api:
+            pattern: ^/api
+            stateless: false
+            simple_preauth:
+              authenticator: tempo.user.security.apikey_authenticator
         main:
             pattern: ^/
             switch_user: false
