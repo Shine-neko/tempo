@@ -26,6 +26,11 @@ abstract class Room
     protected $name;
 
     /**
+     * @var string
+     */
+    protected $slug;
+
+    /**
      * @var Collection
      */
     protected $team;
@@ -100,6 +105,14 @@ abstract class Room
         }
 
         return null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTeam()
+    {
+        return $this->team;
     }
 
     /**

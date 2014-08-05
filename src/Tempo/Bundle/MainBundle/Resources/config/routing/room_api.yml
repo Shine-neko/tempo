@@ -1,0 +1,6 @@
+room_api:
+    type:     rest
+    resource: Tempo\Bundle\MainBundle\Controller\Frontend\RoomController
+    name_prefix: api_room_
+    options:
+        expose: true
