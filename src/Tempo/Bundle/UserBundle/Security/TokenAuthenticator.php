@@ -25,9 +25,8 @@ class TokenAuthenticator implements SimplePreAuthenticatorInterface
 {
     protected $userProvider;
 
-    public function __construct( $userProvider, HttpUtils $httpUtils)
+    public function __construct(HttpUtils $httpUtils)
     {
-        $this->userProvider = $userProvider;
         $this->httpUtils = $httpUtils;
     }
 
@@ -52,7 +51,7 @@ class TokenAuthenticator implements SimplePreAuthenticatorInterface
             $apiKey = $apiKey->getToken();
         }
 
-        $user = $this->userProvider->getUsernameForApiKey($apiKey);
+        $user = $userProvider->getUsernameForApiKey($apiKey);
 
         if (!$user) {
             throw new AuthenticationException(

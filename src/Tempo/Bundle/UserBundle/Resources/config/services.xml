@@ -69,7 +69,6 @@
             <argument type="service" id="tempo.manager.user" />
         </service>
         <service id="tempo.user.security.api_token_authenticator" class="%tempo.user.security.api_token_authenticator.class%">
-            <argument type="service" id="tempo.user.security.api_token_user_provider"></argument>
             <argument type="service" id="security.http_utils" />
         </service>
 

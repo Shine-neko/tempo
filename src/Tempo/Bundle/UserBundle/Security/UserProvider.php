@@ -16,5 +16,12 @@ use FOS\UserBundle\Security\UserProvider as BaseUserProvider;
 
 class UserProvider extends BaseUserProvider
 {
+    public function getUsernameForApiKey($apiToken)
+    {
+        // Look up the username based on the token in the database, via
+        // an API call, or do something entirely different
+        $user = $this->userManager->findUserBy(array('token' => $apiToken));
 
+        return $user;
+    }
 }
