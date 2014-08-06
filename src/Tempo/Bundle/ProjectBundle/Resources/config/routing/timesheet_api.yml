@@ -1,3 +1,7 @@
 api_timesheet_list:
     pattern:  /
     defaults: { _controller: TempoProjectBundle:Timesheet:show }
+
+api_timesheet_create:
+    pattern:  /create
+    defaults: { _controller: TempoProjectBundle:Timesheet:create }
