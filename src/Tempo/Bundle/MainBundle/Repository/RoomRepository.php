@@ -30,7 +30,7 @@ class RoomRepository extends EntityRepository
             ;
     }
 
-    public function getRoom($slug, $user)
+    public function findRoom($slug, $user)
     {
         $query = $this->createQueryBuilder('room')
             ->leftJoin('room.team', 'team')
@@ -43,7 +43,7 @@ class RoomRepository extends EntityRepository
         return $query->getQuery()->getSingleResult();
     }
 
-    public function getRooms($user)
+    public function findRooms($user)
     {
         $query = $this->createQueryBuilder('room')
             ->leftJoin('room.team', 'team')

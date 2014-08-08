@@ -30,6 +30,6 @@ organization_team_delete:
 
 organization_show:
     pattern:  /{slug}
-    defaults: { _controller: TempoProjectBundle:Organization:show }
+    defaults: { _controller: TempoProjectBundle:Organization:show, _format: html }
     requirements:
         _method:  GET

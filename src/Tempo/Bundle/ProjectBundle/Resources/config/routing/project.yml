@@ -64,6 +64,6 @@ project_version:
 
 project_show:
     pattern:  /{slug}
-    defaults: { _controller: TempoProjectBundle:Project:show }
+    defaults: { _controller: TempoProjectBundle:Project:show, _format: html  }
     requirements:
       slug: "\w+\/\w+"
