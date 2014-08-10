@@ -14,6 +14,10 @@
 
         <field name="name" column="name" type="string" length="255" nullable="false"  />
 
+        <field name="slug" type="string" length="156" unique="true">
+            <gedmo:slug unique="true" updatable="true" separator="-" fields="name" />
+        </field>
+
         <one-to-many field="chatMessages" target-entity="ChatMessage" mapped-by="room">
             <cascade>
                 <cascade-all/>

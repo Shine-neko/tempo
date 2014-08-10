@@ -1,16 +1,11 @@
-activity_provider_ws:
-    pattern: /provider/notify/{token}
+api_activity_provider_ws:
+    pattern: /api/{version}/provider/notify/{token}
     defaults:
         _controller: TempoActivityBundle:Activity:provider
-
+        version: v1
 activity_list:
     pattern: /activity/list/{type}/{project}
     defaults:
         _controller: TempoActivityBundle:Activity:list
     options:
       expose: true
-
-activity_test:
-    pattern: /activity/test
-    defaults:
-        _controller: TempoActivityBundle:Activity:test

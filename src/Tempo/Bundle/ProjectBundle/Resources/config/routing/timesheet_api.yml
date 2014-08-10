@@ -1,4 +1,7 @@
-timesheet_api_periods:
-    type:     rest
-    resource: Tempo\Bundle\ProjectBundle\Controller\TimesheetController
-    name_prefix: api_timesheet_
+api_timesheet_list:
+    pattern:  /
+    defaults: { _controller: TempoProjectBundle:Timesheet:show }
+
+api_timesheet_create:
+    pattern:  /create
+    defaults: { _controller: TempoProjectBundle:Timesheet:create }

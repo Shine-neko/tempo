@@ -15,8 +15,8 @@
 
     <div class="action col-md-4">
         {% if is_granted('EDIT', organization) %}
-        <a href="{{ path('project_new', { 'organization' : organization.slug }) }}" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-plus"></span> {{ 'tempo.project.add'|trans }} </a>
-        <a class="btn btn-xs btn btn-info" href="{{ path('organization_edit', { 'slug' : organization.slug }) }}"> <span class="glyphicon glyphicon-edit"></span> Edit</a>
+        <a href="{{ path('project_create', { 'organization' : organization.slug }) }}" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-plus"></span> {{ 'tempo.project.add'|trans }} </a>
+        <a class="btn btn-xs btn btn-info" href="{{ path('organization_update', { 'slug' : organization.slug }) }}"> <span class="glyphicon glyphicon-edit"></span> Edit</a>
         {% endif %}
         {% if is_granted('DELETE', organization) %}
         <a class="btn btn-xs btn-danger" role="dialog" data-toggle="modal" data-target="#" data-title="Delete project" href="#delete-organization" data-redirect="{{ path('organization_delete', { 'slug': organization.slug, 'token' : token }) }}"> <span class="glyphicon glyphicon-trash"></span> Delete</a>

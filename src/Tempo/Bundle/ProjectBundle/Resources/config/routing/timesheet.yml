@@ -6,6 +6,10 @@ timesheet_show:
     pattern:  /{date}/show
     defaults: { _controller: "TempoProjectBundle:Timesheet:show" }
 
+timesheet_create:
+    pattern:  /create
+    defaults: { _controller: TempoProjectBundle:Timesheet:create }
+
 timesheet_edit:
     pattern:  /{id}/edit
     defaults: { _controller: "TempoProjectBundle:Timesheet:edit" }

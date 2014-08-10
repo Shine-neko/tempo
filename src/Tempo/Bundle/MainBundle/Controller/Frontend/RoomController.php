@@ -11,32 +11,29 @@
 
 namespace Tempo\Bundle\MainBundle\Controller\Frontend;
 
-use FOS\RestBundle\Controller\FOSRestController;
+use Tempo\Bundle\CoreBundle\Controller\BaseController;
 use Tempo\Bundle\MainBundle\Entity\Room;
 
-class RoomController extends FOSRestController
+class RoomController extends BaseController
 {
     /**
-     * Get a single Board
+     * Get a single room
      */
-    public function getRoomAction(Room $room)
+    public function getRoomAction($slug)
     {
+        try {
+            $room = $this->getManager('room')->repository->findRoom($slug, $this->getUser()->getId());
+        } catch (\Exception $e) {
+            throw $this->createNotFoundException();
+        }
+
         return $room;
     }
 
     public function getRoomsAction()
     {
-        $data = array();
-        $rooms = array(
-            'Room1',
-            'Room2',
-            'Room3'
-        );
+        $rooms = $this->getManager('room')->repository->findRooms($this->getUser()->getId());
 
-        foreach ($rooms as $room) {
-            $data[] = $room;
-        }
-
-        return $data;
+        return $rooms;
     }
 }

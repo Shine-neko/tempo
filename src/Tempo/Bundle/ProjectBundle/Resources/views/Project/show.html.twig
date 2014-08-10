@@ -28,10 +28,10 @@
 
         <div class="col-md-4">
             {% if is_granted('EDIT', organization) %}
-            <a class="btn btn-xs btn-primary" href="{{ path('project_new', { 'parent' : project.id, 'organization': organization.slug }) }}"> <span class="glyphicon glyphicon-plus"></span> {{ 'tempo.project.title_subprojects'|trans }}</a>
+            <a class="btn btn-xs btn-primary" href="{{ path('project_create', { 'parent' : project.id, 'organization': organization.slug }) }}"> <span class="glyphicon glyphicon-plus"></span> {{ 'tempo.project.title_subprojects'|trans }}</a>
             {% endif %}
             {% if is_granted('EDIT', project) %}
-            <a class="btn btn-xs btn-info " href="{{ path('project_edit', { 'slug': project.slug }) }}"> <span class="glyphicon glyphicon-edit"></span> Edit</a>
+            <a class="btn btn-xs btn-info " href="{{ path('project_update', { 'slug': project.slug }) }}"> <span class="glyphicon glyphicon-edit"></span> Edit</a>
             {% endif %}
             {% if is_granted('EDIT', project) %}
                 <a class="btn btn-xs btn-primary" href="{{ path('project_version', { 'slug': project.slug }) }}"> <span class="glyphicon glyphicon-cog"></span> {{ 'Version'|trans }} </a>

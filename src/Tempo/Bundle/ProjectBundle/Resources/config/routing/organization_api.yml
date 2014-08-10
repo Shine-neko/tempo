@@ -1,0 +1,5 @@
+api_organization_show:
+    pattern:  /{slug}
+    defaults: { _controller: TempoProjectBundle:Organization:show }
+    requirements:
+        _method:  GET

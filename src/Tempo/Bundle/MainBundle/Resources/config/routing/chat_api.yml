@@ -1,6 +1,7 @@
-chat_room_messages:
+chat_room_messages_api:
     type:     rest
-    parent: room
+    parent: room_api
+    name_prefix: api_room_message_
     resource: Tempo\Bundle\MainBundle\Controller\Frontend\MessagesController
     options:
         expose: true

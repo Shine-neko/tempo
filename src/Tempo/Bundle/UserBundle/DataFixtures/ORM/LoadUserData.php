@@ -72,6 +72,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
             $account->setPlainPassword($username);
             $account->addRole(User::ROLE_DEFAULT);
             $account->setEnabled(true);
+            $account->setToken(sha1(uniqid(rand(), true)));
 
             $userManager->updateUser($account, true);
 

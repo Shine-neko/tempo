@@ -20,7 +20,12 @@
         </field>
 
         <field name="slug" type="string" length="156" unique="true">
-            <gedmo:slug unique="true" updatable="true" separator="-" fields="name" />
+            <gedmo:slug unique="true" updatable="true" separator="-" fields="name" >
+                <gedmo:handler class="Gedmo\Sluggable\Handler\TreeSlugHandler">
+                    <gedmo:handler-option name="parentRelationField" value="organization"/>
+                    <gedmo:handler-option name="separator" value="/"/>
+                </gedmo:handler>
+            </gedmo:slug>
         </field>
         <field name="createdAt" type="datetime">
             <gedmo:timestampable on="create"/>

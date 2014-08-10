@@ -23,15 +23,13 @@ class ProjectManager extends BaseManager
      * @param $slug
      * @return mixed
      */
-    public function getProject($primaryKey)
+    public function getProject($slug)
     {
-        if (is_string($primaryKey)) {
-            $project =  $this->repository->findOneBySlug($primaryKey);
-        } else {
-            $project =  $this->repository->find($primaryKey);
-        }
+       $project =  $this->repository->findOneBySlug(array(
+            'slug' => $slug,
+       ));
 
-        return $project;
+       return $project;
     }
 
     public function nbTotalProject()

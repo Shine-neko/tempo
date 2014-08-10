@@ -1,20 +1,14 @@
-organization_new:
-    pattern:  /new
-    defaults: { _controller: TempoProjectBundle:Organization:new }
-
 organization_create:
-     pattern:  /create
-     defaults: { _controller: TempoProjectBundle:Organization:create }
-
-organization_edit:
-    pattern:  /{slug}/edit
-    defaults: { _controller: TempoProjectBundle:Organization:edit }
+    pattern:  /create
+    defaults: { _controller: TempoProjectBundle:Organization:create }
     requirements:
-        _method:  GET
+        _method:  GET|POST
 
 organization_update:
-     pattern:  /{id}/update
+     pattern:  /{slug}/update
      defaults: { _controller: TempoProjectBundle:Organization:update }
+     requirements:
+        _method:  GET|POST
 
 organization_delete:
     pattern:  /{slug}/delete
@@ -36,6 +30,6 @@ organization_team_delete:
 
 organization_show:
     pattern:  /{slug}
-    defaults: { _controller: TempoProjectBundle:Organization:show }
+    defaults: { _controller: TempoProjectBundle:Organization:show, _format: html }
     requirements:
         _method:  GET

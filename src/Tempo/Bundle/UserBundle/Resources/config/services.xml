@@ -6,13 +6,20 @@
         <parameter key="tempo.user.menu_builder.class">Tempo\Bundle\UserBundle\Menu\Tabs</parameter>
         <parameter key="tempo.user.profile.form.type.avatar.class">Tempo\Bundle\UserBundle\Form\Type\AvatarType</parameter>
         <parameter key="tempo.user.profile.form.handler.avatar.class">Tempo\Bundle\UserBundle\Form\Handler\AvatarHandler</parameter>
+        <parameter key="tempo.user.user_provider.username.class">Tempo\Bundle\UserBundle\Security\UserProvider</parameter>
         <parameter key="tempo.user.oauth.user_provider.class">Tempo\Bundle\UserBundle\OAuth\UserProvider</parameter>
         <parameter key="tempo.user.security.interactive_login_listener.class">Tempo\Bundle\UserBundle\EventListener\UserListener</parameter>
+        <parameter key="tempo.user.security.api_token_user_provider.class">Tempo\Bundle\UserBundle\Security\ApiTokenUserProvider</parameter>
+        <parameter key="tempo.user.security.api_token_authenticator.class">Tempo\Bundle\UserBundle\Security\TokenAuthenticator</parameter>
         <parameter key="tempo.user.twig.extension.class">Tempo\Bundle\UserBundle\Twig\Extension\UserExtension</parameter>
         <parameter key="tempo.form.type.user_filter.class">Tempo\Bundle\UserBundle\Form\Type\Backend\Filter\UserFilterType</parameter>
     </parameters>
 
     <services>
+
+        <service id="tempo.user.user_provider.username" class="%tempo.user.user_provider.username.class%">
+            <argument type="service" id="fos_user.user_manager" />
+        </service>
 
         <service id="tempo.user.oauth.user_provider" class="%tempo.user.oauth.user_provider.class%">
             <argument type="service" id="fos_user.user_manager" />
@@ -56,6 +63,13 @@
 
         <service id="tempo.user.security.interactive_login_listener" class="%tempo.user.security.interactive_login_listener.class%" scope="request">
             <tag name="kernel.event_listener" event="kernel.request" method="setLocaleForUnauthenticatedUser" />
+        </service>
+
+        <service id="tempo.user.security.api_token_user_provider" class="%tempo.user.security.api_token_user_provider.class%">
+            <argument type="service" id="tempo.manager.user" />
+        </service>
+        <service id="tempo.user.security.api_token_authenticator" class="%tempo.user.security.api_token_authenticator.class%">
+            <argument type="service" id="security.http_utils" />
         </service>
 
         <service id="tempo.user.twig.extension" class="%tempo.user.twig.extension.class%">

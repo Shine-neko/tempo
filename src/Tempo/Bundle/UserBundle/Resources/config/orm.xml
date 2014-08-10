@@ -17,5 +17,10 @@
             <argument>%tempo.model.notification.class%</argument>
         </service>
 
+        <service id="tempo.manager.user" class="%tempo.manager.user.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument>%tempo.model.user.class%</argument>
+        </service>
+
     </services>
 </container>

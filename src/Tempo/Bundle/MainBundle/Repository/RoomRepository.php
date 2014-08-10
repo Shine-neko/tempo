@@ -29,4 +29,27 @@ class RoomRepository extends EntityRepository
                 ->getQuery()->getSingleResult()
             ;
     }
+
+    public function findRoom($slug, $user)
+    {
+        $query = $this->createQueryBuilder('room')
+            ->leftJoin('room.team', 'team')
+            ->where('room.slug  = ?1')
+            ->andwhere('team.id  = ?2')
+            ->setParameter(1, $slug)
+            ->setParameter(2, $user)
+            ->setMaxResults(1);
+
+        return $query->getQuery()->getSingleResult();
+    }
+
+    public function findRooms($user)
+    {
+        $query = $this->createQueryBuilder('room')
+            ->leftJoin('room.team', 'team')
+            ->andwhere('team.id  = ?1')
+            ->setParameter(1, $user);
+
+        return $query->getQuery()->getResult();
+    }
 }

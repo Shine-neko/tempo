@@ -1,0 +1,5 @@
+room:
+    type:     rest
+    resource: Tempo\Bundle\MainBundle\Controller\Frontend\RoomController
+    options:
+        expose: true
