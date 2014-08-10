@@ -38,9 +38,9 @@ class ProviderController extends BaseController
             $this->getDoctrine()->getManager()->persist($projectProvider);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirect($this->generateUrl('project_show', array(
+            return $this->redirectRoute('project_show', array(
                 'slug' => $slug,
-            )));
+            ));
         }
 
         return $this->render('TempoActivityBundle:Provider:update.html.twig', array(

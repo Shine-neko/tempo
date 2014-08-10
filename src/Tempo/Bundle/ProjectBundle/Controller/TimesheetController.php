@@ -75,7 +75,7 @@ class TimesheetController extends BaseController
         if ($request->isMethod('POST') && $editForm->submit($request)->isValid()) {
             $this->getManager('timesheet')->save($entity);
 
-            return $this->redirect($this->generateUrl('timesheet'));
+            return $this->redirectRoute('timesheet');
         }
 
         return $this->render('TempoProjectBundle:Timesheet:edit.html.twig', array(
@@ -98,7 +98,7 @@ class TimesheetController extends BaseController
             $this->getManager('timesheet')->remove($entity);
         }
 
-        return $this->redirect($this->generateUrl('timesheet'));
+        return $this->redirectRoute('timesheet');
     }
 
     public function exportPDFAction(Request $request)

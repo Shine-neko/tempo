@@ -177,6 +177,6 @@ class OrganizationController extends BaseController
 
     protected function redirectToOrganization($organization)
     {
-        return $this->redirect($this->generateUrl('organization_show', array('slug' => $organization->getSlug())));
+        return $this->redirectRoute('organization_show', array('slug' => $organization->getSlug()));
     }
 }

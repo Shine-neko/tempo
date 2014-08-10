@@ -1,6 +1,13 @@
 {% extends "TempoMainBundle::layout.html.twig" %}
 {% block bodyClass %}project dashboard{% endblock %}
-
+{% block javascripts %}
+  {{ parent() }}
+  {% javascripts
+  '../client/js/src/views/project-list-view.js'
+  %}
+  <script src="{{ asset_url }}"></script>
+  {% endjavascripts %}
+{% endblock %}
 {% block container %}
 
     {% block content %}
@@ -8,8 +15,8 @@
         {% block breadcrumb %}
             <div class="head clearfix">
                 <ol id="breadcrumb" class="clearfix">
-                    <li class="first"> <a href="{{ path('project_home') }}">{{ 'tempo.menu.home'|trans  }}</a> </li>
-                    <li> <a href="{{ path('project_home') }}">{{ 'tempo.menu.project'|trans  }}</a> </li>
+                    <li class="first"> <a href="{{ path('project_home') }}">{{ 'tempo.menu.home'|trans  }}</a></li>
+                    <li> <a href="{{ path('project_home') }}"> {{ 'tempo.menu.project'|trans  }}</a> </li>
                     <li class="last"> Dashboard </li>
                 </ol>
 
@@ -20,7 +27,10 @@
             </div>
         {% endblock breadcrumb %}
 
-        <div class="list-organizations col-md-12 app-panel">
+        <div class="list-project col-md-8 ">
+
+        </div>
+        <div class="list-organizations col-md-4 app-panel">
             <div id="choose-organization" class="clearfix">
                 <p class="first"> {{ 'tempo.organization.select'|trans }} <span> ↓ </span> </p>
 
@@ -30,10 +40,12 @@
 
                 <li class="clearfix">
                     <a class="avatar" href="{{ path('organization_show', { 'slug' : organization.slug } ) }}">
-                        <img alt="marmelab" class="leaderboard-gravatar js-avatar" height="96" src="{{ organization.avatar }}" width="96">
+                        <img class="leaderboard-gravatar js-avatar" height="96" src="{{ organization.avatar }}" width="96">
                     </a>
                     <div class="board">
-                        <h2 class="name"><a href="{{ path('organization_show', { 'slug' : organization.slug } ) }}">{{ organization.name }}</a></h2>
+                        <h2 class="name">
+                          <a onclick="return false;" href="{{ path('project_organization_list', { 'slug' : organization.slug } ) }}">{{ organization.name }}</a>
+                        </h2>
                     </div>
 
                 </li>

@@ -74,6 +74,20 @@ interface ProjectInterface
     public function getUpdatedAt();
 
     /**
+     * Set last activity
+     *
+     * @param \DateTime $lastActivity
+     */
+    public function setLastActivity(\DateTime $lastActivity);
+
+    /**
+     * Get updated
+     *
+     * @return \DateTime
+     */
+    public function getLastActivity();
+
+    /**
      * Get organization
      *
      * @return \Tempo\Bundle\ProjectBundle\Entity\Organization

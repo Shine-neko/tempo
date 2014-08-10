@@ -141,6 +141,6 @@ class ProfileController extends BaseController
 
         $this->addFlash('success', 'the token was added');
 
-        return $this->redirect($this->generateUrl('user_profile_edit'));
+        return $this->redirectRoute('user_profile_edit');
    }
 }

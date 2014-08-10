@@ -78,4 +78,9 @@ class BaseController extends FOSRestController
     {
         return $this->get('problematic.acl_manager');
     }
+
+    public function redirectRoute($route, $parameters = array())
+    {
+        $this->redirect($this->generateUrl($route, $parameters));
+    }
 }

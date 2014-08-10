@@ -3,7 +3,7 @@ project_home:
     defaults: { _controller: TempoProjectBundle:Project:dashboard }
 
 project_organization_list:
-    pattern:  /{organization}/list
+    pattern:  /{slug}/list
     defaults: { _controller: TempoProjectBundle:Project:list }
 
 project_show:

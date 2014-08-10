@@ -85,6 +85,11 @@ class Project implements ProjectInterface
     protected $updatedAt;
 
     /**
+     * @var \DateTime
+     */
+    protected $lastActivity;
+
+    /**
      * @var string
      */
     protected $code;
@@ -226,6 +231,24 @@ class Project implements ProjectInterface
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setLastActivity(\DateTime $lastActivity)
+    {
+        $this->lastActivity = $lastActivity;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLastActivity()
+    {
+        return $this->lastActivity;
     }
 
     /**

@@ -24,7 +24,7 @@ indent_size = 2
 indent_size = 2
 
 [*.html.twig]
-indent_size = 2
+indent_size = 4
 
 [*.tpl]
 indent_size = 2

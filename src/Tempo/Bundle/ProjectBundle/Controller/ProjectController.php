@@ -131,7 +131,7 @@ class ProjectController extends BaseController
             $this->get('event_dispatcher')->dispatch(TempoProjectEvents::PROJECT_CREATE_SUCCESS, $event);
             $this->addFlash('success', 'project.success_create', 'TempoProject');
 
-            return $this->redirect($this->generateUrl('project_show', array('slug' => $project->getSlug())));
+            return $this->redirectRoute('project_show', array('slug' => $project->getSlug()));
         }
 
         return $this->render('TempoProjectBundle:Project:create.html.twig', array(
@@ -140,6 +140,7 @@ class ProjectController extends BaseController
     }
 
     /**
+     * shortcuts redirection
      * Edits an existing Project entity.
      * @param $slug
      * @return Response
@@ -157,7 +158,8 @@ class ProjectController extends BaseController
             $this->get('event_dispatcher')->dispatch(TempoProjectEvents::PROJECT_EDIT_SUCCESS, $event);
 
             $this->addFlash('success', 'project.success_updated', 'TempoProject');
-            return $this->redirect($this->generateUrl('project_update', array('slug' => $project->getSlug() )));
+
+            return $this->redirectRoute('project_edit', array('slug' => $project->getSlug()));
         }
 
         return $this->render('TempoProjectBundle:Project:update.html.twig', array(
@@ -185,7 +187,7 @@ class ProjectController extends BaseController
 
             $this->addFlash('success', 'project.success_delete', 'TempoProject');
 
-            return $this->redirect($this->generateUrl('project_home'));
+            return $this->redirectRoute('project_home');
         }
     }
 

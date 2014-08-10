@@ -1,59 +1,40 @@
-{% extends "TempoMainBundle::layout.html.twig" %}
-{% block bodyClass %}project list{% endblock %}
-{% block breadcrumb %}
-    <ol id="breadcrumb" class="clearfix">
-        <li class="first"> <a href="{{ path('project_home') }}">{{ 'tempo.menu.home'|trans  }}</a> </li>
-        <li class="first last"> <a href="{{ path('project_home') }}">Project</a> </li>
-        <li class="first last"> Project list </li>
-    </ol>
-{% endblock breadcrumb %}
 {% block content %}
-<h1>Project list</h1>
- Domaine <select>
-     <option> Test</option>
-     <option> Test2</option>
-     <option> Test3</option>
- </select>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Code</th>
-            <th>Nom</th>
-            <th>Type</th>
-            <th>Status</th>
-            <th>Criticité</th>
-            <th>Avancement</th>
-            <th>Début</th>
-            <th>Fin</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-        <tbody>
-        {% for project in projects %}
-         <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
-           <td><a href="{{ path('project_show', { 'slug' : project.slug } ) }}">{{ project.id }}</a></td>
-           <td><a href="{{ path('project_show', { 'slug' : project.slug } ) }}">{{ project.code }}</a></td>
-           <td><a href="{{ path('project_show', { 'slug' : project.slug } ) }}">{{ project.name }}</a></td>
-           <td>{{ project.renderType }}</td>
-           <td> <span class="label label-success">Ouvert</span> </td>
-           <td> 0 </td>
-           <td  class="advancement">
-               <div class="pourcentage">
-                   <div  style="background: #F1F7E2; width: {{ project.advancement }} %;">
-                        <span>{{ project.advancement }} %</span>
-                   </div>
-               </div>
-           </td>
-           <td>{{project.beginning.format("Y-m-j")}}</td>
-           <td>{{project.ending.format("Y-m-j")}}</td>
-           <td class="actions">
-               <a class="edit icon-edit" href="{{ path('project_update', { 'slug': project.slug }) }}">Edit</a>
-               &nbsp;|&nbsp;
-               <a class="edit icon-remove"href="{{ path('project_delete', { 'slug': project.slug }) }}">Delete</a> </td>
-        </tr>
-        {% endfor %}
-        </tbody>
-</table>
+<div class="col-md-3 hidden-sm hidden-xs side-filters">
+    <fieldset>
+      <ul class="nav nav-pills nav-stacked">
+        <li class=" active">
+          <a href="?scope=&amp;sort=">All
+          </a>
+        </li>
+        <li class="">
+            <a href="?scope=personal&amp;sort=">Personal</a>
+        </li>
+        <li class=""><a href="?scope=joined&amp;sort=">Joined
+          </a>
+        </li><li class=""><a href="?scope=owned&amp;sort=">Owned
+          </a>
+        </li>
+      </ul>
+    </fieldset>
+</div>
+<div class="col-md-9">
 
+  <ul>
+
+    {% for project in projects %}
+    <li>
+        <h4>
+            <span class="ion-cube"></span>
+          <a href="{{ path('project_show', { 'slug' : project.slug } ) }}">{{ project.name }}</a>
+        </h4>
+        <div class="last-activity">
+            <span class="light">Last activity:</span>
+            <span class="date"><time class="last_activity_time_ago" data-placement="bottom" data-toggle="tooltip" datetime="2013-09-04T21:23:55Z" >{{ project.lastActivity|localizeddate('medium', 'none', app.request.locale ) }}</time>
+            </span>
+        </div>
+    </li>
+    {% endfor %}
+  </ul>
+  </table>
+</div>
 {% endblock %}
