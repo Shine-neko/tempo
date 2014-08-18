@@ -21,12 +21,6 @@ class RoomController extends BaseController
      */
     public function getRoomAction($slug)
     {
-
-        $room = $this->getManager('room')->repository->findRoom($slug, $this->getUser()->getId());
-
-        var_dump($room); exit;
-
-
         try {
             $room = $this->getManager('room')->repository->findRoom($slug, $this->getUser()->getId());
         } catch (\Exception $e) {
