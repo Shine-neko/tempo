@@ -1,6 +1,8 @@
-room_api:
-    type:     rest
-    resource: Tempo\Bundle\MainBundle\Controller\Frontend\RoomController
-    name_prefix: api_room_
-    options:
-        expose: true
+api_room_show:
+    pattern:  /room/{slug}
+    defaults: { _controller: TempoMainBundle:Frontend/Room:getRoom }
+    requirements:
+
+api_room_all:
+  pattern: /room/all
+  defaults: { _controller: TempoMainBundle:Frontend/Room:getRoom }

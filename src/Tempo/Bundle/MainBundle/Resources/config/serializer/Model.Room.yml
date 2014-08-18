@@ -5,3 +5,5 @@ Tempo\Bundle\MainBundle\Model\Room:
         expose: true
       name:
         expose: true
+      slug: 
+        expose: true

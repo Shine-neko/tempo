@@ -12,14 +12,16 @@
 namespace Tempo\Bundle\MainBundle\Controller\Frontend;
 
 use Symfony\Component\HttpFoundation\Request;
-use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Request\ParamFetcherInterface;
 use FOS\RestBundle\Controller\Annotations;
 use FOS\RestBundle\View\View;
 use FOS\RestBundle\Controller\Annotations\View As AnnotView;
 
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use FOS\RestBundle\Controller\Annotations\Post;
+use FOS\RestBundle\Controller\Annotations\Get;
 
+use Tempo\Bundle\CoreBundle\Controller\BaseController;
 use Tempo\Bundle\MainBundle\Entity\ChatMessage;
 use Tempo\Bundle\MainBundle\Entity\Room;
 use Tempo\Bundle\MainBundle\Form\Type\ChatMessageType;
@@ -28,16 +30,22 @@ use Tempo\Bundle\MainBundle\Form\Type\ChatMessageType;
 /**
  * Rest controller for stories
  */
-class MessagesController extends FOSRestController
+class MessagesController extends BaseController
 {
     /**
+     *
+     * @Get("/room/{room}/message/{$chatMessageId}")
+     *
      * Get a single message from this room messages
      *
      * @param Room $room
      * @param string $chatMessageId
+     *
      */
-    public function getMessageAction(Room $room, $chatMessageId)
+    public function getMessageAction($room, $chatMessageId)
     {
+        $room = $this->getManager('room')->repository->findRoom($room, $this->getUser()->getId());
+
         $message = $room->getChatMessage($chatMessageId);
         if (!$message) {
             throw $this->createNotFoundException(sprintf(
@@ -49,10 +57,11 @@ class MessagesController extends FOSRestController
     }
 
     /**
+     *
      * Get all messages for a room
      *
      * @param Room $room
-     * @param string $chatMessageId
+     * @Get("/room/{room}/messages")
      * @ApiDoc(
      *   resource = true,
      *   statusCodes = {
@@ -64,8 +73,10 @@ class MessagesController extends FOSRestController
      * @Annotations\QueryParam(name="limit", requirements="\d+", default="100", description="How many pages to return.")
      *
      */
-    public function getMessagesAction(Room $room, ParamFetcherInterface $paramFetcher)
+    public function getMessagesAction($room, ParamFetcherInterface $paramFetcher)
     {
+        $room = $this->getManager('room')->repository->findRoom($room, $this->getUser()->getId());
+
         $offset = $paramFetcher->get('offset');
         $offset = null == $offset ? 0 : $offset;
         $limit = $paramFetcher->get('limit');
@@ -75,9 +86,12 @@ class MessagesController extends FOSRestController
 
     /**
      * Create a new message
+     * @Post("/room/{room}/message")
      */
-    public function postMessagesAction(Room $room, Request $request)
+    public function postMessageAction($room, Request $request)
     {
+        $room = $this->getManager('room')->repository->findRoom($room, $this->getUser()->getId());
+
         $view = View::create();
 
         $message = new ChatMessage();
@@ -85,8 +99,6 @@ class MessagesController extends FOSRestController
         $message->setUser($this->getUser());
 
         $room->addChatMessage($message);
-
-
         $form = $this->createForm(new ChatMessageType(), $message);
 
         if ($form->submit($request) && $form->isValid()) {

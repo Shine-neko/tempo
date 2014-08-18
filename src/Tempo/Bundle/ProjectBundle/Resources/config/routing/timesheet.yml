@@ -7,7 +7,7 @@ timesheet_show:
     defaults: { _controller: "TempoProjectBundle:Timesheet:show" }
 
 timesheet_create:
-    pattern:  /create
+    pattern:  /{project}/create
     defaults: { _controller: TempoProjectBundle:Timesheet:create }
 
 timesheet_edit:

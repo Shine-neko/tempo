@@ -70,9 +70,9 @@ class TimesheetController extends BaseController
     {
         $entity = $this->getManager('timesheet')->find($id);
 
-        $editForm   = $this->createForm(new TimesheetType(), $entity);
+        $editForm = $this->createForm(new TimesheetType(), $entity);
 
-        if ($request->isMethod('POST') && $editForm->submit($request)->isValid()) {
+        if ($editForm->handleRequest($request)->isValid()) {
             $this->getManager('timesheet')->save($entity);
 
             return $this->redirectRoute('timesheet');
@@ -160,12 +160,13 @@ class TimesheetController extends BaseController
         $period->setUser($this->getUser());
 
         $form = $this->createForm(new TimesheetType(), $period);
-        $form->submit($request->request->get('timesheet'));
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $this->getManager('timesheet')->save($period);
             $view->setStatusCode(201);
             $view->setData($period);
+            $view->setFormat('json');
 
             $this->addFlash('success', 'tempo.timesheets.success_add', 'TempoProject');
 

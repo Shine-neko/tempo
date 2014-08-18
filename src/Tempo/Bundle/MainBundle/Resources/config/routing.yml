@@ -24,7 +24,7 @@ main_chat:
 main_chat_api:
   type: rest
   prefix:   /api/{version}
-  resource: "@TempoMainBundle/Resources/config/routing/chat.yml"
+  resource: "@TempoMainBundle/Resources/config/routing/chat_api.yml"
   defaults:
       version: v1
 

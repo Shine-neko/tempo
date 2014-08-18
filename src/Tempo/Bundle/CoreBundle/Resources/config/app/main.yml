@@ -50,7 +50,7 @@ fos_user:
         group_class: Tempo\Bundle\UserBundle\Entity\Group
 
 fos_js_routing:
-    routes_to_expose: ['get_rooms', 'get_room_messages', 'api_timesheet_create']
+    routes_to_expose: ['room_list', 'chat_room_post_message', 'chat_room_get_messages', 'timesheet_create']
 
 hwi_oauth:
     firewall_name: main

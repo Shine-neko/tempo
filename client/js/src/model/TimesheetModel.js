@@ -5,7 +5,7 @@ Tempo.Model.Timesheet = Backbone.Model.extend({
     },
     save: function(key, val, options) {
         var attributes  = this.attributes;
-        this.url = Routing.generate('api_timesheet_create', { 'project': attributes.project });
+        this.url = Routing.generate('timesheet_create', { 'project': attributes.project });
         return Backbone.Model.prototype.save.call(this,attributes, options);
     }
 });
