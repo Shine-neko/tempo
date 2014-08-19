@@ -34,7 +34,7 @@
             <gedmo:timestampable on="update"/>
         </field>
 
-        <field name="lastActivity" column="last_activity" type="datetime" />
+        <field name="lastActivity" column="last_activity" type="datetime" nullable="true" />
 
         <field name="description" column="description" type="text">
             <gedmo:versioned/>
@@ -43,7 +43,7 @@
 
         <field name="beginning" type="date" nullable="true" />
         <field name="ending" type="date" nullable="true" />
-        <field name="status" column="status" type="integer" nullable="true"  />
+        <field name="status" column="status" type="integer" nullable="true" />
 
         <field name="advancement" column="advancement" type="integer" nullable="true"  />
 
