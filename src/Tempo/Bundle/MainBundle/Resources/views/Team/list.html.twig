@@ -1,0 +1,13 @@
+<ul class="list">
+    {% for userTeam in users %}
+    <li>
+        <a href="{{ path('user_profile_show', { 'slug': userTeam.user.slug }) }}"> <img src="{{ userTeam.user.avatar(28) }}" />
+            <span>{{ userTeam.user.getFullName }} </span>
+        </a>
+         <span class="label label-default">
+            {{ userTeam.renderRole(userTeam.role) }}
+         </span>
+        <a href="{{ path(route_deleted, { 'slug' : category.slug, 'user' : userTeam.user.id }) }}" title="Remove {{ userTeam.user.getFullName }}"><span class="glyphicon glyphicon-remove"></span></a>
+    </li>
+    {% endfor %}
+</ul>
