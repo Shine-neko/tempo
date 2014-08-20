@@ -67,11 +67,11 @@
         <a data-toggle="modal" data-target="#" data-title="Adding a team member" href="#add_membre" class="add-member pull-right btn btn-xs btn-info"> <span class="glyphicon glyphicon-plus"></span> {{ 'tempo.project.add_membre'|trans }}</a>
 
         <div id="add_membre" style="display: none;">
-            {% include 'TempoProjectBundle:Team:new.html.twig' with {'form': teamForm, 'category': project, 'route_category' : 'project_team_add' } %}
+            {% include 'TempoMainBundle:Team:new.html.twig' with {'form': teamForm, 'category': project, 'route_category' : 'project_team_add' } %}
         </div>
         <div class="app-panel clearbox">
             <div class="list_membre">
-                {% include 'TempoProjectBundle:Team:list.html.twig' with {
+                {% include 'TempoMainBundle:Team:list.html.twig' with {
                     'route_deleted' :'project_team_delete',
                     'users': project.team,
                     'category': project

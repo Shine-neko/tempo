@@ -118,6 +118,14 @@ abstract class Room
     /**
      * {@inheritdoc}
      */
+    public function addTeam($user, $role)
+    {
+        $this->team[] = new RoomUser($this, $user, $role);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function setProject($project)
     {
         $this->project = $project;

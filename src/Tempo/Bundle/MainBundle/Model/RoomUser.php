@@ -9,12 +9,16 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\ProjectBundle\Model;
+namespace Tempo\Bundle\MainBundle\Model;
 
-/**
- * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
- */
-
-interface TeamInterface
+class RoomUser extends Team
 {
+    protected $room;
+
+    public function __construct($room, $user, $createdAt)
+    {
+        $this->room = $room;
+        $this->user = $user;
+        $this->createdAt = $createdAt;
+    }
 }

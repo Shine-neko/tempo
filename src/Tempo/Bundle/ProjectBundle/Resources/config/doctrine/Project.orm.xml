@@ -60,19 +60,11 @@
         <many-to-one field="organization" inversed-by="projects" target-entity="Organization" />
         <one-to-many field="timesheets" target-entity="Timesheet" mapped-by="project" />
         <one-to-one field="type" target-entity="ProjectType" />
-        <many-to-many field="team" inversed-by="users" target-entity="Tempo\Bundle\UserBundle\Entity\User">
-            <join-table name="tempo_project_user">
-                <join-columns>
-                    <join-column name="project_id" referenced-column-name="id" on-delete="CASCADE"/>
-                </join-columns>
-                <inverse-join-columns>
-                    <join-column name="user_id" referenced-column-name="id" on-delete="CASCADE"/>
-                </inverse-join-columns>
-            </join-table>
+        <one-to-many field="team" target-entity="Tempo\Bundle\ProjectBundle\Entity\ProjectUser" mapped-by="project">
             <cascade>
-                <cascade-all />
+                <cascade-all/>
             </cascade>
-        </many-to-many>
+        </one-to-many>
 
         <one-to-many field="providers" target-entity="ProjectProvider" mapped-by="project" />
         <gedmo:loggable log-entry-class="Tempo\Bundle\CoreBundle\Entity\LogEntry"/>

@@ -17,11 +17,14 @@ class ProjectRepository extends EntityRepository
 {
     public function findProjectByUser($user)
     {
-        $query = $this->createQueryBuilder('p')
-                    ->leftJoin('p.team', 'pu');
+        $query = $this
+            ->createQueryBuilder('project')
+                ->leftJoin('project.team', 'team')
+                ->leftJoin('team.user', 'user')
+        ;
 
         if (null !== $user) {
-            $query->where('pu.id  = ?1')
+            $query->where('user.id  = ?1')
                 ->setParameter(1, $user);
         }
 

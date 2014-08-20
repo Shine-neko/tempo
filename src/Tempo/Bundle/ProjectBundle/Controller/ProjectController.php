@@ -24,9 +24,9 @@ use Tempo\Bundle\CoreBundle\Controller\BaseController;
 use Tempo\Bundle\ProjectBundle\Entity\Project;
 use Tempo\Bundle\ProjectBundle\Entity\Organization;
 use Tempo\Bundle\ProjectBundle\Form\Type\ProjectType;
-use Tempo\Bundle\ProjectBundle\Form\Type\TeamType;
 use Tempo\Bundle\ProjectBundle\TempoProjectEvents;
 use Tempo\Bundle\ProjectBundle\Event\ProjectEvent;
+use Tempo\Bundle\MainBundle\Form\Type\TeamType;
 
 /**
  * Project controller.

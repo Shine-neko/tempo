@@ -19,9 +19,9 @@ use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Tempo\Bundle\CoreBundle\Controller\BaseController;
 use Tempo\Bundle\ProjectBundle\Entity\Organization;
 use Tempo\Bundle\ProjectBundle\Form\Type\OrganizationType;
-use Tempo\Bundle\ProjectBundle\Form\Type\TeamType;
 use Tempo\Bundle\ProjectBundle\TempoProjectEvents;
 use Tempo\Bundle\ProjectBundle\Event\OrganizationEvent;
+use Tempo\Bundle\MainBundle\Form\Type\TeamType;
 
 /**
  * @author Mlanawo Mbechezi <mlanawo.mbechezi@ikimea.com>

@@ -9,11 +9,12 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\ProjectBundle\Form\Type;
+namespace Tempo\Bundle\MainBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+
+use Tempo\Bundle\MainBundle\Model\TeamInterface;
 
 class TeamType extends AbstractType
 {
@@ -22,9 +23,18 @@ class TeamType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('username', 'autocomplete', array(
+        $builder
+            ->add('username', 'autocomplete', array(
             'behavior' => array('name' => 'team_username', 'callback' => 'user_api_autocomplete' )
-        ));
+            ))
+            ->add('role', 'choice', array(
+                'choices' => array(
+                    TeamInterface::TYPE_ADMIN => 'admin',
+                    TeamInterface::TYPE_MODERATOR => 'moderator',
+                    TeamInterface::TYPE_USER => 'user'
+                )
+            ))
+        ;
     }
 
     /**

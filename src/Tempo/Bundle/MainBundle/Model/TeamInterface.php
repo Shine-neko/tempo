@@ -9,8 +9,15 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\ProjectBundle\Model;
+namespace Tempo\Bundle\MainBundle\Model;
 
-class Team implements TeamInterface
+
+interface TeamInterface
 {
+    const TYPE_ADMIN = 1;
+    const TYPE_MODERATOR = 2;
+    const TYPE_USER = 3;
+
+    public function setCreatedAt(\DateTime $createdAt);
+    public function getCreatedAt();
 }
