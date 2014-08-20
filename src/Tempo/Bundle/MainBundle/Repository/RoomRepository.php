@@ -34,8 +34,9 @@ class RoomRepository extends EntityRepository
     {
         $query = $this->createQueryBuilder('room')
             ->leftJoin('room.team', 'team')
+            ->leftJoin('team.user', 'user')
             ->where('room.slug  = ?1')
-            ->andwhere('team.id  = ?2')
+            ->andwhere('user.id  = ?2')
             ->setParameter(1, $slug)
             ->setParameter(2, $user)
             ->setMaxResults(1);
