@@ -57,7 +57,7 @@ class TimesheetController extends BaseController
 
         if ($editForm->handleRequest($request)->isValid()) {
             $this->getManager('timesheet')->save($timesheet);
-            
+
             return $this->redirectRoute('timesheet');
         }
 
@@ -177,6 +177,31 @@ class TimesheetController extends BaseController
         ));
     }
 
+    public function validationAction(Request $request)
+    {
+        $userId = $request->query->get('user_id') ?: $this->getUser();
+
+        if ($request->query->has('validate')) {
+
+            $period = $this->getManager('timesheet')->find($request->query->get('id'));
+            if ($request->query->has('type') && $request->query->get('type') == 'billable') {
+                $period->setBillable(true);
+            }
+            $period->setState(3);
+            $this->getManager('timesheet')->save($period);
+        }
+
+        $timesheets = $this->getManager('timesheet')->repository->findActivitiesByState($userId);
+        $assignments = $this->getDoctrine()->getRepository('TempoProjectBundle:ProjectUser')->findAll(array(
+            'role' => 3
+        ));
+
+        return $this->render('TempoProjectBundle:Timesheet:validation.html.twig', array(
+            'timesheets' => $timesheets,
+            'assignments' => $assignments
+        ));
+    }
+
     /**
      * @param $id
      * @return \Symfony\Component\Form\Form
@@ -207,12 +232,7 @@ class TimesheetController extends BaseController
         );
 
         $filterFormType = $this->createForm(new TimesheetFilterType());
-        $processFilter = $this->processFilter($filterFormType, $request);
-
-        if (empty($processFilter)) {
-            $processFilter['from'] = $factoryWeek->getBegin();
-            $processFilter['to'] = $factoryWeek->getEnd();
-        }
+        $processFilter = $this->processFilter($request, $filterFormType, $factoryWeek);
 
         $projectsActivityReporting = $this->get('tempo.manager.timesheet')->findActivities(
             $this->getUser()->getId(), $processFilter['from']->format('Y-m-j'), $processFilter['to']->format('Y-m-j')
@@ -237,7 +257,7 @@ class TimesheetController extends BaseController
         );
     }
 
-    private function processFilter($filterForm, Request $request)
+    private function processFilter(Request $request, $filterForm, $factoryWeek)
     {
         if ($filterForm->isSubmitted()) {
 
@@ -246,12 +266,16 @@ class TimesheetController extends BaseController
 
                 $dataFilter['from'] = new \DateTime($dataFilter['from']);
                 $dataFilter['to']  = new \DateTime($dataFilter['to']);
-
-                return $dataFilter;
             }
         }
 
-        return array();
+        $dataFilter = array(
+            'from' => $factoryWeek->getBegin(),
+            'to'   => $factoryWeek->getEnd()
+        );
+
+        return $dataFilter;
+
     }
 
     private function downloadFile($filePath)

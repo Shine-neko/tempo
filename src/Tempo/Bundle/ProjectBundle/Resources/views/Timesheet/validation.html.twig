@@ -1,0 +1,57 @@
+{% extends "TempoMainBundle::layout.html.twig" %}
+{% block breadcrumb %}
+    <ol id="breadcrumb" class="clearfix">
+        <li class="first"> <a href="{{ path('timesheet') }}">{{ 'tempo.menu.timesheet'|trans  }}</a> </li>
+        <li class="last"> Analyse worklog </li>
+    </ol>
+{% endblock breadcrumb %}
+{% block content %}
+    <h1>Analyse worklog</h1>
+    <div>
+        <form method="get">
+            <div class="form-group pull-right col-md-6">
+                <label for="project_name" class="col-sm-4 control-label required">
+                    Show another assignment
+                </label>
+                <select name="user_id" class="col-md-8" onChange="this.form.submit()">>
+                    {% for assignment in assignments %}
+                        <option value="{{ assignment.user.id }}">{{ assignment.user.fullName }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </form>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" /> </th>
+                    <th>User</th>
+                    <th>Date</th>
+                    <th>Time spent</th>
+                    <th>Hourly rate</th>
+                    <th>Details of work</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for timesheet in timesheets %}
+                <tr>
+                    <td></td>
+                    <td>{{ timesheet.user.fullName }}</td>
+                    <td>{{ timesheet.workedDate |localizeddate('long', 'none') }}</td>
+                    <td>{{ timesheet.workedTime }} H</td>
+                    <td></td>
+                    <td>{{ timesheet.description }}</td>
+                    <td>
+                        <a href="{{ path('timesheet_validation', {'validate': '', 'id': timesheet.id}) }}">
+                            <span style="font-size: 15px;" class="ion-ios7-plus{{ timesheet.state == 3 ? '-outline' : ''  }}"></span>
+                        </a>
+                        <a href="{{ path('timesheet_validation', {'validate': '', 'type': 'billable', 'id': timesheet.id}) }}">
+                            <span style="font-size: 15px;" class="ion-social-usd"></span>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor  %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

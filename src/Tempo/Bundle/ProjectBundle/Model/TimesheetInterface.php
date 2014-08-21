@@ -18,6 +18,10 @@ use Sylius\Component\Resource\Model\TimestampableInterface;
  */
 interface TimesheetInterface extends TimestampableInterface
 {
+    const  STATE_DRAFT = 'STATE_DRAFT';
+    const  STATE_PENDING = 'STATE_PENDING';
+    const  STATE_VALIDATE = 'STATE_VALIDATE';
+
     /**
      * @return integer
      */

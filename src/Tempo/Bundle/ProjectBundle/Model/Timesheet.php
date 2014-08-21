@@ -16,6 +16,9 @@ namespace Tempo\Bundle\ProjectBundle\Model;
  */
 abstract class Timesheet implements TimesheetInterface
 {
+    /**
+     * @var integer
+     */
     protected $id;
 
     /**
@@ -77,8 +80,7 @@ abstract class Timesheet implements TimesheetInterface
     public function __construct()
     {
         $this->createdAt = new \DateTime();
-
-        return $this->state = 0;
+        $this->state = 0;
     }
 
     public function __toString()

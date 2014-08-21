@@ -34,8 +34,8 @@ class TimesheetRepository extends EntityRepository
                 ->leftJoin('project.team', 'team')
                 ->leftJoin('team.user', 'user')
                 ->where('timesheet.workedDate BETWEEN :begin AND :end')
-                ->AndWhere('user = :user')
-                ->AndWhere('timesheet.user = :user')
+                ->andWhere('user = :user')
+                ->andWhere('timesheet.user = :user')
                 ->setParameters(array(
                     'begin' => $weekBegin,
                     'end'   => $weekEnd,
@@ -46,6 +46,26 @@ class TimesheetRepository extends EntityRepository
             LEFT JOIN tempo_project_user pu ON pu.project_id = p.id
             LEFT JOIN tempo_timesheet t ON t.project_id = p.id  WHERE pu.user_id = 1
         */
+
+        return $query->getQuery()->getResult();
+    }
+
+    public function findActivitiesByState($user = null)
+    {
+        $query = $this
+            ->createQueryBuilder('timesheet')
+            ->leftJoin('timesheet.project', 'project')
+            ->leftJoin('project.team', 'team')
+            ->leftJoin('team.user', 'user')
+            ->AndWhere('user = :user');
+
+        if (null == $user) {
+            $query->andWhere('timesheet.user = :user');
+        } else {
+            $query->andWhere('team.role = 1 OR team.role = 2 ');
+        }
+
+        $query->setParameter('user', $user);
 
         return $query->getQuery()->getResult();
     }
