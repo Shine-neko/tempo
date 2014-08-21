@@ -92,7 +92,6 @@
                             <form action="{{ path('timesheet_create',{'project': proxy.project.id}) }}" method="post" class="parent-form" id="parent-form{{ loop.index }}">
                                 <input type="text" maxlength="2" name="timesheet[workedTime]" class="cra_load" size="2" />
                                 <input type="text" name="timesheet[description]" class="cra_desc" rel="form-cra-load-{{ day.format('Y-m-d')}}" />
-                                <input type="text" name="timesheet[project]" class="cra_project" value="{{ proxy.project.id }}" style="display: none;" />
                                 <input type="text" name="timesheet[workedDate]" class="cra_date" value="{{ day.format('Y-m-d')}}" style="display: none;" />
                                 <input type="submit" style="display: none" value="{{ 'tempo.form.save'|trans }}" />
                             </form>

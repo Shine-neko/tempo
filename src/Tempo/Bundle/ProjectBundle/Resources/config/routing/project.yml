@@ -27,20 +27,20 @@ project_delete:
 
 project_team_add:
     pattern:  /{slug}/team/add
-    defaults: { _controller: TempoMainBundle:Team:add }
+    defaults: { _controller: TempoMainBundle:Frontend/Team:add }
     requirements:
         slug: "\w+\/\w+"
 
 project_team_create:
     pattern:  /{slug}/team/create
-    defaults: { _controller: TempoMainBundle:Team:create }
+    defaults: { _controller: TempoMainBundle:Frontend/Team:create }
     requirements:
         _method:  GET
         slug: "\w+\/\w+"
 
 project_team_delete:
     pattern:  /{slug}/team/delete
-    defaults: { _controller: TempoMainBundle:Team:delete }
+    defaults: { _controller: TempoMainBundle:Frontend/Team:delete }
     requirements:
         slug: "\w+\/\w+"
 

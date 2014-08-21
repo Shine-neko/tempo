@@ -4,5 +4,5 @@ Feature: generate a new token project
     Given I am connected as "admin"
 
   Scenario: show a project
-    When I go to "profile/edit"
+    When I go to "profile/edit/settings"
     And I press "Generate token"

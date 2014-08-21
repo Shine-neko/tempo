@@ -81,6 +81,6 @@ class BaseController extends FOSRestController
 
     public function redirectRoute($route, $parameters = array())
     {
-        $this->redirect($this->generateUrl($route, $parameters));
+        return $this->redirect($this->generateUrl($route, $parameters));
     }
 }

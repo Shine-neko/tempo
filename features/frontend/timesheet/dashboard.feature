@@ -28,7 +28,6 @@ Feature: dashboard timesheet
   Scenario: Create a new activity
     When I am on route "timesheet"
     And I created cra:
-      | project  | 1 |
       | workedTime   | 5   |
       | description  | Lorem Ipsum is simply dummy text.  |
     And I am on route "timesheet"

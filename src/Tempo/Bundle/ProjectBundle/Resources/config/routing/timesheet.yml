@@ -9,10 +9,7 @@ timesheet_show:
 timesheet_create:
     pattern:  /{project}/create
     defaults: { _controller: TempoProjectBundle:Timesheet:create }
-
-timesheet_edit:
-    pattern:  /{id}/edit
-    defaults: { _controller: "TempoProjectBundle:Timesheet:edit" }
+    requirements: { _method: POST }
 
 timesheet_update:
     pattern:  /{id}/update

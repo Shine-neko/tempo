@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Tempo\Bundle\ProjectBundle\Controller;
+namespace Tempo\Bundle\MainBundle\Controller\Frontend;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 
 use Tempo\Bundle\CoreBundle\Controller\BaseController;
-use Tempo\Bundle\ProjectBundle\Form\Type\TeamType;
+use Tempo\Bundle\MainBundle\Form\Type\TeamType;
 use Tempo\Bundle\ProjectBundle\Event\TeamEvent;
 use Tempo\Bundle\ProjectBundle\TempoProjectEvents;
 

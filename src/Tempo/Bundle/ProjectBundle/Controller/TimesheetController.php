@@ -15,7 +15,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\View\View;
@@ -52,34 +51,18 @@ class TimesheetController extends BaseController
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function editAction($id)
+    public function updateAction(Request $request, Timesheet $timesheet)
     {
-        $entity = $this->getManager('timesheet')->find($id);
-
-        $editForm = $this->createForm(new TimesheetType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
-
-        return $this->render('TempoProjectBundle:Timesheet:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    public function updateAction(Request $request, $id)
-    {
-        $entity = $this->getManager('timesheet')->find($id);
-
-        $editForm = $this->createForm(new TimesheetType(), $entity);
+        $editForm = $this->createForm(new TimesheetType(), $timesheet);
 
         if ($editForm->handleRequest($request)->isValid()) {
-            $this->getManager('timesheet')->save($entity);
-
+            $this->getManager('timesheet')->save($timesheet);
+            
             return $this->redirectRoute('timesheet');
         }
 
-        return $this->render('TempoProjectBundle:Timesheet:edit.html.twig', array(
-            'entity'      => $entity,
+        return $this->render('TempoProjectBundle:Timesheet:update.html.twig', array(
+            'timesheet'      => $timesheet,
             'edit_form'   => $editForm->createView(),
         ));
     }
