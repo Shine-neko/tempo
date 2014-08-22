@@ -50,23 +50,20 @@ class TimesheetRepository extends EntityRepository
         return $query->getQuery()->getResult();
     }
 
-    public function findActivitiesByState($user = null)
+    public function findActivitiesByState($user)
     {
         $query = $this
             ->createQueryBuilder('timesheet')
-            ->leftJoin('timesheet.project', 'project')
-            ->leftJoin('project.team', 'team')
-            ->leftJoin('team.user', 'user');
+                ->leftJoin('timesheet.project', 'project')
+                ->leftJoin('project.team', 'team')
+                ->leftJoin('team.user', 'user');
 
-        if (null == $user) {
+        if (!is_object($user)) {
             $query
                 ->andWhere('timesheet.user = :user')
-                ->setParameter('user', $user);
-
-        } else {
-            $query->andWhere('team.role = 1 OR team.role = 2');
+                ->setParameter('user', $user)
+                ->andWhere('team.role < 3');
         }
-
 
         return $query->getQuery()->getResult();
     }

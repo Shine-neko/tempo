@@ -68,6 +68,11 @@ abstract class BaseManager
         return $this->repository->findAllByUser($user);
     }
 
+    public function getRepository($class = null)
+    {
+        return $this->repository;
+    }
+
     /**
      * Persist the given entity
      *

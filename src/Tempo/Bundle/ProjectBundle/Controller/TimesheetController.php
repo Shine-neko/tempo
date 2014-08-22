@@ -191,10 +191,8 @@ class TimesheetController extends BaseController
             $this->getManager('timesheet')->save($period);
         }
 
+        $assignments = $this->getDoctrine()->getRepository('TempoProjectBundle:ProjectUser')->findAll(array('role' => '3 OR role = 2'));
         $timesheets = $this->getManager('timesheet')->repository->findActivitiesByState($userId);
-        $assignments = $this->getDoctrine()->getRepository('TempoProjectBundle:ProjectUser')->findAll(array(
-            'role' => 3
-        ));
 
         return $this->render('TempoProjectBundle:Timesheet:validation.html.twig', array(
             'timesheets' => $timesheets,
