@@ -9,12 +9,13 @@
 * file that was distributed with this source code.
 */
 
+
 use Symfony\CS\FixerInterface;
 
 $finder = Symfony\CS\Finder\DefaultFinder::create()
-->notName('*.yml')
-->notName('*.xml')
-->exclude('app')
+    ->notName('*.yml')
+    ->notName('*.xml')
+    ->exclude('app')
 ;
 
 return Symfony\CS\Config\Config::create()->finder($finder);
