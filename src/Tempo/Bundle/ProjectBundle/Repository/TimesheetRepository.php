@@ -56,16 +56,17 @@ class TimesheetRepository extends EntityRepository
             ->createQueryBuilder('timesheet')
             ->leftJoin('timesheet.project', 'project')
             ->leftJoin('project.team', 'team')
-            ->leftJoin('team.user', 'user')
-            ->AndWhere('user = :user');
+            ->leftJoin('team.user', 'user');
 
         if (null == $user) {
-            $query->andWhere('timesheet.user = :user');
+            $query
+                ->andWhere('timesheet.user = :user')
+                ->setParameter('user', $user);
+
         } else {
-            $query->andWhere('team.role = 1 OR team.role = 2 ');
+            $query->andWhere('team.role = 1 OR team.role = 2');
         }
 
-        $query->setParameter('user', $user);
 
         return $query->getQuery()->getResult();
     }
