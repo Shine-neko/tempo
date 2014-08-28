@@ -3,7 +3,12 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script type="text/javascript" src="{{ asset('bundles/tempoproject/js/views/ProjectView.js') }}"></script>
+    {% javascripts
+        '../client/js/src/views/ProjectView.js'
+        output="js/project-update.js"
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
     <script>new Tempo.View.Project(); </script>
 {% endblock %}
 
