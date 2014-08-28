@@ -1,0 +1,31 @@
+{
+    "name": "tempo-project/resource",
+    "type": "library",
+    "description": "Tempo Resource Component",
+    "keywords": [],
+    "homepage": "http://tempo-project.org",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mlanawo Mbechezi",
+            "email": "mlanawo.mbechezi@ikimea.com"
+        },
+        {
+            "name": "Tempo Community",
+            "homepage": "http://tempo-project.org/contributors"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "autoload": {
+        "psr-4": { "Tempo\\Component\\Resource\\": "" }
+    },
+    "target-dir": "Tempo/Component/Resource",
+    "minimum-stability": "dev",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    }
+}
