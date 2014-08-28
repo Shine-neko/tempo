@@ -67,6 +67,9 @@
         "willdurand/faker-bundle": "dev-master",
         "doctrine/doctrine-fixtures-bundle": "2.2.*@dev"
     },
+    "replace": {
+        "tempo-project/resource": "self.version"
+    },
     "scripts": {
         "post-install-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
