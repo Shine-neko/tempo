@@ -12,8 +12,8 @@
 namespace Tempo\Bundle\ProjectBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Tempo\Bundle\ActivityBundle\Form\Type\ProviderFormType;
 use Tempo\Bundle\CoreBundle\Controller\BaseController;
+use Tempo\Bundle\ProjectBundle\Form\Type\ProviderFormType;
 
 class ProviderController extends BaseController
 {

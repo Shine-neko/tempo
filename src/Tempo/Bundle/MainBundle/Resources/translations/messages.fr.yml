@@ -14,15 +14,10 @@ tempo:
     save: 'Sauvegard'
     save_changes: 'Sauvegarde les changements'
     submit: Valider
-  dashboard:
-    title: Flux d'activité
-    form.status.label: Partagez quelque chose. Utilisez @ pour mentionner des personnes.
-
-tempo:
   activity:
     dashboard:
-      title: Activity Feed
-      form.status.label: Share something. Use @ to mention people.
+      title: Flux d'activité
+      form.status.label: Partagez quelque chose. Utilisez @ pour mentionner des personnes.
     events:
       user.update: updates its own information
       comment.commented: Commented

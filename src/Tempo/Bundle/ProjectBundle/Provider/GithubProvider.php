@@ -13,6 +13,7 @@ namespace Tempo\Bundle\ProjectBundle\Provider;
 
 use Symfony\Component\HttpFoundation\Request;
 use Tempo\Bundle\ProjectBundle\Entity\ActivityProvider;
+use Doctrine\Common\Inflector\Inflector;
 
 class GithubProvider implements ProviderInterface
 {
@@ -24,25 +25,23 @@ class GithubProvider implements ProviderInterface
         $eventName = $request->headers->get('X-Github-Event');
         $payload = $request->request->get('payload');
 
-        $methodName = sprintf('%sEvent', $eventName);
+        $methodName = sprintf('%sEvent', Inflector::camelize($eventName));
 
         if (null == $payload) {
             $payload = $request->request->all();
         }
 
-        var_dump($payload); exit;
-
         try {
             return $this->$methodName($payload);
         } catch (\Exception $e) {
-            return $this->pushEvent($payload);
+            return $this->statusEvent($payload);
         }
     }
 
     protected function pushEvent($payload)
     {
         $activity = new ActivityProvider();
-        $activity->setMessage('provider.github.push');
+        $activity->setMessage('');
         $activity->setCreatedAt(new \DateTime());
         $activity->setParameters($payload);
 
@@ -64,25 +63,25 @@ class GithubProvider implements ProviderInterface
         throw new \Exception(sprintf('Not implemented: %s::%s', __CLASS__, __FUNCTION__));
     }
 
-    protected function commit_commentEvent($payload)
+    protected function commitCommentEvent($payload)
     {
         throw new \Exception(sprintf('Not implemented: %s::%s', __CLASS__, __FUNCTION__));
     }
 
-    protected function pull_requestEvent($payload)
+    protected function pullRequestEvent($payload)
     {
-        throw new \Exception(sprintf('Not implemented: %s::%s', __CLASS__, __FUNCTION__));
+        $activity = new ActivityProvider();
+        $activity->setMessage('Opened pull request #'.$payload['pull_request']['number']. ' '. $payload['pull_request']['title']);
+        $activity->setCreatedAt(new \DateTime($payload['pull_request']['created_at']));
+        $activity->setParameters($payload);
+
+        return $activity;
     }
 
-    protected function pull_request_review_commentEvent($payload)
+    protected function pullRequestReviewCommentEvent($payload)
     {
         throw new \Exception(sprintf('Not implemented: %s::%s', __CLASS__, __FUNCTION__));
 
-    }
-
-    protected function gollumEvent($payload)
-    {
-        throw new \Exception(sprintf('Not implemented: %s::%s', __CLASS__, __FUNCTION__));
     }
 
     protected function watchEvent($payload)
@@ -93,20 +92,9 @@ class GithubProvider implements ProviderInterface
     protected function releaseEvent($payload)
     {
         throw new \Exception(sprintf('Not implemented: %s::%s', __CLASS__, __FUNCTION__));
-
     }
 
-    protected function memberEvent($payload)
-    {
-        throw new \Exception(sprintf('Not implemented: %s::%s', __CLASS__, __FUNCTION__));
-    }
-
-    protected function publicEvent($payload)
-    {
-        throw new \Exception(sprintf('Not implemented: %s::%s', __CLASS__, __FUNCTION__));
-    }
-
-    protected function team_addEvent($payload)
+    protected function teamAddEvent($payload)
     {
         throw new \Exception(sprintf('Not implemented: %s::%s', __CLASS__, __FUNCTION__));
     }

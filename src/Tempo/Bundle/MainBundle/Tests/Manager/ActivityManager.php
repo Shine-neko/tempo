@@ -10,7 +10,7 @@ class ActivityManagerTest extends \PHPUnit_Framework_TestCases
         $objectManager = $this->getMock('Doctrine\Common\Persistence\ObjectManager');
         $class = '';
 
-        $manager =  $this->getMockBuilder('Tempo\Bundle\ActivityBundle\Manager\ActivityManager')
+        $manager =  $this->getMockBuilder('Tempo\Bundle\MainBundle\Manager\ActivityManager')
             ->disableOriginalConstructor()
             ->getMock();
 

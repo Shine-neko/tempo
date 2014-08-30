@@ -66,7 +66,14 @@ tempo:
 
   team:
    success_add: L'utilisateur a bien été ajouté à l'équipe
-
+  activity:
+      events:
+        user.update: updates its own information
+        comment.commented: Commented
+        project.created: create project
+        project.update: update project
+        project.joined: joined project at
+        
   buttons:
     edit: Editer
     submit: Valider

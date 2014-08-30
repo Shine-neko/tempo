@@ -18,7 +18,6 @@ tempo:
     success_delete: Organization successfully removed
     failed_delete: Unable to delete organization
 
-
   project:
     title_add: Nouveau projet
     label_list: Project list

@@ -2,17 +2,18 @@
     {% set user = activity.data.sender.login %}
     {% set gravatar = activity.data.sender.avatar_url %}
 {% endif %}
-<div class="event">
-    <time class="momentjs" datetime="activity.data.repository.pushed_at|localizeddate('full', 'none') }}">{{ datetime_diff(activity.data.repository.pushed_at) }}</time>
-</div>
 <div class="action">
     <ul>
         <li class="feed clearfix">
+           <div class="author">
+               <a href="https://github.com/{{ user }}">
+                   <img width="33" src="{{ activity.data.sender.avatar_url }}" />
+               </a>
+           </div>
            <div class="message">
-               <a href="https://github.com/{{ user }}">{{ user }}</a>
-               {% if activity.data.repository is defined %}
-                {{ activity.message }}
 
+               {% if activity.message != '' %}
+                   <strong>{{ activity.message }}</strong>
                {% endif %}
            </div>
            {% if activity.data.pusher.name is defined and data.pusher.name != 'none' %}
@@ -24,6 +25,7 @@
                </a>
            </div>
            {% endif %}
+           {% if activity.data['pull_request'] is not defined %}
            <ul class="commits">
                {% set commits = activity.data.commits is defined ? activity.data.commits : {0: activity.data.commit} %}
                {% for commit in commits %}
@@ -32,6 +34,7 @@
                    {{ commit.commit.message }}
                {% endfor %}
            </ul>
+           {% endif %}
         </li>
 
     </ul>
