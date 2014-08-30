@@ -3,7 +3,7 @@
     {% set gravatar = activity.data.sender.avatar_url %}
 {% endif %}
 <div class="event">
-    <time class="momentjs" datetime="2013-11-14T09:45:16Z" title="2013-11-14 09:45:16">{{ datetime_diff(activity.data.repository.pushed_at) }}</time>
+    <time class="momentjs" datetime="activity.data.repository.pushed_at|localizeddate('full', 'none') }}">{{ datetime_diff(activity.data.repository.pushed_at) }}</time>
 </div>
 <div class="action">
     <ul>
