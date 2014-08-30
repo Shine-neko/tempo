@@ -9,7 +9,7 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\ActivityBundle\DataFixtures\ORM;
+namespace Tempo\Bundle\ProjectBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
@@ -19,7 +19,6 @@ use Tempo\Bundle\ProjectBundle\Entity\ProjectProvider;
 
 class LoadProjectProviderData extends AbstractFixture implements OrderedFixtureInterface
 {
-
     /**
      * {@inheritdoc}
      */

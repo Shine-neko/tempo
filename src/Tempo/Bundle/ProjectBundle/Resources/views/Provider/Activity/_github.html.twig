@@ -1,0 +1,38 @@
+{% if activity.data.pusher is not defined and activity.data.sender %}
+    {% set user = activity.data.sender.login %}
+    {% set gravatar = activity.data.sender.avatar_url %}
+{% endif %}
+<div class="event">
+    <time class="momentjs" datetime="2013-11-14T09:45:16Z" title="2013-11-14 09:45:16">{{ datetime_diff(activity.data.repository.pushed_at) }}</time>
+</div>
+<div class="action">
+    <ul>
+        <li class="feed clearfix">
+           <div class="message">
+               <a href="https://github.com/{{ user }}">{{ user }}</a>
+               {% if activity.data.repository is defined %}
+                {{ activity.message }}
+
+               {% endif %}
+           </div>
+           {% if activity.data.pusher.name is defined and data.pusher.name != 'none' %}
+               {% set gravatar = gravatar(activity.data.pusher.email, 30) %}
+               {% set user = activity.data.pusher.name %}
+           <div class="details">
+               <a href="https://github.com/{{ activity.data.pusher.name }}">
+                   <img height="30" src="{{ gravatar }}" />
+               </a>
+           </div>
+           {% endif %}
+           <ul class="commits">
+               {% set commits = activity.data.commits is defined ? activity.data.commits : {0: activity.data.commit} %}
+               {% for commit in commits %}
+                   <span> <img height="16" src="{{ commit.author.avatar_url }}"> </span>
+                   <a href="{{ commit.commit.url }}"> {{ truncate(commit.sha, 7) }} </a>
+                   {{ commit.commit.message }}
+               {% endfor %}
+           </ul>
+        </li>
+
+    </ul>
+</div>

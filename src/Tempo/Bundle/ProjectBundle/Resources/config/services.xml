@@ -9,6 +9,9 @@
         <parameter key="tempo.project.tab.subproject.class">Tempo\Bundle\ProjectBundle\Tabs\SubProjectTab</parameter>
         <parameter key="tempo.project.tab.activity.class">Tempo\Bundle\ProjectBundle\Tabs\ActivityTab</parameter>
         <parameter key="tempo.project.tab.settings.class">Tempo\Bundle\ProjectBundle\Tabs\SettingsTab</parameter>
+        <parameter key="tempo.manager.activity_provider.class">Tempo\Bundle\ProjectBundle\Manager\ActivityProviderManager</parameter>
+        <parameter key="tempo.model.activity_provider.class">Tempo\Bundle\ProjectBundle\Entity\ActivityProvider</parameter>
+        <parameter key="tempo.activity.listener.activity_provider.class">Tempo\Bundle\ProjectBundle\EventListener\ActivityProviderListener</parameter>
     </parameters>
     
     <services>
@@ -24,6 +27,24 @@
         </service>
         <service id="tempo.project.tab.settings" class="%tempo.project.tab.settings.class%">
             <tag name="tempo.project.show.tab" />
+        </service>
+
+        <service id="tempo.manager.activity_provider" class="%tempo.manager.activity_provider.class%">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument>%tempo.model.activity_provider.class%</argument>
+
+        </service>
+
+        <service id="tempo.manager.activity" class="%tempo.manager.activity.class%">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument>%tempo.model.activity.class%</argument>
+        </service>
+
+        <service id="tempo.activity.listener.activity_provider" class="%tempo.activity.listener.activity_provider.class%">
+            <argument type="service" id="tempo.manager.room" />
+            <argument type="service" id="jms_serializer" />
+            <argument type="service" id="tempo.core.elephantio.client" />
+            <tag name="kernel.event_listener" event="tempo.activity.provider.create.success" method="pingActivityRoom" />
         </service>
     </services>
 

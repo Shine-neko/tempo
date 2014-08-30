@@ -34,4 +34,10 @@ final class TempoProjectEvents
     const TIMESHEET_EDIT_INITIALIZE        = 'tempo.timesheet.edit.initialize';
     const TIMESHEET_EDIT_SUCCESS           = 'tempo.timesheet.edit.success';
     const TIMESHEET_DELETE_COMPLETED       = 'tempo.timesheet.delete.completed';
+
+    const ACTIVITY_PROVIDER_CREATE_INITIALIZE   = 'tempo.activity.provider.create.initialize';
+    const ACTIVITY_PROVIDER_CREATE_SUCCESS      = 'tempo.activity.provider.create.success';
+    const ACTIVITY_PROVIDER_EDIT_INITIALIZE     = 'tempo.activity.provider.edit.initialize';
+    const ACTIVITY_PROVIDER_EDIT_SUCCESS        = 'tempo.activity.provider.edit.success';
+    const ACTIVITY_PROVIDER_DELETE_COMPLETED    = 'tempo.activity.provider.delete.completed';
 }

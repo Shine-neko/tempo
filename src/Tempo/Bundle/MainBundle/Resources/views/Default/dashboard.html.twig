@@ -40,10 +40,8 @@
         <div class="col-md-6" id="activity-box">
             <h3 class="homeTitle">{{ 'tempo.activity.dashboard.title'|trans }}</h3>
 
-            {{ render(controller('TempoActivityBundle:Activity:new')) }}
-
             <div id="room-activity-box">
-                {{ render(controller('TempoActivityBundle:Activity:list', {'type': 'all', 'project': currentRoom.project})) }}
+                {{ render(controller('TempoProjectBundle:ProviderActivity:list', {'type': 'all', 'project': currentRoom.project})) }}
             </div>
 
         </div>

@@ -38,3 +38,10 @@ _timesheet_api:
   resource: "@TempoProjectBundle/Resources/config/routing/timesheet_api.yml"
   defaults:
       version: v1
+
+_prodiver_api:
+  type: rest
+  prefix:   /api/{version}/provider
+  resource: "@TempoProjectBundle/Resources/config/routing/provider_api.yml"
+  defaults:
+      version: v1
