@@ -30,6 +30,8 @@ class GithubProvider implements ProviderInterface
             $payload = $request->request->all();
         }
 
+        var_dump($payload); exit;
+
         try {
             return $this->$methodName($payload);
         } catch (\Exception $e) {
