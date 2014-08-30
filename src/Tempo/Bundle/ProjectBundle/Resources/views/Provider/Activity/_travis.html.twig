@@ -1,0 +1,14 @@
+<div class="action">
+    <ul>
+        <li class="feed clearfix">
+            <div class="author">
+                <a href="#">
+                    <img width="33" src="{{ gravatar(activity.data.committer_email, 30) }}" />
+                </a>
+            </div>
+            <div class="message">
+                    <strong>{{ activity.message }}</strong>
+            </div>
+        </li>
+    </ul>
+</div>
