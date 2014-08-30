@@ -1,0 +1,20 @@
+<div class="action">
+    <ul>
+        <li class="feed clearfix">
+            <div class="message">
+                <strong>{{ activity.message }}</strong>
+            </div>
+
+            {% if activity.data['commits'] is defined %}
+                <ul class="commits">
+                    {% for commit in activity.data.commits %}
+                        <span> <img height="16" src="{{ gravatar(commit.author.email, 16) }}"> </span>
+                        <a href="{{ commit.url }}"> {{ truncate(commit.id, 7) }} </a>
+                        {{ commit.message }}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </li>
+
+    </ul>
+</div>

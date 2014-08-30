@@ -5,7 +5,9 @@
     <parameters>
         <parameter key="tempo.activity.provider_registry.class">Tempo\Bundle\ProjectBundle\Provider\ProviderRegistry</parameter>
         <parameter key="tempo.activity.provider.github.class">Tempo\Bundle\ProjectBundle\Provider\GithubProvider</parameter>
+        <parameter key="tempo.activity.provider.gitlab.class">Tempo\Bundle\ProjectBundle\Provider\GitlabProvider</parameter>
         <parameter key="tempo.activity.provider.trello.class">Tempo\Bundle\ProjectBundle\Provider\TrelloProvider</parameter>
+        <parameter key="tempo.activity.provider.travis.class">Tempo\Bundle\ProjectBundle\Provider\TravisProvider</parameter>
     </parameters>
 
     <services>
@@ -16,7 +18,15 @@
             <tag name="tempo.activity.provider" />
         </service>
 
+        <service id="tempo.activity.provider.gitlab" class="%tempo.activity.provider.gitlab.class%">
+            <tag name="tempo.activity.provider" />
+        </service>
+
         <service id="tempo.activity.provider.trello" class="%tempo.activity.provider.trello.class%">
+            <tag name="tempo.activity.provider" />
+        </service>
+
+        <service id="tempo.activity.provider.travis" class="%tempo.activity.provider.travis.class%">
             <tag name="tempo.activity.provider" />
         </service>
 
