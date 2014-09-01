@@ -21,7 +21,12 @@ class TravisProvider implements ProviderInterface
      */
     public function parse(Request $request)
     {
+        $payload = $request->request->all();
 
+        $activity = new ActivityProvider();
+        $activity->setMessage('Build 1 of '.$payload['repository']['owner_name'].'/'. $payload['repository']['name']. ' '. $payload['status_message']);
+        $activity->setCreatedAt(new \DateTime());
+        $activity->setParameters($payload);
     }
 
     /**
