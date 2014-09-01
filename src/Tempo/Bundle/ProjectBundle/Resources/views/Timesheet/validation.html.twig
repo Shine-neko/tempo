@@ -23,7 +23,6 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th><input type="checkbox" /> </th>
                     <th>User</th>
                     <th>Date</th>
                     <th>Time spent</th>
@@ -35,7 +34,6 @@
             <tbody>
             {% for timesheet in timesheets %}
                 <tr>
-                    <td></td>
                     <td>{{ timesheet.user.fullName }}</td>
                     <td>{{ timesheet.workedDate |localizeddate('long', 'none') }}</td>
                     <td class="text-center">{{ timesheet.workedTime }}h</td>

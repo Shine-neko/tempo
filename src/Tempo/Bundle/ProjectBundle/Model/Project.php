@@ -13,6 +13,7 @@ namespace Tempo\Bundle\ProjectBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Tempo\Bundle\MainBundle\Model\TeamInterface;
+use Tempo\Bundle\ProjectBundle\Entity\ProjectUser;
 
 /**
  * Project Model
