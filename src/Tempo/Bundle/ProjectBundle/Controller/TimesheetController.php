@@ -92,7 +92,7 @@ class TimesheetController extends Controller
 
         if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
 
-            $list = $this->getManager('timesheet')->repository->findAllByUser();
+            $list = $this->getManager('timesheet')->getRepository()->findAllByUser();
 
             $html = $this->renderView('TempoProjectBundle:Timesheet:export/pdf_tpl.html.twig', array(
                 'list'  => $list
@@ -192,7 +192,7 @@ class TimesheetController extends Controller
         }
 
         $assignments = $this->getDoctrine()->getRepository('TempoProjectBundle:ProjectUser')->findAll(array('role' => '3 OR role = 2'));
-        $timesheets = $this->getManager('timesheet')->repository->findActivitiesByState($userId);
+        $timesheets = $this->getManager('timesheet')->getRepository()->findActivitiesByState($userId);
 
         return $this->render('TempoProjectBundle:Timesheet:validation.html.twig', array(
             'timesheets' => $timesheets,
@@ -236,7 +236,7 @@ class TimesheetController extends Controller
             $this->getUser()->getId(), $processFilter['from']->format('Y-m-j'), $processFilter['to']->format('Y-m-j')
         );
 
-        $projectList = $this->getManager('project')->repository->findAllByUser($this->getUser()->getId());
+        $projectList = $this->getManager('project')->getRepository()->findAllByUser($this->getUser()->getId());
 
         $proxiesProject = $this->getManager('timesheet')->getActivitiesForPeriod(
             $projectsActivityReporting,

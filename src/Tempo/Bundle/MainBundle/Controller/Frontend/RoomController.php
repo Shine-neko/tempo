@@ -21,7 +21,7 @@ class RoomController extends Controller
     public function getRoomAction($slug)
     {
         try {
-            $room = $this->getManager('room')->repository->findRoom($slug, $this->getUser()->getId());
+            $room = $this->getManager('room')->getRepository()->findRoom($slug, $this->getUser()->getId());
         } catch (\Exception $e) {
             throw $this->createNotFoundException();
         }
@@ -31,7 +31,7 @@ class RoomController extends Controller
 
     public function getRoomsAction()
     {
-        $rooms = $this->getManager('room')->repository->findRooms($this->getUser()->getId());
+        $rooms = $this->getManager('room')->getRepository()->findRooms($this->getUser()->getId());
 
         return $rooms;
     }

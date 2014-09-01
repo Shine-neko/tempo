@@ -11,7 +11,6 @@
 
 namespace Tempo\Bundle\MainBundle\Manager;
 
-use Tempo\Bundle\MainBundle\Manager\BaseManager;
 use Tempo\Bundle\MainBundle\Entity\Activity;
 
 class ActivityManager extends BaseManager
@@ -36,6 +35,6 @@ class ActivityManager extends BaseManager
      */
     public function findByUser($type = null, $user = null)
     {
-        return $this->repository->findLastActivities($type, $user);
+        return $this->getRepository()->findLastActivities($type, $user);
     }
 }

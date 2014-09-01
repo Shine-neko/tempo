@@ -21,7 +21,7 @@ class NotificationManager extends BaseManager
 {
     public function findAllByUserAndState($user, $state)
     {
-        return $this->repository->findAllByUserAndState($user, $state);
+        return $this->getRepository()->findAllByUserAndState($user, $state);
     }
 
     public function create($user, $message, $link)
@@ -36,6 +36,6 @@ class NotificationManager extends BaseManager
 
     public function clearForUser($user)
     {
-        return $this->repository->clearForUser($user);
+        return $this->getRepository()->clearForUser($user);
     }
 }

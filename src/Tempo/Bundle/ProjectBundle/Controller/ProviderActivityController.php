@@ -53,7 +53,7 @@ class ProviderActivityController extends Controller
         $activityManager = $this->getManager('activity');
 
         if ('all' == $type) {
-            $lastActivitiesProvider = $this->getManager('activity_provider')->repository->findByProject($project);
+            $lastActivitiesProvider = $this->getManager('activity_provider')->getRepository()->findByProject($project);
             $lastActivitiesInternal = $activityManager->findByUser('Project');
 
             $activities = array_merge(
@@ -62,7 +62,7 @@ class ProviderActivityController extends Controller
             );
 
         } elseif ('provider' == $type) {
-            $activities = $activityManager->repository->findAllWithProvider();
+            $activities = $activityManager->getRepository()->findAllWithProvider();
         } else {
             $activities = $activityManager->findByUser($type, $this->getUser());
         }

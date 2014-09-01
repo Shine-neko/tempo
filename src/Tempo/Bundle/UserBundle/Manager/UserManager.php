@@ -20,6 +20,6 @@ class UserManager extends BaseManager
 {
     public function totalUsers()
     {
-        return $this->repository->totalUsers();
+        return $this->getRepository()->totalUsers();
     }
 }

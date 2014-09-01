@@ -29,6 +29,6 @@ class RoomManager extends BaseManager
 
     public function findRoomWithProject($project)
     {
-        return $this->repository->findRoomWithProject($project);
+        return $this->getRepository()->findRoomWithProject($project);
     }
 }

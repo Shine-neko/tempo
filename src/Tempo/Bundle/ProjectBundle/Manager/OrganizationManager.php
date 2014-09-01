@@ -26,7 +26,7 @@ class OrganizationManager extends BaseManager
     */
    public function getStatusProjects($id)
    {
-       $counter = $this->repository->countProject($id);
+       $counter = $this->getRepository()->countProject($id);
 
        return array(
            'close' => $counter['prj_close'],
@@ -36,6 +36,6 @@ class OrganizationManager extends BaseManager
 
     public function nbTotalOrganisation()
     {
-        return $this->repository->totalOrganisation();
+        return $this->getRepository()->totalOrganisation();
     }
 }

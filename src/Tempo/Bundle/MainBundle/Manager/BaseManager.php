@@ -19,7 +19,7 @@ use Doctrine\ORM\EntityManager;
 
 abstract class BaseManager
 {
-    public $repository;
+    protected $repository;
     protected $em;
     protected $class;
 

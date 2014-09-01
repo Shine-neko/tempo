@@ -44,7 +44,7 @@ class MessagesController extends Controller
      */
     public function getMessageAction($room, $chatMessageId)
     {
-        $room = $this->getManager('room')->repository->findRoom($room, $this->getUser()->getId());
+        $room = $this->getManager('room')->getRepository()->findRoom($room, $this->getUser()->getId());
 
         $message = $room->getChatMessage($chatMessageId);
         if (!$message) {
@@ -75,7 +75,7 @@ class MessagesController extends Controller
      */
     public function getMessagesAction($room, ParamFetcherInterface $paramFetcher)
     {
-        $room = $this->getManager('room')->repository->findRoom($room, $this->getUser()->getId());
+        $room = $this->getManager('room')->getRepository()->findRoom($room, $this->getUser()->getId());
 
         $offset = $paramFetcher->get('offset');
         $offset = null == $offset ? 0 : $offset;
@@ -90,7 +90,7 @@ class MessagesController extends Controller
      */
     public function postMessageAction($room, Request $request)
     {
-        $room = $this->getManager('room')->repository->findRoom($room, $this->getUser()->getId());
+        $room = $this->getManager('room')->getRepository()->findRoom($room, $this->getUser()->getId());
 
         $view = View::create();
 

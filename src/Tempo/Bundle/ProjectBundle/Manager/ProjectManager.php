@@ -25,7 +25,7 @@ class ProjectManager extends BaseManager
      */
     public function getProject($slug)
     {
-       $project =  $this->repository->findOneBySlug(array(
+       $project =  $this->getRepository()->findOneBySlug(array(
             'slug' => $slug,
        ));
 
@@ -34,7 +34,7 @@ class ProjectManager extends BaseManager
 
     public function nbTotalProject()
     {
-        return $this->repository->totalProject();
+        return $this->getRepository()->totalProject();
     }
 
     public function getProjectAssign($user)

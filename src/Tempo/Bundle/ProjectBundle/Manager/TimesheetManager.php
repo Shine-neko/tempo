@@ -27,7 +27,7 @@ class TimesheetManager extends BaseManager
      */
     public function findActivities($user, $weekBegin, $weekEnd)
     {
-        return $this->repository->findActivities($user, $weekBegin, $weekEnd);
+        return $this->getRepository()->findActivities($user, $weekBegin, $weekEnd);
     }
 
     /**
@@ -36,7 +36,7 @@ class TimesheetManager extends BaseManager
      */
     public function findByPeriod(\DateTime $date)
     {
-        return $this->repository->findBy(array('workedDate' => $date));
+        return $this->getRepository()->findBy(array('workedDate' => $date));
     }
 
     /**

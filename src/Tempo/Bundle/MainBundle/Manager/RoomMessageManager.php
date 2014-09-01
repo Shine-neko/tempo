@@ -22,6 +22,6 @@ class RoomMessageManager extends BaseManager
 
     public function all($room , $limit, $offset, $orderby )
     {
-        return $this->repository->findBy(array('room' => $room), $orderby, $limit, $offset);
+        return $this->getRepository()->findBy(array('room' => $room), $orderby, $limit, $offset);
     }
 }
