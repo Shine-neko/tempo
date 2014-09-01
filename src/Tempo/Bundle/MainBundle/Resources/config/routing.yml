@@ -28,7 +28,6 @@ main_chat_api:
   defaults:
       version: v1
 
-
 #Backend
 tempo_setting_backend:
     resource: "@TempoMainBundle/Resources/config/routing/backend/settings.yml"

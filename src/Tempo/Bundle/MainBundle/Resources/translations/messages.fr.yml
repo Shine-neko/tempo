@@ -10,10 +10,17 @@ tempo:
     delete: 'Supprimer'
     edit: 'Editer'
     search: "Recherche"
-    cancel: "Annuler"
+    cancel: "Annuler@"
     save: 'Sauvegard'
     save_changes: 'Sauvegarde les changements'
     submit: Valider
-  dashboard:
-    title: Flux d'activité
-    form.status.label: Partagez quelque chose. Utilisez @ pour mentionner des personnes.
+  activity:
+    dashboard:
+      title: Flux d'activité
+      form.status.label: Partagez quelque chose. Utilisez @ pour mentionner des personnes.
+    events:
+      user.update: updates its own information
+      comment.commented: Commented
+      project.created: create project
+      project.update: update project
+      project.joined: joined project at

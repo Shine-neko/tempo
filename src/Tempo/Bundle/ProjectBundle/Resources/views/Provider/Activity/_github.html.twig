@@ -1,0 +1,41 @@
+{% if activity.data.pusher is not defined and activity.data.sender %}
+    {% set user = activity.data.sender.login %}
+    {% set gravatar = activity.data.sender.avatar_url %}
+{% endif %}
+<div class="action">
+    <ul>
+        <li class="feed clearfix">
+           <div class="author">
+               <a href="https://github.com/{{ user }}">
+                   <img width="33" src="{{ activity.data.sender.avatar_url }}" />
+               </a>
+           </div>
+           <div class="message">
+
+               {% if activity.message != '' %}
+                   <strong>{{ activity.message }}</strong>
+               {% endif %}
+           </div>
+           {% if activity.data.pusher.name is defined and data.pusher.name != 'none' %}
+               {% set gravatar = gravatar(activity.data.pusher.email, 30) %}
+               {% set user = activity.data.pusher.name %}
+           <div class="details">
+               <a href="https://github.com/{{ activity.data.pusher.name }}">
+                   <img height="30" src="{{ gravatar }}" />
+               </a>
+           </div>
+           {% endif %}
+           {% if activity.data['pull_request'] is not defined %}
+           <ul class="commits">
+               {% set commits = activity.data.commits is defined ? activity.data.commits : {0: activity.data.commit} %}
+               {% for commit in commits %}
+                   <span> <img height="16" src="{{ commit.author.avatar_url }}"> </span>
+                   <a href="{{ commit.commit.url }}"> {{ truncate(commit.sha, 7) }} </a>
+                   {{ commit.commit.message }}
+               {% endfor %}
+           </ul>
+           {% endif %}
+        </li>
+
+    </ul>
+</div>
