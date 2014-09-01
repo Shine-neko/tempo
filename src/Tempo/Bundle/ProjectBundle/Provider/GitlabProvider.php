@@ -23,7 +23,7 @@ class GitlabProvider implements ProviderInterface
     public function parse(Request $request)
     {
         if ($request->request->has('object_kind')) {
-            $methodName = sprintf('%sEvent', Inflector::camelize($request->request->has('object_kind')));
+            $methodName = sprintf('%sEvent', Inflector::camelize($request->request->get('object_kind')));
             return $this->$methodName($request->request->all()['object_attributes']);
         }
 
