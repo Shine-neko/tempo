@@ -37,7 +37,3 @@ _tempo_main:
 
 _tempo_projects:
     resource: "@TempoProjectBundle/Resources/config/routing.yml"
-
-_tempo_activity:
-    resource: "@TempoActivityBundle/Resources/config/routing.yml"
-    

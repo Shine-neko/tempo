@@ -48,8 +48,8 @@ project_team_delete:
 
 project_provider_list:
     pattern:  /{slug}/provider/list
-    defaults: { _controller: TempoActivityBundle:Provider:list }
+    defaults: { _controller: TempoProjectBundle:Provider:list }
 
 project_provider_new:
     pattern:  /{slug}/provider/new
-    defaults: { _controller: TempoActivityBundle:Provider:new }
+    defaults: { _controller: TempoProjectBundle:Provider:new }

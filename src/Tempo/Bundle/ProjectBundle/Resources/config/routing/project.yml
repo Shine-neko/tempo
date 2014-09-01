@@ -46,13 +46,13 @@ project_team_delete:
 
 project_provider_list:
     pattern:  /{slug}/provider/list
-    defaults: { _controller: TempoActivityBundle:Provider:list }
+    defaults: { _controller: TempoProjectBundle:Provider:list }
     requirements:
         slug: "\w+\/\w+"
 
 project_provider_update:
     pattern:  /{slug}/provider/update/{provider}
-    defaults: { _controller: TempoActivityBundle:Provider:update }
+    defaults: { _controller: TempoProjectBundle:Provider:update }
     requirements:
         slug: "\w+\/\w+"
 
@@ -61,6 +61,13 @@ project_version:
     defaults: { _controller: TempoProjectBundle:Project:version }
     requirements:
         slug: "\w+\/\w+"
+
+project_activity_list:
+    pattern: /{slug}/activity/list/{type}
+    defaults:
+        _controller: TempoProjectBundle:Activity:list
+    options:
+      expose: true
 
 project_show:
     pattern:  /{slug}

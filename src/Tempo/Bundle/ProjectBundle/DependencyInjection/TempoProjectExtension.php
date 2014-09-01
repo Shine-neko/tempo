@@ -34,6 +34,7 @@ class TempoProjectExtension  extends Extension
         $loader->load('services.xml');
         $loader->load('orm.xml');
         $loader->load('events.xml');
+        $loader->load('providers.xml');
 
         $container->setParameter('tempo_project.week', $config['week']);
     }

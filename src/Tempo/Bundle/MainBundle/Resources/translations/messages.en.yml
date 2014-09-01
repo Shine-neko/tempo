@@ -14,6 +14,13 @@ tempo:
     save: 'Save'
     save_changes: 'Save changes'
     submit: Send
-    form.status.label: Share something. Use @ to mention people.
-  dashboard:
-    title: Activity Feed
+  activity:
+      dashboard:
+        title: Activity Feed
+        form.status.label: Share something. Use @ to mention people.
+      events:
+        user.update: updates its own information
+        comment.commented: Commented
+        project.created: create project
+        project.update: update project
+        project.joined: joined project at

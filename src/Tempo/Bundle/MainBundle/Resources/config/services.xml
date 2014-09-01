@@ -17,7 +17,8 @@
         <parameter key="tempo.main.settings_schema.generale.class">Tempo\Bundle\MainBundle\Settings\GeneralSettingsSchema</parameter>
         <parameter key="tempo.main.settings_schema.project.class">Tempo\Bundle\MainBundle\Settings\ProjectSettingsSchema</parameter>
         <parameter key="tempo.main.twig.extension.class">Tempo\Bundle\MainBundle\Twig\Extension\MainExtension</parameter>
-
+        <parameter key="tempo.manager.activity.class">Tempo\Bundle\MainBundle\Manager\ActivityManager</parameter>
+        <parameter key="tempo.model.activity.class">Tempo\Bundle\MainBundle\Entity\Activity</parameter>
     </parameters>
 
     <services>
