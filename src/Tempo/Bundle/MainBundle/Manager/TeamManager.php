@@ -9,7 +9,7 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\ProjectBundle\Manager;
+namespace Tempo\Bundle\MainBundle\Manager;
 
 use Tempo\Bundle\CoreBundle\Manager\BaseManager;
 
@@ -18,4 +18,10 @@ use Tempo\Bundle\CoreBundle\Manager\BaseManager;
  */
 class TeamManager extends BaseManager
 {
+    public function getRepository($class)
+    {
+        $this->repository = $this->em->getRepository($this->class);
+
+        return $this->repository;
+    }
 }

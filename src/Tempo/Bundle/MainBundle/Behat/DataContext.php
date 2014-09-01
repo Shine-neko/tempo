@@ -14,6 +14,7 @@ namespace Tempo\Bundle\MainBundle\Behat;
 use Faker\Factory as FakerFactory;
 use Behat\Gherkin\Node\TableNode;
 use Doctrine\Common\Inflector;
+use PHPUnit_Framework_ExpectationFailedException as AssertException;
 
 class DataContext extends BaseContext
 {
@@ -42,5 +43,28 @@ class DataContext extends BaseContext
         }
 
         $this->pressButton('Save');
+    }
+
+    /**
+     * @Given /^the following timesheet exist:$/
+     * @throws ExpectationException
+     */
+    public function assertPageContainsTextsInOrder(TableNode $table)
+    {
+        $texts = array();
+        foreach($table->getRows() as $row) {
+            $texts[] = $row[0];
+        }
+        $pattern = "/".implode(".*", $texts)."/s";
+
+
+        $actual = $this->getSession()->getPage()->getText();
+
+        try {
+            \PHPUnit_Framework_Assert::assertRegExp($pattern, $actual);
+        } catch (\AssertException $e) {
+            $message = sprintf('The texts "%s" was not found in order anywhere on the current page', implode('", "', $texts));
+            throw new ExpectationException($message, $this->getSession(), $e);
+        }
     }
 }

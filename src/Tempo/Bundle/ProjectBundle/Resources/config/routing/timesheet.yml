@@ -21,6 +21,10 @@ timesheet_delete:
     defaults: { _controller: "TempoProjectBundle:Timesheet:delete" }
     requirements: { _method: POST }
 
+timesheet_validation:
+    pattern: /validation
+    defaults: { _controller: "TempoProjectBundle:Timesheet:validation" }
+
 timesheet_export_pdf:
     pattern:  /export/pdf
     defaults: { _controller: "TempoProjectBundle:Timesheet:exportPDF" }

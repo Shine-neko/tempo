@@ -10,6 +10,7 @@
         <parameter key="tempo.main.menu.class">Knp\Menu\MenuItem</parameter>
         <parameter key="tempo.model.room.class">Tempo\Bundle\MainBundle\Entity\Room</parameter>
         <parameter key="tempo.model.room.message.class">Tempo\Bundle\MainBundle\Entity\ChatMessage</parameter>
+        <parameter key="tempo.manager.team.class">Tempo\Bundle\MainBundle\Manager\TeamManager</parameter>
         <parameter key="tempo.manager.room.class">Tempo\Bundle\MainBundle\Manager\RoomManager</parameter>
         <parameter key="tempo.manager.room.message.class">Tempo\Bundle\MainBundle\Manager\RoomMessageManager</parameter>
         <parameter key="tempo.main.listener.project.class">Tempo\Bundle\MainBundle\EventListener\ProjectListener</parameter>
@@ -54,6 +55,10 @@
 
         <service id="tempo.main.settings_schema.project" class="%tempo.main.settings_schema.project.class%">
             <tag name="sylius.settings_schema" namespace="project" />
+        </service>
+
+        <service id="tempo.manager.team" class="%tempo.manager.team.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
         </service>
 
         <service id="tempo.manager.room" class="%tempo.manager.room.class%">
