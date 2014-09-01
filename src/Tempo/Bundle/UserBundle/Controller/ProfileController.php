@@ -13,13 +13,12 @@ namespace Tempo\Bundle\UserBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 
-use Tempo\Bundle\CoreBundle\Controller\BaseController;
+use Tempo\Bundle\MainBundle\Controller\Controller;
 use Tempo\Bundle\UserBundle\Form\Type\SettingsType;
 use Tempo\Bundle\UserBundle\Form\Type\ProfileType;
 
-class ProfileController extends BaseController
+class ProfileController extends Controller
 {
     /**
      * @param $slug

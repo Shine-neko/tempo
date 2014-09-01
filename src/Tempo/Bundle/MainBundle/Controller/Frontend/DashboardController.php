@@ -12,10 +12,10 @@
 namespace Tempo\Bundle\MainBundle\Controller\Frontend;
 
 use Symfony\Component\HttpFoundation\Request;
-use Tempo\Bundle\CoreBundle\Controller\BaseController;
+use Tempo\Bundle\MainBundle\Controller\Controller;
 use Tempo\Bundle\MainBundle\Form\Type\ChatMessageType;
 
-class DashboardController extends BaseController
+class DashboardController extends Controller
 {
     /**
      * main Action

@@ -12,6 +12,8 @@
 namespace Tempo\Bundle\MainBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Tempo\Bundle\MainBundle\DependencyInjection\Compiler\OverrideServiceCompilerPass;
 
 
 /**
@@ -20,4 +22,8 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class TempoMainBundle extends Bundle
 {
+    public function build(ContainerBuilder $container)
+    {
+        $container->addCompilerPass(new OverrideServiceCompilerPass());
+    }
 }

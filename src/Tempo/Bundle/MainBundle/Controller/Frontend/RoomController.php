@@ -11,10 +11,9 @@
 
 namespace Tempo\Bundle\MainBundle\Controller\Frontend;
 
-use Tempo\Bundle\CoreBundle\Controller\BaseController;
-use Tempo\Bundle\MainBundle\Entity\Room;
+use Tempo\Bundle\MainBundle\Controller\Controller;
 
-class RoomController extends BaseController
+class RoomController extends Controller
 {
     /**
      * Get a single room

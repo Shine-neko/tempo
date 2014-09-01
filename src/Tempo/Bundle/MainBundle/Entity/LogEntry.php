@@ -9,14 +9,10 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\ProjectBundle\Manager;
+namespace Tempo\Bundle\MainBundle\Entity;
 
-use Tempo\Bundle\MainBundle\Manager\BaseManager;
+use Tempo\Bundle\MainBundle\Model\LogEntry as BaseLogEntry;
 
-/**
- * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
- */
-
-class ProjectProviderManager extends BaseManager
+class LogEntry extends BaseLogEntry
 {
 }

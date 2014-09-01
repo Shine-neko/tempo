@@ -13,7 +13,7 @@ namespace Tempo\Bundle\ProjectBundle\EventListener;
 
 use Tempo\Bundle\MainBundle\Manager\RoomManager;
 use Tempo\Bundle\ProjectBundle\Event\ActivityProviderEvent;
-use Tempo\Bundle\CoreBundle\ElephantIO\Client;
+use Tempo\Bundle\MainBundle\ElephantIO\Client;
 use JMS\Serializer\SerializerInterface;
 
 class ActivityProviderListener

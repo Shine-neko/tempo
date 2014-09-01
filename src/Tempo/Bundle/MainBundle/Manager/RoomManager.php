@@ -12,8 +12,6 @@
 namespace Tempo\Bundle\MainBundle\Manager;
 
 use Tempo\Bundle\MainBundle\Entity\Room;
-use Tempo\Bundle\CoreBundle\Manager\BaseManager;
-
 /**
  *
  * @author Mlanawo Mbechezi <mlanawo.mbechezi@ikimea.com>

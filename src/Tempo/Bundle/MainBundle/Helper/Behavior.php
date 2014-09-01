@@ -12,7 +12,7 @@
 namespace Tempo\Bundle\MainBundle\Helper;
 
 use Symfony\Component\Templating\Helper\Helper;
-use Tempo\Bundle\CoreBundle\Resource\ResourceManagerInterface;
+use Tempo\Component\Resource\ResourceManagerInterface;
 
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
@@ -35,7 +35,7 @@ class Behavior extends Helper
     }
 
     /**
-     * @return \Tempo\Bundle\CoreBundle\Resource\ResourceManager
+     * @return \Tempo\Component\Resource\ResourceManager
      */
     public function getResourceManager()
     {

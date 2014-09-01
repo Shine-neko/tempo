@@ -3,10 +3,15 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-
+        <parameter key="tempo.main.eventlistener.class">Tempo\Bundle\MainBundle\EventListener\ControllerListener</parameter>
+        <parameter key="tempo.main.elephantio.client.class">Tempo\Bundle\MainBundle\ElephantIO\Client</parameter>
+        <parameter key="tempo.data_collector.class">Tempo\Bundle\MainBundle\DataCollector\TempoDataCollector</parameter>
+        <parameter key="tempo.form.type.autocomplete.class">Tempo\Bundle\MainBundle\Form\Type\AutocompleteType</parameter>
+        <parameter key="tempo.form.type.datetimepicker.class">Tempo\Bundle\MainBundle\Form\Type\DateTimePickerType</parameter>
+        <parameter key="tempo.form.type.list.class">Tempo\Bundle\MainBundle\Form\Type\ListType</parameter>
         <parameter key="tempo.main.menu_builder.class">Tempo\Bundle\MainBundle\Menu\MenuBuilder</parameter>
         <parameter key="tempo.main.behavior_manager.class">Tempo\Bundle\MainBundle\Helper\Behavior</parameter>
-        <parameter key="tempo.main.resource_manager.class">Tempo\Bundle\CoreBundle\Resource\ResourceManager</parameter>
+        <parameter key="tempo.main.resource_manager.class">Tempo\Component\Resource\ResourceManager</parameter>
         <parameter key="tempo.main.menu.class">Knp\Menu\MenuItem</parameter>
         <parameter key="tempo.model.room.class">Tempo\Bundle\MainBundle\Entity\Room</parameter>
         <parameter key="tempo.model.room.message.class">Tempo\Bundle\MainBundle\Entity\ChatMessage</parameter>
@@ -22,6 +27,41 @@
     </parameters>
 
     <services>
+
+        <service id="twig.extension.intl" class="Twig_Extensions_Extension_Intl">
+            <tag name="twig.extension" />
+        </service>
+
+        <service id="tempo.main.entity_manager" factory-service="doctrine" factory-method="getManager" class="Doctrine\ORM\EntityManager" public="false" />
+
+        <service id="tempo.main.listener.controller" class="%tempo.main.eventlistener.class%">
+            <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController"/>
+        </service>
+
+        <service id="tempo.main.elephantio.definition" class="ElephantIO\Client" public="false" >
+            <argument type="string">http://%socket_io.client%</argument>
+        </service>
+
+        <service id="tempo.main.elephantio.client" class="%tempo.main.elephantio.client.class%">
+            <argument type="service" id="tempo.main.elephantio.definition" />
+        </service>
+
+        <service id="tempo.form.type.autocomplete" class="%tempo.form.type.autocomplete.class%">
+            <argument type="service" id="tempo.main.behavior" />
+            <tag name="form.type" alias="autocomplete" />
+        </service>
+
+        <service id="tempo.form.type.datetimepicker" class="%tempo.form.type.datetimepicker.class%">
+            <tag name="form.type" alias="datetimepicker" />
+        </service>
+
+        <service id="tempo.form.type.list" class="%tempo.form.type.list.class%">
+            <tag name="form.type" alias="list" />
+        </service>
+
+        <service id="tempo.data_collector" class="%tempo.data_collector.class%" public="false">
+            <tag name="data_collector" template="TempoMainBundle:Collector:tempo" id="tempo" priority="256" />
+        </service>
 
         <service id="tempo.main.resource_manager" class="%tempo.main.resource_manager.class%" />
 

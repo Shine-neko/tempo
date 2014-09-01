@@ -14,7 +14,7 @@ namespace Tempo\Bundle\MainBundle\Controller\Frontend;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 
-use Tempo\Bundle\CoreBundle\Controller\BaseController;
+use Tempo\Bundle\MainBundle\Controller\Controller;
 use Tempo\Bundle\MainBundle\Form\Type\TeamType;
 use Tempo\Bundle\ProjectBundle\Event\TeamEvent;
 use Tempo\Bundle\ProjectBundle\TempoProjectEvents;
@@ -22,7 +22,7 @@ use Tempo\Bundle\ProjectBundle\TempoProjectEvents;
 /*
  * @author Mlanawo Mbechezi <mlanawo.mbechezi@ikimea.com>
  */
-class TeamController extends BaseController
+class TeamController extends Controller
 {
     /**
      * @param $slug

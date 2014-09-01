@@ -11,10 +11,7 @@
 
 namespace Tempo\Bundle\UserBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Tempo\Bundle\MainBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {

@@ -21,7 +21,7 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\Get;
 
-use Tempo\Bundle\CoreBundle\Controller\BaseController;
+use Tempo\Bundle\MainBundle\Controller\Controller;
 use Tempo\Bundle\MainBundle\Entity\ChatMessage;
 use Tempo\Bundle\MainBundle\Entity\Room;
 use Tempo\Bundle\MainBundle\Form\Type\ChatMessageType;
@@ -30,7 +30,7 @@ use Tempo\Bundle\MainBundle\Form\Type\ChatMessageType;
 /**
  * Rest controller for stories
  */
-class MessagesController extends BaseController
+class MessagesController extends Controller
 {
     /**
      *

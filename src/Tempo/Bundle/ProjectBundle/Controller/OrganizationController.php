@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 
-use Tempo\Bundle\CoreBundle\Controller\BaseController;
+use Tempo\Bundle\MainBundle\Controller\Controller;
 use Tempo\Bundle\ProjectBundle\Entity\Organization;
 use Tempo\Bundle\ProjectBundle\Form\Type\OrganizationType;
 use Tempo\Bundle\ProjectBundle\TempoProjectEvents;
@@ -27,7 +27,7 @@ use Tempo\Bundle\MainBundle\Form\Type\TeamType;
  * @author Mlanawo Mbechezi <mlanawo.mbechezi@ikimea.com>
  */
 
-class OrganizationController extends BaseController
+class OrganizationController extends Controller
 {
     private function getBreadcrumb()
     {

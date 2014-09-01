@@ -18,10 +18,13 @@ use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\NamePrefix;
 
+use Tempo\Bundle\MainBundle\Controller\Controller;
+
+
 /**
  * @NamePrefix("user_api_")
  */
-class UserController extends FOSRestController
+class UserController extends Controller
 {
     /**
      * GET Route annotation.

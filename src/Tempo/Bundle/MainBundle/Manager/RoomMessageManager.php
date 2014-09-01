@@ -12,7 +12,6 @@
 namespace Tempo\Bundle\MainBundle\Manager;
 
 use Tempo\Bundle\MainBundle\Entity\Room;
-use Tempo\Bundle\CoreBundle\Manager\BaseManager;
 
 /**
  *

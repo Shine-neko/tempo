@@ -10,18 +10,18 @@
 */
 
 namespace Tempo\Bundle\MainBundle\Controller\Backend;
-use Tempo\Bundle\CoreBundle\Controller\BaseController;
+
+use Tempo\Bundle\MainBundle\Controller\Controller;
 
 /**
  * Dashboard Controller
  *
  * @author: Mlanawo.mbechezi@ikimea.com
  */
-class DashboardController extends BaseController
+class DashboardController extends Controller
 {
     public function mainAction()
     {
-
         return $this->render('TempoMainBundle:Backend:Dashboard/main.html.twig', array(
             'nbOrganizations' => $this->getManager('organization')->nbTotalOrganisation(),
             'nbProjects' => $this->getManager('organization')->nbTotalOrganisation(),

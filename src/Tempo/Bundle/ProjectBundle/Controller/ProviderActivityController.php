@@ -14,12 +14,12 @@ namespace Tempo\Bundle\ProjectBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Tempo\Bundle\MainBundle\Form\Type\ActivityFormType;
-use Tempo\Bundle\CoreBundle\Controller\BaseController;
+use Tempo\Bundle\MainBundle\Controller\Controller;
 use Tempo\Bundle\ProjectBundle\Entity\Project;
 use Tempo\Bundle\ProjectBundle\TempoProjectEvents;
 use Tempo\Bundle\ProjectBundle\Event\ActivityProviderEvent;
 
-class ProviderActivityController extends BaseController
+class ProviderActivityController extends Controller
 {
     /**
      * @param Request $request

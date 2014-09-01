@@ -11,11 +11,7 @@
 
 namespace Tempo\Bundle\MainBundle\Controller\Frontend;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Tempo\Bundle\MainBundle\Entity\Settings;
-use Tempo\Bundle\MainBundle\Form\SettingsType;
-use Tempo\Bundle\MainBundle\Form\Type\ChatMessageType;
+use Tempo\Bundle\MainBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {

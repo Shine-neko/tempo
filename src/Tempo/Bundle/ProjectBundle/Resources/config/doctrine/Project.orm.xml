@@ -67,7 +67,7 @@
         </one-to-many>
 
         <one-to-many field="providers" target-entity="ProjectProvider" mapped-by="project" />
-        <gedmo:loggable log-entry-class="Tempo\Bundle\CoreBundle\Entity\LogEntry"/>
+        <gedmo:loggable log-entry-class="Tempo\Bundle\MainBundle\Entity\LogEntry"/>
 
     </entity>
 

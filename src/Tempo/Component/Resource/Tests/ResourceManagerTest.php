@@ -9,8 +9,8 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\CoreBundle\Tests\Resource;
-use Tempo\Bundle\CoreBundle\Resource\ResourceManager;
+namespace Tempo\Component\Resource\Tests;
+use Tempo\Component\Resource\ResourceManager;
 
 class ResourceManagerTest extends \PHPUnit_Framework_TestCase
 {

@@ -11,13 +11,11 @@
 
 namespace Tempo\Bundle\UserBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Tempo\Bundle\MainBundle\Controller\Controller;
 
 class NotificationController extends Controller
 {

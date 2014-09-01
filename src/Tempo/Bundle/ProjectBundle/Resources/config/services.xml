@@ -43,7 +43,7 @@
         <service id="tempo.activity.listener.activity_provider" class="%tempo.activity.listener.activity_provider.class%">
             <argument type="service" id="tempo.manager.room" />
             <argument type="service" id="jms_serializer" />
-            <argument type="service" id="tempo.core.elephantio.client" />
+            <argument type="service" id="tempo.main.elephantio.client" />
             <tag name="kernel.event_listener" event="tempo.activity.provider.create.success" method="pingActivityRoom" />
         </service>
     </services>

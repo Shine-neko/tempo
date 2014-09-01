@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\View\View;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
-use Tempo\Bundle\CoreBundle\Controller\BaseController;
+use Tempo\Bundle\MainBundle\Controller\Controller;
 use Tempo\Bundle\ProjectBundle\Entity\Project;
 use Tempo\Bundle\ProjectBundle\Entity\Organization;
 use Tempo\Bundle\ProjectBundle\Form\Type\ProjectType;
@@ -32,7 +32,7 @@ use Tempo\Bundle\MainBundle\Form\Type\TeamType;
  * Project controller.
  * @author Mlanawo Mbechezi <mlanawo.mbechezi@ikimea.com>
  */
-class ProjectController extends BaseController
+class ProjectController extends Controller
 {
     /**
      * @return \Symfony\Component\HttpFoundation\Response
@@ -195,7 +195,7 @@ class ProjectController extends BaseController
     {
         $project = $this->getProject($project, 'EDIT');
 
-        $repo = $this->getDoctrine()->getRepository('Tempo\Bundle\CoreBundle\Entity\LogEntry');
+        $repo = $this->getDoctrine()->getRepository('Tempo\Bundle\MainBundle\Entity\LogEntry');
         $logs = $repo->getLogEntries($project);
 
         return $this->render('TempoProjectBundle:Project:versions.html.twig', array(

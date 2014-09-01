@@ -9,14 +9,10 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\ProjectBundle\Manager;
+namespace Tempo\Bundle\MainBundle\Repository;
 
-use Tempo\Bundle\MainBundle\Manager\BaseManager;
+use Gedmo\Loggable\Entity\Repository\LogEntryRepository as BaseLogEntryRepository;
 
-/**
- * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
- */
-
-class ProjectProviderManager extends BaseManager
+class LogEntryRepository extends BaseLogEntryRepository
 {
 }

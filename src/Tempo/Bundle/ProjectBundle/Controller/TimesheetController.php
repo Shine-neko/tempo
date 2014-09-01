@@ -20,7 +20,7 @@ use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\View\View;
 use CalendR\Period\Week;
 
-use Tempo\Bundle\CoreBundle\Controller\BaseController;
+use Tempo\Bundle\MainBundle\Controller\Controller;
 use Tempo\Bundle\ProjectBundle\Form\Type\TimesheetType;
 use Tempo\Bundle\ProjectBundle\Filter\Type\TimesheetFilterType;
 use Tempo\Bundle\ProjectBundle\Form\Type\TimesheetExportType;
@@ -31,7 +31,7 @@ use Tempo\Bundle\ProjectBundle\Entity\Timesheet;
  * Timesheet controller.
  *
  */
-class TimesheetController extends BaseController
+class TimesheetController extends Controller
 {
     /**
      * Lists all Timesheet entities.
