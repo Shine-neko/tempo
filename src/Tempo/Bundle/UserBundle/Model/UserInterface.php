@@ -23,7 +23,6 @@ interface UserInterface extends BaseUserInterface, TimestampableInterface
      */
     public function getId();
 
-
     /**
      * Get token
      *

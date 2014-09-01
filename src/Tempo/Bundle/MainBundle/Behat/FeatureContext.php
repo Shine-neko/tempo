@@ -11,7 +11,6 @@
 
 namespace Tempo\Bundle\MainBundle\Behat;
 
-use Behat\Symfony2Extension\Context\KernelAwareInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -94,7 +93,6 @@ class FeatureContext extends BaseContext
         }
 
         $this->assertSession()->pageTextContains($text);
-
 
     }
 

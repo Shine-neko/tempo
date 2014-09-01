@@ -486,7 +486,6 @@ class Project implements ProjectInterface
     {
         $this->team[] = new ProjectUser($this, $user, $role);
 
-
         return $this;
     }
 

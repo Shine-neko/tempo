@@ -11,8 +11,6 @@
 
 namespace Tempo\Bundle\ProjectBundle\Model;
 
-use Tempo\Bundle\ProjectBundle\Model\ProjectProviderInterface;
-
 /**
  * Activity
  *

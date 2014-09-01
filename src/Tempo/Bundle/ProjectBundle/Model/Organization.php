@@ -159,7 +159,7 @@ abstract class Organization implements OrganizationInterface
      */
     public function hasLocalAvatar()
     {
-        return (boolean)$this->avatar;
+        return (boolean) $this->avatar;
     }
 
     /**
@@ -167,9 +167,8 @@ abstract class Organization implements OrganizationInterface
      */
     public function hasGravatar()
     {
-        return (boolean)@fopen($this->getGravatarUrl() . '?d=404', 'r');
+        return (boolean) @fopen($this->getGravatarUrl() . '?d=404', 'r');
     }
-
 
     /**
      * {@inheritdoc}
@@ -295,7 +294,7 @@ abstract class Organization implements OrganizationInterface
     /**
      * {@inheritdoc}
      */
-    public function addProject( $project)
+    public function addProject($project)
     {
         $this->projects[] = $project;
 

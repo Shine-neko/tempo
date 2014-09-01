@@ -11,7 +11,6 @@
 
 namespace Tempo\Bundle\MainBundle\Model;
 
-
 interface TeamInterface
 {
     const TYPE_ADMIN = 1;

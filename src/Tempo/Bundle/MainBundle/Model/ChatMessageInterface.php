@@ -53,7 +53,7 @@ interface ChatMessageInterface
     /**
      * Set createdAt
      *
-     * @param  \DateTime    $datetime
+     * @param  \DateTime   $datetime
      * @return ChatMessage
      */
     public function setCreatedAt(\DateTime $datetime);
@@ -68,7 +68,7 @@ interface ChatMessageInterface
     /**
      * Set updateAt
      *
-     * @param  \DateTime    $datetime
+     * @param  \DateTime   $datetime
      * @return ChatMessage
      */
     public function setUpdatedAt(\DateTime $datetime);

@@ -32,8 +32,7 @@ class LoadRoomData extends AbstractFixture implements OrderedFixtureInterface
         );
 
         $i = 1;
-        foreach($rooms as $name)
-        {
+        foreach ($rooms as $name) {
             $room = new Room();
             $room->setName($name);
             $room->setProject($this->getReference('project'.$i));

@@ -2,8 +2,6 @@
 
 namespace Tempo\Bundle\ProjectBundle\Model;
 
-use Tempo\Bundle\ProjectBundle\Model\ProjectInterface;
-
 interface ProjectProviderInterface
 {
     /**
@@ -58,7 +56,7 @@ interface ProjectProviderInterface
     /**
      * Set provider
      *
-     * @param string $names
+     * @param  string           $names
      * @return ActivityProvider
      */
     public function setName($name);
@@ -73,7 +71,7 @@ interface ProjectProviderInterface
     /**
      * Set url
      *
-     * @param string $url
+     * @param  string           $url
      * @return ActivityProvider
      */
     public function setUrl($url);
@@ -88,7 +86,7 @@ interface ProjectProviderInterface
     /**
      * Set project
      *
-     * @param Project $project
+     * @param  Project          $project
      * @return ActivityProvider
      */
     public function setProject(ProjectInterface $project);
@@ -103,7 +101,7 @@ interface ProjectProviderInterface
     /**
      * Set datetime
      *
-     * @param \DateTime $datetime
+     * @param  \DateTime        $datetime
      * @return ActivityProvider
      */
     public function setCreatedAt(\Datetime $datetime);

@@ -13,7 +13,6 @@ namespace Tempo\Bundle\MainBundle\Behat;
 
 use Faker\Factory as FakerFactory;
 use Behat\Gherkin\Node\TableNode;
-use Doctrine\Common\Inflector;
 use PHPUnit_Framework_ExpectationFailedException as AssertException;
 
 class DataContext extends BaseContext
@@ -52,11 +51,10 @@ class DataContext extends BaseContext
     public function assertPageContainsTextsInOrder(TableNode $table)
     {
         $texts = array();
-        foreach($table->getRows() as $row) {
+        foreach ($table->getRows() as $row) {
             $texts[] = $row[0];
         }
         $pattern = "/".implode(".*", $texts)."/s";
-
 
         $actual = $this->getSession()->getPage()->getText();
 

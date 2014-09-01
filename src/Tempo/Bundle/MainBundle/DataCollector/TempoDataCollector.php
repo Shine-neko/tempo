@@ -16,7 +16,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Tempo\Bundle\MainBundle\Kernel\Kernel;
 
-
 class TempoDataCollector extends DataCollector
 {
     /**

@@ -93,7 +93,7 @@ interface NotificationInterface
      * Get state
      *
      * @param string $message
-     * @return $state
+     *                        @return $state
      */
     public function getMessage();
 }
