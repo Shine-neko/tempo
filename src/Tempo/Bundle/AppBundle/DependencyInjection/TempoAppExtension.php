@@ -34,6 +34,7 @@ class TempoAppExtension extends Extension
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
         $loader->load('doctrine_extensions.xml');
+        $loader->load('orm.xml');
         $loader->load('providers.xml');
 
         $container->setParameter('tempo_app.week', $config['week']);
