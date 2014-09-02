@@ -1,9 +1,0 @@
-Tempo\Bundle\MainBundle\Model\Room:
-    exclusion_policy: all
-    properties :
-      id:
-        expose: true
-      name:
-        expose: true
-      slug: 
-        expose: true

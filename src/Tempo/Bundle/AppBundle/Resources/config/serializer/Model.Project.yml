@@ -1,0 +1,11 @@
+Tempo\Bundle\AppBundle\Model\Project:
+    exclusion_policy: all
+    properties :
+      id:
+        expose: true
+      name:
+        expose: true
+      slug:
+        expose: true
+      description:
+        expose: true

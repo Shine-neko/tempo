@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\NamePrefix;
 
-use Tempo\Bundle\MainBundle\Controller\Controller;
+use Tempo\Bundle\AppBundle\Controller\Controller;
 
 
 /**

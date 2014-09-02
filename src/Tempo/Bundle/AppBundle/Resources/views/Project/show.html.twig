@@ -1,0 +1,89 @@
+{% extends "TempoAppBundle::layout.html.twig" %}
+{% block bodyClass %}project show{% endblock %}
+{% block container %}
+{% block breadcrumb %}
+    <ol id="breadcrumb" class="clearfix">
+        <li class="first"> <a href="{{ path('project_home') }}">{{ 'tempo.menu.home'|trans  }}</a> </li>
+        <li><a href="{{ path('project_home') }}">{{ 'tempo.menu.project'|trans }}</a></li>
+        <li><a href="{{ path('organization_show', {'slug' : organization.slug }) }}">{{ organization }}</a></li>
+
+        {% if project.parent %}
+            <li>
+                <a href="{{ path('organization_show', {'slug' : organization.slug }) }}">{{ 'Sub project of'|trans }} {{ project.parent }}</a>
+            </li>
+        {% endif %}
+        <li class="last"> {{ project.name }} </li>
+    </ol>
+{% endblock breadcrumb %}
+
+<div class="col-md-8 infos">
+    <div class="app-panel">
+
+        <h1 id="page-title" class="col-md-6">
+            {{ project.name }} <br />
+            <small class="label label-default">
+                {{ project.code }}
+            </small>
+        </h1>
+
+        <div class="col-md-4">
+            {% if is_granted('EDIT', organization) %}
+            <a class="btn btn-xs btn-primary" href="{{ path('project_create', { 'parent' : project.id, 'organization': organization.slug }) }}"> <span class="glyphicon glyphicon-plus"></span> {{ 'tempo.project.title_subprojects'|trans }}</a>
+            {% endif %}
+            {% if is_granted('EDIT', project) %}
+            <a class="btn btn-xs btn-info " href="{{ path('project_update', { 'slug': project.slug }) }}"> <span class="glyphicon glyphicon-edit"></span> Edit</a>
+            {% endif %}
+            {% if is_granted('EDIT', project) %}
+                <a class="btn btn-xs btn-primary" href="{{ path('project_version', { 'slug': project.slug }) }}"> <span class="glyphicon glyphicon-cog"></span> {{ 'Version'|trans }} </a>
+            {% endif %}
+            {% if is_granted('DELETE', project) %}
+            <a class="btn btn-xs btn-danger" data-toggle="modal" data-target="#" data-title="Delete project" href="#delete_project"> <span class="glyphicon glyphicon-trash"></span> Delete</a>
+            {% endif %}
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="nav nav-tabs" id="project-tab">
+                    {% for provider in tabProvidersRegistry.providers %}
+                    <li{% if loop.first %} class="active"{% endif %}><a href="#{{ provider.id }}" data-toggle="tab">{{ provider.name }}</a></li>
+                    {% endfor %}
+                </ul>
+
+                <div class="tab-content">
+                    {% for provider in tabProvidersRegistry.providers %}
+                    <div class="tab-pane{% if loop.first %} active{% endif %}" id="{{ provider.id }}">
+                        {% include provider.content %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-4">
+    <div class="record_actions">
+
+        <h4 class="pull-left">{{ 'tempo.organization.team'|trans }} </h4>
+
+        <a data-toggle="modal" data-target="#" data-title="Adding a team member" href="#add_membre" class="add-member pull-right btn btn-xs btn-info"> <span class="glyphicon glyphicon-plus"></span> {{ 'tempo.project.add_membre'|trans }}</a>
+
+        <div id="add_membre" style="display: none;">
+            {% include 'TempoAppBundle:Team:new.html.twig' with {'form': teamForm, 'category': project, 'route_category' : 'project_team_add' } %}
+        </div>
+        <div class="app-panel clearbox">
+            <div class="list_membre">
+                {% include 'TempoAppBundle:Team:list.html.twig' with {
+                    'route_deleted' :'project_team_delete',
+                    'users': project.team,
+                    'category': project
+                } %}
+            </div>
+        </div>
+
+        <h4 class="pull-left">{{ 'Activity'|trans }} </h4>
+
+        <div class="app-panel clearbox">
+            {% include (tabProvidersRegistry.providers[2]).content %}
+        </div>
+    </div>
+</div>
+{% endblock %}

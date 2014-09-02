@@ -1,0 +1,10 @@
+<div  class="events-push">
+    {% for activity in activities %}
+        {% if activity.targetType is defined %}
+            {% set target = activity.targetType %}
+        {% else %}
+            {% set target = activity.provider.name %}
+        {% endif %}
+        {% include 'TempoAppBundle:Provider/Activity:_' ~ target ~ '.html.twig' %}
+    {% endfor %}
+</div>

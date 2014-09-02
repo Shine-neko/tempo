@@ -1,0 +1,163 @@
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="tempo.eventlistener.class">Tempo\Bundle\AppBundle\EventListener\ControllerListener</parameter>
+        <parameter key="tempo.elephantio.client.class">Tempo\Bundle\AppBundle\ElephantIO\Client</parameter>
+        <parameter key="tempo.data_collector.class">Tempo\Bundle\AppBundle\DataCollector\TempoDataCollector</parameter>
+        <parameter key="tempo.form.type.autocomplete.class">Tempo\Bundle\AppBundle\Form\Type\AutocompleteType</parameter>
+        <parameter key="tempo.form.type.datetimepicker.class">Tempo\Bundle\AppBundle\Form\Type\DateTimePickerType</parameter>
+        <parameter key="tempo.form.type.list.class">Tempo\Bundle\AppBundle\Form\Type\ListType</parameter>
+        <parameter key="tempo.menu_builder.class">Tempo\Bundle\AppBundle\Menu\MenuBuilder</parameter>
+        <parameter key="tempo.behavior_manager.class">Tempo\Bundle\AppBundle\Helper\Behavior</parameter>
+        <parameter key="tempo.resource_manager.class">Tempo\Component\Resource\ResourceManager</parameter>
+        <parameter key="tempo.menu.class">Knp\Menu\MenuItem</parameter>
+        <parameter key="tempo.model.room.class">Tempo\Bundle\AppBundle\Entity\Room</parameter>
+        <parameter key="tempo.model.room.message.class">Tempo\Bundle\AppBundle\Entity\ChatMessage</parameter>
+        <parameter key="tempo.manager.team.class">Tempo\Bundle\AppBundle\Manager\TeamManager</parameter>
+        <parameter key="tempo.manager.room.class">Tempo\Bundle\AppBundle\Manager\RoomManager</parameter>
+        <parameter key="tempo.manager.room.message.class">Tempo\Bundle\AppBundle\Manager\RoomMessageManager</parameter>
+        <parameter key="tempo.listener.project.class">Tempo\Bundle\AppBundle\EventListener\ProjectListener</parameter>
+        <parameter key="tempo.settings_schema.generale.class">Tempo\Bundle\AppBundle\Settings\GeneralSettingsSchema</parameter>
+        <parameter key="tempo.settings_schema.project.class">Tempo\Bundle\AppBundle\Settings\ProjectSettingsSchema</parameter>
+        <parameter key="tempo.twig.extension.class">Tempo\Bundle\AppBundle\Twig\Extension\AppExtension</parameter>
+        <parameter key="tempo.manager.activity.class">Tempo\Bundle\AppBundle\Manager\ActivityManager</parameter>
+        <parameter key="tempo.model.activity.class">Tempo\Bundle\AppBundle\Entity\Activity</parameter>
+
+        <parameter key="tempo.project.tabProvidersRegistry.class">Tempo\Bundle\AppBundle\Tabs\TabProvidersRegistry</parameter>
+        <parameter key="tempo.project.tab.project.class">Tempo\Bundle\AppBundle\Tabs\ProjectTab</parameter>
+        <parameter key="tempo.project.tab.subproject.class">Tempo\Bundle\AppBundle\Tabs\SubProjectTab</parameter>
+        <parameter key="tempo.project.tab.activity.class">Tempo\Bundle\AppBundle\Tabs\ActivityTab</parameter>
+        <parameter key="tempo.project.tab.settings.class">Tempo\Bundle\AppBundle\Tabs\SettingsTab</parameter>
+        <parameter key="tempo.manager.activity_provider.class">Tempo\Bundle\AppBundle\Manager\ActivityProviderManager</parameter>
+        <parameter key="tempo.model.activity_provider.class">Tempo\Bundle\AppBundle\Entity\ActivityProvider</parameter>
+        <parameter key="tempo.activity.listener.activity_provider.class">Tempo\Bundle\AppBundle\EventListener\ActivityProviderListener</parameter>
+    </parameters>
+
+    <services>
+
+        <service id="twig.extension.intl" class="Twig_Extensions_Extension_Intl">
+            <tag name="twig.extension" />
+        </service>
+
+        <service id="tempo.entity_manager" factory-service="doctrine" factory-method="getManager" class="Doctrine\ORM\EntityManager" public="false" />
+
+        <service id="tempo.listener.controller" class="%tempo.eventlistener.class%">
+            <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController"/>
+        </service>
+
+        <service id="tempo.elephantio.definition" class="ElephantIO\Client" public="false" >
+            <argument type="string">http://%socket_io.client%</argument>
+        </service>
+
+        <service id="tempo.elephantio.client" class="%tempo.elephantio.client.class%">
+            <argument type="service" id="tempo.elephantio.definition" />
+        </service>
+
+        <service id="tempo.form.type.autocomplete" class="%tempo.form.type.autocomplete.class%">
+            <argument type="service" id="tempo.behavior" />
+            <tag name="form.type" alias="autocomplete" />
+        </service>
+
+        <service id="tempo.form.type.datetimepicker" class="%tempo.form.type.datetimepicker.class%">
+            <tag name="form.type" alias="datetimepicker" />
+        </service>
+
+        <service id="tempo.form.type.list" class="%tempo.form.type.list.class%">
+            <tag name="form.type" alias="list" />
+        </service>
+
+        <service id="tempo.data_collector" class="%tempo.data_collector.class%" public="false">
+            <tag name="data_collector" template="TempoAppBundle:Collector:tempo" id="tempo" priority="256" />
+        </service>
+
+        <service id="tempo.resource_manager" class="%tempo.resource_manager.class%" />
+
+        <service id="tempo.behavior" class="%tempo.behavior_manager.class%">
+            <argument type="service" id="tempo.resource_manager" />
+            <argument type="service" id="router" />
+        </service>
+
+        <service id="tempo.twig.extension" class="%tempo.twig.extension.class%">
+            <argument type="service" id="service_container" />
+            <argument type="service" id="time.templating.helper.time" />
+            <tag name="twig.extension" />
+        </service>
+
+        <service id="tempo.menu_builder" class="%tempo.menu_builder.class%">
+            <argument type="service" id="knp_menu.factory" />
+            <argument type="service" id="security.context" />
+            <argument type="service" id="translator" />
+        </service>
+
+        <service id="tempo.menu" class="%tempo.menu.class%" factory-service="tempo.menu_builder" factory-method="mainMenu">
+            <tag name="knp_menu.menu" alias="main" />
+        </service>
+
+        <service id="tempo.breadcrumb" class="%tempo.menu.class%" factory-service="tempo.menu_builder" factory-method="breadcrumb">
+            <tag name="knp_menu.menu" alias="breadcrumb" />
+        </service>
+
+        <service id="tempo.settings_schema.generale" class="%tempo.settings_schema.generale.class%">
+            <tag name="sylius.settings_schema" namespace="general" />
+        </service>
+
+        <service id="tempo.settings_schema.project" class="%tempo.settings_schema.project.class%">
+            <tag name="sylius.settings_schema" namespace="project" />
+        </service>
+
+        <service id="tempo.manager.team" class="%tempo.manager.team.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
+
+        <service id="tempo.manager.room" class="%tempo.manager.room.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument>%tempo.model.room.class%</argument>
+        </service>
+
+        <service id="tempo.manager.room.message" class="%tempo.manager.room.message.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument>%tempo.model.room.message.class%</argument>
+        </service>
+
+        <service id="tempo.listener.project" class="%tempo.listener.project.class%">
+            <argument type="service" id="tempo.manager.room" />
+            <tag name="kernel.event_listener" event="tempo.project.create.success" method="createProject" />
+        </service>
+
+        <service id="tempo.project.tabProvidersRegistry" class="%tempo.project.tabProvidersRegistry.class%" />
+        <service id="tempo.project.tab.project" class="%tempo.project.tab.project.class%">
+            <tag name="tempo.project.show.tab" />
+        </service>
+        <service id="tempo.project.tab.subproject" class="%tempo.project.tab.subproject.class%">
+            <tag name="tempo.project.show.tab" />
+        </service>
+        <service id="tempo.project.tab.activity" class="%tempo.project.tab.activity.class%">
+            <tag name="tempo.project.show.tab" />
+        </service>
+        <service id="tempo.project.tab.settings" class="%tempo.project.tab.settings.class%">
+            <tag name="tempo.project.show.tab" />
+        </service>
+
+        <service id="tempo.manager.activity_provider" class="%tempo.manager.activity_provider.class%">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument>%tempo.model.activity_provider.class%</argument>
+
+        </service>
+
+        <service id="tempo.manager.activity" class="%tempo.manager.activity.class%">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument>%tempo.model.activity.class%</argument>
+        </service>
+
+        <service id="tempo.activity.listener.activity_provider" class="%tempo.activity.listener.activity_provider.class%">
+            <argument type="service" id="tempo.manager.room" />
+            <argument type="service" id="jms_serializer" />
+            <argument type="service" id="tempo.elephantio.client" />
+            <tag name="kernel.event_listener" event="tempo.activity.provider.create.success" method="pingActivityRoom" />
+        </service>
+
+    </services>
+
+</container>

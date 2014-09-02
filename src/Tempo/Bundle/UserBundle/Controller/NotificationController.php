@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Tempo\Bundle\MainBundle\Controller\Controller;
+use Tempo\Bundle\AppBundle\Controller\Controller;
 
 class NotificationController extends Controller
 {

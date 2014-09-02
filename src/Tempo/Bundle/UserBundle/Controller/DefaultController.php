@@ -11,7 +11,7 @@
 
 namespace Tempo\Bundle\UserBundle\Controller;
 
-use Tempo\Bundle\MainBundle\Controller\Controller;
+use Tempo\Bundle\AppBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {

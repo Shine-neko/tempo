@@ -1,0 +1,35 @@
+organization_create:
+    pattern:  /create
+    defaults: { _controller: TempoAppBundle:Organization:create }
+    requirements:
+        _method:  GET|POST
+
+organization_update:
+     pattern:  /{slug}/update
+     defaults: { _controller: TempoAppBundle:Organization:update }
+     requirements:
+        _method:  GET|POST
+
+organization_delete:
+    pattern:  /{slug}/delete
+    defaults: { _controller: TempoAppBundle:Organization:delete }
+
+organization_team_add:
+    pattern:  /{slug}/team/add
+    defaults: { _controller: TempoAppBundle:Frontend/Team:add }
+
+organization_team_create:
+    pattern:  /{slug}/team/create
+    defaults: { _controller: TempoAppBundle:Frontend/Team:create }
+    requirements:
+        _method:  GET
+
+organization_team_delete:
+    pattern:  /{slug}/{user}/team/deleted
+    defaults: { _controller: TempoAppBundle:Frontend/Team:delete }
+
+organization_show:
+    pattern:  /{slug}
+    defaults: { _controller: TempoAppBundle:Organization:show, _format: html }
+    requirements:
+        _method:  GET

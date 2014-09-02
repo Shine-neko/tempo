@@ -1,7 +1,0 @@
-Tempo\Bundle\ProjectBundle\Model\Organization:
-    exclusion_policy: all
-    properties :
-      id:
-        expose: true
-      name:
-        expose: true

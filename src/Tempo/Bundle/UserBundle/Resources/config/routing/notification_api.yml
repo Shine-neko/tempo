@@ -1,4 +1,4 @@
 notification_api_periods:
     type:     rest
-    resource: Tempo\Bundle\ProjectBundle\Controller\Notification
+    resource: Tempo\Bundle\AppBundle\Controller\Notification
     name_prefix: api_notification_

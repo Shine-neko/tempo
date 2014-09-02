@@ -1,4 +1,0 @@
-Tempo\ProjectBundle\Entity\Organization:
-    properties:
-        name:
-            - NotBlank: ~

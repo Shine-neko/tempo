@@ -11,7 +11,7 @@
 
 namespace Tempo\Bundle\UserBundle\Manager;
 
-use Tempo\Bundle\MainBundle\Manager\BaseManager;
+use Tempo\Bundle\AppBundle\Manager\BaseManager;
 
 /**
  * @author Mlanawo Mbechezi <mlanawo.mbechezi@ikimea.com>

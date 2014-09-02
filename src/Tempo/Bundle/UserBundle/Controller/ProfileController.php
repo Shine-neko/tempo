@@ -14,7 +14,7 @@ namespace Tempo\Bundle\UserBundle\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
-use Tempo\Bundle\MainBundle\Controller\Controller;
+use Tempo\Bundle\AppBundle\Controller\Controller;
 use Tempo\Bundle\UserBundle\Form\Type\SettingsType;
 use Tempo\Bundle\UserBundle\Form\Type\ProfileType;
 

@@ -1,7 +1,0 @@
-room_show:
-    pattern:  /{slug}
-    defaults: { _controller: TempoMainBundle:Frontend/Room:getRoom }
-
-room_list:
-    pattern: /
-    defaults: { _controller: TempoMainBundle:Frontend/Room:getRooms }

@@ -1,0 +1,55 @@
+project_home:
+    pattern:  /
+    defaults: { _controller: TempoAppBundle:Project:dashboard }
+
+project_organization_list:
+    pattern:  /{slug}/list
+    defaults: { _controller: TempoAppBundle:Project:list }
+
+project_show:
+    pattern:  /{slug}/show
+    defaults: { _controller: TempoAppBundle:Project:show }
+
+project_new:
+    pattern:  /{organization}/new
+    defaults: { _controller: TempoAppBundle:Project:new }
+
+project_create:
+    pattern:  /create
+    defaults: { _controller: TempoAppBundle:Project:create }
+
+project_edit:
+    pattern:  /{slug}/edit
+    defaults: { _controller: TempoAppBundle:Project:edit }
+
+project_update:
+    pattern:  /{slug}/update
+    defaults: { _controller: TempoAppBundle:Project:update }
+    requirements: { _method: post }
+
+project_delete:
+    pattern:  /{slug}/delete
+    defaults: { _controller: TempoAppBundle:Project:delete }
+
+project_team_add:
+    pattern:  /{slug}/team/add
+    defaults: { _controller: TempoAppBundle:Team:add }
+
+project_team_create:
+    pattern:  /{slug}/team/create
+    defaults: { _controller: TempoAppBundle:Team:create }
+    requirements:
+        _method:  GET
+
+project_team_delete:
+    pattern:  /{slug}/team/delete
+    defaults: { _controller: TempoAppBundle:Team:delete }
+
+
+project_provider_list:
+    pattern:  /{slug}/provider/list
+    defaults: { _controller: TempoAppBundle:Provider:list }
+
+project_provider_new:
+    pattern:  /{slug}/provider/new
+    defaults: { _controller: TempoAppBundle:Provider:new }

@@ -9,7 +9,7 @@
 * file that was distributed with this source code.
 */
 
-use Tempo\Bundle\MainBundle\Kernel\Kernel;
+use Tempo\Bundle\AppBundle\Kernel\Kernel;
 
 class AppKernel extends Kernel
 {

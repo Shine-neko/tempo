@@ -2,7 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: imagine.yml }
-    - { resource: @TempoMainBundle/Resources/config/app/main.yml }
+    - { resource: @TempoAppBundle/Resources/config/app/main.yml }
 
 framework:
     #esi:             ~
@@ -63,7 +63,7 @@ doctrine:
                     gedmo_loggable:
                         type: annotation
                         prefix: Gedmo\Loggable\Entity
-                        dir: "%kernel.root_dir%/../src/Tempo/Bundle/MainBundle/Entity/"
+                        dir: "%kernel.root_dir%/../src/Tempo/Bundle/AppBundle/Entity/"
                         alias: GedmoLoggable
                         is_bundle: false
 

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+
+    <entity name="Tempo\Bundle\AppBundle\Entity\ChatMessage" table="tempo_chat_message">
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO" />
+        </id>
+
+        <field name="content" column="content" type="string" nullable="false"  />
+        <field name="createdAt" column="created" type="date" nullable="false"  >
+            <gedmo:timestampable on="create"/>
+        </field>
+        <field name="updateAt" column="updated_at" type="date" nullable="false"  >
+            <gedmo:timestampable on="update"/>
+        </field>
+
+        <many-to-one field="room" inversed-by="chatMessages" target-entity="Room" />
+        <many-to-one field="user" target-entity="Tempo\Bundle\UserBundle\Entity\User" />
+
+    </entity>
+
+</doctrine-mapping>

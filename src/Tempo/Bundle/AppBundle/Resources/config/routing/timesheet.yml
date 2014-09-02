@@ -1,0 +1,34 @@
+timesheet:
+    pattern:  /
+    defaults: { _controller: "TempoAppBundle:Timesheet:dashboard" }
+
+timesheet_show:
+    pattern:  /{date}/show
+    defaults: { _controller: "TempoAppBundle:Timesheet:show" }
+
+timesheet_create:
+    pattern:  /{project}/create
+    defaults: { _controller: TempoAppBundle:Timesheet:create }
+    requirements: { _method: POST }
+
+timesheet_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "TempoAppBundle:Timesheet:update" }
+    requirements: { _method: POST }
+
+timesheet_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "TempoAppBundle:Timesheet:delete" }
+    requirements: { _method: POST }
+
+timesheet_validation:
+    pattern: /validation
+    defaults: { _controller: "TempoAppBundle:Timesheet:validation" }
+
+timesheet_export_pdf:
+    pattern:  /export/pdf
+    defaults: { _controller: "TempoAppBundle:Timesheet:exportPDF" }
+
+timesheet_export_csv:
+    pattern:  /export/csv
+    defaults: { _controller: "TempoAppBundle:Timesheet:exportCSV" }

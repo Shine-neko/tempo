@@ -1,0 +1,16 @@
+<div class="col-md-2">
+    <ul class="nav nav-pills  nav-stacked">
+        <li><a href="#webhooks" data-toggle="tab">Web Hooks</a></li>
+        <li class=" active"><a href="#providers" data-toggle="tab">Service Hooks</a></li>
+    </ul>
+</div>
+<div class="col-md-10">
+    <div class="tab-content">
+        <div class="tab-pane fade" id="options">
+
+        </div>
+        <div class="tab-pane in active" id="providers">
+            {{ render(controller('TempoAppBundle:Provider:list', { 'slug': project.slug })) }}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,105 @@
+tempo:
+  menu:
+    project: Projects
+    home: Accueil
+    timesheet: Timesheets
+    admin: Admin
+  form:
+    show: 'Vue'
+    create: 'Crée'
+    delete: 'Supprimer'
+    edit: 'Editer'
+    search: "Recherche"
+    cancel: "Annuler@"
+    save: 'Sauvegard'
+    save_changes: 'Sauvegarde les changements'
+    submit: Valider
+  activity:
+    dashboard:
+      title: Flux d'activité
+      form.status.label: Partagez quelque chose. Utilisez @ pour mentionner des personnes.
+    events:
+      user.update: updates its own information
+      comment.commented: Commented
+      project.created: create project
+      project.update: update project
+      project.joined: joined project at
+
+  select_organization:
+      first: Sélectionnez le organization
+      second: Afficher ses projets
+
+    submit: Valider
+
+  organization:
+      add:  Ajouter un organization
+      edit: Modifier un organization
+      team: Team
+      list:
+        title: 'Liste des organizations'
+      select_first: Selectionner une organisation
+      select_second: pour afficher ses projets
+      not_found: Aucune organization n'a été trouvé
+      add:  Ajouter une organization
+      edit: Modifier une organization
+      team: Team
+      list:
+        title: 'Liste des organizations'
+      msg_delete: Une fois que vous supprimez une organisation, il n'y a pas de retour en arrière. Il sera supprimé pour toujours.
+      title_delete: Supprimer projet
+      email_contact : Adresse électronique de contact
+      web_site: Site web
+      undefined_info: non défini
+      success_create: Organization ajouté avec succès
+      success_modify: Organization modifié avec succès
+      success_delete: Organisation supprimé avec succès
+      failed_delete: Impossible de supprimer l'organization
+
+  project:
+      title_add: new Project
+      label_list: Liste des projets
+      add: Ajouter un nouveau projet
+      edit: Modifier un projet
+      title_subprojects: Sous project
+      add_membre: Affecter un membre
+      display_projects: Afficher les projets
+      msg_delete: Une fois que vous supprimez un project, il n'y a pas de retour en arrière. Il sera supprimé pour toujours.
+      nbr_project: Nombre de projets
+      open: Ouvert
+      close: Fermé
+
+      form:
+          label:
+              name: Nom
+              isactive: Actif
+              created: Crée le
+              updated: Mise à jour
+              beginning: Commence
+              ending: Fini
+              type: Type
+              advancements: Avancement
+              code: Code
+              status: Status
+              priority: Priorité
+              estimated: Budget estimé
+
+    timesheets:
+        page_title: Gestion du temps
+        last_week: Semaine précédente
+        next_week: Semaine suivante
+        week: Semaine
+
+    team:
+     success_add: L'utilisateur a bien été ajouté à l'équipe
+    activity:
+        events:
+          user.update: updates its own information
+          comment.commented: Commented
+          project.created: create project
+          project.update: update project
+          project.joined: joined project at
+
+    buttons:
+      edit: Editer
+      submit: Valider
+      delete: Supprimer

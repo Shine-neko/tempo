@@ -1,0 +1,53 @@
+{% extends 'TempoAppBundle::layout.html.twig' %}
+{% block title %}Dashboard{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+        '../client/js/src/model/chatMessage.js'
+        '../client/js/src/model/room.js'
+        '../client/js/src/collection/chatMessage.js'
+        '../client/js/src/views/chatBox.js'
+        '../client/js/src/views/chatMessage.js'
+        '../client/js/src/views/connectedUsers.js'
+        '../client/js/src/views/room.js'
+        '../client/js/src/controllers/dashboard.js'
+        output="js/dashboard.js" filter="?yui_js"
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script type="application/javascript">
+    {% autoescape false %}
+        Tempo.Controller.Dashboard.room = new Tempo.Model.Room({{ currentRoom| serialize | raw }}, {parse:true});
+        Tempo.Controller.Dashboard.user = {{ app.user| serialize | raw }};
+        Tempo.Controller.Dashboard.user.avatar = "{{ app.user.avatar | raw }}";
+        Tempo.Controller.Dashboard.load();
+    {% endautoescape %}
+    </script>
+{% endblock %}
+
+{% block bodyClass %}home dashboard {% endblock %}
+{% block container %}
+    <nav class="col-md-12 rooms">
+        <ul class="clearfix">
+           {% for room in rooms %}
+               <li class="{% if room.id == currentRoom.id %}current{% endif %}"><a href="?currentRoom={{ room.id }}">{{ room.name }}</a></li>
+           {% endfor %}
+        </ul>
+    </nav>
+    <div id="row-box" class="room-{{ currentRoom.id }}">
+        <div class="col-md-6" id="activity-box">
+            <h3 class="homeTitle">{{ 'tempo.activity.dashboard.title'|trans }}</h3>
+
+            <div id="room-activity-box">
+                {{ render(controller('TempoAppBundle:ProviderActivity:list', {'type': 'all', 'project': currentRoom.project})) }}
+            </div>
+
+        </div>
+        <div class="col-md-6" id="chat-box">
+            <div class="loader">
+                <img src="{{ asset('bundles/tempomain/images/loading-bubbles.svg') }}" width="64" height="64">
+            </div>
+        </div>
+    </div>
+{% endblock %}

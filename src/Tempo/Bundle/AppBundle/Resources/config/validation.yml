@@ -1,0 +1,4 @@
+Tempo\AppBundle\Entity\Organization:
+    properties:
+        name:
+            - NotBlank: ~

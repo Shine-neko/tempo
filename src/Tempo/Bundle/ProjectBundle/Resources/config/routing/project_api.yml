@@ -1,5 +1,0 @@
-api_project_show:
-    pattern:  /{slug}
-    defaults: { _controller: TempoProjectBundle:Project:show }
-    requirements:
-      slug: "\w+\/\w+"
