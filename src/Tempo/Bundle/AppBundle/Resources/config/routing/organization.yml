@@ -16,17 +16,17 @@ organization_delete:
 
 organization_team_add:
     pattern:  /{slug}/team/add
-    defaults: { _controller: TempoAppBundle:Frontend/Team:add }
+    defaults: { _controller: TempoAppBundle:Team:add }
 
 organization_team_create:
     pattern:  /{slug}/team/create
-    defaults: { _controller: TempoAppBundle:Frontend/Team:create }
+    defaults: { _controller: TempoAppBundle:Team:create }
     requirements:
         _method:  GET
 
 organization_team_delete:
     pattern:  /{slug}/{user}/team/deleted
-    defaults: { _controller: TempoAppBundle:Frontend/Team:delete }
+    defaults: { _controller: TempoAppBundle:Team:delete }
 
 organization_show:
     pattern:  /{slug}

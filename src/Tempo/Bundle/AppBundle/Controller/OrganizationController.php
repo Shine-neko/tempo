@@ -55,7 +55,7 @@ class OrganizationController extends Controller
 
         $this->getBreadcrumb()->addChild($organization->getName());
 
-        $teamForm = $this->createForm(new TeamType());
+        $teamForm = $this->createForm(new TeamType($organization));
 
         $data =  array(
             'organization' => $organization,

@@ -13,11 +13,21 @@ namespace Tempo\Bundle\AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormEvent;
 
 use Tempo\Bundle\AppBundle\Model\TeamInterface;
+use Tempo\Bundle\AppBundle\Model\ProjectInterface;
 
 class TeamType extends AbstractType
 {
+    protected $parentData;
+
+    public function __construct($parentData)
+    {
+        $this->parentData = $parentData;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -35,6 +45,15 @@ class TeamType extends AbstractType
                 )
             ))
         ;
+
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event){
+            $data = $event->getData();
+            $form = $event->getForm();
+
+            if ($this->parentData instanceof ProjectInterface) {
+                $form->add('cost', 'text');
+            }
+        });
     }
 
     /**

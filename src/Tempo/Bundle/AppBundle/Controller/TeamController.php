@@ -30,10 +30,10 @@ class TeamController extends Controller
      */
     public function addAction(Request $request, $slug)
     {
-        $form = $this->createForm(new TeamType());
-
         $objectManager = $this->getObjectManager($request->get('_route'), $slug);
         $routeRedirect = $this->generateUrl($objectManager['route'], array('slug' => $objectManager['model']->getSlug()));
+
+        $form = $this->createForm(new TeamType($objectManager['model']));
 
         if ($form->handleRequest($request)->isValid()) {
 
@@ -48,7 +48,7 @@ class TeamController extends Controller
 
             $this->get('event_dispatcher')->dispatch($objectManager['event'], $event);
 
-            $this->addFlash('success', 'team.success_add', 'TempoProject');
+            $this->addFlash('success', 'tempo.team.success_add', 'TempoProject');
 
             return $this->redirect($routeRedirect);
         }

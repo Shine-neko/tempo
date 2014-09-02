@@ -83,7 +83,7 @@ class ProjectController extends Controller
             $organization = $project->getParent(-1)->getOrganization();
         }
 
-        $teamForm = $this->createForm(new TeamType());
+        $teamForm = $this->createForm(new TeamType($project));
 
         $data =  array(
             'teamForm'      => $teamForm->createView(),
