@@ -9,9 +9,9 @@ default:
         default:
             contexts:
                 - Behat\MinkExtension\Context\MinkContext
-                - Tempo\Bundle\MainBundle\Behat\FeatureContext
-                - Tempo\Bundle\MainBundle\Behat\DataContext
-                - Tempo\Bundle\MainBundle\Behat\UserContext
+                - Tempo\Bundle\AppBundle\Behat\FeatureContext
+                - Tempo\Bundle\AppBundle\Behat\DataContext
+                - Tempo\Bundle\AppBundle\Behat\UserContext
 
     extensions:
         Behat\MinkExtension:
