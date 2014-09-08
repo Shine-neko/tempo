@@ -62,19 +62,19 @@ tempo:
       close: Close
       form:
           label:
-          organization: Organization
-          name: Name
-          isactive: Active
-          created: Created
-          updated: Updated
-          beginning: Starting
-          ending: Finishing
-          type: Type
-          advancement: Avancement
-          code: Code
-          status: Status
-          priority: Priority
-          estimated: Estimated budget
+              organization: Organization
+              name: Name
+              isactive: Active
+              created: Created
+              updated: Updated
+              beginning: Starting
+              ending: Finishing
+              type: Type
+              advancement: Avancement
+              code: Code
+              status: Status
+              priority: Priority
+              estimated: Estimated budget
 
   timesheets:
       page_title: Timesheet
