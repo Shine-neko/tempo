@@ -90,7 +90,7 @@
                     <td><a href="{{ path('project_show', {'slug': proxy.project.slug }) }}">{{ proxy.project.name }}</a></td>
                     {% for day in daysInWeek %}
                         <td>
-                            <form action="{{ path('timesheet_create',{'project': proxy.project.id}) }}" method="post" class="parent-form" id="parent-form{{ loop.index }}">
+                            <form action="{{ path('timesheet_create',{'project': proxy.project.id}) }}" method="post" data-project="{{ proxy.project.id }}" class="parent-form" id="parent-form{{ loop.index }}">
                                 <input type="text" maxlength="2" name="timesheet[workedTime]" class="cra_load" size="2" />
                                 <input type="text" name="timesheet[description]" class="cra_desc" rel="form-cra-load-{{ day.format('Y-m-d')}}" />
                                 <input type="text" name="timesheet[workedDate]" class="cra_date" value="{{ day.format('Y-m-d')}}" style="display: none;" />

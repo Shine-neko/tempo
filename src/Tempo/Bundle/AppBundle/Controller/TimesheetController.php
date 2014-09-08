@@ -135,6 +135,7 @@ class TimesheetController extends Controller
     public function createAction(Request $request, $project)
     {
         $project = $this->getManager('project')->find($project);
+        $request->request->remove('project');
 
         $view = View::create();
 
@@ -142,14 +143,18 @@ class TimesheetController extends Controller
         $period->setProject($project);
         $period->setUser($this->getUser());
 
-        $form = $this->createForm(new TimesheetType(), $period);
+        $form = $this->createForm(new TimesheetType(), $period, array(
+            'method' => 'POST'
+        ));
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+
             $this->getManager('timesheet')->save($period);
-            $view->setStatusCode(201);
-            $view->setData($period);
-            $view->setFormat('json');
+            $view
+                ->setStatusCode(201)
+                ->setData($period)
+                ->setFormat('json');
 
             $this->addFlash('success', 'tempo.timesheets.success_add', 'TempoProject');
 

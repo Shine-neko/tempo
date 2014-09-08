@@ -4,8 +4,11 @@ Tempo.Model.Timesheet = Backbone.Model.extend({
 
     },
     save: function(key, val, options) {
+        options = options || {};
+        options.type = 'POST';
+
         var attributes  = this.attributes;
         this.url = Routing.generate('timesheet_create', { 'project': attributes.project });
-        return Backbone.Model.prototype.save.call(this,attributes, options);
+        return Backbone.Model.prototype.save.call(this, attributes, options);
     }
 });

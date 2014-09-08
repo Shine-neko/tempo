@@ -47,6 +47,6 @@ class TimesheetType extends AbstractType
      */
     public function getName()
     {
-        return 'timesheet';
+        return '';
     }
 }

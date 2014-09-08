@@ -43,10 +43,10 @@ Tempo.Controller.Timesheet = Backbone.Marionette.Controller.extend({
                         loginFormObject[name] = v.value;
                     }
                 );
-
-               var period = new Tempo.Model.Timesheet(loginFormObject).save().done(function() {
+                loginFormObject['project'] = form.data('project');
+                var period = new Tempo.Model.Timesheet(loginFormObject).save().done(function() {
                     window.location.reload();
-               });
+                });
             }
         });
     }

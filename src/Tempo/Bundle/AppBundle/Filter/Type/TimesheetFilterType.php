@@ -31,11 +31,11 @@ class TimesheetFilterType extends AbstractType
         $builder
             ->add('from', 'text', array(
                     'label' => 'Form',
-                    'attr' => array('class' => 'datetimepicker')
+                    'attr' => array('class' => 'datetimepicker', 'data-dateFormat' => 'mm/dd/yyyy')
             ))
             ->add('to', 'text', array(
                 'label' => 'To',
-                'attr' => array('class' => 'datetimepicker')
+                'attr' => array('class' => 'datetimepicker', 'data-dateFormat' => 'mm/dd/yyyy')
             ))
             ->add('filter', 'submit', array(
                 'attr' => array('class' => 'btn btn-primary')
