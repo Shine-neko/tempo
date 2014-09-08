@@ -7,11 +7,11 @@
         <li>
             <dl>
                 <dt>{{ 'tempo.project.form.label.created'|trans }}:</dt>
-                <dd>{{ datetime_diff(project.createdAt) }} </dd>
+                <dd>{{ project.createdAt|localizeddate('medium', 'none', app.request.locale) }} </dd>
             </dl>
             <dl>
                 <dt>{{ 'tempo.project.form.label.updated'|trans }}:</dt>
-                <dd>{{ datetime_diff(project.updatedAt) }}</dd>
+                <dd>{{ project.updatedAt|localizeddate('medium', 'none', app.request.locale) }}</dd>
             </dl>
         </li>
     </ul>
@@ -19,11 +19,11 @@
         <li>
             <dl>
                 <dt>{{ 'tempo.project.form.label.beginning'|trans }}:</dt>
-                <dd> {{ datetime_diff(project.beginning, null, false) }} </dd>
+                <dd> {{ project.beginning|localizeddate('medium', 'none', app.request.locale) }} </dd>
             </dl>
             <dl>
                 <dt>{{ 'tempo.project.form.label.ending'|trans }}:</dt>
-                <dd>{{ datetime_diff(project.ending, null, false) }}</dd>
+                <dd>{{ project.ending|localizeddate('medium', 'none', app.request.locale) }}</dd>
             </dl>
         </li>
 

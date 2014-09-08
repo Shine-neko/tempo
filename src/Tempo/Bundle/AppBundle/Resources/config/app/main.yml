@@ -39,8 +39,6 @@ fos_rest:
             'Symfony\Component\Routing\Exception\ResourceNotFoundException': 404
             'Doctrine\ORM\OptimisticLockException': HTTP_CONFLICT
 
-knp_time: ~  # Enable the helper for use in templates
-
 fos_user:
     db_driver: orm
     use_listener: false

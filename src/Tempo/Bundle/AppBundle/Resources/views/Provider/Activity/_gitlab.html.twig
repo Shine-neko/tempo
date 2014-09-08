@@ -14,7 +14,7 @@
                 <ul class="commits">
                     {% for commit in activity.data.commits %}
                         <span> <img height="16" src="{{ gravatar(commit.author.email, 16) }}"> </span>
-                        <a href="{{ commit.url }}"> {{ truncate(commit.id, 7) }} </a>
+                        <a href="{{ commit.url }}"> {{ commit.id| truncate(7, true, '') }} </a>
                         {{ commit.message }}
                     {% endfor %}
                 </ul>

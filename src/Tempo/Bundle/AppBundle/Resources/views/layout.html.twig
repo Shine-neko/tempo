@@ -59,8 +59,8 @@
                                     {% for notification in notifications_indicator %}
                                         <li>
                                         <a href="{{ path('notification_dashboard') }}">
-                                            {{ truncate(notification.message, 30) }}
-                                            <span class="text-muted small">{{ datetime_diff(notification.createdAt) }}</span>
+                                            {{ notification.message| truncate(30, true, '...') }}
+                                            <span class="text-muted small">{{ notification.createdAt|localizeddate('short', 'none', app.request.locale) }}</span>
                                         </a>
                                         </li>
                                     {% else %}

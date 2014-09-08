@@ -12,24 +12,19 @@
 
 namespace Tempo\Bundle\AppBundle\Twig\Extension;
 
-use Knp\Bundle\TimeBundle\Templating\Helper\TimeHelper;
 use Ikimea\Browser\Browser;
+use Tempo\Bundle\AppBundle\Helper\Behavior;
 
 class AppExtension extends \Twig_Extension
 {
-
-    private $container;
-    private $helper;
+    private $behavior;
 
     /**
-     * @param $container
-     * @param TimeHelper $helper
+     * @param Behavior $behavior
      */
-    public function __construct($container, TimeHelper $helper)
+    public function __construct(Behavior $behavior)
     {
-        $this->container = $container;
-        $this->helper = $helper;
-
+        $this->behavior = $behavior;
     }
 
     /**
@@ -38,7 +33,7 @@ class AppExtension extends \Twig_Extension
     public function getGlobals()
     {
         return array(
-            'behavior'  => $this->container->get('tempo.behavior')
+            'behavior'  => $this->behavior
         );
     }
 
@@ -49,7 +44,6 @@ class AppExtension extends \Twig_Extension
     {
         return array(
             'size' => new \Twig_Filter_Method($this, 'size'),
-            'datetime_diff' => new \Twig_Filter_Method($this, 'dateTimeDiff'),
         );
     }
 
@@ -59,29 +53,10 @@ class AppExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'datetime_diff'  => new \Twig_Function_Method($this, 'dateTimeDiff', array(
-                'is_safe' => array('html')
-            )),
             'get_browser' => new \Twig_Function_Method($this, 'getBrowser'),
-            'truncate' => new \Twig_Function_Method($this, 'truncate'),
             'icon' => new \Twig_Function_Method($this, 'getIcon'),
             'gravatar'    => new \Twig_Function_Method($this, 'getGravatar'),
         );
-    }
-
-    /**
-     * @param $string
-     * @param $max
-     * @param string $replacement
-     * @return mixed
-     */
-    public function truncate($string, $max, $replacement = '')
-    {
-        if (strlen($string) <= $max) {
-            return $string;
-        }
-        $leave = $max - strlen ($replacement);
-        return substr_replace($string, $replacement, $leave);
     }
 
     /**
@@ -94,18 +69,6 @@ class AppExtension extends \Twig_Extension
         $units = array(' B', ' KB', ' MB', ' GB', ' TB');
         for ($i = 0; $size >= 1024 && $i < 4; $i++) $size /= 1024;
         return round($size, 2).$units[$i];
-    }
-
-    public function dateTimeDiff($since = null, $to = null)
-    {
-        if ($since !== null && !$since instanceof \DateTime) {
-
-            $date = new \DateTime();
-            $date->setTimestamp((int)$since);
-            $since = $date;
-        }
-
-        return $this->helper->diff($since, $to);
     }
 
     /**
@@ -145,14 +108,6 @@ class AppExtension extends \Twig_Extension
         }
 
         return ($secure ? 'https://secure' : 'http://www') . '.gravatar.com/avatar/' . $hash . '?' . http_build_query(array_filter($map));
-    }
-
-    /**
-     *  @return \Tempo\Bundle\AppBundle\Helper\Behavior
-     */
-    public function getBehavior()
-    {
-
     }
 
     /**

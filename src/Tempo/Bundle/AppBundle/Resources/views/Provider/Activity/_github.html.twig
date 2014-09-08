@@ -30,7 +30,7 @@
                {% set commits = activity.data.commits is defined ? activity.data.commits : {0: activity.data.commit} %}
                {% for commit in commits %}
                    <span> <img height="16" src="{{ commit.author.avatar_url }}"> </span>
-                   <a href="{{ commit.commit.url }}"> {{ truncate(commit.sha, 7) }} </a>
+                   <a href="{{ commit.commit.url }}"> {{ commit.sha| truncate(7, true, '') }} </a>
                    {{ commit.commit.message }}
                {% endfor %}
            </ul>

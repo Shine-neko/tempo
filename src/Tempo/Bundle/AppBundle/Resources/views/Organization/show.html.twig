@@ -67,7 +67,7 @@
             <div class="board">
                 <h4><a href="{{ path('project_show', { 'slug' :  project.slug } ) }}">{{ project.name }} </a></h4>
                 <p class="project-updated">
-                    Updated <time data-title-format="YYYY-MM-DD HH:mm:ss" datetime="{{ project.updatedAt.format('YYYY-MM-DD') }}" title="{{ project.updatedAt.format('YYYY-MM-DD') }}">{{ datetime_diff(project.updatedAt) }}</time>
+                    Updated <time data-title-format="YYYY-MM-DD HH:mm:ss" datetime="{{ project.updatedAt.format('YYYY-MM-DD') }}" title="{{ project.updatedAt.format('YYYY-MM-DD') }}">{{ project.updatedAt|localizeddate('short', 'none', app.request.locale) }}</time>
                 </p>
             </div>
         </li>

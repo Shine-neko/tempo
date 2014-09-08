@@ -46,7 +46,6 @@ class Kernel extends BaseKernel
             new \Sylius\Bundle\SettingsBundle\SyliusSettingsBundle(),
             new \Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new \Knp\Bundle\MenuBundle\KnpMenuBundle(),
-            new \Knp\Bundle\TimeBundle\KnpTimeBundle(),
 
             new \HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new \Ivory\CKEditorBundle\IvoryCKEditorBundle(),
