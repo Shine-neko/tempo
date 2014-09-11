@@ -28,26 +28,32 @@
 
 {% block bodyClass %}home dashboard {% endblock %}
 {% block container %}
-    <nav class="col-md-12 rooms">
-        <ul class="clearfix">
-           {% for room in rooms %}
-               <li class="{% if room.id == currentRoom.id %}current{% endif %}"><a href="?currentRoom={{ room.id }}">{{ room.name }}</a></li>
-           {% endfor %}
-        </ul>
-    </nav>
-    <div id="row-box" class="room-{{ currentRoom.id }}">
-        <div class="col-md-6" id="activity-box">
-            <h3 class="homeTitle">{{ 'tempo.activity.dashboard.title'|trans }}</h3>
-
-            <div id="room-activity-box">
-                {{ render(controller('TempoAppBundle:ProviderActivity:list', {'type': 'all', 'project': currentRoom.project})) }}
-            </div>
-
+    {% if currentRoom is null %}
+        <div class="app-panel">
+            <p class="text-center">Not found activity</p>
         </div>
-        <div class="col-md-6" id="chat-box">
-            <div class="loader">
-                <img src="{{ asset('bundles/tempomain/images/loading-bubbles.svg') }}" width="64" height="64">
+    {% else %}
+        <nav class="col-md-12 rooms">
+            <ul class="clearfix">
+               {% for room in rooms %}
+                   <li class="{% if room.id == currentRoom.id %}current{% endif %}"><a href="?currentRoom={{ room.id }}">{{ room.name }}</a></li>
+               {% endfor %}
+            </ul>
+        </nav>
+        <div id="row-box" class="room-{{ currentRoom.id }}">
+            <div class="col-md-6" id="activity-box">
+                <h3 class="homeTitle">{{ 'tempo.activity.dashboard.title'|trans }}</h3>
+
+                <div id="room-activity-box">
+                    {{ render(controller('TempoAppBundle:ProviderActivity:list', {'type': 'all', 'project': currentRoom.project})) }}
+                </div>
+
+            </div>
+            <div class="col-md-6" id="chat-box">
+                <div class="loader">
+                    <img src="{{ asset('bundles/tempomain/images/loading-bubbles.svg') }}" width="64" height="64">
+                </div>
             </div>
         </div>
-    </div>
+    {% endif %}
 {% endblock %}
