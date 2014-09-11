@@ -21,7 +21,7 @@
                 </ol>
 
                 {% if is_granted('ROLE_ADMIN') %}
-                    <a href="{{ path('organization_create') }}" class="pull-right btn btn-primary btn-xs" data-target="#" data-toggle="modal" data-title="{{ 'tempo.organization.add' |trans }}" >{{ 'tempo.organization.add' |trans }}</a>
+                    <a href="{{ path('organization_create') }}" class="pull-right btn btn-primary btn-sm" data-target="#" data-toggle="modal" data-title="{{ 'tempo.organization.add' |trans }}" >{{ 'tempo.organization.add' |trans }}</a>
                 {% endif %}
 
             </div>
