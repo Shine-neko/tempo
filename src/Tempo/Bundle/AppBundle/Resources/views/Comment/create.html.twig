@@ -1,0 +1,6 @@
+<form method="POST" action="{{ path('comment_update', {'comment': comment.id}) }}">
+    {{ form_widget(form.body) }}
+    {{ form_rest(form) }}
+
+    <input type="submit" class="pull-right btn btn-primary btn-sm" />
+</form>
