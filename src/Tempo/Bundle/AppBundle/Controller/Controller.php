@@ -11,8 +11,11 @@
 
 namespace Tempo\Bundle\AppBundle\Controller;
 
-use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use FOS\RestBundle\Controller\FOSRestController;
+use Doctrine\ORM\Query;
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
 
 class Controller extends FOSRestController
 {
@@ -27,12 +30,10 @@ class Controller extends FOSRestController
             ));
         }
 
-        $this->get('request_stack')
-            ->getCurrentRequest()
-                ->getSession()->getFlashBag()->add(
-                    $type,
-                    $this->get('translator')->trans($message, array(), $domaine)
-                );
+        $this->get('session')->getFlashBag()->add(
+            $type,
+            $this->getTranslation($message, array(), $domaine)
+        );
     }
 
     /**
@@ -79,8 +80,34 @@ class Controller extends FOSRestController
         return $this->get('problematic.acl_manager');
     }
 
+    /**
+     * @param $route
+     * @param array $parameters
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function redirectRoute($route, $parameters = array())
     {
         return $this->redirect($this->generateUrl($route, $parameters));
+    }
+
+    /**
+     * Returns the paginator instance configured for the given query and page
+     * number
+     *
+     * @param  Query   $query The query
+     * @param  integer $page  The current page number
+     * @param  integer $limit Results per page
+     *
+     * @return Pagerfanta
+     */
+    protected function getPaginator(Query $query, $page, $limit = 10)
+    {
+        $paginator = new Pagerfanta(new DoctrineORMAdapter($query));
+        $paginator
+            ->setMaxPerPage($limit)
+            ->setCurrentPage($page, false, true)
+        ;
+
+        return $paginator;
     }
 }

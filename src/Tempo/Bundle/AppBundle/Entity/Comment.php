@@ -11,8 +11,9 @@
 
 namespace Tempo\Bundle\AppBundle\Entity;
 
-use Tempo\Bundle\AppBundle\Model\Activity as BaseActivity;
+use Tempo\Bundle\AppBundle\Model\Comment as BaseComment;
+use Symfony\Component\Security\Core\User\UserInterface;
 
-class Activity extends BaseActivity
+class Comment extends BaseComment
 {
 }

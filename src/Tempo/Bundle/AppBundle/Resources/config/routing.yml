@@ -76,6 +76,10 @@ _prodiver_api:
   defaults:
       version: v1
 
+_comment:
+  resource: "@TempoAppBundle/Resources/config/routing/comment.yml"
+  prefix:   /comment
+
 #Backend
 tempo_setting_backend:
     resource: "@TempoAppBundle/Resources/config/routing/backend/settings.yml"

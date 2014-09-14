@@ -11,11 +11,11 @@
 
 namespace Tempo\Bundle\AppBundle;
 
-final class TempoActivityEvents
+final class TempoAppEvents
 {
-    const ACTIVITY_CREATE_INITIALIZE            = 'tempo.activity.create.initialize';
-    const ACTIVITY_CREATE_SUCCESS               = 'tempo.activity.create.success';
-    const ACTIVITY_EDIT_INITIALIZE              = 'tempo.activity.edit.initialize';
-    const ACTIVITY_EDIT_SUCCESS                 = 'tempo.activity.edit.success';
-    const ACTIVITY_DELETE_COMPLETED             = 'tempo.activity.delete.completed';
+    const COMMENT_CREATE_INITIALIZE            = 'tempo.comment.create.initialize';
+    const COMMENT_CREATE_SUCCESS               = 'tempo.comment.create.success';
+    const COMMENT_EDIT_INITIALIZE              = 'tempo.comment.edit.initialize';
+    const COMMENT_EDIT_SUCCESS                 = 'tempo.comment.edit.success';
+    const COMMENT_DELETE_COMPLETED             = 'tempo.comment.delete.completed';
 }

@@ -71,6 +71,6 @@ project_activity_list:
 
 project_show:
     pattern:  /{slug}
-    defaults: { _controller: TempoAppBundle:Project:show, _format: html  }
+    defaults: { _controller: TempoAppBundle:Project:show, _format: html }
     requirements:
       slug: "\w+\/\w+"

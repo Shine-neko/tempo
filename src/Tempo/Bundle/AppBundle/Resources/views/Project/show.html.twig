@@ -1,5 +1,14 @@
 {% extends "TempoAppBundle::layout.html.twig" %}
 {% block bodyClass %}project show{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+    '../client/js/src/views/CommentView.js'
+    output="js/project.js" filter="?yui_js"
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
 {% block container %}
 {% block breadcrumb %}
     <ol id="breadcrumb" class="clearfix">
@@ -57,6 +66,14 @@
                 </div>
             </div>
         </div>
+
+    </div>
+    <div class="commentaires-list">
+        {{ render(url('comment_list', {
+            'type': 'project',
+            'parent' : project.id,
+            'page': page,
+        }))}}
     </div>
 </div>
 <div class="col-md-4">

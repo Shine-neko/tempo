@@ -1,0 +1,54 @@
+<h4>Comments </h4>
+{% for comment in comments %}
+    <div class="clearfix">
+        <div class="col-md-1">
+            <img src="{{ comment.author.avatar(48) }}" />
+        </div>
+        <div class="col-md-11">
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    <div class="pull-left">
+                        <a href="#">
+                            {{ comment.author }}
+                        </a>
+                        <span>{{ comment.createdAt|localizeddate('long', 'none', app.request.locale) }}</span>
+                    </div>
+                    <div class="pull-right">
+                        <a class="edit-comment" onclick="return false;" href="{{ path('comment_update', { 'comment': comment.id }) }}">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
+                        <a class="delete-comment"  href="{{ path('comment_delete', { 'comment': comment.id }) }}">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    {{ comment.body }}
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endfor %}
+
+<div class="form-comment">
+    <div class="col-md-1">
+        <img src="{{ app.user.avatar(48) }}" />
+    </div>
+    <div class="col-md-11">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <ul class="nav nav-tabs" role="">
+                    <li class="active"><a>Write</a></li>
+                </ul>
+            </div>
+            <div class="panel-body">
+                {% include 'TempoAppBundle:Comment:create.html.twig' with {'form': form} %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container clearbox">
+    {{ pagerfanta(comments, 'twitter_bootstrap3', pagerRouteOptions) }}
+</div>

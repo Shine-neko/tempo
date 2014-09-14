@@ -39,10 +39,6 @@ class ProjectController extends Controller
      */
     public function dashboardAction()
     {
-        /* set breadcrumb */
-        $breadcrumb  = $this->get('tempo.breadcrumb');
-        $breadcrumb->addChild('Project');
-
         $manager = $this->container->get('tempo.manager.organization');
         $organizations = $manager->findAllByUser($this->getUser()->getId());
 
@@ -72,10 +68,10 @@ class ProjectController extends Controller
      * Finds and displays a Project entity.
      * @return Response
      */
-    public function showAction(Project $project, $_format)
+    public function showAction(Request $request, Project $project, $_format)
     {
+        $page = $request->query->get('page', 1);
         $token = $this->get('form.csrf_provider')->generateCsrfToken('delete-project');
-
         $project  = $this->getProject($project, 'VIEW');
         $organization = $project->getOrganization();
 
@@ -84,17 +80,16 @@ class ProjectController extends Controller
         }
 
         $teamForm = $this->createForm(new TeamType($project));
-
         $data =  array(
-            'teamForm'      => $teamForm->createView(),
-            'project'       => $project,
-            'organization'       => $organization,
-            'csrfToken'     => $token,
-            'tabProvidersRegistry'   => $this->get('tempo.project.tabProvidersRegistry')
+            'page'         => $page,
+            'project'       => $project
         );
-
-        if ($_format == 'json') {
-            $data = array('project' => $project);
+        
+        if ($_format == 'html') {
+            $data['teamForm'] = $teamForm->createView();
+            $data['organization'] = $organization;
+            $data['csrfToken'] = $token;
+            $data['tabProvidersRegistry'] = $this->get('tempo.project.tabProvidersRegistry');
         }
 
         $view = $this->view($data, 200)

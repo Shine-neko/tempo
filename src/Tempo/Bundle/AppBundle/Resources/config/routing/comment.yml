@@ -1,0 +1,22 @@
+comment_list:
+    pattern: /list/{parent}/{type}
+    defaults: { _controller: TempoAppBundle:Comment:list}
+
+comment_create:
+    pattern:  /create
+    defaults: { _controller: TempoAppBundle:Comment:create }
+    requirements:
+        _method:  GET|POST
+
+comment_update:
+    pattern:  /{comment}/update
+    defaults: { _controller: TempoAppBundle:Comment:updated }
+    requirements:
+        _method:  GET|POST
+
+comment_delete:
+    pattern:  /{comment}/delete
+    defaults: { _controller: TempoAppBundle:Comment:delete }
+    requirements:
+        _method:  GET|POST
+

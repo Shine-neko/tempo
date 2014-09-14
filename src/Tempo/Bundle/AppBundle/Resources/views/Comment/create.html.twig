@@ -1,4 +1,5 @@
-<form method="POST" action="{{ path('comment_update', {'comment': comment.id}) }}">
+<form method="POST" action="{{ path('comment_create') }}">
+
     {{ form_widget(form.body) }}
     {{ form_rest(form) }}
 
