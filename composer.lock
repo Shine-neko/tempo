@@ -305,12 +305,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "85fd6247cbec0bd4d7904c2e99087c88c1c1c2a2"
+                "reference": "0d99f152573c2da1a4884cc90a9fdfc038f47f7b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/85fd6247cbec0bd4d7904c2e99087c88c1c1c2a2",
-                "reference": "85fd6247cbec0bd4d7904c2e99087c88c1c1c2a2",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/0d99f152573c2da1a4884cc90a9fdfc038f47f7b",
+                "reference": "0d99f152573c2da1a4884cc90a9fdfc038f47f7b",
                 "shasum": ""
             },
             "require": {
@@ -368,7 +368,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2014-09-03 17:29:21"
+            "time": "2014-09-12 11:47:41"
         },
         {
             "name": "doctrine/doctrine-bundle",
@@ -826,12 +826,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "d9b43dc6492b163fc46f40c0555e2a7015ef5b68"
+                "reference": "f12c311a795b69a5f4853b079b3f8ad2c9867181"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/d9b43dc6492b163fc46f40c0555e2a7015ef5b68",
-                "reference": "d9b43dc6492b163fc46f40c0555e2a7015ef5b68",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/f12c311a795b69a5f4853b079b3f8ad2c9867181",
+                "reference": "f12c311a795b69a5f4853b079b3f8ad2c9867181",
                 "shasum": ""
             },
             "require": {
@@ -893,7 +893,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2014-08-30 02:22:47"
+            "time": "2014-09-12 19:54:45"
         },
         {
             "name": "egeloen/ckeditor-bundle",
@@ -1144,12 +1144,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "094bea6f318fbb067db3ddf6d26a62af0bf13442"
+                "reference": "7001669bccb3fcedfc1c5411ecb2157715e92dd6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/094bea6f318fbb067db3ddf6d26a62af0bf13442",
-                "reference": "094bea6f318fbb067db3ddf6d26a62af0bf13442",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/7001669bccb3fcedfc1c5411ecb2157715e92dd6",
+                "reference": "7001669bccb3fcedfc1c5411ecb2157715e92dd6",
                 "shasum": ""
             },
             "require": {
@@ -1203,7 +1203,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2014-08-23 11:32:38"
+            "time": "2014-09-12 11:18:14"
         },
         {
             "name": "gedmo/doctrine-extensions",
@@ -5164,16 +5164,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.2.5",
+            "version": "4.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "c3abe5953d1e60a0bf23012b1bc8c4d07f4832d7"
+                "reference": "c28a790620fe30b049bb693be1ef9cd4e0fe906c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c3abe5953d1e60a0bf23012b1bc8c4d07f4832d7",
-                "reference": "c3abe5953d1e60a0bf23012b1bc8c4d07f4832d7",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c28a790620fe30b049bb693be1ef9cd4e0fe906c",
+                "reference": "c28a790620fe30b049bb693be1ef9cd4e0fe906c",
                 "shasum": ""
             },
             "require": {
@@ -5234,7 +5234,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-09-06 18:38:27"
+            "time": "2014-09-14 09:31:24"
         },
         {
             "name": "phpunit/phpunit-mock-objects",

@@ -17,12 +17,14 @@
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
     <script type="application/javascript">
-    {% autoescape false %}
-        Tempo.Controller.Dashboard.room = new Tempo.Model.Room({{ currentRoom| serialize | raw }}, {parse:true});
-        Tempo.Controller.Dashboard.user = {{ app.user| serialize | raw }};
-        Tempo.Controller.Dashboard.user.avatar = "{{ app.user.avatar | raw }}";
-        Tempo.Controller.Dashboard.load();
-    {% endautoescape %}
+        {% if currentRoom is not null %}
+        {% autoescape false %}
+            Tempo.Controller.Dashboard.room = new Tempo.Model.Room({{ currentRoom| serialize | raw }}, {parse:true});
+            Tempo.Controller.Dashboard.user = {{ app.user| serialize | raw }};
+            Tempo.Controller.Dashboard.user.avatar = "{{ app.user.avatar | raw }}";
+            Tempo.Controller.Dashboard.load();
+        {% endautoescape %}
+        {% endif %}
     </script>
 {% endblock %}
 
@@ -51,7 +53,7 @@
             </div>
             <div class="col-md-6" id="chat-box">
                 <div class="loader">
-                    <img src="{{ asset('bundles/tempomain/images/loading-bubbles.svg') }}" width="64" height="64">
+                    <img src="{{ asset('bundles/tempoapp/images/loading-bubbles.svg') }}" width="64" height="64">
                 </div>
             </div>
         </div>

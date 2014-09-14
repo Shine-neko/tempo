@@ -49,6 +49,8 @@
     </div>
 </div>
 
-<div class="container clearbox">
-    {{ pagerfanta(comments, 'twitter_bootstrap3', pagerRouteOptions) }}
+<div class="clearbox text-center">
+    {% if comments.haveToPaginate() %}
+        {{ pagerfanta(comments, 'twitter_bootstrap3', pagerRouteOptions) }}
+    {% endif %}
 </div>

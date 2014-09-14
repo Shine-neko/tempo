@@ -2,7 +2,11 @@
 {% block bodyClass %}organization show{% endblock %}
 {% block javascripts %}
     {{ parent() }}
-    <script type="text/javascript" src="{{ asset('bundles/tempoproject/js/views/organizationView.js')}}"></script>
+    {% javascripts
+    '../client/js/src/views/organizationView.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}
 
 {% block container %}
@@ -63,7 +67,7 @@
     <ul class="list-project">
     {% for project in projects %}
         <li>
-            <img class="avatar" src="{{ 'bundles/tempomain/images/default-icon-project.png' | imagine_filter('project_thumb') }}" />
+            <img class="avatar" src="{{ 'bundles/tempoapp/images/default-icon-project.png' | imagine_filter('project_thumb') }}" />
             <div class="board">
                 <h4><a href="{{ path('project_show', { 'slug' :  project.slug } ) }}">{{ project.name }} </a></h4>
                 <p class="project-updated">
