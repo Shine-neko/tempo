@@ -69,6 +69,14 @@ project_activity_list:
     options:
       expose: true
 
+_project_settings:
+    pattern: /settings
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.settings:updateAction
+        namespace: general
+        template: TempoAppBundle:Backend/Settings:general.html.twig
+
 project_show:
     pattern:  /{slug}
     defaults: { _controller: TempoAppBundle:Project:show, _format: html }

@@ -3,5 +3,5 @@ room_show:
     defaults: { _controller: TempoAppBundle:Room:getRoom }
 
 room_list:
-    pattern: /
+    pattern: /list
     defaults: { _controller: TempoAppBundle:Room:getRooms }

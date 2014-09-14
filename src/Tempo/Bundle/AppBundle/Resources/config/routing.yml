@@ -32,14 +32,6 @@ _project:
   resource: "@TempoAppBundle/Resources/config/routing/project.yml"
   prefix:   /project
 
-_project_settings:
-    pattern: /
-    methods: [GET]
-    defaults:
-        _controller: sylius.controller.settings:updateAction
-        namespace: general
-        template: TempoAppBundle:Backend/Settings:general.html.twig
-
 _project_api:
   type: rest
   prefix:   /api/{version}/project
