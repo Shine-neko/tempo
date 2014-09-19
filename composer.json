@@ -41,7 +41,7 @@
         "hwi/oauth-bundle": "0.3.*",
         "jms/serializer-bundle": "0.12.0",
         "wisembly/elephant.io": "dev-master",
-        "ikimea/browser": "dev-master",
+        "ikimea/browser": "1.10.1",
         "yohang/calendr": "1.*",
         "egeloen/ckeditor-bundle": "2.4.0",
         "knplabs/knp-menu-bundle": "~2.0",
