@@ -9,10 +9,11 @@ backend:
 main_room:
   type: rest
   resource: "@TempoAppBundle/Resources/config/routing/room.yml"
+  prefix:   /room
 
 main_room_api:
   type: rest
-  prefix:   /api/{version}
+  prefix:   /api/{version}/room
   resource: "@TempoAppBundle/Resources/config/routing/room_api.yml"
   defaults:
       version: v1

@@ -1,9 +1,15 @@
 {% extends "TempoAppBundle::layout.html.twig" %}
 {% block bodyClass %}project new{% endblock %}
+
 {% block javascripts %}
-  {{ parent() }}
-  <script type="text/javascript" src="{{ asset('bundles/tempoproject/js/views/projectView.js') }}"></script>
-  <script>new Tempo.View.Project(); </script>
+    {{ parent() }}
+    {% javascripts
+        '../client/js/src/views/projectView.js'
+        output="js/project-update.js"
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script>new Tempo.View.Project(); </script>
 {% endblock %}
 
 {% block container %}
