@@ -11,16 +11,13 @@ imports:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    #bundles:        [ ]
     java: %java_bin%
     filters:
         cssrewrite: ~
-        # closure:
-        #     jar: %kernel.root_dir%/java/compiler.jar
-        yui_css:
-             jar: %kernel.root_dir%/../bin/java/yuicompressor.jar
-        yui_js:
-            jar: "%kernel.root_dir%/../bin/java/yuicompressor.jar"
+        uglifycss:
+             bin: %uglifycss_bin%
+        uglifyjs:
+            bin: %uglifyjs_bin%
 
 monolog:
     handlers:

@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     {% stylesheets
         '../client/styles/style.less'
-        filter='less, ?cssrewrite,?yui_css' debug=true
+        filter='less, ?cssrewrite,?uglifycss' debug=true
     %}
     <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
@@ -160,7 +160,7 @@
             '../client/js/routerManager.js'
             '../client/js/app.js'
             '../client/js/behavior.js'
-            filter="?yui_js"
+            filter="?uglifyjs"
             output="js/main.js"
         %}
         <script src="{{ asset_url }}"></script>
