@@ -86,9 +86,9 @@ class MessagesController extends Controller
 
     /**
      * Create a new message
-     * @Post("/room/{room}/message")
+     * @Post("/room/{room}/messages")
      */
-    public function postMessageAction($room, Request $request)
+    public function postMessagesAction($room, Request $request)
     {
         $room = $this->getManager('room')->getRepository()->findRoom($room, $this->getUser()->getId());
 
