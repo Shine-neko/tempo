@@ -151,6 +151,8 @@ $(function() {
     $(document).on('click', '[data-toggle="modal"]', function(e) {
         e.preventDefault();
 
+        $('.navbar-brand').prepend('<div class="loader"><img src="/bundles/tempoapp/images/loading-bubbles.svg" /></div>');
+
         var btn = $(this),
             url = btn.attr('href'),
             title = btn.data('title'),
@@ -176,6 +178,7 @@ $(function() {
                 modal.find('.modal-body').html(data);
             }).success(function() {
                 modal.modal();
+                $('.navbar-brand .loader').remove();
                 $('input:text:visible:first').focus();
             });
         }

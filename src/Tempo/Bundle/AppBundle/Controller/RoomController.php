@@ -11,7 +11,9 @@
 
 namespace Tempo\Bundle\AppBundle\Controller;
 
-use Tempo\Bundle\AppBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Tempo\Bundle\AppBundle\Form\Type\RoomType;
+use Tempo\Bundle\AppBundle\Model\Room;
 
 class RoomController extends Controller
 {
@@ -34,6 +36,27 @@ class RoomController extends Controller
         $rooms = $this->getManager('room')->getRepository()->findRooms($this->getUser()->getId());
 
         return $rooms;
+    }
+
+    public function updateAction(Request $request, Room $room, $_format = 'html')
+    {
+        $form = $this->createForm(new RoomType(), $room);
+
+        if ($form->handleRequest($request)->isValid()) {
+            $this->getManager('project')->save($room);
+            return $this->redirectRoute('homepage');
+        }
+
+        $data = array(
+            'form' => $form->createView(),
+            'room' => $room
+         );
+
+        $view = $this->view($data, 200)
+            ->setFormat('html')
+            ->setTemplate('TempoAppBundle:Room:update.html.twig')
+        ;
+        return $this->handleView($view);
     }
 
 }

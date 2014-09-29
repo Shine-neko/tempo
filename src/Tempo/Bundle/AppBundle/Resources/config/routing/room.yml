@@ -5,3 +5,7 @@ room_show:
 room_list:
     pattern: /list
     defaults: { _controller: TempoAppBundle:Room:getRooms }
+
+room_update:
+    pattern: /{id}/update
+    defaults: { _controller: TempoAppBundle:Room:update, _format: html }

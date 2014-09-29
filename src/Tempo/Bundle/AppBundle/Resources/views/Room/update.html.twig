@@ -1,0 +1,6 @@
+{% block content %}
+<form method="POST" action="{{ path('room_update', {'id': room.id}) }}">
+    {{ form_widget(form) }}
+    <input type="submit" class="btn btn-primary phantomas" />
+</form>
+{% endblock %}

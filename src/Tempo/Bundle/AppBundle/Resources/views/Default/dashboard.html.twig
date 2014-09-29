@@ -44,7 +44,12 @@
         </nav>
         <div id="row-box" class="room-{{ currentRoom.id }}">
             <div class="col-md-6" id="activity-box">
-                <h3 class="homeTitle">{{ 'tempo.activity.dashboard.title'|trans }}</h3>
+                <h3 class="homeTitle">
+                    {{ 'tempo.activity.dashboard.title'|trans }}
+                    <a href="{{ path('room_update', {'id': currentRoom.id}) }}" data-target="#" data-toggle="modal" data-title="Update Room">
+                        <span class="glyphicon glyphicon-wrench"></span>
+                    </a>
+                </h3>
 
                 <div id="room-activity-box">
                     {{ render(controller('TempoAppBundle:ProviderActivity:list', {'type': 'all', 'project': currentRoom.project})) }}

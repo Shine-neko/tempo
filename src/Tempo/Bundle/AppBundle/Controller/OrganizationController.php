@@ -122,7 +122,7 @@ class OrganizationController extends Controller
         }
 
         $organization = new Organization();
-        $organization->addTeam($this->getUser());
+        $organization->addUser($this->getUser());
 
         $form = $this->createForm(new OrganizationType(), $organization);
 
