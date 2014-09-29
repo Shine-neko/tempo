@@ -37,7 +37,7 @@ class TimesheetType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Tempo\Bundle\AppBundle\Entity\Timesheet',
+            'data_class' => 'Tempo\Bundle\AppBundle\Model\Timesheet',
             'csrf_protection' => false,
         ));
     }

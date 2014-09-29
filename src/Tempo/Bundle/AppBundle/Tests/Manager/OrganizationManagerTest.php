@@ -7,7 +7,7 @@ use Tempo\Bundle\AppBundle\Manager\OrganizationManager;
 
 class OrganizationManagerTest extends \PHPUnit_Framework_TestCase
 {
-    const ORGANIZATION_CLASS = 'Tempo\Bundle\AppBundle\Entity\Project';
+    const ORGANIZATION_CLASS = 'Tempo\Bundle\AppBundle\Model\Project';
 
     public function setUp()
     {

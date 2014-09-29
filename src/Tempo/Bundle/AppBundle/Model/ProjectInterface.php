@@ -90,7 +90,7 @@ interface ProjectInterface
     /**
      * Get organization
      *
-     * @return \Tempo\Bundle\AppBundle\Entity\Organization
+     * @return \Tempo\Bundle\AppBundle\Model\Organization
      */
     public function getOrganization();
 
@@ -223,7 +223,7 @@ interface ProjectInterface
      * @param  \Tempo\Bundle\UserBundle\Entity\User $membre
      * @return mixed
      */
-    public function addTeam( $user);
+    public function addUser($user);
 
     /**
      * Add children

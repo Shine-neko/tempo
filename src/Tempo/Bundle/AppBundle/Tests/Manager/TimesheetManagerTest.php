@@ -8,7 +8,7 @@ use CalendR\Period\Week;
 
 class TimesheetManagerTest extends \PHPUnit_Framework_TestCase
 {
-    const TIMESHEET_CLASS = 'Tempo\Bundle\AppBundle\Entity\Timesheet';
+    const TIMESHEET_CLASS = 'Tempo\Bundle\AppBundle\Model\Timesheet';
 
     public function setUp()
     {

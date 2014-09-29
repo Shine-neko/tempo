@@ -11,7 +11,7 @@
 
 namespace Tempo\Bundle\AppBundle\Manager;
 
-use Tempo\Bundle\AppBundle\Entity\Activity;
+use Tempo\Bundle\AppBundle\Model\Activity;
 
 class ActivityManager extends BaseManager
 {
@@ -24,7 +24,7 @@ class ActivityManager extends BaseManager
             ->setAuthor($actor)
             ->setAction($action)
             ->setTarget($target)
-            ->setTargetType($reflected->getShortName());
+            ->setType($reflected->getShortName());
 
         $this->save($event);
     }

@@ -13,7 +13,7 @@
 namespace Tempo\Bundle\AppBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use Tempo\Bundle\AppBundle\Entity\Activity;
+use Tempo\Bundle\AppBundle\Model\Activity;
 
 /**
  * ActivityRepository
@@ -37,7 +37,7 @@ class ActivityRepository extends EntityRepository
         $query->leftJoin('e.author', 'a');
 
         if (null !== $type) {
-            $query->where('e.targetType = :type');
+            $query->where('e.type = :type');
             $query->setParameter('type', $type);
         }
 

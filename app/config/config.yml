@@ -35,7 +35,6 @@ assetic:
             node_paths: [%node_modules%]
             apply_to: "\.less$"
 
-
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -53,15 +52,18 @@ doctrine:
             default:
                 auto_mapping: true
                 mappings:
+                    TempoAppBundle:
+                        prefix: Tempo\Bundle\AppBundle\Model
+                        is_bundle: true
+                        type: xml
+                        alias: TempoAppBundle
                     StofDoctrineExtensionsBundle: true
                     gedmo_loggable:
                         type: annotation
                         prefix: Gedmo\Loggable\Entity
-                        dir: "%kernel.root_dir%/../src/Tempo/Bundle/AppBundle/Entity/"
+                        dir: "%kernel.root_dir%/../src/Tempo/Bundle/AppBundle/Model/"
                         alias: GedmoLoggable
                         is_bundle: false
-
-
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -69,3 +71,17 @@ swiftmailer:
     host:      %mailer_host%
     username:  %mailer_user%
     password:  %mailer_password%
+    spool:     { type: memory }
+
+# app/config/config.yml
+stof_doctrine_extensions:
+    default_locale: en_US
+    orm:
+        default:
+            tree: true
+            timestampable: true
+            sluggable: true
+
+
+#tempo_app:
+#  db_driver: orm

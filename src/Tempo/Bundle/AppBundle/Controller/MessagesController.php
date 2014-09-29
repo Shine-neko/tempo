@@ -22,8 +22,8 @@ use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\Get;
 
 use Tempo\Bundle\AppBundle\Controller\Controller;
-use Tempo\Bundle\AppBundle\Entity\ChatMessage;
-use Tempo\Bundle\AppBundle\Entity\Room;
+use Tempo\Bundle\AppBundle\Model\ChatMessage;
+use Tempo\Bundle\AppBundle\Model\Room;
 use Tempo\Bundle\AppBundle\Form\Type\ChatMessageType;
 
 

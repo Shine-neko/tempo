@@ -11,7 +11,7 @@
 
 namespace Tempo\Bundle\AppBundle\Manager;
 
-use Tempo\Bundle\AppBundle\Entity\Room;
+use Tempo\Bundle\AppBundle\Model\Room;
 
 /**
  *

@@ -7,7 +7,7 @@ use Tempo\Bundle\AppBundle\Manager\ProjectManager;
 
 class ProjectManagerTest extends \PHPUnit_Framework_TestCase
 {
-    const PROJECT_CLASS = 'Tempo\Bundle\AppBundle\Entity\Project';
+    const PROJECT_CLASS = 'Tempo\Bundle\AppBundle\Model\Project';
 
     public function setUp()
     {

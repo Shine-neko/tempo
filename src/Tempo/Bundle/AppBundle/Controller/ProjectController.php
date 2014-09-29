@@ -20,9 +20,8 @@ use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\View\View;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
-use Tempo\Bundle\AppBundle\Controller\Controller;
-use Tempo\Bundle\AppBundle\Entity\Project;
-use Tempo\Bundle\AppBundle\Entity\Organization;
+use Tempo\Bundle\AppBundle\Model\Project;
+use Tempo\Bundle\AppBundle\Model\Organization;
 use Tempo\Bundle\AppBundle\Form\Type\ProjectType;
 use Tempo\Bundle\AppBundle\TempoProjectEvents;
 use Tempo\Bundle\AppBundle\Event\ProjectEvent;
@@ -112,7 +111,6 @@ class ProjectController extends Controller
 
         $project  = new Project();
         $project->setOrganization($organization);
-        $project->addTeam($this->getUser());
         $project = $this->getParent($project);
 
         $form  = $this->createForm(new ProjectType(), $project, array('user_id' => $this->getUser()->getId() ));
@@ -122,6 +120,11 @@ class ProjectController extends Controller
             $this->get('event_dispatcher')->dispatch(TempoProjectEvents::PROJECT_CREATE_INITIALIZE, $event);
 
             $this->getManager('project')->save($project);
+
+            $project->addUser($this->getUser());
+            $this->getManager('project')->save($project);
+
+
             $this->getAclManager()->addObjectPermission($project, MaskBuilder::MASK_OWNER); //set Permission
             $this->get('event_dispatcher')->dispatch(TempoProjectEvents::PROJECT_CREATE_SUCCESS, $event);
             $this->addFlash('success', 'project.success_create', 'TempoProject');
@@ -130,7 +133,8 @@ class ProjectController extends Controller
         }
 
         return $this->render('TempoAppBundle:Project:create.html.twig', array(
-            'form'   => $form->createView()
+            'form'   => $form->createView(),
+            'organization' => $organization
         ));
     }
 
@@ -190,7 +194,7 @@ class ProjectController extends Controller
     {
         $project = $this->getProject($project, 'EDIT');
 
-        $repo = $this->getDoctrine()->getRepository('Tempo\Bundle\AppBundle\Entity\LogEntry');
+        $repo = $this->getDoctrine()->getRepository('Tempo\Bundle\AppBundle\Model\LogEntry');
         $logs = $repo->getLogEntries($project);
 
         return $this->render('TempoAppBundle:Project:versions.html.twig', array(

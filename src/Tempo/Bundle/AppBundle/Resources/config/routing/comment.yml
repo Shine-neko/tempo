@@ -3,7 +3,7 @@ comment_list:
     defaults: { _controller: TempoAppBundle:Comment:list}
 
 comment_create:
-    pattern:  /create
+    pattern:  /create/{type}/{parent}
     defaults: { _controller: TempoAppBundle:Comment:create }
     requirements:
         _method:  GET|POST

@@ -11,8 +11,8 @@
 
 namespace Tempo\Bundle\AppBundle\Event;
 
-use Tempo\Bundle\AppBundle\Entity\Organization;
-use Tempo\Bundle\AppBundle\Entity\Project;
+use Tempo\Bundle\AppBundle\Model\Organization;
+use Tempo\Bundle\AppBundle\Model\Project;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Request;
 use Tempo\Bundle\UserBundle\Entity\User;

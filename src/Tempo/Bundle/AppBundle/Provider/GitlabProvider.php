@@ -12,7 +12,7 @@
 namespace Tempo\Bundle\AppBundle\Provider;
 
 use Symfony\Component\HttpFoundation\Request;
-use Tempo\Bundle\AppBundle\Entity\ActivityProvider;
+use Tempo\Bundle\AppBundle\Model\ActivityProvider;
 use Doctrine\Common\Inflector\Inflector;
 
 class GitlabProvider implements ProviderInterface

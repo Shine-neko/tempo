@@ -14,7 +14,7 @@ namespace Tempo\Bundle\AppBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Tempo\Bundle\AppBundle\Entity\Room;
+use Tempo\Bundle\AppBundle\Model\Room;
 
 class LoadRoomData extends AbstractFixture implements OrderedFixtureInterface
 {
@@ -35,7 +35,6 @@ class LoadRoomData extends AbstractFixture implements OrderedFixtureInterface
         foreach ($rooms as $name) {
             $room = new Room();
             $room->setName($name);
-            $room->setProject($this->getReference('project'.$i));
 
             $manager->persist($room);
             $manager->flush();

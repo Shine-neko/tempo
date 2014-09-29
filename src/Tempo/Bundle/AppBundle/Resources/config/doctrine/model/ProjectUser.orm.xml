@@ -6,13 +6,13 @@
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
 
-    <entity name="Tempo\Bundle\AppBundle\Entity\ProjectUser" table="tempo_project_user">
+    <entity name="Tempo\Bundle\AppBundle\Model\ProjectUser" table="tempo_project_user">
 
         <id name="project" type="integer" association-key="true" />
         <id name="user" type="integer" association-key="true" />
         <field name="role" type="integer" />
 
-        <many-to-one field="project" target-entity="Tempo\Bundle\AppBundle\Entity\Project" />
+        <many-to-one field="project" target-entity="Tempo\Bundle\AppBundle\Model\Project" />
         <many-to-one field="user" target-entity="Tempo\Bundle\UserBundle\Entity\User" />
 
         <field name="createdAt" column="created_at" type="date" nullable="false">

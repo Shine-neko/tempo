@@ -35,7 +35,7 @@ class ProviderFormType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Tempo\Bundle\AppBundle\Entity\ProjectProvider',
+            'data_class' => 'Tempo\Bundle\AppBundle\Model\ProjectProvider',
         ));
     }
 

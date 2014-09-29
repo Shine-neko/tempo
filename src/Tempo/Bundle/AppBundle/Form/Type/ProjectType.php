@@ -14,9 +14,7 @@ namespace Tempo\Bundle\AppBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Tempo\Bundle\AppBundle\Repository\OrganizationRepository;
 use Tempo\Bundle\AppBundle\Repository\ProjectTypeRepository;
-use Tempo\Bundle\AppBundle\Entity\Project;
 
 class ProjectType extends AbstractType
 {
@@ -73,7 +71,7 @@ class ProjectType extends AbstractType
     {
         $resolver->setDefaults(array(
             'user_id' => null,
-            'data_class' => 'Tempo\Bundle\AppBundle\Entity\Project',
+            'data_class' => 'Tempo\Bundle\AppBundle\Model\Project',
         ));
     }
 

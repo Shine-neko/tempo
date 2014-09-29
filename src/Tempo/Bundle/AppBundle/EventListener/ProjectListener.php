@@ -34,6 +34,11 @@ class ProjectListener
         $project = $event->getProject();
 
         //create room
-        $this->roomManager->create($project->getName(), $project);
+        $room = $this->roomManager->create($project->getName(), $project);
+        foreach($project->getTeam() as $user) {
+            $room->addUser($user->getUser(), $user->getRole());
+        }
+
+        $this->roomManager->save($room);
     }
 }

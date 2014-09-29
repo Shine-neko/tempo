@@ -20,16 +20,6 @@
             </h1>
 
             <hr />
-
-            <div class="card-orgs">
-                <h4>Organizations</h4>
-                <ul>
-                    {% for org in organizations %}
-                    <li><img src="{{ org.avatar(36) }}" alt="{{ org.name }}"</li>
-                    {% endfor %}
-                </ul>
-            </div>
-
         </div>
         <div class="col-md-8 app-panel">
             <ul class="nav nav-tabs" id="myTab">

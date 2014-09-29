@@ -13,7 +13,7 @@ namespace Tempo\Bundle\AppBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Tempo\Bundle\AppBundle\Model\TeamInterface;
-use Tempo\Bundle\AppBundle\Entity\ProjectUser as EntityProjectUser;
+use Tempo\Bundle\AppBundle\Model\ProjectUser as EntityProjectUser;
 
 /**
  * Project Model
@@ -141,6 +141,11 @@ class Project implements ProjectInterface
      */
     protected $providers;
 
+    /**
+     * @var Collection
+     */
+    protected $comments;
+
     public function __construct()
     {
         $this->active = true;
@@ -149,6 +154,7 @@ class Project implements ProjectInterface
         $this->children = new ArrayCollection();
         $this->parents = new ArrayCollection();
         $this->providers = new ArrayCollection();
+        $this->createdAt = new \DateTime();
     }
 
     public function __toString()
@@ -482,10 +488,9 @@ class Project implements ProjectInterface
     /**
      * {@inheritdoc}
      */
-    public function addTeam($user, $role = TeamInterface::TYPE_USER)
+    public function addUser($user, $role = TeamInterface::TYPE_USER)
     {
         $this->team[] = new EntityProjectUser($this, $user, $role);
-
         return $this;
     }
 

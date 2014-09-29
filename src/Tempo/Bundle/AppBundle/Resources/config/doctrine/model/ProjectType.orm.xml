@@ -6,7 +6,7 @@
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
 
-    <entity name="Tempo\Bundle\AppBundle\Entity\ProjectType" repository-class="Tempo\Bundle\AppBundle\Repository\ProjectTypeRepository" table="tempo_project_type">
+    <entity name="Tempo\Bundle\AppBundle\Model\ProjectType" repository-class="Tempo\Bundle\AppBundle\Repository\ProjectTypeRepository" table="tempo_project_type">
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO" />
         </id>

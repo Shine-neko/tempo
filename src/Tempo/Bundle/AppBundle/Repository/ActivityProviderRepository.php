@@ -13,7 +13,7 @@
 namespace Tempo\Bundle\AppBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use Tempo\Bundle\AppBundle\Entity\Project;
+use Tempo\Bundle\AppBundle\Model\Project;
 
 /**
  * ActivityRepository

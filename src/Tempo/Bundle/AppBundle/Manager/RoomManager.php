@@ -11,7 +11,7 @@
 
 namespace Tempo\Bundle\AppBundle\Manager;
 
-use Tempo\Bundle\AppBundle\Entity\Room;
+use Tempo\Bundle\AppBundle\Model\Room;
 /**
  *
  * @author Mlanawo Mbechezi <mlanawo.mbechezi@ikimea.com>
@@ -24,7 +24,7 @@ class RoomManager extends BaseManager
         $room->setName($name);
         $room->setProject($project);
 
-        $this->save($room);
+        return $this->save($room);
     }
 
     public function findRoomWithProject($project)

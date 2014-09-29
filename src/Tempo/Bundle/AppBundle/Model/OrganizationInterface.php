@@ -74,7 +74,7 @@ interface OrganizationInterface
     /**
      * Get projects
      *
-     * @return \Tempo\Bundle\AppBundle\Entity\Project
+     * @return \Tempo\Bundle\AppBundle\Model\Project
      */
     public function getProjects();
 
@@ -139,7 +139,7 @@ interface OrganizationInterface
     /**
      * Add projects
      *
-     * @param \Tempo\Bundle\AppBundle\Entity\Project $project
+     * @param \Tempo\Bundle\AppBundle\Model\Project $project
      */
     public function addProject($project);
 

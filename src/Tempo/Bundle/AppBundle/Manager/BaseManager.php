@@ -86,6 +86,8 @@ abstract class BaseManager
         if ($doFlush) {
             $this->em->flush();
         }
+
+        return $entity;
     }
 
     public function remove($entity, $doFlush = true)

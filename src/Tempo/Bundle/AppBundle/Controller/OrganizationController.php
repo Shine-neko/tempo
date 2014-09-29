@@ -15,9 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
-
-use Tempo\Bundle\AppBundle\Controller\Controller;
-use Tempo\Bundle\AppBundle\Entity\Organization;
+use Tempo\Bundle\AppBundle\Model\Organization;
 use Tempo\Bundle\AppBundle\Form\Type\OrganizationType;
 use Tempo\Bundle\AppBundle\TempoProjectEvents;
 use Tempo\Bundle\AppBundle\Event\OrganizationEvent;

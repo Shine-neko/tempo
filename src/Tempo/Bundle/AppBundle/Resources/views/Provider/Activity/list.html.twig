@@ -1,7 +1,7 @@
 <div  class="events-push">
     {% for activity in activities %}
         {% if activity.targetType is defined %}
-            {% set target = activity.targetType %}
+            {% set target = activity.type %}
         {% else %}
             {% set target = activity.provider.name %}
         {% endif %}

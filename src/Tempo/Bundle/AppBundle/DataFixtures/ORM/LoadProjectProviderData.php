@@ -15,7 +15,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
-use Tempo\Bundle\AppBundle\Entity\ProjectProvider;
+use Tempo\Bundle\AppBundle\Model\ProjectProvider;
 
 class LoadProjectProviderData extends AbstractFixture implements OrderedFixtureInterface
 {

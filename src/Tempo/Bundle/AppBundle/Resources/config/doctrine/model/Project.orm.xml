@@ -6,7 +6,7 @@
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
 
-    <entity name="Tempo\Bundle\AppBundle\Entity\Project" repository-class="Tempo\Bundle\AppBundle\Repository\ProjectRepository" table="tempo_project">
+    <entity name="Tempo\Bundle\AppBundle\Model\Project" repository-class="Tempo\Bundle\AppBundle\Repository\ProjectRepository" table="tempo_project">
 
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO" />
@@ -27,10 +27,10 @@
                 </gedmo:handler>
             </gedmo:slug>
         </field>
-        <field name="createdAt" type="datetime">
-            <gedmo:timestampable on="create"/>
+        <field name="createdAt" type="datetime" column="created_at">
+            <gedmo:timestampable on="create" column="code"/>
         </field>
-        <field name="updatedAt" type="datetime">
+        <field name="updatedAt" type="datetime" column="updated_at">
             <gedmo:timestampable on="update"/>
         </field>
 
@@ -49,25 +49,20 @@
 
         <field name="budget_estimated" column="budget_estimated" type="decimal" nullable="true" />
 
-        <lifecycle-callbacks>
-            <lifecycle-callback type="prePersist" method="prePersist"/>
-            <lifecycle-callback type="preUpdate" method="preUpdate"/>
-        </lifecycle-callbacks>
-
         <one-to-many field="children" target-entity="Project" mapped-by="parent" />
         <many-to-one field="parent" target-entity="Project" inversed-by="children" orphan-removal="true" />
 
         <many-to-one field="organization" inversed-by="projects" target-entity="Organization" />
         <one-to-many field="timesheets" target-entity="Timesheet" mapped-by="project" />
         <one-to-one field="type" target-entity="ProjectType" />
-        <one-to-many field="team" target-entity="Tempo\Bundle\AppBundle\Entity\ProjectUser" mapped-by="project">
+        <one-to-many field="team" target-entity="Tempo\Bundle\AppBundle\Model\ProjectUser" mapped-by="project">
             <cascade>
                 <cascade-all/>
             </cascade>
         </one-to-many>
 
         <one-to-many field="providers" target-entity="ProjectProvider" mapped-by="project" />
-        <gedmo:loggable log-entry-class="Tempo\Bundle\AppBundle\Entity\LogEntry"/>
+        <gedmo:loggable log-entry-class="Tempo\Bundle\AppBundle\Model\LogEntry"/>
 
     </entity>
 

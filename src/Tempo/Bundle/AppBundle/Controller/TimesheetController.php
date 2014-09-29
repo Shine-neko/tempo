@@ -20,12 +20,11 @@ use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\View\View;
 use CalendR\Period\Week;
 
-use Tempo\Bundle\AppBundle\Controller\Controller;
 use Tempo\Bundle\AppBundle\Form\Type\TimesheetType;
 use Tempo\Bundle\AppBundle\Filter\Type\TimesheetFilterType;
 use Tempo\Bundle\AppBundle\Form\Type\TimesheetExportType;
 use Tempo\Bundle\AppBundle\Export\Excel as ExportCVS;
-use Tempo\Bundle\AppBundle\Entity\Timesheet;
+use Tempo\Bundle\AppBundle\Model\Timesheet;
 
 /**
  * Timesheet controller.

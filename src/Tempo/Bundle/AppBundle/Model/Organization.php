@@ -16,7 +16,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
 * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
 */
-abstract class Organization implements OrganizationInterface
+class Organization implements OrganizationInterface
 {
     /**
      * @var integer $id

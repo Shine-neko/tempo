@@ -11,38 +11,50 @@
 
 namespace Tempo\Bundle\AppBundle\Controller;
 
-use Tempo\Bundle\AppBundle\Entity\Project;
 use Symfony\Component\HttpFoundation\Request;
+use Tempo\Bundle\AppBundle\Model\Project;
 use Tempo\Bundle\AppBundle\TempoAppEvents;
 use Tempo\Bundle\AppBundle\Event\CommentEvent;
 use Tempo\Bundle\AppBundle\Form\Type\CommentType;
-use Tempo\Bundle\AppBundle\Entity\Comment;
+use Tempo\Bundle\AppBundle\Model\Comment;
+use Tempo\Bundle\AppBundle\Model\Activity;
 
 class CommentController extends Controller
 {
     public function listAction(Request $request, $type, $parent)
     {
         $page = $request->query->get('page', 1);
-        $comments = $this->getManager('comment')->getRepository()->findAllWithType($type);
+        $comments = $this->getManager('comment')->getRepository()->findAllWithType($parent, $type);
         $form = $this->createForm(new CommentType());
 
         return $this->render('TempoAppBundle:Comment:list.html.twig', array(
             'comments' => $this->getPaginator($comments, $page),
             'form' => $form->createView(),
+            'type' => $type,
+            'parent' => $parent,
             'pagerRouteOptions' => $this->getPagerRouteOptions($type, $parent)
         ));
     }
 
-    public function createAction(Request $request)
+    public function createAction(Request $request, $type, $parent)
     {
         $comment = new Comment();
         $comment->setAuthor($this->getUser());
+
+        if ($type == 'project') {
+            $project =  $this->getManager('project')->find($parent);
+            $comment->setProject($project);
+        }
+
+
         $event = new CommentEvent($request, $comment);
         $form = $this->createForm(new CommentType(), $comment);
 
         if ($form->handleRequest($request)->isValid()) {
             $this->get('event_dispatcher')->dispatch(TempoAppEvents::COMMENT_CREATE_INITIALIZE, $event);
             $this->getManager('comment')->save($comment);
+
+            $this->getManager('activity')->build($this->getUser(), Activity::ACTIVITY_CREATE_COMMENT, $comment);
             $this->get('event_dispatcher')->dispatch(TempoAppEvents::COMMENT_CREATE_SUCCESS, $event);
         }
 

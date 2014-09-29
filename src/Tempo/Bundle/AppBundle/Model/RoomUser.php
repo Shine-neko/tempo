@@ -15,10 +15,11 @@ class RoomUser extends Team
 {
     protected $room;
 
-    public function __construct($room, $user, $createdAt)
+    public function __construct($room, $user, $role)
     {
         $this->room = $room;
         $this->user = $user;
-        $this->createdAt = $createdAt;
+        $this->role = $role;
+        $this->createdAt = new \DateTime();
     }
 }

@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 
-use Tempo\Bundle\AppBundle\Entity\Project;
+use Tempo\Bundle\AppBundle\Model\Project;
 
 class LoadProjectData extends AbstractFixture implements ContainerAwareInterface, OrderedFixtureInterface
 {

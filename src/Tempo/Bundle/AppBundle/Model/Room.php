@@ -13,7 +13,7 @@ namespace Tempo\Bundle\AppBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
-abstract class Room
+class Room
 {
     /**
      * @var integer
@@ -115,10 +115,22 @@ abstract class Room
         return $this->team;
     }
 
+    public function setTeam($team)
+    {
+        $this->team = $team;
+        return $this;
+    }
+
     /**
      * {@inheritdoc}
+     * @deprecated
      */
     public function addTeam($user, $role)
+    {
+        $this->addUser($user, $role);
+    }
+
+    public function addUser($user, $role = 'ROLE_USER')
     {
         $this->team[] = new RoomUser($this, $user, $role);
     }

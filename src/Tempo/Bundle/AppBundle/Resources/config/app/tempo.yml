@@ -9,7 +9,7 @@ sylius_resource:
       tempo_backend.project:
          driver: doctrine/orm
          classes:
-            model: Tempo\Bundle\AppBundle\Entity\Project
+            model: Tempo\Bundle\AppBundle\Model\Project
 
       tempo_backend.user:
           driver: doctrine/orm

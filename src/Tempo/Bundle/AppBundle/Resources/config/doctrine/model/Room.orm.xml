@@ -6,7 +6,7 @@
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
 
-    <entity name="Tempo\Bundle\AppBundle\Entity\Room" repository-class="Tempo\Bundle\AppBundle\Repository\RoomRepository" table="tempo_room">
+    <entity name="Tempo\Bundle\AppBundle\Model\Room" repository-class="Tempo\Bundle\AppBundle\Repository\RoomRepository" table="tempo_room">
 
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO" />
@@ -24,13 +24,13 @@
             </cascade>
         </one-to-many>
 
-        <one-to-many field="team" target-entity="Tempo\Bundle\AppBundle\Entity\RoomUser" mapped-by="room">
+        <one-to-many field="team" target-entity="Tempo\Bundle\AppBundle\Model\RoomUser" mapped-by="room">
             <cascade>
                 <cascade-all/>
             </cascade>
         </one-to-many>
 
-        <many-to-one field="project" target-entity="Tempo\Bundle\AppBundle\Entity\Project" nullable="true" />
+        <many-to-one field="project" target-entity="Tempo\Bundle\AppBundle\Model\Project" nullable="true" />
 
     </entity>
 

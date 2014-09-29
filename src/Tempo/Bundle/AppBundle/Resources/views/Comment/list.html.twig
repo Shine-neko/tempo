@@ -43,7 +43,7 @@
                 </ul>
             </div>
             <div class="panel-body">
-                {% include 'TempoAppBundle:Comment:create.html.twig' with {'form': form} %}
+                {% include 'TempoAppBundle:Comment:create.html.twig' with {'parent' : parent, 'type' : type, 'form': form} %}
             </div>
         </div>
     </div>

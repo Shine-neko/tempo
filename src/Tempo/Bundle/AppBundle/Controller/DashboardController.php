@@ -25,18 +25,13 @@ class DashboardController extends Controller
      */
     public function mainAction(Request $request)
     {
+        $currentRoom = null;
         $manager = $this->getManager('room');
         $form  = $this->createForm(new ChatMessageType());
 
-        try {
-            $rooms = $manager->getRepository()->findRooms($this->getUser()->getId());
+        $rooms = $manager->getRepository()->findRooms($this->getUser()->getId());
 
-        } catch (\Exception $e) {
-            $currentRoom = null;
-            $rooms = null;
-        }
-
-        if ($rooms !== null) {
+        if ($rooms != null) {
             $roomId = $request->query->get('currentRoom', $rooms[0]->getId());
             $request->getSession()->set('currentRoom', $roomId);
             $currentRoom = $this->getManager('room')->find( $request->getSession()->get('currentRoom'));

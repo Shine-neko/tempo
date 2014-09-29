@@ -6,7 +6,7 @@
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
 
-    <entity name="Tempo\Bundle\AppBundle\Entity\ActivityProvider" repository-class="Tempo\Bundle\AppBundle\Repository\ActivityProviderRepository" table="tempo_activity_provider">
+    <entity name="Tempo\Bundle\AppBundle\Model\ActivityProvider" repository-class="Tempo\Bundle\AppBundle\Repository\ActivityProviderRepository" table="tempo_activity_provider">
 
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO" />
@@ -18,7 +18,7 @@
         <field name="message" column="message" type="string"  nullable="false"  />
         <field name="parameters" column="parameters" type="json_array"  nullable="true"  />
 
-        <many-to-one field="provider" inversed-by="activities" target-entity="Tempo\Bundle\AppBundle\Entity\ProjectProvider" />
+        <many-to-one field="provider" inversed-by="activities" target-entity="Tempo\Bundle\AppBundle\Model\ProjectProvider" />
 
     </entity>
 

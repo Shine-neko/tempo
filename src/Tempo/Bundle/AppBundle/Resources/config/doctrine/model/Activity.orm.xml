@@ -5,7 +5,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="Tempo\Bundle\AppBundle\Entity\Comment" repository-class="Tempo\Bundle\AppBundle\Repository\CommentRepository" table="tempo_comment">
+<entity name="Tempo\Bundle\AppBundle\Model\Activity" repository-class="Tempo\Bundle\AppBundle\Repository\ActivityRepository" table="tempo_activity">
 
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO" />
@@ -14,12 +14,11 @@
         <field name="createdAt" type="datetime">
             <gedmo:timestampable on="create"/>
         </field>
-        <field name="updatedAt" type="datetime">
-            <gedmo:timestampable on="create"/>
-        </field>
-        <field name="body" column="body" type="text"  nullable="true"  />
+        <field name="action" column="action" type="string"  nullable="true"  />
+        <field name="data" column="data" type="string"  nullable="true"  />
+        <field name="type" column="target_type" type="string"  nullable="true"  />
+
         <many-to-one field="author" target-entity="Tempo\Bundle\UserBundle\Entity\User" />
-        <many-to-one field="project" inversed-by="comments" target-entity="Project" />
 
     </entity>
 

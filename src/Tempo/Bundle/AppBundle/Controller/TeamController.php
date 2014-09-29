@@ -42,7 +42,7 @@ class TeamController extends Controller
 
             $event = new TeamEvent($request, $objectManager['model'], $user, $this->getUser());
 
-            $objectManager['model']->addTeam($user);
+            $objectManager['model']->addUser($user);
             $objectManager['manager']->save($objectManager['model']);
             $this->getAclManager()->addObjectPermission($objectManager['model'], MaskBuilder::MASK_VIEW); //set Permission
 

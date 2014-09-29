@@ -45,7 +45,7 @@ class OrganizationType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class'      => 'Tempo\Bundle\AppBundle\Entity\Organization',
+            'data_class'      => 'Tempo\Bundle\AppBundle\Model\Organization',
         ));
     }
 

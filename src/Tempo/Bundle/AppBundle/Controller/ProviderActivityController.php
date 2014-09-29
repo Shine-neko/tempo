@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Tempo\Bundle\AppBundle\Form\Type\ActivityFormType;
 use Tempo\Bundle\AppBundle\Controller\Controller;
-use Tempo\Bundle\AppBundle\Entity\Project;
+use Tempo\Bundle\AppBundle\Model\Project;
 use Tempo\Bundle\AppBundle\TempoProjectEvents;
 use Tempo\Bundle\AppBundle\Event\ActivityProviderEvent;
 

@@ -16,14 +16,17 @@ use Doctrine\ORM\Query;
 
 class CommentRepository extends EntityRepository
 {
-    public function findAllWithType($type)
+    public function findAllWithType($parent, $type)
     {
         $query = $this->createQueryBuilder('comment')
             ->select('comment');
 
         switch ($type) {
             case 'project':
-                $query->leftJoin('comment.project', 'project');
+                $query
+                    ->leftJoin('comment.project', 'project')
+                    ->where('project = :project')
+                    ->setParameter('project', $parent);
                 break;
         }
 

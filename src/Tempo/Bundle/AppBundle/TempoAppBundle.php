@@ -13,6 +13,7 @@ namespace Tempo\Bundle\AppBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass;
 use Tempo\Bundle\AppBundle\DependencyInjection\CompilerPass\OverrideServiceCompilerPass;
 use Tempo\Bundle\AppBundle\DependencyInjection\CompilerPass\ProjectTabRegistryCompilerPass;
 use Tempo\Bundle\AppBundle\DependencyInjection\CompilerPass\RegisterProviderPass;
@@ -29,5 +30,20 @@ class TempoAppBundle extends Bundle
         $container->addCompilerPass(new OverrideServiceCompilerPass());
         $container->addCompilerPass(new RegisterProviderPass());
         $container->addCompilerPass(new ProjectTabRegistryCompilerPass());
+
+        $mappings = array(
+            realpath(__DIR__ . '/Resources/config/doctrine/model') => 'Tempo\Bundle\AppBundle\Model',
+        );
+
+        $ormCompilerClass = 'Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass';
+
+        if (class_exists($ormCompilerClass)) {
+            $container->addCompilerPass(
+                DoctrineOrmMappingsPass::createXmlMappingDriver(
+                    $mappings,
+                    array('tempo_app.model_manager_name'),
+                    'tempo_app.backend_type_orm'
+                ));
+        }
     }
 }

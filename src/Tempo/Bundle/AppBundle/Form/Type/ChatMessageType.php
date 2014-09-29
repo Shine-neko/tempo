@@ -20,7 +20,7 @@ class ChatMessageType extends AbstractType
     {
         $resolver->setDefaults(
             array(
-                'data_class' => 'Tempo\Bundle\AppBundle\Entity\ChatMessage',
+                'data_class' => 'Tempo\Bundle\AppBundle\Model\ChatMessage',
                 'csrf_protection' => false
             )
         );

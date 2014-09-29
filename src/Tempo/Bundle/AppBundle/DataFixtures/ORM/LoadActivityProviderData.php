@@ -16,7 +16,7 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
 
-use Tempo\Bundle\AppBundle\Entity\ActivityProvider;
+use Tempo\Bundle\AppBundle\Model\ActivityProvider;
 
 class LoadActivityProviderData extends AbstractFixture implements OrderedFixtureInterface
 {

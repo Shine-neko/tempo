@@ -6,16 +6,16 @@
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
 
-    <entity name="Tempo\Bundle\AppBundle\Entity\RoomUser" table="tempo_room_user">
+    <entity name="Tempo\Bundle\AppBundle\Model\RoomUser" table="tempo_room_user">
 
         <id name="room" type="integer" association-key="true" />
         <id name="user" type="integer" association-key="true" />
         <field name="role" type="integer" />
 
-        <many-to-one field="room" target-entity="Tempo\Bundle\AppBundle\Entity\Room" />
+        <many-to-one field="room" target-entity="Tempo\Bundle\AppBundle\Model\Room" />
         <many-to-one field="user" target-entity="Tempo\Bundle\UserBundle\Entity\User" />
 
-        <field name="createdAt" column="created_at" type="date" nullable="false"  >
+        <field name="createdAt" column="created_at" type="datetime" nullable="false"  >
             <gedmo:timestampable on="create"/>
         </field>
 

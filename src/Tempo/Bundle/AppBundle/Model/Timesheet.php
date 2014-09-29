@@ -235,7 +235,7 @@ abstract class Timesheet implements TimesheetInterface
     /**
      * Get project
      *
-     * @return \Tempo\Bundle\AppBundle\Entity\Project
+     * @return \Tempo\Bundle\AppBundle\Model\Project
      */
     public function getProject()
     {

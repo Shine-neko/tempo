@@ -1,4 +1,4 @@
-Tempo\AppBundle\Entity\Organization:
+Tempo\AppBundle\Model\Organization:
     properties:
         name:
             - NotBlank: ~
