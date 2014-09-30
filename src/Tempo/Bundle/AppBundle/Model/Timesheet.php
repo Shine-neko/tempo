@@ -14,7 +14,7 @@ namespace Tempo\Bundle\AppBundle\Model;
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
-abstract class Timesheet implements TimesheetInterface
+class Timesheet implements TimesheetInterface
 {
     /**
      * @var integer

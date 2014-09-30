@@ -36,7 +36,6 @@ class Room
     protected $team;
 
     protected $project;
-
     /**
      * @var Collection
      */
@@ -123,13 +122,7 @@ class Room
 
     /**
      * {@inheritdoc}
-     * @deprecated
      */
-    public function addTeam($user, $role)
-    {
-        $this->addUser($user, $role);
-    }
-
     public function addUser($user, $role = 'ROLE_USER')
     {
         $this->team[] = new RoomUser($this, $user, $role);
@@ -140,8 +133,7 @@ class Room
      */
     public function setProject($project)
     {
-        $this->project = $project;
-
+        $this->project  = $project;
         return $this;
     }
 
@@ -151,5 +143,11 @@ class Room
     public function getProject()
     {
         return $this->project;
+    }
+
+
+    public function __call($method, $arguments)
+    {
+        echo 'Vous avez appelé la méthode ', $method, 'avec les arguments : ', implode(', ',$arguments);
     }
 }

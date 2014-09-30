@@ -1,0 +1,21 @@
+<div class="event">
+    <time  datetime="2013-11-14T09:45:16Z" title="2013-11-14 09:45:16">17 minutes ago</time>
+</div>
+<div class="action">
+    <div class="feed user cleafix">
+        <div class="details">
+            <a href="{{ path('user_profile_show', {'slug': activity.author.usernameCanonical }) }}">
+                <img height="30" src="{{ activity.author.avatar }}">
+            </a>
+        </div>
+        <div class="message">
+            <a href="{{ path('user_profile_show', {'slug': activity.author.slug }) }}">{{ activity.author }}</a>
+            {{ 'tempo.activity.events.commented'|trans }} {{ activity.target }}
+            {% if activity.target == 'Project' %}
+                <a href="{{ path('project_show', {'slug': activity.project.slug}) }}">
+                    {{ activity.project.organization }}/{{ activity.project }}
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</div>

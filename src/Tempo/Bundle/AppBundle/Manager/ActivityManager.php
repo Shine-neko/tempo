@@ -15,23 +15,40 @@ use Tempo\Bundle\AppBundle\Model\Activity;
 
 class ActivityManager extends BaseManager
 {
-    public function build($actor, $action, $target = '')
+    protected $user;
+
+
+    public function setUser($user)
     {
-        $reflected =  new \ReflectionObject($target);
+        $this->user = $user;
+    }
+
+    public function build($target, $action, $data, $actor = null)
+    {
+        $shortNameTarget = (new \ReflectionObject($target))->getShortName();
+        $shortNameData =  (new \ReflectionObject($data))->getShortName();
+
+        if ($actor != null) {
+            $this->user = $this->user;
+        }
 
         $event = new Activity();
+
+        $this->{'set'. $shortNameTarget}();
+
         $event
+            ->setTarget($shortNameTarget)
             ->setAuthor($actor)
             ->setAction($action)
-            ->setTarget($target)
-            ->setType($reflected->getShortName());
+            ->setData($data)
+            ->setType($shortNameData);
 
         $this->save($event);
     }
 
     /**
      * @param $type
-     * @param SecurityContext $user
+     * @param $user
      */
     public function findByUser($type = null, $user = null)
     {

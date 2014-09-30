@@ -1,10 +1,5 @@
 <div  class="events-push">
     {% for activity in activities %}
-        {% if activity.targetType is defined %}
-            {% set target = activity.type %}
-        {% else %}
-            {% set target = activity.provider.name %}
-        {% endif %}
-        {% include 'TempoAppBundle:Provider/Activity:_' ~ target ~ '.html.twig' %}
+        {% include 'TempoAppBundle:Provider/Activity:_' ~ activity.provider.name ~ '.html.twig' %}
     {% endfor %}
 </div>

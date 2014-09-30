@@ -64,6 +64,14 @@
             <argument>%tempo.model.comment.class%</argument>
         </service>
 
+        <service id="tempo.manager.activity" class="%tempo.manager.activity.class%">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument>%tempo.model.activity.class%</argument>
+            <call method="setUser">
+                <argument type="service" id="security.context" />
+            </call>
+        </service>
+
     </services>
 
 </container>

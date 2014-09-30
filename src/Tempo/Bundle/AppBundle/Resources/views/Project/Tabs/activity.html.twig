@@ -1,1 +1,2 @@
 {{ render(controller('TempoAppBundle:ProviderActivity:list', {'type': 'all', 'project': project})) }}
+{{ render(controller('TempoAppBundle:Activity:list', {'type': 'project', 'parent': project})) }}

@@ -30,7 +30,8 @@
             </cascade>
         </one-to-many>
 
-        <many-to-one field="project" target-entity="Tempo\Bundle\AppBundle\Model\Project" nullable="true" />
+        <many-to-one field="project" target-entity="Tempo\Bundle\AppBundle\Model\Project" nullable="true" lazy="false" />
+
 
     </entity>
 

@@ -48,24 +48,10 @@ class ProviderActivityController extends Controller
      * @param  Project  $project| null
      * @return Response
      */
-    public function listAction($type, Project $project = null)
+    public function listAction($type, Project $project)
     {
         $activityManager = $this->getManager('activity');
-
-        if ('all' == $type) {
-            $lastActivitiesProvider = $this->getManager('activity_provider')->getRepository()->findByProject($project);
-            $lastActivitiesInternal = $activityManager->findByUser('Project');
-
-            $activities = array_merge(
-                $this->formatActivities($lastActivitiesProvider) ,
-                $this->formatActivities($lastActivitiesInternal)
-            );
-
-        } elseif ('provider' == $type) {
-            $activities = $activityManager->getRepository()->findAllWithProvider();
-        } else {
-            $activities = $activityManager->findByUser($type, $this->getUser());
-        }
+        $activities = $this->getManager('activity_provider')->getRepository()->findByProject($project);
 
         return $this->render('TempoAppBundle:Provider/Activity:list.html.twig', array(
             'type' => $type,

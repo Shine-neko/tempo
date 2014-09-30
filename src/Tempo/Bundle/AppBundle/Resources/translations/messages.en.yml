@@ -21,7 +21,7 @@ tempo:
         form.status.label: Share something. Use @ to mention people.
       events:
         user.update: updates its own information
-        comment.commented: Commented
+        commented: Commented on
         project.created: create project
         project.update: update project
         project.joined: joined project at

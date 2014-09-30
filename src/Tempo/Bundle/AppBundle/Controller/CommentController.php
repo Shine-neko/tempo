@@ -54,7 +54,7 @@ class CommentController extends Controller
             $this->get('event_dispatcher')->dispatch(TempoAppEvents::COMMENT_CREATE_INITIALIZE, $event);
             $this->getManager('comment')->save($comment);
 
-            $this->getManager('activity')->build($this->getUser(), Activity::ACTIVITY_CREATE_COMMENT, $comment);
+            $this->getManager('activity')->build($project, Activity::ACTIVITY_CREATE_COMMENT, $comment);
             $this->get('event_dispatcher')->dispatch(TempoAppEvents::COMMENT_CREATE_SUCCESS, $event);
         }
 

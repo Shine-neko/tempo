@@ -52,7 +52,8 @@
                 </h3>
 
                 <div id="room-activity-box">
-                    {{ render(controller('TempoAppBundle:ProviderActivity:list', {'type': 'all', 'project': currentRoom.project})) }}
+                    {{ render(controller('TempoAppBundle:ProviderActivity:list', {'type': 'project', 'project': currentRoom.project})) }}
+                    {{ render(controller('TempoAppBundle:Activity:list', {'type': 'project', 'parent': currentRoom.project})) }}
                 </div>
 
             </div>

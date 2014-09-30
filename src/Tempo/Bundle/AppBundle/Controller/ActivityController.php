@@ -19,9 +19,18 @@ class ActivityController extends Controller
      * @param $type
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function listAction($type)
+    public function listAction($type, $parent)
     {
-        $activities = $this->get('tempo.manager.activity')->findByUser($type, $this->getUser());
+        if ($type == 'user') {
+            $activities = $this->get('tempo.manager.activity')->findByUser($type, $this->getUser());
+        }
+
+        if($type == 'project') {
+            $activities = $this->get('tempo.manager.activity')->getRepository()->findBy(array(
+                'target' =>  'Project',
+                'project' => $parent->getId()
+            ));
+        }
 
         return $this->render('TempoAppBundle:Activity:list.html.twig', array(
             'type' => $type,

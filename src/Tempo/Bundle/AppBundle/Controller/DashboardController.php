@@ -25,16 +25,20 @@ class DashboardController extends Controller
      */
     public function mainAction(Request $request)
     {
+        $session = $request->getSession();
+
         $currentRoom = null;
         $manager = $this->getManager('room');
         $form  = $this->createForm(new ChatMessageType());
 
         $rooms = $manager->getRepository()->findRooms($this->getUser()->getId());
 
+        $currentRoom = $this->getManager('room')->getRepository()->findRoom(26, $this->getUser()->getId());
+
         if ($rooms != null) {
             $roomId = $request->query->get('currentRoom', $rooms[0]->getId());
-            $request->getSession()->set('currentRoom', $roomId);
-            $currentRoom = $this->getManager('room')->find( $request->getSession()->get('currentRoom'));
+            $session->set('currentRoom', $roomId);
+            $currentRoom = $this->getManager('room')->find($session->get('currentRoom'));
         }
 
         return $this->render('TempoAppBundle:Default:dashboard.html.twig', array(

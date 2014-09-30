@@ -160,11 +160,6 @@
 
         </service>
 
-        <service id="tempo.manager.activity" class="%tempo.manager.activity.class%">
-            <argument type="service" id="doctrine.orm.entity_manager"/>
-            <argument>%tempo.model.activity.class%</argument>
-        </service>
-
         <service id="tempo.activity.listener.activity_provider" class="%tempo.activity.listener.activity_provider.class%">
             <argument type="service" id="tempo.manager.room" />
             <argument type="service" id="jms_serializer" />

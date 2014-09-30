@@ -30,14 +30,22 @@ class RoomRepository extends EntityRepository
             ;
     }
 
-    public function findRoom($slug, $user)
+    public function findRoom($key, $user)
     {
         $query = $this->createQueryBuilder('room')
+            ->select('room, project')
             ->leftJoin('room.team', 'team')
+            ->leftJoin('room.project', 'project')
             ->leftJoin('team.user', 'user')
-            ->where('room.slug  = ?1')
-            ->andwhere('user.id  = ?2')
-            ->setParameter(1, $slug)
+            ->where('user.id  = ?2');
+
+        if (is_integer($key)) {
+            $query->andWhere('room.id  = ?1');
+        } else {
+            $query->andWhere('room.slug  = ?1');
+        }
+
+        $query->setParameter(1, $key)
             ->setParameter(2, $user)
             ->setMaxResults(1);
 
@@ -48,6 +56,7 @@ class RoomRepository extends EntityRepository
     {
         $query = $this->createQueryBuilder('room')
             ->leftJoin('room.team', 'team')
+            ->leftJoin('room.project', 'project')
             ->andwhere('team.user  = ?1')
             ->setParameter(1, $user);
 

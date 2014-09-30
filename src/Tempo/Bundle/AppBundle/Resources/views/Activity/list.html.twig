@@ -1,5 +1,5 @@
 <div  class="events-push">
     {% for activity in activities %}
-        {% include 'TempoAppBundle:Provider/Activity:_' ~ type ~ '.html.twig' %}
+        {% include 'TempoAppBundle:Activity:_' ~ activity.type|lower ~ '.html.twig' %}
     {% endfor %}
 </div>
