@@ -144,10 +144,4 @@ class Room
     {
         return $this->project;
     }
-
-
-    public function __call($method, $arguments)
-    {
-        echo 'Vous avez appelé la méthode ', $method, 'avec les arguments : ', implode(', ',$arguments);
-    }
 }
