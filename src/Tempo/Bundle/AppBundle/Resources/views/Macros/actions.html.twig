@@ -1,14 +1,14 @@
 {% macro create(url) %}
 <div class="form-actions">
     <button type="submit" class="btn btn-primary"><i class="icon-ok"></i> {{ 'tempo.form.create'|trans }}</button>
-    <a href="{{ app.request.headers.get('referer', url) }}" class="btn btn-danger"><i class="icon-remove"></i> {{ 'form.cancel'|trans }}</a>
+    <a href="{{ app.request.headers.get('referer', url) }}" class="btn btn-danger"><i class="icon-remove"></i> {{ 'tempo.form.cancel'|trans }}</a>
 </div>
 {% endmacro %}
 
 {% macro update(url) %}
 <div class="form-actions">
     <button type="submit" class="btn btn-primary"><i class="icon-save"></i> {{ 'tempo.form.save_changes'|trans }}</button>
-    <a href="{{ app.request.headers.get('referer', url) }}" class="btn btn-danger"><i class="icon-remove"></i> {{ 'form.cancel'|trans }}</a>
+    <a href="{{ app.request.headers.get('referer', url) }}" class="btn btn-danger"><i class="icon-remove"></i> {{ 'tempo.form.cancel'|trans }}</a>
 </div>
 {% endmacro %}
 

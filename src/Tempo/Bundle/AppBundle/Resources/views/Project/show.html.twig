@@ -18,7 +18,7 @@
 
         {% if project.parent %}
             <li>
-                <a href="{{ path('organization_show', {'slug' : organization.slug }) }}">{{ 'Sub project of'|trans }} {{ project.parent }}</a>
+                <a href="{{ path('organization_show', {'slug' : organization.slug }) }}">{{ 'tempo.project.sub_project'|trans }} {{ project.parent }}</a>
             </li>
         {% endif %}
         <li class="last"> {{ project.name }} </li>
@@ -43,7 +43,7 @@
             <a class="btn btn-xs btn-info " href="{{ path('project_update', { 'slug': project.slug }) }}"> <span class="glyphicon glyphicon-edit"></span> Edit</a>
             {% endif %}
             {% if is_granted('EDIT', project) %}
-                <a class="btn btn-xs btn-primary" href="{{ path('project_version', { 'slug': project.slug }) }}"> <span class="glyphicon glyphicon-cog"></span> {{ 'Version'|trans }} </a>
+                <a class="btn btn-xs btn-primary" href="{{ path('project_version', { 'slug': project.slug }) }}"> <span class="glyphicon glyphicon-cog"></span> {{ 'tempo.project.form.version'|trans }} </a>
             {% endif %}
             {% if is_granted('DELETE', project) %}
             <a class="btn btn-xs btn-danger" data-toggle="modal" data-target="#" data-title="Delete project" href="#delete_project"> <span class="glyphicon glyphicon-trash"></span> Delete</a>
@@ -96,7 +96,7 @@
             </div>
         </div>
 
-        <h4 class="pull-left">{{ 'Activity'|trans }} </h4>
+        <h4 class="pull-left">{{ 'tempo.project.activity'|trans }} </h4>
 
         <div class="app-panel clearbox">
             {% include (tabProvidersRegistry.providers[2]).content %}

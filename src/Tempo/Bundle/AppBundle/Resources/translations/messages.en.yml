@@ -12,9 +12,11 @@ tempo:
       edit: 'Edit'
       search: "Search"
       cancel: "Cancel"
+      reset: "Reset"
       save: 'Save'
       save_changes: 'Save changes'
       submit: Send
+
   activity:
       dashboard:
         title: Activity Feed
@@ -26,6 +28,8 @@ tempo:
         project.update: update project
         project.joined: joined project at
 
+  notification:
+    see_all: See all notification
   organization:
       select: Select an organization to view its projects
       not_found_orga: No organization has been found
@@ -60,7 +64,10 @@ tempo:
       success_delete: Project successfully removed
       open: Open
       close: Close
+      activity: Activity
+      sub_project: Sub project of
       form:
+          version: Version
           label:
               organization: Organization
               name: Name
