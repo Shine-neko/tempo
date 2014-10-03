@@ -83,7 +83,7 @@ class ProjectVoter implements VoterInterface
 
         switch($attribute) {
             case self::VIEW:
-            case strtolower(self::VIEW):
+            case strtoupper(self::VIEW):
 
                 if ($role) {
                     return VoterInterface::ACCESS_GRANTED;
@@ -91,7 +91,7 @@ class ProjectVoter implements VoterInterface
                 break;
 
             case self::EDIT:
-            case strtolower(self::EDIT):
+            case strtoupper(self::EDIT):
 
 
             if ($role->getRole() <= 2) {
