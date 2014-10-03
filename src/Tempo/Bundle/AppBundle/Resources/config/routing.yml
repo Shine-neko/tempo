@@ -1,9 +1,9 @@
 help:
-    pattern: /help
+    path: /help
     defaults: { _controller: TempoAppBundle:Default:help }
 
 backend:
-    pattern: /admin
+    path: /admin
     defaults: { _controller: TempoAppBundle:Backend\Dashboard:main }
 
 main_room:

@@ -1,74 +1,74 @@
 project_home:
-    pattern:  /
+    path:  /
     defaults: { _controller: TempoAppBundle:Project:dashboard }
 
 project_organization_list:
-    pattern:  /{slug}/list
+    path:  /{slug}/list
     defaults: { _controller: TempoAppBundle:Project:list }
 
 project_create:
-    pattern:  /{organization}/create
+    path:  /{organization}/create
     defaults: { _controller: TempoAppBundle:Project:create }
 
 project_update:
-    pattern:  /{slug}/update
+    path:  /{slug}/update
     defaults: { _controller: TempoAppBundle:Project:update }
     requirements:
         _method: get|post
         slug: ".+"
 
 project_delete:
-    pattern:  /{slug}/delete
+    path:  /{slug}/delete
     defaults: { _controller: TempoAppBundle:Project:delete }
     requirements:
         slug: ".+"
 
 project_team_add:
-    pattern:  /{slug}/team/add
+    path:  /{slug}/team/add
     defaults: { _controller: TempoAppBundle:Team:add }
     requirements:
         slug: ".+"
 
 project_team_create:
-    pattern:  /{slug}/team/create
+    path:  /{slug}/team/create
     defaults: { _controller: TempoAppBundle:Team:create }
     requirements:
         _method:  GET
         slug: ".+"
 
 project_team_delete:
-    pattern:  /{slug}/team/delete
+    path:  /{slug}/team/delete
     defaults: { _controller: TempoAppBundle:Team:delete }
     requirements:
         slug: ".+"
 
 project_provider_list:
-    pattern:  /{slug}/provider/list
+    path:  /{slug}/provider/list
     defaults: { _controller: TempoAppBundle:Provider:list }
     requirements:
         slug: ".+"
 
 project_provider_update:
-    pattern:  /{slug}/provider/update/{provider}
+    path:  /{slug}/provider/update/{provider}
     defaults: { _controller: TempoAppBundle:Provider:update }
     requirements:
         slug: ".+"
 
 project_version:
-    pattern: /{slug}/version
+    path: /{slug}/version
     defaults: { _controller: TempoAppBundle:Project:version }
     requirements:
         slug: ".+"
 
 project_activity_list:
-    pattern: /{slug}/activity/list/{type}
+    path: /{slug}/activity/list/{type}
     defaults:
         _controller: TempoAppBundle:Activity:list
     options:
       expose: true
 
 _project_settings:
-    pattern: /settings
+    path: /settings
     methods: [GET]
     defaults:
         _controller: sylius.controller.settings:updateAction
@@ -76,7 +76,7 @@ _project_settings:
         template: TempoAppBundle:Backend/Settings:general.html.twig
 
 project_show:
-    pattern:  /{slug}
+    path:  /{slug}
     defaults: { _controller: TempoAppBundle:Project:show, _format: html }
     requirements:
       slug: ".+"

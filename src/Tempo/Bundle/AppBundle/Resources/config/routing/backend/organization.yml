@@ -1,5 +1,5 @@
 backend_organization_list:
-    pattern:  /
+    path:  /
     defaults:
       _controller: TempoAppBundle:Organization:indexAction
       _sylius:
@@ -11,19 +11,19 @@ backend_organization_list:
       _method:  GET
 
 backend_organization_show:
-    pattern:  /{slug}/show
+    path:  /{slug}/show
     defaults: { _controller: TempoAppBundle:Organization:show }
     requirements:
         _method:  GET
 
 backend_organization_create:
-     pattern:  /create
+     path:  /create
      defaults: { _controller: TempoAppBundle:Organization:create }
 
 backend_organization_update:
-     pattern:  /{id}/update
+     path:  /{id}/update
      defaults: { _controller: TempoAppBundle:Organization:update }
 
 backend_organization_delete:
-    pattern:  /{slug}/delete
+    path:  /{slug}/delete
     defaults: { _controller: TempoAppBundle:Organization:delete }

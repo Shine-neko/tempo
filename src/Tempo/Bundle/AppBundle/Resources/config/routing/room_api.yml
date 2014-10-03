@@ -1,8 +1,8 @@
 api_room_show:
-    pattern:  /room/{slug}
+    path:  /room/{slug}
     defaults: { _controller: TempoAppBundle:Room:getRoom }
     requirements:
 
 api_room_all:
-  pattern: /room/all
+  path: /room/all
   defaults: { _controller: TempoAppBundle:Room:getRoom }

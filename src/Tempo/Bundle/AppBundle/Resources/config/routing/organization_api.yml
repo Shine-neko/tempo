@@ -1,5 +1,5 @@
 api_organization_show:
-    pattern:  /{slug}
+    path:  /{slug}
     defaults: { _controller: TempoAppBundle:Organization:show }
     requirements:
         _method:  GET

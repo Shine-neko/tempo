@@ -23,7 +23,8 @@ class LoadRoomData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $rooms= array(
+        $userList = array('admin', 'john.doe');
+        $rooms = array(
             'Room1',
             'Room2',
             'Room3',
@@ -33,10 +34,14 @@ class LoadRoomData extends AbstractFixture implements OrderedFixtureInterface
 
         $i = 1;
         foreach ($rooms as $name) {
+            $userEntity = $this->getReference($userList[array_rand($userList, 1)]);
+
             $room = new Room();
             $room->setName($name);
 
             $manager->persist($room);
+            $room->addUser($userEntity);
+
             $manager->flush();
             $this->addReference('room'.$i, $room);
             $i++;

@@ -1,21 +1,21 @@
 comment_list:
-    pattern: /list/{parent}/{type}
+    path: /list/{parent}/{type}
     defaults: { _controller: TempoAppBundle:Comment:list}
 
 comment_create:
-    pattern:  /create/{type}/{parent}
+    path:  /create/{type}/{parent}
     defaults: { _controller: TempoAppBundle:Comment:create }
     requirements:
         _method:  GET|POST
 
 comment_update:
-    pattern:  /{comment}/update
+    path:  /{comment}/update
     defaults: { _controller: TempoAppBundle:Comment:updated }
     requirements:
         _method:  GET|POST
 
 comment_delete:
-    pattern:  /{comment}/delete
+    path:  /{comment}/delete
     defaults: { _controller: TempoAppBundle:Comment:delete }
     requirements:
         _method:  GET|POST
