@@ -1,5 +1,5 @@
 backend_configuration_generale:
-    pattern: /
+    path: /
     methods: [GET|POST]
     defaults:
         _controller: sylius.controller.settings:updateAction
@@ -7,7 +7,7 @@ backend_configuration_generale:
         template: TempoAppBundle:Backend/Settings:general.html.twig
 
 backend_configuration_project:
-    pattern: /project
+    path: /project
     methods: [GET|POST]
     defaults:
         _controller: sylius.controller.settings:updateAction

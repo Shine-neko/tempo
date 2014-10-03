@@ -1,5 +1,5 @@
 api_project_show:
-    pattern:  /{slug}
+    path:  /{slug}
     defaults: { _controller: TempoAppBundle:Project:show }
     requirements:
       slug: "\w+\/\w+"

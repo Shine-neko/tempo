@@ -1,5 +1,5 @@
 api_provider_activity_ws:
-    pattern: /notify/{id}
+    path: /notify/{id}
     defaults:
         _controller: TempoAppBundle:ProviderActivity:provider
     requirements:

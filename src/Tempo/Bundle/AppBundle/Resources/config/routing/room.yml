@@ -1,11 +1,11 @@
 room_show:
-    pattern:  /{slug}
+    path:  /{slug}
     defaults: { _controller: TempoAppBundle:Room:getRoom }
 
 room_list:
-    pattern: /list
+    path: /list
     defaults: { _controller: TempoAppBundle:Room:getRooms }
 
 room_update:
-    pattern: /{id}/update
+    path: /{id}/update
     defaults: { _controller: TempoAppBundle:Room:update, _format: html }
