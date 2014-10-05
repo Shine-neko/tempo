@@ -11,7 +11,6 @@
 
 namespace Tempo\Bundle\UserBundle\Controller\Api\Rest;
 
-use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -19,7 +18,6 @@ use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\NamePrefix;
 
 use Tempo\Bundle\AppBundle\Controller\Controller;
-
 
 /**
  * @NamePrefix("user_api_")
@@ -41,7 +39,7 @@ class UserController extends Controller
             $em->getRepository('TempoUserBundle:User')->findAll() :
             $em->getRepository('TempoUserBundle:User')->autocomplete($username);
 
-        foreach($list_user as $name){
+        foreach ($list_user as $name) {
             $users[] = $name['username'];
         }
 
@@ -50,5 +48,16 @@ class UserController extends Controller
         $response->headers->set('Content-Type', 'application/json');
 
         return $response;
+    }
+
+    /**
+     * @Get("/users/current")
+     */
+    public function currentAction()
+    {
+        if ($this->getUser()) {
+            $view = $this->view(array($this->getUser()), 200)->setTemplate('TempoAppBundle:Organization:show.html.twig');
+            return $this->handleView($view);
+        }
     }
 }
