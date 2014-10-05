@@ -31,7 +31,7 @@ TempoRouterManager = Backbone.Router.extend({
     },
     routes: {
         "": "home",
-        "timesheet*": "timesheet",
+        "timesheet*": "timesheet"
     },
 
     home: function() {

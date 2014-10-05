@@ -15,7 +15,6 @@
         "jquery-ui-bootstrap": "0.2.5",
         "blueimp-md5": "~1.0.2",
         "socket.io-client": "1.0.3",
-        "infiniscroll": "latest",
         "selectize": "0.9.1",
         "ckeditor-light-theme": "latest",
         "ionicons": "1.5.2"

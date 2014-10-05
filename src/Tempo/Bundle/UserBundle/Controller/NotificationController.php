@@ -16,6 +16,7 @@ use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Tempo\Bundle\AppBundle\Controller\Controller;
+use Pagerfanta\Exception\NotValidCurrentPageException;
 
 class NotificationController extends Controller
 {

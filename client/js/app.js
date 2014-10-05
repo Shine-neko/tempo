@@ -9,9 +9,6 @@
 
 'use strict';
 
-
-var container = new Pimple();
-
 var Tempo = {
     'Settings' : {},
     'Notification' : {},
@@ -118,7 +115,6 @@ Tempo.baseObject = {
     }
 };
 
-
 $(function() {
     Tempo.run =  function() {
         Tempo.log('Starting application', 'INFO');
@@ -203,7 +199,6 @@ $(function() {
             return flash.slideUp("slow");
         }), 3000);
     };
-
 
     Tempo.Provide('router', function() {
         Backbone.Router.extend({
