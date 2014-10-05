@@ -1,43 +1,51 @@
+/*
+ * This file is part of the Tempo-project package http://tempo-project.org/>.
+ *
+ * (c) Mlanawo Mbechezi  <mlanawo.mbechezi@ikimea.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+
 TempoRouterManager = Backbone.Router.extend({
-    current : function(route){
-        if(route && Backbone.History.started) {
-            var Router = this,
-            // Get current fragment from Backbone.History
-                fragment = Backbone.history.fragment,
-            // Get current object of routes and convert to array-pairs
-                routes = _.pairs(Router.routes);
 
-            // Loop through array pairs and return
-            // array on first truthful match.
-            var matched = _.find(routes, function(handler) {
-                var route = handler[0];
+    constructor: function(options) {
+        options || (options = {});
+        Backbone.Router.prototype.constructor.call(this, options);
+    },
 
-                // Convert the route to RegExp using the
-                // Backbone Router's internal convert
-                // function (if it already isn't a RegExp)
-                route = _.isRegExp(route) ? route :  Router._routeToRegExp(route);
+    _bindRoutes: function() {
+        this.routes = _.result(this, 'routes');
+        var route, routes = _.keys(this.routes);
+        console.log(routes);
 
-                // Test the regexp against the current fragment
-                return route.test(fragment);
-            });
+        while ((route = routes.pop()) != null) {
+            var routeAction = this.routes[route];
+            var routeParts = routeAction.split('#');
+            var isControllerAction = routeParts.length === 2;
 
-            // Returns callback name or false if
-            // no matches are found
-            return matched ? matched[1] : false;
-        } else {
-            // Just return current hash fragment in History
-            return Backbone.history.fragment
+            if (isControllerAction) {
+                var controller, controllerName, method, methodName;
+                controllerName = routeParts[0];
+                controller = this.controllers[controllerName];
+                methodName = routeParts[1];
+                method = controller[methodName];
+                this.route(route, routeAction, _.bind(method, controller));
+            } else {
+                this.route(route, routeAction);
+            }
         }
     },
+
+    controllers: {
+    },
+
     routes: {
         "": "home",
-        "timesheet*": "timesheet"
+        "timesheet": "timesheet#dashboard"
     },
 
     home: function() {
-
-    },
-    timesheet: function() {
-        new Tempo.Controller.Timesheet();
     }
 });

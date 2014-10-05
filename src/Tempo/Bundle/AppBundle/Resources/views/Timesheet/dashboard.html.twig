@@ -12,7 +12,8 @@
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
     <script type="text/javascript">
-        new Tempo.Controller.Timesheet();
+        var timesheet = new Tempo.Controller.Timesheet();
+        timesheet.dashboard();
     </script>
 {% endblock %}
 

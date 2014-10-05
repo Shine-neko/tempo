@@ -8,7 +8,6 @@ Tempo.Behavior.create('autocomplete', function(config, statics) {
         config.options.minLength = 2;
     }
 
-
     var cache = {};
 
     config.options.source =  function( request, response ) {
