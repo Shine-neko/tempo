@@ -31,6 +31,6 @@ class TeamSubscriber extends \PHPUnit_Framework_TestCase
         $this->dispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
         $this->translator = $this->getMock('Symfony\Bundle\FrameworkBundle\Translation\Translator');
         $this->router = $this->getMock('Symfony\Bundle\FrameworkBundle\Routing\Router');
-        $this->notificationManager = $this->getMock('Tempo\Bundle\UserBundle\Manager\NotificationManager');
+        $this->notificationManager = $this->getMock('Tempo\Bundle\AppBundle\Manager\NotificationManager');
     }
 }

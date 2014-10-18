@@ -2,7 +2,7 @@
 Feature: Check login
 
   Scenario: Check login page when not connected
-    When I am on route "fos_user_security_login"
+    When I am on route "user_login"
     Then the response status code should be 200
     And I should see "Login"
 
@@ -12,10 +12,10 @@ Feature: Check login
     And I press "Login"
 
   Scenario: Log in with bad credentials
-    When I am on route "fos_user_security_login"
+    When I am on route "user_login"
     When I fill in the following:
       | Username    | bar |
       | Password | bar         |
     And I press "Login"
     #Then I should be on login page
-    And I should see "Bad credentials"
+    And I should see "Invalid credentials"

@@ -42,7 +42,7 @@ class NotificationController extends Controller
             throw new NotFoundHttpException();
         }
 
-        return $this->render('TempoUserBundle:Notification:dashboard.html.twig', array('notifications' => $pagerfanta));
+        return $this->render('TempoAppBundle:Notification:dashboard.html.twig', array('notifications' => $pagerfanta));
     }
 
     public function clearAction()

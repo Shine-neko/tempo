@@ -4,7 +4,7 @@ backend_user_index:
     defaults:
         _controller: tempo_backend.controller.user:indexAction
         _sylius:
-            template: TempoUserBundle:Backend/User:index.html.twig
+            template: TempoAppBundle:Backend/User:index.html.twig
             arguments: [$criteria, $sorting]
 
 backend_user_filter_form:
@@ -13,7 +13,7 @@ backend_user_filter_form:
     defaults:
         _controller: tempo_backend.controller.user:filterFormAction
         _sylius:
-            template: TempoUserBundle:Backend/User:filterForm.html.twig
+            template: TempoAppBundle:Backend/User:filterForm.html.twig
 
 backend_user_create:
     pattern: /new
@@ -21,7 +21,7 @@ backend_user_create:
     defaults:
         _controller: tempo_backend.controller.user:createAction
         _sylius:
-            template: TempoUserBundle:Backend/User:create.html.twig
+            template: TempoAppBundle:Backend/User:create.html.twig
             redirect: backend_user_show
 
 backend_user_update:
@@ -30,7 +30,7 @@ backend_user_update:
     defaults:
         _controller: tempo_backend.controller.user:updateAction
         _sylius:
-            template: TempoUserBundle:Backend/User:update.html.twig
+            template: TempoAppBundle:Backend/User:update.html.twig
             redirect: backend_user_show
 
 backend_user_delete:
@@ -47,5 +47,5 @@ backend_user_show:
     defaults:
         _controller: tempo_backend.controller.user:showAction
         _sylius:
-            template: TempoUserBundle:Backend/User:show.html.twig
+            template: TempoAppBundle:Backend/User:show.html.twig
             redirect: backend_user_show

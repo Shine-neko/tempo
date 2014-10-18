@@ -9,14 +9,14 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\UserBundle\Form\Handler;
+namespace Tempo\Bundle\AppBundle\Form\Handler;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\Form\Form;
 use Imagine\Image\Box;
 use Imagine\Image\ImagineInterface;
-use Tempo\Bundle\UserBundle\Entity\User;
+use Tempo\Bundle\AppBundle\Model\User;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -32,6 +32,7 @@ class AvatarHandler
 
     protected $request;
     protected $imagine;
+    protected $path;
 
     /**
      *

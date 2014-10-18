@@ -1,4 +1,4 @@
-Tempo\Bundle\UserBundle\Model\User:
+Tempo\Bundle\AppBundle\Model\User:
     exclusion_policy: ALL
     properties :
       id :

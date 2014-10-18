@@ -14,7 +14,7 @@ namespace Tempo\Bundle\AppBundle\Controller\Backend;
 
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Symfony\Component\HttpFoundation\Request;
-use Tempo\Bundle\UserBundle\Form\Type\Backend\UserType;
+use Tempo\Bundle\AppBundle\Form\Type\Backend\UserType;
 
 class UserController extends ResourceController
 {
@@ -35,7 +35,7 @@ class UserController extends ResourceController
      */
     public function filterFormAction(Request $request)
     {
-        return $this->render('TempoUserBundle:Backend/User:filterForm.html.twig', array(
+        return $this->render('TempoAppBundle:Backend/User:filterForm.html.twig', array(
             'form' => $this->get('form.factory')->createNamed('criteria', 'tempo_user_filter', $request->query->get('criteria'))->createView()
         ));
     }

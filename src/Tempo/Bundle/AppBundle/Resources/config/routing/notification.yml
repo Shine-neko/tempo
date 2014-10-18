@@ -1,14 +1,14 @@
 notification_dashboard:
     pattern:  /
-    defaults: { _controller: "TempoUserBundle:Notification:dashboard" }
+    defaults: { _controller: "TempoAppBundle:Notification:dashboard" }
 
 notification_read:
     pattern:  /{date}/show
-    defaults: { _controller: "TempoUserBundle:Notification:state" }
+    defaults: { _controller: "TempoUAppBundleNotification:state" }
 
 notification_unread:
     pattern:  /{date}/show
-    defaults: { _controller: "TempoUserBundle:Notification:state" }
+    defaults: { _controller: "TempoUsAppBundleotification:state" }
 
 notification_clear:
     pattern:  /clear

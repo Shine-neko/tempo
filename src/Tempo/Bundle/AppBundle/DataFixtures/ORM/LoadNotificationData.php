@@ -15,7 +15,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
-use Tempo\Bundle\UserBundle\Entity\Notification;
+use Tempo\Bundle\AppBundle\Model\Notification;
 
 class LoadNotificationData extends AbstractFixture implements OrderedFixtureInterface
 {

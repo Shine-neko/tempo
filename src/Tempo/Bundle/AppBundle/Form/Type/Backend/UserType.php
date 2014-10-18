@@ -9,7 +9,7 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\UserBundle\Form\Type\Backend;
+namespace Tempo\Bundle\AppBundle\Form\Type\Backend;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -58,7 +58,7 @@ class UserType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Tempo\Bundle\UserBundle\Entity\User'
+            'data_class' => 'Tempo\Bundle\AppBundle\Model\User'
         ));
     }
 

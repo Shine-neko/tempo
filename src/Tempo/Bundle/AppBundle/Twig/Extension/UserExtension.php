@@ -9,7 +9,7 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\UserBundle\Twig\Extension;
+namespace Tempo\Bundle\AppBundle\Twig\Extension;
 
 class UserExtension extends \Twig_Extension
 {

@@ -9,7 +9,7 @@
 
 <form action="{{ path('backend_user_update', {'id': user.id}) }}" method="post" class="form-horizontal" novalidate>
     <input type="hidden" name="_method" value="PUT">
-    {% include 'TempoUserBundle:Backend/User:_form.html.twig' %}
+    {% include 'TempoAppBundle:Backend/User:_form.html.twig' %}
     {{ update() }}
 
 </form>

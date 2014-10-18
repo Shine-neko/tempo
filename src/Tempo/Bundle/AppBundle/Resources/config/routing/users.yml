@@ -1,79 +1,49 @@
-help:
-    path: /help
-    defaults: { _controller: TempoAppBundle:Default:help }
+user_login:
+    path: /login
+    defaults: { _controller: "TempoAppBundle:Security:login" }
 
-backend:
-    path: /admin
-    defaults: { _controller: TempoAppBundle:Backend\Dashboard:main }
+user_login_check:
+    path: /login_check
+    defaults: { _controller: "TempoAppBundle:Security:check" }
 
-main_room:
-  type: rest
-  resource: "@TempoAppBundle/Resources/config/routing/room.yml"
-  prefix:   /room
+user_logout:
+    path: /logout
+    defaults: { _controller: "TempoAppBundle:Security:logout" }
 
-main_room_api:
-  type: rest
-  prefix:   /api/{version}/room
-  resource: "@TempoAppBundle/Resources/config/routing/room_api.yml"
-  defaults:
-      version: v1
+user_autocomplete:
+    type:         rest
+    defaults:
+      version:  internal
+    prefix:       api/{version}/
+    resource: Tempo\Bundle\AppBundle\Controller\Api\Rest\UserController
 
-main_chat:
-  type: rest
-  resource: "@TempoAppBundle/Resources/config/routing/chat.yml"
+user_list:
+    pattern:  /user/list
+    defaults: { _controller: TempoAppBundle:Default:list }
 
-main_chat_api:
-  type: rest
-  prefix:   /api/{version}
-  resource: "@TempoAppBundle/Resources/config/routing/chat_api.yml"
-  defaults:
-      version: v1
+user_notification:
+    type:         rest
+    defaults:
+      version:  v1
+    prefix:       api/{version}/
+    resource: Tempo\Bundle\AppBundle\Controller\NotificationController
 
-_project:
-  resource: "@TempoAppBundle/Resources/config/routing/project.yml"
-  prefix:   /project
+tempo_user_notification:
+    resource: "@TempoAppBundle/Resources/config/routing/notification.yml"
+    prefix: /notifications
 
-_project_api:
-  type: rest
-  prefix:   /api/{version}/project
-  resource: "@TempoAppBundle/Resources/config/routing/project_api.yml"
-  defaults:
-      version: v1
+tempo_user_profile:
+    resource: "@TempoAppBundle/Resources/config/routing/profile.yml"
+    prefix: /profile
 
-_organization:
-  resource: "@TempoAppBundle/Resources/config/routing/organization.yml"
-  prefix:   /organization
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
 
-_organization_api:
-  type: rest
-  resource: "@TempoAppBundle/Resources/config/routing/organization_api.yml"
-  prefix:   /api/{version}/organization
-  defaults:
-      version: v1
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /change-password
 
-_timesheet:
-  resource: "@TempoAppBundle/Resources/config/routing/timesheet.yml"
-  prefix:   /timesheet
-
-_timesheet_api:
-  type: rest
-  prefix:   /api/{version}/timesheet
-  resource: "@TempoAppBundle/Resources/config/routing/timesheet_api.yml"
-  defaults:
-      version: v1
-
-_prodiver_api:
-  type: rest
-  prefix:   /api/{version}/provider
-  resource: "@TempoAppBundle/Resources/config/routing/provider_api.yml"
-  defaults:
-      version: v1
-
-_comment:
-  resource: "@TempoAppBundle/Resources/config/routing/comment.yml"
-  prefix:   /comment
-
-#Backend
-tempo_setting_backend:
-    resource: "@TempoAppBundle/Resources/config/routing/backend/settings.yml"
-    prefix: /admin/settings
+user_backend:
+    resource: "@TempoAppBundle/Resources/config/routing/backend/user.yml"
+    prefix: /admin/users

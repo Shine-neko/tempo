@@ -16,7 +16,7 @@
 </div>
 
 <form action="{{ path('backend_user_create') }}" method="post" class="form-horizontal" novalidate>
-    {% include 'TempoUserBundle:Backend/User:_form.html.twig' %}
+    {% include 'TempoAppBundle:Backend/User:_form.html.twig' %}
     {{ create() }}
 </form>
 {% endblock %}

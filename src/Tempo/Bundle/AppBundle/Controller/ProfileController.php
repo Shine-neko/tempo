@@ -14,8 +14,8 @@ namespace Tempo\Bundle\AppBundle\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
-use Tempo\Bundle\UserBundle\Form\Type\SettingsType;
-use Tempo\Bundle\UserBundle\Form\Type\ProfileType;
+use Tempo\Bundle\AppBundle\Form\Type\SettingsType;
+use Tempo\Bundle\AppBundle\Form\Type\ProfileType;
 
 class ProfileController extends Controller
 {
@@ -27,7 +27,7 @@ class ProfileController extends Controller
     {
         $form = $this->createForm(new ProfileType(), $this->getUser());
 
-        return $this->render('TempoUserBundle:Profile:edit.html.twig', array(
+        return $this->render('TempoAppBundle:Profile:edit.html.twig', array(
             'user' => $this->getUser(),
             'form' => $form->createView()
         ));
@@ -65,7 +65,7 @@ class ProfileController extends Controller
             $this->addFlash('error', $avatarProcessError, 'TempoUser');
         }
 
-        return $this->render('TempoUserBundle:Profile:avatar.html.twig', array(
+        return $this->render('TempoAppBundle:Profile:avatar.html.twig', array(
             'user' => $user,
             'form' => $form->createView(),
         ));
@@ -82,7 +82,7 @@ class ProfileController extends Controller
            $em->flush();
         }
 
-        return $this->render( 'TempoUserBundle:Profile:edit.html.twig',  array(
+        return $this->render( 'TempoAppBundle:Profile:edit.html.twig',  array(
             'user' => $this->getUser(),
             'form' => $form->createView(),
         ));
@@ -104,7 +104,7 @@ class ProfileController extends Controller
 
         $organizations = $this->getManager('organization')->findAllByUser($profile->getId());
 
-        return $this->render('TempoUserBundle:Profile:show.html.twig', array(
+        return $this->render('TempoAppBundle:Profile:show.html.twig', array(
             'profile' => $profile,
             'organizations' => $organizations
         ));
@@ -119,7 +119,7 @@ class ProfileController extends Controller
 
         $form = $this->createForm(new SettingsType());
 
-        return $this->render('TempoUserBundle:Profile:settings.html.twig', array(
+        return $this->render('TempoAppBundle:Profile:settings.html.twig', array(
             'profile' => $profile,
             'form' => $form->createView()
         ));

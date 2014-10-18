@@ -220,7 +220,7 @@ interface ProjectInterface
 
     /**
      * @abstract
-     * @param  \Tempo\Bundle\UserBundle\Entity\User $membre
+     * @param  \Tempo\Bundle\AppBundle\Model\User $membre
      * @return mixed
      */
     public function addUser($user);

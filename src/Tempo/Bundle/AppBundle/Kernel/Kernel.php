@@ -60,7 +60,6 @@ class Kernel extends BaseKernel
 
             //Tempo
             new \Tempo\Bundle\AppBundle\TempoAppBundle(),
-            new \Tempo\Bundle\UserBundle\TempoUserBundle(),
             new \Tempo\Bundle\JsConfigurationBundle\TempoJsConfigurationBundle(),
         );
 

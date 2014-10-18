@@ -26,7 +26,7 @@
         </field>
 
         <many-to-one field="project" inversed-by="timesheets" target-entity="Project" />
-        <many-to-one field="user" target-entity="Tempo\Bundle\UserBundle\Entity\User" />
+        <many-to-one field="user" target-entity="Tempo\Bundle\AppBundle\Model\User" />
 
     </entity>
 

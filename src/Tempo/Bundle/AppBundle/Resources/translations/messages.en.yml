@@ -17,6 +17,12 @@ tempo:
       save_changes: 'Save changes'
       submit: Send
 
+  security.login:
+    username: "Username:"
+    password: "Password:"
+    remember_me: Remember me
+    submit: Login
+
   activity:
       dashboard:
         title: Activity Feed
@@ -100,3 +106,52 @@ tempo:
 
   notification.organization.team.add.completed: You have been given read access to %name%
   notification.project.team.add.completed: You have been given read access to %name%
+
+  errors:
+    internal_error: Internal error
+    format_file: Invalid format type
+
+  msg_success:
+    avatar_deleted: %owner% avatar has been deleted.
+    avatar_modified: %owner% avatar has been modified.
+
+  profile:
+    tabs:
+      profil: Profile
+      avatar: Profile picture
+      email: Email address
+      password: Password
+      settings: Settings
+    form:
+      id: ID
+      email: E-Mail
+      registration_date: Registration Date
+      enabled: Enabled
+      firstName: Skype
+      lastName: Skype
+      password: Skype
+      skype: Skype
+      linkedin: Linkedin
+      viadeo: Viadeo
+      twitter: Twitter
+
+  avatar:
+    title: Change my profile picture
+    choose_avatar: Choose a new picture
+    actual_avatar: Current profile picture
+    avatar_info: You can use a picture of %balise%100x100 pixels%balise2%. If your picture it is too large, it will be automatically resized.%balise3% Following formats are supported : PNG, JPEG ou GIF.
+    admin_change: Change the profile picture of
+    current_change: Your are modifying the picture of
+    current_gravart: This avatar from Gravatar.
+    current_default: This avatar is the default image.
+    submit: Edit Avatar
+    success_delete: The avatar has been deleted.
+    success_edit: Votre avatar a bien été modifié.
+    failed_internal_error: An internal error occurred, please try again.
+    failed_valid_file: Uploaded file is not a valid
+
+  see_all_notification: See All notification
+  user:
+    create: Create User
+    list.page_title : User list
+    create.page_title: Create User

@@ -9,11 +9,11 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\UserBundle\OAuth;
+namespace Tempo\Bundle\AppBundle\OAuth;
 
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider;
-use Tempo\Bundle\UserBundle\Model\User;
+use Tempo\Bundle\AppBundle\Model\User;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 

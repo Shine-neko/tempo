@@ -9,9 +9,9 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\UserBundle\Model;
+namespace Tempo\Bundle\AppBundle\Model;
 
-abstract class Notification implements NotificationInterface
+class Notification implements NotificationInterface
 {
     protected $id;
     protected $user;

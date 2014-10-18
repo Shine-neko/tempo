@@ -43,7 +43,7 @@ class UserListener
      */
     public function setLocaleForAuthenticatedUser(InteractiveLoginEvent $event)
     {
-        /** @var \Tempo\Bundle\Bundle\UserBundle\Model\User $user  */
+        /** @var \Tempo\Bundle\Bundle\AppBundle\Model\User $user  */
         $user = $event->getAuthenticationToken()->getUser();
 
         if ($user->getLocale()) {

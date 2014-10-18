@@ -36,8 +36,8 @@ class UserController extends Controller
         $users = array();
 
         $list_user = ($username == 'all'  ) ?
-            $em->getRepository('TempoUserBundle:User')->findAll() :
-            $em->getRepository('TempoUserBundle:User')->autocomplete($username);
+            $em->getRepository('TempoAppBundle:User')->findAll() :
+            $em->getRepository('TempoAppBundle:User')->autocomplete($username);
 
         foreach ($list_user as $name) {
             $users[] = $name['username'];

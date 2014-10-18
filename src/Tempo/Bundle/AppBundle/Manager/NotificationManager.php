@@ -9,10 +9,9 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\UserBundle\Manager;
+namespace Tempo\Bundle\AppBundle\Manager;
 
-use Tempo\Bundle\UserBundle\Entity\Notification;
-use Tempo\Bundle\AppBundle\Manager\BaseManager;
+use Tempo\Bundle\AppBundle\Model\Notification;
 
 /**
  * @author Mlanawo Mbechezi <mlanawo.mbechezi@ikimea.com>

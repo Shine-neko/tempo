@@ -9,7 +9,7 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\UserBundle\Menu;
+namespace Tempo\Bundle\AppBundle\Menu;
 
 use Symfony\Component\Translation\TranslatorInterface;
 use Knp\Menu\FactoryInterface;

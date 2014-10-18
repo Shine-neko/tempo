@@ -9,7 +9,7 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\UserBundle\Repository;
+namespace Tempo\Bundle\AppBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
@@ -44,7 +44,7 @@ class NotificationRepository extends EntityRepository
     public function clearForUser($user)
     {
         $q = $this->createQueryBuilder('notif')
-            ->update('TempoUserBundle:Notification', 'notif')
+            ->update('TempoAppBundle:Notification', 'notif')
             ->set('notif.state', 1)
             ->where('notif.user = :user')
             ->setParameter('user', $user)

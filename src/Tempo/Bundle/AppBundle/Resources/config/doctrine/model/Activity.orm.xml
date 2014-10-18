@@ -19,8 +19,8 @@
         <field name="type" column="type" type="string"  nullable="true"  />
         <field name="target" column="target"  type="string" nullable="true"  />
 
-        <many-to-one field="author" target-entity="Tempo\Bundle\UserBundle\Entity\User" />
-        <many-to-one field="user" target-entity="Tempo\Bundle\UserBundle\Entity\User" />
+        <many-to-one field="author" target-entity="Tempo\Bundle\AppBundle\Model\User" />
+        <many-to-one field="user" target-entity="Tempo\Bundle\AppBundle\Model\User" />
         <many-to-one field="project" target-entity="Project" />
 
     </entity>

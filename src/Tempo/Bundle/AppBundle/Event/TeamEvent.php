@@ -15,7 +15,7 @@ use Tempo\Bundle\AppBundle\Model\Organization;
 use Tempo\Bundle\AppBundle\Model\Project;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Request;
-use Tempo\Bundle\UserBundle\Entity\User;
+use Tempo\Bundle\AppBundle\Model\User;
 
 class TeamEvent extends Event
 {

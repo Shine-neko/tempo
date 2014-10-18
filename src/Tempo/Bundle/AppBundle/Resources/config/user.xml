@@ -3,16 +3,16 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
-        <parameter key="tempo.user.menu_builder.class">Tempo\Bundle\UserBundle\Menu\Tabs</parameter>
-        <parameter key="tempo.user.profile.form.type.avatar.class">Tempo\Bundle\UserBundle\Form\Type\AvatarType</parameter>
-        <parameter key="tempo.user.profile.form.handler.avatar.class">Tempo\Bundle\UserBundle\Form\Handler\AvatarHandler</parameter>
-        <parameter key="tempo.user.user_provider.username.class">Tempo\Bundle\UserBundle\Security\UserProvider</parameter>
-        <parameter key="tempo.user.oauth.user_provider.class">Tempo\Bundle\UserBundle\OAuth\UserProvider</parameter>
-        <parameter key="tempo.user.security.interactive_login_listener.class">Tempo\Bundle\UserBundle\EventListener\UserListener</parameter>
-        <parameter key="tempo.user.security.api_token_user_provider.class">Tempo\Bundle\UserBundle\Security\ApiTokenUserProvider</parameter>
-        <parameter key="tempo.user.security.api_token_authenticator.class">Tempo\Bundle\UserBundle\Security\TokenAuthenticator</parameter>
-        <parameter key="tempo.user.twig.extension.class">Tempo\Bundle\UserBundle\Twig\Extension\UserExtension</parameter>
-        <parameter key="tempo.form.type.user_filter.class">Tempo\Bundle\UserBundle\Form\Type\Backend\Filter\UserFilterType</parameter>
+        <parameter key="tempo.user.menu_builder.class">Tempo\Bundle\AppBundle\Menu\Tabs</parameter>
+        <parameter key="tempo.user.profile.form.type.avatar.class">Tempo\Bundle\AppBundle\Form\Type\AvatarType</parameter>
+        <parameter key="tempo.user.profile.form.handler.avatar.class">Tempo\Bundle\AppBundle\Form\Handler\AvatarHandler</parameter>
+        <parameter key="tempo.user.user_provider.username.class">Tempo\Bundle\AppBundle\Security\UserProvider</parameter>
+        <parameter key="tempo.user.oauth.user_provider.class">Tempo\Bundle\AppBundle\OAuth\UserProvider</parameter>
+        <parameter key="tempo.user.security.interactive_login_listener.class">Tempo\Bundle\AppBundle\EventListener\UserListener</parameter>
+        <parameter key="tempo.user.security.api_token_user_provider.class">Tempo\Bundle\AppBundle\Security\ApiTokenUserProvider</parameter>
+        <parameter key="tempo.user.security.api_token_authenticator.class">Tempo\Bundle\AppBundle\Security\TokenAuthenticator</parameter>
+        <parameter key="tempo.user.twig.extension.class">Tempo\Bundle\AppBundle\Twig\Extension\UserExtension</parameter>
+        <parameter key="tempo.form.type.user_filter.class">Tempo\Bundle\AppBundle\Form\Type\Backend\Filter\UserFilterType</parameter>
     </parameters>
 
     <services>

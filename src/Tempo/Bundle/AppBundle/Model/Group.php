@@ -9,7 +9,7 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\UserBundle\Model;
+namespace Tempo\Bundle\AppBundle\Model;
 
 use FOS\UserBundle\Model\Group as BaseGroup;
 

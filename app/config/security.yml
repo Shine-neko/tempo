@@ -4,11 +4,11 @@ security:
       connection: default
 
     providers:
-        fos_userbundle:
+        fos_AppBundle:
             id: tempo.user.user_provider.username
 
     encoders:
-        "FOS\UserBundle\Model\UserInterface": sha512
+        "Tempo\Bundle\AppBundle\Model\UserInterface": sha512
 
     firewalls:
         dev:
@@ -24,7 +24,7 @@ security:
             switch_user: false
             context:     user
             form_login:
-                provider: fos_userbundle
+                provider: fos_AppBundle
                 login_path: /login
                 check_path: /login_check
                 failure_path: /login
