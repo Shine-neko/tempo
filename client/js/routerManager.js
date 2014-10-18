@@ -18,7 +18,6 @@ TempoRouterManager = Backbone.Router.extend({
     _bindRoutes: function() {
         this.routes = _.result(this, 'routes');
         var route, routes = _.keys(this.routes);
-        console.log(routes);
 
         while ((route = routes.pop()) != null) {
             var routeAction = this.routes[route];
@@ -30,8 +29,12 @@ TempoRouterManager = Backbone.Router.extend({
                 controllerName = routeParts[0];
                 controller = this.controllers[controllerName];
                 methodName = routeParts[1];
-                method = controller[methodName];
-                this.route(route, routeAction, _.bind(method, controller));
+
+                if (typeof controller !== 'undefined') {
+                    method = controller[methodName];
+                    this.route(route, routeAction, _.bind(method, controller));
+                }
+
             } else {
                 this.route(route, routeAction);
             }
@@ -43,6 +46,7 @@ TempoRouterManager = Backbone.Router.extend({
 
     routes: {
         "": "home",
+        "dashboard": "load",
         "timesheet": "timesheet#dashboard"
     },
 

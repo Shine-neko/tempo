@@ -306,7 +306,7 @@ class Organization implements OrganizationInterface
      */
     public function addUser($user)
     {
-        $this->users[] = $user;
+        $this->team[] = $user;
 
         return $this;
     }

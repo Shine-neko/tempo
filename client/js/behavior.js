@@ -23,5 +23,6 @@ Tempo.Behavior.create('autocomplete', function(config, statics) {
         });
     };
 
+    console.log(cache);
     $( "#" +  config.id).autocomplete( config.options);
 });

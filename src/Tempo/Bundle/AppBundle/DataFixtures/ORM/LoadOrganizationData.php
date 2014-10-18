@@ -38,7 +38,6 @@ class LoadOrganizationData extends AbstractFixture implements OrderedFixtureInte
      */
     public function load(ObjectManager $manager)
     {
-        $userList = array('admin', 'john.doe');
         $organization = array(
             'Ikimea',
             'Google',
@@ -53,13 +52,14 @@ class LoadOrganizationData extends AbstractFixture implements OrderedFixtureInte
         );
         $i = 1;
         foreach ($organization as $name) {
-            $userEntity = $this->getReference($userList[array_rand($userList, 1)]);
+            $userEntity = $this->getReference('admin');
 
             $organization = new Organization();
             $organization->setName($name);
             $organization->setContact('support@'.$name.'.com');
             $organization->getWebSite('http://'.$name.'.com');
             $organization->addTeam($userEntity);
+            $organization->addTeam($this->getReference('john.doe'));
             $organization->addTeam($this->getReference('olivia.pace'));
 
             $manager->persist($organization);

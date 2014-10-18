@@ -1,6 +1,6 @@
 Feature: Browser newsfeed
   Scenario: Can see newsfeed
-    Given I am connected as "admin"
+    Given I am connected as "john.doe"
     And I am on "/"
 
     Then I should see "Room1"
