@@ -10,7 +10,7 @@
 */
 
 
-namespace Tempo\Bundle\UserBundle\Controller\Backend;
+namespace Tempo\Bundle\AppBundle\Controller\Backend;
 
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Symfony\Component\HttpFoundation\Request;

@@ -9,7 +9,7 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\UserBundle\Controller\Api\Rest;
+namespace Tempo\Bundle\AppBundle\Controller\Api\Rest;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;

@@ -9,7 +9,7 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\UserBundle\EventListener;
+namespace Tempo\Bundle\AppBundle\EventListener;
 
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent,
     Symfony\Component\HttpKernel\Event\GetResponseEvent,

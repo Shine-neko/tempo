@@ -5,7 +5,6 @@ backend_user_index:
         _controller: tempo_backend.controller.user:indexAction
         _sylius:
             template: TempoUserBundle:Backend/User:index.html.twig
-            #method: createFilterPaginator
             arguments: [$criteria, $sorting]
 
 backend_user_filter_form:

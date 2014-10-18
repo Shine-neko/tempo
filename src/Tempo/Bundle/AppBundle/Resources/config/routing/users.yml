@@ -1,0 +1,79 @@
+help:
+    path: /help
+    defaults: { _controller: TempoAppBundle:Default:help }
+
+backend:
+    path: /admin
+    defaults: { _controller: TempoAppBundle:Backend\Dashboard:main }
+
+main_room:
+  type: rest
+  resource: "@TempoAppBundle/Resources/config/routing/room.yml"
+  prefix:   /room
+
+main_room_api:
+  type: rest
+  prefix:   /api/{version}/room
+  resource: "@TempoAppBundle/Resources/config/routing/room_api.yml"
+  defaults:
+      version: v1
+
+main_chat:
+  type: rest
+  resource: "@TempoAppBundle/Resources/config/routing/chat.yml"
+
+main_chat_api:
+  type: rest
+  prefix:   /api/{version}
+  resource: "@TempoAppBundle/Resources/config/routing/chat_api.yml"
+  defaults:
+      version: v1
+
+_project:
+  resource: "@TempoAppBundle/Resources/config/routing/project.yml"
+  prefix:   /project
+
+_project_api:
+  type: rest
+  prefix:   /api/{version}/project
+  resource: "@TempoAppBundle/Resources/config/routing/project_api.yml"
+  defaults:
+      version: v1
+
+_organization:
+  resource: "@TempoAppBundle/Resources/config/routing/organization.yml"
+  prefix:   /organization
+
+_organization_api:
+  type: rest
+  resource: "@TempoAppBundle/Resources/config/routing/organization_api.yml"
+  prefix:   /api/{version}/organization
+  defaults:
+      version: v1
+
+_timesheet:
+  resource: "@TempoAppBundle/Resources/config/routing/timesheet.yml"
+  prefix:   /timesheet
+
+_timesheet_api:
+  type: rest
+  prefix:   /api/{version}/timesheet
+  resource: "@TempoAppBundle/Resources/config/routing/timesheet_api.yml"
+  defaults:
+      version: v1
+
+_prodiver_api:
+  type: rest
+  prefix:   /api/{version}/provider
+  resource: "@TempoAppBundle/Resources/config/routing/provider_api.yml"
+  defaults:
+      version: v1
+
+_comment:
+  resource: "@TempoAppBundle/Resources/config/routing/comment.yml"
+  prefix:   /comment
+
+#Backend
+tempo_setting_backend:
+    resource: "@TempoAppBundle/Resources/config/routing/backend/settings.yml"
+    prefix: /admin/settings

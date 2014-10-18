@@ -9,12 +9,11 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\UserBundle\Controller;
+namespace Tempo\Bundle\AppBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
-use Tempo\Bundle\AppBundle\Controller\Controller;
 use Tempo\Bundle\UserBundle\Form\Type\SettingsType;
 use Tempo\Bundle\UserBundle\Form\Type\ProfileType;
 
