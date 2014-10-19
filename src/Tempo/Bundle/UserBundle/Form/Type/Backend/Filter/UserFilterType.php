@@ -13,6 +13,7 @@ namespace Tempo\Bundle\UserBundle\Form\Type\Backend\Filter;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * User filter form type.
@@ -25,12 +26,19 @@ class UserFilterType extends AbstractType
     {
         $builder
             ->add('query', 'text', array(
-                'label' => 'form.user_filter.query',
+                'label' => 'tempo.user.filter.query',
                 'attr'  => array(
-                    'placeholder' => 'form.user_filter.query'
+                    'placeholder' => 'tempo.user.filter.query'
                 )
             ))
         ;
+    }
+
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            //'translation_domain' => 'TempoUser'
+        ));
     }
 
     public function getName()
