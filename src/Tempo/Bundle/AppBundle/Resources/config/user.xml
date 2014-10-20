@@ -18,11 +18,11 @@
     <services>
 
         <service id="tempo.user.user_provider.username" class="%tempo.user.user_provider.username.class%">
-            <argument type="service" id="fos_user.user_manager" />
+            <argument type="service" id="tempo.manager.user" />
         </service>
 
         <service id="tempo.user.oauth.user_provider" class="%tempo.user.oauth.user_provider.class%">
-            <argument type="service" id="fos_user.user_manager" />
+            <argument type="service" id="tempo.manager.user" />
             <argument type="collection">
             <argument key="google">googleId</argument>
             <argument key="github">githubId</argument>

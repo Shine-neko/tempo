@@ -36,7 +36,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      */
     public function load(ObjectManager $manager)
     {
-        $userManager = $this->container->get('fos_user.user_manager');
+        $userManager = $this->container->get('tempo.manager.user');
         $users = array(
             'admin'           => 'Ad Min',
             'john.doe'        => 'John Doe',
@@ -64,7 +64,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
                 $account->addRole(User::ROLE_SUPER_ADMIN);
             }
             $account->setUsername($username);
-            $account->setUsernameCanonical($username);
+            $account->setSlug($username);
             $account->setEmail($username. '@test.com');
             $account->setEmailCanonical($username. '@test.com');
             $account->setLastName($fullName[1]);
@@ -74,7 +74,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
             $account->setEnabled(true);
             $account->setToken(sha1(uniqid(rand(), true)));
 
-            $userManager->updateUser($account, true);
+            $userManager->save($account);
 
             $this->addReference($username, $account);
         }

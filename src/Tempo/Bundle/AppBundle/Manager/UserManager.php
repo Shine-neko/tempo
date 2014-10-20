@@ -18,6 +18,49 @@ use Tempo\Bundle\AppBundle\Manager\BaseManager;
  */
 class UserManager extends BaseManager
 {
+    /**
+     * Finds a user by email
+     *
+     * @param string $email
+     *
+     * @return UserInterface
+     */
+    public function findUserByEmail($email)
+    {
+        return $this->findUserBy(array('emailCanonical' => $email));
+    }
+    /**
+     * Finds a user by username
+     *
+     * @param string $username
+     *
+     * @return UserInterface
+     */
+    public function findUserByUsername($username)
+    {
+        return $this->findUserBy(array('slug' => $username));
+    }
+
+    /**
+     * Finds a user either by email, or username
+     *
+     * @param string $usernameOrEmail
+     *
+     * @return UserInterface
+     */
+    public function findUserByUsernameOrEmail($usernameOrEmail)
+    {
+        if (filter_var($usernameOrEmail, FILTER_VALIDATE_EMAIL)) {
+            return $this->findUserByEmail($usernameOrEmail);
+        }
+        return $this->findUserByUsername($usernameOrEmail);
+    }
+
+    public function findUserBy($criteria)
+    {
+        return $this->getRepository()->findOneBy($criteria);
+    }
+
     public function totalUsers()
     {
         return $this->getRepository()->totalUsers();

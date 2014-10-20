@@ -4,7 +4,7 @@ security:
       connection: default
 
     providers:
-        fos_AppBundle:
+        tempo_user:
             id: tempo.user.user_provider.username
 
     encoders:
@@ -24,7 +24,7 @@ security:
             switch_user: false
             context:     user
             form_login:
-                provider: fos_AppBundle
+                provider: tempo_user
                 login_path: /login
                 check_path: /login_check
                 failure_path: /login

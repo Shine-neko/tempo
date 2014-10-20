@@ -11,15 +11,15 @@
 
 namespace Tempo\Bundle\AppBundle\Model;
 
-use FOS\UserBundle\Model\UserInterface as BaseUserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Sylius\Component\Resource\Model\TimestampableInterface;
 
-interface UserInterface extends BaseUserInterface, TimestampableInterface
+interface UserInterface extends AdvancedUserInterface, \Serializable, TimestampableInterface
 {
     /**
-     * Get id
+     * Returns the user unique id.
      *
-     * @return integer
+     * @return mixed
      */
     public function getId();
 
@@ -50,7 +50,6 @@ interface UserInterface extends BaseUserInterface, TimestampableInterface
     public function setLocale($locale);
 
     /**
-     * Alias for parent::getUsernameCanonical()
      * @param $slug
      * @return string $slug
      */

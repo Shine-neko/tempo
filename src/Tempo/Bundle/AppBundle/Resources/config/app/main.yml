@@ -39,14 +39,6 @@ fos_rest:
             'Symfony\Component\Routing\Exception\ResourceNotFoundException': 404
             'Doctrine\ORM\OptimisticLockException': HTTP_CONFLICT
 
-fos_user:
-    db_driver: orm
-    use_listener: false
-    firewall_name: main
-    user_class: Tempo\Bundle\AppBundle\Model\User
-    group:
-        group_class: Tempo\Bundle\AppBundle\Model\Group
-
 fos_js_routing:
     routes_to_expose: ['room_list', 'chat_room_post_message', 'chat_room_get_messages', 'timesheet_create']
 
@@ -119,7 +111,3 @@ jms_serializer:
     metadata:
       debug: "%kernel.debug%"
       auto_detection: true
-      directories:
-            FOSUserBundle:
-              namespace_prefix: "FOS\\UserBundle"
-              path: "@TempoAppBundle/Resources/config/serializer/FOSUserBundle"

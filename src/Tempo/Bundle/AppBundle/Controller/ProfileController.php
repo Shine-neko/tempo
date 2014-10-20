@@ -96,7 +96,7 @@ class ProfileController extends Controller
      */
     public function showAction($slug)
     {
-        $profile = $this->getManager('user')->getRepository()->findOneBy(array('usernameCanonical' => $slug));
+        $profile = $this->getManager('user')->getRepository()->findOneBy(array('slug' => $slug));
 
         if(!$profile) {
             throw $this->createNotFoundException('User not found.');

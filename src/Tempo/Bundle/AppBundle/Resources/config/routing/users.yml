@@ -36,13 +36,9 @@ tempo_user_profile:
     resource: "@TempoAppBundle/Resources/config/routing/profile.yml"
     prefix: /profile
 
-fos_user_resetting:
-    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
-    prefix: /resetting
-
-fos_user_change_password:
-    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
-    prefix: /change-password
+user_change_password:
+    path : /user/change-password
+    defaults: { _controller: "TempoAppBundle:Profile:setting" }
 
 user_backend:
     resource: "@TempoAppBundle/Resources/config/routing/backend/user.yml"

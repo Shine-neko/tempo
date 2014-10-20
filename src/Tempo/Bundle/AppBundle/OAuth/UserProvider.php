@@ -11,18 +11,18 @@
 
 namespace Tempo\Bundle\AppBundle\OAuth;
 
-use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
-use HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider;
-use Tempo\Bundle\AppBundle\Model\User;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
+use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
+use HWI\Bundle\OAuthBundle\Security\Core\User\OAuthAwareUserProviderInterface;
+use Tempo\Bundle\AppBundle\Model\User;
 
 /**
  * Loading and ad-hoc creation of a user by an OAuth sign-in provider account.
  *
  * @author Fabian Kiss <fabian.kiss@ymc.ch>
  */
-class UserProvider extends FOSUBUserProvider
+class UserProvider implements OAuthAwareUserProviderInterface
 {
     /**
      * {@inheritDoc}

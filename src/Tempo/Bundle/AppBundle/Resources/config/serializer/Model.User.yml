@@ -5,7 +5,7 @@ Tempo\Bundle\AppBundle\Model\User:
         expose : true
       username :
         expose : true
-      usernameCanonical:
+      slug:
         expose : true
       avatar:
         expose : true
