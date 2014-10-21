@@ -13,12 +13,9 @@ namespace Tempo\Bundle\UserBundle\Form\Type\Backend\Filter;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * User filter form type.
- *
- * @author Saša Stamenković <umpirsky@gmail.com>
  */
 class UserFilterType extends AbstractType
 {
@@ -32,13 +29,6 @@ class UserFilterType extends AbstractType
                 )
             ))
         ;
-    }
-
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $resolver->setDefaults(array(
-            //'translation_domain' => 'TempoUser'
-        ));
     }
 
     public function getName()
