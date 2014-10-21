@@ -10,7 +10,7 @@
         <li class="first"> <a href="{{ path('homepage') }}">{{ 'tempo.menu.home'|trans  }}</a> </li>
         <li class=""> <a href="{{ path('backend') }}">{{ 'tempo.menu.admin'|trans  }}</a> </li>
         <li> User </li>
-        <li class="last"> User list </li>
+        <li class="last"> List </li>
     </ol>
  {% endblock breadcrumb %}
 <div class="app-panel">
@@ -22,21 +22,21 @@
     </div>
 
     <div class="row">
-        <div class="col-md-3 admin-filter">
+        <div class="col-md-2 admin-filter">
 
             {% render(url('backend_user_filter_form', {'criteria': app.request.query.get('criteria')})) %}
 
             {% set activeTab = (app.request.query.get('criteria') is not empty and app.request.query.get('criteria').enabled|default('1') == '0') ? 'disabled' : 'all' %}
 
             <ul class="nav nav-pills nav-stacked">
-                <li class="{{ activeTab == 'all' ? 'active' : '' }}"><a href="{{ path('backend_user_index') }}">{{ 'list.user.filter.all'|trans({}, 'TempoUser') }}</a></li>
-                <li class="{{ activeTab == 'disabled' ? 'active' : '' }}"><a href="{{ path('backend_user_index', {'criteria': {'enabled': false}}) }}"><i class="glyphicon glyphicon-info-sign"></i> {{ 'list.user.filter.unconfirmed'|trans({}, 'TempoUser') }}</a></li>
+                <li class="{{ activeTab == 'all' ? 'active' : '' }}"><a href="{{ path('backend_user_index') }}">{{ 'tempo.user.filter.all'|trans }}</a></li>
+                <li class="{{ activeTab == 'disabled' ? 'active' : '' }}"><a href="{{ path('backend_user_index', {'criteria': {'enabled': false}}) }}"><i class="glyphicon glyphicon-info-sign"></i> {{ 'tempo.user.filter.unconfirmed'|trans }}</a></li>
             </ul>
 
             <a class="btn btn-cancel btn-default" href="/admin/users">Reset</a>
         </div>
 
-        <div class="col-md-9">
+        <div class="col-md-10">
 
             <table id="users" class="table">
                 <thead>
@@ -59,7 +59,8 @@
                         <td><a href="{{ path('backend_user_show', {'id': user.id}) }}">{{ user.email }}</a></td>
                         <td>{{ user.createdAt|date('d-m-Y H:i') }}</td>
                         <td>
-                            {{ user.enabled }}
+
+                            <span class="label label-{{ user.enabled ? 'success': 'danger' }}">{{ user.enabled ? 'Yes': 'No' }}</span>
                         </td>
                         <td>
                             <div class="pull-right">
@@ -75,7 +76,9 @@
         </div>
     </div>
 
-    {{ pagination(users) }}
+    <div class="container text-center">
+        {{ pagination(users) }}
+    </div>
 
 </div>
 

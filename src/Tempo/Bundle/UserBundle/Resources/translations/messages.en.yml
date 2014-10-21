@@ -19,8 +19,8 @@ tempo:
       email: E-Mail
       registration_date: Registration Date
       enabled: Enabled
-      firstName: Skype
-      lastName: Skype
+      firstName: First Name
+      lastName: Last Name
       password: Skype
       skype: Skype
       linkedin: Linkedin
@@ -47,3 +47,8 @@ tempo:
     create: Create User
     list.page_title : User list
     create.page_title: Create User
+    update.page_title: update User
+    filter:
+      query: 'Search'
+      all: 'Show all users'
+      unconfirmed: 'Active'

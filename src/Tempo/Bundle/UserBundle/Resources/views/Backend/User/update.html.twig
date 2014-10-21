@@ -1,10 +1,12 @@
 {% extends "TempoAppBundle::layout.html.twig" %}
 
 {% from 'TempoAppBundle:Macros:actions.html.twig' import update %}
+{% block bodyClass %}backend users update{% endblock %}
 
 {% block content %}
+
 <div class="page-header">
-    <h1> {{ 'user.update.page_title'|trans({}, 'TempoUser')|raw }}</h1>
+    <h1> {{ 'tempo.user.update.page_title'|trans({}, 'TempoUser')|raw }}</h1>
 </div>
 
 <form action="{{ path('backend_user_update', {'id': user.id}) }}" method="post" class="form-horizontal" novalidate>

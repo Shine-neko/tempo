@@ -16,8 +16,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 /**
  * User filter form type.
- *
- * @author Saša Stamenković <umpirsky@gmail.com>
  */
 class UserFilterType extends AbstractType
 {
@@ -25,9 +23,9 @@ class UserFilterType extends AbstractType
     {
         $builder
             ->add('query', 'text', array(
-                'label' => 'form.user_filter.query',
+                'label' => 'tempo.user.filter.query',
                 'attr'  => array(
-                    'placeholder' => 'form.user_filter.query'
+                    'placeholder' => 'tempo.user.filter.query'
                 )
             ))
         ;

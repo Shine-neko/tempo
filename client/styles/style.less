@@ -10,6 +10,32 @@
 @btn-primary-bg: #005782;
 @input-border-radius: 2px;
 
+
+.btn-inverse {
+	background: #fff;
+	padding: 5px 8px;
+	font-weight: bold;
+	border: 1px solid #e5e5e5;
+	:hover {
+		color: #fff;
+	}
+}
+.btn-inverse.btn-primary {
+	color: #4183c4;
+	border-color: #4183c4;
+}
+.btn-inverse.btn-danger {
+	color: #d9534f;
+	border-color: #d43f3a;
+}
+
+.btn-inverse.btn-danger.disabled {
+	color: #D9534E;
+	background: #fff;
+}
+
+
+
 @import 'layout';
 @import 'bundles';
 
