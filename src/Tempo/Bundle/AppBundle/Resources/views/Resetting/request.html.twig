@@ -1,0 +1,25 @@
+{% extends "TempoAppBundle:Security:login.html.twig" %}
+{% block subcontent %}
+    <div>
+        {% if invalid_username is defined %}
+            <div class="form-error">
+                {{ invalid_username }}
+            </div>
+        {% endif %}
+
+        <form action="{{ path("user_resetting_send_email") }}" method="post">
+            <div class="widget username">
+                <label for="username">{{ 'tempo.security.resetting.username'|trans }}</label>
+                <input type="text" id="username" name="username" class="form-control" required="required" />
+            </div>
+
+            <div class="widget send col-md-6 pull-right">
+                <input id="login" class="submit btn btn-default" type="submit" value="{{ 'tempo.form.submit'|trans }}"/>
+            </div>
+
+            <div class="widget already_login">
+                <a href="{{ path('user_login') }}"> {{ 'tempo.security.resetting.already_login'|trans }} </a>
+            </div>
+        </form>
+    </div>
+{% endblock subcontent %}

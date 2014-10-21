@@ -1000,4 +1000,14 @@ class User implements UserInterface
     {
         return (string) $this->getUsername();
     }
+
+    /**
+     * Generate unique confirmation token
+     *
+     * @return string Token value
+     */
+    public function generateToken()
+    {
+        return base_convert(bin2hex(hash('sha256', uniqid(mt_rand(), true), true)), 16, 36);
+    }
 }

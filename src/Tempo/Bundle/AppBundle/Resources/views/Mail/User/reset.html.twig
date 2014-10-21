@@ -1,0 +1,13 @@
+{% extends "TempoAppBundle:Mail:layout.html.twig" %}
+{% block content %}
+
+    We received a request from you to reset your password. To complete the process, simply click the button below:
+
+    {% set url = path('user_resetting_check_email', { token: user.confirmationToken }) %}
+    <p>To reset your password - please visit <a href="{{ url }}">{{ url }}</a></p>
+
+    The link is valid for 24 hours.
+
+    If you don't want to change your password you can ignore this mail.
+
+{% endblock %}

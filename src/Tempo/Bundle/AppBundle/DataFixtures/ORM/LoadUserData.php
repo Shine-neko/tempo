@@ -57,11 +57,11 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         );
 
         foreach ($users as $username => $name) {
-            $account = $userManager->createUser();
+            $account = new User();
             $fullName = explode(' ', $name);
 
             if ($username == 'admin') {
-                $account->addRole(User::ROLE_SUPER_ADMIN);
+                $account->addRole('ROLE_SUPER_ADMIN');
             }
             $account->setUsername($username);
             $account->setSlug($username);
