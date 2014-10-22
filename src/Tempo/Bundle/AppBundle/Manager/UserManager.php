@@ -56,6 +56,11 @@ class UserManager extends BaseManager
         return $this->findUserByUsername($usernameOrEmail);
     }
 
+    public function findUserByConfirmationToken($criteria)
+    {
+        return $this->findUserBy(array('confirmationToken' => $criteria));
+    }
+
     public function findUserBy($criteria)
     {
         return $this->getRepository()->findOneBy($criteria);

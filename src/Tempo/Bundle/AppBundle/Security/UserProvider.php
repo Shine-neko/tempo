@@ -11,8 +11,6 @@
 
 namespace Tempo\Bundle\AppBundle\Security;
 
-use FOS\UserBundle\Security\UserProvider as BaseUserProvider;
-
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
@@ -21,7 +19,7 @@ use Symfony\Component\Security\Core\User\UserInterface as SecurityUserInterface;
 use Tempo\Bundle\AppBundle\Manager\UserManager;
 use Tempo\Bundle\AppBundle\Model\User;
 
-class UserProvider extends BaseUserProvider
+class UserProvider implements UserProviderInterface
 {
     /**
      * @var UserManager

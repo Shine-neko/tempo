@@ -45,8 +45,8 @@ user_resetting_send_email:
   defaults: { _controller: "TempoAppBundle:Resetting:sendEmail" }
 
 user_resetting_check_email:
-  path: /user/resetting/send-email
-  defaults: { _controller: "TempoAppBundle:Resetting:checkEmail" }
+  path: /user/resetting/check-email/{token}
+  defaults: { _controller: "TempoAppBundle:Resetting:reset" }
 
 user_change_password:
     path : /user/change-password

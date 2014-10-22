@@ -12,6 +12,7 @@
 namespace Tempo\Bundle\AppBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Tempo\Bundle\AppBundle\Form\Type\ResettingFormType;
 
 class ResettingController extends Controller
 {
@@ -64,5 +65,33 @@ class ResettingController extends Controller
         $this->addFlash('success', 'tempo.security.resetting.request_success');
 
         return $this->redirectRoute('homepage');
+    }
+
+    public function resetAction(Request $request, $token)
+    {
+        $userManager = $this->getManager('user');
+        $user = $userManager->findUserByConfirmationToken($token);
+
+        if (null === $user) {
+            throw new NotFoundHttpException(sprintf('The user with "confirmation token" does not exist for value "%s"', $token));
+        }
+
+        if ($user->isPasswordRequestNonExpired(5)) {
+            $this->addFlash('warning', 'tempo.security.resetting.request_non_expire');
+        }
+
+        $form = $this->createForm(new ResettingFormType(), $user);
+
+        if ($form->handleRequest($request)->isValid()) {
+            $this->getManager('user')->save($user);
+            $this->addFlash('success', 'tempo.security.resetting.request_success_reset');
+            return $this->redirectRoute('homepage');
+        }
+
+        return $this->render('TempoAppBundle:Resetting:reset.html.twig', array(
+            'form' => $form->createView(),
+            'token' => $token
+        ));
+
     }
 }

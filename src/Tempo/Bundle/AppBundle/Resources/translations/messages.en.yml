@@ -28,7 +28,10 @@ tempo:
       request: Forgot your password ?
       request_non_expire: The password for this user has already been requested within the last 24 hours.
       request_success: An email with instructions on how to retrieve your password has been sent.
+      request_success_request: An email with instructions on how to retrieve your password has been sent.
       username: Username or E-mail
+      password: "New password"
+      password_again: "Again"
       already_login:  Already have login and password? Sign in
   activity:
       dashboard:

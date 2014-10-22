@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "201a5693ed717813e660b56a9fb1be5e",
+    "hash": "265451eed139bc1cad85d5cb6e7bc756",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -295,12 +295,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "d400586168bfc19b8fe84d7cf9f432b54ce21306"
+                "reference": "fbd498469af2793962227c6d6e5f9d23d510a929"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/d400586168bfc19b8fe84d7cf9f432b54ce21306",
-                "reference": "d400586168bfc19b8fe84d7cf9f432b54ce21306",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/fbd498469af2793962227c6d6e5f9d23d510a929",
+                "reference": "fbd498469af2793962227c6d6e5f9d23d510a929",
                 "shasum": ""
             },
             "require": {
@@ -358,7 +358,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2014-10-17 16:20:52"
+            "time": "2014-10-21 01:25:16"
         },
         {
             "name": "doctrine/doctrine-bundle",
@@ -816,12 +816,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "f5ecabbc2198973f5e54cb76e99709c59fe62ffa"
+                "reference": "6fc6d18882f2b8c16c49a1d7dbd67eab6f111a5c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/f5ecabbc2198973f5e54cb76e99709c59fe62ffa",
-                "reference": "f5ecabbc2198973f5e54cb76e99709c59fe62ffa",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/6fc6d18882f2b8c16c49a1d7dbd67eab6f111a5c",
+                "reference": "6fc6d18882f2b8c16c49a1d7dbd67eab6f111a5c",
                 "shasum": ""
             },
             "require": {
@@ -830,7 +830,7 @@
                 "doctrine/instantiator": "~1.0.1",
                 "ext-pdo": "*",
                 "php": ">=5.3.2",
-                "symfony/console": "2.*"
+                "symfony/console": "~2.3"
             },
             "require-dev": {
                 "phpunit/phpunit": "~4.0",
@@ -883,7 +883,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2014-10-16 22:13:28"
+            "time": "2014-10-20 18:46:33"
         },
         {
             "name": "egeloen/ckeditor-bundle",
@@ -1126,73 +1126,6 @@
                 "rest"
             ],
             "time": "2014-08-15 12:18:54"
-        },
-        {
-            "name": "friendsofsymfony/user-bundle",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "cac56e025c1d2d1fe5acb644e4cafe0830f17150"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/cac56e025c1d2d1fe5acb644e4cafe0830f17150",
-                "reference": "cac56e025c1d2d1fe5acb644e4cafe0830f17150",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2",
-                "symfony/form": "~2.3",
-                "symfony/framework-bundle": "~2.3",
-                "symfony/security-bundle": "~2.3",
-                "symfony/twig-bundle": "~2.3"
-            },
-            "require-dev": {
-                "doctrine/doctrine-bundle": "*",
-                "swiftmailer/swiftmailer": ">=4.3, <6.0",
-                "symfony/validator": "~2.3",
-                "symfony/yaml": "~2.3",
-                "willdurand/propel-typehintable-behavior": "dev-master"
-            },
-            "suggest": {
-                "willdurand/propel-typehintable-behavior": "Needed when using the propel implementation"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "FOS\\UserBundle\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Christophe Coevoet",
-                    "email": "stof@notk.org"
-                },
-                {
-                    "name": "FriendsOfSymfony Community",
-                    "homepage": "https://github.com/friendsofsymfony/FOSUserBundle/contributors"
-                },
-                {
-                    "name": "Thibault Duplessis",
-                    "email": "thibault.duplessis@gmail.com"
-                }
-            ],
-            "description": "Symfony FOSUserBundle",
-            "homepage": "http://friendsofsymfony.github.com",
-            "keywords": [
-                "User management"
-            ],
-            "time": "2014-10-10 08:00:05"
         },
         {
             "name": "gedmo/doctrine-extensions",
@@ -2381,12 +2314,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phiamo/MopaBootstrapBundle.git",
-                "reference": "c3e88905e9b5a0404d3dbd53122d54081ba6d51c"
+                "reference": "037610dfaae201a8ce76924479059f0b596a5c47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phiamo/MopaBootstrapBundle/zipball/c3e88905e9b5a0404d3dbd53122d54081ba6d51c",
-                "reference": "c3e88905e9b5a0404d3dbd53122d54081ba6d51c",
+                "url": "https://api.github.com/repos/phiamo/MopaBootstrapBundle/zipball/037610dfaae201a8ce76924479059f0b596a5c47",
+                "reference": "037610dfaae201a8ce76924479059f0b596a5c47",
                 "shasum": ""
             },
             "require": {
@@ -2437,7 +2370,7 @@
                 "form",
                 "template"
             ],
-            "time": "2014-10-18 15:00:15"
+            "time": "2014-10-20 13:32:23"
         },
         {
             "name": "mopa/composer-bridge",
@@ -5496,7 +5429,6 @@
         "doctrine/doctrine-bundle": 20,
         "doctrine/doctrine-migrations-bundle": 20,
         "doctrine/migrations": 20,
-        "friendsofsymfony/user-bundle": 20,
         "wisembly/elephant.io": 20,
         "knplabs/knp-snappy-bundle": 20,
         "problematic/acl-manager-bundle": 20,
