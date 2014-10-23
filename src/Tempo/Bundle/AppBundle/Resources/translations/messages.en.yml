@@ -14,6 +14,7 @@ tempo:
       cancel: "Cancel"
       reset: "Reset"
       save: 'Save'
+      update: 'Update'
       save_changes: 'Save changes'
       submit: Send
       manage: Manage
@@ -26,6 +27,7 @@ tempo:
       submit: Login
     resetting:
       request: Forgot your password ?
+      old_password: Current password
       request_non_expire: The password for this user has already been requested within the last 24 hours.
       request_success: An email with instructions on how to retrieve your password has been sent.
       request_success_request: An email with instructions on how to retrieve your password has been sent.
@@ -144,7 +146,6 @@ tempo:
       linkedin: Linkedin
       viadeo: Viadeo
       twitter: Twitter
-
   avatar:
     title: Change my profile picture
     choose_avatar: Choose a new picture
@@ -166,3 +167,5 @@ tempo:
     create: Create User
     list.page_title : User list
     create.page_title: Create User
+    password_change_success: Password changed successfully.
+

@@ -14,6 +14,7 @@ namespace Tempo\Bundle\AppBundle\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
+use Tempo\Bundle\AppBundle\Form\Type\ChangePasswordFormType;
 use Tempo\Bundle\AppBundle\Form\Type\SettingsType;
 use Tempo\Bundle\AppBundle\Form\Type\ProfileType;
 
@@ -125,8 +126,28 @@ class ProfileController extends Controller
         ));
     }
 
-   public function generateTokenAction()
-   {
+    public function changePasswordAction(Request $request)
+    {
+        $profile = $this->getUser();
+
+        $form = $this->createForm(new ChangePasswordFormType(), $profile);
+
+        if ($form->handleRequest($request)->isValid()) {
+            $this->getManager('user')->save($profile);
+
+            $this->addFlash('success', 'tempo.user.password_change_success');
+
+            $this->redirectRoute('user_profile_password');
+        }
+
+        return $this->render('TempoAppBundle:Profile:password.html.twig', array(
+            'profile' => $profile,
+            'form' => $form->createView()
+        ));
+    }
+
+    public function generateTokenAction()
+    {
         $user = $this->getUser();
 
         $random = sha1(uniqid(rand(), true));
@@ -140,5 +161,5 @@ class ProfileController extends Controller
         $this->addFlash('success', 'the token was added');
 
         return $this->redirectRoute('user_profile_edit');
-   }
+    }
 }

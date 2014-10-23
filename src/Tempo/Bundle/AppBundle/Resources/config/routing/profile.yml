@@ -8,7 +8,7 @@ user_profile_picture:
 
 user_profile_password:
   pattern:  /edit/password
-  defaults: { _controller: FOSUserBundle:ChangePassword:changePassword }
+  defaults: { _controller: TempoAppBundle:Profile:changePassword }
   requirements:
     _method:  GET|POST
 
