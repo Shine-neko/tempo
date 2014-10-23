@@ -3,6 +3,7 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
+        <parameter key="tempo.security.login_manager.class">Tempo\AppBundle\EventListener\LastLoginListener</parameter>
         <parameter key="tempo.security.access.voter.organization.class">Tempo\Bundle\AppBundle\Security\Authorization\Voter\OrganizationVoter</parameter>
         <parameter key="tempo.security.access.voter.project.class">Tempo\Bundle\AppBundle\Security\Authorization\Voter\ProjectVoter</parameter>
     </parameters>
@@ -11,5 +12,13 @@
         <service id="tempo.security.access.voter.project" class="%tempo.security.access.voter.project.class%" public="false">
             <tag name="security.voter" />
         </service>
+
+        <service id="tempo.security.login_manager" class="%tempo.security.login_manager.class%">
+            <argument type="service" id="security.context" />
+            <argument type="service" id="security.user_checker" />
+            <argument type="service" id="security.authentication.session_strategy" />
+            <argument type="service" id="service_container" />
+        </service>
     </services>
+
 </container>

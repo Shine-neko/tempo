@@ -11,9 +11,7 @@
 
 namespace Tempo\Bundle\AppBundle\Model;
 
-use FOS\UserBundle\Model\Group as BaseGroup;
-
-class Group extends BaseGroup implements GroupInterface
+class Group implements GroupInterface
 {
     protected $id;
     protected $name;
@@ -43,6 +41,7 @@ class Group extends BaseGroup implements GroupInterface
     {
         return $this->name;
     }
+
     /**
      * @param string $role
      *
@@ -52,10 +51,12 @@ class Group extends BaseGroup implements GroupInterface
     {
         return in_array(strtoupper($role), $this->roles, true);
     }
+
     public function getRoles()
     {
         return $this->roles;
     }
+
     /**
      * @param string $role
      *
@@ -69,6 +70,7 @@ class Group extends BaseGroup implements GroupInterface
         }
         return $this;
     }
+
     /**
      * @param string $name
      *
@@ -79,6 +81,7 @@ class Group extends BaseGroup implements GroupInterface
         $this->name = $name;
         return $this;
     }
+
     /**
      * @param array $roles
      *

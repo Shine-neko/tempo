@@ -11,13 +11,41 @@
 
 namespace Tempo\Bundle\AppBundle\Manager;
 
-use Tempo\Bundle\AppBundle\Manager\BaseManager;
+use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
+use Tempo\Bundle\AppBundle\Model\UserInterface;
+
 
 /**
  * @author Mlanawo Mbechezi <mlanawo.mbechezi@ikimea.com>
  */
 class UserManager extends BaseManager
 {
+    protected $encoderFactory;
+
+    public function setEncoder(EncoderFactoryInterface $encoder)
+    {
+        return $this->encoderFactory = $encoder;
+    }
+
+    public function getEncoder($user)
+    {
+        return $this->encoderFactory->getEncoder($user);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function updatePassword(UserInterface $user)
+    {
+        if (0 !== strlen($password = $user->getPlainPassword())) {
+            $encoder = $this->getEncoder($user);
+            $user->setPassword($encoder->encodePassword($password, $user->getSalt()));
+            $user->eraseCredentials();
+        }
+
+        return $user;
+    }
+
     /**
      * Finds a user by email
      *
@@ -29,6 +57,7 @@ class UserManager extends BaseManager
     {
         return $this->findUserBy(array('emailCanonical' => $email));
     }
+
     /**
      * Finds a user by username
      *
@@ -69,5 +98,11 @@ class UserManager extends BaseManager
     public function totalUsers()
     {
         return $this->getRepository()->totalUsers();
+    }
+
+    public function save($user, $flush = true)
+    {
+        $user = $this->updatePassword($user);
+        return parent::save($user, $flush);
     }
 }
