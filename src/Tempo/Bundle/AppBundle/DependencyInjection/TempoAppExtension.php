@@ -38,6 +38,7 @@ class TempoAppExtension extends Extension
         $loader->load('orm.xml');
         $loader->load('providers.xml');
         $loader->load('security.xml');
+        $loader->load('user.xml');
 
         $this->remapParametersNamespaces($config, $container, array(
             '' => array(

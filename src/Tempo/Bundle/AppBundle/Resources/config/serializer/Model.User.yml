@@ -1,0 +1,11 @@
+Tempo\Bundle\AppBundle\Model\User:
+    exclusion_policy: ALL
+    properties :
+      id :
+        expose : true
+      username :
+        expose : true
+      slug:
+        expose : true
+      avatar:
+        expose : true

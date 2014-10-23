@@ -1,0 +1,65 @@
+<?php
+
+/*
+* This file is part of the Tempo-project package http://tempo-project.org/>.
+*
+* (c) Mlanawo Mbechezi  <mlanawo.mbechezi@ikimea.com>
+*
+* For the full copyright and license information, please view the LICENSE
+* file that was distributed with this source code.
+*/
+
+namespace Tempo\Bundle\AppBundle\Model;
+
+interface GroupInterface
+{
+    /**
+     * @param string $role
+     *
+     * @return self
+     */
+    public function addRole($role);
+
+    /**
+     * @return integer
+     */
+    public function getId();
+
+    /**
+     * @return string
+     */
+    public function getName();
+
+    /**
+     * @param string $role
+     *
+     * @return boolean
+     */
+    public function hasRole($role);
+
+    /**
+     * @return array
+     */
+    public function getRoles();
+
+    /**
+     * @param string $role
+     *
+     * @return self
+     */
+    public function removeRole($role);
+
+    /**
+     * @param string $name
+     *
+     * @return self
+     */
+    public function setName($name);
+
+    /**
+     * @param array $roles
+     *
+     * @return self
+     */
+    public function setRoles(array $roles);
+}

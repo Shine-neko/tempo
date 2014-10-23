@@ -4,7 +4,7 @@
 <div class="action">
     <div class="feed user cleafix">
         <div class="details">
-            <a href="{{ path('user_profile_show', {'slug': activity.author.usernameCanonical }) }}">
+            <a href="{{ path('user_profile_show', {'slug': activity.author.slug }) }}">
                 <img height="30" src="{{ activity.author.avatar }}">
             </a>
         </div>

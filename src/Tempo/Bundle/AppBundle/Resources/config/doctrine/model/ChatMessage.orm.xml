@@ -21,7 +21,7 @@
         </field>
 
         <many-to-one field="room" inversed-by="chatMessages" target-entity="Room" />
-        <many-to-one field="user" target-entity="Tempo\Bundle\UserBundle\Entity\User" />
+        <many-to-one field="user" target-entity="Tempo\Bundle\AppBundle\Model\User" />
 
     </entity>
 

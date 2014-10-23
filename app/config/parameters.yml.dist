@@ -10,6 +10,7 @@ parameters:
   mailer_host:       localhost
   mailer_user:       ~
   mailer_password:   ~
+  mailer_port:   1025
 
   locale:            en
   secret:            cb8f190153190ebe8598ac49e86ebf37
@@ -29,3 +30,5 @@ parameters:
 
   knp_snappy.pdf.binary: /usr/bin/wkhtmltopdf
   knp_snappy.image.binary: /usr/bin/wkhtmltopdf
+
+  tempo.config.email_from: example@example.com

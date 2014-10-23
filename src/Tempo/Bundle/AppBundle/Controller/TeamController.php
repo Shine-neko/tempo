@@ -106,11 +106,11 @@ class TeamController extends Controller
 
     /**
      * @param $paramters
-     * @return \Tempo\Bundle\UserBundle\Entity\User
+     * @return \Tempo\Bundle\AppBundle\Model\User
      */
     public function findUser($parameters)
     {
-        $user = $this->getDoctrine()->getRepository('TempoUserBundle:User')->findOneBy($parameters);
+        $user = $this->getDoctrine()->getRepository('TempoAppBundle:User')->findOneBy($parameters);
 
         if (!$user) {
            $this->createNotFoundException('User not found');

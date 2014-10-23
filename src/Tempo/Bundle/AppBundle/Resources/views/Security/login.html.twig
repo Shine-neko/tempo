@@ -1,0 +1,64 @@
+{% extends "TempoAppBundle::layout.html.twig" %}
+{% block bodyClass %}{{ parent() }} login user{% endblock %}
+{% block body %}
+
+    <div id="container-user" class="col-md-4">
+        <style type="text/css">
+            body {
+                background: url("{{ asset('bundles/tempoapp/images/bg_login.jpg') }}");
+                background-position: left top;
+            }
+        </style>
+
+        <h1>Tempo </h1>
+        {% block subcontent %}
+        {% if error %}
+            <div class="form-error">{{ error.messageKey|trans(error.messageData) }}</div>
+        {% endif %}
+
+        {% for name, flashes in app.session.flashbag.all if name in ['success', 'notice', 'error'] %}
+            {% for flash in flashes %}
+                <div class="alert alert-{{ name }}">
+                        <a class="close" data-dismiss="alert" href="#">×</a>
+                        {{ flash|trans }}
+                    </div>
+            {% endfor %}
+        {% endfor %}
+
+        <form action="{{ path("user_login_check") }}" method="post">
+            <div class="widget username">
+                <label for="username">{{ 'tempo.security.login.username'|trans }}</label>
+                <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control" /><br />
+            </div>
+
+            <div class="widget password">
+                <label for="password">{{ 'tempo.security.login.password'|trans }}</label>
+                <input type="password" id="password" name="_password" class="form-control" />
+            </div>
+            <div class="widget remember col-md-6">
+                <input type="checkbox" class="pull-left" id="remember_me" name="_remember_me" value="on" />
+                <label class="pull-left" for="remember_me">{{ 'tempo.security.login.remember_me'|trans }}</label>
+            </div>
+            <div class="widget send col-md-6">
+                <input id="login" class="submit btn btn-default" type="submit" value="{{ 'tempo.security.login.submit'|trans }}" />
+            </div>
+            <div class="widget reset">
+                <a href="{{ path('user_resetting_request') }}">{{ 'tempo.security.resetting.request'|trans }}</a>
+            </div>
+            <div class="widget rest clearfix">
+                 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+            </div>
+            <div class="widget pp clearfix">
+                <div id="providers" class="col-md-6">
+                    {% render url('hwi_oauth_connect') %}
+                </div>
+
+            </div>
+        </form>
+        {% endblock subcontent %}
+        <div id="powered" class="col-md-6">
+            <p>Powered by <a href="http://www.ikimea.com">Ikimea</a> </p>
+        </div>
+
+    </div>
+{% endblock %}

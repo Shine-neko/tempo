@@ -14,12 +14,12 @@ sylius_resource:
       tempo_backend.user:
           driver: doctrine/orm
           classes:
-            controller: Tempo\Bundle\UserBundle\Controller\Backend\UserController
-            model: Tempo\Bundle\UserBundle\Entity\User
+            controller: Tempo\Bundle\AppBundle\Controller\Backend\UserController
+            model: Tempo\Bundle\AppBundle\Model\User
 
       tempo_backend.group:
           driver: doctrine/orm
           classes:
-            #controller: Tempo\Bundle\UserBundle\Controller\Backend\GroupController
-            model: Tempo\Bundle\UserBundle\Entity\Group
+            #controller: Tempo\Bundle\UsAppBundleontroller\Backend\GroupController
+            model: Tempo\Bundle\UserBundle\Model\Group
 

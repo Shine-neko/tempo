@@ -18,7 +18,7 @@
             <gedmo:timestampable on="create"/>
         </field>
         <field name="body" column="body" type="text"  nullable="true"  />
-        <many-to-one field="author" target-entity="Tempo\Bundle\UserBundle\Entity\User" />
+        <many-to-one field="author" target-entity="Tempo\Bundle\AppBundle\Model\User" />
         <many-to-one field="project" inversed-by="comments" target-entity="Project" />
 
     </entity>

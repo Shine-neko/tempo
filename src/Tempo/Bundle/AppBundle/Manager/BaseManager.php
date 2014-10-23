@@ -34,6 +34,11 @@ abstract class BaseManager
         $this->repository = $this->em->getRepository($this->class);
     }
 
+    public function getClass()
+    {
+        return $this->class;
+    }
+
     /**
      * @param $id
      * @return mixed

@@ -4,11 +4,11 @@ security:
       connection: default
 
     providers:
-        fos_userbundle:
+        tempo_user:
             id: tempo.user.user_provider.username
 
     encoders:
-        "FOS\UserBundle\Model\UserInterface": sha512
+        "Tempo\Bundle\AppBundle\Model\UserInterface": sha512
 
     firewalls:
         dev:
@@ -24,7 +24,7 @@ security:
             switch_user: false
             context:     user
             form_login:
-                provider: fos_userbundle
+                provider: tempo_user
                 login_path: /login
                 check_path: /login_check
                 failure_path: /login
@@ -49,7 +49,7 @@ security:
             anonymous:    true
         
     access_control:
-        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/user/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, role: ROLE_ADMIN }
         - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/connect.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
