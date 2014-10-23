@@ -13,6 +13,8 @@ namespace Tempo\Bundle\AppBundle;
 
 final class TempoAppEvents
 {
+    const SECURITY_IMPLICIT_LOGIN = 'tempo.security.implicit_login';
+
     const COMMENT_CREATE_INITIALIZE            = 'tempo.comment.create.initialize';
     const COMMENT_CREATE_SUCCESS               = 'tempo.comment.create.success';
     const COMMENT_EDIT_INITIALIZE              = 'tempo.comment.edit.initialize';

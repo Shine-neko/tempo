@@ -1,0 +1,57 @@
+user_login:
+    path: /login
+    defaults: { _controller: "TempoAppBundle:Security:login" }
+
+user_login_check:
+    path: /login_check
+    defaults: { _controller: "TempoAppBundle:Security:check" }
+
+user_logout:
+    path: /logout
+    defaults: { _controller: "TempoAppBundle:Security:logout" }
+
+user_autocomplete:
+    type:         rest
+    defaults:
+      version:  internal
+    prefix:       api/{version}/
+    resource: Tempo\Bundle\AppBundle\Controller\Api\Rest\UserController
+
+user_list:
+    pattern:  /user/list
+    defaults: { _controller: TempoAppBundle:Default:list }
+
+user_notification:
+    type:         rest
+    defaults:
+      version:  v1
+    prefix:       api/{version}/
+    resource: Tempo\Bundle\AppBundle\Controller\NotificationController
+
+tempo_user_notification:
+    resource: "@TempoAppBundle/Resources/config/routing/notification.yml"
+    prefix: /notifications
+
+tempo_user_profile:
+    resource: "@TempoAppBundle/Resources/config/routing/profile.yml"
+    prefix: /profile
+
+user_resetting_request:
+  path: /user/resetting
+  defaults: { _controller: "TempoAppBundle:Resetting:request" }
+
+user_resetting_send_email:
+  path: /user/resetting/send-email
+  defaults: { _controller: "TempoAppBundle:Resetting:sendEmail" }
+
+user_resetting_check_email:
+  path: /user/resetting/check-email/{token}
+  defaults: { _controller: "TempoAppBundle:Resetting:reset" }
+
+user_change_password:
+    path : /user/change-password
+    defaults: { _controller: "TempoAppBundle:Profile:setting" }
+
+user_backend:
+    resource: "@TempoAppBundle/Resources/config/routing/backend/user.yml"
+    prefix: /admin/users

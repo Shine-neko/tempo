@@ -1,0 +1,52 @@
+{% extends "TempoAppBundle::layout.html.twig" %}
+{% block bodyClass %}user profile edit{% endblock %}
+
+{% block container %}
+
+    {% block breadcrumb %}
+        <ol id="breadcrumb" class="clearfix">
+            <li class="first"><a href="{{ path('project_home') }}">Accueil</a></li>
+            <li><a href="{{ path('user_profile_edit') }}">Profile</a></li>
+            <li class="last"> Edit profile</li>
+        </ol>
+    {% endblock breadcrumb %}
+
+    <div class="container-panel">
+
+        <div class="col-md-3 app-panel tab-nav">
+            {% include "TempoAppBundle:Profile:_tabs.html.twig" %}
+        </div>
+
+        <div class="col-md-8 app-panel">
+            <h1 id="page-title" style="font-size: 22px;">Edit profile</h1>
+            <form action="{{ path('user_profile_update') }}" method="POST" class="user_profile_edit">
+
+               <div class="form-block clearbox">
+                   <fieldset>
+                        {{ form_row(form.email) }}
+                   </fieldset>
+
+                   <fieldset>
+                    {{ form_row(form.firstName) }}
+                    {{ form_row(form.lastName) }}
+                   </fieldset>
+
+                   <fieldset>
+                    {{ form_row(form.phone) }}
+                    {{ form_row(form.mobilePhone) }}
+                   </fieldset>
+
+                   <fieldset>
+                       {{ form_row(form.company) }}
+                       {{ form_row(form.jobTitle) }}
+                   </fieldset>
+               </div>
+               <div class="form-rest">
+                   {{ form_rest(form) }}
+                    <input type="submit" class="btn btn-primary" value="{{ 'tempo.form.save_changes'|trans }}" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

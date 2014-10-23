@@ -20,7 +20,7 @@
             <index name="log_version_lookup_idx" columns="object_id,object_class,version"/>
         </indexes>
 
-        <many-to-one field="user" target-entity="Tempo\Bundle\UserBundle\Entity\User" />
+        <many-to-one field="user" target-entity="Tempo\Bundle\AppBundle\Model\User" />
         <field name="action" length="64" type="string" nullable="false"  />
         <field name="loggedAt" column="logged_at" type="datetime" />
         <field name="objectId" column="object_id" length="64" nullable="true" />

@@ -6,6 +6,9 @@ backend:
     path: /admin
     defaults: { _controller: TempoAppBundle:Backend\Dashboard:main }
 
+_user:
+  resource: "@TempoAppBundle/Resources/config/routing/users.yml"
+
 main_room:
   type: rest
   resource: "@TempoAppBundle/Resources/config/routing/room.yml"

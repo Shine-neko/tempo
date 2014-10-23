@@ -32,7 +32,7 @@
         <gedmo:soft-deleteable field-name="deletedAt" />
 
         <one-to-many field="projects" target-entity="Project" mapped-by="organization" />
-        <many-to-many field="team" inversed-by="organization" target-entity="Tempo\Bundle\UserBundle\Entity\User" />
+        <many-to-many field="team" inversed-by="organization" target-entity="Tempo\Bundle\AppBundle\Model\User" />
 
     </entity>
 

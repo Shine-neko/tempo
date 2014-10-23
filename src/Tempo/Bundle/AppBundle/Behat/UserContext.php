@@ -33,7 +33,7 @@ class UserContext extends BaseContext
     {
         $password = $password ?: $username;
 
-        $this->getSession()->visit($this->generatePageUrl('fos_user_security_login'));
+        $this->getSession()->visit($this->generatePageUrl('user_login'));
 
         $this->fillField('Username', $username);
         $this->fillField('Password', $password);
@@ -62,7 +62,7 @@ class UserContext extends BaseContext
      */
     public function iShouldBeOnLoginPage()
     {
-        $this->assertSession()->addressEquals($this->generateUrl('fos_user_security_login'));
+        $this->assertSession()->addressEquals($this->generateUrl('user_login'));
         $this->assertStatusCodeEquals(200);
     }
 

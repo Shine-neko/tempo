@@ -13,7 +13,7 @@ namespace Tempo\Bundle\AppBundle\EventListener;
 
 use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Routing\RouterInterface;
-use Tempo\Bundle\UserBundle\Manager\NotificationManager;
+use Tempo\Bundle\AppBundle\Manager\NotificationManager;
 use Tempo\Bundle\AppBundle\TempoProjectEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 

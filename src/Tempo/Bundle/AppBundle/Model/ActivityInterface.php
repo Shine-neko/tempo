@@ -11,7 +11,7 @@
 
 namespace Tempo\Bundle\AppBundle\Model;
 
-use Tempo\Bundle\UserBundle\Entity\User;
+use Tempo\Bundle\AppBundle\Model\User;
 
 interface ActivityInterface
 {

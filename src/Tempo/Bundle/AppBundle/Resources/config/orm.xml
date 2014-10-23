@@ -26,6 +26,11 @@
         <parameter key="tempo.manager.timesheet.default.class">Tempo\Bundle\AppBundle\Manager\TimesheetManager</parameter>
         <parameter key="tempo.manager.team.default.class">Tempo\Bundle\AppBundle\Manager\TeamManager</parameter>
         <parameter key="tempo.manager.comment.class">Tempo\Bundle\AppBundle\Manager\CommentManager</parameter>
+
+        <parameter key="tempo.model.user.class">Tempo\Bundle\AppBundle\Model\User</parameter>
+        <parameter key="tempo.model.notification.class">Tempo\Bundle\AppBundle\Model\Notification</parameter>
+        <parameter key="tempo.manager.user.class">Tempo\Bundle\AppBundle\Manager\UserManager</parameter>
+        <parameter key="tempo.manager.notification.class">Tempo\Bundle\AppBundle\Manager\NotificationManager</parameter>
     </parameters>
 
     <services>
@@ -69,6 +74,19 @@
             <argument>%tempo.model.activity.class%</argument>
             <call method="setUser">
                 <argument type="service" id="security.context" />
+            </call>
+        </service>
+
+        <service id="tempo.manager.notification" class="%tempo.manager.notification.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument>%tempo.model.notification.class%</argument>
+        </service>
+
+        <service id="tempo.manager.user" class="%tempo.manager.user.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument>%tempo.model.user.class%</argument>
+            <call method="setEncoder">
+                <argument type="service" id="security.encoder_factory" />
             </call>
         </service>
 

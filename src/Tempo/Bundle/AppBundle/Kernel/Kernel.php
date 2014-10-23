@@ -39,7 +39,6 @@ class Kernel extends BaseKernel
             new \Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle(),
             new \Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
-            new \FOS\UserBundle\FOSUserBundle(),
             new \FOS\RestBundle\FOSRestBundle(),
             new \FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new \Sylius\Bundle\ResourceBundle\SyliusResourceBundle(),
@@ -60,7 +59,6 @@ class Kernel extends BaseKernel
 
             //Tempo
             new \Tempo\Bundle\AppBundle\TempoAppBundle(),
-            new \Tempo\Bundle\UserBundle\TempoUserBundle(),
             new \Tempo\Bundle\JsConfigurationBundle\TempoJsConfigurationBundle(),
         );
 

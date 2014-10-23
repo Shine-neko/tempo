@@ -19,7 +19,7 @@ homepage:
     defaults: { _controller: TempoAppBundle:Dashboard:main }
 
 _tempo_users:
-    resource: "@TempoUserBundle/Resources/config/routing.yml"
+    resource: "@TempoAppBundle/Resources/config/routing.yml"
     
 hwi_oauth_security:
      resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"

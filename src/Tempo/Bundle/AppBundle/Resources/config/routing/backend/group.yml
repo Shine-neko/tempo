@@ -1,0 +1,33 @@
+backend_group_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: tempo.controller.group:indexAction
+        _sylius:
+            template: TempoAppBundle:Backend/Group:index.html.twig
+
+backend_group_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: tempo.controller.group:createAction
+        _sylius:
+            template: TempoAppBundle:Backend/Group:create.html.twig
+            redirect: backend_group_index
+
+backend_group_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: tempo.controller.group:updateAction
+        _sylius:
+            template: TempoAppBundle:Backend/Group:update.html.twig
+            redirect: backend_group_index
+
+backend_group_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: tempo.controller.group:deleteAction
+        _sylius:
+            redirect: backend_group_index

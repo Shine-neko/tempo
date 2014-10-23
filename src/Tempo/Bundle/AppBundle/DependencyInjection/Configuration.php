@@ -27,7 +27,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $treeBuilder->root('tempo_app', 'array')
+        $treeBuilder->root('tempo')
             ->children()
                 ->arrayNode('week')
                     ->children()
