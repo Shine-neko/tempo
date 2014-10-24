@@ -29,7 +29,7 @@
                         <div class="app-panel">
                             <h4>Organization</h4>
                             <div class="data">
-                                <a href="/admin/projects"><h1>{{ nbOrganizations }}</h1>
+                                <a href="{{ path('backend_organization_index') }}"><h1>{{ nbOrganizations }}</h1>
                                 </a><hr>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                         <div class="app-panel">
                             <h4>Projects</h4>
                             <div class="data">
-                                <a href="/admin/groups"><h1>{{ nbProjects }}</h1>
+                                <a href="{{ path('backend_project_index') }}"><h1>{{ nbProjects }}</h1>
                                 </a><hr>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                         <div class="app-panel">
                             <h4>Users</h4>
                             <div class="data">
-                                <a href="/admin/users"><h1>{{ nbUsers }}</h1>
+                                <a href="{{ path('backend_user_index') }}"><h1>{{ nbUsers }}</h1>
                                 </a><hr>
                             </div>
                         </div>
@@ -56,13 +56,6 @@
                 </div>
             </div>
 
-            <!--<div class="row">
-                <div class="app-panel">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4"></div>
-                </div>
-            </div>-->
             <div class="row">
                 <div class="col-md-4"></div>
 

@@ -1,55 +1,23 @@
-project_home:
-    path:  /
-    defaults: { _controller: TempoAppBundle:Project:dashboard }
-
-project_organization_list:
-    path:  /{slug}/list
-    defaults: { _controller: TempoAppBundle:Project:list }
-
-project_show:
-    path:  /{slug}/show
-    defaults: { _controller: TempoAppBundle:Project:show }
-
-project_new:
-    path:  /{organization}/new
-    defaults: { _controller: TempoAppBundle:Project:new }
-
-project_create:
-    path:  /create
-    defaults: { _controller: TempoAppBundle:Project:create }
-
-project_edit:
-    path:  /{slug}/edit
-    defaults: { _controller: TempoAppBundle:Project:edit }
-
-project_update:
-    path:  /{slug}/update
-    defaults: { _controller: TempoAppBundle:Project:update }
-    requirements: { _method: post }
-
-project_delete:
-    path:  /{slug}/delete
-    defaults: { _controller: TempoAppBundle:Project:delete }
-
-project_team_add:
-    path:  /{slug}/team/add
-    defaults: { _controller: TempoAppBundle:Team:add }
-
-project_team_create:
-    path:  /{slug}/team/create
-    defaults: { _controller: TempoAppBundle:Team:create }
-    requirements:
-        _method:  GET
-
-project_team_delete:
-    path:  /{slug}/team/delete
-    defaults: { _controller: TempoAppBundle:Team:delete }
+backend_project_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: tempo_backend.controller.project:indexAction
+        _sylius:
+            template: TempoAppBundle:Backend/Project:index.html.twig
+            arguments: [$criteria, $sorting]
 
 
-project_provider_list:
-    path:  /{slug}/provider/list
-    defaults: { _controller: TempoAppBundle:Provider:list }
+backend_project_filter_form:
+    pattern: /filter-form
+    methods: [GET]
+    defaults:
+        _controller: tempo_backend.controller.project:filterFormAction
 
-project_provider_new:
-    path:  /{slug}/provider/new
-    defaults: { _controller: TempoAppBundle:Provider:new }
+backend_project_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: tempo_backend.controller.project:deleteAction
+        _sylius:
+            redirect: backend_project_index

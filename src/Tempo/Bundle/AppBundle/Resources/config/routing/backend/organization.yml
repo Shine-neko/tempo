@@ -1,29 +1,22 @@
-backend_organization_list:
-    path:  /
+backend_organization_index:
+    pattern: /
+    methods: [GET]
     defaults:
-      _controller: TempoAppBundle:Organization:indexAction
-      _sylius:
-        template: TempoAppBundle:Backend/Organization:index.html.twig
-        sortable: true
-        sorting:
-        id: desc
-    requirements:
-      _method:  GET
+        _controller: tempo_backend.controller.organization:indexAction
+        _sylius:
+            template: TempoAppBundle:Backend/Organization:index.html.twig
+            arguments: [$criteria, $sorting]
 
-backend_organization_show:
-    path:  /{slug}/show
-    defaults: { _controller: TempoAppBundle:Organization:show }
-    requirements:
-        _method:  GET
-
-backend_organization_create:
-     path:  /create
-     defaults: { _controller: TempoAppBundle:Organization:create }
-
-backend_organization_update:
-     path:  /{id}/update
-     defaults: { _controller: TempoAppBundle:Organization:update }
+backend_organization_filter_form:
+    pattern: /filter-form
+    methods: [GET]
+    defaults:
+        _controller: tempo_backend.controller.organization:filterFormAction
 
 backend_organization_delete:
-    path:  /{slug}/delete
-    defaults: { _controller: TempoAppBundle:Organization:delete }
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: tempo_backend.controller.organization:deleteAction
+        _sylius:
+            redirect: backend_organization_index

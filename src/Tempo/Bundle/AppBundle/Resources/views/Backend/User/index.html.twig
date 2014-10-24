@@ -33,7 +33,7 @@
                 <li class="{{ activeTab == 'disabled' ? 'active' : '' }}"><a href="{{ path('backend_user_index', {'criteria': {'enabled': false}}) }}"><i class="glyphicon glyphicon-info-sign"></i> {{ 'tempo.user.filter.unconfirmed'|trans }}</a></li>
             </ul>
 
-            <a class="btn btn-cancel btn-default" href="/admin/users">Reset</a>
+            <a class="btn btn-cancel btn-default" href="{{ path('backend_user_index') }}">Reset</a>
         </div>
 
         <div class="col-md-10">

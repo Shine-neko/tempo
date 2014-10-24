@@ -14,18 +14,15 @@ namespace Tempo\Bundle\AppBundle\Form\Type\Backend\Filter;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-/**
- * User filter form type.
- */
-class UserFilterType extends AbstractType
+class OrganizationFilterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('name', 'text', array(
-                'label' => 'tempo.user.list.filter.query',
+                'label' => 'tempo.organization.filter.query',
                 'attr'  => array(
-                    'placeholder' => 'tempo.user.list.filter.query'
+                    'placeholder' => 'tempo.organization.list.filter.query'
                 )
             ))
         ;
@@ -33,6 +30,6 @@ class UserFilterType extends AbstractType
 
     public function getName()
     {
-        return 'tempo_user_filter';
+        return 'tempo_organization_filter';
     }
 }

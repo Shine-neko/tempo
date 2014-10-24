@@ -3,12 +3,13 @@ sylius_resource:
       tempo_backend.organization:
         driver: doctrine/orm
         classes:
-          controller: Tempo\Bundle\AppBundle\Controller\Backend\Organization
+          controller: Tempo\Bundle\AppBundle\Controller\Backend\OrganizationController
           model: Tempo\Bundle\AppBundle\Model\Organization
 
       tempo_backend.project:
          driver: doctrine/orm
          classes:
+            controller: Tempo\Bundle\AppBundle\Controller\Backend\ProjectController
             model: Tempo\Bundle\AppBundle\Model\Project
 
       tempo_backend.user:
@@ -20,6 +21,5 @@ sylius_resource:
       tempo_backend.group:
           driver: doctrine/orm
           classes:
-            #controller: Tempo\Bundle\UsAppBundleontroller\Backend\GroupController
             model: Tempo\Bundle\UserBundle\Model\Group
 

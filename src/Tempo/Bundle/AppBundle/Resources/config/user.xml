@@ -12,7 +12,7 @@
         <parameter key="tempo.user.security.api_token_user_provider.class">Tempo\Bundle\AppBundle\Security\ApiTokenUserProvider</parameter>
         <parameter key="tempo.user.security.api_token_authenticator.class">Tempo\Bundle\AppBundle\Security\TokenAuthenticator</parameter>
         <parameter key="tempo.user.twig.extension.class">Tempo\Bundle\AppBundle\Twig\Extension\UserExtension</parameter>
-        <parameter key="tempo.form.type.user_filter.class">Tempo\Bundle\AppBundle\Form\Type\Backend\Filter\UserFilterType</parameter>
+
     </parameters>
 
     <services>
@@ -28,19 +28,18 @@
             <argument key="github">githubId</argument>
             </argument>
         </service>
+
         <service id="tempo.user.profil.menu_builder" class="%tempo.user.menu_builder.class%">
             <argument type="service" id="knp_menu.factory"/>
             <argument type="service" id="translator"/>
         </service>
+
         <service id="tempo.user.profil.tabs" class="Knp\Menu\MenuItem" factory-service="tempo.user.profil.menu_builder" factory-method="tabMenu">
             <tag name="knp_menu.menu" alias="profile_tab"/>
         </service>
 
         <service id="tempo.user.profile.form.type.avatar" class="%tempo.user.profile.form.type.avatar.class%">
             <argument type="string">%tempo.user.profile.form.type.avatar.class%</argument>
-        </service>
-        <service id="tempo.form.type.user_filter" class="%tempo.form.type.user_filter.class%">
-            <tag name="form.type" alias="tempo_user_filter" />
         </service>
 
         <service id="tempo.user.profile.form.avatar.factory" class="Symfony\Component\Form\Form"  factory-service="form.factory" factory-method="create">

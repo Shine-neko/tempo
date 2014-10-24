@@ -43,6 +43,10 @@ _project_api:
   defaults:
       version: v1
 
+_project_admin:
+    resource: "@TempoAppBundle/Resources/config/routing/backend/project.yml"
+    prefix: /admin/project
+
 _organization:
   resource: "@TempoAppBundle/Resources/config/routing/organization.yml"
   prefix:   /organization
@@ -53,6 +57,10 @@ _organization_api:
   prefix:   /api/{version}/organization
   defaults:
       version: v1
+
+_organization_admin:
+    resource: "@TempoAppBundle/Resources/config/routing/backend/organization.yml"
+    prefix: /admin/organization
 
 _timesheet:
   resource: "@TempoAppBundle/Resources/config/routing/timesheet.yml"
