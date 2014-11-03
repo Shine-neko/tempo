@@ -5,6 +5,7 @@
     <parameters>
         <parameter key="tempo.eventlistener.class">Tempo\Bundle\AppBundle\EventListener\ControllerListener</parameter>
         <parameter key="tempo.elephantio.client.class">Tempo\Bundle\AppBundle\ElephantIO\Client</parameter>
+        <parameter key="tempo.elephantio.engine.class">ElephantIO\Engine\SocketIO\Version1X</parameter>
         <parameter key="tempo.data_collector.class">Tempo\Bundle\AppBundle\DataCollector\TempoDataCollector</parameter>
         <parameter key="tempo.form.type.autocomplete.class">Tempo\Bundle\AppBundle\Form\Type\AutocompleteType</parameter>
         <parameter key="tempo.form.type.datetimepicker.class">Tempo\Bundle\AppBundle\Form\Type\DateTimePickerType</parameter>
@@ -53,8 +54,12 @@
             <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController"/>
         </service>
 
-        <service id="tempo.elephantio.definition" class="ElephantIO\Client" public="false" >
+        <service id="tempo.elephantio.engine" class="%tempo.elephantio.engine.class%">
             <argument type="string">http://%socket_io.client%</argument>
+        </service>
+
+        <service id="tempo.elephantio.definition" class="ElephantIO\Client" public="false" >
+            <argument type="service" id="tempo.elephantio.engine" />
         </service>
 
         <service id="tempo.elephantio.client" class="%tempo.elephantio.client.class%">
