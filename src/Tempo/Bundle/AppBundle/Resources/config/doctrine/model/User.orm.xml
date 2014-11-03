@@ -15,7 +15,6 @@
         <field name="username" column="username" type="string" length="255" />
         <field name="slug" column="slug" type="string" length="255" unique="true" />
         <field name="email" column="email" type="string" length="255" />
-        <field name="emailCanonical" column="email_canonical" type="string" length="255" unique="true" />
         <field name="enabled" column="enabled" type="boolean" />
         <field name="salt" column="salt" type="string" />
         <field name="password" column="password" type="string" />

@@ -45,7 +45,7 @@ security:
                 failure_path: /login
                 oauth_user_provider:
                   service: tempo.user.oauth.user_provider
-            logout: true
+            logout: ~
             anonymous:    true
         
     access_control:

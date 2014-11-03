@@ -15,6 +15,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 class User implements UserInterface
 {
+    const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
+
     /**
      * @var int
      */
@@ -34,10 +36,7 @@ class User implements UserInterface
      * @var string
      */
     protected $email;
-    /**
-     * @var string
-     */
-    protected $emailCanonical;
+
     /**
      * @var boolean
      */
@@ -681,10 +680,6 @@ class User implements UserInterface
     {
         return $this->email;
     }
-    public function getEmailCanonical()
-    {
-        return $this->emailCanonical;
-    }
 
     /**
      * Gets the encrypted password.
@@ -845,12 +840,6 @@ class User implements UserInterface
     public function setEmail($email)
     {
         $this->email = $email;
-        return $this;
-    }
-
-    public function setEmailCanonical($emailCanonical)
-    {
-        $this->emailCanonical = $emailCanonical;
         return $this;
     }
 

@@ -55,12 +55,17 @@ class UserProvider implements UserProviderInterface
      */
     public function refreshUser(SecurityUserInterface $user)
     {
+
         if (!$user instanceof User) {
             throw new UnsupportedUserException(sprintf('Expected an instance of Tempo\Bundke\AppBundle\Model\User, but got "%s".', get_class($user)));
         }
 
         if (!$this->supportsClass(get_class($user))) {
             throw new UnsupportedUserException(sprintf('Expected an instance of %s, but got "%s".', $this->userManager->getClass(), get_class($user)));
+        }
+
+        if (null !== $reloadedUser = $this->userManager->findUserBy(array('slug' => $user->getSlug()))) {
+           return $reloadedUser;
         }
 
         if (null === $reloadedUser = $this->userManager->findUserBy(array('id' => $user->getId()))) {
