@@ -39,12 +39,12 @@
         "friendsofsymfony/jsrouting-bundle": "1.5.3",
         "hwi/oauth-bundle": "0.3.*",
         "jms/serializer-bundle": "0.12.0",
-        "wisembly/elephant.io": "dev-master",
+        "wisembly/elephant.io": "3.0.0",
         "ikimea/browser": "1.11",
         "yohang/calendr": "1.*",
         "egeloen/ckeditor-bundle": "2.4.0",
         "knplabs/knp-menu-bundle": "~2.0",
-        "knplabs/knp-snappy-bundle": "1.0.*@dev",
+        "knplabs/knp-snappy-bundle": "1.2",
         "stof/doctrine-extensions-bundle": "1.1.0",
         "problematic/acl-manager-bundle": "dev-master",
 
@@ -52,7 +52,7 @@
         "mopa/bootstrap-bundle": "3.*@dev",
         "liip/imagine-bundle": "1.0.0",
         "nelmio/api-doc-bundle": "2.6.0",
-        "willdurand/js-translation-bundle": "v2.0.0",
+        "willdurand/js-translation-bundle": "~2.0.0",
 
         "sylius/settings-bundle": "v0.10.0",
         "phpoffice/phpexcel": "1.8.0"
@@ -63,18 +63,12 @@
         "behat/symfony2-extension":      "~2.0@dev",
         "behat/mink-extension":          "~2.0@dev",
         "behat/mink-browserkit-driver":  "~1.1@dev",
-        "willdurand/faker-bundle": "dev-master",
+        "willdurand/faker-bundle": "~1.2",
         "doctrine/doctrine-fixtures-bundle": "2.2.*@dev"
     },
     "replace": {
         "tempo-project/resource": "self.version"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/shine-neko/mailcatcher"
-        }
-    ],
     "scripts": {
         "post-install-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
@@ -101,7 +95,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "0.1.x-dev"
+            "dev-master": "0.2.x-dev"
         },
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",

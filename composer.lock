@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "265451eed139bc1cad85d5cb6e7bc756",
+    "hash": "40a0177c38107654c3ebe7349a3b9183",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1874,30 +1874,32 @@
         },
         {
             "name": "knplabs/knp-snappy",
-            "version": "0.2.0",
+            "version": "0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/snappy.git",
-                "reference": "4bc7af878a003a2c1ef3c4d8b08851537cb07486"
+                "reference": "e5d1e7486d9344a6cc5c3194daad7a5141b92e6e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/snappy/zipball/4bc7af878a003a2c1ef3c4d8b08851537cb07486",
-                "reference": "4bc7af878a003a2c1ef3c4d8b08851537cb07486",
+                "url": "https://api.github.com/repos/KnpLabs/snappy/zipball/e5d1e7486d9344a6cc5c3194daad7a5141b92e6e",
+                "reference": "e5d1e7486d9344a6cc5c3194daad7a5141b92e6e",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
+            "require-dev": {
+                "symfony/process": "~2.1"
+            },
             "suggest": {
-                "google/wkhtmltopdf-amd64": "Provide wkhtmltopdf-amd64 binary, use version `0.11.0-RC1` as dependency",
-                "google/wkhtmltopdf-i386": "Provide wkhtmltopdf-i386 binary, use version `0.11.0-RC1` as dependency",
-                "symfony/process": "Process Component of Symfony2."
+                "h4cc/wkhtmltopdf-amd64": "Provide wkhtmltopdf-amd64 binary, use version `0.12.0` as dependency",
+                "h4cc/wkhtmltopdf-i386": "Provide wkhtmltopdf-i386 binary, use version `0.12.0` as dependency"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.1.x-dev"
+                    "dev-master": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -1929,21 +1931,21 @@
                 "thumbnail",
                 "wkhtmltopdf"
             ],
-            "time": "2014-03-20 15:05:12"
+            "time": "2014-10-14 16:54:20"
         },
         {
             "name": "knplabs/knp-snappy-bundle",
-            "version": "v1.0",
+            "version": "v1.2",
             "target-dir": "Knp/Bundle/SnappyBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpSnappyBundle.git",
-                "reference": "cabfd9b6ade11094002d3d873bdf260ec3ded3c7"
+                "reference": "68f48977816fd829911c789663e22a9a62535079"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpSnappyBundle/zipball/cabfd9b6ade11094002d3d873bdf260ec3ded3c7",
-                "reference": "cabfd9b6ade11094002d3d873bdf260ec3ded3c7",
+                "url": "https://api.github.com/repos/KnpLabs/KnpSnappyBundle/zipball/68f48977816fd829911c789663e22a9a62535079",
+                "reference": "68f48977816fd829911c789663e22a9a62535079",
                 "shasum": ""
             },
             "require": {
@@ -1980,7 +1982,7 @@
                 "pdf",
                 "snappy"
             ],
-            "time": "2012-11-05 12:46:28"
+            "time": "2014-01-02 11:20:45"
         },
         {
             "name": "kriswallsmith/assetic",
@@ -2803,17 +2805,17 @@
         },
         {
             "name": "sensio/distribution-bundle",
-            "version": "v3.0.7",
+            "version": "v3.0.8",
             "target-dir": "Sensio/Bundle/DistributionBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "3d7b900225882063cf179ce1d41bb8b1450a5a17"
+                "reference": "bc5e96bb4faf6bee7121085951d11b89488952f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/3d7b900225882063cf179ce1d41bb8b1450a5a17",
-                "reference": "3d7b900225882063cf179ce1d41bb8b1450a5a17",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/bc5e96bb4faf6bee7121085951d11b89488952f5",
+                "reference": "bc5e96bb4faf6bee7121085951d11b89488952f5",
                 "shasum": ""
             },
             "require": {
@@ -2852,7 +2854,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2014-10-01 06:52:36"
+            "time": "2014-11-03 21:16:34"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -3980,16 +3982,16 @@
         },
         {
             "name": "wisembly/elephant.io",
-            "version": "dev-master",
+            "version": "v3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Wisembly/elephant.io.git",
-                "reference": "bde08631d4c221ca05c21eba4b9b08e7df9f2f9d"
+                "reference": "61f7eb8dcc2ac939aad526745c8042ce1cd4a54d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Wisembly/elephant.io/zipball/bde08631d4c221ca05c21eba4b9b08e7df9f2f9d",
-                "reference": "bde08631d4c221ca05c21eba4b9b08e7df9f2f9d",
+                "url": "https://api.github.com/repos/Wisembly/elephant.io/zipball/61f7eb8dcc2ac939aad526745c8042ce1cd4a54d",
+                "reference": "61f7eb8dcc2ac939aad526745c8042ce1cd4a54d",
                 "shasum": ""
             },
             "require": {
@@ -4042,7 +4044,7 @@
                 "real time",
                 "websocket"
             ],
-            "time": "2014-10-30 18:13:17"
+            "time": "2014-09-08 10:52:10"
         },
         {
             "name": "yohang/calendr",
@@ -5316,7 +5318,7 @@
         },
         {
             "name": "willdurand/faker-bundle",
-            "version": "dev-master",
+            "version": "1.2.1",
             "target-dir": "Bazinga/Bundle/FakerBundle",
             "source": {
                 "type": "git",
@@ -5373,14 +5375,11 @@
         "doctrine/doctrine-bundle": 20,
         "doctrine/doctrine-migrations-bundle": 20,
         "doctrine/migrations": 20,
-        "wisembly/elephant.io": 20,
-        "knplabs/knp-snappy-bundle": 20,
         "problematic/acl-manager-bundle": 20,
         "mopa/bootstrap-bundle": 20,
         "behat/symfony2-extension": 20,
         "behat/mink-extension": 20,
         "behat/mink-browserkit-driver": 20,
-        "willdurand/faker-bundle": 20,
         "doctrine/doctrine-fixtures-bundle": 20
     },
     "prefer-stable": false,
