@@ -42,14 +42,6 @@ class UserContext extends BaseContext
     }
 
     /**
-     * @Then /^I should still be on my account password page$/
-     */
-    public function iShouldStillBeOnMyAccountPasswordPage()
-    {
-        $this->assertSession()->addressEquals($this->generateUrl('user_profile_password'));
-    }
-
-    /**
      * @Given /^I am on my account password page$/
      */
     public function iAmOnMyAccountPasswordPage()
