@@ -66,7 +66,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
             $account->setUsername($username);
             $account->setSlug($username);
             $account->setEmail($username. '@test.com');
-            $account->setEmailCanonical($username. '@test.com');
             $account->setLastName($fullName[1]);
             $account->setFirstName($fullName[0]);
             $account->setPlainPassword($username);
