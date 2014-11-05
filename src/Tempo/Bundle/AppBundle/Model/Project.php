@@ -12,7 +12,6 @@
 namespace Tempo\Bundle\AppBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Tempo\Bundle\AppBundle\Model\TeamInterface;
 use Tempo\Bundle\AppBundle\Model\ProjectUser as EntityProjectUser;
 
 /**
@@ -491,6 +490,7 @@ class Project implements ProjectInterface
     public function addUser($user, $role = TeamInterface::TYPE_USER)
     {
         $this->team[] = new EntityProjectUser($this, $user, $role);
+
         return $this;
     }
 

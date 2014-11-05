@@ -31,6 +31,7 @@ class Group implements GroupInterface
         if (!$this->hasRole($role)) {
             $this->roles[] = strtoupper($role);
         }
+
         return $this;
     }
     public function getId()
@@ -68,6 +69,7 @@ class Group implements GroupInterface
             unset($this->roles[$key]);
             $this->roles = array_values($this->roles);
         }
+
         return $this;
     }
 
@@ -79,6 +81,7 @@ class Group implements GroupInterface
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -90,6 +93,7 @@ class Group implements GroupInterface
     public function setRoles(array $roles)
     {
         $this->roles = $roles;
+
         return $this;
     }
 }

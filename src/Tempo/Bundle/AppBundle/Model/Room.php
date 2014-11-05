@@ -117,6 +117,7 @@ class Room
     public function setTeam($team)
     {
         $this->team = $team;
+
         return $this;
     }
 
@@ -134,6 +135,7 @@ class Room
     public function setProject($project)
     {
         $this->project  = $project;
+
         return $this;
     }
 

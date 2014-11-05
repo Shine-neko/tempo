@@ -43,7 +43,7 @@ class Comment
     /**
      * @return int
      */
-    function getId()
+    public function getId()
     {
         return $this->id;
     }
@@ -51,7 +51,7 @@ class Comment
     /**
      * @return string
      */
-    function getBody()
+    public function getBody()
     {
         return $this->body;
     }
@@ -60,16 +60,17 @@ class Comment
      * @param $body
      * @return $this
      */
-    function setBody($body)
+    public function setBody($body)
     {
         $this->body = $body;
+
         return $this;
     }
 
     /**
      * @return object
      */
-    function getAuthor()
+    public function getAuthor()
     {
         return $this->author;
     }
@@ -117,6 +118,7 @@ class Comment
     public function setAuthor($sender)
     {
         $this->author = $sender;
+
         return $this;
     }
 

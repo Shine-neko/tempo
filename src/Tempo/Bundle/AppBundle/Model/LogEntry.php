@@ -12,7 +12,6 @@
 namespace Tempo\Bundle\AppBundle\Model;
 
 use Gedmo\Loggable\Entity\MappedSuperclass\AbstractLogEntry;
-use Tempo\Bundle\AppBundle\Model\User;
 
 class LogEntry extends AbstractLogEntry
 {

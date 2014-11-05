@@ -13,9 +13,9 @@ namespace Tempo\Bundle\AppBundle\Model;
 
 interface CommentInterface
 {
-    function getId();
-    function getBody();
-    function setBody($body);
-    function getSender();
-    function setSender($sender);
+    public function getId();
+    public function getBody();
+    public function setBody($body);
+    public function getSender();
+    public function setSender($sender);
 }

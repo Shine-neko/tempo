@@ -608,6 +608,7 @@ class User implements UserInterface
         if (!in_array($role, $this->roles, true)) {
             $this->roles[] = $role;
         }
+
         return $this;
     }
 
@@ -723,6 +724,7 @@ class User implements UserInterface
         }
         // we need to make sure to have at least one role
         $roles[] = static::ROLE_DEFAULT;
+
         return array_unique($roles);
     }
     /**
@@ -750,6 +752,7 @@ class User implements UserInterface
         if (null !== $this->expiresAt && $this->expiresAt->getTimestamp() < time()) {
             return false;
         }
+
         return true;
     }
 
@@ -766,6 +769,7 @@ class User implements UserInterface
         if (null !== $this->credentialsExpireAt && $this->credentialsExpireAt->getTimestamp() < time()) {
             return false;
         }
+
         return true;
     }
 
@@ -800,18 +804,21 @@ class User implements UserInterface
             unset($this->roles[$key]);
             $this->roles = array_values($this->roles);
         }
+
         return $this;
     }
 
     public function setUsername($username)
     {
         $this->username = $username;
+
         return $this;
     }
 
     public function setSlug($slug)
     {
         $this->slug = $slug;
+
         return $this;
     }
 
@@ -823,6 +830,7 @@ class User implements UserInterface
     public function setCredentialsExpireAt(\DateTime $date = null)
     {
         $this->credentialsExpireAt = $date;
+
         return $this;
     }
 
@@ -834,18 +842,21 @@ class User implements UserInterface
     public function setCredentialsExpired($boolean)
     {
         $this->credentialsExpired = $boolean;
+
         return $this;
     }
 
     public function setEmail($email)
     {
         $this->email = $email;
+
         return $this;
     }
 
     public function setEnabled($boolean)
     {
         $this->enabled = (Boolean) $boolean;
+
         return $this;
     }
     /**
@@ -858,6 +869,7 @@ class User implements UserInterface
     public function setExpired($boolean)
     {
         $this->expired = (Boolean) $boolean;
+
         return $this;
     }
 
@@ -869,12 +881,14 @@ class User implements UserInterface
     public function setExpiresAt(\DateTime $date = null)
     {
         $this->expiresAt = $date;
+
         return $this;
     }
 
     public function setPassword($password)
     {
         $this->password = $password;
+
         return $this;
     }
 
@@ -885,36 +899,42 @@ class User implements UserInterface
         } else {
             $this->removeRole(static::ROLE_SUPER_ADMIN);
         }
+
         return $this;
     }
 
     public function setPlainPassword($password)
     {
         $this->plainPassword = $password;
+
         return $this;
     }
 
     public function setLastLogin(\DateTime $time = null)
     {
         $this->lastLogin = $time;
+
         return $this;
     }
 
     public function setLocked($boolean)
     {
         $this->locked = $boolean;
+
         return $this;
     }
 
     public function setConfirmationToken($confirmationToken)
     {
         $this->confirmationToken = $confirmationToken;
+
         return $this;
     }
 
     public function setPasswordRequestedAt(\DateTime $date = null)
     {
         $this->passwordRequestedAt = $date;
+
         return $this;
     }
     /**
@@ -939,6 +959,7 @@ class User implements UserInterface
         foreach ($roles as $role) {
             $this->addRole($role);
         }
+
         return $this;
     }
     /**
@@ -957,6 +978,7 @@ class User implements UserInterface
         foreach ($this->getGroups() as $group) {
             $names[] = $group->getName();
         }
+
         return $names;
     }
     /**
@@ -974,6 +996,7 @@ class User implements UserInterface
         if (!$this->getGroups()->contains($group)) {
             $this->getGroups()->add($group);
         }
+
         return $this;
     }
 
@@ -982,6 +1005,7 @@ class User implements UserInterface
         if ($this->getGroups()->contains($group)) {
             $this->getGroups()->removeElement($group);
         }
+
         return $this;
     }
 

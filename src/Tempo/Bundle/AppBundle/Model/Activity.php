@@ -83,6 +83,7 @@ class Activity implements ActivityInterface
     public function setTarget($target)
     {
         $this->target = $target;
+
         return $this;
     }
 
@@ -100,6 +101,7 @@ class Activity implements ActivityInterface
     public function setType($type)
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -117,6 +119,7 @@ class Activity implements ActivityInterface
     public function setAction($action)
     {
         $this->action = $action;
+
         return $this;
     }
 
@@ -134,6 +137,7 @@ class Activity implements ActivityInterface
     public function setData($data)
     {
         $this->data = $data;
+
         return $this;
     }
 
@@ -151,6 +155,7 @@ class Activity implements ActivityInterface
     public function setAuthor($author)
     {
         $this->author = $author;
+
         return $this;
     }
 
@@ -168,6 +173,7 @@ class Activity implements ActivityInterface
     public function setCreatedAt(\DateTime $createdAt)
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -178,6 +184,7 @@ class Activity implements ActivityInterface
     public function setProject($project)
     {
         $this->project = $project;
+
         return $this;
     }
 }
