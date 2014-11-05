@@ -85,9 +85,6 @@
         <service id="tempo.manager.user" class="%tempo.manager.user.class%">
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument>%tempo.model.user.class%</argument>
-            <call method="setEncoder">
-                <argument type="service" id="security.encoder_factory" />
-            </call>
         </service>
 
     </services>

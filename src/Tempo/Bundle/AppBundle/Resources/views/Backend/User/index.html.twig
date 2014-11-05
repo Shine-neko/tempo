@@ -29,8 +29,8 @@
             {% set activeTab = (app.request.query.get('criteria') is not empty and app.request.query.get('criteria').enabled|default('1') == '0') ? 'disabled' : 'all' %}
 
             <ul class="nav nav-pills nav-stacked">
-                <li class="{{ activeTab == 'all' ? 'active' : '' }}"><a href="{{ path('backend_user_index') }}">{{ 'tempo.user.filter.all'|trans }}</a></li>
-                <li class="{{ activeTab == 'disabled' ? 'active' : '' }}"><a href="{{ path('backend_user_index', {'criteria': {'enabled': false}}) }}"><i class="glyphicon glyphicon-info-sign"></i> {{ 'tempo.user.filter.unconfirmed'|trans }}</a></li>
+                <li class="{{ activeTab == 'all' ? 'active' : '' }}"><a href="{{ path('backend_user_index') }}">{{ 'tempo.user.list.filter.all'|trans }}</a></li>
+                <li class="{{ activeTab == 'disabled' ? 'active' : '' }}"><a href="{{ path('backend_user_index', {'criteria': {'enabled': false}}) }}"><i class="glyphicon glyphicon-info-sign"></i> {{ 'tempo.user.list.filter.unconfirmed'|trans }}</a></li>
             </ul>
 
             <a class="btn btn-cancel btn-default" href="{{ path('backend_user_index') }}">Reset</a>
@@ -56,7 +56,7 @@
                         <td>{{ user.id }}</td>
                         <td>{{ user.firstName }}</td>
                         <td>{{ user.lastName }}</td>
-                        <td><a href="{{ path('backend_user_show', {'id': user.id}) }}">{{ user.email }}</a></td>
+                        <td><a href="{{ path('project_show', {'slug': user.slug}) }}">{{ user.email }}</a></td>
                         <td>{{ user.createdAt|date('d-m-Y H:i') }}</td>
                         <td>
 
@@ -64,7 +64,7 @@
                         </td>
                         <td>
                             <div class="pull-right">
-                                {{ buttons.show(path('user_profile_show', {'slug': user.slug})) }}
+                                {{ buttons.show(path('project_show', {'slug': user.slug})) }}
                                 {{ buttons.edit(path('backend_user_update', {'id': user.id})) }}
                                 {{ buttons.delete(path('backend_user_delete', {'id': user.id}), null, user.id is sameas(app.user.id)) }}
                             </div>

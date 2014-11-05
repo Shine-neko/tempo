@@ -147,12 +147,13 @@ tempo:
       settings: Settings
     form:
       id: ID
+      username: Username
       email: E-Mail
       registration_date: Registration Date
       enabled: Enabled
-      firstName: Skype
-      lastName: Skype
-      password: Skype
+      firstName: First Name
+      lastName: Last Name
+      password: Password
       skype: Skype
       linkedin: Linkedin
       viadeo: Viadeo
@@ -177,6 +178,8 @@ tempo:
     list:
       title: 'Organization List'
       filter:
+        all: All
+        unconfirmed: unconfirmed
         query: Search
     list.page_title : User list
     create.page_title: Create User

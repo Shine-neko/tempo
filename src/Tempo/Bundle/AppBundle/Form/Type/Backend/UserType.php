@@ -23,34 +23,47 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('username', 'text', array(
+                'label' => 'tempo.profile.form.username',
+                'required'  => true,
+            ))
             ->add('firstName', 'text', array(
-                'label' => 'tempo.profile.form.firstName'
+                'label' => 'tempo.profile.form.firstName',
+                'required'  => true,
             ))
             ->add('lastName', 'text', array(
-                'label' => 'tempo.profile.form.lastName'
+                'label' => 'tempo.profile.form.lastName',
+                'required'  => true,
             ))
             ->add('email', 'email', array(
-                'label' => 'tempo.profile.form.email'
+                'label' => 'tempo.profile.form.email',
+                'required'  => true,
             ))
             ->add('plainPassword', 'password', array(
-                'label' => 'tempo.profile.form.password'
+                'label' => 'tempo.profile.form.password',
+                'required'  => true,
             ))
             ->add('enabled', 'checkbox', array(
-                'label' => 'tempo.profile.form.enabled'
+                'label' => 'tempo.profile.form.enabled',
+                'attr'  => array('checked'   => 'checked'),
+                'required'  => true,
             ))
             ->add('skype', null, array(
-                'label' => 'tempo.profile.form.skype'
+                'label' => 'tempo.profile.form.skype',
+                'required'  => false,
             ))
             ->add('linkedin', null, array(
-                'label' => 'tempo.profile.form.linkedin'
+                'label' => 'tempo.profile.form.linkedin',
+                'required'  => false,
             ))
             ->add('viadeo', null, array(
-                'label' => 'tempo.profile.form.viadeo'
+                'label' => 'tempo.profile.form.viadeo',
+                'required'  => false,
             ))
             ->add('twitter', null, array(
-                'label' => 'tempo.profile.form.twitter'
+                'label' => 'tempo.profile.form.twitter',
+                'required'  => false,
             ))
-            ->add('groups')
         ;
     }
 
