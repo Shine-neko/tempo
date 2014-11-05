@@ -181,7 +181,8 @@ tempo:
         all: All
         unconfirmed: unconfirmed
         query: Search
-    list.page_title : User list
+      page_title : User list
     create.page_title: Create User
+    update.page_title: Update User
     password_change_success: Password changed successfully.
 
