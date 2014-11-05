@@ -50,9 +50,9 @@
 
         "white-october/pagerfanta-bundle": "v1.0.2",
         "mopa/bootstrap-bundle": "3.*@dev",
-        "liip/imagine-bundle": "1.0.0",
+        "liip/imagine-bundle": "~1.1",
         "nelmio/api-doc-bundle": "2.6.0",
-        "willdurand/js-translation-bundle": "~2.0.0",
+        "willdurand/js-translation-bundle": "~2.1.0",
 
         "sylius/settings-bundle": "v0.10.0",
         "phpoffice/phpexcel": "1.8.0"

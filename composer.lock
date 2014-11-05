@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "40a0177c38107654c3ebe7349a3b9183",
+    "hash": "79305d821fb062667138783b9ba95460",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -295,12 +295,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "d12672808124e711c2cb78a82d4461ba2e89c7ef"
+                "reference": "6458b0bd6e62817e961a9611959a67b5f8622b59"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/d12672808124e711c2cb78a82d4461ba2e89c7ef",
-                "reference": "d12672808124e711c2cb78a82d4461ba2e89c7ef",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/6458b0bd6e62817e961a9611959a67b5f8622b59",
+                "reference": "6458b0bd6e62817e961a9611959a67b5f8622b59",
                 "shasum": ""
             },
             "require": {
@@ -358,7 +358,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2014-10-29 16:12:22"
+            "time": "2014-11-05 14:17:28"
         },
         {
             "name": "doctrine/doctrine-bundle",
@@ -816,12 +816,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "20c6bfd360b3db9e9bc53e5ae37afe1a22dccca3"
+                "reference": "76e1a469ef3c4af4ef9d60c769822d4283809217"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/20c6bfd360b3db9e9bc53e5ae37afe1a22dccca3",
-                "reference": "20c6bfd360b3db9e9bc53e5ae37afe1a22dccca3",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/76e1a469ef3c4af4ef9d60c769822d4283809217",
+                "reference": "76e1a469ef3c4af4ef9d60c769822d4283809217",
                 "shasum": ""
             },
             "require": {
@@ -883,7 +883,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2014-10-23 05:01:59"
+            "time": "2014-11-05 12:19:29"
         },
         {
             "name": "egeloen/ckeditor-bundle",
@@ -2108,17 +2108,17 @@
         },
         {
             "name": "liip/imagine-bundle",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "target-dir": "Liip/ImagineBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liip/LiipImagineBundle.git",
-                "reference": "92e649516294ff4b195e90179294246db11072d5"
+                "reference": "4530ca6fe10885e70cbff9ce992d82752743ea6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liip/LiipImagineBundle/zipball/92e649516294ff4b195e90179294246db11072d5",
-                "reference": "92e649516294ff4b195e90179294246db11072d5",
+                "url": "https://api.github.com/repos/liip/LiipImagineBundle/zipball/4530ca6fe10885e70cbff9ce992d82752743ea6a",
+                "reference": "4530ca6fe10885e70cbff9ce992d82752743ea6a",
                 "shasum": ""
             },
             "require": {
@@ -2136,7 +2136,7 @@
                 "doctrine/mongodb-odm": "1.0.*",
                 "doctrine/orm": "~2.3",
                 "ext-gd": "*",
-                "phpunit/phpunit": "~3.7",
+                "phpunit/phpunit": "~4.3",
                 "psr/log": "~1.0",
                 "symfony/browser-kit": "~2.3",
                 "symfony/console": "~2.3",
@@ -2178,7 +2178,7 @@
                 "image",
                 "imagine"
             ],
-            "time": "2014-05-22 08:43:31"
+            "time": "2014-10-29 18:48:33"
         },
         {
             "name": "michelf/php-markdown",
@@ -3785,26 +3785,27 @@
         },
         {
             "name": "willdurand/js-translation-bundle",
-            "version": "v2.0.0",
+            "version": "v2.1.4",
             "target-dir": "Bazinga/Bundle/JsTranslationBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/willdurand/BazingaJsTranslationBundle.git",
-                "reference": "3d1e0b1fafadcbd10475f05c3db84633eb186c32"
+                "reference": "5f19f8bf5c8494da2916283c53f215d77ea5f666"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/willdurand/BazingaJsTranslationBundle/zipball/3d1e0b1fafadcbd10475f05c3db84633eb186c32",
-                "reference": "3d1e0b1fafadcbd10475f05c3db84633eb186c32",
+                "url": "https://api.github.com/repos/willdurand/BazingaJsTranslationBundle/zipball/5f19f8bf5c8494da2916283c53f215d77ea5f666",
+                "reference": "5f19f8bf5c8494da2916283c53f215d77ea5f666",
                 "shasum": ""
             },
             "require": {
                 "symfony/console": "~2.3",
                 "symfony/finder": "~2.3",
-                "symfony/framework-bundle": "~2.3"
+                "symfony/framework-bundle": "~2.3",
+                "symfony/intl": "~2.3"
             },
             "replace": {
-                "willdurand/expose-translation-bundle": "2.0.*"
+                "willdurand/expose-translation-bundle": "2.1.*"
             },
             "require-dev": {
                 "symfony/browser-kit": "~2.3",
@@ -3814,7 +3815,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0-dev"
+                    "dev-master": "2.1-dev"
                 }
             },
             "autoload": {
@@ -3829,8 +3830,7 @@
             "authors": [
                 {
                     "name": "William Durand",
-                    "email": "william.durand1@gmail.com",
-                    "homepage": "http://www.willdurand.fr"
+                    "email": "william.durand1@gmail.com"
                 }
             ],
             "description": "A pretty nice way to expose your translation messages to your JavaScript.",
@@ -3839,7 +3839,7 @@
                 "symfony",
                 "translation"
             ],
-            "time": "2014-01-20 16:17:52"
+            "time": "2014-11-03 10:27:20"
         },
         {
             "name": "willdurand/jsonp-callback-validator",
