@@ -49,6 +49,7 @@
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument>%tempo.model.project.class%</argument>
         </service>
+
         <service id="tempo.manager.project_provider" class="%tempo.manager.project_provider.class%">
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument>%tempo.model.project_provider.class%</argument>

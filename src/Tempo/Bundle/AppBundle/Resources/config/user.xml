@@ -12,11 +12,9 @@
         <parameter key="tempo.user.security.api_token_user_provider.class">Tempo\Bundle\AppBundle\Security\ApiTokenUserProvider</parameter>
         <parameter key="tempo.user.security.api_token_authenticator.class">Tempo\Bundle\AppBundle\Security\TokenAuthenticator</parameter>
         <parameter key="tempo.user.twig.extension.class">Tempo\Bundle\AppBundle\Twig\Extension\UserExtension</parameter>
-
     </parameters>
 
     <services>
-
         <service id="tempo.user.user_provider.username" class="%tempo.user.user_provider.username.class%">
             <argument type="service" id="tempo.manager.user" />
         </service>
@@ -74,6 +72,7 @@
         <service id="tempo.user.security.api_token_user_provider" class="%tempo.user.security.api_token_user_provider.class%">
             <argument type="service" id="tempo.manager.user" />
         </service>
+
         <service id="tempo.user.security.api_token_authenticator" class="%tempo.user.security.api_token_authenticator.class%">
             <argument type="service" id="security.http_utils" />
         </service>

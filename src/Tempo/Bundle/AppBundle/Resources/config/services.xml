@@ -12,7 +12,7 @@
         <parameter key="tempo.form.type.list.class">Tempo\Bundle\AppBundle\Form\Type\ListType</parameter>
         <parameter key="tempo.menu.builder.front.class">Tempo\Bundle\AppBundle\Menu\FrontendMenuBuilder</parameter>
         <parameter key="tempo.form.extension.list.class">Tempo\Bundle\AppBundle\Form\Extension\SecurityTypeExtension</parameter>
-	<parameter key="tempo.menu_builder.class">Tempo\Bundle\AppBundle\Menu\MenuBuilder</parameter>
+	    <parameter key="tempo.menu_builder.class">Tempo\Bundle\AppBundle\Menu\MenuBuilder</parameter>
         <parameter key="tempo.behavior_manager.class">Tempo\Bundle\AppBundle\Helper\Behavior</parameter>
         <parameter key="tempo.resource_manager.class">Tempo\Component\Resource\ResourceManager</parameter>
         <parameter key="tempo.menu.class">Knp\Menu\MenuItem</parameter>
@@ -146,15 +146,19 @@
         </service>
 
         <service id="tempo.project.tabProvidersRegistry" class="%tempo.project.tabProvidersRegistry.class%" />
+
         <service id="tempo.project.tab.project" class="%tempo.project.tab.project.class%">
             <tag name="tempo.project.show.tab" />
         </service>
+
         <service id="tempo.project.tab.subproject" class="%tempo.project.tab.subproject.class%">
             <tag name="tempo.project.show.tab" />
         </service>
+
         <service id="tempo.project.tab.activity" class="%tempo.project.tab.activity.class%">
             <tag name="tempo.project.show.tab" />
         </service>
+
         <service id="tempo.project.tab.settings" class="%tempo.project.tab.settings.class%">
             <tag name="tempo.project.show.tab" />
         </service>
@@ -171,7 +175,5 @@
             <argument type="service" id="tempo.elephantio.client" />
             <tag name="kernel.event_listener" event="tempo.activity.provider.create.success" method="pingActivityRoom" />
         </service>
-
     </services>
-
 </container>

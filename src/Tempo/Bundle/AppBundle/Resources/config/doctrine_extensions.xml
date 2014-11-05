@@ -9,12 +9,10 @@
     </parameters>
 
     <services>
-
         <service id="tempo.listener.loggable" class="%tempo.listener.loggable.logger.class%">
             <call method="setAnnotationReader">
                 <argument type="service" id="annotation_reader" />
             </call>
         </service>
-
     </services>
 </container>

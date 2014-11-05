@@ -11,7 +11,6 @@
     </parameters>
 
     <services>
-
         <service id="tempo.activity.provider_registry" class="%tempo.activity.provider_registry.class%" />
 
         <service id="tempo.activity.provider.github" class="%tempo.activity.provider.github.class%">
@@ -29,6 +28,5 @@
         <service id="tempo.activity.provider.travis" class="%tempo.activity.provider.travis.class%">
             <tag name="tempo.activity.provider" />
         </service>
-
     </services>
 </container>
