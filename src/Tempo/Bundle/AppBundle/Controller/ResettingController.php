@@ -32,7 +32,6 @@ class ResettingController extends Controller
         $username = $request->request->get('username');
 
         $user = $this->getManager('user')->findUserByUsernameOrEmail($username);
-
         if (null === $user) {
             return $this->render('TempoAppBundle:Resetting:request.html.twig', array(
                 'invalid_username' => $username

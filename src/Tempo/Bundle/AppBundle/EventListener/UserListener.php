@@ -19,8 +19,7 @@ use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
-use Tempo\Bundle\AppBundle\Model\User;
-
+use Tempo\Bundle\AppBundle\Model\UserInterface;
 
 class UserListener implements EventSubscriber
 {
@@ -43,7 +42,7 @@ class UserListener implements EventSubscriber
 
     }
 
-    protected function getEncoder(User $user)
+    protected function getEncoder(UserInterface $user)
     {
         return $this->encoderFactory->getEncoder($user);
     }
@@ -87,9 +86,8 @@ class UserListener implements EventSubscriber
      */
     public function prePersist($args)
     {
-
         $object = $args->getEntity();
-        if ($object instanceof User) {
+        if ($object instanceof UserInterface) {
             $this->updateUserFields($object);
         }
     }
@@ -100,12 +98,12 @@ class UserListener implements EventSubscriber
     public function preUpdate($args)
     {
         $object = $args->getEntity();
-        if ($object instanceof User) {
+        if ($object instanceof UserInterface) {
             $this->updateUserFields($object);
         }
     }
 
-    protected function updatePassword(User $user)
+    protected function updatePassword(UserInterface $user)
     {
         if (0 !== strlen($password = $user->getPlainPassword())) {
             $encoder = $this->getEncoder($user);
@@ -117,7 +115,7 @@ class UserListener implements EventSubscriber
     }
 
 
-    public function updateUserFields(User $user)
+    public function updateUserFields(UserInterface $user)
     {
         $this->updatePassword($user);
 

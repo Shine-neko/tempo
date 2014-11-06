@@ -4,7 +4,7 @@ Feature: dashboard timesheet
     Given I am connected as "olivia.pace"
 
   Scenario: Viewing projects on dasboard timesheet
-    When I am on route "timesheet" with query "week=12&year=2014"
+    When I am on "/timesheet/?week=12&year=2014"
 
     And I should see "Bebop"
     And I should see "Galasphere"
@@ -15,7 +15,7 @@ Feature: dashboard timesheet
 
 
   Scenario: list days:
-    When I am on route "timesheet" with query "week=12&year=2014"
+    When I am on "/timesheet/?week=12&year=2014"
 
     And I should see "Monday 17"
     And I should see "Tuesday 18"
@@ -26,7 +26,7 @@ Feature: dashboard timesheet
     And I should see "Sunday 23"
 
   Scenario: Create a new activity
-    When I am on route "timesheet"
+    When I am on "/timesheet/"
     And I created cra:
       | workedTime   | 5   |
       | description  | Lorem Ipsum is simply dummy text.  |

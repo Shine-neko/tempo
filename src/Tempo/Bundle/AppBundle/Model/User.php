@@ -15,6 +15,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 class User implements UserInterface
 {
+    const ROLE_DEFAULT = 'ROLE_USER';
     const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
 
     /**
@@ -191,9 +192,11 @@ class User implements UserInterface
      * @var Collection
      */
     protected $organizations;
-    protected $notifications;
 
-    const ROLE_DEFAULT = 'ROLE_USER';
+    /**
+     * @var Collection
+     */
+    protected $notifications;
 
     public function __construct()
     {

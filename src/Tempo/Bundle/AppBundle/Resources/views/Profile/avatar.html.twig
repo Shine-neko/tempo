@@ -18,7 +18,7 @@
     <div class="app-panel col-md-8">
         <div class="alert alert-warning alert-dismissable">
             {{ 'tempo.avatar.current_change'|trans }}
-            <a href="{{ path('user_profile_show', { 'slug' : user.emailCanonical }) }}">{{ user.getUsername() }}</a>.
+            <a href="{{ path('user_profile_show', { 'slug' : user.slug }) }}">{{ user.getUsername() }}</a>.
         </div>
 
         <h1 class="page-title" style="font-size: 22px;">{{ 'tempo.avatar.admin_change'|trans }} {{ user.getUsername() }} </h1>
