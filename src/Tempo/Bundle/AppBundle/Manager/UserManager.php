@@ -27,7 +27,7 @@ class UserManager extends BaseManager
      */
     public function findUserByEmail($email)
     {
-        return $this->findUserBy(array('emailCanonical' => $email));
+        return $this->findUserBy(array('email' => $email));
     }
 
     /**
@@ -39,7 +39,7 @@ class UserManager extends BaseManager
      */
     public function findUserByUsername($username)
     {
-        return $this->findUserBy(array('slug' => $username));
+        return $this->findUserBy(array('username' => $username));
     }
 
     /**
