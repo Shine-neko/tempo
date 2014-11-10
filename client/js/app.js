@@ -134,11 +134,11 @@ $(function() {
     $('body').removeClass('no-js').addClass('js');
     $('select').selectize();
 
-    $('.datetimepicker').datetimepicker({
+    $('.datetimepicker-instance').datetimepicker({
         separator: '-',
         format: 'YYYY/MM/DD'
     });
-    $('.datepicker').datetimepicker({
+    $('.datepicker-instance').datetimepicker({
         pickTime: false,
         format: 'YYYY/MM/DD'
     });
