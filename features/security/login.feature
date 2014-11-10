@@ -17,5 +17,4 @@ Feature: Check login
       | Username    | bar |
       | Password | bar         |
     And I press "Login"
-    #Then I should be on login page
     And I should see "Invalid credentials"

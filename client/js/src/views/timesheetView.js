@@ -2,10 +2,10 @@ Tempo.View.Timesheet = Backbone.View.extend({
 
     el: $("#content"),
     events: {
+        'click .filter' : 'filterClick'
     },
 
     initialize: function() {
-        _.bindAll(this, "render","filterClick");
     },
 
     render: function() {

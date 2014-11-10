@@ -155,7 +155,7 @@ class TimesheetController extends Controller
                 ->setData($period)
                 ->setFormat('json');
 
-            $this->addFlash('success', 'tempo.timesheets.success_add', 'TempoProject');
+            $this->addFlash('success', 'tempo.timesheets.success_add');
 
         } else {
             $view->setData($form);

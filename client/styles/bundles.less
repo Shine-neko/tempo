@@ -1092,17 +1092,27 @@ table.table-striped tbody .actions .edit {
 	margin-left: 10px;
 }
 
-.timesheet.dashboard .row{
+.timesheet.dashboard #page-title, .timesheet.worklog #page-title {
+    font-size: 17px;
+    font-weight: normal;
+    color: #4a87b6;
+}
 
-}
-.timesheet.dashboard #page-title{
-	font-size: 17px;
-	font-weight: normal;
-	color: #4a87b6;
-}
-.timesheet.dashboard .actions-filter {
+.timesheet.dashboard .actions-filter, .timesheet.worklog .actions-filter {
 	float: right;
 }
+
+.timesheet.worklog .actions-filter label[for="project_name"] {
+  color: #4a87b6;
+  display: block;
+  margin-top: 10px;
+}
+
+.timesheet .app-panel.workblogs {
+    margin-left: 50px;
+}
+.timesheet .filters  {}
+
 .timesheet.dashboard .actions {
 	float: left;
 	list-style: none;
@@ -1119,14 +1129,22 @@ table.table-striped tbody .actions .edit {
 	background: #f6f6f6;
 }
 
-.timesheet.dashboard .actions .filter-content {
+.timesheet.dashboard .actions .box-filter {
 	position: relative;
-	display: none;
-	width: 400px;
-	left: 0;
+
+    .filter-content {
+        position: absolute;
+        right: -83px;
+        top: 30px;
+        display: none;
+        width: 400px;
+        background: #fff;
+        border: 1px solid #CCCCCC;
+        padding: 15px;
+        border-radius: 3px;
+    }
 }
-.timesheet.dashboard .actions .filter-content form {
-}
+
 
 .timesheet.dashboard .week-pagination{
 	list-style: none;
@@ -1214,7 +1232,7 @@ table.table-striped tbody .actions .edit {
 }
 
 #time-list tr td input.cra_load {
-	background-image: url(/bundles/tempoproject/images/timesheet/durationmillis.gif);
+	background-image: url(/bundles/tempoapp/images/timesheet/durationmillis.gif);
 	background-position: 0 0;
 	background-repeat: no-repeat;
 	margin-right: 10px;

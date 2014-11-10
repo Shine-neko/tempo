@@ -12,6 +12,7 @@
 namespace Tempo\Bundle\AppBundle\Behat;
 
 use Symfony\Component\HttpFoundation\Request;
+use Behat\Mink\Driver\Selenium2Driver;
 
 /**
  * Features context.

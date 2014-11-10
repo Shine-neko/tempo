@@ -1,55 +1,78 @@
 {% extends "TempoAppBundle::layout.html.twig" %}
-{% block breadcrumb %}
-    <ol id="breadcrumb" class="clearfix">
-        <li class="first"> <a href="{{ path('timesheet') }}">{{ 'tempo.menu.timesheet'|trans  }}</a> </li>
-        <li class="last"> Analyse worklog </li>
-    </ol>
-{% endblock breadcrumb %}
-{% block content %}
-    <h1>Analyse worklog</h1>
-    <div>
-        <form method="get">
-            <div class="form-group pull-right col-md-6">
-                <label for="project_name" class="col-sm-4 control-label required">
-                    Show another assignment
-                </label>
-                <select name="user_id" class="col-md-8" onChange="this.form.submit()">>
-                    {% for assignment in assignments %}
-                        <option value="{{ assignment.user.id }}">{{ assignment.user.fullName }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-        </form>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>User</th>
-                    <th>Date</th>
-                    <th>Time spent</th>
-                    <th>Hourly rate</th>
-                    <th>Details of work</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for timesheet in timesheets %}
-                <tr>
-                    <td>{{ timesheet.user.fullName }}</td>
-                    <td>{{ timesheet.workedDate |localizeddate('long', 'none') }}</td>
-                    <td class="text-center">{{ timesheet.workedTime }}h</td>
-                    <td></td>
-                    <td>{{ timesheet.description }}</td>
-                    <td>
-                        <a href="{{ path('timesheet_validation', {'validate': '', 'id': timesheet.id}) }}">
-                            <span style="font-size: 15px;" class="ion-ios7-plus{{ timesheet.state == 3 ? '-outline' : ''  }}"></span>
-                        </a>
-                        <a href="{{ path('timesheet_validation', {'validate': '', 'type': 'billable', 'id': timesheet.id}) }}">
-                            <span style="font-size: 15px;" class="ion-social-usd"></span>
-                        </a>
-                    </td>
-                </tr>
-                {% endfor  %}
-            </tbody>
-        </table>
+{% block bodyClass %}timesheet worklog{% endblock %}
+{% block container %}
+    {% block breadcrumb %}
+        <ol id="breadcrumb" class="clearfix">
+            <li class="first"> <a href="{{ path('timesheet') }}">{{ 'tempo.menu.timesheet'|trans  }}</a> </li>
+            <li class="last"> Analyse worklog </li>
+        </ol>
+    {% endblock breadcrumb %}
+    <div class="app-panel filters col-md-2">
+        <div class="actions-filter">
+            <form method="get">
+                <div class="form-group">
+                    <label for="project_name" class="col-sm-4 control-label required">
+                        Assignee
+                    </label>
+                    <select name="user_id" class="col-md-8" onChange="this.form.submit()">>
+                        {% for assignment in assignments %}
+                            <option value="{{ assignment.user.id }}">{{ assignment.user.fullName }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    {{ form_row(filterForm.from) }}
+                    {{ form_row(filterForm.to) }}
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <div class="app-panel workblogs col-md-8">
+        <h1 id="page-title">
+            <span class="glyphicon glyphicon-dashboard"></span>
+            Analyse worklog</h1>
+        <div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Date</th>
+                        <th>Time spent</th>
+                        <th>Hourly rate</th>
+                        <th>Details of work</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for timesheet in timesheets %}
+                    <tr>
+                        <td>{{ timesheet.user.fullName }}</td>
+                        <td>{{ timesheet.workedDate |localizeddate('long', 'none') }}</td>
+                        <td class="text-center">{{ timesheet.workedTime }}h</td>
+                        <td></td>
+                        <td>{{ timesheet.description }}</td>
+                        <td>
+                            <ul class="actions no-list">
+                                <li>
+                                    <a href="{{ path('timesheet_validation', {'validate': '', 'id': timesheet.id}) }}">
+                                        <span class="label label-{{ timesheet.state == 2 ? 'success' : 'warning'  }}">
+                                        {{ timesheet.state == 2 ? 'Valider' : 'Invalidated' }}
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('timesheet_validation', {'validate': null, 'type': 'billable', 'id': timesheet.id}) }}">
+                                        <span class="label label-info" class="ion-social-usd">{{ timesheet.billable ?  'Billable' :  'Unbillable' }}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    {% endfor  %}
+                </tbody>
+            </table>
+        </div>
     </div>
 {% endblock %}

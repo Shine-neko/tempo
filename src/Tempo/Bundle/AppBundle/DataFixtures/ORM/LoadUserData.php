@@ -65,13 +65,17 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
             }
             $account->setUsername($username);
             $account->setSlug($username);
-            $account->setEmail($username. '@test.com');
+            $account->setEmail($username. '@tempo-project.org');
             $account->setLastName($fullName[1]);
             $account->setFirstName($fullName[0]);
             $account->setPlainPassword($username);
             $account->addRole(User::ROLE_DEFAULT);
             $account->setEnabled(true);
             $account->setToken(sha1(uniqid(rand(), true)));
+
+            if (in_array($username, array('beck.nash', 'gregory.joyner'))) {
+                $account->setEnabled(false);
+            }
 
             $userManager->save($account);
 

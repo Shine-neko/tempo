@@ -27,7 +27,7 @@
     <div class="actions-filter">
         <ul class="actions">
             <li><a href="{{ path('timesheet_validation') }}"><span class="glyphicon glyphicon-dashboard"></span></a></li>
-            <li>
+            <li class="box-filter">
                 <a href="#" class="filter"><span class="glyphicon glyphicon-filter"> </span></a>
                 <div class="filter-content">
                     <form action="#" method="get">
@@ -35,7 +35,7 @@
                     </form>
                 </div>
             </li>
-            <li><a><span class="glyphicon glyphicon-th"> </span></a></li>
+            <li><a href="#" class="disabled"><span class="glyphicon glyphicon-th"> </span></a></li>
             <li class="actions dropdown">
                 <a class="btn" data-toggle="dropdown" href="#">Actions</a>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
@@ -46,12 +46,12 @@
         </ul>
         <ul class="week-pagination">
             <li>
-                <a data-toggle="tooltip"  href="?week={{ weekPagination.prev }}&year={{ weekPagination.year }}" class="btn" title data-original-title="{{ 'tempo.timesheets.last_week'|trans }}">
+                <a data-toggle="tooltip" href="?week={{ weekPagination.prev }}&year={{ weekPagination.year }}" class="btn" title data-original-title="{{ 'tempo.timesheets.last_week'|trans }}">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </li>
             <li>
-                <a data-toggle="tooltip"  href="?week={{ weekPagination.next }}&year={{ weekPagination.year }}" class="btn" title data-original-title="{{ 'tempo.timesheets.next_week'|trans }}">
+                <a data-toggle="tooltip" href="?week={{ weekPagination.next }}&year={{ weekPagination.year }}" class="btn" title data-original-title="{{ 'tempo.timesheets.next_week'|trans }}">
                     <span class="glyphicon glyphicon-chevron-right"></span>
                 </a>
             </li>

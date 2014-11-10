@@ -62,6 +62,7 @@
         </one-to-many>
 
         <one-to-many field="providers" target-entity="ProjectProvider" mapped-by="project" />
+        <one-to-many field="comments" target-entity="Comment" mapped-by="project" />
         <gedmo:loggable log-entry-class="Tempo\Bundle\AppBundle\Model\LogEntry"/>
 
     </entity>

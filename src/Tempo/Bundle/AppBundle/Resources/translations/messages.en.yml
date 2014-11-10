@@ -179,7 +179,7 @@ tempo:
       title: 'Organization List'
       filter:
         all: All
-        unconfirmed: unconfirmed
+        unconfirmed: Unconfirmed accounts
         query: Search
       page_title : User list
     create.page_title: Create User
