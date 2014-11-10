@@ -175,6 +175,6 @@ class OrganizationController extends Controller
 
     protected function redirectToOrganization($organization)
     {
-        return $this->redirectRoute('organization_show', array('slug' => $organization->getSlug()));
+        return $this->redirectToRoute('organization_show', array('slug' => $organization->getSlug()));
     }
 }

@@ -44,7 +44,7 @@ class RoomController extends Controller
 
         if ($form->handleRequest($request)->isValid()) {
             $this->getManager('project')->save($room);
-            return $this->redirectRoute('homepage');
+            return $this->redirectToRoute('homepage');
         }
 
         $data = array(

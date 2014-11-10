@@ -85,7 +85,7 @@ class Controller extends FOSRestController
      * @param array $parameters
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function redirectRoute($route, $parameters = array())
+    protected function redirectToRoute($route, $parameters = array())
     {
         return $this->redirect($this->generateUrl($route, $parameters));
     }

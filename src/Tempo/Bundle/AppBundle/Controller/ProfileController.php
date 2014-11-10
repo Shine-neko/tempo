@@ -137,7 +137,7 @@ class ProfileController extends Controller
 
             $this->addFlash('success', 'tempo.user.password_change_success');
 
-            $this->redirectRoute('user_profile_password');
+            $this->redirectToRoute('user_profile_password');
         }
 
         return $this->render('TempoAppBundle:Profile:password.html.twig', array(
@@ -160,6 +160,6 @@ class ProfileController extends Controller
 
         $this->addFlash('success', 'the token was added');
 
-        return $this->redirectRoute('user_profile_edit');
+        return $this->redirectToRoute('user_profile_edit');
     }
 }

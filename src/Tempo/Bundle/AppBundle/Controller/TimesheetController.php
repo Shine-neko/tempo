@@ -57,7 +57,7 @@ class TimesheetController extends Controller
         if ($editForm->handleRequest($request)->isValid()) {
             $this->getManager('timesheet')->save($timesheet);
 
-            return $this->redirectRoute('timesheet');
+            return $this->redirectToRoute('timesheet');
         }
 
         return $this->render('TempoAppBundle:Timesheet:update.html.twig', array(
@@ -80,7 +80,7 @@ class TimesheetController extends Controller
             $this->getManager('timesheet')->remove($entity);
         }
 
-        return $this->redirectRoute('timesheet');
+        return $this->redirectToRoute('timesheet');
     }
 
     public function exportPDFAction(Request $request)
@@ -186,7 +186,6 @@ class TimesheetController extends Controller
         $userId = $request->query->get('user_id') ?: $this->getUser();
 
         if ($request->query->has('validate')) {
-
             $period = $this->getManager('timesheet')->find($request->query->get('id'));
             if ($request->query->has('type') && $request->query->get('type') == 'billable') {
                 $period->setBillable(true);
@@ -197,10 +196,13 @@ class TimesheetController extends Controller
 
         $assignments = $this->getDoctrine()->getRepository('TempoAppBundle:ProjectUser')->findAll(array('role' => '3 OR role = 2'));
         $timesheets = $this->getManager('timesheet')->getRepository()->findActivitiesByState($userId);
+        $filterForm = $this->createForm(new TimesheetFilterType());
+
 
         return $this->render('TempoAppBundle:Timesheet:validation.html.twig', array(
             'timesheets' => $timesheets,
-            'assignments' => $assignments
+            'assignments' => $assignments,
+            'filterForm' =>  $filterForm->createView()
         ));
     }
 

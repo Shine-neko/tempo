@@ -129,7 +129,7 @@ class ProjectController extends Controller
             $this->get('event_dispatcher')->dispatch(TempoProjectEvents::PROJECT_CREATE_SUCCESS, $event);
             $this->addFlash('success', 'project.success_create', 'TempoProject');
 
-            return $this->redirectRoute('project_show', array('slug' => $project->getSlug()));
+            return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
         }
 
         return $this->render('TempoAppBundle:Project:create.html.twig', array(
@@ -158,7 +158,7 @@ class ProjectController extends Controller
 
             $this->addFlash('success', 'project.success_updated', 'TempoProject');
 
-            return $this->redirectRoute('project_edit', array('slug' => $project->getSlug()));
+            return $this->redirectToRoute('project_edit', array('slug' => $project->getSlug()));
         }
 
         return $this->render('TempoAppBundle:Project:update.html.twig', array(
@@ -186,7 +186,7 @@ class ProjectController extends Controller
 
             $this->addFlash('success', 'project.success_delete', 'TempoProject');
 
-            return $this->redirectRoute('project_home');
+            return $this->redirectToRoute('project_home');
         }
     }
 

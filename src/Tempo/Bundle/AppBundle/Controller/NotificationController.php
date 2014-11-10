@@ -49,6 +49,6 @@ class NotificationController extends Controller
     {
         $this->get('tempo.manager.notification')->clearForUser($this->getUser()->getId());
 
-        return $this->redirectRoute('notification_dashboard');
+        return $this->redirectToRoute('notification_dashboard');
     }
 }

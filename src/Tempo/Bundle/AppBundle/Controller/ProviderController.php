@@ -38,7 +38,7 @@ class ProviderController extends Controller
             $this->getDoctrine()->getManager()->persist($projectProvider);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectRoute('project_show', array(
+            return $this->redirectToRoute('project_show', array(
                 'slug' => $slug,
             ));
         }
