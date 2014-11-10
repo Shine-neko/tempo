@@ -29,25 +29,5 @@ Tempo.Controller.Timesheet = Backbone.Marionette.Controller.extend({
             }
         });
 
-        $('.cra_desc').on('keydown', function(event) {
-            if (event.which == 13) {
-                event.preventDefault();
-                var form = $(this).parent('form');
-
-                var loginFormObject = {};
-                var name;
-                $.each(form.serializeArray(),
-                    function(i, v) {
-                        //@toto replace by regex ?
-                        name = (v.name).replace('timesheet[', '').replace(']', '');
-                        loginFormObject[name] = v.value;
-                    }
-                );
-                loginFormObject['project'] = form.data('project');
-                var period = new Tempo.Model.Timesheet(loginFormObject).save().done(function() {
-                    window.location.reload();
-                });
-            }
-        });
     }
 });

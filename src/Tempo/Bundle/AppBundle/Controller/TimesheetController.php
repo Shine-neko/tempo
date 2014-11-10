@@ -147,6 +147,7 @@ class TimesheetController extends Controller
         ));
         $form->handleRequest($request);
 
+
         if ($form->isValid()) {
 
             $this->getManager('timesheet')->save($period);
@@ -156,6 +157,11 @@ class TimesheetController extends Controller
                 ->setFormat('json');
 
             $this->addFlash('success', 'tempo.timesheets.success_add');
+
+            if (stripos($request->getRequestUri(), 'api') === false) {
+                $view->setFormat('html');
+                return $this->redirectToRoute('timesheet');
+            }
 
         } else {
             $view->setData($form);
