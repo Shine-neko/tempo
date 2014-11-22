@@ -34,8 +34,6 @@ class ActivityManager extends BaseManager
 
         $event = new Activity();
 
-        $this->{'set'. $shortNameTarget}();
-
         $event
             ->setTarget($shortNameTarget)
             ->setAuthor($actor)
