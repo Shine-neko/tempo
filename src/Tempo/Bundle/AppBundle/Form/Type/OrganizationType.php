@@ -24,7 +24,13 @@ class OrganizationType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name');
+        $builder
+            ->add('name', 'text', array(
+                'required' => true
+            ))
+            ->add('contact', 'email', array(
+                'required' => false
+            ));
 
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event) {
             $form = $event->getForm();
@@ -33,8 +39,10 @@ class OrganizationType extends AbstractType
             if (null !== $organization->getId()) {
                 $form
                     ->add('avatar')
-                    ->add('website')
-                    ->add('contact', 'email');
+                    ->add('contact', 'email', array(
+                        'required' => true
+                    ))
+                    ->add('website');
             }
         });
     }
@@ -45,7 +53,7 @@ class OrganizationType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class'      => 'Tempo\Bundle\AppBundle\Model\Organization',
+            'data_class' => 'Tempo\Bundle\AppBundle\Model\Organization',
         ));
     }
 
