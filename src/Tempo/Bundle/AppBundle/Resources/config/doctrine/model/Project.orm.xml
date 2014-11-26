@@ -15,7 +15,7 @@
         <field name="name" column="name" type="string" length="255">
             <gedmo:versioned/>
         </field>
-        <field name="code" column="code" type="string" length="255">
+        <field name="code" column="code" type="string" length="255" nullable="true">
             <gedmo:versioned/>
         </field>
 
@@ -36,7 +36,7 @@
 
         <field name="lastActivity" column="last_activity" type="datetime" nullable="true" />
 
-        <field name="description" column="description" type="text">
+        <field name="description" column="description" type="text" nullable="true">
             <gedmo:versioned/>
         </field>
         <field name="active" column="is_active" type="boolean" default="true" />

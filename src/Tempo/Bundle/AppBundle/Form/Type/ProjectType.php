@@ -37,9 +37,11 @@ class ProjectType extends AbstractType
             ))
             ->add('beginning', 'datetimepicker', array(
                 'label' => 'tempo.project.form.label.beginning',
+                'required' => false,
             ))
             ->add('ending', 'datetimepicker', array(
                 'label' => 'tempo.project.form.label.ending',
+                'required' => false,
             ))
             ->add('type', null, array(
                 'label' => 'tempo.project.form.label.type',
@@ -56,10 +58,12 @@ class ProjectType extends AbstractType
                 )
             ))
             ->add('code', null, array(
-                'label' => 'tempo.project.form.label.code'
+                'label' => 'tempo.project.form.label.code',
+                'required' => false,
             ))
             ->add('budget_estimated', null, array(
-                'label' => 'tempo.project.form.label.estimated'
+                'label' => 'tempo.project.form.label.estimated',
+                'required' => false,
             ))
         ;
     }
