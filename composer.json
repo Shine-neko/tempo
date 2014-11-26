@@ -88,8 +88,8 @@
         ]
     },
     "autoload": {
-        "psr-0":         {
-            "": "src/"
+        "psr-4":         {
+            "Tempo\\": "src/Tempo"
         }
     },
     "config": {
