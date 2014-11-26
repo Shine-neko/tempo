@@ -12,7 +12,7 @@ build:
    - apt-add-repository ppa:chris-lea/node.js
    - apt-get update -y
    - apt-get install -y nodejs
-   - npm install -g bower less uglifyjs uglifycss
+   - npm install -g bower less@1.7 uglifyjs uglifycss
    - npm install
    - bower install --allow-root
    - mysqladmin create tempo
