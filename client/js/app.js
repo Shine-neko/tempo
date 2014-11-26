@@ -147,7 +147,7 @@ $(function() {
     $(document).on('click', '[data-toggle="modal"]', function(e) {
         e.preventDefault();
 
-        $('.navbar-brand').prepend('<div class="loader"><img src="/bundles/tempoapp/images/loading-bubbles.svg" /></div>');
+        $('.navbar-brand').html('<div class="loader"><img src="/bundles/tempoapp/images/loading-bubbles.svg" /></div>');
 
         var btn = $(this),
             url = btn.attr('href'),
@@ -175,6 +175,7 @@ $(function() {
             }).success(function() {
                 modal.modal();
                 $('.navbar-brand .loader').remove();
+                $('.navbar-brand').html('Tempo');
                 $('input:text:visible:first').focus();
             });
         }
