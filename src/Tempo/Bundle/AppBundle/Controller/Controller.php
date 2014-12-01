@@ -30,10 +30,7 @@ class Controller extends FOSRestController
             ));
         }
 
-        $this->get('session')->getFlashBag()->add(
-            $type,
-            $this->getTranslation($message, array(), $domaine)
-        );
+        $this->get('session')->getFlashBag()->add($type, $this->getTranslation($message, array(), $domaine));
     }
 
     /**
@@ -78,16 +75,6 @@ class Controller extends FOSRestController
     protected function getAclManager()
     {
         return $this->get('problematic.acl_manager');
-    }
-
-    /**
-     * @param $route
-     * @param array $parameters
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
-    protected function redirectToRoute($route, $parameters = array())
-    {
-        return $this->redirect($this->generateUrl($route, $parameters));
     }
 
     /**
