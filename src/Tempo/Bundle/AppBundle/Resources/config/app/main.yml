@@ -97,13 +97,6 @@ knp_snappy:
         binary:     %knp_snappy.image.binary%
         options:    []
 
-mopa_bootstrap:
-    form:
-        show_legend: false # default is true
-        show_child_legend: false # default is true
-        error_type: block # or inline which is default
-        render_optional_text: false
-
 tempo_js_configuration:
   config_to_expose: [locale]
 
