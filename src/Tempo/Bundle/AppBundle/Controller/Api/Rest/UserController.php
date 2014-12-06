@@ -25,8 +25,11 @@ use Tempo\Bundle\AppBundle\Controller\Controller;
 class UserController extends Controller
 {
     /**
-     * GET Route annotation.
      * @Get("/users/search/{username}", defaults={"username" = ""})
+     *
+     * @param Request $request
+     * @param null $username
+     * @return Response
      */
     public function autocompleteAction(Request $request, $username = null)
     {
@@ -52,12 +55,11 @@ class UserController extends Controller
 
     /**
      * @Get("/users/current")
+     * @return Response
      */
     public function currentAction()
     {
-        if ($this->getUser()) {
-            $view = $this->view(array($this->getUser()), 200)->setTemplate('TempoAppBundle:Organization:show.html.twig');
-            return $this->handleView($view);
-        }
+        $view = $this->view(array($this->getUser()), 200);
+        return $this->handleView($view);
     }
 }
