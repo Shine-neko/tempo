@@ -28,8 +28,7 @@ tempo:
   select_organization:
       first: Sélectionnez le organization
       second: Afficher ses projets
-
-    submit: Valider
+      submit: Valider
 
   organization:
       add:  Ajouter un organization
@@ -83,21 +82,14 @@ tempo:
               priority: Priorité
               estimated: Budget estimé
 
-    timesheets:
-        page_title: Gestion du temps
-        last_week: Semaine précédente
-        next_week: Semaine suivante
-        week: Semaine
+  timesheets:
+     page_title: Gestion du temps
+     last_week: Semaine précédente
+     next_week: Semaine suivante
+     week: Semaine
 
-    team:
-     success_add: L'utilisateur a bien été ajouté à l'équipe
-    activity:
-        events:
-          user.update: updates its own information
-          comment.commented: Commented
-          project.created: create project
-          project.update: update project
-          project.joined: joined project at
+  team:
+    success_add: L'utilisateur a bien été ajouté à l'équipe
 
     buttons:
       edit: Editer
