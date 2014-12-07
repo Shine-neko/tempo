@@ -40,53 +40,7 @@ class TempoAppExtension extends Extension
         $loader->load('security.xml');
         $loader->load('user.xml');
 
-        $this->remapParametersNamespaces($config, $container, array(
-            '' => array(
-                'model_manager_name' => 'tempo_app.model_manager_name',
-            )
-        ));
-
         $container->setParameter('tempo_app.week', $config['week']);
         $container->setParameter($this->getAlias() . '.backend_type_' . $config['db_driver'], true);
-    }
-
-    /**
-     * @param array $config
-     * @param ContainerBuilder $container
-     * @param array $map
-     */
-    protected function remapParameters(array $config, ContainerBuilder $container, array $map)
-    {
-        foreach ($map as $name => $paramName) {
-            if (array_key_exists($name, $config)) {
-                $container->setParameter($paramName, $config[$name]);
-            }
-        }
-    }
-
-    /**
-     * @param array $config
-     * @param ContainerBuilder $container
-     * @param array $namespaces
-     */
-    protected function remapParametersNamespaces(array $config, ContainerBuilder $container, array $namespaces)
-    {
-        foreach ($namespaces as $ns => $map) {
-            if ($ns) {
-                if (!array_key_exists($ns, $config)) {
-                    continue;
-                }
-                $namespaceConfig = $config[$ns];
-            } else {
-                $namespaceConfig = $config;
-            }
-            if (is_array($map)) {
-                $this->remapParameters($namespaceConfig, $container, $map);
-            } else {
-                foreach ($namespaceConfig as $name => $value) {
-                    $container->setParameter(sprintf($map, $name), $value);
-                }
-            }
-        }
     }
 }
