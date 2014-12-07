@@ -816,12 +816,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "a6cf714f4193a4c0dfc1c105977d87029bc701e7"
+                "reference": "9900d353673fd47c6649e146670349d9c69d8603"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/a6cf714f4193a4c0dfc1c105977d87029bc701e7",
-                "reference": "a6cf714f4193a4c0dfc1c105977d87029bc701e7",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/9900d353673fd47c6649e146670349d9c69d8603",
+                "reference": "9900d353673fd47c6649e146670349d9c69d8603",
                 "shasum": ""
             },
             "require": {
@@ -883,7 +883,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2014-12-05 15:42:55"
+            "time": "2014-12-07 15:52:45"
         },
         {
             "name": "egeloen/ckeditor-bundle",
