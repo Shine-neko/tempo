@@ -20,5 +20,9 @@ class OverrideServiceCompilerPass implements CompilerPassInterface
     {
         $definition = $container->getDefinition('stof_doctrine_extensions.listener.loggable');
         $definition->setClass('%tempo.listener.loggable.logger.class%');
+
+        $lessAsseticFilter = $container->getDefinition('assetic.filter.less');
+        $kernelRootDir = $container->getParameter('kernel.root_dir'). '/../web';
+        $lessAsseticFilter->addMethodCall('addLoadPath', array($kernelRootDir));
     }
 }
