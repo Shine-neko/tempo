@@ -40,15 +40,17 @@ class ActivityProviderListener
     public function pingActivityRoom(ActivityProviderEvent $event)
     {
         $projectProvider = $event->getActivityProvider();
-
         $project = $this->serializer->serialize($projectProvider->getProject(), 'json');
 
-        $room = $this->roomManager->findRoomWithProject($projectProvider->getProject());
-        $room = $this->serializer->serialize($room, 'json');
+        try {
+            $room = $this->roomManager->findRoomWithProject($projectProvider->getProject());
+            $room = $this->serializer->serialize($room, 'json');
 
-        $this->elephantIoClient->send('ProviderEvent', array(
-            'room' => $room,
-            'project' => $project
-        ));
+            $this->elephantIoClient->send('ProviderEvent', array(
+                'room' => $room,
+                'project' => $project
+            ));
+
+        } catch (\Exception $e) { }
     }
 }
