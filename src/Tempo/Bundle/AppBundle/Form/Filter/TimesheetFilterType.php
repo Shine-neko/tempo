@@ -9,15 +9,11 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\AppBundle\Filter\Type;
+namespace Tempo\Bundle\AppBundle\Form\Filter;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
-use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToStringTransformer;
 
 class TimesheetFilterType extends AbstractType
 {
@@ -26,8 +22,6 @@ class TimesheetFilterType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $transformer = new DateTimeToStringTransformer();
-
         $builder
             ->add('from', 'text', array(
                     'label' => 'Form',
