@@ -75,7 +75,7 @@ tempo:
       failed_delete: Unable to delete organization
 
   project:
-      title_add: Nouveau projet
+      title_add: New projet
       list:
        title: Project list
        filter:
