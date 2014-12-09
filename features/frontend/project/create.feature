@@ -21,3 +21,11 @@ Feature: Create Project
       | Name | Too |
       | Code | k9k7g9 |
     And I press "Create"
+
+
+  Scenario: Submitting empty parameter
+    When I go to "organization/ikimea"
+    And I follow "Add new project"
+    When I fill in "Name" with ""
+    And I press "Create"
+    And I should see "This value should not be blank."

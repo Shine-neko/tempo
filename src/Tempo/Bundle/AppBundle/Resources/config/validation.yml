@@ -1,4 +1,9 @@
-Tempo\AppBundle\Model\Organization:
+Tempo\Bundle\AppBundle\Model\Organization:
+    properties:
+        name:
+            - NotBlank: ~
+
+Tempo\Bundle\AppBundle\Model\Project:
     properties:
         name:
             - NotBlank: ~
