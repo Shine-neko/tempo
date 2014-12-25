@@ -26,6 +26,7 @@ class ProjectType extends AbstractType
         $builder
             ->add('name', 'text', array(
                 'label' => 'tempo.project.form.label.name',
+                'required' => true,
             ))
             ->add('description', 'ckeditor', array(
                 'required' => false,
