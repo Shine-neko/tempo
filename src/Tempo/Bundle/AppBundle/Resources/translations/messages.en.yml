@@ -186,3 +186,7 @@ tempo:
     update.page_title: Update User
     password_change_success: Password changed successfully.
 
+  room:
+    form:
+      name: Name
+      enableChat: Enable chat

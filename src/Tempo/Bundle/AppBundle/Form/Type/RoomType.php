@@ -23,7 +23,13 @@ class RoomType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name');
+        $builder
+            ->add('name', 'text', array(
+                'label' => 'tempo.room.form.name'
+            ))
+            ->add('enableChat', 'checkbox', array(
+                'label' => 'tempo.room.form.enableChat'
+            ));
     }
 
     public function getName()

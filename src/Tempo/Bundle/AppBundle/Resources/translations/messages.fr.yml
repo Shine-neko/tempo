@@ -128,3 +128,8 @@ tempo:
     failed_internal_error: Une erreur interne est survenue, veuillez réessayer.
 
   see_all_notification: Voir toutes les modifications
+
+  room:
+    form:
+      name: Nom
+      enableChat: Active le chat
