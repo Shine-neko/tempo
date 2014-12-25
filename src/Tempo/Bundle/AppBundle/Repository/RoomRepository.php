@@ -37,16 +37,16 @@ class RoomRepository extends EntityRepository
             ->leftJoin('room.team', 'team')
             ->leftJoin('room.project', 'project')
             ->leftJoin('team.user', 'user')
-            ->where('user.id  = ?2');
+            ->where('user.id  = :key');
 
         if (is_integer($key)) {
-            $query->andWhere('room.id  = ?1');
+            $query->andWhere('room.id  = :user');
         } else {
-            $query->andWhere('room.slug  = ?1');
+            $query->andWhere('room.slug  = :user');
         }
 
-        $query->setParameter(1, $key)
-            ->setParameter(2, $user)
+        $query->setParameter('user', $key)
+            ->setParameter(':key', $user)
             ->setMaxResults(1);
 
         return $query->getQuery()->getSingleResult();

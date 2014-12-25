@@ -33,13 +33,7 @@ class DashboardController extends Controller
 
         $rooms = $manager->getRepository()->findRooms($this->getUser()->getId());
 
-        try {
-            $currentRoom = $this->getManager('room')->getRepository()->findRoom(26, $this->getUser()->getId());
-        } catch(\Exception $e) {
-            $currentRoom = null;
-        }
-
-        if ($rooms != null) {
+        if ($rooms) {
             $roomId = $request->query->get('currentRoom', $rooms[0]->getId());
             $session->set('currentRoom', $roomId);
             $currentRoom = $this->getManager('room')->find($session->get('currentRoom'));
