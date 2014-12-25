@@ -9,34 +9,41 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\AppBundle\DataFixtures\ORM;
+namespace Tempo\Bundle\InstallerBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Tempo\Bundle\AppBundle\Model\Room;
 
-use Tempo\Bundle\AppBundle\Model\ProjectType;
-
-class LoadProjectTypeData extends AbstractFixture implements OrderedFixtureInterface
+class LoadRoomData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
      * {@inheritdoc}
      */
     public function load(ObjectManager $manager)
     {
-        $types = array(
-            'Scrum',
-            'Xp',
-            'Kanban'
+        $rooms = array(
+            'Room1',
+            'Room2',
+            'Room3',
+            'Room4',
+            'Room5',
         );
 
         $i = 1;
-        foreach ($types as $type) {
-            $projectType = new ProjectType();
-            $projectType->setName($type);
-            $manager->persist($projectType);
+        foreach ($rooms as $name) {
+            $room = new Room();
+            $room->setName($name);
+
+            $manager->persist($room);
             $manager->flush();
-            $this->addReference('projectType'.$i, $projectType);
+
+            $room->addUser($this->getReference('john.doe'));
+            $manager->persist($room);
+            $manager->flush();
+
+            $this->addReference('room'.$i, $room);
             $i++;
         }
     }
@@ -46,6 +53,6 @@ class LoadProjectTypeData extends AbstractFixture implements OrderedFixtureInter
      */
     public function getOrder()
     {
-        return 30;
+        return 50;
     }
 }

@@ -20,6 +20,7 @@ class AppKernel extends Kernel
     {
         $bundles = array(
             // Put here your own bundles
+            new Tempo\Bundle\InstallerBundle\TempoInstallerBundle()
         );
 
         return array_merge($bundles, parent::registerBundles());
