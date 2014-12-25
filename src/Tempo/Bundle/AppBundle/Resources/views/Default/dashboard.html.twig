@@ -43,7 +43,7 @@
             </ul>
         </nav>
         <div id="row-box" class="room-{{ currentRoom.id }}">
-            <div class="col-md-6" id="activity-box">
+            <div class="col-md-{{ currentRoom.enableChat ? 6: 12 }}" id="activity-box">
                 <h3 class="homeTitle">
                     {{ 'tempo.activity.dashboard.title'|trans }}
                     <a href="{{ path('room_update', {'id': currentRoom.id}) }}" data-target="#" data-toggle="modal" data-title="Update Room">
@@ -60,11 +60,13 @@
                 </div>
 
             </div>
+            {% if currentRoom.enableChat %}
             <div class="col-md-6" id="chat-box">
                 <div class="loader">
                     <img src="{{ asset('bundles/tempoapp/images/loading-bubbles.svg') }}" width="64" height="64">
                 </div>
             </div>
+            {% endif %}
         </div>
     {% endif %}
 {% endblock %}

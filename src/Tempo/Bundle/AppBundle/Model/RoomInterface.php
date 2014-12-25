@@ -33,6 +33,17 @@ interface RoomInterface
     public function setName($name);
 
     /**
+     * Get has enable chat
+     */
+    public function getEnableChat();
+
+    /**
+     * @param $enableChat
+     * @return self
+     */
+    public function setEnableChat($enableChat);
+
+    /**
      * Add chatMessage
      *
      * @param ChatMessage $chatMessage

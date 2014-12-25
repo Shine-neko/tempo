@@ -13,7 +13,7 @@ namespace Tempo\Bundle\AppBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
-class Room
+class Room implements RoomInterface
 {
     /**
      * @var integer
@@ -31,6 +31,11 @@ class Room
     protected $slug;
 
     /**
+     * @var integer
+     */
+    protected $enableChat;
+
+    /**
      * @var Collection
      */
     protected $team;
@@ -45,6 +50,7 @@ class Room
     {
         $this->chatMessages = new ArrayCollection();
         $this->team = new ArrayCollection();
+        $this->enableChat = true;
     }
 
     /**
@@ -71,6 +77,22 @@ class Room
        $this->name = $name;
 
        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getEnableChat()
+    {
+        return $this->enableChat;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setEnableChat($enableChat)
+    {
+        $this->enableChat = $enableChat;
     }
 
     /**
