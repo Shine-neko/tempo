@@ -30,12 +30,6 @@ class Activity implements ActivityInterface
 
     /**
      *
-     * @var integer
-     */
-    protected $type;
-
-    /**
-     *
      * @var string
      */
     protected $action;
@@ -83,24 +77,6 @@ class Activity implements ActivityInterface
     public function setTarget($target)
     {
         $this->target = $target;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
 
         return $this;
     }

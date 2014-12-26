@@ -30,23 +30,10 @@ interface ActivityInterface
     /**
      * Set target.
      *
-     * @return string
+     * @param target
+     * @return self
      */
-    public function setTarget($type);
-
-    /**
-     * Get target type.
-     *
-     * @return string
-     */
-    public function getType();
-
-    /**
-     * Set target type.
-     *
-     * @return string
-     */
-    public function setType($type);
+    public function setTarget($target);
 
     /**
      * Get action.
