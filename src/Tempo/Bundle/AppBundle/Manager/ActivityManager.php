@@ -12,34 +12,38 @@
 namespace Tempo\Bundle\AppBundle\Manager;
 
 use Tempo\Bundle\AppBundle\Model\Activity;
+use Tempo\Bundle\AppBundle\Model\User;
 
 class ActivityManager extends BaseManager
 {
+    /**
+     * @var User;
+     */
     protected $user;
 
-
-    public function setUser($user)
+    /**
+     * @param User $user
+     */
+    public function setUser(User $user)
     {
         $this->user = $user;
     }
 
-    public function build($target, $action, $data, $actor = null)
+    public function build($target, $action, $data, $author = null)
     {
         $shortNameTarget = (new \ReflectionObject($target))->getShortName();
-        $shortNameData =  (new \ReflectionObject($data))->getShortName();
 
-        if ($actor != null) {
-            $this->user = $this->user;
+        if ($author === null) {
+            $author = $this->user;
         }
 
         $event = new Activity();
 
         $event
             ->setTarget($shortNameTarget)
-            ->setAuthor($actor)
+            ->setAuthor($author)
             ->setAction($action)
-            ->setData($data)
-            ->setType($shortNameData);
+            ->setData($data);
 
         $this->save($event);
     }
