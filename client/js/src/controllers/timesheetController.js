@@ -9,24 +9,20 @@
 
 Tempo.Controller.Timesheet = Backbone.Marionette.Controller.extend({
 
-    collection: new Tempo.Collection.Timesheet(),
-
     dashboard: function() {
         this.view  = new Tempo.View.Timesheet();
 
-        $('.cra_load').on('keydown', function(event) {
+        $('.cra_load').on('keypress', function(event) {
             var input = $(event.target);
-            if (!$.isNumeric( input.val() )) {
+            var value = parseFloat(input.val());
+
+            if (!$.isNumeric(value)) {
                 input.css('border', '1px solid red');
             } else {
                 input.css('border', '1px solid #CCC');
             }
-
-            if (event.which == 9) {
-                event.preventDefault();
-
-                $(this).parent().find('.cra_desc').css('display', 'block');
-            }
+        }).on('click', function() {
+            $(this).parent().find('.cra_desc').show();
         });
 
     }

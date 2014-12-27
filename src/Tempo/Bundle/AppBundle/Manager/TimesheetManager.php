@@ -30,16 +30,20 @@ class TimesheetManager extends BaseManager
     }
 
     /**
+     * @param  $project
      * @param  \DateTime $date
      * @return array
      */
-    public function findByPeriod(\DateTime $date)
+    public function findByPeriod($project, \DateTime $date)
     {
-        return $this->getRepository()->findBy(array('workedDate' => $date));
+        return $this->getRepository()->findBy(array(
+            'project' => $project,
+            'workedDate' => $date
+        ));
     }
 
     /**
-     * @param $activities
+     * @param $activitiesReport
      * @param $projectsList
      * @return array
      */
@@ -56,19 +60,20 @@ class TimesheetManager extends BaseManager
 
          foreach ($activitiesReport as $activity) {
              $day  = $activity->getWorkedDate()->format('j');
+             $project = $activity->getProject()->getId();
 
-             if (!isset($activities[$day])) {
-                 $activities[$day] = new ProjectActivityDayTimesheet($day);
+             if (!isset($activities[$project])) {
+                 $activities[$project] = new ProjectActivityDayTimesheet($day);
              }
 
-             $activityReport = $activities[$day];
-             $activityReport
+              $activities[$project]
                  ->addActivity($activity)
                  ->addTime($activity->getWorkedTime());
+
          }
 
-         foreach ($activities as $activityDay) {
-            $data[$activityDay->getActivities()[0]->getProject()->getId()]->addDay($activityDay);
+         foreach ($activities as $key => $activityDay) {
+             $data[$key]->addDay($activityDay);
          }
 
          return $data;
@@ -91,6 +96,7 @@ class TimesheetManager extends BaseManager
 
     /**
      * @param $workDay
+     * @param $daysInWeek
      * @return array
      */
     public function getWorkday($workDay, $daysInWeek)

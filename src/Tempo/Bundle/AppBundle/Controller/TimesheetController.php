@@ -118,10 +118,10 @@ class TimesheetController extends Controller
      * @param  \DateTime $date
      * @return Response
      */
-    public function showAction(\DateTime $date)
+    public function showAction($project, \DateTime $date)
     {
         return $this->render('TempoAppBundle:Timesheet:show.html.twig', array(
-            'activities' => $this->getManager('timesheet')->findByPeriod($date)
+            'activities' => $this->getManager('timesheet')->findByPeriod($project, $date)
         ));
     }
 
@@ -145,10 +145,8 @@ class TimesheetController extends Controller
         $form = $this->createForm(new TimesheetType(), $period, array(
             'method' => 'POST'
         ));
-        $form->handleRequest($request);
 
-
-        if ($form->isValid()) {
+        if ($form->handleRequest($request)->isValid()) {
 
             $this->getManager('timesheet')->save($period);
             $view
@@ -254,6 +252,7 @@ class TimesheetController extends Controller
             $projectsActivityReporting,
             $projectList
         );
+
 
         $daysInWeek = $this->getManager('timesheet')->getDaysInWeek($factoryWeek);
 

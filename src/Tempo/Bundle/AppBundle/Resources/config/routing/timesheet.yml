@@ -3,7 +3,7 @@ timesheet:
     defaults: { _controller: "TempoAppBundle:Timesheet:dashboard" }
 
 timesheet_show:
-    path:  /{date}/show
+    path:  /{project}/{date}/show
     defaults: { _controller: "TempoAppBundle:Timesheet:show" }
 
 timesheet_create:

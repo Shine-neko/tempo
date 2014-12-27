@@ -3,8 +3,6 @@
 
     {{ parent() }}
     {% javascripts
-        '../client/js/src/model/TimesheetModel.js'
-        '../client/js/src/collection/TimesheetCollection.js'
         '../client/js/src/views/timesheetView.js'
         '../client/js/src/controllers/timesheetController.js'
         output="js/dashboard-timesheet.js"
@@ -59,7 +57,7 @@
     </div>
     <h1 id="page-title">
         <span class="glyphicon glyphicon-time"></span>
-        {{ 'tempo.timesheets.page_title'|trans }} - {{ 'tempo.timesheets.week' }} {{ weekPagination.current }}, {{ currentWeek|date('m/Y') }}
+        {{ 'tempo.timesheets.page_title'|trans }} - {{ 'tempo.timesheets.week'|trans }} {{ weekPagination.current }}, {{ currentWeek|date('m/Y') }}
     </h1>
 
     <div>
@@ -100,7 +98,7 @@
 
                             {% if proxy.getDay(day.format('j')) is not null %}
                                 <div class="cra craid_{{ day.format('j') }}">
-                                    <a data-title="Time tracking" data-toggle="modal" data-target="#" href="{{ path('timesheet_show', { 'date' : day.format('Y-m-d') }) }}">
+                                    <a data-title="Time tracking" data-toggle="modal" data-target="#" href="{{ path('timesheet_show', { 'project': proxy.project.id, 'date' : day.format('Y-m-d') }) }}">
                                         <span class="total"> total {{ proxy.getDay(day.format('d')).activities|length }}</span><br />
                                         <span class="hours">  {{ proxy.getDay(day.format('d')).time }}:00</span>
                                     </a>
