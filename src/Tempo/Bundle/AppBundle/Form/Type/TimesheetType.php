@@ -27,7 +27,9 @@ class TimesheetType extends AbstractType
         $builder
             ->add('workedTime')
             ->add('workedDate', 'date', array('widget' => 'single_text'))
-            ->add('description')
+            ->add('description', null, array(
+                'required' => false
+            ))
         ;
     }
 
