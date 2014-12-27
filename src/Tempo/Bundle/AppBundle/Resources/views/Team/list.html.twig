@@ -2,13 +2,14 @@
     {% for userTeam in users %}
         {% set user = userTeam.getUser() is defined ? userTeam.user : userTeam %}
     <li>
+         <span class="role label label-default">
+            {{ userTeam.renderRole(userTeam.role) }}
+        </span>
         <a href="{{ path('user_profile_show', { 'slug': user.slug }) }}"> <img src="{{ user.avatar(28) }}" />
             <span>{{ user.getFullName }} </span>
         </a>
         {% if userTeam.getUser() is defined %}
-        <span class="label label-default">
-            {{ userTeam.renderRole(userTeam.role) }}
-        </span>
+
         {% endif %}
         <a href="{{ path(route_deleted, { 'slug' : category.slug, 'user' : user.id }) }}" title="Remove {{ user.getFullName }}"><span class="glyphicon glyphicon-remove"></span></a>
     </li>
