@@ -15,11 +15,7 @@ user_autocomplete:
     defaults:
       version:  internal
     prefix:       api/{version}/
-    resource: Tempo\Bundle\AppBundle\Controller\Api\Rest\UserController
-
-user_list:
-    pattern:  /user/list
-    defaults: { _controller: TempoAppBundle:Default:list }
+    resource: Tempo\Bundle\AppBundle\Controller\Api\UserController
 
 user_notification:
     type:         rest
