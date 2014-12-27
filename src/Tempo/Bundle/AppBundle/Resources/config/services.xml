@@ -36,6 +36,7 @@
         <parameter key="tempo.manager.activity_provider.class">Tempo\Bundle\AppBundle\Manager\ActivityProviderManager</parameter>
         <parameter key="tempo.model.activity_provider.class">Tempo\Bundle\AppBundle\Model\ActivityProvider</parameter>
         <parameter key="tempo.activity.listener.activity_provider.class">Tempo\Bundle\AppBundle\EventListener\ActivityProviderListener</parameter>
+        <parameter key="tempo.builder.activites.class">Tempo\Bundle\AppBundle\Builder\ActivitiesBuilder</parameter>
     </parameters>
 
     <services>
@@ -174,6 +175,11 @@
             <argument type="service" id="jms_serializer" />
             <argument type="service" id="tempo.elephantio.client" />
             <tag name="kernel.event_listener" event="tempo.activity.provider.create.success" method="pingActivityRoom" />
+        </service>
+
+        <service id="tempo.builder.activites" class="%tempo.builder.activites.class%">
+            <argument type="service" id="tempo.manager.activity"/>
+            <argument type="service" id="tempo.manager.activity_provider"/>
         </service>
     </services>
 </container>

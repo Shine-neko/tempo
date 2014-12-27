@@ -21,16 +21,10 @@ class ActivityController extends Controller
      */
     public function listAction($type, $parent)
     {
-        if ($type == 'user') {
-            $activities = $this->get('tempo.manager.activity')->findByUser($type, $this->getUser());
-        }
+        $activitiesInternal = $this->getManager('activity')->getActivityActions($this->getUser());
+        $activitiesProvider = $this->getManager('activityProvider')->getActivityActions($this->getUser());
 
-        if($type == 'project') {
-            $activities = $this->get('tempo.manager.activity')->getRepository()->findBy(array(
-                'target' =>  'Project',
-                'project' => $parent->getId()
-            ));
-        }
+        $activities =  array_merge($activitiesInternal, $activitiesProvider);
 
         return $this->render('TempoAppBundle:Activity:list.html.twig', array(
             'type' => $type,

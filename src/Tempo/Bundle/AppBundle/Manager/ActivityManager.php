@@ -38,7 +38,6 @@ class ActivityManager extends BaseManager
         }
 
         $event = new Activity();
-
         $event
             ->setTarget($shortNameTarget)
             ->setAuthor($author)
@@ -49,11 +48,10 @@ class ActivityManager extends BaseManager
     }
 
     /**
-     * @param $type
      * @param $user
      */
-    public function findByUser($type = null, $user = null)
+    public function getActivityActions($user)
     {
-        return $this->getRepository()->findLastActivities($type, $user);
+        return $this->getRepository()->findUserActivites($user);
     }
 }

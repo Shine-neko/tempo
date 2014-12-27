@@ -104,10 +104,17 @@ class ProfileController extends Controller
         }
 
         $organizations = $this->getManager('organization')->findAllByUser($profile->getId());
+        $activities = $this->getManager('activity')
+            ->getRepository()->createQueryBuilder('activity')
+                ->where('activity.author = :author')
+                ->setParameter('author', $profile)
+                ->getQuery()->execute();
+
 
         return $this->render('TempoAppBundle:Profile:show.html.twig', array(
             'profile' => $profile,
-            'organizations' => $organizations
+            'organizations' => $organizations,
+            'activities' => $activities
         ));
     }
 

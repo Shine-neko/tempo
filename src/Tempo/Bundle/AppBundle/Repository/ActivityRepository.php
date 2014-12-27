@@ -13,39 +13,23 @@
 namespace Tempo\Bundle\AppBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use Tempo\Bundle\AppBundle\Model\Activity;
-
 /**
  * ActivityRepository
  *
  */
 class ActivityRepository extends EntityRepository
 {
-    /**
-     * @param $type
-     * @param $user
-     * @return array
-     */
-    public function findLastActivities($type, $user)
+    public function findUserActivites($user)
     {
-        $query = $this->queryLastActivities($type, $user);
-        return $query->getResult();
-    }
-    public function queryLastActivities($type, $user)
-    {
-        $query = $this->createQueryBuilder('e');
-        $query->leftJoin('e.author', 'a');
+        $query = $this->createQueryBuilder('activity');
+        $query
+            ->leftJoin('activity.project', 'project')
+            ->leftJoin('project.team', 'user')
+            ->where('activity.target = :target')
+            ->andWhere('user.user = :user')
+            ->setParameter('target', 'Project')
+            ->setParameter('user', $user);
 
-        if (null !== $type) {
-            $query->where('e.type = :type');
-            $query->setParameter('type', $type);
-        }
-
-        if (null !== $user) {
-            $query->AndWhere('a.id  = ?1');
-            $query->setParameter(1, $user->getId());
-        }
-
-        return $query->getQuery();
+        return $query->getQuery()->execute();
     }
 }

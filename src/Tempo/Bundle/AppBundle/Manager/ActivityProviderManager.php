@@ -29,4 +29,10 @@ class ActivityProviderManager extends BaseManager
 
         return $activity;
     }
+
+    public function getActivityActions($user)
+    {
+        return $this->getRepository()->findUserActivites($user);
+    }
+
 }

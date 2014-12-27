@@ -42,7 +42,7 @@
                {% endfor %}
             </ul>
         </nav>
-        <div id="row-box" class="room-{{ currentRoom.id }}">
+        <div id="row-box" class="row room-{{ currentRoom.id }}">
             <div class="col-md-{{ currentRoom.enableChat ? 6: 12 }}" id="activity-box">
                 <h3 class="homeTitle">
                     {{ 'tempo.activity.dashboard.title'|trans }}
@@ -53,7 +53,6 @@
 
                 <div id="room-activity-box">
                     {% if currentRoom.project %}
-                        {{ render(controller('TempoAppBundle:ProviderActivity:list', {'type': 'project', 'project': currentRoom.project})) }}
                         {{ render(controller('TempoAppBundle:Activity:list', {'type': 'project', 'parent': currentRoom.project})) }}
                     {% endif %}
 

@@ -1,7 +1,9 @@
-<div class="event">
-    <time  datetime="2013-11-14T09:45:16Z" title="2013-11-14 09:45:16">17 minutes ago</time>
-</div>
 <div class="action">
+    <div class="event">
+        <time  datetime="2013-11-14T09:45:16Z" title="2013-11-14 09:45:16">
+            {{ activity.createdAt|localizeddate('medium', 'none', app.request.locale) }}
+        </time>
+    </div>
     <div class="feed user cleafix">
         <div class="details">
             <a href="{{ path('user_profile_show', {'slug': activity.author.slug }) }}">

@@ -23,7 +23,9 @@ class ProviderActivityController extends Controller
 {
     /**
      * @param Request $request
-     * @param $token
+     * @param $id
+     * @return Response
+     * @throws \Exception
      */
     public function providerAction(Request $request, $id)
     {
@@ -43,22 +45,6 @@ class ProviderActivityController extends Controller
         return new Response('ok');
     }
 
-    /**
-     * @param $type
-     * @param  Project  $project| null
-     * @return Response
-     */
-    public function listAction($type, Project $project)
-    {
-        $activityManager = $this->getManager('activity');
-        $activities = $this->getManager('activity_provider')->getRepository()->findByProject($project);
-
-        return $this->render('TempoAppBundle:Provider/Activity:list.html.twig', array(
-            'type' => $type,
-            'activities' => $activities
-        ));
-    }
-
     public function newAction()
     {
         $form = $this->createForm(new ActivityFormType());
@@ -70,6 +56,7 @@ class ProviderActivityController extends Controller
 
     /**
      * @param $activitiesProvider
+     * @return array
      */
     private function formatActivities($activitiesProvider)
     {
