@@ -93,7 +93,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "0.3.x-dev"
+            "dev-master": "0.4.x-dev"
         },
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
