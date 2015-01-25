@@ -32,7 +32,8 @@
             <argument type="service" id="translator"/>
         </service>
 
-        <service id="tempo.user.profil.tabs" class="Knp\Menu\MenuItem" factory-service="tempo.user.profil.menu_builder" factory-method="tabMenu">
+        <service id="tempo.user.profil.tabs" class="Knp\Menu\MenuItem">
+            <factory service="tempo.user.profil.menu_builder" method="tabMenu" />
             <tag name="knp_menu.menu" alias="profile_tab"/>
         </service>
 
@@ -40,7 +41,8 @@
             <argument type="string">%tempo.user.profile.form.type.avatar.class%</argument>
         </service>
 
-        <service id="tempo.user.profile.form.avatar.factory" class="Symfony\Component\Form\Form"  factory-service="form.factory" factory-method="create">
+        <service id="tempo.user.profile.form.avatar.factory" class="Symfony\Component\Form\Form">
+            <factory service="form.factory" method="create" />
             <argument type="service" id="tempo.user.profile.form.type.avatar"></argument>
         </service>
 

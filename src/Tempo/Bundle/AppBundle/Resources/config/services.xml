@@ -49,7 +49,9 @@
             <tag name="twig.extension" />
         </service>
 
-        <service id="tempo.entity_manager" factory-service="doctrine" factory-method="getManager" class="Doctrine\ORM\EntityManager" public="false" />
+        <service id="tempo.entity_manager" class="Doctrine\ORM\EntityManager" public="false">
+            <factory service="doctrine" method="getManager" />
+        </service>
 
         <service id="tempo.listener.controller" class="%tempo.eventlistener.class%">
             <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController"/>
@@ -111,11 +113,13 @@
             </call>
         </service>
 
-        <service id="tempo.menu.frontend" class="%tempo.menu.class%" factory-service="tempo.menu.builder.front" factory-method="mainMenu">
+        <service id="tempo.menu.frontend" class="%tempo.menu.class%">
+            <factory service="tempo.menu.builder.front" method="mainMenu" />
             <tag name="knp_menu.menu" alias="main" />
         </service>
 
-        <service id="tempo.breadcrumb" class="%tempo.menu.class%" factory-service="tempo.menu.builder.front" factory-method="breadcrumb">
+        <service id="tempo.breadcrumb" class="%tempo.menu.class%">
+            <factory service="tempo.menu.builder.front" method="breadcrumb" />
             <tag name="knp_menu.menu" alias="breadcrumb" />
         </service>
 
