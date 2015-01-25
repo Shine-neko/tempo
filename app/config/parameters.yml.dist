@@ -32,3 +32,4 @@ parameters:
   knp_snappy.image.binary: /usr/bin/wkhtmltopdf
 
   tempo.config.email_from: example@example.com
+  tempo.upload_dir: %kernel.root_dir%/../web/uploads

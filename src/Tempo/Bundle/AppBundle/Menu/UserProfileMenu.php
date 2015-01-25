@@ -11,17 +11,8 @@
 
 namespace Tempo\Bundle\AppBundle\Menu;
 
-use Symfony\Component\Translation\TranslatorInterface;
-use Knp\Menu\FactoryInterface;
-
-class Tabs
+class UserProfileMenu extends MenuBuilder
 {
-    public function __construct(FactoryInterface $factory, TranslatorInterface $translator)
-    {
-        $this->factory = $factory;
-        $this->translator = $translator;
-    }
-
     public function tabMenu()
     {
         $menu = $this->factory->createItem('root');
@@ -45,10 +36,5 @@ class Tabs
         );
 
         return $menu;
-    }
-
-    protected function translate($label, $parameters = array())
-    {
-        return $this->translator->trans($label, $parameters);
     }
 }

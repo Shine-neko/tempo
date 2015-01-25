@@ -105,7 +105,7 @@
 
         <service id="tempo.menu.builder.front" class="%tempo.menu.builder.front.class%">
             <argument type="service" id="knp_menu.factory" />
-            <argument type="service" id="security.context" />
+            <argument type="expression">service('security.token_storage').getToken().getUser()</argument>
             <argument type="service" id="translator" />
             <argument type="service" id="event_dispatcher" />
             <call method="setRequest">

@@ -49,6 +49,7 @@ class FrontendMenuBuilder extends MenuBuilder
     /**
      * Generate Breadcrumb
      * @return \Knp\Menu\ItemInterface
+     * @deprecated
      */
     public function breadcrumb()
     {

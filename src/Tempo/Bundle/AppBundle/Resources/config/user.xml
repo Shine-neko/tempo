@@ -3,7 +3,7 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
-        <parameter key="tempo.user.menu_builder.class">Tempo\Bundle\AppBundle\Menu\Tabs</parameter>
+        <parameter key="tempo.user.menu_builder.class">Tempo\Bundle\AppBundle\Menu\UserProfileMenu</parameter>
         <parameter key="tempo.user.profile.form.type.avatar.class">Tempo\Bundle\AppBundle\Form\Type\AvatarType</parameter>
         <parameter key="tempo.user.profile.form.handler.avatar.class">Tempo\Bundle\AppBundle\Form\Handler\AvatarHandler</parameter>
         <parameter key="tempo.user.user_provider.username.class">Tempo\Bundle\AppBundle\Security\UserProvider</parameter>
@@ -52,7 +52,7 @@
             <argument type="service" id="doctrine.orm.entity_manager"/>
             <argument type="service" id="liip_imagine"/>
             <call method="setPath">
-                <argument type="string">%kernel.root_dir%/../web/uploads/</argument>
+                <argument type="string">%tempo.upload_dir%</argument>
             </call>
         </service>
 
@@ -64,10 +64,6 @@
         <service id="tempo.user.security.interactive_login_listener" class="%tempo.user.security.interactive_login_listener.class%" scope="request">
             <argument type="service" id="security.encoder_factory" />
             <tag name="kernel.event_listener" event="security.interactive_login" method="setLocaleForAuthenticatedUser" />
-        </service>
-
-        <service id="tempo.user.security.interactive_login_listener" class="%tempo.user.security.interactive_login_listener.class%" scope="request">
-            <argument type="service" id="security.encoder_factory" />
             <tag name="kernel.event_listener" event="kernel.request" method="setLocaleForUnauthenticatedUser" />
         </service>
 
