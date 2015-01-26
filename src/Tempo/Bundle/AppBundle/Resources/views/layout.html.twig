@@ -166,7 +166,7 @@
         <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 
         {% for javascript in behavior.resource.javascripts %}
-            <script type="text/javascript" src="/bundles/tempomain/js/{{ javascript }}"></script>
+            <script type="text/javascript" src="{{ javascript }}"></script>
         {% endfor %}
         {{ behavior.renderHTML|raw }}
     {% endblock %}
