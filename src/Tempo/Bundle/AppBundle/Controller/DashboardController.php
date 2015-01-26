@@ -39,7 +39,7 @@ class DashboardController extends Controller
             $currentRoom = $this->getManager('room')->find($session->get('currentRoom'));
         }
 
-        return $this->render('TempoAppBundle:Default:dashboard.html.twig', array(
+        return $this->render('@TempoApp/dashboard.html.twig', array(
             'rooms' => $rooms,
             'currentRoom' => $currentRoom,
             'form' => $form->createView()

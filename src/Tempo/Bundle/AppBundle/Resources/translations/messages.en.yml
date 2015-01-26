@@ -1,4 +1,6 @@
 tempo:
+  header:
+    search: Search
   menu:
     project: Projets
     home: Home
