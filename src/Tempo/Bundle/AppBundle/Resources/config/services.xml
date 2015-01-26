@@ -58,7 +58,7 @@
         </service>
 
         <service id="tempo.elephantio.engine" class="%tempo.elephantio.engine.class%">
-            <argument type="string">http://%socket_io.client%</argument>
+            <argument type="string">%socket_io.client%</argument>
         </service>
 
         <service id="tempo.elephantio.definition" class="ElephantIO\Client" public="false" >

@@ -15,7 +15,7 @@ parameters:
   locale:            en
   secret:            cb8f190153190ebe8598ac49e86ebf37
 
-  socket_io.client: localhost:8000
+  socket_io.client: http://localhost:8000
 
   node_bin:       /usr/bin/node
   node_modules:   /usr/lib/node_modules
