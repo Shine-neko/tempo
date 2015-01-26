@@ -12,7 +12,7 @@
 namespace Tempo\Bundle\AppBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,11 +26,11 @@ abstract class MenuBuilder
     protected $request;
 
     /**
-     * @param FactoryInterface         $factory
-     * @param SecurityContextInterface $securityContext
-     * @param TranslatorInterface      $translator
+     * @param FactoryInterface              $factory
+     * @param AuthorizationCheckerInterface $security
+     * @param TranslatorInterface           $translator
      */
-    public function __construct(FactoryInterface $factory, SecurityContextInterface $securityContext, TranslatorInterface $translator, EventDispatcherInterface $eventDispatcher)
+    public function __construct(FactoryInterface $factory, AuthorizationCheckerInterface $securityContext, TranslatorInterface $translator, EventDispatcherInterface $eventDispatcher)
     {
         $this->factory = $factory;
         $this->translator = $translator;

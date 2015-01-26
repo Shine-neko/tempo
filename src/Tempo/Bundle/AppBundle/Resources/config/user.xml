@@ -27,13 +27,8 @@
             </argument>
         </service>
 
-        <service id="tempo.user.profil.menu_builder" class="%tempo.user.menu_builder.class%">
-            <argument type="service" id="knp_menu.factory"/>
-            <argument type="service" id="translator"/>
-        </service>
-
         <service id="tempo.user.profil.tabs" class="Knp\Menu\MenuItem">
-            <factory service="tempo.user.profil.menu_builder" method="tabMenu" />
+            <factory service="tempo.menu.builder.frontend" method="tabMenu" />
             <tag name="knp_menu.menu" alias="profile_tab"/>
         </service>
 

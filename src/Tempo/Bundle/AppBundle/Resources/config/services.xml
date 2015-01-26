@@ -10,7 +10,7 @@
         <parameter key="tempo.form.type.autocomplete.class">Tempo\Bundle\AppBundle\Form\Type\AutocompleteType</parameter>
         <parameter key="tempo.form.type.datetimepicker.class">Tempo\Bundle\AppBundle\Form\Type\DateTimePickerType</parameter>
         <parameter key="tempo.form.type.list.class">Tempo\Bundle\AppBundle\Form\Type\ListType</parameter>
-        <parameter key="tempo.menu.builder.front.class">Tempo\Bundle\AppBundle\Menu\FrontendMenuBuilder</parameter>
+        <parameter key="tempo.menu.builder.frontend.class">Tempo\Bundle\AppBundle\Menu\FrontendMenuBuilder</parameter>
         <parameter key="tempo.form.extension.list.class">Tempo\Bundle\AppBundle\Form\Extension\SecurityTypeExtension</parameter>
 	    <parameter key="tempo.menu_builder.class">Tempo\Bundle\AppBundle\Menu\MenuBuilder</parameter>
         <parameter key="tempo.behavior_manager.class">Tempo\Bundle\AppBundle\Helper\Behavior</parameter>
@@ -103,9 +103,9 @@
             <tag name="twig.extension" />
         </service>
 
-        <service id="tempo.menu.builder.front" class="%tempo.menu.builder.front.class%">
+        <service id="tempo.menu.builder.frontend" class="%tempo.menu.builder.frontend.class%">
             <argument type="service" id="knp_menu.factory" />
-            <argument type="expression">service('security.token_storage').getToken().getUser()</argument>
+            <argument type="service" id="security.authorization_checker"/>
             <argument type="service" id="translator" />
             <argument type="service" id="event_dispatcher" />
             <call method="setRequest">
@@ -114,12 +114,12 @@
         </service>
 
         <service id="tempo.menu.frontend" class="%tempo.menu.class%">
-            <factory service="tempo.menu.builder.front" method="mainMenu" />
+            <factory service="tempo.menu.builder.frontend" method="mainMenu" />
             <tag name="knp_menu.menu" alias="main" />
         </service>
 
         <service id="tempo.breadcrumb" class="%tempo.menu.class%">
-            <factory service="tempo.menu.builder.front" method="breadcrumb" />
+            <factory service="tempo.menu.builder.frontend" method="breadcrumb" />
             <tag name="knp_menu.menu" alias="breadcrumb" />
         </service>
 

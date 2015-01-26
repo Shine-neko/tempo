@@ -26,7 +26,8 @@ class Behavior extends Helper
     protected $behavior = array();
 
     /**
-     * @param ResourceManager $resourceManager
+     * @param ResourceManagerInterface $resourceManager
+     * @param $router
      */
     public function __construct(ResourceManagerInterface $resourceManager, $router)
     {
@@ -43,7 +44,7 @@ class Behavior extends Helper
     }
 
     /**
-     * @param $name
+     * @param string $behavior
      * @param array $options
      */
     public function init($behavior, array $options)
@@ -53,7 +54,7 @@ class Behavior extends Helper
 
     /**
      *  Registers a JavaScript code to execute when loading the page, a * Once the DOM is ready.
-     * @param string $call Code à exécuter
+     * @param string $call Code to run
      */
     public function onload($call)
     {

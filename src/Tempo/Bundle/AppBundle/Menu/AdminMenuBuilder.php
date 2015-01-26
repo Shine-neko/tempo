@@ -11,7 +11,7 @@
 
 namespace Tempo\Bundle\AppBundle\Menu;
 
-class AdminMenuBuilder
+class AdminMenuBuilder extends MenuBuilder
 {
 
 }
