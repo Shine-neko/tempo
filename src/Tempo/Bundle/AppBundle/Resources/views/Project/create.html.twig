@@ -4,7 +4,7 @@
 {% block javascripts %}
     {{ parent() }}
     {% javascripts
-        '../client/js/src/views/projectView.js'
+        '@TempoAppBundle/Resources/assets/js/src/views/projectView.js'
         output="js/project-update.js"
     %}
     <script src="{{ asset_url }}"></script>

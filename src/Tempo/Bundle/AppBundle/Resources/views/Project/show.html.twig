@@ -3,7 +3,7 @@
 {% block javascripts %}
     {{ parent() }}
     {% javascripts
-    '../client/js/src/views/CommentView.js'
+    '@TempoAppBundle/Resources/assets/js/src/views/CommentView.js'
     output="js/project.js" filter="?uglifyjs"
     %}
     <script src="{{ asset_url }}"></script>

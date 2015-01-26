@@ -3,8 +3,8 @@
 
     {{ parent() }}
     {% javascripts
-        '../client/js/src/views/timesheetView.js'
-        '../client/js/src/controllers/timesheetController.js'
+        '@TempoAppBundle/Resources/assets/js/src/views/timesheetView.js'
+        '@TempoAppBundle/Resources/assets/js/src/controllers/timesheetController.js'
         output="js/dashboard-timesheet.js"
     %}
     <script src="{{ asset_url }}"></script>
