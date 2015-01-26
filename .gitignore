@@ -5,20 +5,17 @@ app/bootstrap*
 vendor/*
 */logs/*
 */cache/*
-bin/behat*
-bin/doctrine*
-bin/phpspec
-bin/phpunit
-bin/webunit*
-bin/selenium-server-standalone-*
+bin/*
+!bin/console
+!bin/server.js
+app/config/parameters.yml
 app/config/deploy/*
+!app/config/deploy/*.rb.dist
 app/data/*
 web/uploads/*
 web/bundles/*
 web/vendor/
-!app/config/deploy/*.rb.dist
 behat.yml
-web/*.css
 web/css/
 web/js/
 web/i18n
@@ -26,11 +23,8 @@ web/media
 node_modules/
 
 # Configuration files
-app/config/parameters.yml
 build/
 .idea
 .DS_Store
 nbproject/
 composer.phar
-
-bin/java/yuicompressor.jar
