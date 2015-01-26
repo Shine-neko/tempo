@@ -64,4 +64,30 @@ class FrontendMenuBuilder extends MenuBuilder
 
         return $menu;
     }
+
+
+    public function userProfile()
+    {
+        $menu = $this->factory->createItem('root');
+        $menu->setChildrenAttribute('class', 'nav nav-pills nav-stacked');
+
+        $menu->addChild(
+            $this->translate('tempo.profile.tabs.profil'),
+            array('route' => 'user_profile_edit')
+        );
+        $menu->addChild(
+            $this->translate('tempo.profile.tabs.avatar'),
+            array('route' => 'user_profile_picture')
+        );
+        $menu->addChild(
+            $this->translate('tempo.profile.tabs.password'),
+            array('route' => 'user_profile_password')
+        );
+        $menu->addChild(
+            $this->translate('tempo.profile.tabs.settings'),
+            array('route' => 'user_profile_settings')
+        );
+
+        return $menu;
+    }
 }
