@@ -28,7 +28,7 @@ class ProjectType extends AbstractType
                 'label' => 'tempo.project.form.label.name',
                 'required' => true,
             ))
-            ->add('description', 'textarea', array(
+            ->add('description', 'wysiwyg', array(
                 'required' => false,
                 'label'    => 'tempo.project.form.label.description',
             ))

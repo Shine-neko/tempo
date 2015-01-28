@@ -10,6 +10,7 @@
         <parameter key="tempo.form.type.autocomplete.class">Tempo\Bundle\AppBundle\Form\Type\AutocompleteType</parameter>
         <parameter key="tempo.form.type.datetimepicker.class">Tempo\Bundle\AppBundle\Form\Type\DateTimePickerType</parameter>
         <parameter key="tempo.form.type.list.class">Tempo\Bundle\AppBundle\Form\Type\ListType</parameter>
+        <parameter key="tempo.form.type.wysiwyg.class">Tempo\Bundle\AppBundle\Form\Type\SummernoteType</parameter>
         <parameter key="tempo.menu.builder.frontend.class">Tempo\Bundle\AppBundle\Menu\FrontendMenuBuilder</parameter>
         <parameter key="tempo.form.extension.list.class">Tempo\Bundle\AppBundle\Form\Extension\SecurityTypeExtension</parameter>
 	    <parameter key="tempo.menu_builder.class">Tempo\Bundle\AppBundle\Menu\MenuBuilder</parameter>
@@ -81,11 +82,18 @@
         <service id="tempo.form.type.list" class="%tempo.form.type.list.class%">
             <tag name="form.type" alias="list" />
         </service>
+
+        <service id="tempo.form.type.wysiwyg" class="%tempo.form.type.wysiwyg.class%">
+            <argument type="service" id="tempo.resource_manager" />
+            <tag name="form.type" alias="wysiwyg" />
+        </service>
         
         <service id="tempo.form.extension.security" class="%tempo.form.extension.list.class%">
             <argument type="service" id="security.context" />
             <tag name="form.type_extension" alias="form_security" />
         </service>
+
+
 
         <service id="tempo.data_collector" class="%tempo.data_collector.class%" public="false">
             <tag name="data_collector" template="TempoAppBundle:Collector:tempo" id="tempo" priority="256" />
