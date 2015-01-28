@@ -11,7 +11,7 @@
         <parameter key="tempo.form.type.datetimepicker.class">Tempo\Bundle\AppBundle\Form\Type\DateTimePickerType</parameter>
         <parameter key="tempo.form.type.list.class">Tempo\Bundle\AppBundle\Form\Type\ListType</parameter>
         <parameter key="tempo.menu.builder.frontend.class">Tempo\Bundle\AppBundle\Menu\FrontendMenuBuilder</parameter>
-        <parameter key="tempo.form.extension.list.class">Tempo\Bundle\AppBundle\Form\Extension\SecurityTypeExtension</parameter>
+        <parameter key="tempo.form.extension.security.class">Tempo\Bundle\AppBundle\Form\Extension\SecurityTypeExtension</parameter>
 	    <parameter key="tempo.menu_builder.class">Tempo\Bundle\AppBundle\Menu\MenuBuilder</parameter>
         <parameter key="tempo.behavior_manager.class">Tempo\Bundle\AppBundle\Helper\Behavior</parameter>
         <parameter key="tempo.resource_manager.class">Tempo\Component\Resource\ResourceManager</parameter>
@@ -82,7 +82,7 @@
             <tag name="form.type" alias="list" />
         </service>
         
-        <service id="tempo.form.extension.security" class="%tempo.form.extension.list.class%">
+        <service id="tempo.form.extension.security" class="%tempo.form.extension.security.class%">
             <argument type="service" id="security.context" />
             <tag name="form.type_extension" alias="form_security" />
         </service>
