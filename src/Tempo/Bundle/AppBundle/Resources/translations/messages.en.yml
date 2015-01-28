@@ -176,6 +176,8 @@ tempo:
     failed_valid_file: Uploaded file is not a valid
   user:
     logout: Logout
+    profile: Profile
+    settings: Settings
     create: Create User
     list:
       title: 'Organization List'

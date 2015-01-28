@@ -8,6 +8,11 @@
     %}
     <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
+
+    {% for stylesheet in behavior.resource.stylesheets %}
+    <link rel="stylesheet" href="{{ stylesheet }}" />
+    {% endfor %}
+
     {% block stylesheets %}{% endblock %}
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -34,7 +39,7 @@
                 <div class="head-inner navbar-collapse bs-navbar-collapse collapse">
                     <div id="search">
                         <form method="get" action="/search/index/">
-                            <label label-default="label-default" for="q"> <a accesskey="4" href="#">{{ 'header.search'|trans({},'TempoMain') }}  </a> :</label>
+                            <label label-default="label-default" for="q"> <a accesskey="4" href="#">{{ 'header.search'|trans }}  </a> :</label>
                             <input  type="text" size="20" name="q" id="q" class="form-control small" accesskey="f" />
                             <button type="submit" class="submit">
                                 <span class="glyphicon glyphicon-search"></span>
@@ -80,8 +85,8 @@
                                     <img src=" {{ app.user.avatar(24) }}" alt="Avatar" />
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="{{ path('user_profile_edit') }}"><span class="glyphicon glyphicon-user"></span> {{ 'Profile'|trans }}</a> </li>
-                                    <li><a href="{{ path('user_profile_settings') }}"><span class="glyphicon glyphicon-cog"></span> {{ 'Settings'|trans }}</a> </li>
+                                    <li><a href="{{ path('user_profile_edit') }}"><span class="glyphicon glyphicon-user"></span> {{ 'tempo.user.profile'|trans }}</a> </li>
+                                    <li><a href="{{ path('user_profile_settings') }}"><span class="glyphicon glyphicon-cog"></span> {{ 'tempo.user.settings'|trans }}</a> </li>
                                     <li><a href="{{ path('user_logout') }}"> <span class="glyphicon glyphicon-log-out"></span> {{ 'tempo.user.logout'|trans }} </a> </li>
                                     <li role="presentation" class="divider"></li>
                                     <li> <a href="/help"><span class="glyphicon glyphicon-question-sign"></span> Help </a></li>
