@@ -47,7 +47,6 @@ class Kernel extends BaseKernel
             new \Knp\Bundle\MenuBundle\KnpMenuBundle(),
 
             new \HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
-            new \Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new \Liip\ImagineBundle\LiipImagineBundle(),
             new \Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new \JMS\SerializerBundle\JMSSerializerBundle($this),

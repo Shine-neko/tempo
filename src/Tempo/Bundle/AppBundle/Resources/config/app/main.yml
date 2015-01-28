@@ -61,18 +61,6 @@ hwi_oauth:
             client_id:     %oauth.github.clientid%
             client_secret: %oauth.github.clientsecret%
 
-ivory_ck_editor:
-  configs:
-    default:
-      skin: 'husky,/vendor/ckeditor-light-theme/'
-      toolbar:
-        - ['Format']
-        - ['Bold','Italic']
-        - ['Outdent','Indent','Blockquote']
-        - ['NumberedList','BulletedList']
-        - ['-','Link','Unlink','Anchor','-','Table']
-        - ['Maximize','Source']
-
 tempo_app:
   week:
     fr :
