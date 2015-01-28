@@ -28,10 +28,9 @@ class ProjectType extends AbstractType
                 'label' => 'tempo.project.form.label.name',
                 'required' => true,
             ))
-            ->add('description', 'ckeditor', array(
+            ->add('description', 'wysiwyg', array(
                 'required' => false,
-                'label'    => 'tempo.project.form.label.isactive',
-                'config_name' => 'default',
+                'label'    => 'tempo.project.form.label.description',
             ))
             ->add('active', null, array(
                 'label' => 'tempo.project.form.label.isactive'
