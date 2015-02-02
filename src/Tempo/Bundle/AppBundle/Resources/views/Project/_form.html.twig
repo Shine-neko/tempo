@@ -19,24 +19,6 @@
             {{ form_row(form.ending) }}
         </fieldset>
 
-        <fieldset class="col-md-6">
-
-            {{ form_row(form.budget_estimated) }}
-
-            <div id="project_budget_advancement_control_group" style="clear: both" class="form-group" data-placement="right" data-toggle="popover" data-trigger="hover" data-content="" data-title="">
-                {{ form_label(form.advancement) }}
-                <div style="display: none">
-                    {{ form_widget(form.advancement) }}
-                </div>
-                <div class="col-lg-9">
-                    <div id="slider" class="slider form-control">
-                        <a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: {{ form.advancement.vars.value }}%">
-                            <span id="knob_value" class="label label-primary">{{ form.advancement.vars.value }}%</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </fieldset>
         <div class="clearbox"></div>
     </div>
     <div class="wysiwyg clearbox">

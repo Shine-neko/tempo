@@ -161,16 +161,6 @@ interface ProjectInterface
     public function getType();
 
     /**
-     * @param integer $avancement
-     */
-    public function setAdvancement($avancement);
-
-    /**
-     * @return integer
-     */
-    public function getAdvancement();
-
-    /**
      * @param string $code
      */
     public function setCode($code);
@@ -189,18 +179,6 @@ interface ProjectInterface
      * @return integer
      */
     public function getStatus();
-
-    /**
-     * Set budget_estimated
-     *
-     * @param decimal $budgetEstimated
-     */
-    public function setBudgetEstimated($budgetEstimated);
-
-    /**
-     * @return decimal
-     */
-    public function getBudgetEstimated();
 
     /**
      * @param integer $priority

@@ -369,24 +369,6 @@ class Project implements ProjectInterface
     /**
      * {@inheritdoc}
      */
-    public function setAdvancement($advancement)
-    {
-        $this->advancement = $advancement;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getAdvancement()
-    {
-        return $this->advancement;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function setCode($code)
     {
         $this->code = $code;
@@ -418,24 +400,6 @@ class Project implements ProjectInterface
     public function getStatus()
     {
         return $this->status;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setBudgetEstimated($budgetEstimated)
-    {
-        $this->budget_estimated = $budgetEstimated;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getBudgetEstimated()
-    {
-        return $this->budget_estimated;
     }
 
     /**

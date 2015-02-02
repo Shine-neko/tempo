@@ -50,19 +50,8 @@ class ProjectType extends AbstractType
                     return $er->findAllTypes();
                 }
             ))
-            ->add('advancement', null, array(
-                'label' => 'tempo.project.form.label.advancement',
-                'attr' => array(
-                    'disabled' => 'disabled',
-                    'style' => 'display: none'
-                )
-            ))
             ->add('code', null, array(
                 'label' => 'tempo.project.form.label.code',
-                'required' => false,
-            ))
-            ->add('budget_estimated', null, array(
-                'label' => 'tempo.project.form.label.estimated',
                 'required' => false,
             ))
         ;
