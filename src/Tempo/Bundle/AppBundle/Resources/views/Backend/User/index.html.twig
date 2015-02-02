@@ -13,7 +13,7 @@
         <li class="last"> List </li>
     </ol>
  {% endblock breadcrumb %}
-<div class="app-panel">
+<div>
     <div class="page-header">
         <div class="actions-menu pull-right">
             {{ buttons.create(path('backend_user_create'), 'tempo.user.create'|trans) }}
@@ -36,7 +36,7 @@
             <a class="btn btn-cancel btn-default" href="{{ path('backend_user_index') }}">Reset</a>
         </div>
 
-        <div class="col-md-10">
+        <div class="col-md-10 app-panel">
 
             <table id="users" class="table">
                 <thead>

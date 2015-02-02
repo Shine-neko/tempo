@@ -43,7 +43,6 @@ class TimesheetFilterType extends AbstractType
     {
         $resolver->setDefaults(array(
             'csrf_protection' => false,
-            'translation_domain' => 'TempoProject'
         ));
     }
 
