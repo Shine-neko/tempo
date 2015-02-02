@@ -32,12 +32,7 @@
         <h3>Publish</h3>
             <div class="inside clearfix">
                 <div>
-                    <label>Active: </label> {{  form.vars.value.active ? 'On' : 'Off'  }}
-                    <a href="#" data-toggle="collapse" data-target="#publish-collapse-active"> Edit</a>
-                    <div id="publish-collapse-active" class="panel-collapse collapse out">
-                        {{ form_widget(form.active) }}
-                    </div>
-
+                    {{ form_row(form.active) }}
                 </div>
             </div>
     </div>

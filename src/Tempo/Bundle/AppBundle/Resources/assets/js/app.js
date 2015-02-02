@@ -133,6 +133,7 @@ $(function() {
 
     $('body').removeClass('no-js').addClass('js');
     $('select').selectize();
+    $('.summernote').summernote();
 
     $('.datetimepicker-instance').datetimepicker({
         separator: '-',
