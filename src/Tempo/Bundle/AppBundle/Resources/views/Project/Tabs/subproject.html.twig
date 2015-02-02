@@ -6,8 +6,6 @@
         <th>{{ 'tempo.project.form.label.status'|trans }}</th>
         <th>{{ 'tempo.project.form.label.name'|trans }}</th>
         <th>{{ 'tempo.project.form.label.type'|trans }}</th>
-        <th>{{ 'tempo.project.form.label.priority'|trans }}</th>
-        <th>{{ 'tempo.project.form.label.advancement'|trans }}</th>
         <th>{{ 'tempo.project.form.label.beginning'|trans }}</th>
         <th>{{ 'tempo.project.form.label.ending'|trans }}</th>
     </tr>
@@ -27,8 +25,6 @@
             <td><a href="{{ path('project_show', { 'slug' : children.slug } ) }}">{{ children.name }}</a> </td>
             <td>{{ children.type }}</td>
 
-            <td>{{ children.priority }}</td>
-            <td>{{ children.advancement }}%</td>
             <td>{{ children.beginning.format("Y-m-j") }}</td>
             <td>{{ children.ending.format("Y-m-j") }}</td>
         </tr>
