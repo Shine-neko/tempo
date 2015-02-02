@@ -1,7 +1,7 @@
 Tempo[![Build Status](https://secure.travis-ci.org/tempo-project/tempo.svg?branch=master)](http://travis-ci.org/tempo-project/tempo)
 =============
 
-Tempo is **Project Management Software**, based on the [**Symfony2**](http://symfony.com) framework.
+Tempo is **Social Hub Software**, based on the [**Symfony2**](http://symfony.com) framework.
 
 Installation
 ------------
