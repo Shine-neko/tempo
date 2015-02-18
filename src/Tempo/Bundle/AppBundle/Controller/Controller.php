@@ -66,6 +66,10 @@ class Controller extends FOSRestController
      */
     protected function getManager($name)
     {
+        if ($this->has('tempo.manager_custom.'. $name)) {
+            return $this->get('tempo.manager_custom.'. $name);
+        }
+
         return $this->get('tempo.manager.'. $name);
     }
 

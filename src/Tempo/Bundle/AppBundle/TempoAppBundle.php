@@ -11,39 +11,53 @@
 
 namespace Tempo\Bundle\AppBundle;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass;
+use Sylius\Bundle\ResourceBundle\AbstractResourceBundle;
+use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use Tempo\Bundle\AppBundle\DependencyInjection\CompilerPass\OverrideServiceCompilerPass;
 use Tempo\Bundle\AppBundle\DependencyInjection\CompilerPass\ProjectTabRegistryCompilerPass;
 use Tempo\Bundle\AppBundle\DependencyInjection\CompilerPass\RegisterProviderPass;
-
 
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
 
-class TempoAppBundle extends Bundle
+class TempoAppBundle extends AbstractResourceBundle
 {
+    /**
+     * {@inheritDoc}
+     */
     public function build(ContainerBuilder $container)
     {
+        parent::build($container);
         $container->addCompilerPass(new OverrideServiceCompilerPass());
         $container->addCompilerPass(new RegisterProviderPass());
         $container->addCompilerPass(new ProjectTabRegistryCompilerPass());
+    }
 
-        $mappings = array(
-            realpath(__DIR__ . '/Resources/config/doctrine/model') => 'Tempo\Bundle\AppBundle\Model',
+    /**
+     * {@inheritDoc}
+     */
+    public static function getSupportedDrivers()
+    {
+        return array(
+            SyliusResourceBundle::DRIVER_DOCTRINE_ORM
         );
+    }
 
-        $ormCompilerClass = 'Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass';
+    /**
+     * {@inheritDoc}
+     */
+    protected function getDoctrineMappingDirectory()
+    {
+        return 'model';
+    }
 
-        if (class_exists($ormCompilerClass)) {
-            $container->addCompilerPass(
-                DoctrineOrmMappingsPass::createXmlMappingDriver(
-                    $mappings,
-                    array('tempo_app.model_manager_name'),
-                    'tempo_app.backend_type_orm'
-                ));
-        }
+    /**
+     * {@inheritDoc}
+     */
+    protected function getModelNamespace()
+    {
+        return 'Tempo\Bundle\AppBundle\Model';
     }
 }

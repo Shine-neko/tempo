@@ -36,7 +36,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      */
     public function load(ObjectManager $manager)
     {
-        $userManager = $this->container->get('tempo.manager.user');
+        $userManager = $this->container->get('tempo.manager_custom.user');
         $users = array(
             'admin'           => 'Ad Min',
             'john.doe'        => 'John Doe',

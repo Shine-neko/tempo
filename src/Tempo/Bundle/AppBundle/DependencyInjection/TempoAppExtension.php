@@ -12,35 +12,51 @@
 namespace Tempo\Bundle\AppBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\Config\FileLocator;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Sylius\Bundle\ResourceBundle\DependencyInjection\AbstractResourceExtension;
 
 /**
  * This is the class that loads and manages your bundle configuration
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class TempoAppExtension extends Extension
+class TempoAppExtension extends AbstractResourceExtension
 {
+    /**
+     * @var string
+     */
+    protected $applicationName = 'tempo';
+
+    /**
+     * @var string
+     */
+    protected $configDirectory = '/../Resources/config';
+
+    /**
+     * @var array
+     */
+    protected $configFiles = array(
+        'services',
+        'doctrine_extensions',
+        'orm',
+        'providers',
+        'security',
+        'user',
+    );
+
     /**
      * {@inheritDoc}
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $config, ContainerBuilder $container)
     {
-        $configuration = new Configuration();
-        $config = $this->processConfiguration($configuration, $configs);
-        $config['db_driver'] = 'orm';
+        $this->configure(
+            $config,
+            new Configuration(),
+            $container,
+            self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS
+        );
 
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
-        $loader->load('services.xml');
-        $loader->load('doctrine_extensions.xml');
-        $loader->load('orm.xml');
-        $loader->load('providers.xml');
-        $loader->load('security.xml');
-        $loader->load('user.xml');
-
-        $container->setParameter('tempo_app.week', $config['week']);
-        $container->setParameter($this->getAlias() . '.backend_type_' . $config['db_driver'], true);
+        $container->setParameter('sylius.locale', '%locale%');
+        $container->setParameter('sylius.translation.mapping', array());
+        $container->setParameter('tempo_app.week', $config[0]['week']);
     }
 }

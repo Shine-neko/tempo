@@ -6,7 +6,7 @@
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
 
-    <entity name="Tempo\Bundle\AppBundle\Model\User" repository-class="Tempo\Bundle\AppBundle\Repository\UserRepository" table="tempo_user">
+    <mapped-superclass name="Tempo\Bundle\AppBundle\Model\User" repository-class="Tempo\Bundle\AppBundle\Repository\UserRepository" table="tempo_user">
 
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO" />
@@ -57,6 +57,6 @@
 
         <one-to-many field="notifications" target-entity="Notification" mapped-by="user" />
 
-    </entity>
+    </mapped-superclass>
 
 </doctrine-mapping>

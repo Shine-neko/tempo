@@ -29,7 +29,7 @@
 
         <parameter key="tempo.model.user.class">Tempo\Bundle\AppBundle\Model\User</parameter>
         <parameter key="tempo.model.notification.class">Tempo\Bundle\AppBundle\Model\Notification</parameter>
-        <parameter key="tempo.manager.user.class">Tempo\Bundle\AppBundle\Manager\UserManager</parameter>
+        <parameter key="tempo.manager_custom.user.class">Tempo\Bundle\AppBundle\Manager\UserManager</parameter>
         <parameter key="tempo.manager.notification.class">Tempo\Bundle\AppBundle\Manager\NotificationManager</parameter>
     </parameters>
 
@@ -83,7 +83,7 @@
             <argument>%tempo.model.notification.class%</argument>
         </service>
 
-        <service id="tempo.manager.user" class="%tempo.manager.user.class%">
+        <service id="tempo.manager_custom.user" class="%tempo.manager_custom.user.class%">
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument>%tempo.model.user.class%</argument>
         </service>

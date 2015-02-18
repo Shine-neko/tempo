@@ -93,8 +93,6 @@
             <tag name="form.type_extension" alias="form_security" />
         </service>
 
-
-
         <service id="tempo.data_collector" class="%tempo.data_collector.class%" public="false">
             <tag name="data_collector" template="TempoAppBundle:Collector:tempo" id="tempo" priority="256" />
         </service>
