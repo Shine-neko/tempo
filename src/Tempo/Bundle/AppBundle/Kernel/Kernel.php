@@ -42,6 +42,7 @@ class Kernel extends BaseKernel
             new \FOS\RestBundle\FOSRestBundle(),
             new \FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new \Sylius\Bundle\ResourceBundle\SyliusResourceBundle(),
+            new \Sylius\Bundle\TranslationBundle\SyliusTranslationBundle(),
             new \Sylius\Bundle\SettingsBundle\SyliusSettingsBundle(),
             new \Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new \Knp\Bundle\MenuBundle\KnpMenuBundle(),
@@ -50,6 +51,7 @@ class Kernel extends BaseKernel
             new \Liip\ImagineBundle\LiipImagineBundle(),
             new \Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new \JMS\SerializerBundle\JMSSerializerBundle($this),
+            new \Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new \Problematic\AclManagerBundle\ProblematicAclManagerBundle(),
             new \Bazinga\Bundle\JsTranslationBundle\BazingaJsTranslationBundle(),
             new \WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
@@ -64,7 +66,6 @@ class Kernel extends BaseKernel
             $bundles[] = new \Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new \Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new \Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
-            $bundles[] = new \Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle();
 
             if(class_exists('Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle')) {
                 $bundles[] = new \Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
