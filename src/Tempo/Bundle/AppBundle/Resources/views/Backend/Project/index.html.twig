@@ -37,7 +37,6 @@
                         <th>{{ sylius_resource_sort('name', 'tempo.project.form.label.name'|trans) }}</th>
                         <th>{{ sylius_resource_sort('beginning', 'tempo.project.form.label.beginning'|trans) }}</th>
                         <th>{{ sylius_resource_sort('ending', 'tempo.project.form.label.ending'|trans) }}</th>
-                        <th>{{ sylius_resource_sort('ending', 'tempo.project.form.label.advancement'|trans) }}</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -48,13 +47,6 @@
                             <td>{{ project.name }}</td>
                             <td>{{ project.beginning|localizeddate('medium', 'none', app.request.locale) }}</td>
                             <td>{{ project.ending|localizeddate('medium', 'none', app.request.locale) }}</td>
-                            <td>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ project.advancement }}" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                                        <span class="sr-only">{{ project.advancement }}% Complete</span>
-                                    </div>
-                                </div>
-                            </td>
                             <td>
                                 <div class="pull-right">
                                     {{ buttons.show(path('project_show', {'slug': project.slug})) }}
