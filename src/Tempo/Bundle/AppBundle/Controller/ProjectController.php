@@ -23,7 +23,7 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Tempo\Bundle\AppBundle\Model\Project;
 use Tempo\Bundle\AppBundle\Model\Organization;
 use Tempo\Bundle\AppBundle\Form\Type\ProjectType;
-use Tempo\Bundle\AppBundle\TempoProjectEvents;
+use Tempo\Bundle\AppBundle\TempoAppEvents;
 use Tempo\Bundle\AppBundle\Event\ProjectEvent;
 use Tempo\Bundle\AppBundle\Form\Type\TeamType;
 
@@ -117,7 +117,7 @@ class ProjectController extends Controller
 
         if ($form->handleRequest($request)->isValid()) {
             $event = new ProjectEvent($request, $project);
-            $this->get('event_dispatcher')->dispatch(TempoProjectEvents::PROJECT_CREATE_INITIALIZE, $event);
+            $this->get('event_dispatcher')->dispatch(TempoAppEvents::PROJECT_CREATE_INITIALIZE, $event);
 
             $this->getManager('project')->save($project);
 
@@ -126,7 +126,7 @@ class ProjectController extends Controller
 
 
             $this->getAclManager()->addObjectPermission($project, MaskBuilder::MASK_OWNER); //set Permission
-            $this->get('event_dispatcher')->dispatch(TempoProjectEvents::PROJECT_CREATE_SUCCESS, $event);
+            $this->get('event_dispatcher')->dispatch(TempoAppEvents::PROJECT_CREATE_SUCCESS, $event);
             $this->addFlash('success', 'project.success_create', 'TempoProject');
 
             return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
@@ -151,10 +151,10 @@ class ProjectController extends Controller
 
         if ($editForm->handleRequest($request)->isValid()) {
             $event = new ProjectEvent($request, $project);
-            $this->get('event_dispatcher')->dispatch(TempoProjectEvents::PROJECT_EDIT_INITIALIZE, $event);
+            $this->get('event_dispatcher')->dispatch(TempoAppEvents::PROJECT_EDIT_INITIALIZE, $event);
 
             $this->getManager('project')->save($project);
-            $this->get('event_dispatcher')->dispatch(TempoProjectEvents::PROJECT_EDIT_SUCCESS, $event);
+            $this->get('event_dispatcher')->dispatch(TempoAppEvents::PROJECT_EDIT_SUCCESS, $event);
 
             $this->addFlash('success', 'project.success_updated', 'TempoProject');
 
@@ -182,7 +182,7 @@ class ProjectController extends Controller
 
             $this->getManager('project')->remove($project);
             $event = new ProjectEvent($request, $project);
-            $this->get('event_dispatcher')->dispatch(TempoProjectEvents::PROJECT_DELETE_COMPLETED, $event);
+            $this->get('event_dispatcher')->dispatch(TempoAppEvents::PROJECT_DELETE_COMPLETED, $event);
 
             $this->addFlash('success', 'project.success_delete', 'TempoProject');
 

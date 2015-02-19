@@ -14,7 +14,7 @@ namespace Tempo\Bundle\AppBundle\EventListener;
 use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Tempo\Bundle\AppBundle\Manager\NotificationManager;
-use Tempo\Bundle\AppBundle\TempoProjectEvents;
+use Tempo\Bundle\AppBundle\TempoAppEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class TeamSubscriber implements EventSubscriberInterface
@@ -44,11 +44,11 @@ class TeamSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            TempoProjectEvents::ORGANIZATION_ASSIGN_USER => 'buildNotification',
-            TempoProjectEvents::ORGANIZATION_DELETE_USER => 'buildNotification',
+            TempoAppEvents::ORGANIZATION_ASSIGN_USER => 'buildNotification',
+            TempoAppEvents::ORGANIZATION_DELETE_USER => 'buildNotification',
 
-            TempoProjectEvents::PROJECT_ASSIGN_USER => 'buildNotification',
-            TempoProjectEvents::PROJECT_DELETE_USER => 'buildNotification',
+            TempoAppEvents::PROJECT_ASSIGN_USER => 'buildNotification',
+            TempoAppEvents::PROJECT_DELETE_USER => 'buildNotification',
         );
     }
 

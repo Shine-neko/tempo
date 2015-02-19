@@ -17,7 +17,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Tempo\Bundle\AppBundle\Model\Organization;
 use Tempo\Bundle\AppBundle\Form\Type\OrganizationType;
-use Tempo\Bundle\AppBundle\TempoProjectEvents;
+use Tempo\Bundle\AppBundle\TempoAppEvents;
 use Tempo\Bundle\AppBundle\Event\OrganizationEvent;
 use Tempo\Bundle\AppBundle\Form\Type\TeamType;
 
@@ -89,10 +89,10 @@ class OrganizationController extends Controller
 
         if ($editForm->handleRequest($request)->isValid()) {
             $event = new OrganizationEvent($request, $organization);
-            $this->get('event_dispatcher')->dispatch(TempoProjectEvents::ORGANIZATION_EDIT_INITIALIZE, $event);
+            $this->get('event_dispatcher')->dispatch(TempoAppEvents::ORGANIZATION_EDIT_INITIALIZE, $event);
 
             $this->getManager('organization')->save($organization);
-            $this->get('event_dispatcher')->dispatch(TempoProjectEvents::ORGANIZATION_EDIT_SUCCESS, $event);
+            $this->get('event_dispatcher')->dispatch(TempoAppEvents::ORGANIZATION_EDIT_SUCCESS, $event);
 
             $this->addFlash('success', 'organization.success_update', 'TempoProject');
 
@@ -128,10 +128,10 @@ class OrganizationController extends Controller
 
         if ($form->handleRequest($request)->isValid()) {
             $event = new OrganizationEvent($request, $organization);
-            $this->get('event_dispatcher')->dispatch(TempoProjectEvents::ORGANIZATION_CREATE_INITIALIZE, $event);
+            $this->get('event_dispatcher')->dispatch(TempoAppEvents::ORGANIZATION_CREATE_INITIALIZE, $event);
 
             $this->getManager('organization')->save($organization);
-            $this->get('event_dispatcher')->dispatch(TempoProjectEvents::ORGANIZATION_CREATE_SUCCESS, $event);
+            $this->get('event_dispatcher')->dispatch(TempoAppEvents::ORGANIZATION_CREATE_SUCCESS, $event);
 
             $this->getAclManager()->addObjectPermission($organization, MaskBuilder::MASK_OWNER); //set Permission
             $this->addFlash('success', 'organization.success_create','TempoProject');
@@ -162,7 +162,7 @@ class OrganizationController extends Controller
                 $this->getManager('organization')->remove($organization);
                 $event = new OrganizationEvent($request, $organization);
 
-                $this->get('event_dispatcher')->dispatch(TempoProjectEvents::ORGANIZATION_DELETE_COMPLETED, $event);
+                $this->get('event_dispatcher')->dispatch(TempoAppEvents::ORGANIZATION_DELETE_COMPLETED, $event);
                 $this->setFlash('success', 'organization.success_delete', 'TempoProject');
 
             } catch (\InvalidArgumentException $e) {

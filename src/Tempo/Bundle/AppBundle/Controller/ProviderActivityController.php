@@ -14,9 +14,8 @@ namespace Tempo\Bundle\AppBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Tempo\Bundle\AppBundle\Form\Type\ActivityFormType;
-use Tempo\Bundle\AppBundle\Controller\Controller;
 use Tempo\Bundle\AppBundle\Model\Project;
-use Tempo\Bundle\AppBundle\TempoProjectEvents;
+use Tempo\Bundle\AppBundle\TempoAppEvents;
 use Tempo\Bundle\AppBundle\Event\ActivityProviderEvent;
 
 class ProviderActivityController extends Controller
@@ -34,13 +33,13 @@ class ProviderActivityController extends Controller
         $provider = $this->getProvider(strtoupper($projectProvider->getName()));
 
         $event = new ActivityProviderEvent($request, $projectProvider);
-        $this->get('event_dispatcher')->dispatch(TempoProjectEvents::ACTIVITY_PROVIDER_CREATE_INITIALIZE, $event);
+        $this->get('event_dispatcher')->dispatch(TempoAppEvents::ACTIVITY_PROVIDER_CREATE_INITIALIZE, $event);
 
         $activity = $provider->parse($request);
 
         $manager->addActivity($activity, $projectProvider);
 
-        $this->get('event_dispatcher')->dispatch(TempoProjectEvents::ACTIVITY_PROVIDER_CREATE_SUCCESS, $event);
+        $this->get('event_dispatcher')->dispatch(TempoAppEvents::ACTIVITY_PROVIDER_CREATE_SUCCESS, $event);
 
         return new Response('ok');
     }

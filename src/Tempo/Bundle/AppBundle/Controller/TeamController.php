@@ -13,11 +13,9 @@ namespace Tempo\Bundle\AppBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
-
-use Tempo\Bundle\AppBundle\Controller\Controller;
 use Tempo\Bundle\AppBundle\Form\Type\TeamType;
 use Tempo\Bundle\AppBundle\Event\TeamEvent;
-use Tempo\Bundle\AppBundle\TempoProjectEvents;
+use Tempo\Bundle\AppBundle\TempoAppEvents;
 
 /*
  * @author Mlanawo Mbechezi <mlanawo.mbechezi@ikimea.com>
@@ -87,14 +85,14 @@ class TeamController extends Controller
             case 'project_team_delete':
                 $objectManager['manager'] = $this->getManager('project');
                 $objectManager['route'] = 'project_show';
-                $objectManager['event'] = TempoProjectEvents::PROJECT_ASSIGN_USER;
+                $objectManager['event'] = TempoAppEvents::PROJECT_ASSIGN_USER;
 
                 break;
             case 'organization_team_add':
             case 'organization_team_delete':
                 $objectManager['manager'] = $this->getManager('organization');
                 $objectManager['route']  = 'organization_show';
-                $objectManager['event'] = TempoProjectEvents::ORGANIZATION_ASSIGN_USER;
+                $objectManager['event'] = TempoAppEvents::ORGANIZATION_ASSIGN_USER;
 
                 break;
         }
