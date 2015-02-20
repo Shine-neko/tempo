@@ -12,7 +12,7 @@
 namespace Tempo\Bundle\AppBundle\Helper;
 
 use Symfony\Component\Templating\Helper\Helper;
-use Tempo\Component\Resource\ResourceManagerInterface;
+use Tempo\Component\Resource\AssetManagerInterface;
 
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
@@ -26,17 +26,17 @@ class Behavior extends Helper
     protected $behavior = array();
 
     /**
-     * @param ResourceManagerInterface $resourceManager
+     * @param AssetManagerInterface $resourceManager
      * @param $router
      */
-    public function __construct(ResourceManagerInterface $resourceManager, $router)
+    public function __construct(AssetManagerInterface $resourceManager, $router)
     {
         $this->resourceManager = $resourceManager;
         $this->router = $router;
     }
 
     /**
-     * @return \Tempo\Component\Resource\ResourceManager
+     * @return \Tempo\Component\Resource\AssetManager
      */
     public function getResourceManager()
     {

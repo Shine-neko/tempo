@@ -14,21 +14,21 @@ namespace Tempo\Bundle\AppBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
-use Tempo\Component\Resource\ResourceManagerInterface;
+use Tempo\Component\Resource\AssetManagerInterface;
 
 class SummernoteType extends AbstractType
 {
     /**
      * The security context
-     * @var ResourceManagerInterface
+     * @var AssetManagerInterface
      */
     private $resourceManager;
 
     /**
      * Object constructor
-     * @param ResourceManagerInterface $resourceManager
+     * @param AssetManagerInterface $resourceManager
      */
-    public function __construct(ResourceManagerInterface $resourceManager)
+    public function __construct(AssetManagerInterface $resourceManager)
     {
         $this->resourceManager = $resourceManager;
     }

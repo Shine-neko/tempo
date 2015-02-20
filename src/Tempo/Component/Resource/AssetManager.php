@@ -15,7 +15,7 @@ namespace Tempo\Component\Resource;
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
 
-class ResourceManager implements ResourceManagerInterface
+class AssetManager implements AssetManagerInterface
 {
     protected $resources = array(
         'javascripts' => array(),
