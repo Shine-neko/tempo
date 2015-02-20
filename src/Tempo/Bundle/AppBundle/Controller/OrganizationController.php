@@ -40,12 +40,11 @@ class OrganizationController extends Controller
      * @return Response
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    public function showAction(Organization $organization, $_format)
+    public function showAction(Organization $organization)
     {
         $token = $this->get('form.csrf_provider')->generateCsrfToken('delete-organization');
 
-        if (false === $this->get('security.context')->isGranted('VIEW', $organization) &&
-            false === $this->get('security.context')->isGranted('ROLE_ADMIN') ) {
+        if (false === $this->isGranted('VIEW', $organization) && false === $this->isGranted('ROLE_ADMIN') ) {
             throw new AccessDeniedException();
         }
 
@@ -55,23 +54,13 @@ class OrganizationController extends Controller
 
         $teamForm = $this->createForm(new TeamType($organization));
 
-        $data =  array(
+        return $this->render('TempoAppBundle:Organization:show.html.twig', array(
             'organization' => $organization,
             'counter' => $counter,
             'projects' => $organization->getProjects(),
             'teamForm' => $teamForm->createView(),
             'token' => $token
-        );
-
-        if ($_format == 'json') {
-           $data = array('organization' => $organization);
-        }
-
-        $view = $this->view($data, 200)
-            ->setTemplate('TempoAppBundle:Organization:show.html.twig')
-        ;
-
-        return $this->handleView($view);
+        ));
     }
 
     /**
@@ -81,20 +70,17 @@ class OrganizationController extends Controller
      */
     public function updateAction(Request $request, Organization $organization)
     {
-        if (false === $this->get('security.context')->isGranted('EDIT', $organization)) {
+        if (false === $this->isGranted('EDIT', $organization)) {
             throw new AccessDeniedException();
         }
 
         $editForm = $this->createForm(new OrganizationType(), $organization);
 
         if ($editForm->handleRequest($request)->isValid()) {
-            $event = new OrganizationEvent($request, $organization);
-            $this->get('event_dispatcher')->dispatch(TempoAppEvents::ORGANIZATION_EDIT_INITIALIZE, $event);
 
-            $this->getManager('organization')->save($organization);
-            $this->get('event_dispatcher')->dispatch(TempoAppEvents::ORGANIZATION_EDIT_SUCCESS, $event);
+            $this->get('tempo.domain_manager')->update($organization);
 
-            $this->addFlash('success', 'organization.success_update', 'TempoProject');
+            $this->addFlash('success', 'organization.success_update');
 
             return $this->redirectToOrganization($organization);
         }
@@ -117,7 +103,7 @@ class OrganizationController extends Controller
      */
     public function createAction(Request $request)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (false === $this->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
 
@@ -127,14 +113,10 @@ class OrganizationController extends Controller
         $form = $this->createForm(new OrganizationType(), $organization);
 
         if ($form->handleRequest($request)->isValid()) {
-            $event = new OrganizationEvent($request, $organization);
-            $this->get('event_dispatcher')->dispatch(TempoAppEvents::ORGANIZATION_CREATE_INITIALIZE, $event);
 
-            $this->getManager('organization')->save($organization);
-            $this->get('event_dispatcher')->dispatch(TempoAppEvents::ORGANIZATION_CREATE_SUCCESS, $event);
+            $this->get('tempo.domain_manager')->create($organization);
 
-            $this->getAclManager()->addObjectPermission($organization, MaskBuilder::MASK_OWNER); //set Permission
-            $this->addFlash('success', 'organization.success_create','TempoProject');
+            $this->addFlash('success', 'organization.success_create');
 
             return $this->redirectToOrganization($organization);
         }
@@ -151,7 +133,7 @@ class OrganizationController extends Controller
      */
     public function deleteAction(Request $request, Organization $organization)
     {
-        if (false === $this->get('security.context')->isGranted('DELETE', $organization)) {
+        if (false === $this->isGranted('DELETE', $organization)) {
             throw new AccessDeniedException();
         }
 
@@ -159,14 +141,11 @@ class OrganizationController extends Controller
         if ($this->tokenIsValid('delete-organization', $request->get('token'))) {
             try {
 
-                $this->getManager('organization')->remove($organization);
-                $event = new OrganizationEvent($request, $organization);
-
-                $this->get('event_dispatcher')->dispatch(TempoAppEvents::ORGANIZATION_DELETE_COMPLETED, $event);
-                $this->setFlash('success', 'organization.success_delete', 'TempoProject');
+                $this->get('tempo.domain_manager')->delete($organization);
+                $this->addFlash('success', 'organization.success_delete');
 
             } catch (\InvalidArgumentException $e) {
-                $this->setFlash('error', 'organization.failed_delete', 'TempoProject');
+                $this->addFlash('error', 'organization.failed_delete');
 
                 return $this->redirectToOrganization($organization);
             }

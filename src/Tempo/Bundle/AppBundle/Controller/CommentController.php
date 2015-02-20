@@ -41,21 +41,15 @@ class CommentController extends Controller
         $comment = new Comment();
         $comment->setAuthor($this->getUser());
 
-        if ($type == 'project') {
+        if ('project' == $type) {
             $project =  $this->getManager('project')->find($parent);
             $comment->setProject($project);
         }
 
-
-        $event = new CommentEvent($request, $comment);
         $form = $this->createForm(new CommentType(), $comment);
 
         if ($form->handleRequest($request)->isValid()) {
-            $this->get('event_dispatcher')->dispatch(TempoAppEvents::COMMENT_CREATE_INITIALIZE, $event);
-            $this->getManager('comment')->save($comment);
-
-            $this->getManager('activity')->build($project, Activity::ACTIVITY_CREATE_COMMENT, $comment);
-            $this->get('event_dispatcher')->dispatch(TempoAppEvents::COMMENT_CREATE_SUCCESS, $event);
+            $this->get('tempo.domain_manager')->create($comment);
         }
 
         return $this->getUrlRedirect($request);
@@ -63,13 +57,11 @@ class CommentController extends Controller
 
     public function updatedAction(Request $request, Comment $comment)
     {
-        $event = new CommentEvent($request, $comment);
         $form = $this->createForm(new CommentType(), $comment);
 
         if ($form->handleRequest($request)->isValid()) {
-            $this->get('event_dispatcher')->dispatch(TempoAppEvents::COMMENT_EDIT_INITIALIZE, $event);
-            $this->getManager('comment')->save($comment);
-            $this->get('event_dispatcher')->dispatch(TempoAppEvents::COMMENT_EDIT_SUCCESS, $event);
+
+            $this->get('tempo.domain_manager')->update($comment);
 
             return $this->getUrlRedirect($request);
         }
@@ -86,10 +78,7 @@ class CommentController extends Controller
             throw $this->createAccessDeniedException();
         }
 
-        $event = new CommentEvent($request, $comment);
-        $this->getManager('comment')->remove($comment);
-        $this->get('event_dispatcher')->dispatch(TempoAppEvents::COMMENT_DELETE_COMPLETED, $event);
-
+        $this->get('tempo.domain_manager')->delete($comment);
         $this->addFlash('success', 'success deleted');
 
         return $this->getUrlRedirect($request);

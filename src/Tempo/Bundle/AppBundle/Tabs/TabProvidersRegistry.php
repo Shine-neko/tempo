@@ -13,7 +13,15 @@ namespace Tempo\Bundle\AppBundle\Tabs;
 
 class TabProvidersRegistry
 {
-    protected $providers = array();
+    /**
+     * @var array
+     */
+    protected $providers;
+
+    public function __construct()
+    {
+        $this->providers = array();
+    }
 
     /**
      * @param TabProviderInterface $provider

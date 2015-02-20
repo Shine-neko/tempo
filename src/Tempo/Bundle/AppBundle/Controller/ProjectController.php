@@ -13,18 +13,12 @@ namespace Tempo\Bundle\AppBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Response;
-
-use FOS\RestBundle\View\View;
-use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 use Tempo\Bundle\AppBundle\Model\Project;
 use Tempo\Bundle\AppBundle\Model\Organization;
 use Tempo\Bundle\AppBundle\Form\Type\ProjectType;
-use Tempo\Bundle\AppBundle\TempoAppEvents;
-use Tempo\Bundle\AppBundle\Event\ProjectEvent;
 use Tempo\Bundle\AppBundle\Form\Type\TeamType;
 
 /**
@@ -67,7 +61,7 @@ class ProjectController extends Controller
      * Finds and displays a Project entity.
      * @return Response
      */
-    public function showAction(Request $request, Project $project, $_format)
+    public function showAction(Request $request, Project $project)
     {
         $page = $request->query->get('page', 1);
         $token = $this->get('form.csrf_provider')->generateCsrfToken('delete-project');
@@ -79,23 +73,15 @@ class ProjectController extends Controller
         }
 
         $teamForm = $this->createForm(new TeamType($project));
-        $data =  array(
-            'page'         => $page,
-            'project'       => $project
-        );
-        
-        if ($_format == 'html') {
-            $data['teamForm'] = $teamForm->createView();
-            $data['organization'] = $organization;
-            $data['csrfToken'] = $token;
-            $data['tabProvidersRegistry'] = $this->get('tempo.project.tabProvidersRegistry');
-        }
 
-        $view = $this->view($data, 200)
-            ->setTemplate('TempoAppBundle:Project:show.html.twig')
-        ;
-
-        return $this->handleView($view);
+        return $this->render('TempoAppBundle:Project:show.html.twig', array(
+            'teamForm' => $teamForm->createView(),
+            'organization' => $organization,
+            'csrfToken' => $token,
+            'tabProvidersRegistry' => $this->get('tempo.project.tabProvidersRegistry'),
+            'page' => $page,
+            'project' => $project
+        ));
     }
 
     /**
@@ -104,7 +90,7 @@ class ProjectController extends Controller
      */
     public function createAction(Request $request, $organization)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (false === $this->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
         $organization = $this->getOrganizaton($organization);
@@ -116,18 +102,9 @@ class ProjectController extends Controller
         $form  = $this->createForm(new ProjectType(), $project, array('user_id' => $this->getUser()->getId() ));
 
         if ($form->handleRequest($request)->isValid()) {
-            $event = new ProjectEvent($request, $project);
-            $this->get('event_dispatcher')->dispatch(TempoAppEvents::PROJECT_CREATE_INITIALIZE, $event);
 
-            $this->getManager('project')->save($project);
-
-            $project->addUser($this->getUser());
-            $this->getManager('project')->save($project);
-
-
-            $this->getAclManager()->addObjectPermission($project, MaskBuilder::MASK_OWNER); //set Permission
-            $this->get('event_dispatcher')->dispatch(TempoAppEvents::PROJECT_CREATE_SUCCESS, $event);
-            $this->addFlash('success', 'project.success_create', 'TempoProject');
+            $this->get('tempo.domain_manager')->create($project);
+            $this->addFlash('success', 'project.success_create');
 
             return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
         }
@@ -150,13 +127,10 @@ class ProjectController extends Controller
         $editForm   = $this->createForm(new ProjectType(), $project);
 
         if ($editForm->handleRequest($request)->isValid()) {
-            $event = new ProjectEvent($request, $project);
-            $this->get('event_dispatcher')->dispatch(TempoAppEvents::PROJECT_EDIT_INITIALIZE, $event);
 
-            $this->getManager('project')->save($project);
-            $this->get('event_dispatcher')->dispatch(TempoAppEvents::PROJECT_EDIT_SUCCESS, $event);
+            $this->get('tempo.domain_manager')->update($project);
 
-            $this->addFlash('success', 'project.success_updated', 'TempoProject');
+            $this->addFlash('success', 'project.success_updated');
 
             return $this->redirectToRoute('project_upgrade', array('slug' => $project->getSlug()));
         }
@@ -180,11 +154,9 @@ class ProjectController extends Controller
 
             $project = $this->getProject($project, 'DELETE');
 
-            $this->getManager('project')->remove($project);
-            $event = new ProjectEvent($request, $project);
-            $this->get('event_dispatcher')->dispatch(TempoAppEvents::PROJECT_DELETE_COMPLETED, $event);
+            $this->get('tempo.domain_manager')->delete($project);
 
-            $this->addFlash('success', 'project.success_delete', 'TempoProject');
+            $this->addFlash('success', 'project.success_delete');
 
             return $this->redirectToRoute('project_home');
         }
@@ -212,10 +184,7 @@ class ProjectController extends Controller
                 $this->createNotFoundException();
             }
         }
-        if (
-            false === $this->get('security.context')->isGranted($right, $project) &&
-            !$this->get('security.context')->isGranted('ROLE_ADMIN', $project)
-        ) {
+        if (false === $this->isGranted($right, $project) && !$this->isGranted('ROLE_ADMIN', $project)) {
             throw new AccessDeniedException();
         }
 

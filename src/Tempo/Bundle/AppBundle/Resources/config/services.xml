@@ -33,7 +33,6 @@
         <parameter key="tempo.project.tabProvidersRegistry.class">Tempo\Bundle\AppBundle\Tabs\TabProvidersRegistry</parameter>
         <parameter key="tempo.project.tab.project.class">Tempo\Bundle\AppBundle\Tabs\ProjectTab</parameter>
         <parameter key="tempo.project.tab.subproject.class">Tempo\Bundle\AppBundle\Tabs\SubProjectTab</parameter>
-        <parameter key="tempo.project.tab.activity.class">Tempo\Bundle\AppBundle\Tabs\ActivityTab</parameter>
         <parameter key="tempo.project.tab.settings.class">Tempo\Bundle\AppBundle\Tabs\SettingsTab</parameter>
         <parameter key="tempo.manager.activity_provider.class">Tempo\Bundle\AppBundle\Manager\ActivityProviderManager</parameter>
         <parameter key="tempo.model.activity_provider.class">Tempo\Bundle\AppBundle\Model\ActivityProvider</parameter>
@@ -166,10 +165,6 @@
         </service>
 
         <service id="tempo.project.tab.subproject" class="%tempo.project.tab.subproject.class%">
-            <tag name="tempo.project.show.tab" />
-        </service>
-
-        <service id="tempo.project.tab.activity" class="%tempo.project.tab.activity.class%">
             <tag name="tempo.project.show.tab" />
         </service>
 

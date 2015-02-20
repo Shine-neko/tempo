@@ -99,7 +99,7 @@
         <h4 class="pull-left">{{ 'tempo.project.activity'|trans }} </h4>
 
         <div class="app-panel clearbox">
-            {% include (tabProvidersRegistry.providers[2]).content %}
+            {{ render(controller('TempoAppBundle:Activity:list', {'type': 'project', 'parent': project})) }}
         </div>
     </div>
 </div>

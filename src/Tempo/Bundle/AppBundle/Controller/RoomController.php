@@ -43,7 +43,8 @@ class RoomController extends Controller
         $form = $this->createForm(new RoomType(), $room);
 
         if ($form->handleRequest($request)->isValid()) {
-            $this->getManager('project')->save($room);
+            $this->get('tempo.domain_manager')->update($room);
+
             return $this->redirectToRoute('homepage');
         }
 
