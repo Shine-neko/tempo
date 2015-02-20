@@ -1,5 +1,5 @@
 {
-    "name": "tempo-project/resource",
+    "name": "tempo/resource",
     "type": "library",
     "description": "Tempo Resource Component",
     "keywords": [],
@@ -16,12 +16,12 @@
         }
     ],
     "require": {
-        "php": ">=5.3.3"
+        "php": ">=5.3.9",
+        "symfony/asset": "2.7.*@dev"
     },
     "autoload": {
         "psr-4": { "Tempo\\Component\\Resource\\": "" }
     },
-    "target-dir": "Tempo/Component/Resource",
     "minimum-stability": "dev",
     "extra": {
         "branch-alias": {
