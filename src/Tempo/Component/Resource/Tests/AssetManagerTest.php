@@ -10,15 +10,19 @@
 */
 
 namespace Tempo\Component\Resource\Tests;
-use Tempo\Component\Resource\ResourceManager;
+
+use Tempo\Component\Resource\AssetManager;
 
 class ResourceManagerTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var AssetManager
+     */
     protected $manager;
 
     protected function setUp()
     {
-        $this->manager = new ResourceManager();
+        $this->manager = new AssetManager();
     }
 
     public function testGetStylesheets()

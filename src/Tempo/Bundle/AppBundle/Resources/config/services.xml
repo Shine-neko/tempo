@@ -15,7 +15,7 @@
         <parameter key="tempo.form.extension.security.class">Tempo\Bundle\AppBundle\Form\Extension\SecurityTypeExtension</parameter>
 	    <parameter key="tempo.menu_builder.class">Tempo\Bundle\AppBundle\Menu\MenuBuilder</parameter>
         <parameter key="tempo.behavior_manager.class">Tempo\Bundle\AppBundle\Helper\Behavior</parameter>
-        <parameter key="tempo.resource_manager.class">Tempo\Component\Resource\ResourceManager</parameter>
+        <parameter key="tempo.asset_manager.class">Tempo\Component\Resource\AssetManager</parameter>
         <parameter key="tempo.domain_manager.class">Tempo\Bundle\AppBundle\Manager\DomainManager</parameter>
         <parameter key="tempo.menu.class">Knp\Menu\MenuItem</parameter>
         <parameter key="tempo.model.room.class">Tempo\Bundle\AppBundle\Model\Room</parameter>
@@ -86,7 +86,7 @@
         </service>
 
         <service id="tempo.form.type.wysiwyg" class="%tempo.form.type.wysiwyg.class%">
-            <argument type="service" id="tempo.resource_manager" />
+            <argument type="service" id="tempo.asset_manager" />
             <tag name="form.type" alias="wysiwyg" />
         </service>
         
@@ -99,10 +99,10 @@
             <tag name="data_collector" template="TempoAppBundle:Collector:tempo" id="tempo" priority="256" />
         </service>
 
-        <service id="tempo.resource_manager" class="%tempo.resource_manager.class%" />
+        <service id="tempo.asset_manager" class="%tempo.asset_manager.class%" />
 
         <service id="tempo.behavior" class="%tempo.behavior_manager.class%">
-            <argument type="service" id="tempo.resource_manager" />
+            <argument type="service" id="tempo.asset_manager" />
             <argument type="service" id="router" />
         </service>
 

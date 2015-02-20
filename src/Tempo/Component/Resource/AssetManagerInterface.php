@@ -15,7 +15,7 @@ namespace Tempo\Component\Resource;
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
 
-interface ResourceManagerInterface
+interface AssetManagerInterface
 {
     /**
      * @param $resource
