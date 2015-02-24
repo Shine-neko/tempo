@@ -154,7 +154,7 @@ interface OrganizationInterface
      * @abstract
      * @return ArrayCollection
      */
-    public function getTeam();
+    public function getMembers();
 
     /**
      * @abstract

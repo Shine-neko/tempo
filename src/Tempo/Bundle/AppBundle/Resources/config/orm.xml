@@ -17,7 +17,7 @@
         <parameter key="tempo.model.project.class">Tempo\Bundle\AppBundle\Model\Project</parameter>
         <parameter key="tempo.model.project_provider.class">Tempo\Bundle\AppBundle\Model\ProjectProvider</parameter>
         <parameter key="tempo.model.timesheet.class">Tempo\Bundle\AppBundle\Model\Timesheet</parameter>
-        <parameter key="tempo.model.team.class">Tempo\Bundle\AppBundle\Model\Team</parameter>
+        <parameter key="tempo.model.team.class">Tempo\Bundle\AppBundle\Model\Access</parameter>
         <parameter key="tempo.model.comment.class">Tempo\Bundle\AppBundle\Model\Comment</parameter>
 
         <parameter key="tempo.manager.organization.default.class">Tempo\Bundle\AppBundle\Manager\OrganizationManager</parameter>

@@ -6,14 +6,20 @@
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
 
-    <entity name="Tempo\Bundle\AppBundle\Model\ProjectUser" table="tempo_project_user">
+    <entity name="Tempo\Bundle\AppBundle\Model\Access" table="tempo_access">
 
-        <id name="project" type="integer" association-key="true" />
-        <id name="user" type="integer" association-key="true" />
-        <field name="role" type="integer" />
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO" />
+        </id>
 
-        <many-to-one field="project" target-entity="Tempo\Bundle\AppBundle\Model\Project" />
+        <field name="label" type="integer" />
+
+        <field name="source" type="string" />
+        
+        <many-to-one field="organization" target-entity="Tempo\Bundle\AppBundle\Model\Organization" inversed-by="members" />
+        <many-to-one field="project" target-entity="Tempo\Bundle\AppBundle\Model\Project" inversed-by="members" />
         <many-to-one field="user" target-entity="Tempo\Bundle\AppBundle\Model\User" />
+        <many-to-one field="room" target-entity="Tempo\Bundle\AppBundle\Model\Room" inversed-by="members" />
 
         <field name="createdAt" column="created_at" type="date" nullable="false">
             <gedmo:timestampable on="create"/>

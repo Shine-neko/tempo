@@ -13,6 +13,7 @@ namespace Tempo\Bundle\AppBundle\EventListener;
 
 use Tempo\Bundle\AppBundle\Event\ProjectEvent;
 use Tempo\Bundle\AppBundle\Manager\RoomManager;
+use Tempo\Bundle\AppBundle\Model\AccessInterface;
 
 class ProjectListener
 {
@@ -35,10 +36,10 @@ class ProjectListener
 
         //create room
         $room = $this->roomManager->create($project->getName(), $project);
-        foreach($project->getTeam() as $user) {
-            $room->addUser($user->getUser(), $user->getRole());
+        foreach($project->getMembers() as $user) {
+            $room->addAccess($user->getUser(), AccessInterface::TYPE_OWNER);
         }
 
-        $this->roomManager->save($room);
+        //$this->roomManager->save($room);
     }
 }

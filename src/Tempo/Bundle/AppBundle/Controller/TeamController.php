@@ -65,7 +65,7 @@ class TeamController extends Controller
 
         $event = new TeamEvent($request, $objectManager['model'], $user, $this->getUser());
 
-        $objectManager['model']->getTeam()->removeElement($user);
+        $objectManager['model']->getMembers()->removeElement($user);
         $objectManager['manager']->save($objectManager['model']);
         $this->getAclManager()->revokeAllClassPermissions($objectManager['model']); //remove Permission
 

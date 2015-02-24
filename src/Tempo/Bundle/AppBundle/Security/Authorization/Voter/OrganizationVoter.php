@@ -13,14 +13,14 @@ namespace Tempo\Bundle\AppBundle\Security\Authorization\Voter;
 
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
-class ProjectVoter extends ResourceVoter
+class OrganizationVoter extends ResourceVoter
 {
     /**
      * {@inheritdoc}
      */
     public function supportsClass($class)
     {
-        $supportedClass = 'Tempo\Bundle\AppBundle\Model\ProjectInterface';
+        $supportedClass = 'Tempo\Bundle\AppBundle\Model\OrganizationInterface';
 
         return $supportedClass === $class || is_subclass_of($class, $supportedClass);
     }
@@ -28,8 +28,8 @@ class ProjectVoter extends ResourceVoter
     /**
      * {@inheritdoc}
      */
-    public function vote(TokenInterface $token, $project, array $attributes)
+    public function vote(TokenInterface $token, $resource, array $attributes)
     {
-        return parent::vote($token, $project, $attributes);
+        return parent::vote($token, $resource, $attributes);
     }
 }

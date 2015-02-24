@@ -17,7 +17,7 @@ use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Request;
 use Tempo\Bundle\AppBundle\Model\User;
 
-class TeamEvent extends Event
+class AccessEvent extends Event
 {
     /**
      * @var \Symfony\Component\HttpFoundation\Request
@@ -68,6 +68,7 @@ class TeamEvent extends Event
 
     /**
      * @param $type
+     * @return self
      */
     public function setType($type)
     {

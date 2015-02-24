@@ -34,7 +34,7 @@ class RoomRepository extends EntityRepository
     {
         $query = $this->createQueryBuilder('room')
             ->select('room, project')
-            ->leftJoin('room.team', 'team')
+            ->leftJoin('room.members', 'team')
             ->leftJoin('room.project', 'project')
             ->leftJoin('team.user', 'user')
             ->where('user.id  = :key');
@@ -55,7 +55,7 @@ class RoomRepository extends EntityRepository
     public function findRooms($user)
     {
         $query = $this->createQueryBuilder('room')
-            ->leftJoin('room.team', 'team')
+            ->leftJoin('room.members', 'team')
             ->leftJoin('room.project', 'project')
             ->andwhere('team.user  = ?1')
             ->setParameter(1, $user);

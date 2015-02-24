@@ -18,7 +18,7 @@ class OrganizationRepository extends EntityRepository
     public function findOrganizationByUser($user)
     {
         $query = $this->createQueryBuilder('p')
-                ->leftJoin('p.team', 'pu');
+                ->leftJoin('p.members', 'pu');
 
         if (null !== $user) {
             $query->where('pu.id  = ?1')

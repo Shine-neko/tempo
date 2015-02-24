@@ -32,7 +32,13 @@
         <gedmo:soft-deleteable field-name="deletedAt" />
 
         <one-to-many field="projects" target-entity="Project" mapped-by="organization" />
-        <many-to-many field="team" inversed-by="organization" target-entity="Tempo\Bundle\AppBundle\Model\User" />
+
+        <one-to-many field="members" target-entity="Tempo\Bundle\AppBundle\Model\Access" mapped-by="organization">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
+
 
     </entity>
 

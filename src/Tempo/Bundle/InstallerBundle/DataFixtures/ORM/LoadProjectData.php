@@ -72,8 +72,8 @@ class LoadProjectData extends AbstractFixture implements ContainerAwareInterface
             $manager->persist($project);
             $manager->flush();
 
-            $project->addUser($userEntity, 1);
-            $project->addUser($this->getReference('olivia.pace'), 3);
+            $project->addAccess($userEntity, 1);
+            $project->addAccess($this->getReference('olivia.pace'), 3);
 
             $manager->persist($project);
             $manager->flush();

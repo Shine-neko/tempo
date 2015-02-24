@@ -12,7 +12,7 @@
 namespace Tempo\Bundle\AppBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Tempo\Bundle\AppBundle\Model\ProjectUser as EntityProjectUser;
+use Tempo\Bundle\AppBundle\Behavior\AccessTrait;
 
 /**
  * Project Model
@@ -20,6 +20,8 @@ use Tempo\Bundle\AppBundle\Model\ProjectUser as EntityProjectUser;
  */
 class Project implements ProjectInterface
 {
+    use AccessTrait;
+
     const STATUS_CREATED = 10;
     const STATUS_OPENING = 20;
     const STATUS_FINISHED = 50;
@@ -59,11 +61,6 @@ class Project implements ProjectInterface
      * @var integer
      */
     protected $parent;
-
-    /**
-     * @var string
-     */
-    protected $team;
 
     /**
      * @var Collection
@@ -144,6 +141,7 @@ class Project implements ProjectInterface
      * @var Collection
      */
     protected $comments;
+    protected $members;
 
     public function __construct()
     {
@@ -448,23 +446,6 @@ class Project implements ProjectInterface
         return $this->timesheets;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function addUser($user, $role = TeamInterface::TYPE_USER)
-    {
-        $this->team[] = new EntityProjectUser($this, $user, $role);
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getTeam()
-    {
-        return $this->team;
-    }
 
     /**
      * {@inheritdoc}

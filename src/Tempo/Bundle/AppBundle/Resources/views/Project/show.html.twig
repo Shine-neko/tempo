@@ -90,7 +90,7 @@
             <div class="list_membre">
                 {% include 'TempoAppBundle:Team:list.html.twig' with {
                     'route_deleted' :'project_team_delete',
-                    'users': project.team,
+                    'users': project.members,
                     'category': project
                 } %}
             </div>

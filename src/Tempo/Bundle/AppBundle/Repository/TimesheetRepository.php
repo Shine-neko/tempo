@@ -13,6 +13,7 @@ namespace Tempo\Bundle\AppBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
+use Tempo\Bundle\AppBundle\Model\AccessInterface;
 
 /**
  * TimesheetRepository
@@ -31,7 +32,7 @@ class TimesheetRepository extends EntityRepository
         $query = $this
             ->createQueryBuilder('timesheet')
                 ->leftJoin('timesheet.project', 'project')
-                ->leftJoin('project.team', 'team')
+                ->leftJoin('project.members', 'team')
                 ->leftJoin('team.user', 'user')
                 ->where('timesheet.workedDate BETWEEN :begin AND :end')
                 ->andWhere('user = :user')
@@ -55,14 +56,14 @@ class TimesheetRepository extends EntityRepository
         $query = $this
             ->createQueryBuilder('timesheet')
                 ->leftJoin('timesheet.project', 'project')
-                ->leftJoin('project.team', 'team')
+                ->leftJoin('project.members', 'team')
                 ->leftJoin('team.user', 'user');
 
         if (!is_object($user)) {
             $query
                 ->andWhere('timesheet.user = :user')
                 ->setParameter('user', $user)
-                ->andWhere('team.role < 3');
+                ->andWhere('team.role', AccessInterface::TYPE_OWNER);
         }
 
         return $query->getQuery()->getResult();

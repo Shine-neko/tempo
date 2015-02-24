@@ -26,14 +26,13 @@
             </cascade>
         </one-to-many>
 
-        <one-to-many field="team" target-entity="Tempo\Bundle\AppBundle\Model\RoomUser" mapped-by="room">
+        <one-to-many field="members" target-entity="Tempo\Bundle\AppBundle\Model\Access" mapped-by="room">
             <cascade>
                 <cascade-all/>
             </cascade>
         </one-to-many>
 
         <many-to-one field="project" target-entity="Tempo\Bundle\AppBundle\Model\Project" nullable="true" lazy="false" />
-
 
     </entity>
 
