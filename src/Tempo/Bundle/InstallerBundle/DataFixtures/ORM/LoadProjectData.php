@@ -78,8 +78,6 @@ class LoadProjectData extends AbstractFixture implements ContainerAwareInterface
             $manager->persist($project);
             $manager->flush();
 
-            $this->getAclManager()->addObjectPermission($project, MaskBuilder::MASK_OWNER, $userEntity); //set Permission
-            $this->getAclManager()->addObjectPermission($project, MaskBuilder::MASK_OWNER, $this->getReference('olivia.pace')); //set Permission
             $this->addReference('project'.$i, $project);
             $i++;
         }
@@ -91,10 +89,5 @@ class LoadProjectData extends AbstractFixture implements ContainerAwareInterface
     public function getOrder()
     {
         return 40;
-    }
-
-    protected function getAclManager()
-    {
-        return $this->container->get('problematic.acl_manager');
     }
 }
