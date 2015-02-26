@@ -56,7 +56,7 @@ class TempoAppExtension extends AbstractResourceExtension
         );
 
         $container->setParameter('sylius.locale', '%locale%');
-        $container->setParameter('sylius.translation.mapping', array());
+        $container->setParameter('sylius.translation.mapping', '%sylius.translation.default.mapping%');
         $container->setParameter('tempo_app.week', $config[0]['week']);
     }
 }

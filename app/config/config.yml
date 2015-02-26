@@ -84,6 +84,12 @@ stof_doctrine_extensions:
             timestampable: true
             sluggable: true
 
-
-#tempo_app:
-#  db_driver: orm
+sylius_translation:
+    default_mapping:
+        translatable:
+            field: translations
+            currentLocale: currentLocale
+            fallbackLocale: fallbackLocale
+        translation:
+            field: translatable
+            locale: locale
