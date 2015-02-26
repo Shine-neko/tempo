@@ -25,20 +25,20 @@ project_delete:
 
 project_team_add:
     path:  /{slug}/team/add
-    defaults: { _controller: TempoAppBundle:Team:add }
+    defaults: { _controller: TempoAppBundle:Access:add }
     requirements:
         slug: ".+"
 
 project_team_create:
     path:  /{slug}/team/create
-    defaults: { _controller: TempoAppBundle:Team:create }
+    defaults: { _controller: TempoAppBundle:Access:create }
     requirements:
         _method:  GET
         slug: ".+"
 
 project_team_delete:
     path:  /{slug}/team/delete
-    defaults: { _controller: TempoAppBundle:Team:delete }
+    defaults: { _controller: TempoAppBundle:Access:delete }
     requirements:
         slug: ".+"
 

@@ -12,15 +12,14 @@
 namespace Tempo\Bundle\AppBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Acl\Permission\MaskBuilder;
-use Tempo\Bundle\AppBundle\Form\Type\TeamType;
-use Tempo\Bundle\AppBundle\Event\TeamEvent;
+use Tempo\Bundle\AppBundle\Form\Type\AccessType;
+use Tempo\Bundle\AppBundle\Event\AccessEvent;
 use Tempo\Bundle\AppBundle\TempoAppEvents;
 
 /*
  * @author Mlanawo Mbechezi <mlanawo.mbechezi@ikimea.com>
  */
-class TeamController extends Controller
+class AccessController extends Controller
 {
     /**
      * @param $slug
@@ -29,24 +28,23 @@ class TeamController extends Controller
     public function addAction(Request $request, $slug)
     {
         $objectManager = $this->getObjectManager($request->get('_route'), $slug);
-        $routeRedirect = $this->generateUrl($objectManager['route'], array('slug' => $objectManager['model']->getSlug()));
+        $resource  = $objectManager['model'];
+        $routeRedirect = $this->generateUrl($objectManager['route'], array('slug' => $resource->getSlug()));
 
-        $form = $this->createForm(new TeamType($objectManager['model']));
+        $form = $this->createForm(new AccessType($resource));
 
         if ($form->handleRequest($request)->isValid()) {
 
             $formData = $form->getData();
             $user = $this->findUser(array('username' => $formData['username']));
 
-            $event = new TeamEvent($request, $objectManager['model'], $user, $this->getUser());
+            $event = new AccessEvent($request, $resource, $user, $this->getUser());
 
-            $objectManager['model']->addUser($user);
-            $objectManager['manager']->save($objectManager['model']);
-            $this->getAclManager()->addObjectPermission($objectManager['model'], MaskBuilder::MASK_VIEW); //set Permission
-
+            $resource->addAccess($user);
+            $this->get('tempo.domain_manager')->create($resource);
             $this->get('event_dispatcher')->dispatch($objectManager['event'], $event);
 
-            $this->addFlash('success', 'tempo.team.success_add', 'TempoProject');
+            $this->addFlash('success', 'tempo.team.success_add');
 
             return $this->redirect($routeRedirect);
         }
@@ -61,39 +59,36 @@ class TeamController extends Controller
     public function deleteAction(Request $request, $slug, $user)
     {
         $objectManager = $this->getObjectManager($request->get('_route'), $slug);
+        $resource =  $objectManager['model'];
         $user = $this->findUser(array('id' => $user));
 
-        $event = new TeamEvent($request, $objectManager['model'], $user, $this->getUser());
+        $event = new AccessEvent($request, $resource, $user, $this->getUser());
+        $resource->getMembers()->removeElement($user);
 
-        $objectManager['model']->getMembers()->removeElement($user);
-        $objectManager['manager']->save($objectManager['model']);
-        $this->getAclManager()->revokeAllClassPermissions($objectManager['model']); //remove Permission
-
+        $this->get('tempo.domain_manager')->create($resource);
         $this->get('event_dispatcher')->dispatch($objectManager['event'], $event);
 
-        $referer = $request->headers->get('referer');
-
-        return $this->redirect($referer);
+        return $this->redirect($request->headers->get('referer'));
     }
 
-    protected function getObjectManager($route, $slug)
+    private function getObjectManager($route, $slug)
     {
-        $objectManager = array();
-
         switch ($route) {
             case 'project_team_add':
             case 'project_team_delete':
-                $objectManager['manager'] = $this->getManager('project');
-                $objectManager['route'] = 'project_show';
-                $objectManager['event'] = TempoAppEvents::PROJECT_ASSIGN_USER;
-
+                $objectManager = array(
+                    'manager' => $this->getManager('project'),
+                    'route' => 'project_show',
+                    'event' => TempoAppEvents::PROJECT_ASSIGN_USER
+                );
                 break;
             case 'organization_team_add':
             case 'organization_team_delete':
-                $objectManager['manager'] = $this->getManager('organization');
-                $objectManager['route']  = 'organization_show';
-                $objectManager['event'] = TempoAppEvents::ORGANIZATION_ASSIGN_USER;
-
+                $objectManager = array(
+                    'manager' => $this->getManager('organization'),
+                    'route' => 'organization_show',
+                    'event' => TempoAppEvents::ORGANIZATION_ASSIGN_USER
+                );
                 break;
         }
 
@@ -103,14 +98,12 @@ class TeamController extends Controller
     }
 
     /**
-     * @param $paramters
+     * @param $parameters
      * @return \Tempo\Bundle\AppBundle\Model\User
      */
     public function findUser($parameters)
     {
-        $user = $this->getDoctrine()->getRepository('TempoAppBundle:User')->findOneBy($parameters);
-
-        if (!$user) {
+        if(!$user = $this->get('tempo.repository.user')->findOneBy($parameters)) {
            $this->createNotFoundException('User not found');
         }
 

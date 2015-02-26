@@ -14,12 +14,9 @@ namespace Tempo\Bundle\AppBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Tempo\Bundle\AppBundle\Model\Organization;
 use Tempo\Bundle\AppBundle\Form\Type\OrganizationType;
-use Tempo\Bundle\AppBundle\TempoAppEvents;
-use Tempo\Bundle\AppBundle\Event\OrganizationEvent;
-use Tempo\Bundle\AppBundle\Form\Type\TeamType;
+use Tempo\Bundle\AppBundle\Form\Type\AccessType;
 
 /**
  * @author Mlanawo Mbechezi <mlanawo.mbechezi@ikimea.com>
@@ -44,7 +41,7 @@ class OrganizationController extends Controller
     {
         $token = $this->get('form.csrf_provider')->generateCsrfToken('delete-organization');
 
-        if (false === $this->isGranted('VIEW', $organization) && false === $this->isGranted('ROLE_ADMIN') ) {
+        if (false === $this->isGranted('VIEW', $organization)) {
             throw new AccessDeniedException();
         }
 
@@ -52,7 +49,7 @@ class OrganizationController extends Controller
 
         $this->getBreadcrumb()->addChild($organization->getName());
 
-        $teamForm = $this->createForm(new TeamType($organization));
+        $teamForm = $this->createForm(new AccessType($organization));
 
         return $this->render('TempoAppBundle:Organization:show.html.twig', array(
             'organization' => $organization,
