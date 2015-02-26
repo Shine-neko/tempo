@@ -46,15 +46,6 @@ class ResourceVoter implements VoterInterface
             return VoterInterface::ACCESS_ABSTAIN;
         }
 
-        // check if the voter is used correct, only allow one attribute
-        // this isn't a requirement, it's just one easy way for you to
-        // design your voter
-        if (1 !== count($attributes)) {
-            throw new \InvalidArgumentException(
-                'Only one attribute is allowed for VIEW or EDIT'
-            );
-        }
-
         // get current logged in user
         $user = $token->getUser();
 
