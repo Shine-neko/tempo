@@ -25,3 +25,7 @@ Tempo.Behavior.create('autocomplete', function(config, statics) {
 
     $( "#" +  config.id).autocomplete( config.options);
 });
+
+Tempo.Behavior.create('summernote', function(config, statics) {
+    $(".summernote").summernote();
+});

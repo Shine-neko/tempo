@@ -47,7 +47,7 @@ class Behavior extends Helper
      * @param string $behavior
      * @param array $options
      */
-    public function init($behavior, array $options)
+    public function init($behavior, array $options = array())
     {
         $this->behavior[$behavior][] = $options;
     }

@@ -87,6 +87,7 @@
 
         <service id="tempo.form.type.wysiwyg" class="%tempo.form.type.wysiwyg.class%">
             <argument type="service" id="tempo.asset_manager" />
+            <argument type="service" id="tempo.behavior" />
             <tag name="form.type" alias="wysiwyg" />
         </service>
         

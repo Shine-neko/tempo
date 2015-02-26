@@ -15,22 +15,28 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 use Tempo\Component\Resource\AssetManagerInterface;
+use Tempo\Bundle\AppBundle\Helper\Behavior;
 
 class SummernoteType extends AbstractType
 {
     /**
-     * The security context
      * @var AssetManagerInterface
      */
     private $resourceManager;
 
     /**
+     * @var Behavior
+     */
+    private $behaviorManager;
+
+    /**
      * Object constructor
      * @param AssetManagerInterface $resourceManager
      */
-    public function __construct(AssetManagerInterface $resourceManager)
+    public function __construct(AssetManagerInterface $resourceManager, Behavior $behaviorManager)
     {
         $this->resourceManager = $resourceManager;
+        $this->behaviorManager = $behaviorManager;
     }
 
     /**
@@ -39,13 +45,14 @@ class SummernoteType extends AbstractType
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['attr'] = array('class' => 'summernote');
-
         $this->resourceManager->requireResources(array(
             '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css',
             '/vendor/summernote/dist/summernote.css',
             '/vendor/summernote/dist/summernote-bs3.css',
             '/vendor/summernote/dist/summernote.min.js'
         ));
+        $this->behaviorManager->init('summernote');
+
     }
 
     /**
