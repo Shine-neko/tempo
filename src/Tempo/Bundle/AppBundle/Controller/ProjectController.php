@@ -140,6 +140,13 @@ class ProjectController extends Controller
         ));
     }
 
+    public function settingsAction(Request $request, Project $project)
+    {
+        return $this->render('TempoAppBundle:Project:settings.html.twig', array(
+            'project'     =>  $project,
+        ));
+    }
+
     /**
      * Deletes a Project entity.
      * @param $slug

@@ -1,10 +1,15 @@
+{% extends "TempoAppBundle::layout.html.twig" %}
+{% block bodyClass %}project settings{% endblock %}
+
+{% block container %}
+
 <div class="col-md-2">
     <ul class="nav nav-pills  nav-stacked">
         <li><a href="#webhooks" data-toggle="tab">Web Hooks</a></li>
         <li class=" active"><a href="#providers" data-toggle="tab">Service Hooks</a></li>
     </ul>
 </div>
-<div class="col-md-10">
+<div class="col-md-8">
     <div class="tab-content">
         <div class="tab-pane fade" id="options">
 
@@ -13,4 +18,7 @@
             {{ render(controller('TempoAppBundle:Provider:list', { 'slug': project.slug })) }}
         </div>
     </div>
+
 </div>
+
+{% endblock container %}

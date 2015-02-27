@@ -96,6 +96,7 @@ tempo:
       close: Close
       activity: Activity
       sub_project: Sub project of
+      settings: Settings
       form:
           version: Version
           label:
