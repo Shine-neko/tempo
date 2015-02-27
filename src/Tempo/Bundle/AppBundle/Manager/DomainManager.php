@@ -102,7 +102,7 @@ class DomainManager
      */
     public function update($resource)
     {
-        $event = $this->dispatchEvent('pre_update', $resource);
+        $event = $this->dispatchEvent($resource, 'pre_update');
 
         if ($event->isStopped()) {
             return  $event;
@@ -111,7 +111,7 @@ class DomainManager
         $this->objectManager->persist($resource);
         $this->objectManager->flush();
 
-        $this->dispatchEvent('post_update', $resource);
+        $this->dispatchEvent($resource, 'post_update');
     }
 
     /**
@@ -120,7 +120,7 @@ class DomainManager
      */
     public function delete($resource)
     {
-        $event = $this->dispatchEvent('pre_delete', $resource);
+        $event = $this->dispatchEvent($resource, 'pre_delete');
 
         if ($event->isStopped()) {
             return  $event;
@@ -129,6 +129,6 @@ class DomainManager
         $this->objectManager->remove($resource);
         $this->objectManager->flush();
 
-        $this->dispatchEvent('post_delete', $resource);
+        $this->dispatchEvent($resource, 'post_delete');
     }
 }

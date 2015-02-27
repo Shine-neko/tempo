@@ -60,12 +60,16 @@ class AccessController extends Controller
     {
         $objectManager = $this->getObjectManager($request->get('_route'), $slug);
         $resource =  $objectManager['model'];
-        $user = $this->findUser(array('id' => $user));
+        $resourceName = (new \ReflectionClass($resource))->getShortName();
 
-        $event = new AccessEvent($request, $resource, $user, $this->getUser());
-        $resource->getMembers()->removeElement($user);
+        $access = $this->getDoctrine()->getRepository('TempoAppBundle:Access')->findOneBy(array(
+            'user' => $user,
+            strtolower($resourceName) => $resource
+        ));
 
-        $this->get('tempo.domain_manager')->create($resource);
+        $event = new AccessEvent($request, $resource, $access->getUser(), $this->getUser());
+        
+        $this->get('tempo.domain_manager')->delete($access);
         $this->get('event_dispatcher')->dispatch($objectManager['event'], $event);
 
         return $this->redirect($request->headers->get('referer'));

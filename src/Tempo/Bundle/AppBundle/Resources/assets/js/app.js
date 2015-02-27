@@ -44,7 +44,7 @@ Tempo.Behavior = {
 
             var configs = map[name];
             if (!configs.length) {
-                if (initialized.hasOwnProperty(name)) {
+                if (this.initialized.hasOwnProperty(name)) {
                     continue;
                 }
                 configs = [null];
@@ -117,18 +117,9 @@ Tempo.baseObject = {
 
 $(function() {
     Tempo.run =  function() {
-        Tempo.log('Starting application', 'INFO');
-        var RouterManager = new TempoRouterManager;
+        var RouterManager = new TempoRouterManager();
         Backbone.history.start({pushState: true});
 
-    };
-    Tempo.log = function() {
-        var msg = '[Tempo] ' + Array.prototype.join.call(arguments,', ');
-        if (window.console && window.console.log) {
-            window.console.log(msg);
-        } else if (window.opera && window.opera.postError) {
-            window.opera.postError(msg);
-        }
     };
 
     $('body').removeClass('no-js').addClass('js');
@@ -166,7 +157,7 @@ $(function() {
         }
         $('#dialog').append(modal);
 
-        if (url.indexOf('#') == 0) {
+        if (url.indexOf('#') === 0) {
             $(url).show().appendTo(modal.find('.modal-body'));
             modal.modal();
         } else {
@@ -199,7 +190,7 @@ $(function() {
         setTimeout((function() {
             return flash.slideUp("slow");
         }), 3000);
-    };
+    }
 
     Tempo.Provide('router', function() {
         Backbone.Router.extend({
@@ -212,7 +203,6 @@ $(function() {
                 return Backbone.Router.prototype.navigate.call(this, fragment, options);
             },
             route: function(route, name, callback) {
-                Tempo.log("Add route [" + route + "]");
                 return Backbone.Router.prototype.route.call(this, route, name, callback);
             },
             setElement:function (el) {
