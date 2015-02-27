@@ -12,9 +12,12 @@
 namespace Tempo\Bundle\AppBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Tempo\Bundle\AppBundle\Behavior\AccessTrait;
 
 class Room implements RoomInterface
 {
+    use AccessTrait;
+
     /**
      * @var integer
      */
@@ -38,7 +41,7 @@ class Room implements RoomInterface
     /**
      * @var Collection
      */
-    protected $team;
+    protected $members;
 
     protected $project;
     /**
@@ -49,7 +52,7 @@ class Room implements RoomInterface
     public function __construct()
     {
         $this->chatMessages = new ArrayCollection();
-        $this->team = new ArrayCollection();
+        $this->members = new ArrayCollection();
         $this->enableChat = true;
     }
 
@@ -126,29 +129,6 @@ class Room implements RoomInterface
         }
 
         return null;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getTeam()
-    {
-        return $this->team;
-    }
-
-    public function setTeam($team)
-    {
-        $this->team = $team;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function addUser($user, $role = 'ROLE_USER')
-    {
-        $this->team[] = new RoomUser($this, $user, $role);
     }
 
     /**

@@ -24,6 +24,7 @@ use Tempo\Bundle\AppBundle\Form\Type\TimesheetType;
 use Tempo\Bundle\AppBundle\Form\Filter\TimesheetFilterType;
 use Tempo\Bundle\AppBundle\Form\Type\TimesheetExportType;
 use Tempo\Bundle\AppBundle\Export\Excel as ExportCVS;
+use Tempo\Bundle\AppBundle\Model\AccessInterface;
 use Tempo\Bundle\AppBundle\Model\Timesheet;
 
 /**
@@ -198,7 +199,9 @@ class TimesheetController extends Controller
             $this->getManager('timesheet')->save($period);
         }
 
-        $assignments = $this->getDoctrine()->getRepository('TempoAppBundle:ProjectUser')->findAll(array('role' => '3 OR role = 2'));
+        $assignments = $this->getDoctrine()->getRepository('TempoAppBundle:Access')->findAll(array(
+            'role' => AccessInterface::TYPE_OWNER
+        ));
         $timesheets = $this->getManager('timesheet')->getRepository()->findActivitiesByState($userId);
         $filterForm = $this->createForm(new TimesheetFilterType());
 

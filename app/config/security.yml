@@ -1,8 +1,5 @@
 # app/config/security.yml
 security:
-    acl:
-      connection: default
-
     providers:
         tempo_user:
             id: tempo.user.user_provider.username

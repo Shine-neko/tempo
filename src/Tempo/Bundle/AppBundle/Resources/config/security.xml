@@ -6,10 +6,19 @@
         <parameter key="tempo.security.login_manager.class">Tempo\AppBundle\EventListener\LastLoginListener</parameter>
         <parameter key="tempo.security.access.voter.organization.class">Tempo\Bundle\AppBundle\Security\Authorization\Voter\OrganizationVoter</parameter>
         <parameter key="tempo.security.access.voter.project.class">Tempo\Bundle\AppBundle\Security\Authorization\Voter\ProjectVoter</parameter>
+        <parameter key="tempo.security.access.voter.room.class">Tempo\Bundle\AppBundle\Security\Authorization\Voter\RoomVoter</parameter>
     </parameters>
 
     <services>
-        <service id="tempo.security.access.voter.project" class="%tempo.security.access.voter.project.class%" public="false">
+        <service id="tempo.security.access.voter.project" class="%tempo.security.access.voter.project.class%">
+            <tag name="security.voter" />
+        </service>
+
+        <service id="tempo.security.access.voter.organization" class="%tempo.security.access.voter.organization.class%">
+            <tag name="security.voter" />
+        </service>
+
+        <service id="tempo.security.access.voter.room" class="%tempo.security.access.voter.room.class%">
             <tag name="security.voter" />
         </service>
 

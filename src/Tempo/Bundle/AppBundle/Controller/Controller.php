@@ -74,14 +74,6 @@ class Controller extends FOSRestController
     }
 
     /**
-     * @return \Problematic\AclManagerBundle\Domain\AclManager
-     */
-    protected function getAclManager()
-    {
-        return $this->get('problematic.acl_manager');
-    }
-
-    /**
      * Returns the paginator instance configured for the given query and page
      * number
      *

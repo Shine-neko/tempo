@@ -191,19 +191,6 @@ interface ProjectInterface
     public function getPriority();
 
     /**
-     * @abstract
-     * @return mixed
-     */
-    public function getTeam();
-
-    /**
-     * @abstract
-     * @param  \Tempo\Bundle\AppBundle\Model\User $membre
-     * @return mixed
-     */
-    public function addUser($user);
-
-    /**
      * Add children
      *
      * @param ProjectInterface $children

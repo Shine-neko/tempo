@@ -19,7 +19,7 @@ class ProjectRepository extends EntityRepository
     {
         $query = $this
             ->createQueryBuilder('project')
-                ->leftJoin('project.team', 'team')
+                ->leftJoin('project.members', 'team')
                 ->leftJoin('team.user', 'user')
         ;
 

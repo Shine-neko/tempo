@@ -12,12 +12,15 @@
 namespace Tempo\Bundle\AppBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Tempo\Bundle\AppBundle\Behavior\AccessTrait;
 
 /**
 * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
 */
 class Organization implements OrganizationInterface
 {
+    use AccessTrait;
+
     /**
      * @var integer $id
      */
@@ -51,7 +54,7 @@ class Organization implements OrganizationInterface
     /**
      * @var integer
      */
-    protected $team;
+    protected $members;
 
     /**
      * @var string
@@ -87,11 +90,12 @@ class Organization implements OrganizationInterface
      * @var ArrayCollection\UserInterface[]
      */
     protected $users;
+    protected $team;
 
     public function __construct()
     {
         $this->projects = new ArrayCollection();
-        $this->team = new ArrayCollection();
+        $this->members = new ArrayCollection();
     }
 
     /**
@@ -183,7 +187,7 @@ class Organization implements OrganizationInterface
     }
 
     /**
-     * @param string $avatar
+     * {@inheritdoc}
      */
     public function setAvatar($avatar)
     {
@@ -306,7 +310,7 @@ class Organization implements OrganizationInterface
      */
     public function addUser($user)
     {
-        $this->team[] = $user;
+        $this->members[] = $user;
 
         return $this;
     }
@@ -351,33 +355,4 @@ class Organization implements OrganizationInterface
 
         return $this;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setUsers($users)
-    {
-        $this->users = $users;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function addTeam($user, array $acl = array())
-    {
-        $this->team[] = $user;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getTeam()
-    {
-        return $this->team;
-    }
-
 }

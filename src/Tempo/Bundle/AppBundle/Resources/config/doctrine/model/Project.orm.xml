@@ -55,7 +55,7 @@
         <many-to-one field="organization" inversed-by="projects" target-entity="Organization" />
         <one-to-many field="timesheets" target-entity="Timesheet" mapped-by="project" />
         <one-to-one field="type" target-entity="ProjectType" />
-        <one-to-many field="team" target-entity="Tempo\Bundle\AppBundle\Model\ProjectUser" mapped-by="project">
+        <one-to-many field="members" target-entity="Tempo\Bundle\AppBundle\Model\Access" mapped-by="project">
             <cascade>
                 <cascade-all/>
             </cascade>
