@@ -93,3 +93,8 @@ sylius_translation:
         translation:
             field: translatable
             locale: locale
+
+sylius_settings:
+    classes:
+        parameter:
+            model: Tempo\Bundle\AppBundle\Model\Parameter
