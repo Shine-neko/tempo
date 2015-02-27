@@ -11,14 +11,14 @@
 
 namespace Tempo\Bundle\AppBundle\Security\Authorization\Voter;
 
-class ProjectVoter extends ResourceVoter
+class OrganizationVoter extends ResourceVoter
 {
     /**
      * {@inheritdoc}
      */
     public function supportsClass($class)
     {
-        $supportedClass = 'Tempo\Bundle\AppBundle\Model\ProjectInterface';
+        $supportedClass = 'Tempo\Bundle\AppBundle\Model\OrganizationInterface';
 
         return $supportedClass === $class || is_subclass_of($class, $supportedClass);
     }

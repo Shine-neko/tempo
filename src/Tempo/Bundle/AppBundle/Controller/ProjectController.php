@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Tempo\Bundle\AppBundle\Model\Project;
 use Tempo\Bundle\AppBundle\Model\Organization;
 use Tempo\Bundle\AppBundle\Form\Type\ProjectType;
-use Tempo\Bundle\AppBundle\Form\Type\TeamType;
+use Tempo\Bundle\AppBundle\Form\Type\AccessType;
 
 /**
  * Project controller.
@@ -72,7 +72,7 @@ class ProjectController extends Controller
             $organization = $project->getParent(-1)->getOrganization();
         }
 
-        $teamForm = $this->createForm(new TeamType($project));
+        $teamForm = $this->createForm(new AccessType($project));
 
         return $this->render('TempoAppBundle:Project:show.html.twig', array(
             'teamForm' => $teamForm->createView(),

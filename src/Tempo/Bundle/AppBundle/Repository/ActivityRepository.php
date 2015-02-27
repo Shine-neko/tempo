@@ -24,7 +24,7 @@ class ActivityRepository extends EntityRepository
         $query = $this->createQueryBuilder('activity');
         $query
             ->leftJoin('activity.project', 'project')
-            ->leftJoin('project.team', 'user')
+            ->leftJoin('project.members', 'user')
             ->where('activity.target = :target')
             ->andWhere('user.user = :user')
             ->setParameter('target', 'Project')

@@ -27,7 +27,7 @@ class ActivityProviderRepository extends EntityRepository
         $query
             ->leftJoin('activity.provider', 'provider')
             ->leftJoin('provider.project', 'project')
-            ->leftJoin('project.team', 'user')
+            ->leftJoin('project.members', 'user')
             ->andWhere('user.user = :user')
             ->setParameter('user', $user);
 

@@ -2,7 +2,7 @@
 <a data-toggle="modal" role="dialog" data-target="#" data-title="Adding a team member" href="#add_membre" class="add-member btn btn-xs btn-info">Add membre<span></span></a>
 
 <div class="list_membre">
-    {% include 'TempoAppBundle:Team:list.html.twig' with {'users': organization.team, 'category' : organization, 'route_deleted' : 'organization_team_delete' } %}
+    {% include 'TempoAppBundle:Team:list.html.twig' with {'users': organization.members, 'category' : organization, 'route_deleted' : 'organization_team_delete' } %}
 </div>
 
 <div id="add_membre" style="display: none;">

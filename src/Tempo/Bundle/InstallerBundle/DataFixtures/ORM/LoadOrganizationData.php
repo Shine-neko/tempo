@@ -58,14 +58,13 @@ class LoadOrganizationData extends AbstractFixture implements OrderedFixtureInte
             $organization->setName($name);
             $organization->setContact('support@'.$name.'.com');
             $organization->getWebSite('http://'.$name.'.com');
-            $organization->addTeam($userEntity);
-            $organization->addTeam($this->getReference('john.doe'));
-            $organization->addTeam($this->getReference('olivia.pace'));
+            $organization->addAccess($userEntity);
+            $organization->addAccess($this->getReference('john.doe'));
+            $organization->addAccess($this->getReference('olivia.pace'));
 
             $manager->persist($organization);
             $manager->flush();
 
-            $this->getAclManager()->addObjectPermission($organization, MaskBuilder::MASK_OWNER, $userEntity); //set Permission
             $this->addReference('organization'.$i, $organization);
             $i++;
         }
@@ -77,10 +76,5 @@ class LoadOrganizationData extends AbstractFixture implements OrderedFixtureInte
     public function getOrder()
     {
         return 20;
-    }
-
-    protected function getAclManager()
-    {
-        return $this->container->get('problematic.acl_manager');
     }
 }

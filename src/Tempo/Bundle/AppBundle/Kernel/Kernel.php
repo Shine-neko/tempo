@@ -52,7 +52,6 @@ class Kernel extends BaseKernel
             new \Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new \JMS\SerializerBundle\JMSSerializerBundle($this),
             new \Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
-            new \Problematic\AclManagerBundle\ProblematicAclManagerBundle(),
             new \Bazinga\Bundle\JsTranslationBundle\BazingaJsTranslationBundle(),
             new \WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
 
