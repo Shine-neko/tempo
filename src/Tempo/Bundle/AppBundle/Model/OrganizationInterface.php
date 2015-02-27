@@ -95,16 +95,17 @@ interface OrganizationInterface
     /**
      * Set created
      *
-     * @param \DateTime $created
+     * @param \DateTime $createdAt
+     * @return self
      */
-    public function setCreatedAt(\DateTime $updated);
+    public function setCreatedAt(\DateTime $createdAt);
 
     /**
      * Set updated
      *
-     * @param \DateTime $updated
+     * @param \DateTime $updatedAt
      */
-    public function setUpdatedAt(\DateTime $updated);
+    public function setUpdatedAt(\DateTime $updatedAt);
 
     /**
      * @param $enabled
@@ -123,23 +124,9 @@ interface OrganizationInterface
     public function setContact($contact);
 
     /**
-     * Set users
-     *
-     * @param ArrayCollection $users
-     */
-    public function setUsers($users);
-
-    /**
-     * Set user
-     *
-     * @param $user
-     */
-    public function addUser($user);
-
-    /**
      * Add projects
      *
-     * @param \Tempo\Bundle\AppBundle\Model\Project $project
+     * @param \Tempo\Bundle\AppBundle\Model\ProjectInterface $project
      */
     public function addProject($project);
 
@@ -156,10 +143,4 @@ interface OrganizationInterface
      */
     public function getMembers();
 
-    /**
-     * @abstract
-     * @param $membre
-     * @return mixed
-     */
-    public function addTeam($user, array $acl = array());
 }

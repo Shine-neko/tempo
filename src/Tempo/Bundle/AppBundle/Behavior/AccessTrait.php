@@ -12,7 +12,7 @@
 namespace Tempo\Bundle\AppBundle\Behavior;
 
 use Tempo\Bundle\AppBundle\Model\Access;
-use Tempo\Bundle\AppBundle\Model\User;
+use Tempo\Bundle\AppBundle\Model\UserInterface;
 
 Trait AccessTrait
 {
@@ -40,10 +40,10 @@ Trait AccessTrait
     }
 
     /**
-     * @param  User $user
+     * @param  UserInterface $user
      * @return null
      */
-    public function getMemberByUser(User $user)
+    public function getMemberByUser(UserInterface $user)
     {
         foreach ($this->members as $member) {
             if ($user === $member->getUser()) {

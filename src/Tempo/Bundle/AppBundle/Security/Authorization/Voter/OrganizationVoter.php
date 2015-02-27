@@ -11,8 +11,6 @@
 
 namespace Tempo\Bundle\AppBundle\Security\Authorization\Voter;
 
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-
 class OrganizationVoter extends ResourceVoter
 {
     /**
@@ -23,13 +21,5 @@ class OrganizationVoter extends ResourceVoter
         $supportedClass = 'Tempo\Bundle\AppBundle\Model\OrganizationInterface';
 
         return $supportedClass === $class || is_subclass_of($class, $supportedClass);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function vote(TokenInterface $token, $resource, array $attributes)
-    {
-        return parent::vote($token, $resource, $attributes);
     }
 }

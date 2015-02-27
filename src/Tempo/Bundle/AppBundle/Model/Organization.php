@@ -187,7 +187,7 @@ class Organization implements OrganizationInterface
     }
 
     /**
-     * @param string $avatar
+     * {@inheritdoc}
      */
     public function setAvatar($avatar)
     {
@@ -355,33 +355,4 @@ class Organization implements OrganizationInterface
 
         return $this;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setUsers($users)
-    {
-        $this->users = $users;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function addTeam($user, array $acl = array())
-    {
-        $this->members[] = $user;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getMembers()
-    {
-        return $this->members;
-    }
-
 }

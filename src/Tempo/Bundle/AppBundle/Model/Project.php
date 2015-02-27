@@ -141,6 +141,10 @@ class Project implements ProjectInterface
      * @var Collection
      */
     protected $comments;
+
+    /**
+     * @var Collection
+     */
     protected $members;
 
     public function __construct()
