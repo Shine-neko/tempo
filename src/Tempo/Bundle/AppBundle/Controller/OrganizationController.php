@@ -105,7 +105,7 @@ class OrganizationController extends Controller
         }
 
         $organization = new Organization();
-        $organization->addUser($this->getUser());
+        $organization->addAccess($this->getUser());
 
         $form = $this->createForm(new OrganizationType(), $organization);
 

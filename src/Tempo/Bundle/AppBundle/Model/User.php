@@ -42,62 +42,75 @@ class User implements UserInterface
      * @var boolean
      */
     protected $enabled;
+
     /**
      * The salt to use for hashing
      *
      * @var string
      */
     protected $salt;
+
     /**
      * Encrypted password. Must be persisted.
      *
      * @var string
      */
     protected $password;
+
     /**
      * Plain password. Used for model validation. Must not be persisted.
      *
      * @var string
      */
     protected $plainPassword;
+
     /**
      * @var \DateTime
      */
     protected $lastLogin;
+
     /**
      * Random string sent to the user email address in order to verify it
      *
      * @var string
      */
     protected $confirmationToken;
+
     /**
      * @var \DateTime
      */
     protected $passwordRequestedAt;
+
     /**
      * @var Collection
      */
     protected $groups;
+
     /**
      * @var boolean
      */
     protected $locked;
+
     /**
      * @var boolean
      */
     protected $expired;
+
     /**
      * @var \DateTime
      */
     protected $expiresAt;
+
     /**
      * @var array
      */
     protected $roles;
+
     /**
      * @var boolean
      */
     protected $credentialsExpired;
+
     /**
      * @var \DateTime
      */
@@ -329,7 +342,7 @@ class User implements UserInterface
      */
     public function getFullName()
     {
-        return $this->firstName .' '. strtoupper($this->lastName);
+        return $this->firstName.' '.strtoupper($this->lastName);
     }
 
     /**
@@ -407,7 +420,7 @@ class User implements UserInterface
      */
     public function hasGravatar()
     {
-        return (boolean) @fopen($this->getGravatarUrl() . '?d=404', 'r');
+        return (boolean) @fopen($this->getGravatarUrl().'?d=404', 'r');
     }
 
     /**
@@ -416,10 +429,10 @@ class User implements UserInterface
     public function getAvatar($size = 80, $default = 'mm')
     {
         if ($this->avatar) {
-            return '/uploads/avatars/' . $this->avatar;
+            return '/uploads/avatars/'.$this->avatar;
         }
 
-        return $this->getGravatarUrl() . '?s=' . $size . '&d=' . $default;
+        return $this->getGravatarUrl().'?s='.$size.'&d='.$default;
     }
 
     /**
@@ -437,7 +450,7 @@ class User implements UserInterface
      */
     public function getGravatarUrl()
     {
-        return 'http://www.gravatar.com/avatar/' . md5(strtolower(trim($this->email)));
+        return 'http://www.gravatar.com/avatar/'.md5(strtolower(trim($this->email)));
     }
 
     /**

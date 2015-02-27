@@ -13,10 +13,11 @@ namespace Tempo\Bundle\AppBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Tempo\Bundle\AppBundle\Behavior\AccessTrait;
+use Tempo\Bundle\AppBundle\Behavior\TimestampTrait;
 
 class Room implements RoomInterface
 {
-    use AccessTrait;
+    use AccessTrait, TimestampTrait;
 
     /**
      * @var integer
@@ -39,11 +40,34 @@ class Room implements RoomInterface
     protected $enableChat;
 
     /**
+     * @var integer
+     */
+    protected $enabled;
+
+    /**
+     * @var \DateTime
+     */
+    protected $createdAt;
+
+    /**
+     * @var \DateTime
+     */
+    protected $updatedAt;
+
+    /**
+     * @var \DateTime
+     */
+    protected $deleteAt;
+
+    /**
      * @var Collection
      */
     protected $members;
-
+    /**
+     * @var ProjectInterface
+     */
     protected $project;
+
     /**
      * @var Collection
      */
@@ -77,9 +101,9 @@ class Room implements RoomInterface
      */
     public function setName($name)
     {
-       $this->name = $name;
+        $this->name = $name;
 
-       return $this;
+        return $this;
     }
 
     /**
@@ -128,13 +152,13 @@ class Room implements RoomInterface
             }
         }
 
-        return null;
+        return;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setProject($project)
+    public function setProject(ProjectInterface $project = null)
     {
         $this->project  = $project;
 

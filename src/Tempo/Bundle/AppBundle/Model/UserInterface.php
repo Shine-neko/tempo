@@ -254,5 +254,4 @@ interface UserInterface extends AdvancedUserInterface, \Serializable, Timestampa
      * @return int $gender
      */
     public function getGender();
-
 }

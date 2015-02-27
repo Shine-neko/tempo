@@ -13,7 +13,6 @@ namespace Tempo\Bundle\AppBundle\Model;
 
 class Activity implements ActivityInterface
 {
-
     const ACTIVITY_CREATE_COMMENT = 'create_comment';
 
     /**

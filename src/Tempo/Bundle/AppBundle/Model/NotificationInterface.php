@@ -23,7 +23,7 @@ interface NotificationInterface
     /**
      * Set user
      *
-     * @param  string                $user
+     * @param  string $user
      * @return NotificationInterface
      */
     public function setUser($user);
@@ -38,7 +38,7 @@ interface NotificationInterface
     /**
      * Set datetime
      *
-     * @param  \DateTime             $datetime
+     * @param  \DateTime $datetime
      * @return NotificationInterface
      */
     public function setCreatedAt(\DateTime $datetime);
@@ -46,14 +46,14 @@ interface NotificationInterface
     /**
      * Get datetime
      *
-     * @return date $datetime
+     * @return \DateTime $datetime
      */
     public function getCreatedAt();
 
     /**
      * Set datetime
      *
-     * @param  \DateTime             $datetime
+     * @param  \DateTime  $state
      * @return NotificationInterface
      */
     public function setState($state);
@@ -61,7 +61,6 @@ interface NotificationInterface
     /**
      * Get state
      *
-     * @param $datetime
      * @return $state
      */
     public function getState();
@@ -69,7 +68,7 @@ interface NotificationInterface
     /**
      * Set Link
      *
-     * @param  string                $link
+     * @param  string  $link
      * @return NotificationInterface
      */
     public function setLink($link);
@@ -84,7 +83,7 @@ interface NotificationInterface
     /**
      * Set datetime
      *
-     * @param  string                $message
+     * @param  string $message
      * @return NotificationInterface
      */
     public function setMessage($message);
@@ -92,7 +91,6 @@ interface NotificationInterface
     /**
      * Get state
      *
-     * @param string $message
      * @return $state
      */
     public function getMessage();

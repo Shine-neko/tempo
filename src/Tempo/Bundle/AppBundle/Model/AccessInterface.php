@@ -18,7 +18,7 @@ interface AccessInterface
     const TYPE_PARTNER = 'partner';
 
     /**
-     * @param \DateTime $createdAt
+     * @param  \DateTime $createdAt
      * @return self
      */
     public function setCreatedAt(\DateTime $createdAt);
@@ -29,10 +29,10 @@ interface AccessInterface
     public function getCreatedAt();
 
     /**
-     * @param User $user
+     * @param  UserInterface $user
      * @return self
      */
-    public function setUser(User $user);
+    public function setUser(UserInterface $user);
 
     /**
      * @return mixed

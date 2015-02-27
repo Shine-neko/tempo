@@ -66,9 +66,10 @@ interface RoomInterface
     public function getChatMessage($id);
 
     /**
-     * @param mixed $project
+     * @param ProjectInterface $project
+     * @return self
      */
-    public function setProject($project);
+    public function setProject(ProjectInterface $project = null);
 
     /**
      * @return mixed

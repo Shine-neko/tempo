@@ -95,7 +95,7 @@ interface OrganizationInterface
     /**
      * Set created
      *
-     * @param \DateTime $createdAt
+     * @param  \DateTime $createdAt
      * @return self
      */
     public function setCreatedAt(\DateTime $createdAt);
@@ -142,5 +142,4 @@ interface OrganizationInterface
      * @return ArrayCollection
      */
     public function getMembers();
-
 }

@@ -13,13 +13,14 @@ namespace Tempo\Bundle\AppBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Tempo\Bundle\AppBundle\Behavior\AccessTrait;
+use Tempo\Bundle\AppBundle\Behavior\TimestampTrait;
 
 /**
 * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
 */
 class Organization implements OrganizationInterface
 {
-    use AccessTrait;
+    use AccessTrait, TimestampTrait;
 
     /**
      * @var integer $id
@@ -45,11 +46,6 @@ class Organization implements OrganizationInterface
      * @var integer
      */
     protected $enabled;
-
-    /**
-     * @var integer
-     */
-    protected $deletedAt;
 
     /**
      * @var integer
@@ -84,7 +80,7 @@ class Organization implements OrganizationInterface
     /**
      * @var \DateTime
      */
-    protected $deleteAt;
+    protected $deletedAt;
 
     /**
      * @var ArrayCollection\UserInterface[]
@@ -171,7 +167,7 @@ class Organization implements OrganizationInterface
      */
     public function hasGravatar()
     {
-        return (boolean) @fopen($this->getGravatarUrl() . '?d=404', 'r');
+        return (boolean) @fopen($this->getGravatarUrl().'?d=404', 'r');
     }
 
     /**
@@ -180,10 +176,10 @@ class Organization implements OrganizationInterface
     public function getAvatar($size = 80, $default = 'mm')
     {
         if ($this->avatar) {
-            return '/uploads/covers/' . $this->avatar;
+            return '/uploads/covers/'.$this->avatar;
         }
 
-        return $this->getGravatarUrl() . '?s=' . $size . '&d=' . $default;
+        return $this->getGravatarUrl().'?s='.$size.'&d='.$default;
     }
 
     /**
@@ -198,23 +194,7 @@ class Organization implements OrganizationInterface
 
     protected function getGravatarUrl()
     {
-        return 'http://www.gravatar.com/avatar/' . md5(strtolower(trim($this->contact)));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function isEnabled()
-    {
-        return $this->enabled;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function isDeletedAt()
-    {
-        return $this->deletedAt;
+        return 'http://www.gravatar.com/avatar/'.md5(strtolower(trim($this->contact)));
     }
 
     /**
@@ -246,42 +226,6 @@ class Organization implements OrganizationInterface
     /**
      * {@inheritdoc}
      */
-    public function setCreatedAt(\DateTime $created)
-    {
-        $this->createdAt = $created;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setUpdatedAt(\DateTime $updated)
-    {
-        $this->updatedAt = $updated;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getContact()
     {
         return $this->contact;
@@ -301,37 +245,6 @@ class Organization implements OrganizationInterface
     public function addProject($project)
     {
         $this->projects[] = $project;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function addUser($user)
-    {
-        $this->members[] = $user;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setEnabled($enabled)
-    {
-        $this->enabled = $enabled;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setDeleteAt($deleteAt)
-    {
-        $this->deleteAt = $deleteAt;
-        $this->setEnabled(false);
 
         return $this;
     }

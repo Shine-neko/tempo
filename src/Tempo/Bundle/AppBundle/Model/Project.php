@@ -13,6 +13,7 @@ namespace Tempo\Bundle\AppBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Tempo\Bundle\AppBundle\Behavior\AccessTrait;
+use Tempo\Bundle\AppBundle\Behavior\TimestampTrait;
 
 /**
  * Project Model
@@ -20,7 +21,7 @@ use Tempo\Bundle\AppBundle\Behavior\AccessTrait;
  */
 class Project implements ProjectInterface
 {
-    use AccessTrait;
+    use AccessTrait, TimestampTrait;
 
     const STATUS_CREATED = 10;
     const STATUS_OPENING = 20;
@@ -204,42 +205,6 @@ class Project implements ProjectInterface
     public function getSlug()
     {
         return $this->slug;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setCreatedAt(\DateTime $created)
-    {
-        $this->createdAt = $created;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setUpdatedAt(\DateTime $updated)
-    {
-        $this->updatedAt = $updated;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
     }
 
     /**
@@ -450,7 +415,6 @@ class Project implements ProjectInterface
         return $this->timesheets;
     }
 
-
     /**
      * {@inheritdoc}
      */
@@ -515,7 +479,6 @@ class Project implements ProjectInterface
     public function getParents()
     {
         if (!$this->parents) {
-
             $project    = $this;
             $parents = array();
 

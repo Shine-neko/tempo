@@ -48,26 +48,7 @@ class Access implements AccessInterface
      */
     protected $room;
 
-    /**
-     * @return Organization
-     */
-    public function getOrganization()
-    {
-        return $this->organization;
-    }
-
-    /**
-     * @param Organization $organization
-     * @return self
-     */
-    public function setOrganization(Organization $organization)
-    {
-        $this->organization = $organization;
-
-        return $this;
-    }
-
-    /**
+        /**
      * @var \DateTime
      */
     protected $createdAt;
@@ -76,7 +57,7 @@ class Access implements AccessInterface
      * @param $source
      * @return self
      */
-    function setSource($source)
+    public function setSource($source)
     {
         $className = (new \ReflectionClass($source))->getShortName();
         $this->{'set'.$className}($source);
@@ -86,7 +67,7 @@ class Access implements AccessInterface
     }
 
     /**
-     * @param \DateTime $createdAt
+     * @param  \DateTime $createdAt
      * @return self
      */
     public function setCreatedAt(\DateTime $createdAt)
@@ -105,10 +86,10 @@ class Access implements AccessInterface
     }
 
     /**
-     * @param User $user
+     * @param  UserInterface $user
      * @return self
      */
-    public function setUser(User $user)
+    public function setUser(UserInterface $user)
     {
         $this->user = $user;
 
@@ -143,10 +124,29 @@ class Access implements AccessInterface
     }
 
     /**
-     * @param Project $project
-     * @return Project
+     * @return Organization
      */
-    public function setProject(Project $project)
+    public function getOrganization()
+    {
+        return $this->organization;
+    }
+
+    /**
+     * @param  OrganizationInterface $organization
+     * @return self
+     */
+    public function setOrganization(OrganizationInterface $organization = null)
+    {
+        $this->organization = $organization;
+
+        return $this;
+    }
+
+    /**
+     * @param  ProjectInterface $project
+     * @return self
+     */
+    public function setProject(ProjectInterface $project = null)
     {
         $this->project = $project;
 
@@ -162,10 +162,10 @@ class Access implements AccessInterface
     }
 
     /**
-     * @param Room $room
+     * @param  RoomInterface $room
      * @return self
      */
-    public function setRoom(Room $room)
+    public function setRoom(RoomInterface $room = null)
     {
         $this->room = $room;
 
@@ -173,10 +173,9 @@ class Access implements AccessInterface
     }
 
     /**
-     * @param $room
      * @return Room
      */
-    public function getRoom($room)
+    public function getRoom()
     {
         return $this->room;
     }
