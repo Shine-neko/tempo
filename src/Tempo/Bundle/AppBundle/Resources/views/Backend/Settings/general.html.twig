@@ -9,15 +9,20 @@
         </ol>
     {% endblock breadcrumb %}
 
-    <div class="app-panel class-md-8 center-block">
-        {{ form_errors(form) }}
+    <div class="col-md-2">
+        {{ knp_menu_render('admin_settings') }}
+    </div>
+    <div class="col-md-8">
+        <div class="app-panel">
+            {{ form_errors(form) }}
 
-        <form class="form-block" method="post" action="{{ path('backend_configuration_generale') }}">
-            <div id="settings">
-                {{ form_widget(form) }}
-                {{ form_rest(form) }}
-            </div>
-        </form>
+            <form class="form-block" method="post" action="{{ path('admin_configuration_general') }}">
+                <div id="settings">
+                    {{ form_widget(form) }}
+                    {{ form_rest(form) }}
+                </div>
+            </form>
+        </div>
     </div>
 
 

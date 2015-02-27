@@ -1,14 +1,23 @@
 {% extends "TempoAppBundle::layout.html.twig" %}
+{% block bodyClass %}admin settings project{% endblock %}
 
 {% block container %}
-    <form class="form-block" method="post" action="{{ path('backend_configuration_project') }}">
-        {{ form_errors(form) }}
-        <div id="settings">
-            {{ form_widget(form.week) }}
-            {{ form_rest(form) }}
-        </div>
 
-    <input type="submit" />
-</form>
+    <div class="col-md-2">
+        {{ knp_menu_render('admin_settings') }}
+    </div>
+    <div class="col-md-8">
+        <div class="app-panel">
+            <form class="form-block" method="post" action="{{ path('admin_configuration_project') }}">
+                {{ form_errors(form) }}
+                <div id="settings">
+                    {{ form_widget(form.week) }}
+                    {{ form_rest(form) }}
+                </div>
+
+                <input type="submit" class="btn btn-primary" />
+            </form>
+        </div>
+    </div>
 
 {% endblock %}

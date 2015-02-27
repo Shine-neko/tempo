@@ -21,10 +21,10 @@ class GeneralSettingsSchema implements SchemaInterface
     {
         $builder
             ->setDefaults(array(
-                'name'            => 'Tempo',
+                'name' => 'Tempo',
             ))
             ->setAllowedTypes(array(
-                'name'            => array('string'),
+                'name' => array('string'),
             ))
         ;
     }

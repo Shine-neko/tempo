@@ -5,7 +5,12 @@ tempo:
     project: Projets
     home: Home
     timesheet: Timesheets
-    admin: Admin
+    #admin: Admin
+    admin:
+      dashboard: Admin
+      setting:
+        general: General
+        project: Project
 
   form:
       show: 'Show'
