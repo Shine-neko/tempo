@@ -159,20 +159,6 @@
             <tag name="kernel.event_listener" event="tempo.project.create.success" method="createProject" />
         </service>
 
-        <service id="tempo.project.tabProvidersRegistry" class="%tempo.project.tabProvidersRegistry.class%" />
-
-        <service id="tempo.project.tab.project" class="%tempo.project.tab.project.class%">
-            <tag name="tempo.project.show.tab" />
-        </service>
-
-        <service id="tempo.project.tab.subproject" class="%tempo.project.tab.subproject.class%">
-            <tag name="tempo.project.show.tab" />
-        </service>
-
-        <service id="tempo.project.tab.settings" class="%tempo.project.tab.settings.class%">
-            <tag name="tempo.project.show.tab" />
-        </service>
-
         <service id="tempo.manager.activity_provider" class="%tempo.manager.activity_provider.class%">
             <argument type="service" id="doctrine.orm.entity_manager"/>
             <argument>%tempo.model.activity_provider.class%</argument>

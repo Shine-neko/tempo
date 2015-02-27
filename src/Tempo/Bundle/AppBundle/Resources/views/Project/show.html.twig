@@ -52,17 +52,17 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="nav nav-tabs" id="project-tab">
-                    {% for provider in tabProvidersRegistry.providers %}
-                    <li{% if loop.first %} class="active"{% endif %}><a href="#{{ provider.id }}" data-toggle="tab">{{ provider.name }}</a></li>
-                    {% endfor %}
+                    <li><a class="active" href="#tab-project">Project</a></li>
+                    <li><a href="#tab-sub-project">Sub-Projects</a></li>
                 </ul>
 
                 <div class="tab-content">
-                    {% for provider in tabProvidersRegistry.providers %}
-                    <div class="tab-pane{% if loop.first %} active{% endif %}" id="{{ provider.id }}">
-                        {% include provider.content %}
+                    <div class="tab-pane active" id="tab-project">
+                        {% include 'TempoAppBundle:Project/Tabs:project.html.twig' %}
                     </div>
-                    {% endfor %}
+                    <div class="tab-pane" id="tab-sub-project">
+                        {% include 'TempoAppBundle:Project/Tabs:subproject.html.twig' %}
+                    </div>
                 </div>
             </div>
         </div>
