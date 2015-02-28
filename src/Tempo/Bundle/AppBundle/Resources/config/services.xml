@@ -12,6 +12,7 @@
         <parameter key="tempo.form.type.list.class">Tempo\Bundle\AppBundle\Form\Type\ListType</parameter>
         <parameter key="tempo.form.type.wysiwyg.class">Tempo\Bundle\AppBundle\Form\Type\SummernoteType</parameter>
         <parameter key="tempo.menu.builder.frontend.class">Tempo\Bundle\AppBundle\Menu\FrontendMenuBuilder</parameter>
+        <parameter key="tempo.menu.builder.admin.class">Tempo\Bundle\AppBundle\Menu\AdminMenuBuilder</parameter>
         <parameter key="tempo.form.extension.security.class">Tempo\Bundle\AppBundle\Form\Extension\SecurityTypeExtension</parameter>
 	    <parameter key="tempo.menu_builder.class">Tempo\Bundle\AppBundle\Menu\MenuBuilder</parameter>
         <parameter key="tempo.behavior_manager.class">Tempo\Bundle\AppBundle\Helper\Behavior</parameter>
@@ -24,7 +25,7 @@
         <parameter key="tempo.manager.room.class">Tempo\Bundle\AppBundle\Manager\RoomManager</parameter>
         <parameter key="tempo.manager.room.message.class">Tempo\Bundle\AppBundle\Manager\RoomMessageManager</parameter>
         <parameter key="tempo.listener.project.class">Tempo\Bundle\AppBundle\EventListener\ProjectListener</parameter>
-        <parameter key="tempo.settings_schema.generale.class">Tempo\Bundle\AppBundle\Settings\GeneralSettingsSchema</parameter>
+        <parameter key="tempo.settings_schema.general.class">Tempo\Bundle\AppBundle\Settings\GeneralSettingsSchema</parameter>
         <parameter key="tempo.settings_schema.project.class">Tempo\Bundle\AppBundle\Settings\ProjectSettingsSchema</parameter>
         <parameter key="tempo.twig.extension.class">Tempo\Bundle\AppBundle\Twig\Extension\AppExtension</parameter>
         <parameter key="tempo.manager.activity.class">Tempo\Bundle\AppBundle\Manager\ActivityManager</parameter>
@@ -122,6 +123,16 @@
             </call>
         </service>
 
+        <service id="tempo.menu.builder.admin" class="%tempo.menu.builder.admin.class%">
+            <argument type="service" id="knp_menu.factory" />
+            <argument type="service" id="security.authorization_checker"/>
+            <argument type="service" id="translator" />
+            <argument type="service" id="event_dispatcher" />
+            <call method="setRequest">
+                <argument type="service" id="request" on-invalid="null" strict="false" />
+            </call>
+        </service>
+
         <service id="tempo.menu.frontend" class="%tempo.menu.class%">
             <factory service="tempo.menu.builder.frontend" method="mainMenu" />
             <tag name="knp_menu.menu" alias="main" />
@@ -132,7 +143,12 @@
             <tag name="knp_menu.menu" alias="breadcrumb" />
         </service>
 
-        <service id="tempo.settings_schema.generale" class="%tempo.settings_schema.generale.class%">
+        <service id="tempo.menu.admin.settings" class="%tempo.menu.class%">
+            <factory service="tempo.menu.builder.admin" method="settingMenu" />
+            <tag name="knp_menu.menu" alias="admin_settings" />
+        </service>
+
+        <service id="tempo.settings_schema.general" class="%tempo.settings_schema.general.class%">
             <tag name="sylius.settings_schema" namespace="general" />
         </service>
 

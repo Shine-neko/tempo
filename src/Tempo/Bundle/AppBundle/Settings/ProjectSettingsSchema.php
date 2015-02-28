@@ -21,10 +21,12 @@ class ProjectSettingsSchema implements SchemaInterface
     {
         $builder
             ->setDefaults(array(
+                'right_create_orga' => 'ROLE_ADMIN',
                 'week'  => array('0, 1, 2, 3, 4')
             ))
             ->setAllowedTypes(array(
-                'week'  => array('array'),
+                'right_create_orga' => array('string'),
+                'week'  => array('array')
             ))
         ;
     }
@@ -32,7 +34,11 @@ class ProjectSettingsSchema implements SchemaInterface
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
+            ->add('right_create_orga', 'text', array(
+                'label' => 'tempo.setting.form.right_create_orga'
+            ))
             ->add('week', 'choice', array(
+                'label' => 'tempo.setting.form.buisness_day',
                 'choices' => array(
                     'Monday',
                     'Tuesday',

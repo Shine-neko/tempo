@@ -1,4 +1,4 @@
-backend_configuration_generale:
+admin_configuration_general:
     path: /
     methods: [GET|POST]
     defaults:
@@ -6,7 +6,7 @@ backend_configuration_generale:
         namespace: general
         template: TempoAppBundle:Backend/Settings:general.html.twig
 
-backend_configuration_project:
+admin_configuration_project:
     path: /project
     methods: [GET|POST]
     defaults:

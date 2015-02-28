@@ -5,7 +5,12 @@ tempo:
     project: Projets
     home: Home
     timesheet: Timesheets
-    admin: Admin
+    #admin: Admin
+    admin:
+      dashboard: Admin
+      setting:
+        general: General
+        project: Project
 
   form:
       show: 'Show'
@@ -194,3 +199,8 @@ tempo:
     form:
       name: Name
       enableChat: Enable chat
+
+  setting:
+    form:
+      right_create_orga: Role has right create an organization
+      buisness_day: Buisness Day
