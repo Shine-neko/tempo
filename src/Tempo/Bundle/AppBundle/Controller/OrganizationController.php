@@ -100,7 +100,9 @@ class OrganizationController extends Controller
      */
     public function createAction(Request $request)
     {
-        if (false === $this->isGranted('ROLE_ADMIN')) {
+        $role = $this->get('sylius.settings.manager')->loadSettings('project')->get('right_create_orga');
+
+        if (false === $this->isGranted($role)) {
             throw new AccessDeniedException();
         }
 
