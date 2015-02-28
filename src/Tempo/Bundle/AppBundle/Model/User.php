@@ -117,7 +117,7 @@ class User implements UserInterface
     protected $credentialsExpireAt;
 
     /**
-     * @var token
+     * @var string
      */
     protected $token;
 

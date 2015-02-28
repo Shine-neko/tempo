@@ -34,7 +34,7 @@ class FrontendMenuBuilder extends MenuBuilder
             array('route' => 'timesheet')
         );
 
-        if ($this->securityContext->isGranted('ROLE_ADMIN')) {
+        if ($this->authorization->isGranted('ROLE_ADMIN')) {
             $menu->addChild(
                 $this->translate('tempo.menu.admin.dashboard'),
                 array('route' => 'backend')

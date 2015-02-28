@@ -21,20 +21,21 @@ abstract class MenuBuilder
 {
     protected $factory;
     protected $translator;
-    protected $securityContext;
+    protected $authorization;
     protected $eventDispatcher;
     protected $request;
 
     /**
-     * @param FactoryInterface              $factory
-     * @param AuthorizationCheckerInterface $security
-     * @param TranslatorInterface           $translator
+     * @param FactoryInterface $factory
+     * @param AuthorizationCheckerInterface $authorization
+     * @param TranslatorInterface $translator
+     * @param EventDispatcherInterface $eventDispatcher
      */
-    public function __construct(FactoryInterface $factory, AuthorizationCheckerInterface $securityContext, TranslatorInterface $translator, EventDispatcherInterface $eventDispatcher)
+    public function __construct(FactoryInterface $factory, AuthorizationCheckerInterface $authorization, TranslatorInterface $translator, EventDispatcherInterface $eventDispatcher)
     {
         $this->factory = $factory;
         $this->translator = $translator;
-        $this->securityContext  = $securityContext;
+        $this->authorization  = $authorization;
         $this->eventDispatcher  = $eventDispatcher;
     }
 

@@ -13,9 +13,22 @@ namespace Tempo\Bundle\AppBundle\Model;
 
 class Group implements GroupInterface
 {
+    /**
+     * @var string
+     */
     protected $id;
+
+    /**
+     * @var string
+     */
     protected $name;
+
+    /**
+     * @var array
+     */
     protected $roles;
+
+
     public function __construct($name, $roles = array())
     {
         $this->name = $name;

@@ -12,7 +12,6 @@
 namespace Tempo\Bundle\AppBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -116,10 +115,11 @@ class ProjectController extends Controller
     }
 
     /**
-     * shortcuts redirection
      * Edits an existing Project entity.
-     * @param $slug
-     * @return Response
+     * @param Request $request
+     * @param Project $project
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @throws \Exception
      */
     public function updateAction(Request $request, Project $project)
     {
@@ -143,9 +143,10 @@ class ProjectController extends Controller
 
     /**
      * Deletes a Project entity.
-     * @param $slug
+     * @param Request $request
+     * @param Project $project
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @throws \Exception
      */
     public function deleteAction(Request $request, Project $project)
     {
@@ -162,6 +163,11 @@ class ProjectController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @param Project $project
+     * @return Response
+     */
     public function versionAction(Request $request, Project $project)
     {
         $project = $this->getProject($project, 'EDIT');
@@ -175,6 +181,11 @@ class ProjectController extends Controller
         ));
     }
 
+    /**
+     * @param $project
+     * @param string $right
+     * @return Project
+     */
     protected function getProject($project, $right = 'VIEW')
     {
         if (is_string($project)) {
@@ -184,12 +195,14 @@ class ProjectController extends Controller
                 $this->createNotFoundException();
             }
         }
-        if (false === $this->isGranted($right, $project) && !$this->isGranted('ROLE_ADMIN', $project)) {
+        if (false === $this->isGranted($right, $project)) {
             throw new AccessDeniedException();
         }
 
         return $project;
     }
+
+
     protected function getOrganizaton($slug)
     {
         $organisation = $this->getManager('organization')->findOneBySlug($slug);

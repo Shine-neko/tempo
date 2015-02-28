@@ -13,8 +13,6 @@ namespace Tempo\Bundle\AppBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Tempo\Bundle\AppBundle\Form\Type\ActivityFormType;
-use Tempo\Bundle\AppBundle\Model\Project;
 use Tempo\Bundle\AppBundle\TempoAppEvents;
 use Tempo\Bundle\AppBundle\Event\ActivityProviderEvent;
 
@@ -42,30 +40,6 @@ class ProviderActivityController extends Controller
         $this->get('event_dispatcher')->dispatch(TempoAppEvents::ACTIVITY_PROVIDER_CREATE_SUCCESS, $event);
 
         return new Response('ok');
-    }
-
-    public function newAction()
-    {
-        $form = $this->createForm(new ActivityFormType());
-
-        return $this->render('TempoAppBundle:Provider/Activity:new.html.twig', array(
-            'form' => $form->createView()
-        ));
-    }
-
-    /**
-     * @param $activitiesProvider
-     * @return array
-     */
-    private function formatActivities($activitiesProvider)
-    {
-        $activities = array();
-
-        foreach ($activitiesProvider as $activity) {
-            $activities[$activity->getCreatedAt()->getTimestamp()] = $activity;
-        }
-
-        return $activities;
     }
 
     /**

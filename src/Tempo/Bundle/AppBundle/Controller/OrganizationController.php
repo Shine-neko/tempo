@@ -33,16 +33,15 @@ class OrganizationController extends Controller
     }
 
     /**
-     * @param $slug
-     * @return Response
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @param Organization $organization
+     * @return Response|AccessDeniedException
      */
     public function showAction(Organization $organization)
     {
         $token = $this->get('form.csrf_provider')->generateCsrfToken('delete-organization');
 
         if (false === $this->isGranted('VIEW', $organization)) {
-            throw new AccessDeniedException();
+            return $this->createAccessDeniedException();
         }
 
         $counter = $this->get('tempo.manager.organization')->getStatusProjects($organization->getId());
@@ -68,7 +67,7 @@ class OrganizationController extends Controller
     public function updateAction(Request $request, Organization $organization)
     {
         if (false === $this->isGranted('EDIT', $organization)) {
-            throw new AccessDeniedException();
+            return $this->createAccessDeniedException();
         }
 
         $editForm = $this->createForm(new OrganizationType(), $organization);
@@ -90,10 +89,6 @@ class OrganizationController extends Controller
 
     /**
      * Create a organization
-     * @return array
-     */
-
-    /**
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
@@ -103,7 +98,7 @@ class OrganizationController extends Controller
         $role = $this->get('sylius.settings.manager')->loadSettings('project')->get('right_create_orga');
 
         if (false === $this->isGranted($role)) {
-            throw new AccessDeniedException();
+            return $this->createAccessDeniedException();
         }
 
         $organization = new Organization();
@@ -133,7 +128,7 @@ class OrganizationController extends Controller
     public function deleteAction(Request $request, Organization $organization)
     {
         if (false === $this->isGranted('DELETE', $organization)) {
-            throw new AccessDeniedException();
+            return $this->createAccessDeniedException();
         }
 
         //check token
