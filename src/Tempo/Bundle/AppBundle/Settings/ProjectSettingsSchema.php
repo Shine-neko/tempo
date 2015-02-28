@@ -21,7 +21,7 @@ class ProjectSettingsSchema implements SchemaInterface
     {
         $builder
             ->setDefaults(array(
-                'right_create_orga' => 'ROLE_USER',
+                'right_create_orga' => 'ROLE_ADMIN',
                 'week'  => array('0, 1, 2, 3, 4')
             ))
             ->setAllowedTypes(array(
