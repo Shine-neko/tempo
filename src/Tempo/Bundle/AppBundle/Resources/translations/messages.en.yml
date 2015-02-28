@@ -199,3 +199,8 @@ tempo:
     form:
       name: Name
       enableChat: Enable chat
+
+  setting:
+    form:
+      right_create_orga: Role has right create an organization
+      buisness_day: Buisness Day

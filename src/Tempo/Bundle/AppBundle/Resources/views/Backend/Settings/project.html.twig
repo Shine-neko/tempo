@@ -7,11 +7,13 @@
         {{ knp_menu_render('admin_settings') }}
     </div>
     <div class="col-md-8">
+        <h1 class="page-title">Settings</h1>
         <div class="app-panel">
             <form class="form-block" method="post" action="{{ path('admin_configuration_project') }}">
                 {{ form_errors(form) }}
                 <div id="settings">
-                    {{ form_widget(form.week) }}
+                    {{ form_row(form.right_create_orga) }}
+                    {{ form_row(form.week) }}
                     {{ form_rest(form) }}
                 </div>
 

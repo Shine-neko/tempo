@@ -34,8 +34,11 @@ class ProjectSettingsSchema implements SchemaInterface
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('right_create_orga', 'text')
+            ->add('right_create_orga', 'text', array(
+                'label' => 'tempo.setting.form.right_create_orga'
+            ))
             ->add('week', 'choice', array(
+                'label' => 'tempo.setting.form.buisness_day',
                 'choices' => array(
                     'Monday',
                     'Tuesday',
