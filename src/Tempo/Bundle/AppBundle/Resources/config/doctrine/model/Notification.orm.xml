@@ -13,7 +13,12 @@
         </id>
 
         <field name="state" column="state" type="integer" nullable="false" />
+
         <field name="message" column="message" type="text" nullable="false" />
+
+        <field name="link" column="link" type="text"  nullable="false"  />
+
+        <field name="data" column="data" type="array"  nullable="false"  />
 
         <many-to-one field="user" inversed-by="notifications" target-entity="Tempo\Bundle\AppBundle\Model\User" />
 

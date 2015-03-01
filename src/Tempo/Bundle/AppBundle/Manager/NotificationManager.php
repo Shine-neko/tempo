@@ -23,14 +23,12 @@ class NotificationManager extends ModelManager
         return $this->getRepository()->findAllByUserAndState($user, $state);
     }
 
-    public function create($user, $message, $link)
+    public function create($user, $message, $data)
     {
-        $room = new Notification();
-        $room->setUser($user);
-        $room->setLink($link);
-        $room->setMessage($message);
-
-        $this->save($room);
+        return (new Notification())
+            ->setUser($user)
+            ->setData($data)
+            ->setMessage($message);
     }
 
     public function clearForUser($user)

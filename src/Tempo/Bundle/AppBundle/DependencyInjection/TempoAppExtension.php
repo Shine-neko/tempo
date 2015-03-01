@@ -43,6 +43,7 @@ class TempoAppExtension extends AbstractResourceExtension
         'providers',
         'security',
         'user',
+        'events',
     );
 
     /**

@@ -13,11 +13,11 @@ namespace Tempo\Bundle\AppBundle\EventListener;
 
 use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Routing\RouterInterface;
-use Tempo\Bundle\AppBundle\Manager\NotificationManager;
-use Tempo\Bundle\AppBundle\TempoAppEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Tempo\Bundle\AppBundle\TempoAppEvents;
+use Tempo\Bundle\AppBundle\Manager\NotificationManager;
 
-class TeamSubscriber implements EventSubscriberInterface
+class AccessSubscriber implements EventSubscriberInterface
 {
     /**
      * @var \Symfony\Bundle\FrameworkBundle\Translation\Translator
@@ -56,12 +56,15 @@ class TeamSubscriber implements EventSubscriberInterface
     {
         $modelName = strtolower((new \ReflectionClass($event->getModel()))->getShortName());
         $message = sprintf('tempo.notification.%s.team.add.completed', $modelName);
+        $resource = $event->getModel();
 
-        $route  = $this->router->generate($modelName. '_show', array(
-            'slug' => $event->getModel()->getSlug()
-        ));
-        $message = $this->translator->trans($message, array('name' => $event->getModel(), 'TempoProject'));
+        $route  = $this->router->generate($modelName. '_show', array('slug' => $resource->getSlug() ));
+        $data = array('resource' => $resource, 'name' => $resource->getName());
 
-        $this->notificationManager->create($event->getUserTo(), $message, $route);
+        $notification = $this->notificationManager
+            ->create($event->getUserTo(), $message, $data)
+                ->setLink($route);
+
+        $this->notificationManager->save($notification);
     }
 }
