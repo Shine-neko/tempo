@@ -228,7 +228,7 @@ class TimesheetController extends Controller
     private function filterData(Request $request)
     {
         $locale = $this->container->getParameter('locale');
-        $workDay = $this->container->getParameter('tempo_app.week');
+        $workDay = $this->container->getParameter('tempo.week');
         $currentYear = $request->query->get('year', date('Y'));
         $currentWeek = $request->query->get('week', date('W'));
 

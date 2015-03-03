@@ -28,7 +28,7 @@ class NotificationController extends Controller
         $page  = $request->query->get('page', 1);
         $state  = $request->query->get('all', 0);
 
-        $query = $this->get('tempo.manager.notification')->findAllByUserAndState(
+        $query = $this->getManager('notification')->findAllByUserAndState(
             $this->getUser()->getId(),
             $state
         );

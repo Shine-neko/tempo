@@ -17,7 +17,7 @@ use Tempo\Bundle\AppBundle\Model\Room;
  *
  * @author Mlanawo Mbechezi <mlanawo.mbechezi@ikimea.com>
  */
-class RoomMessageManager extends BaseManager
+class RoomMessageManager extends ModelManager
 {
 
     public function all($room , $limit, $offset, $orderby )

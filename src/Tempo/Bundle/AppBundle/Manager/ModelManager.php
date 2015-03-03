@@ -17,10 +17,20 @@ use Doctrine\ORM\EntityManager;
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
 
-abstract class BaseManager
+class ModelManager
 {
+    /**
+     * @var \Doctrine\ORM\EntityRepository
+     */
     protected $repository;
+
+    /**
+     * @var EntityManager
+     */
     protected $em;
+    /**
+     * @var string
+     */
     protected $class;
 
     /**

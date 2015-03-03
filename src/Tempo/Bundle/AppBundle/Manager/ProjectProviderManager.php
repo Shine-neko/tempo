@@ -15,6 +15,6 @@ namespace Tempo\Bundle\AppBundle\Manager;
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
 
-class ProjectProviderManager extends BaseManager
+class ProjectProviderManager extends ModelManager
 {
 }

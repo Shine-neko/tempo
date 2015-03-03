@@ -15,11 +15,11 @@
 
     <services>
         <service id="tempo.user.user_provider.username" class="%tempo.user.user_provider.username.class%">
-            <argument type="service" id="tempo.manager_custom.user" />
+            <argument type="service" id="tempo.model_manager.user" />
         </service>
 
         <service id="tempo.user.oauth.user_provider" class="%tempo.user.oauth.user_provider.class%">
-            <argument type="service" id="tempo.manager_custom.user" />
+            <argument type="service" id="tempo.model_manager.user" />
             <argument type="collection">
             <argument key="google">googleId</argument>
             <argument key="github">githubId</argument>
@@ -62,7 +62,7 @@
         </service>
 
         <service id="tempo.user.security.api_token_user_provider" class="%tempo.user.security.api_token_user_provider.class%">
-            <argument type="service" id="tempo.manager_custom.user" />
+            <argument type="service" id="tempo.model_manager.user" />
         </service>
 
         <service id="tempo.user.security.api_token_authenticator" class="%tempo.user.security.api_token_authenticator.class%">
@@ -70,7 +70,7 @@
         </service>
 
         <service id="tempo.user.twig.extension" class="%tempo.user.twig.extension.class%">
-            <argument type="service" id="tempo.manager.notification" />
+            <argument type="service" id="tempo.model_manager.notification" />
             <tag name="twig.extension" />
         </service>
 

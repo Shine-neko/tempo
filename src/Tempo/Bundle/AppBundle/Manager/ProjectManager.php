@@ -11,13 +11,13 @@
 
 namespace Tempo\Bundle\AppBundle\Manager;
 
-use Tempo\Bundle\AppBundle\Manager\BaseManager;
+use Tempo\Bundle\AppBundle\Manager\ModelManager;
 
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
 
-class ProjectManager extends BaseManager
+class ProjectManager extends ModelManager
 {
     /**
      * @param $slug

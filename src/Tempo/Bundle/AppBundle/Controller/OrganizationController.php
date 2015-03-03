@@ -44,7 +44,7 @@ class OrganizationController extends Controller
             return $this->createAccessDeniedException();
         }
 
-        $counter = $this->get('tempo.manager.organization')->getStatusProjects($organization->getId());
+        $counter = $this->getManager('organization')->getStatusProjects($organization->getId());
 
         $this->getBreadcrumb()->addChild($organization->getName());
 

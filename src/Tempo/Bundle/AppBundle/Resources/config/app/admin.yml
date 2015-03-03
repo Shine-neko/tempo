@@ -1,25 +1,23 @@
 sylius_resource:
     resources:
-      tempo_backend.organization:
-        driver: doctrine/orm
-        classes:
-          controller: Tempo\Bundle\AppBundle\Controller\Backend\OrganizationController
-          model: Tempo\Bundle\AppBundle\Model\Organization
+        tempo_backend.organization:
+            driver: doctrine/orm
+            classes:
+                controller: Tempo\Bundle\AppBundle\Controller\Backend\OrganizationController
 
-      tempo_backend.project:
-         driver: doctrine/orm
-         classes:
-            controller: Tempo\Bundle\AppBundle\Controller\Backend\ProjectController
-            model: Tempo\Bundle\AppBundle\Model\Project
+        tempo_backend.project:
+             driver: doctrine/orm
+             classes:
+                controller: Tempo\Bundle\AppBundle\Controller\Backend\ProjectController
 
-      tempo_backend.user:
-          driver: doctrine/orm
-          classes:
-            controller: Tempo\Bundle\AppBundle\Controller\Backend\UserController
-            model: Tempo\Bundle\AppBundle\Model\User
+        tempo_backend.user:
+            driver: doctrine/orm
+            classes:
+                controller: Tempo\Bundle\AppBundle\Controller\Backend\UserController
+                model: Tempo\Bundle\AppBundle\Model\User
 
-      tempo_backend.group:
-          driver: doctrine/orm
-          classes:
-            model: Tempo\Bundle\UserBundle\Model\Group
+        tempo_backend.group:
+            driver: doctrine/orm
+            classes:
+                model: Tempo\Bundle\UserBundle\Model\Group
 

@@ -14,7 +14,7 @@ namespace Tempo\Bundle\AppBundle\Manager;
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
-class TeamManager extends BaseManager
+class TeamManager extends ModelManager
 {
     public function getRepository($class)
     {

@@ -1,5 +1,5 @@
 imports:
-    - { resource: @TempoAppBundle/Resources/config/app/admin.yml }
+    - { resource: @TempoAppBundle/Resources/config/app/resource.yml }
 
 sylius_settings:
     driver: doctrine/orm

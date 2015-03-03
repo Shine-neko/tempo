@@ -4,16 +4,34 @@
 
     <parameters>
         <parameter key="tempo.event.listener.team.class">Tempo\Bundle\AppBundle\EventListener\TeamSubscriber</parameter>
+        <parameter key="tempo.listener.project.class">Tempo\Bundle\AppBundle\EventListener\ProjectListener</parameter>
+        <parameter key="tempo.activity.listener.activity_provider.class">Tempo\Bundle\AppBundle\EventListener\ActivityProviderListener</parameter>
     </parameters>
 
     <services>
+
+        <service id="tempo.listener.controller" class="%tempo.eventlistener.class%">
+            <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController"/>
+        </service>
+
         <service id="tempo.event.listener.team" class="%tempo.event.listener.team.class%">
             <argument type="service" id="translator" />
             <argument type="service" id="router" />
-            <argument type="service" id="tempo.manager.notification" />
+            <argument type="service" id="tempo.model_manager.notification" />
             <tag name="kernel.event_subscriber" />
         </service>
 
+        <service id="tempo.activity.listener.activity_provider" class="%tempo.activity.listener.activity_provider.class%">
+            <argument type="service" id="tempo.model_manager.room" />
+            <argument type="service" id="jms_serializer" />
+            <argument type="service" id="tempo.elephantio.client" />
+            <tag name="kernel.event_listener" event="tempo.activity.provider.create.success" method="pingActivityRoom" />
+        </service>
+
+        <service id="tempo.listener.project" class="%tempo.listener.project.class%">
+            <argument type="service" id="tempo.model_manager.room" />
+            <tag name="kernel.event_listener" event="tempo.project.create.success" method="createProject" />
+        </service>
     </services>
 
 </container>

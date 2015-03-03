@@ -1,0 +1,70 @@
+sylius_resource:
+  resources:
+      tempo.organization:
+          driver: doctrine/orm
+          classes:
+              controller: Tempo\Bundle\AppBundle\Controller\Backend\OrganizationController
+              model: Tempo\Bundle\AppBundle\Model\Organization
+
+      tempo.project:
+          driver: doctrine/orm
+          classes:
+              controller: Tempo\Bundle\AppBundle\Controller\Backend\ProjectController
+              model: Tempo\Bundle\AppBundle\Model\Project
+
+      tempo.project:
+          driver: doctrine/orm
+          classes:
+              controller: Tempo\Bundle\AppBundle\Controller\Backend\ProjectController
+              model: Tempo\Bundle\AppBundle\Model\Project
+
+      tempo.timesheet:
+          driver: doctrine/orm
+          classes:
+              model: Tempo\Bundle\AppBundle\Model\Timesheet
+
+      tempo.user:
+          driver: doctrine/orm
+          classes:
+              controller: Tempo\Bundle\AppBundle\Controller\Backend\UserController
+              model: Tempo\Bundle\AppBundle\Model\User
+
+      tempo.group:
+          driver: doctrine/orm
+          classes:
+              model: Tempo\Bundle\AppBundle\Model\Group
+
+      tempo.activity:
+          driver: doctrine/orm
+          classes:
+              model: Tempo\Bundle\AppBundle\Model\Activity
+
+      tempo.activity_provider:
+          driver: doctrine/orm
+          classes:
+              model: Tempo\Bundle\AppBundle\Model\Activity
+
+      tempo.access:
+          driver: doctrine/orm
+          classes:
+              model: Tempo\Bundle\AppBundle\Model\Access
+
+      tempo.notification:
+          driver: doctrine/orm
+          classes:
+              model: Tempo\Bundle\AppBundle\Model\Notification
+
+      tempo.room:
+          driver: doctrine/orm
+          classes:
+              model: Tempo\Bundle\AppBundle\Model\Room
+
+      tempo.message:
+          driver: doctrine/orm
+          classes:
+              model: Tempo\Bundle\AppBundle\Model\Message
+
+      tempo.comment:
+          driver: doctrine/orm
+          classes:
+              model: Tempo\Bundle\AppBundle\Model\Comment

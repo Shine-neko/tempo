@@ -11,7 +11,7 @@
 
 namespace Tempo\Bundle\AppBundle\Manager;
 
-class CommentManager extends BaseManager
+class CommentManager extends ModelManager
 {
 
 }

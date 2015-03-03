@@ -14,7 +14,7 @@ namespace Tempo\Bundle\AppBundle\Manager;
 use Tempo\Bundle\AppBundle\Model\Activity;
 use Tempo\Bundle\AppBundle\Model\User;
 
-class ActivityManager extends BaseManager
+class ActivityManager extends ModelManager
 {
     /**
      * @var User;

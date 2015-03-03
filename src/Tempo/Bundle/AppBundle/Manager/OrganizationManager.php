@@ -15,7 +15,7 @@ namespace Tempo\Bundle\AppBundle\Manager;
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
 
-class OrganizationManager extends BaseManager
+class OrganizationManager extends ModelManager
 {
    /**
     * return list projects organization
