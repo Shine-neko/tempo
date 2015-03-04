@@ -62,15 +62,11 @@ class Controller extends FOSRestController
 
     /**
      * @param string $name
-     * @return \Tempo\Bundle\AppBundle\Manager\BaseManager
+     * @return \Tempo\Bundle\AppBundle\Manager\ModelManager
      */
     protected function getManager($name)
     {
-        if ($this->has('tempo.manager_custom.'. $name)) {
-            return $this->get('tempo.manager_custom.'. $name);
-        }
-
-        return $this->get('tempo.manager.'. $name);
+        return $this->get('tempo.model_manager.'. $name);
     }
 
     /**

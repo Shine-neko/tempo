@@ -16,7 +16,7 @@ use Tempo\Bundle\AppBundle\Model\Room;
  *
  * @author Mlanawo Mbechezi <mlanawo.mbechezi@ikimea.com>
  */
-class RoomManager extends BaseManager
+class RoomManager extends ModelManager
 {
     public function create($name, $project)
     {

@@ -16,7 +16,7 @@ use Tempo\Bundle\AppBundle\Model\Notification;
 /**
  * @author Mlanawo Mbechezi <mlanawo.mbechezi@ikimea.com>
  */
-class NotificationManager extends BaseManager
+class NotificationManager extends ModelManager
 {
     public function findAllByUserAndState($user, $state)
     {

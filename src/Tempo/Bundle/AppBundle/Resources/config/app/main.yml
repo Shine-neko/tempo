@@ -1,4 +1,5 @@
 imports:
+    - { resource: @TempoAppBundle/Resources/config/app/resource.yml }
     - { resource: @TempoAppBundle/Resources/config/app/admin.yml }
 
 sylius_settings:

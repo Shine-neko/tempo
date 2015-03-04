@@ -15,7 +15,7 @@ namespace Tempo\Bundle\AppBundle\Manager;
 use Tempo\Bundle\AppBundle\Model\ProjectProviderInterface;
 use Tempo\Bundle\AppBundle\Model\ActivityProviderInterface;
 
-class ActivityProviderManager extends BaseManager
+class ActivityProviderManager extends ModelManager
 {
     /**
      * @param ActivityProviderInterface $activity

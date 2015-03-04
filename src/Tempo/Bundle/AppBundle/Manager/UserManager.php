@@ -16,7 +16,7 @@ use Tempo\Bundle\AppBundle\Model\UserInterface;
 /**
  * @author Mlanawo Mbechezi <mlanawo.mbechezi@ikimea.com>
  */
-class UserManager extends BaseManager
+class UserManager extends ModelManager
 {
     /**
      * Finds a user by email

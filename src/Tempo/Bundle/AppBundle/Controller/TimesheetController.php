@@ -228,7 +228,7 @@ class TimesheetController extends Controller
     private function filterData(Request $request)
     {
         $locale = $this->container->getParameter('locale');
-        $workDay = $this->container->getParameter('tempo_app.week');
+        $workDay = $this->container->getParameter('tempo.week');
         $currentYear = $request->query->get('year', date('Y'));
         $currentWeek = $request->query->get('week', date('W'));
 
@@ -245,7 +245,7 @@ class TimesheetController extends Controller
         $filterFormType = $this->createForm(new TimesheetFilterType());
         $processFilter = $this->processFilter($request, $filterFormType, $factoryWeek);
 
-        $projectsActivityReporting = $this->get('tempo.manager.timesheet')->findActivities(
+        $projectsActivityReporting = $this->getManager('timesheet')->findActivities(
             $this->getUser()->getId(), $processFilter['from']->format('Y-m-j'), $processFilter['to']->format('Y-m-j')
         );
 

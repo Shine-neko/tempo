@@ -22,7 +22,7 @@ class ActivityController extends Controller
     public function listAction($type, $parent)
     {
         $activitiesInternal = $this->getManager('activity')->getActivityActions($this->getUser());
-        $activitiesProvider = $this->getManager('activityProvider')->getActivityActions($this->getUser());
+        $activitiesProvider = $this->getManager('activity_provider')->getActivityActions($this->getUser());
 
         $activities =  array_merge($activitiesInternal, $activitiesProvider);
 

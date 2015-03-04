@@ -17,7 +17,7 @@ use Tempo\Bundle\AppBundle\Timesheet\ProjectActivityDayTimesheet;
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
-class TimesheetManager extends BaseManager
+class TimesheetManager extends ModelManager
 {
     /**
      * @param $user

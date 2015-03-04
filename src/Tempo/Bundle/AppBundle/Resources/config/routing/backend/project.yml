@@ -2,7 +2,7 @@ backend_project_index:
     pattern: /
     methods: [GET]
     defaults:
-        _controller: tempo_backend.controller.project:indexAction
+        _controller: tempo.backend.controller.project:indexAction
         _sylius:
             template: TempoAppBundle:Backend/Project:index.html.twig
             arguments: [$criteria, $sorting]
@@ -12,12 +12,14 @@ backend_project_filter_form:
     pattern: /filter-form
     methods: [GET]
     defaults:
-        _controller: tempo_backend.controller.project:filterFormAction
+        _controller: tempo.backend.controller.project:filterFormAction
+        _sylius:
+            form: Tempo\Bundle\AppBundle\Form\Type\Backend\Filter\OrganizationFilterType
 
 backend_project_delete:
     pattern: /{id}
     methods: [DELETE]
     defaults:
-        _controller: tempo_backend.controller.project:deleteAction
+        _controller: tempo.backend.controller.project:deleteAction
         _sylius:
             redirect: backend_project_index

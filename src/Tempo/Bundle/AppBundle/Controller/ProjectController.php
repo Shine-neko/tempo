@@ -31,7 +31,7 @@ class ProjectController extends Controller
      */
     public function dashboardAction()
     {
-        $manager = $this->container->get('tempo.manager.organization');
+        $manager = $this->getManager('organization');
         $organizations = $manager->findAllByUser($this->getUser()->getId());
 
         return $this->render('TempoAppBundle:Project:dashboard.html.twig', array(
