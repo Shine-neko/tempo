@@ -3,19 +3,16 @@ sylius_resource:
       tempo.organization:
           driver: doctrine/orm
           classes:
-              controller: Tempo\Bundle\AppBundle\Controller\Backend\OrganizationController
               model: Tempo\Bundle\AppBundle\Model\Organization
 
       tempo.project:
           driver: doctrine/orm
           classes:
-              controller: Tempo\Bundle\AppBundle\Controller\Backend\ProjectController
               model: Tempo\Bundle\AppBundle\Model\Project
 
       tempo.project:
           driver: doctrine/orm
           classes:
-              controller: Tempo\Bundle\AppBundle\Controller\Backend\ProjectController
               model: Tempo\Bundle\AppBundle\Model\Project
 
       tempo.timesheet:

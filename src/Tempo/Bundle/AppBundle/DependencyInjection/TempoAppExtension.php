@@ -12,8 +12,9 @@
 namespace Tempo\Bundle\AppBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Sylius\Bundle\ResourceBundle\DependencyInjection\AbstractResourceExtension;
 use Symfony\Component\DependencyInjection\Reference;
+use Symfony\Component\DependencyInjection\Definition;
+use Sylius\Bundle\ResourceBundle\DependencyInjection\AbstractResourceExtension;
 use Doctrine\Common\Util\Inflector;
 
 /**
@@ -60,10 +61,11 @@ class TempoAppExtension extends AbstractResourceExtension
         $container->setParameter('sylius.translation.mapping', '%sylius.translation.default.mapping%');
         $container->setParameter('tempo.week', $config['week']);
 
-        $this->createManagerServices($container);
+        $this->createManagerServices($container, $config);
+        $this->createBackendServices($container, $config);
     }
 
-    private function createManagerServices(ContainerBuilder $container)
+    private function createManagerServices(ContainerBuilder $container, $config)
     {
         $models = array();
         $classes = $container->getParameter('sylius.config.classes');
@@ -87,5 +89,45 @@ class TempoAppExtension extends AbstractResourceExtension
                 ->addArgument(new Reference('doctrine.orm.entity_manager'))
                 ->addArgument($models[$key]);
         }
+    }
+
+    public function createBackendServices(ContainerBuilder $container, $config)
+    {
+        foreach($config['backend'] as $resourceName => $conf ) {
+            if (!isset($conf['controller'])) {
+                $conf['controller'] = 'Tempo\Bundle\AppBundle\Controller\Backend\BackendController';
+            }
+
+            $container->setDefinition(
+                'tempo.backend.controller.'.$resourceName,
+                $this->getControllerDefinition($conf['controller'], $resourceName)
+            );
+        }
+    }
+
+    protected function getControllerDefinition($class, $resourceName)
+    {
+        $definition = new Definition($class);
+        $definition
+            ->setArguments(array($this->getConfigurationDefinition($resourceName)))
+            ->addMethodCall('setContainer', array(new Reference('service_container')))
+        ;
+
+        return $definition;
+    }
+
+    protected function getConfigurationDefinition($resourceName)
+    {
+        $definition = new Definition('Sylius\Bundle\ResourceBundle\Controller\Configuration');
+        $definition
+            ->setFactory(array(
+                new Reference('sylius.controller.configuration_factory'),
+                'createConfiguration'
+            ))
+            ->setArguments(array('tempo', $resourceName, ''))
+            ->setPublic(false)
+        ;
+
+        return $definition;
     }
 }

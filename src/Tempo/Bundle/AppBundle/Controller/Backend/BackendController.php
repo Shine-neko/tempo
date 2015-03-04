@@ -12,19 +12,16 @@
 
 namespace Tempo\Bundle\AppBundle\Controller\Backend;
 
-use Symfony\Component\HttpFoundation\Request;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
-use Tempo\Bundle\AppBundle\Form\Type\Backend\Filter\OrganizationFilterType;
+use Symfony\Component\HttpFoundation\Request;
 
-class OrganizationController extends ResourceController
+class BackendController extends ResourceController
 {
-    /**
-     * Render Organization filter form.
-     */
     public function filterFormAction(Request $request)
     {
+        $form  = $this->getForm($request->query->get('criteria'));
         return $this->render('TempoAppBundle:Backend/Organization:filterForm.html.twig', array(
-            'form' => $this->get('form.factory')->createNamed('criteria', new OrganizationFilterType(), $request->query->get('criteria'))->createView()
+            'form' => $form->createView()
         ));
     }
 }
