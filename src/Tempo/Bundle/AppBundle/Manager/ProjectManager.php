@@ -36,8 +36,4 @@ class ProjectManager extends ModelManager
     {
         return $this->getRepository()->totalProject();
     }
-
-    public function getProjectAssign($user)
-    {
-    }
 }

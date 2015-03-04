@@ -80,7 +80,9 @@ class TempoAppExtension extends AbstractResourceExtension
                 $models[$key] = $config['model'];
             }
 
-            if(!class_exists($manager = 'Tempo\Bundle\AppBundle\Manager\\'.ucfirst(Inflector::classify($key)). 'Manager')) {
+            $manager = sprintf('Tempo\Bundle\AppBundle\Manager\%sManager', ucfirst(Inflector::classify($key)));
+
+            if(!class_exists($manager)) {
                 $manager = 'Tempo\Bundle\AppBundle\Manager\\ModelManager';
             }
 

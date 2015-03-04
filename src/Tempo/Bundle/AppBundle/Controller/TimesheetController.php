@@ -245,7 +245,7 @@ class TimesheetController extends Controller
         $filterFormType = $this->createForm(new TimesheetFilterType());
         $processFilter = $this->processFilter($request, $filterFormType, $factoryWeek);
 
-        $projectsActivityReporting = $this->get('tempo.manager.timesheet')->findActivities(
+        $projectsActivityReporting = $this->getManager('timesheet')->findActivities(
             $this->getUser()->getId(), $processFilter['from']->format('Y-m-j'), $processFilter['to']->format('Y-m-j')
         );
 
