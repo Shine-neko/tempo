@@ -77,7 +77,6 @@ class ProjectController extends Controller
             'teamForm' => $teamForm->createView(),
             'organization' => $organization,
             'csrfToken' => $token,
-            'tabProvidersRegistry' => $this->get('tempo.project.tabProvidersRegistry'),
             'page' => $page,
             'project' => $project
         ));
@@ -138,6 +137,13 @@ class ProjectController extends Controller
         return $this->render('TempoAppBundle:Project:update.html.twig', array(
             'project'     =>  $project,
             'form'   =>  $editForm->createView(),
+        ));
+    }
+
+    public function settingsAction(Request $request, Project $project)
+    {
+        return $this->render('TempoAppBundle:Project:settings.html.twig', array(
+            'project'     =>  $project,
         ));
     }
 
