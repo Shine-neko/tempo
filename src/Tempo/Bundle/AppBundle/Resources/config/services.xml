@@ -144,19 +144,9 @@
             <tag name="sylius.settings_schema" namespace="project" />
         </service>
 
-        <service id="tempo.project.tabProvidersRegistry" class="%tempo.project.tabProvidersRegistry.class%" />
-
-        <service id="tempo.project.tab.project" class="%tempo.project.tab.project.class%">
-            <tag name="tempo.project.show.tab" />
+        <service id="tempo.builder.activites" class="%tempo.builder.activites.class%">
+            <argument type="service" id="tempo.model_manager.activity"/>
+            <argument type="service" id="tempo.model_manager.activity_provider"/>
         </service>
-
-        <service id="tempo.project.tab.subproject" class="%tempo.project.tab.subproject.class%">
-            <tag name="tempo.project.show.tab" />
-        </service>
-
-        <service id="tempo.project.tab.settings" class="%tempo.project.tab.settings.class%">
-            <tag name="tempo.project.show.tab" />
-        </service>
-        
     </services>
 </container>

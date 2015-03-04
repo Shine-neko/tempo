@@ -43,7 +43,7 @@
             <a class="btn btn-xs btn-info " href="{{ path('project_update', { 'slug': project.slug }) }}"> <span class="glyphicon glyphicon-edit"></span> Edit</a>
             {% endif %}
             {% if is_granted('EDIT', project) %}
-                <a class="btn btn-xs btn-primary" href="{{ path('project_version', { 'slug': project.slug }) }}"> <span class="glyphicon glyphicon-cog"></span> {{ 'tempo.project.form.version'|trans }} </a>
+                <a class="btn btn-xs btn-primary" href="{{ path('project_settings', { 'slug': project.slug }) }}"> <span class="glyphicon glyphicon-cog"></span> {{ 'tempo.project.settings'|trans }} </a>
             {% endif %}
             {% if is_granted('DELETE', project) %}
             <a class="btn btn-xs btn-danger" data-toggle="modal" data-target="#" data-title="Delete project" href="#delete_project"> <span class="glyphicon glyphicon-trash"></span> Delete</a>
@@ -52,17 +52,17 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="nav nav-tabs" id="project-tab">
-                    {% for provider in tabProvidersRegistry.providers %}
-                    <li{% if loop.first %} class="active"{% endif %}><a href="#{{ provider.id }}" data-toggle="tab">{{ provider.name }}</a></li>
-                    {% endfor %}
+                    <li><a class="active" href="#tab-project">Project</a></li>
+                    <li><a href="#tab-sub-project">Sub-Projects</a></li>
                 </ul>
 
                 <div class="tab-content">
-                    {% for provider in tabProvidersRegistry.providers %}
-                    <div class="tab-pane{% if loop.first %} active{% endif %}" id="{{ provider.id }}">
-                        {% include provider.content %}
+                    <div class="tab-pane active" id="tab-project">
+                        {% include 'TempoAppBundle:Project/Tabs:project.html.twig' %}
                     </div>
-                    {% endfor %}
+                    <div class="tab-pane" id="tab-sub-project">
+                        {% include 'TempoAppBundle:Project/Tabs:subproject.html.twig' %}
+                    </div>
                 </div>
             </div>
         </div>

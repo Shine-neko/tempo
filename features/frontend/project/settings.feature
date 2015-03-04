@@ -5,7 +5,3 @@ Feature: dashboard project
 
   Scenario: Viewing the dashboard project
     When I am on "project/selenium/luciole"
-
-    And I should see "Project services"
-    And I follow "Github"
-

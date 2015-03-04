@@ -17,6 +17,12 @@ project_update:
         _method: get|post
         slug: ".+"
 
+project_settings:
+    path:  /{slug}/settings
+    defaults: { _controller: TempoAppBundle:Project:settings }
+    requirements:
+        slug: ".+"
+
 project_delete:
     path:  /{slug}/delete
     defaults: { _controller: TempoAppBundle:Project:delete }
