@@ -34,7 +34,7 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "twig/extensions": "~1.2",
 
-        "friendsofsymfony/rest-bundle": "1.5.0-RC5",
+        "friendsofsymfony/rest-bundle": "~1.5",
         "friendsofsymfony/jsrouting-bundle": "~1.5",
         "hwi/oauth-bundle": "~0.3",
         "jms/serializer-bundle": "~0.13",
@@ -54,7 +54,7 @@
         "phpoffice/phpexcel": "~1.8"
    },
     "require-dev": {
-        "phpunit/phpunit": "~4.4",
+        "phpunit/phpunit": "~4.5",
         "behat/behat": "~3.0",
         "behat/symfony2-extension":      "~2.0",
         "behat/mink-extension":          "~2.0",
