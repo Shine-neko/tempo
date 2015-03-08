@@ -29,6 +29,8 @@ class NotificationManager extends ModelManager
             ->setUser($user)
             ->setData($data)
             ->setMessage($message);
+
+        $this->save($room);
     }
 
     public function clearForUser($user)

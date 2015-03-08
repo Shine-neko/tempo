@@ -11,7 +11,6 @@
 
 namespace Tempo\Bundle\AppBundle\EventListener;
 
-use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Tempo\Bundle\AppBundle\TempoAppEvents;
@@ -20,23 +19,16 @@ use Tempo\Bundle\AppBundle\Manager\NotificationManager;
 class AccessSubscriber implements EventSubscriberInterface
 {
     /**
-     * @var \Symfony\Bundle\FrameworkBundle\Translation\Translator
-     */
-    protected $translator;
-
-    /**
      * @var NotificationManager
      */
     private $notificationManager;
 
     /**
-     * @param TranslatorInterface $translator
      * @param RouterInterface     $router
      * @param NotificationManager $notificationManager
      */
-    public function __construct(TranslatorInterface $translator, RouterInterface $router, NotificationManager $notificationManager)
+    public function __construct(RouterInterface $router, NotificationManager $notificationManager)
     {
-        $this->translator = $translator;
         $this->router = $router;
         $this->notificationManager = $notificationManager;
     }
@@ -44,16 +36,20 @@ class AccessSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            TempoAppEvents::ORGANIZATION_ASSIGN_USER => 'buildNotification',
-            TempoAppEvents::ORGANIZATION_DELETE_USER => 'buildNotification',
+            TempoAppEvents::ORGANIZATION_ASSIGN_USER => 'accessNotification',
+            TempoAppEvents::ORGANIZATION_DELETE_USER => 'accessNotification',
 
-            TempoAppEvents::PROJECT_ASSIGN_USER => 'buildNotification',
-            TempoAppEvents::PROJECT_DELETE_USER => 'buildNotification',
+            TempoAppEvents::PROJECT_ASSIGN_USER => 'accessNotification',
+            TempoAppEvents::PROJECT_DELETE_USER => 'accessNotification',
         );
     }
 
-    public function buildNotification($event)
+    /**
+     * @param $event
+     */
+    public function accessNotification($event)
     {
+
         $modelName = strtolower((new \ReflectionClass($event->getModel()))->getShortName());
         $message = sprintf('tempo.notification.%s.team.add.completed', $modelName);
         $resource = $event->getModel();
