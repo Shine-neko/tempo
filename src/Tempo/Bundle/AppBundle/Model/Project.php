@@ -208,6 +208,14 @@ class Project implements ProjectInterface
     }
 
     /**
+     * return full slug({organization}/{project})
+     */
+    public function getFullSlug()
+    {
+        return $this->organization->getSlug() . '/' . $this->slug ;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function setLastActivity(\DateTime $lastActivity)

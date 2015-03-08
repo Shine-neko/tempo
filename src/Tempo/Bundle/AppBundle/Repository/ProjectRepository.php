@@ -15,6 +15,37 @@ use Doctrine\ORM\EntityRepository;
 
 class ProjectRepository extends EntityRepository
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function findOneBy(array $criteria)
+    {
+        if (isset($criteria['slug']) && is_string($criteria['slug']) && strpos($criteria['slug'], '/') !== false) {
+
+            list($organization, $project) = explode('/', $criteria['slug']);
+
+            $query = $this
+                ->createQueryBuilder('project')
+                    ->select()
+                    ->leftJoin('project.organization', 'org')
+                    ->where('project.slug = ?1')
+                    ->andWhere('org.slug = ?2')
+                    ->setParameters(array(
+                        1 => $project,
+                        2 => $organization
+                    ))
+                ->setMaxResults(1);
+
+            return $query->getQuery()->getSingleResult();
+        }
+
+        return parent::findOneBy($criteria);
+    }
+
+    /**
+     * @param $user
+     * @return \Doctrine\ORM\QueryBuilder
+     */
     public function findProjectByUser($user)
     {
         $query = $this
@@ -50,24 +81,6 @@ class ProjectRepository extends EntityRepository
     }
 
     /**
-     * Return all projects sorted by interest, indexed by id
-     *
-     * @return Associative array of Project
-     */
-    public function findAllIndexedById()
-    {
-        $projects = $this->getOrderByPriorityQuery()->execute();
-
-        // TODO: find how to INDEX BY id
-        $projectsIndexed = array();
-        foreach ($projects as $project) {
-            $projectsIndexed[$project->getId()] = $project;
-        }
-
-        return $projectsIndexed;
-    }
-
-    /**
      * Return all projects sorted by priority.
      * Lower value is more important
      *
@@ -78,29 +91,6 @@ class ProjectRepository extends EntityRepository
         return $this->getOrderByPriorityQuery()->execute();
     }
 
-    /**
-     * Return a project. Any project.
-     *
-     * @return Project
-     */
-    public function findDummyProject()
-    {
-        return $this->createQueryBuilder('p')
-                ->getQuery()
-                ->setMaxResults(1)
-                ->getSingleResult();
-    }
-
-    /**
-     * @return \Doctrine\ORM\Query
-     */
-    protected function getOrderByPriorityQuery()
-    {
-        return $this->createQueryBuilder('p')
-                ->orderBy('p.priority', 'ASC')
-                ->getQuery()
-        ;
-    }
 
     /**
      * @return mixed
