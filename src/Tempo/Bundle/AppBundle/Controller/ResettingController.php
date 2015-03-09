@@ -57,7 +57,7 @@ class ResettingController extends Controller
                 'text/html'
             );
 
-        $test  = $this->get('mailer')->send($message);
+        $this->get('mailer')->send($message);
         $user->setPasswordRequestedAt(new \DateTime('now', new \DateTimeZone('UTC')));
         $this->getManager('user')->save($user);
 
@@ -72,7 +72,7 @@ class ResettingController extends Controller
         $user = $userManager->findUserByConfirmationToken($token);
 
         if (null === $user) {
-            throw new NotFoundHttpException(sprintf('The user with "confirmation token" does not exist for value "%s"', $token));
+            $this->createNotFoundException(sprintf('The user with "confirmation token" does not exist for value "%s"', $token));
         }
 
         if ($user->isPasswordRequestNonExpired(5)) {

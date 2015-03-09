@@ -100,10 +100,9 @@ class FeatureContext extends BaseContext
     /**
      * Wait
      *
-     * @param integer $time
-     * @param string  $condition
-     *
-     * @throws BehaviorException If timeout is reached
+     * @param int $time
+     * @param null $condition
+     * @throws \Exception If timeout is reached
      */
     public function wait($time = 10000, $condition = null)
     {
@@ -130,7 +129,7 @@ JS;
 
         // Check if we reached the timeout unless the condition is false to explicitly wait the specified time
         if ($condition !== false && microtime(true) > $end) {
-            throw new BehaviorException(sprintf('Timeout of %d reached when checking on %s', $time, $condition));
+            throw new \Exception(sprintf('Timeout of %d reached when checking on %s', $time, $condition));
         }
     }
     /**

@@ -12,8 +12,7 @@
 
 namespace Tempo\Bundle\AppBundle\Repository;
 
-use Doctrine\ORM\EntityRepository;
-use Tempo\Bundle\AppBundle\Model\Project;
+use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
 /**
  * ActivityRepository
@@ -21,6 +20,10 @@ use Tempo\Bundle\AppBundle\Model\Project;
  */
 class ActivityProviderRepository extends EntityRepository
 {
+    public function createNew()
+    {
+    }
+
     public function findUserActivites($user)
     {
         $query = $this->createQueryBuilder('activity');

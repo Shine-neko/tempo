@@ -11,7 +11,7 @@
 
 namespace Tempo\Bundle\AppBundle\Repository;
 
-use Doctrine\ORM\EntityRepository;
+use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
 class ProjectTypeRepository extends EntityRepository
 {
