@@ -11,11 +11,11 @@
 
 namespace Tempo\Bundle\AppBundle\Event;
 
-use Tempo\Bundle\AppBundle\Model\TimesheetInterface;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Request;
+use Tempo\Bundle\AppBundle\Model\UserInterface;
 
-class TimesheetEvent extends Event
+class UserEvent extends Event
 {
     /**
      * @var \Symfony\Component\HttpFoundation\Request
@@ -23,26 +23,27 @@ class TimesheetEvent extends Event
     private $request;
 
     /**
-     * @var \Tempo\Bundle\AppBundle\Model\TimesheetInterface
+     * @var \Tempo\Bundle\AppBundle\Model\UserInterface
      */
-    private $timesheet;
+    private $user;
 
     /**
-     * @param Request            $request
-     * @param TimesheetInterface $timesheet
+     * @param Request       $request
+     * @param UserInterface $user
      */
-    public function __construct(Request $request, TimesheetInterface $timesheet)
+    public function __construct(Request $request, UserInterface $user)
     {
         $this->request = $request;
-        $this->timesheet = $timesheet;
+        $this->$user = $user;
     }
 
+
     /**
-     * @return TimesheetInterface
+     * @return UserInterface
      */
-    public function getTimesheet()
+    public function getUser()
     {
-        return $this->timesheet;
+        return $this->user;
     }
 
     /**

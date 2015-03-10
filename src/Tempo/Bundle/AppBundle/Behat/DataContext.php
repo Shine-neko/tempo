@@ -14,6 +14,7 @@ namespace Tempo\Bundle\AppBundle\Behat;
 use Faker\Factory as FakerFactory;
 use Behat\Gherkin\Node\TableNode;
 use PHPUnit_Framework_ExpectationFailedException as AssertException;
+use Behat\Mink\Exception\ExpectationException;
 
 class DataContext extends BaseContext
 {

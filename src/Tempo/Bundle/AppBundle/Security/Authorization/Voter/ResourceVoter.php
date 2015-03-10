@@ -14,6 +14,7 @@ namespace Tempo\Bundle\AppBundle\Security\Authorization\Voter;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Tempo\Bundle\AppBundle\Model\UserInterface;
+use Tempo\Bundle\AppBundle\Model\AccessInterface;
 
 class ResourceVoter implements VoterInterface
 {

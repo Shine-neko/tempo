@@ -62,7 +62,7 @@ class AccessController extends Controller
         $resource =  $objectManager['model'];
         $resourceName = (new \ReflectionClass($resource))->getShortName();
 
-        $access = $this->getDoctrine()->getRepository('TempoAppBundle:Access')->findOneBy(array(
+        $access = $this->get('tempo.repository.access')->findOneBy(array(
             'user' => $user,
             strtolower($resourceName) => $resource
         ));
@@ -105,7 +105,7 @@ class AccessController extends Controller
      * @param $parameters
      * @return \Tempo\Bundle\AppBundle\Model\User
      */
-    public function findUser($parameters)
+    private function findUser($parameters)
     {
         if(!$user = $this->get('tempo.repository.user')->findOneBy($parameters)) {
            $this->createNotFoundException('User not found');

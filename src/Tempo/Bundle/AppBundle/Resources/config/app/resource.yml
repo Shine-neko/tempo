@@ -4,27 +4,25 @@ sylius_resource:
           driver: doctrine/orm
           classes:
               model: Tempo\Bundle\AppBundle\Model\Organization
+              repository: Tempo\Bundle\AppBundle\Repository\OrganizationRepository
 
       tempo.project:
           driver: doctrine/orm
           classes:
               model: Tempo\Bundle\AppBundle\Model\Project
-
-      tempo.project:
-          driver: doctrine/orm
-          classes:
-              model: Tempo\Bundle\AppBundle\Model\Project
+              repository: Tempo\Bundle\AppBundle\Repository\ProjectRepository
 
       tempo.timesheet:
           driver: doctrine/orm
           classes:
               model: Tempo\Bundle\AppBundle\Model\Timesheet
+              repository: Tempo\Bundle\AppBundle\Repository\TimesheetRepository
 
       tempo.user:
           driver: doctrine/orm
           classes:
-              controller: Tempo\Bundle\AppBundle\Controller\Backend\UserController
               model: Tempo\Bundle\AppBundle\Model\User
+              repository: Tempo\Bundle\Repository\Model\UserRepository
 
       tempo.group:
           driver: doctrine/orm
@@ -35,11 +33,13 @@ sylius_resource:
           driver: doctrine/orm
           classes:
               model: Tempo\Bundle\AppBundle\Model\Activity
+              repository: Tempo\Bundle\AppBundle\Repository\ActivityRepository
 
       tempo.activity_provider:
           driver: doctrine/orm
           classes:
-              model: Tempo\Bundle\AppBundle\Model\Activity
+              model: Tempo\Bundle\AppBundle\Model\ActivityProvider
+              repository: Tempo\Bundle\AppBundle\repository\ActivityProviderRepository
 
       tempo.access:
           driver: doctrine/orm
@@ -50,18 +50,22 @@ sylius_resource:
           driver: doctrine/orm
           classes:
               model: Tempo\Bundle\AppBundle\Model\Notification
+              repository: Tempo\Bundle\AppBundle\Repository\NotificationRepository
 
       tempo.room:
           driver: doctrine/orm
           classes:
               model: Tempo\Bundle\AppBundle\Model\Room
+              repository: Tempo\Bundle\AppBundle\Repository\RoomRepository
 
       tempo.message:
           driver: doctrine/orm
           classes:
-              model: Tempo\Bundle\AppBundle\Model\Message
+              model: Tempo\Bundle\AppBundle\Model\ChatMessage
+              repository: Tempo\Bundle\AppBundle\Repository\ChatMessage
 
       tempo.comment:
           driver: doctrine/orm
           classes:
               model: Tempo\Bundle\AppBundle\Model\Comment
+              repository: Tempo\Bundle\AppBundle\Repository\Comment

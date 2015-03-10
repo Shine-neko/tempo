@@ -15,6 +15,7 @@ use Behat\Behat\Context\Context;
 use Behat\MinkExtension\Context\RawMinkContext;
 use Behat\Symfony2Extension\Context\KernelAwareContext;
 use Symfony\Component\HttpKernel\KernelInterface;
+use Doctrine\Common\Util\Inflector;
 
 abstract class BaseContext extends RawMinkContext implements Context, KernelAwareContext
 {
