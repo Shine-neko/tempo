@@ -73,9 +73,9 @@ class DomainManager
      */
     protected function getEventName($resource, $name, $prefix)
     {
-        $resourceName = strtolower(get_class($resource));
+        $resourceName = (new \ReflectionClass($resource))->getShortName();
 
-        return sprintf('%s.%s.%s', $prefix, $resourceName, $name);
+        return sprintf('%s.%s.%s', $prefix, strtolower($resourceName), $name);
     }
 
     /**
