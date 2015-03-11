@@ -15,8 +15,8 @@
         </service>
 
         <service id="tempo.event.listener.access" class="%tempo.event.listener.access.class%">
-            <argument type="service" id="translator" />
             <argument type="service" id="router" />
+            <argument type="service" id="tempo.model_manager.activity" />
             <argument type="service" id="tempo.model_manager.notification" />
             <tag name="kernel.event_subscriber" />
         </service>
@@ -30,7 +30,7 @@
 
         <service id="tempo.listener.project" class="%tempo.listener.project.class%">
             <argument type="service" id="tempo.model_manager.room" />
-            <tag name="kernel.event_listener" event="tempo.project.create.success" method="createProject" />
+            <tag name="kernel.event_listener" event="tempo.project.pre_create" method="createProject" />
         </service>
     </services>
 

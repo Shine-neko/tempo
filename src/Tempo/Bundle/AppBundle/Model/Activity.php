@@ -31,7 +31,7 @@ class Activity implements ActivityInterface
      *
      * @var integer
      */
-    protected $type;
+    protected $link;
 
     /**
      *
@@ -53,11 +53,18 @@ class Activity implements ActivityInterface
 
     /**
      *
-     * @var object
+     * @var \DateTime
      */
     protected $createdAt;
 
+    /**
+     * @var Project
+     */
     protected $project;
+
+    /**
+     * @var User
+     */
     protected $user;
 
     /**
@@ -89,17 +96,17 @@ class Activity implements ActivityInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getLink()
     {
-        return $this->type;
+        return $this->link;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setType($type)
+    public function setLink($link)
     {
-        $this->type = $type;
+        $this->link = $link;
 
         return $this;
     }

@@ -39,14 +39,14 @@ interface ActivityInterface
      *
      * @return string
      */
-    public function getType();
+    public function getLink();
 
     /**
      * Set target type.
      *
      * @return string
      */
-    public function setType($type);
+    public function setLink($type);
 
     /**
      * Get action.

@@ -11,8 +11,8 @@
             </a>
         </div>
         <div class="message">
-            <a href="{{ path('user_profile_show', {'slug': activity.author.slug }) }}">{{ activity.author }}</a>
-            {{ 'tempo.activity.action'|trans }}
+            <a href="{{ path('user_profile_show', {'slug': activity.author.slug }) }}">{{ activity.author.fullName }}</a>
+            {{ activity.action|trans({'%name%' : '<a href="'~activity.link~'">'~ activity.data.resource ~ '</a>' })|raw }}
         </div>
     </div>
 </div>
