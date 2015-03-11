@@ -11,19 +11,19 @@
 
 namespace Tempo\Bundle\AppBundle\Event;
 
-use Tempo\Bundle\AppBundle\Model\TimesheetInterface;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Request;
+use Tempo\Bundle\AppBundle\Model\TimesheetInterface;
 
 class TimesheetEvent extends Event
 {
     /**
-     * @var \Symfony\Component\HttpFoundation\Request
+     * @var Request
      */
     private $request;
 
     /**
-     * @var \Tempo\Bundle\AppBundle\Model\TimesheetInterface
+     * @var TimesheetInterface
      */
     private $timesheet;
 

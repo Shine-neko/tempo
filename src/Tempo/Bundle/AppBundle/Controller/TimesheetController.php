@@ -199,7 +199,7 @@ class TimesheetController extends Controller
             $this->getManager('timesheet')->save($period);
         }
 
-        $assignments = $this->get('tempo.repository.timesheet')->findAll(array(
+        $assignments = $this->get('tempo.repository.access')->findAll(array(
             'role' => AccessInterface::TYPE_OWNER
         ));
         $timesheets = $this->getManager('timesheet')->getRepository()->findActivitiesByState($userId);

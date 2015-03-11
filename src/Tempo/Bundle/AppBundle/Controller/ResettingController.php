@@ -72,7 +72,7 @@ class ResettingController extends Controller
         $user = $userManager->findUserByConfirmationToken($token);
 
         if (null === $user) {
-            $this->createNotFoundException(sprintf('The user with "confirmation token" does not exist for value "%s"', $token));
+            throw $this->createNotFoundException(sprintf('The user with "confirmation token" does not exist for value "%s"', $token));
         }
 
         if ($user->isPasswordRequestNonExpired(5)) {

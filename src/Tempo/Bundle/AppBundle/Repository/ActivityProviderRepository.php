@@ -20,10 +20,6 @@ use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
  */
 class ActivityProviderRepository extends EntityRepository
 {
-    public function createNew()
-    {
-    }
-
     public function findUserActivites($user)
     {
         $query = $this->createQueryBuilder('activity');
