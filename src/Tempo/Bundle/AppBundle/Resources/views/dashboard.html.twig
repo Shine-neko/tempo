@@ -30,9 +30,10 @@
 
 {% block bodyClass %}home dashboard {% endblock %}
 {% block container %}
+
     {% if currentRoom is null %}
         <div class="app-panel">
-            <p class="text-center">Not found activity</p>
+            <p class="text-center">{{ 'tempo.activity.dashboard.activity_not_found'|trans }}</p>
         </div>
     {% else %}
         <nav class="col-md-12 rooms">

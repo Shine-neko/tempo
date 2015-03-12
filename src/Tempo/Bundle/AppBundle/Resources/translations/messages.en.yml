@@ -45,6 +45,7 @@ tempo:
   activity:
       dashboard:
         title: Activity Feed
+        activity_not_found: Not found activity
       events:
         user.update: updates its own information
         commented: Commented on

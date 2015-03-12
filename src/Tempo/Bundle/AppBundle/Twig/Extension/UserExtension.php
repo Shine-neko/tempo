@@ -12,6 +12,8 @@
 namespace Tempo\Bundle\AppBundle\Twig\Extension;
 
 use Symfony\Component\Translation\TranslatorInterface;
+use Tempo\Bundle\AppBundle\Manager\NotificationManager;
+use Tempo\Bundle\AppBundle\Model\Notification;
 
 class UserExtension extends \Twig_Extension
 {
@@ -25,7 +27,7 @@ class UserExtension extends \Twig_Extension
     /**
      * @param $notificationManager
      */
-    public function __construct(TranslatorInterface $translator, $notificationManager)
+    public function __construct(TranslatorInterface $translator, NotificationManager $notificationManager)
     {
         $this->translator = $translator;
         $this->notificationManager = $notificationManager;
@@ -55,7 +57,7 @@ class UserExtension extends \Twig_Extension
      */
     public function getNotifications($userId)
     {
-        return $this->notificationManager->findAllByUserAndState($userId, 0)->setMaxResults(5)->execute();
+        return $this->notificationManager->getNotifications($userId, Notification::STATE_UNREAD)->getQuery()->execute();
     }
 
     public function readNotification($notification)
