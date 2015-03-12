@@ -12,19 +12,19 @@
 namespace Tempo\Bundle\AppBundle\Manager;
 
 use Tempo\Bundle\AppBundle\Model\Activity;
-use Tempo\Bundle\AppBundle\Model\User;
+use Tempo\Bundle\AppBundle\Model\UserInterface;
 
 class ActivityManager extends ModelManager
 {
     /**
-     * @var User;
+     * @var UserInterface;
      */
     protected $user;
 
     /**
-     * @param User $user
+     * @param UserInterface $user
      */
-    public function setUser(User $user)
+    public function setUser(UserInterface $user)
     {
         $this->user = $user;
     }
@@ -52,6 +52,6 @@ class ActivityManager extends ModelManager
      */
     public function getActivityActions($user)
     {
-        return $this->getRepository()->findUserActivites($user);
+        return $this->getRepository()->getUserActivites($user);
     }
 }

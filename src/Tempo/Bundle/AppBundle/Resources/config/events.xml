@@ -3,7 +3,7 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="tempo.event.listener.access.class">Tempo\Bundle\AppBundle\EventListener\AccessSubscriber</parameter>
+        <parameter key="tempo.event.listener.activity.class">Tempo\Bundle\AppBundle\EventListener\ActivitySubscriber</parameter>
         <parameter key="tempo.listener.project.class">Tempo\Bundle\AppBundle\EventListener\ProjectListener</parameter>
         <parameter key="tempo.activity.listener.activity_provider.class">Tempo\Bundle\AppBundle\EventListener\ActivityProviderListener</parameter>
     </parameters>
@@ -14,8 +14,7 @@
             <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController"/>
         </service>
 
-        <service id="tempo.event.listener.access" class="%tempo.event.listener.access.class%">
-            <argument type="service" id="router" />
+        <service id="tempo.event.listener.access" class="%tempo.event.listener.activity.class%">
             <argument type="service" id="tempo.model_manager.activity" />
             <argument type="service" id="tempo.model_manager.notification" />
             <tag name="kernel.event_subscriber" />

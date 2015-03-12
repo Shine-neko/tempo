@@ -12,7 +12,7 @@
         </div>
         <div class="message">
             <a href="{{ path('user_profile_show', {'slug': activity.author.slug }) }}">{{ activity.author.fullName }}</a>
-            {{ activity.action|trans({'%name%' : '<a href="'~activity.link~'">'~ activity.data.resource ~ '</a>' })|raw }}
+            {{ activity.action|trans({'%name%' : '<a href="'~path('project_show', activity.fullSlug)~'">'~ activity.data.name ~ '</a>' })|raw }}
         </div>
     </div>
 </div>

@@ -1,21 +1,10 @@
 <div  class="events-push">
     {% for activity in activities %}
         {% if activity.provider is not defined %}
-            {% if activity.project is not null %}
-                {%  set type = 'Project' %}
-            {% else  %}
-                {%  set type = activity.type %}
-            {% endif %}
-
-            {% include 'TempoAppBundle:Activity:_' ~ type|lower ~ '.html.twig' %}
-
+            {% include 'TempoAppBundle:Activity:_' ~ activity.target|lower ~ '.html.twig' %}
         {% else %}
-
             {% include 'TempoAppBundle:Provider/Activity:_' ~ activity.provider.name ~ '.html.twig' %}
-
         {% endif %}
-
-
 
     {% endfor %}
 </div>
