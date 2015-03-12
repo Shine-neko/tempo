@@ -5,6 +5,7 @@
         {% else %}
             {% include 'TempoAppBundle:Provider/Activity:_' ~ activity.provider.name ~ '.html.twig' %}
         {% endif %}
-
+    {% else %}
+        <p class="text-center">{{ 'tempo.activity.dashboard.activity_not_found'|trans }}</p>
     {% endfor %}
 </div>

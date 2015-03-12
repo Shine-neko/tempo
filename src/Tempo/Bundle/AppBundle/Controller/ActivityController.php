@@ -19,7 +19,7 @@ class ActivityController extends Controller
      * @param $type
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function listAction($type, $parent)
+    public function listAction($type = 'all')
     {
         $activitiesInternal = $this->getManager('activity')->getActivityActions($this->getUser());
         $activitiesProvider = $this->getManager('activity_provider')->getActivityActions($this->getUser());

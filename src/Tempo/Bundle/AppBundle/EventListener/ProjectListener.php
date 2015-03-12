@@ -11,9 +11,9 @@
 
 namespace Tempo\Bundle\AppBundle\EventListener;
 
-use Tempo\Bundle\AppBundle\Event\ProjectEvent;
 use Tempo\Bundle\AppBundle\Manager\RoomManager;
 use Tempo\Bundle\AppBundle\Model\AccessInterface;
+use Sylius\Component\Resource\Event\ResourceEvent;
 
 class ProjectListener
 {
@@ -28,9 +28,9 @@ class ProjectListener
     }
 
     /**
-     * @param ProjectEvent $event
+     * @param ResourceEvent $event
      */
-    public function createProject($event)
+    public function createProject(ResourceEvent $event)
     {
         $project = $event->getSubject();
 

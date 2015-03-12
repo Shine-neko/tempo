@@ -30,43 +30,35 @@
 
 {% block bodyClass %}home dashboard {% endblock %}
 {% block container %}
-
-    {% if currentRoom is null %}
-        <div class="app-panel">
-            <p class="text-center">{{ 'tempo.activity.dashboard.activity_not_found'|trans }}</p>
-        </div>
-    {% else %}
-        <nav class="col-md-12 rooms">
-            <ul class="clearfix">
-               {% for room in rooms %}
-                   <li class="{% if room.id == currentRoom.id %}current{% endif %}"><a href="?currentRoom={{ room.id }}">{{ room.name }}</a></li>
-               {% endfor %}
-            </ul>
-        </nav>
         <div id="row-box" class="row room-{{ currentRoom.id }}">
             <div class="col-md-{{ currentRoom.enableChat ? 6: 12 }}" id="activity-box">
                 <h3 class="homeTitle">
+                    <span class="glyphicon glyphicon-random"></span>
                     {{ 'tempo.activity.dashboard.title'|trans }}
-                    <a href="{{ path('room_update', {'id': currentRoom.id}) }}" data-target="#" data-toggle="modal" data-title="Update Room">
-                        <span class="glyphicon glyphicon-wrench"></span>
-                    </a>
                 </h3>
 
                 <div id="room-activity-box">
-                    {% if currentRoom.project %}
-                        {{ render(controller('TempoAppBundle:Activity:list', {'type': 'project', 'parent': currentRoom.project})) }}
-                    {% endif %}
-
+                    {{ render(controller('TempoAppBundle:Activity:list')) }}
                 </div>
 
             </div>
             {% if currentRoom.enableChat %}
-            <div class="col-md-6" id="chat-box">
-                <div class="loader">
-                    <img src="{{ asset('bundles/tempoapp/images/loading-bubbles.svg') }}" width="64" height="64">
+
+            <div class="col-md-6">
+                <nav class="rooms">
+                    <ul class="clearfix">
+                        {% for room in rooms %}
+                            <li class="{% if room.id == currentRoom.id %}current{% endif %}"><a href="?currentRoom={{ room.id }}">{{ room.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </nav>
+                <div id="chat-box">
+                    <div class="loader">
+                        <img src="{{ asset('bundles/tempoapp/images/loading-bubbles.svg') }}" width="64" height="64">
+                    </div>
                 </div>
+
             </div>
             {% endif %}
         </div>
-    {% endif %}
 {% endblock %}
