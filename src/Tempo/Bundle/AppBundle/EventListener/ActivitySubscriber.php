@@ -13,6 +13,7 @@ namespace Tempo\Bundle\AppBundle\EventListener;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Tempo\Bundle\AppBundle\TempoAppEvents;
+use Tempo\Bundle\AppBundle\Event\AccessEvent;
 use Tempo\Bundle\AppBundle\Manager\NotificationManager;
 use Tempo\Bundle\AppBundle\Manager\ActivityManager;
 
@@ -57,9 +58,9 @@ class ActivitySubscriber implements EventSubscriberInterface
     }
 
     /**
-     * @param $event
+     * @param AccessEvent $event
      */
-    public function accessNotification($event)
+    public function accessNotification(AccessEvent $event)
     {
         $modelName = $this->getModelName($event);
         $message = sprintf('tempo.notification.%s.team.add.completed', $modelName);
