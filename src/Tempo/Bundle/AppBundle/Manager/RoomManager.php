@@ -18,17 +18,15 @@ use Tempo\Bundle\AppBundle\Model\Room;
  */
 class RoomManager extends ModelManager
 {
-    public function create($name, $project)
+    public function create($name, $members)
     {
         $room = new Room();
         $room->setName($name);
-        $room->setProject($project);
+
+        foreach($members as $user) {
+            $room->addAccess($user->getUser(), AccessInterface::TYPE_OWNER);
+        }
 
         return $this->save($room);
-    }
-
-    public function findRoomWithProject($project)
-    {
-        return $this->getRepository()->findRoomWithProject($project);
     }
 }
