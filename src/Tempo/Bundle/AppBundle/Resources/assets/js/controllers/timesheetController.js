@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-Tempo.Controller.Timesheet = Backbone.Marionette.Controller.extend({
+Tempo.Controller.Timesheet = Tempo.baseObject.extend({
 
     dashboard: function() {
         this.view  = new Tempo.View.Timesheet();

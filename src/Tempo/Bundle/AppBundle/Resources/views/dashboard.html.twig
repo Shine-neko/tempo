@@ -4,14 +4,14 @@
 {% block javascripts %}
     {{ parent() }}
     {% javascripts
-        '@TempoAppBundle/Resources/assets/js/src/model/chatMessage.js'
-        '@TempoAppBundle/Resources/assets/js/src/model/room.js'
-        '@TempoAppBundle/Resources/assets/js/src/collection/chatMessage.js'
-        '@TempoAppBundle/Resources/assets/js/src/views/chatBox.js'
-        '@TempoAppBundle/Resources/assets/js/src/views/chatMessage.js'
-        '@TempoAppBundle/Resources/assets/js/src/views/connectedUsers.js'
-        '@TempoAppBundle/Resources/assets/js/src/views/room.js'
-        '@TempoAppBundle/Resources/assets/js/src/controllers/dashboard.js'
+        '@TempoAppBundle/Resources/assets/js/model/chatMessage.js'
+        '@TempoAppBundle/Resources/assets/js/model/room.js'
+        '@TempoAppBundle/Resources/assets/js/collection/chatMessage.js'
+        '@TempoAppBundle/Resources/assets/js/views/chatBox.js'
+        '@TempoAppBundle/Resources/assets/js/views/chatMessage.js'
+        '@TempoAppBundle/Resources/assets/js/views/connectedUsers.js'
+        '@TempoAppBundle/Resources/assets/js/views/room.js'
+        '@TempoAppBundle/Resources/assets/js/controllers/dashboard.js'
         output="js/dashboard.js" filter="?uglifyjs"
     %}
     <script src="{{ asset_url }}"></script>
