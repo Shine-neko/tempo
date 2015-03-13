@@ -43,7 +43,7 @@ class ActivitySubscriber implements EventSubscriberInterface
             TempoAppEvents::PROJECT_ASSIGN_USER => array('accessNotification', 'createActivity'),
             TempoAppEvents::PROJECT_DELETE_USER => array('accessNotification', 'createActivity'),
 
-            'tempo.comment.post_create' => array('createActivity')
+            TempoAppEvents::COMMENT_CREATE_SUCCESS => array('createActivity')
         );
     }
 

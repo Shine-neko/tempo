@@ -30,8 +30,8 @@
 
 {% block bodyClass %}home dashboard {% endblock %}
 {% block container %}
-        <div id="row-box" class="row room-{{ currentRoom.id }}">
-            <div class="col-md-{{ currentRoom.enableChat ? 6: 12 }}" id="activity-box">
+        <div id="row-box" class="row">
+            <div class="col-md-6" id="activity-box">
                 <h3 class="homeTitle">
                     <span class="glyphicon glyphicon-random"></span>
                     {{ 'tempo.activity.dashboard.title'|trans }}
@@ -42,9 +42,8 @@
                 </div>
 
             </div>
-            {% if currentRoom.enableChat %}
-
-            <div class="col-md-6">
+            {% if currentRoom %}
+            <div class="col-md-6" id="chat-box">
                 <nav class="rooms">
                     <ul class="clearfix">
                         {% for room in rooms %}
@@ -52,7 +51,7 @@
                         {% endfor %}
                     </ul>
                 </nav>
-                <div id="chat-box">
+                <div id="chatbox">
                     <div class="loader">
                         <img src="{{ asset('bundles/tempoapp/images/loading-bubbles.svg') }}" width="64" height="64">
                     </div>

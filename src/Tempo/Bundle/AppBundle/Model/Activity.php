@@ -27,12 +27,6 @@ class Activity implements ActivityInterface
 
     /**
      *
-     * @var integer
-     */
-    protected $link;
-
-    /**
-     *
      * @var string
      */
     protected $action;

@@ -19,7 +19,6 @@ class ActivityProvider implements ActivityProviderInterface
 {
     /**
      * @var integer
-     *
      */
     protected $id;
 
@@ -31,19 +30,16 @@ class ActivityProvider implements ActivityProviderInterface
 
     /**
      * @var \DateTime
-     *
      */
     protected $createdAt;
 
     /**
      * @var string
-     *
      */
     protected $message;
 
     /**
      * @var array
-     *
      */
     protected $parameters;
 

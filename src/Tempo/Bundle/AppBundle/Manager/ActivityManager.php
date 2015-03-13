@@ -50,7 +50,7 @@ class ActivityManager extends ModelManager
     /**
      * @param $user
      */
-    public function getActivityActions($user)
+    public function getActivities($user)
     {
         return $this->getRepository()->getUserActivites($user);
     }
