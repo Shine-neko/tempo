@@ -50,11 +50,6 @@ class Notification implements NotificationInterface
     /**
      * @var string
      */
-    protected $link;
-
-    /**
-     * @var string
-     */
     protected $message;
 
     const STATE_UNREAD = 0;
@@ -145,24 +140,6 @@ class Notification implements NotificationInterface
     public function getData()
     {
         return $this->data;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setLink($link)
-    {
-        $this->link = $link;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getLink()
-    {
-        return $this->link;
     }
 
     /**

@@ -77,21 +77,6 @@ interface NotificationInterface
     public function getData();
 
     /**
-     * Set Link
-     *
-     * @param  string  $link
-     * @return NotificationInterface
-     */
-    public function setLink($link);
-
-    /**
-     * Get Link
-     *
-     * @return $link
-     */
-    public function getLink();
-
-    /**
      * Set datetime
      *
      * @param  string $message

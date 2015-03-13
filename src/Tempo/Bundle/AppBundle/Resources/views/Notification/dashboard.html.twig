@@ -35,7 +35,7 @@
                     <tr>
                         <td>{{ notification.createdAt|localizeddate('medium', 'none', app.request.locale) }}</td>
                         <td>
-                            <a href="{{ notification.link }}">
+                            <a href="{{ link_notification(notification) }}">
                                 {{ read_notification(notification) }}
                             </a>
                         </td>

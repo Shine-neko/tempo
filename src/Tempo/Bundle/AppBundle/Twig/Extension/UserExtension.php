@@ -11,6 +11,7 @@
 
 namespace Tempo\Bundle\AppBundle\Twig\Extension;
 
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 use Tempo\Bundle\AppBundle\Manager\NotificationManager;
 use Tempo\Bundle\AppBundle\Model\Notification;
@@ -27,8 +28,9 @@ class UserExtension extends \Twig_Extension
     /**
      * @param $notificationManager
      */
-    public function __construct(TranslatorInterface $translator, NotificationManager $notificationManager)
+    public function __construct(RouterInterface $router, TranslatorInterface $translator, NotificationManager $notificationManager)
     {
+        $this->router = $router;
         $this->translator = $translator;
         $this->notificationManager = $notificationManager;
     }
@@ -49,6 +51,7 @@ class UserExtension extends \Twig_Extension
         return array(
             'user_notifications' => new \Twig_Function_Method($this, 'getNotifications'),
             'read_notification' => new \Twig_Function_Method($this, 'readNotification'),
+            'link_notification' => new \Twig_Function_Method($this, 'linkNotification'),
         );
     }
 
@@ -62,13 +65,17 @@ class UserExtension extends \Twig_Extension
 
     public function readNotification($notification)
     {
-        $data  = array();
+        return $this->translator->trans($notification->getMessage(), array('%name%' => $notification->getData()));
+    }
 
-        foreach($notification->getData() as $key => $value) {
-            $data['%'.$key.'%'] = $value;
-        }
+    public function linkNotification($notification)
+    {
+        $resource = $notification->getData();
+        $shortName = strtolower((new \ReflectionClass($resource))->getShortName());
 
-        return $this->translator->trans($notification->getMessage(), $data);
+        return $this->router->generate($shortName.'_show', array(
+            'slug' => $shortName == 'Project' ? $resource->getFullSlug() : $resource->getSlug(  )
+        )). '#'.$resource->getId();
     }
 
     /**
