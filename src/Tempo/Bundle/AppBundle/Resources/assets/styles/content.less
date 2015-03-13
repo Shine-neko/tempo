@@ -338,38 +338,36 @@ table.table-striped tbody .actions .edit {
 
 .dashboard .rooms ul{
 	margin-bottom: 0px;
+	padding-left: 10px;
 }
 .dashboard .rooms ul li {
 	float: left;
-	margin-left: 10px;
 	list-style: none;
 }
 
 .dashboard .rooms ul li a {
 	color: #4183c4;
-	padding: 3px;
+	padding: 0 3px 0 3px;
+    font-size: 11px;
 	display: inline-block;
 }
 .dashboard .rooms ul li.current{
 	background-color: #005782;
 	background-image: -moz-linear-gradient(center top , #1a719c 0%, #005782 100%);
-	border-radius: 5px;
+	border-radius: 3px;
+    padding: 5px;
 }
 .dashboard .rooms ul li.current a {
-	background: linear-gradient(to bottom, rgba(255, 255, 255, 0.23) 0, rgba(255, 255, 255, 0.2) 100%);
 	color: #484848;
 	font-weight: bold;
 	color: #fff;
 	text-decoration: none;
-
 }
 .dashboard #row-box {
 	position: relative;
 	height: 100%;
 }
-.dashboard #row-box ul {
-	/*margin-top: 10px;*/
-}
+
 .dashboard #activity-box {
 	border-color: #D5D5D5;
 	box-shadow: 0 1px 0 #FFFFFF inset, 0 1px 5px rgba(0, 0, 0, 0.1);
@@ -377,8 +375,9 @@ table.table-striped tbody .actions .edit {
 	position: relative;
 	height: 100%;
 }
-.dashboard #activity-box ul {
+.dashboard #activity-box ul:first-child {
 	list-style: none;
+    padding-left: 0px;
 }
 .dashboard #activity-box .img.avatar {
 	margin-right: 15px;
@@ -391,6 +390,7 @@ table.table-striped tbody .actions .edit {
 .dashboard #chat-box{
     height: 100%;
     position: relative;
+    padding-right: 0px;
 }
 
 .dashboard #connected-users {
@@ -494,7 +494,6 @@ table.table-striped tbody .actions .edit {
 
 .dashboard h3.homeTitle {
 	font-size: 15px;
-	margin-left: 30px;
 	font-weight: normal;
 	color: #4a87b6;
 }
@@ -510,15 +509,14 @@ table.table-striped tbody .actions .edit {
 }
 .home.dashboard .events-push .event time{
 	color: #bbb;
-	padding-left: 40px;
 }
-
+.home.dashboard .events-push .action {
+  clear: both;
+  margin-bottom: 20px;
+}
 .home.dashboard .events-push .action .feed {
 	clear: both;
 	padding-right: 0;
-}
-.home.dashboard .events-push .action .feed.user {
-	padding-left: 40px ;
 }
 
 .home.dashboard .events-push .action .author {

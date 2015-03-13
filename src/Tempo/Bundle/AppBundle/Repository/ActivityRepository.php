@@ -19,15 +19,15 @@ use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
  */
 class ActivityRepository extends EntityRepository
 {
-    public function findUserActivites($user)
+    public function getUserActivites($user)
     {
         $query = $this->createQueryBuilder('activity');
         $query
             ->leftJoin('activity.project', 'project')
             ->leftJoin('project.members', 'user')
-            ->where('activity.target = :target')
+            ->where('activity.target IN(:target)')
             ->andWhere('user.user = :user')
-            ->setParameter('target', 'Project')
+            ->setParameter('target', array('Project', 'Comment'))
             ->setParameter('user', $user);
 
         return $query->getQuery()->execute();

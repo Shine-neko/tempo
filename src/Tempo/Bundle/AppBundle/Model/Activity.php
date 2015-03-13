@@ -13,8 +13,6 @@ namespace Tempo\Bundle\AppBundle\Model;
 
 class Activity implements ActivityInterface
 {
-    const ACTIVITY_CREATE_COMMENT = 'create_comment';
-
     /**
      *
      * @var integer
@@ -26,12 +24,6 @@ class Activity implements ActivityInterface
      * @var integer
      */
     protected $target;
-
-    /**
-     *
-     * @var integer
-     */
-    protected $type;
 
     /**
      *
@@ -53,11 +45,18 @@ class Activity implements ActivityInterface
 
     /**
      *
-     * @var object
+     * @var \DateTime
      */
     protected $createdAt;
 
+    /**
+     * @var Project
+     */
     protected $project;
+
+    /**
+     * @var User
+     */
     protected $user;
 
     /**
@@ -81,25 +80,11 @@ class Activity implements ActivityInterface
      */
     public function setTarget($target)
     {
+        if(is_object($target)) {
+            $target = ((new \ReflectionClass($target))->getShortName());
+        }
+
         $this->target = $target;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
 
         return $this;
     }

@@ -11,13 +11,50 @@
 
 namespace Tempo\Bundle\AppBundle\Model;
 
+use Tempo\Bundle\AppBundle\Behavior\TimestampTrait;
+
 class Notification implements NotificationInterface
 {
+    use TimestampTrait;
+
+    /**
+     * @var int
+     */
     protected $id;
+
+    /**
+     * @var User
+     */
     protected $user;
+
+    /**
+     * @var \DateTime
+     */
     protected $createdAt;
+
+    /**
+     * @var \DateTime
+     */
+    protected $deletedAt;
+
+    /**
+     * @var int
+     */
     protected $state;
+
+    /**
+     * @var array
+     */
+    protected $data;
+
+    /**
+     * @var string
+     */
     protected $link;
+
+    /**
+     * @var string
+     */
     protected $message;
 
     const STATE_UNREAD = 0;
@@ -41,7 +78,7 @@ class Notification implements NotificationInterface
     /**
      * {@inheritdoc}
      */
-    public function setUser($user)
+    public function setUser(UserInterface $user)
     {
         $this->user = $user;
 
@@ -90,6 +127,24 @@ class Notification implements NotificationInterface
     public function getState()
     {
         return $this->state;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setData($data)
+    {
+        $this->data = $data;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getData()
+    {
+        return $this->data;
     }
 
     /**

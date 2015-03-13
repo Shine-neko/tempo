@@ -20,7 +20,7 @@ use Tempo\Bundle\AppBundle\Model\User;
 class AccessEvent extends Event
 {
     /**
-     * @var \Symfony\Component\HttpFoundation\Request
+     * @var Request
      */
     private $request;
 
@@ -30,9 +30,9 @@ class AccessEvent extends Event
     private $type;
 
     /**
-     * @var Object
+     * @var object
      */
-    private $model;
+    private $subject;
 
     /**
      * @var User
@@ -46,20 +46,20 @@ class AccessEvent extends Event
 
     /**
      * @param Request              $request
-     * @param Organization|Project $object
+     * @param Organization|Project $subject
      * @param User                 $userTo
      * @param User                 $userFrom
      */
-    public function __construct(Request $request, $object, User $userTo, User $userFrom)
+    public function __construct(Request $request, $subject, User $userTo, User $userFrom)
     {
         $this->request = $request;
-        $this->model = $object;
+        $this->subject = $subject;
         $this->userTo = $userTo;
         $this->userFrom = $userFrom;
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\Request
+     * @return Request
      */
     public function getRequest()
     {
@@ -88,9 +88,9 @@ class AccessEvent extends Event
     /**
      * @return Object
      */
-    public function getModel()
+    public function getSubject()
     {
-        return $this->model;
+        return $this->subject;
     }
 
     /**

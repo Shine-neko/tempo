@@ -14,9 +14,8 @@
         <field name="createdAt" type="datetime">
             <gedmo:timestampable on="create"/>
         </field>
-        <field name="action" column="action" type="string"  nullable="true"  />
-        <field name="data" column="data" type="array"  nullable="false"  />
-        <field name="type" column="type" type="string"  nullable="true"  />
+        <field name="action" column="action" type="string"  nullable="false"  />
+        <field name="data" column="data" type="object"  nullable="false"  />
         <field name="target" column="target"  type="string" nullable="true"  />
 
         <many-to-one field="author" target-entity="Tempo\Bundle\AppBundle\Model\User" />

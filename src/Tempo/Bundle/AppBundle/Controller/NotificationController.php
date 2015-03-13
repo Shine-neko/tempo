@@ -28,26 +28,21 @@ class NotificationController extends Controller
         $page  = $request->query->get('page', 1);
         $state  = $request->query->get('all', 0);
 
-        $query = $this->getManager('notification')->findAllByUserAndState(
-            $this->getUser()->getId(),
-            $state
-        );
-
-        $pagerfanta = new Pagerfanta(new DoctrineORMAdapter($query));
-        $pagerfanta->setMaxPerPage(25);
+        $query = $this->getManager('notification')->getNotifications($this->getUser()->getId(), $state);
+        $notifications = $this->get('tempo.repository.notification')->getPaginator($query);
 
         try {
-            $pagerfanta->setCurrentPage($page);
+            $notifications->setCurrentPage($page);
         } catch (NotValidCurrentPageException $e) {
             throw new NotFoundHttpException();
         }
 
-        return $this->render('TempoAppBundle:Notification:dashboard.html.twig', array('notifications' => $pagerfanta));
+        return $this->render('TempoAppBundle:Notification:dashboard.html.twig', array('notifications' => $notifications));
     }
 
     public function clearAction()
     {
-        $this->get('tempo.manager.notification')->clearForUser($this->getUser()->getId());
+        $this->get('tempo.repository.notification')->markAsViewed($this->getUser()->getId());
 
         return $this->redirectToRoute('notification_dashboard');
     }

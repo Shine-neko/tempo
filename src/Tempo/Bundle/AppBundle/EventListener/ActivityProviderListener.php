@@ -42,15 +42,6 @@ class ActivityProviderListener
         $projectProvider = $event->getActivityProvider();
         $project = $this->serializer->serialize($projectProvider->getProject(), 'json');
 
-        try {
-            $room = $this->roomManager->findRoomWithProject($projectProvider->getProject());
-            $room = $this->serializer->serialize($room, 'json');
-
-            $this->elephantIoClient->send('ProviderEvent', array(
-                'room' => $room,
-                'project' => $project
-            ));
-
-        } catch (\Exception $e) { }
+        //@todo: see https://github.com/tempo-project/tempo/issues/51
     }
 }

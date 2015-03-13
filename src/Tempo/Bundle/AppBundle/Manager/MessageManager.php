@@ -11,13 +11,11 @@
 
 namespace Tempo\Bundle\AppBundle\Manager;
 
-use Tempo\Bundle\AppBundle\Model\Room;
-
 /**
  *
  * @author Mlanawo Mbechezi <mlanawo.mbechezi@ikimea.com>
  */
-class RoomMessageManager extends ModelManager
+class MessageManager extends ModelManager
 {
 
     public function all($room , $limit, $offset, $orderby )

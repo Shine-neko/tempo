@@ -13,7 +13,7 @@ Tempo.Controller.Dashboard = Tempo.baseObject.extend({
 
     load: function() {
         var container = $('#row-box');
-        var chatbox = container.find('#chat-box');
+        var chatbox = container.find('#chatbox');
 
         this.connectedUsersView = new Tempo.View.ConnectedUsers();
         this.messagesView = new Tempo.View.ChatBox({messages: this.room.get('chat_messages'), room: this.room});

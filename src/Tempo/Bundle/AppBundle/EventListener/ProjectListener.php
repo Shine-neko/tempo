@@ -11,9 +11,9 @@
 
 namespace Tempo\Bundle\AppBundle\EventListener;
 
-use Tempo\Bundle\AppBundle\Event\ProjectEvent;
 use Tempo\Bundle\AppBundle\Manager\RoomManager;
 use Tempo\Bundle\AppBundle\Model\AccessInterface;
+use Sylius\Component\Resource\Event\ResourceEvent;
 
 class ProjectListener
 {
@@ -28,18 +28,19 @@ class ProjectListener
     }
 
     /**
-     * @param ProjectEvent $event
+     * @param ResourceEvent $event
      */
-    public function createProject(ProjectEvent $event)
+    public function createProject(ResourceEvent $event)
     {
-        $project = $event->getProject();
+        $project = $event->getSubject();
 
         //create room
         $room = $this->roomManager->create($project->getName(), $project);
+
         foreach($project->getMembers() as $user) {
             $room->addAccess($user->getUser(), AccessInterface::TYPE_OWNER);
         }
 
-        //$this->roomManager->save($room);
+        $this->roomManager->save($room);
     }
 }

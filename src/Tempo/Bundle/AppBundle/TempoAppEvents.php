@@ -49,8 +49,8 @@ final class TempoAppEvents
     const ACTIVITY_PROVIDER_EDIT_SUCCESS        = 'tempo.activity.provider.edit.success';
     const ACTIVITY_PROVIDER_DELETE_COMPLETED    = 'tempo.activity.provider.delete.completed';
 
-    const COMMENT_CREATE_INITIALIZE            = 'tempo.comment.create.initialize';
-    const COMMENT_CREATE_SUCCESS               = 'tempo.comment.create.success';
+    const COMMENT_CREATE_INITIALIZE            = 'tempo.comment.post_create';
+    const COMMENT_CREATE_SUCCESS               = 'tempo.comment.post_create';
     const COMMENT_EDIT_INITIALIZE              = 'tempo.comment.edit.initialize';
     const COMMENT_EDIT_SUCCESS                 = 'tempo.comment.edit.success';
     const COMMENT_DELETE_COMPLETED             = 'tempo.comment.delete.completed';

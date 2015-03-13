@@ -94,7 +94,9 @@ class ProjectController extends Controller
         $organization = $this->getOrganizaton($organization);
 
         $project  = new Project();
-        $project->setOrganization($organization);
+        $project
+            ->setOrganization($organization)
+            ->addAccess($this->getUser());
         $project = $this->getParent($project);
 
         $form  = $this->createForm(new ProjectType(), $project, array('user_id' => $this->getUser()->getId() ));
@@ -104,7 +106,7 @@ class ProjectController extends Controller
             $this->get('tempo.domain_manager')->create($project);
             $this->addFlash('success', 'project.success_create');
 
-            return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
+            return $this->redirectToRoute('project_show', array('slug' => $project->getFullSlug()));
         }
 
         return $this->render('TempoAppBundle:Project:create.html.twig', array(
