@@ -22,33 +22,39 @@ class NotificationRepository extends EntityRepository
     /**
      * @param $user
      * @param $state
+     * @return Query
      */
-    public function findAllByUserAndState($user, $state)
+    public function getUserNotifications($user, $state)
     {
-        $q = $this->createQueryBuilder('notif')
-            ->leftJoin('notif.user', 'user')
+        $qb = $this->createQueryBuilder('n')
+            ->leftJoin('n.user', 'user')
             ->where('user = :user')
-            ->andWhere('notif.state = :state')
+            ->andWhere('n.state = :state')
             ->setParameters(array(
                 'state'  => $state,
                 'user'   => $user
-            ))
-            ->getQuery();
-
-        return $q;
+            ));
+        return $qb;
     }
 
     /**
      * @param $user
+     * @param $id
      */
-    public function clearForUser($user)
+    public function markAsViewed($user, $id = null)
     {
-        $q = $this->createQueryBuilder('notif')
-            ->update('TempoAppBundle:Notification', 'notif')
-            ->set('notif.state', 1)
-            ->where('notif.user = :user')
-            ->setParameter('user', $user)
-            ->getQuery();
-        $p = $q->execute();
+        $qb = $this->createQueryBuilder('n')
+            ->update($this->_entityName, 'n')
+            ->set('n.state', 1)
+            ->where('n.user = :user')
+            ->setParameter('user', $user);
+
+        if (null !== $id) {
+            $qb
+                ->andWhere('n.id = :id')
+                ->setParameter('id', $id);
+        }
+
+        $qb->getQuery()->execute();
     }
 }

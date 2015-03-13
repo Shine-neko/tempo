@@ -12,7 +12,7 @@
             <generator strategy="AUTO" />
         </id>
 
-        <field name="label" type="integer" />
+        <field name="label" type="string" />
 
         <field name="source" type="string" />
         

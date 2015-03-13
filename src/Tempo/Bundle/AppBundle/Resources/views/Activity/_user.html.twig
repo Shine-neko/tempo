@@ -12,7 +12,7 @@
         </div>
         <div class="message">
             <a href="{{ activity.author.slug }}">{{ activity.author }}</a>
-            {{ 'tempo.activity.action'|trans }} {% if activity.target == 'User' %} {{ activity.target }} {% endif %}
+            {{ activity.action|trans({'%name%' : activity.data}) }} {% if activity.target == 'User' %} {{ activity.target }} {% endif %}
         </div>
     </div>
 </div>

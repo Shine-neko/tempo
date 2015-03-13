@@ -38,6 +38,9 @@ class Comment
      */
     protected $author;
 
+    /**
+     * @var Project
+     */
     protected $project;
 
     /**
@@ -125,5 +128,10 @@ class Comment
     public function setProject($project = null)
     {
         $this->project = $project;
+    }
+
+    public function getProject()
+    {
+        return $this->project;
     }
 }

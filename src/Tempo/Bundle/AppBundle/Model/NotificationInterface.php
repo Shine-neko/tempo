@@ -23,10 +23,10 @@ interface NotificationInterface
     /**
      * Set user
      *
-     * @param  string $user
+     * @param  UserInterface $user
      * @return NotificationInterface
      */
-    public function setUser($user);
+    public function setUser(UserInterface $user);
 
     /**
      * Get user
@@ -64,6 +64,17 @@ interface NotificationInterface
      * @return $state
      */
     public function getState();
+
+    /**
+     * @param $data
+     * @return self
+     */
+    public function setData($data);
+
+    /**
+     * @return string
+     */
+    public function getData();
 
     /**
      * Set Link

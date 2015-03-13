@@ -20,27 +20,16 @@ use Doctrine\ORM\Query;
 
 class RoomRepository extends EntityRepository
 {
-    public function findRoomWithProject($project)
-    {
-        return
-            $this->createQueryBuilder('r')
-                ->where('r.project = :project')
-                ->setParameter('project', $project)
-                ->getQuery()->getSingleResult()
-            ;
-    }
-
     public function findRoom($key, $user)
     {
         $query = $this->createQueryBuilder('room')
-            ->select('room, project')
+            ->select('room')
             ->leftJoin('room.members', 'team')
-            ->leftJoin('room.project', 'project')
             ->leftJoin('team.user', 'user')
-            ->where('user.id  = :key');
+            ->where('user.id = :key');
 
         if (is_integer($key)) {
-            $query->andWhere('room.id  = :user');
+            $query->andWhere('room.id = :user');
         } else {
             $query->andWhere('room.slug  = :user');
         }
@@ -56,7 +45,6 @@ class RoomRepository extends EntityRepository
     {
         $query = $this->createQueryBuilder('room')
             ->leftJoin('room.members', 'team')
-            ->leftJoin('room.project', 'project')
             ->andwhere('team.user  = ?1')
             ->setParameter(1, $user);
 

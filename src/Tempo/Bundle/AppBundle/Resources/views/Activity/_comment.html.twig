@@ -10,11 +10,13 @@
         </div>
         <div class="message">
             <a href="{{ path('user_profile_show', {'slug': activity.author.slug }) }}">{{ activity.author }}</a>
-            {{ 'tempo.activity.events.commented'|trans }} {{ activity.target }}
-            {% if activity.target == 'Project' %}
-                <a href="{{ path('project_show', {'slug': activity.project.slug}) }}">
+            {{ 'tempo.activity.events.commented'|trans }}
+            {% if activity.project is not null %}
+                <a href="{{ path('project_show', {'slug': activity.project.fullSlug}) }}">
                     {{ activity.project.organization }}/{{ activity.project }}
                 </a>
+            {% else %}
+                {{ activity.data }}
             {% endif %}
         </div>
     </div>

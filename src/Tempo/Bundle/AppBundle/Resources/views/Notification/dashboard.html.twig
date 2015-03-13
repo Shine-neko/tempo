@@ -21,8 +21,8 @@
                     <a class="pull-right" href="{{ path('notification_clear') }}">Mark everything as read</a>
                 </div>
                 <nav>
-                    <ul class="nav nav-pills clearbox">
-                        <li class="first ">
+                    <ul class="nav nav-tabs clearbox">
+                        <li class="first active">
                             <a href="{{ path('notification_dashboard') }}">Unread</a>
                         </li>
                         <li class="last">
@@ -34,7 +34,11 @@
                     {% for notification in notifications %}
                     <tr>
                         <td>{{ notification.createdAt|localizeddate('medium', 'none', app.request.locale) }}</td>
-                        <td><a href="{{ notification.link }}"> {{ notification.message }} </a></td>
+                        <td>
+                            <a href="{{ notification.link }}">
+                                {{ read_notification(notification) }}
+                            </a>
+                        </td>
                     </tr>
                     {% else %}
                         <tr>

@@ -45,13 +45,12 @@ tempo:
   activity:
       dashboard:
         title: Activity Feed
-        form.status.label: Share something. Use @ to mention people.
+        activity_not_found: Not found activity
       events:
         user.update: updates its own information
         commented: Commented on
-        project.created: create project
-        project.update: update project
-        project.joined: joined project at
+        project.update: update project %name%
+        project.joined : joined project %name%
 
   notification:
     see_all: See all notification
@@ -84,8 +83,8 @@ tempo:
   project:
       title_add: New projet
       list:
-       title: Project list
-       filter:
+      title: Project list
+      filter:
           query: search
       add: Add new project
       edit: Edit project

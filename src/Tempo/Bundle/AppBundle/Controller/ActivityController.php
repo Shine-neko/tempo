@@ -19,16 +19,33 @@ class ActivityController extends Controller
      * @param $type
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function listAction($type, $parent)
+    public function listAction($type = 'all')
     {
-        $activitiesInternal = $this->getManager('activity')->getActivityActions($this->getUser());
-        $activitiesProvider = $this->getManager('activity_provider')->getActivityActions($this->getUser());
-
+        $activitiesInternal = $this->getManager('activity')->getActivities($this->getUser());
+        $activitiesProvider = $this->getManager('activity_provider')->getActivities($this->getUser());
         $activities =  array_merge($activitiesInternal, $activitiesProvider);
+
+        usort($activities, array($this, 'dateSort'));
+        krsort($activities);
 
         return $this->render('TempoAppBundle:Activity:list.html.twig', array(
             'type' => $type,
             'activities' => $activities
         ));
+    }
+
+
+    function dateSort($a,$b)
+    {
+        $val1 = $a->getCreatedAt()->format('Y-m-d H:i:s');
+        $val2 = $b->getCreatedAt()->format('Y-m-d H:i:s');
+
+        if ($val1 == $val2) {
+            return 0;
+        }
+
+        $dateA = strtotime($val1);
+        $dateB = strtotime($val2);
+        return ($dateA-$dateB);
     }
 }

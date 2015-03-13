@@ -35,20 +35,6 @@ interface ActivityInterface
     public function setTarget($type);
 
     /**
-     * Get target type.
-     *
-     * @return string
-     */
-    public function getType();
-
-    /**
-     * Set target type.
-     *
-     * @return string
-     */
-    public function setType($type);
-
-    /**
      * Get action.
      *
      * @return string

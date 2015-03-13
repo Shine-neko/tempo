@@ -154,22 +154,4 @@ class Room implements RoomInterface
 
         return;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setProject(ProjectInterface $project = null)
-    {
-        $this->project  = $project;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getProject()
-    {
-        return $this->project;
-    }
 }

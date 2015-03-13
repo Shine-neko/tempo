@@ -18,19 +18,17 @@ use Tempo\Bundle\AppBundle\Model\Notification;
  */
 class NotificationManager extends ModelManager
 {
-    public function findAllByUserAndState($user, $state)
+    public function getNotifications($user, $state = Notification::STATE_UNREAD)
     {
-        return $this->getRepository()->findAllByUserAndState($user, $state);
+        return $this->getRepository()->getUserNotifications($user, $state);
     }
 
-    public function create($user, $message, $link)
+    public function create($user, $message, $data)
     {
-        $room = new Notification();
-        $room->setUser($user);
-        $room->setLink($link);
-        $room->setMessage($message);
-
-        $this->save($room);
+        return (new Notification())
+            ->setUser($user)
+            ->setData($data)
+            ->setMessage($message);
     }
 
     public function clearForUser($user)

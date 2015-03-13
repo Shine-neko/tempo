@@ -70,6 +70,7 @@
         </service>
 
         <service id="tempo.user.twig.extension" class="%tempo.user.twig.extension.class%">
+            <argument type="service" id="translator" />
             <argument type="service" id="tempo.model_manager.notification" />
             <tag name="twig.extension" />
         </service>

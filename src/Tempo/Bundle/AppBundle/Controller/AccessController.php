@@ -53,7 +53,7 @@ class AccessController extends Controller
     }
 
     /**
-     * @param  Request          $request
+     * @param  Request $request
      * @return RedirectResponse
      */
     public function deleteAction(Request $request, $slug, $user)
