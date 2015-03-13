@@ -18,8 +18,6 @@
             <gedmo:slug unique="true" updatable="true" separator="-" fields="name" />
         </field>
 
-        <field name="enableChat" column="enable_chat" type="boolean" default="true" />
-
         <one-to-many field="chatMessages" target-entity="ChatMessage" mapped-by="room">
             <cascade>
                 <cascade-all/>

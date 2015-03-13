@@ -37,11 +37,6 @@ class Room implements RoomInterface
     /**
      * @var integer
      */
-    protected $enableChat;
-
-    /**
-     * @var integer
-     */
     protected $enabled;
 
     /**
@@ -77,7 +72,6 @@ class Room implements RoomInterface
     {
         $this->chatMessages = new ArrayCollection();
         $this->members = new ArrayCollection();
-        $this->enableChat = true;
     }
 
     /**
@@ -104,22 +98,6 @@ class Room implements RoomInterface
         $this->name = $name;
 
         return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getEnableChat()
-    {
-        return $this->enableChat;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setEnableChat($enableChat)
-    {
-        $this->enableChat = $enableChat;
     }
 
     /**
