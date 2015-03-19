@@ -55,7 +55,7 @@
             <gedmo:timestampable on="update"/>
         </field>
 
-        <one-to-many field="notifications" target-entity="Notification" mapped-by="user" />
+        <one-to-many field="notifications" target-entity="Tempo\Bundle\AppBundle\Model\Notification" mapped-by="user" />
 
     </mapped-superclass>
 
