@@ -71,6 +71,7 @@ class OrganizationController extends Controller
         }
 
         $editForm = $this->createForm(new OrganizationType(), $organization);
+        $teamForm = $this->createForm(new AccessType($organization));
 
         if ($editForm->handleRequest($request)->isValid()) {
 
@@ -83,7 +84,8 @@ class OrganizationController extends Controller
 
         return $this->render('TempoAppBundle:Organization:update.html.twig', array(
             'organization' => $organization,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
+            'teamForm' => $teamForm->createView(),
         ));
     }
 

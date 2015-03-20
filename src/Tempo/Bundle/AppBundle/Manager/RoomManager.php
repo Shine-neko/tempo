@@ -10,8 +10,9 @@
 */
 
 namespace Tempo\Bundle\AppBundle\Manager;
-
 use Tempo\Bundle\AppBundle\Model\Room;
+use Tempo\Bundle\AppBundle\Model\AccessInterface;
+
 /**
  *
  * @author Mlanawo Mbechezi <mlanawo.mbechezi@ikimea.com>
