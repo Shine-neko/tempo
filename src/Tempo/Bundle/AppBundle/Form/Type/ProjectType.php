@@ -45,7 +45,7 @@ class ProjectType extends AbstractType
             ))
             ->add('type', null, array(
                 'label' => 'tempo.project.form.label.type',
-                'class' => 'TempoAppBundle:ProjectType',
+                'class' => 'Tempo\Bundle\AppBundle\Model\ProjectType',
                 'query_builder' => function(ProjectTypeRepository $er) {
                     return $er->findAllTypes();
                 }
