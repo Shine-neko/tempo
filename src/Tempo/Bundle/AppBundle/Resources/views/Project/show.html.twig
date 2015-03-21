@@ -30,9 +30,12 @@
 
         <h1 id="page-title" class="col-md-6">
             {{ project.name }} <br />
+
+            {% if project.code is not null %}
             <small class="label label-default">
                 {{ project.code }}
             </small>
+            {% endif %}
         </h1>
 
         <div class="col-md-4">
@@ -52,7 +55,7 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="nav nav-tabs" id="project-tab">
-                    <li><a class="active" href="#tab-project">Project</a></li>
+                    <li class="active"><a href="#tab-project">Project</a></li>
                     <li><a href="#tab-sub-project">Sub-Projects</a></li>
                 </ul>
 

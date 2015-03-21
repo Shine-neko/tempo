@@ -83,7 +83,7 @@ tempo:
   project:
       title_add: New projet
       list:
-      title: Project list
+          title: Projects
       filter:
           query: search
       add: Add new project
