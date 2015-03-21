@@ -12,6 +12,11 @@ sylius_resource:
               model: Tempo\Bundle\AppBundle\Model\Project
               repository: Tempo\Bundle\AppBundle\Repository\ProjectRepository
 
+      tempo.project_provider:
+          driver: doctrine/orm
+          classes:
+              model: Tempo\Bundle\AppBundle\Model\ProjectProvider
+
       tempo.timesheet:
           driver: doctrine/orm
           classes:
