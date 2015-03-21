@@ -120,7 +120,7 @@ tempo:
               estimated: Estimated budget
 
   timesheets:
-      page_title: Timesheet
+      page_title: Time Management
       last_week: Last week
       next_week: Next week
       week: Week

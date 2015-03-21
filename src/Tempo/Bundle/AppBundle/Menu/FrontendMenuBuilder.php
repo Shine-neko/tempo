@@ -46,26 +46,6 @@ class FrontendMenuBuilder extends MenuBuilder
         return $menu;
     }
 
-    /**
-     * Generate Breadcrumb
-     * @return \Knp\Menu\ItemInterface
-     * @deprecated
-     */
-    public function breadcrumb()
-    {
-        $menu = $this->factory->createItem('root');
-        $menu->setChildrenAttribute('id', 'breadcrumb');
-        $menu->setChildrenAttribute('class', 'clearfix');
-
-        $menu->addChild(
-            $this->translate('tempo.menu.home'),
-            array('route' => 'homepage')
-        );
-
-        return $menu;
-    }
-
-
     public function userProfile()
     {
         $menu = $this->factory->createItem('root');

@@ -24,14 +24,6 @@ use Tempo\Bundle\AppBundle\Form\Type\AccessType;
 
 class OrganizationController extends Controller
 {
-    private function getBreadcrumb()
-    {
-        $breadcrumb = $this->get('tempo.breadcrumb');
-        $breadcrumb->addChild('Organization');
-
-        return $breadcrumb;
-    }
-
     /**
      * @param Organization $organization
      * @return Response|AccessDeniedException
@@ -45,8 +37,6 @@ class OrganizationController extends Controller
         }
 
         $counter = $this->getManager('organization')->getStatusProjects($organization->getId());
-
-        $this->getBreadcrumb()->addChild($organization->getName());
 
         $teamForm = $this->createForm(new AccessType($organization));
 

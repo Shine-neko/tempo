@@ -39,10 +39,6 @@ class TimesheetController extends Controller
      */
     public function dashboardAction(Request $request)
     {
-        $breadcrumb  = $this->get('tempo.breadcrumb');
-        $breadcrumb->addChild('Time Management');
-        $breadcrumb->addChild('Dashboard');
-
         return $this->render('TempoAppBundle:Timesheet:dashboard.html.twig', $this->filterData($request));
     }
 

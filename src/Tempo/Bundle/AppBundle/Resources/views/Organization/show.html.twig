@@ -10,9 +10,11 @@
 {% endblock %}
 
 {% block container %}
-    {% block breadcrumb %}
-        {{ parent() }}
-    {% endblock breadcrumb %}
+    <ol id="breadcrumb" class="clearfix">
+        <li class="first"> <a href="{{ path('project_home') }}">{{ 'tempo.menu.home'|trans  }}</a> </li>
+        <li><a href="{{ path('project_home') }}">{{ 'tempo.menu.project'|trans }}</a></li>
+        <li>{{ organization }}</li>
+    </ol>
 
 <div class="col-md-8 app-panel">
     <h1 id="page-title" class="col-md-7"> {{ organization.name }} </h1>

@@ -126,11 +126,6 @@
             <tag name="knp_menu.menu" alias="main" />
         </service>
 
-        <service id="tempo.breadcrumb" class="%tempo.menu.class%">
-            <factory service="tempo.menu.builder.frontend" method="breadcrumb" />
-            <tag name="knp_menu.menu" alias="breadcrumb" />
-        </service>
-
         <service id="tempo.menu.admin.settings" class="%tempo.menu.class%">
             <factory service="tempo.menu.builder.admin" method="settingMenu" />
             <tag name="knp_menu.menu" alias="admin_settings" />

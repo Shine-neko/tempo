@@ -18,9 +18,11 @@
 {% block bodyClass %}timesheet dashboard{% endblock %}
 
 {% block container %}
-    {% block breadcrumb %}
-        {{ parent() }}
-    {% endblock breadcrumb %}
+    <ol id="breadcrumb" class="clearfix">
+        <li class="first"> <a href="{{ path('project_home') }}">{{ 'tempo.menu.home'|trans  }}</a> </li>
+        <li><a href="{{ path('timesheet') }}">{{ 'tempo.timesheets.page_title' }}</a></li>
+        <li>Dashboard</li>
+    </ol>
 <div class="app-panel">
     <div class="actions-filter">
         <ul class="actions">
