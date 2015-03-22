@@ -1,6 +1,9 @@
 {% if activity.data.pusher is not defined and activity.data.sender %}
     {% set user = activity.data.sender.login %}
     {% set gravatar = activity.data.sender.avatar_url %}
+{% else %}
+    {% set user = '' %}
+
 {% endif %}
 <div class="action">
     <ul>
@@ -11,17 +14,15 @@
                </a>
            </div>
            <div class="message">
-
                {% if activity.message != '' %}
                    <strong>{{ activity.message }}</strong>
                {% endif %}
            </div>
-           {% if activity.data.pusher.name is defined and data.pusher.name != 'none' %}
+           {% if activity.data.pusher.name is defined %}
                {% set gravatar = gravatar(activity.data.pusher.email, 30) %}
                {% set user = activity.data.pusher.name %}
            <div class="details">
                <a href="https://github.com/{{ activity.data.pusher.name }}">
-                   <img height="30" src="{{ gravatar }}" />
                </a>
            </div>
            {% endif %}
@@ -29,9 +30,11 @@
            <ul class="commits">
                {% set commits = activity.data.commits is defined ? activity.data.commits : {0: activity.data.commit} %}
                {% for commit in commits %}
-                   <span> <img height="16" src="{{ commit.author.avatar_url }}"> </span>
-                   <a href="{{ commit.commit.url }}"> {{ commit.sha| truncate(7, true, '') }} </a>
-                   {{ commit.commit.message }}
+                   <li>
+                       <span> <img height="16" src="{{ gravatar(commit.author.email) }}"> </span>
+                       <a href="{{ commit.url }}"> {{ commit.id|truncate(7, false, '') }} </a>
+                       {{ commit.message }}
+                   </li>
                {% endfor %}
            </ul>
            {% endif %}

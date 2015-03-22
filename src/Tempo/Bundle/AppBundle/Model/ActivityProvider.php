@@ -133,6 +133,6 @@ class ActivityProvider implements ActivityProviderInterface
      */
     public function getData()
     {
-        return Json_decode($this->parameters);
+        return $this->parameters;
     }
 }

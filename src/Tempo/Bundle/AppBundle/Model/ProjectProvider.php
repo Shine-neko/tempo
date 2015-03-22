@@ -192,7 +192,7 @@ class ProjectProvider implements ProjectProviderInterface
     }
 
     /**
-     * @param mixed $activities
+     * {@inheritdoc}
      */
     public function setActivities($activities)
     {
