@@ -27,16 +27,12 @@ class ProviderController extends Controller
 
     public function updateAction(Request $request, $slug, $provider)
     {
-        $projectProvider = $this->getDoctrine()
-            ->getRepository('TempoAppBundle:ProjectProvider')
-                ->findOneByName($provider);
-
+        $projectProvider = $this->getManager('project_provider')->getRepository()->findOneByName($provider);
         $form = $this->createForm(new ProviderFormType(), $projectProvider);
 
         if ($form->handleRequest($request)->isValid()) {
 
-            $this->getDoctrine()->getManager()->persist($projectProvider);
-            $this->getDoctrine()->getManager()->flush();
+            $this->get('tempo.domain_manager')->create($projectProvider);
 
             return $this->redirectToRoute('project_show', array(
                 'slug' => $slug,
