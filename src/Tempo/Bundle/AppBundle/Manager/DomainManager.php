@@ -78,11 +78,16 @@ class DomainManager
         return sprintf('%s.%s.%s', $prefix, strtolower($resourceName), $name);
     }
 
+    public function flush()
+    {
+        $this->objectManager->flush();
+    }
+
     /**
      * @param $resource
      * @return Event
      */
-    public function create($resource)
+    public function create($resource, $flush = true)
     {
         $event = $this->dispatchEvent($resource, 'pre_create');
 
@@ -91,7 +96,9 @@ class DomainManager
         }
 
         $this->objectManager->persist($resource);
-        $this->objectManager->flush();
+        if ($flush) {
+            $this->objectManager->flush();
+        }
 
         $this->dispatchEvent($resource, 'post_create');
     }
@@ -100,7 +107,7 @@ class DomainManager
      * @param $resource
      * @return Event
      */
-    public function update($resource)
+    public function update($resource, $flush = true)
     {
         $event = $this->dispatchEvent($resource, 'pre_update');
 
@@ -109,7 +116,9 @@ class DomainManager
         }
 
         $this->objectManager->persist($resource);
-        $this->objectManager->flush();
+        if ($flush) {
+            $this->objectManager->flush();
+        }
 
         $this->dispatchEvent($resource, 'post_update');
     }
@@ -118,7 +127,7 @@ class DomainManager
      * @param $resource
      * @return Event
      */
-    public function delete($resource)
+    public function delete($resource, $flush = true)
     {
         $event = $this->dispatchEvent($resource, 'pre_delete');
 
@@ -127,7 +136,9 @@ class DomainManager
         }
 
         $this->objectManager->remove($resource);
-        $this->objectManager->flush();
+        if ($flush) {
+            $this->objectManager->flush();
+        }
 
         $this->dispatchEvent($resource, 'post_delete');
     }
