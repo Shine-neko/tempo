@@ -1,6 +1,7 @@
-api_provider_activity_ws:
-    path: /notify/{id}
+api_provider_activity_notify:
+    path: /{project}/notify/{provider}
     defaults:
         _controller: TempoAppBundle:ProviderActivity:provider
+        provider : default
     requirements:
           slug: "\w+\/\w+"

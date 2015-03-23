@@ -15,31 +15,40 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Tempo\Bundle\AppBundle\TempoAppEvents;
 use Tempo\Bundle\AppBundle\Event\ActivityProviderEvent;
+use Tempo\Bundle\AppBundle\Model\Project;
 
 class ProviderActivityController extends Controller
 {
     /**
      * @param Request $request
-     * @param $id
+     * @param Project $project
+     * @param $provider
      * @return Response
      * @throws \Exception
      */
-    public function providerAction(Request $request, $id)
+    public function providerAction(Request $request, Project $project, $provider)
     {
-        $manager = $this->getManager('activity_provider');
-        $projectProvider = $this->getManager('project_provider')->find($id);
-        $provider = $this->getProvider(strtoupper($projectProvider->getName()));
+        if (!$project->getMemberByUser($this->getUser())) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $projectProvider = $this->getManager('project_provider')->find(array(
+            'name' => $provider,
+            'project' => $project
+        ));
+
+        $provider = $this->getProvider($provider);
 
         $event = new ActivityProviderEvent($request, $projectProvider);
         $this->get('event_dispatcher')->dispatch(TempoAppEvents::ACTIVITY_PROVIDER_CREATE_INITIALIZE, $event);
 
         $activity = $provider->parse($request);
 
-        $manager->addActivity($activity, $projectProvider);
+        $this->getManager('activity_provider')->addActivity($activity, $projectProvider);
 
         $this->get('event_dispatcher')->dispatch(TempoAppEvents::ACTIVITY_PROVIDER_CREATE_SUCCESS, $event);
 
-        return new Response('ok');
+        return new Response('success');
     }
 
     /**
