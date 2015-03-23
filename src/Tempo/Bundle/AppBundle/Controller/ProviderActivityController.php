@@ -28,7 +28,7 @@ class ProviderActivityController extends Controller
      */
     public function providerAction(Request $request, Project $project, $provider)
     {
-        if (!$project->getMemberByUser($this->getUser())) {
+        if (!$this->isGranted('VIEW', $project)) {
             throw $this->createAccessDeniedException();
         }
 
