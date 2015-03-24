@@ -20,6 +20,10 @@ use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
  */
 class ActivityRepository extends EntityRepository
 {
+    /**
+     * @param $user
+     * @return \Doctrine\ORM\QueryBuilder
+     */
     public function getUserActivites($user)
     {
         $query = $this->createQueryBuilder('activity');
@@ -32,10 +36,15 @@ class ActivityRepository extends EntityRepository
         return $query;
     }
 
+    /**
+     * @param $parent
+     * @param $user
+     * @return mixed
+     */
     public function getProjectActivities($parent, $user)
     {
         $query =  $this->getUserActivites($user);
-        if($parent !== null)  {
+        if ($parent !== null) {
             $query
                 ->andWhere('activity.project = :project')
                 ->setParameter(':project', $parent);
