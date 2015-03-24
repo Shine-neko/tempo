@@ -797,12 +797,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/migrations.git",
-                "reference": "b8ed2683bf48cf13c92f80d99cb723ae28efb227"
+                "reference": "65978aa4e9ffca3bb632225ad8c6320077d80d85"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/migrations/zipball/b8ed2683bf48cf13c92f80d99cb723ae28efb227",
-                "reference": "b8ed2683bf48cf13c92f80d99cb723ae28efb227",
+                "url": "https://api.github.com/repos/doctrine/migrations/zipball/65978aa4e9ffca3bb632225ad8c6320077d80d85",
+                "reference": "65978aa4e9ffca3bb632225ad8c6320077d80d85",
                 "shasum": ""
             },
             "require": {
@@ -847,7 +847,7 @@
                 "database",
                 "migrations"
             ],
-            "time": "2015-03-13 10:18:59"
+            "time": "2015-03-23 09:47:20"
         },
         {
             "name": "doctrine/orm",
@@ -855,12 +855,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "e6887954ec1507a48ca77c8826dd3655c3db9269"
+                "reference": "dc99ed286a0268c20c77ec86003c1217e4e270a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/e6887954ec1507a48ca77c8826dd3655c3db9269",
-                "reference": "e6887954ec1507a48ca77c8826dd3655c3db9269",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/dc99ed286a0268c20c77ec86003c1217e4e270a4",
+                "reference": "dc99ed286a0268c20c77ec86003c1217e4e270a4",
                 "shasum": ""
             },
             "require": {
@@ -924,7 +924,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2015-03-20 17:52:00"
+            "time": "2015-03-24 00:39:03"
         },
         {
             "name": "friendsofsymfony/jsrouting-bundle",
@@ -4666,12 +4666,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/data-fixtures.git",
-                "reference": "57ead4595aad95b1b46195d63d7d21d33dffcd38"
+                "reference": "f1ae0e3b22e34c2e79a23ca5547fe5fe4d078f9a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/data-fixtures/zipball/57ead4595aad95b1b46195d63d7d21d33dffcd38",
-                "reference": "57ead4595aad95b1b46195d63d7d21d33dffcd38",
+                "url": "https://api.github.com/repos/doctrine/data-fixtures/zipball/f1ae0e3b22e34c2e79a23ca5547fe5fe4d078f9a",
+                "reference": "f1ae0e3b22e34c2e79a23ca5547fe5fe4d078f9a",
                 "shasum": ""
             },
             "require": {
@@ -4712,7 +4712,7 @@
             "keywords": [
                 "database"
             ],
-            "time": "2015-03-05 15:20:51"
+            "time": "2015-03-23 11:35:53"
         },
         {
             "name": "doctrine/doctrine-fixtures-bundle",
