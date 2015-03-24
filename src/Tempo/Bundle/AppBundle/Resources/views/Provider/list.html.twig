@@ -1,7 +1,7 @@
-<h1>Project services</h1>
+<h1>{{ 'tempo.project.services.description'|trans }}</h1>
 <div class="container-provider">
     <div class="app-panel">
-        <p>Project services allow you to integrate Tempo with other applications</p>
+        <p>{{ 'tempo.project.services.description'|trans }}</p>
         <table class="table">
             <thead>
                 <tr>
@@ -11,7 +11,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for provider in providers  %}
+                {% for provider in providers %}
                 <tr>
                     <td><span class="glyphicon glyphicon-off clgray"></span></td>
                     <td><a data-toggle="modal" role="dialog" data-target="#" data-title="{{ provider.name }} provider" href="{{ path('project_provider_update', { 'slug': slug, 'provider': provider.name } ) }}">{{ provider.name }}</a></td>

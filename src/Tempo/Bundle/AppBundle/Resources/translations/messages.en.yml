@@ -101,6 +101,9 @@ tempo:
       activity: Activity
       sub_project: Sub project of
       settings: Settings
+      services:
+          title: Project services
+          description: Project services allow you to integrate Tempo with other applications
       form:
           version: Version
           label:

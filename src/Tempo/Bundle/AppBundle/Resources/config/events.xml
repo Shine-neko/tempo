@@ -29,6 +29,7 @@
 
         <service id="tempo.listener.project" class="%tempo.listener.project.class%">
             <argument type="service" id="tempo.model_manager.room" />
+            <argument type="service" id="tempo.activity.provider_registry" />
             <tag name="kernel.event_listener" event="tempo.project.pre_create" method="createProject" />
         </service>
     </services>
