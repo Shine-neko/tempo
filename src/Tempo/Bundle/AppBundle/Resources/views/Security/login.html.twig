@@ -3,14 +3,7 @@
 {% block body %}
 
     <div id="container-user" class="col-md-4">
-        <style type="text/css">
-            body {
-                background: url("{{ asset('bundles/tempoapp/images/bg_login.jpg') }}");
-                background-position: left top;
-            }
-        </style>
-
-        <h1>Tempo </h1>
+        <h1>{{ sylius_settings_get('general.name') }} </h1>
         {% block subcontent %}
         {% if error %}
             <div class="form-error">{{ error.messageKey|trans(error.messageData) }}</div>
@@ -26,29 +19,37 @@
         {% endfor %}
 
         <form action="{{ path("user_login_check") }}" method="post">
-            <div class="widget username">
-                <label for="username">{{ 'tempo.security.login.username'|trans }}</label>
-                <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control" /><br />
+
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control" placeholder="{{ 'tempo.security.login.username'|trans }}" />
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+
             </div>
 
-            <div class="widget password">
-                <label for="password">{{ 'tempo.security.login.password'|trans }}</label>
-                <input type="password" id="password" name="_password" class="form-control" />
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="password" id="password" name="_password" class="form-control" placeholder="{{ 'tempo.security.login.password'|trans }}" />
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
             </div>
+
             <div class="widget remember col-md-6">
                 <label class="pull-left" for="remember_me">{{ 'tempo.security.login.remember_me'|trans }}</label>
                 <input type="checkbox" class="pull-left" id="remember_me" name="_remember_me" value="on" />
+
+                <a class="forgotten_password" href="{{ path('user_resetting_request') }}">{{ 'tempo.security.resetting.request'|trans }}</a>
             </div>
             <div class="widget send col-md-6">
                 <input id="login" class="submit btn btn-default" type="submit" value="{{ 'tempo.security.login.submit'|trans }}" />
             </div>
             <div class="widget reset">
-                <a href="{{ path('user_resetting_request') }}">{{ 'tempo.security.resetting.request'|trans }}</a>
             </div>
-            <div class="widget rest clearfix">
-                 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-            </div>
+
+
             <div class="widget pp clearfix">
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
                 <div id="providers" class="col-md-6">
                     {% render url('hwi_oauth_connect') %}
                 </div>

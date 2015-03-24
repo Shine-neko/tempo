@@ -40,6 +40,12 @@
 	margin-bottom: 18px;
 }
 
+.form-control:not(select) {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
 #page-title {
 	margin: 0px 25px 50px 0px;
 }
@@ -141,7 +147,7 @@ table.table-striped tbody .actions .edit {
 
 /* User */
 #user.login {
-	background: #D7D7D7;
+	background: #d2d6de;
 	color: #333;
 	font: 12px Arial, Verdana, sans-serif;
 }
@@ -153,7 +159,6 @@ table.table-striped tbody .actions .edit {
 	background: white;
 	padding: 20px;
 	border-radius: 5px;
-	box-shadow: 1px 1px 15px #888;
 }
 
 .user.login #container-user .form-error {
@@ -177,13 +182,9 @@ table.table-striped tbody .actions .edit {
 	margin: 0 auto;
 	padding-bottom: 18px;
 }
-
-.user.login #container-user .widget.username,
-.user.login #container-user .widget.password {
-	width: 95%;
-}
 .user.login #container-user .widget.remember {
 	margin-bottom: 0px;
+    padding-left: 0;
 }
 .user.login #container-user .widget.remember label {
   margin-right: 10px;
@@ -191,6 +192,7 @@ table.table-striped tbody .actions .edit {
 
 .user.login #container-user .widget.send {
 	margin-bottom: 0px;
+    padding-right: 0;
 	text-align: right;
 }
 
@@ -200,9 +202,6 @@ table.table-striped tbody .actions .edit {
 .user.login #container-user .widget.already_login {
 	margin-top: 100px;
 	clear: both;
-}
-.user.login #container-user .widget.pp {
-	margin-left: 25px;
 }
 
 .user.login #container-user label {
@@ -217,25 +216,31 @@ table.table-striped tbody .actions .edit {
 	display: inline;
 }
 
+.user.login #container-user .input-group {
+  width: 100%;
+}
+
 .user.login #container-user input[type="text"], .user.login #container-user input[type="password"] {
 	font-size: 12px;
 	line-height: 20px;
 	margin: 0;
-	padding: 3px;
-	height: 35px;
-	background-color: #FAFAFA;
+    padding-left: 12px;
 	border: 1px solid #EEE;
 	border-radius: 0;
 	box-shadow: none;
 }
 
-.user.login #container-user .submit.btn-default {
-	float: right;
-	color: #666666;
+
+.user.login #container-user input:focus {
+    border-color: #3c8dbc;
 }
-.user.login #container-user .submit.btn-default:hover {
-	background-color: #fafafa;
-	color: #428bca;
+
+.user.login .form-control-feedback {
+    color: #777;
+}
+
+.user.login .forgotten_password {
+    clear: both;
 }
 
 .user.login #container-user .send {
@@ -246,6 +251,14 @@ table.table-striped tbody .actions .edit {
 .user.login #container-user .send a {
 	color: #0066BC;
 	text-decoration: none;
+}
+
+.user.login .submit {
+    background-color: #3c8dbc;
+    border-color: #367fa9;
+    border-radius: 0;
+    color: #fff;
+    -webkit-font-smoothing: antialiased;
 }
 
 .user #providers {

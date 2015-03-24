@@ -28,12 +28,12 @@ tempo:
 
   security:
     login:
-      username: "Username:"
-      password: "Password:"
+      username: "Username"
+      password: "Password"
       remember_me: Remember me
       submit: Login
     resetting:
-      request: Forgot your password ?
+      request: Forgotten password?
       old_password: Current password
       request_non_expire: The password for this user has already been requested within the last 24 hours.
       request_success: An email with instructions on how to retrieve your password has been sent.
