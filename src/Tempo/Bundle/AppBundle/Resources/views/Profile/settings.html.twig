@@ -20,14 +20,9 @@
             <h1 id="page-title">Setting</h1>
             <div class="form-block clearbox">
                 {{ form_widget(form) }}
-
-                <div class="form-rest">
-                    <input type="submit" class="btn btn-primary">
-                </div>
             </div>
 
-            <form  action="{{ path('user_profile_token') }}" method="POST" class="user_profile_edit">
-
+            <div class="row">
                 <div class="col-md-8">
                     <fieldset>
                         <div class="form-group">
@@ -37,11 +32,12 @@
                             </div>
                         </div>
                     </fieldset>
-
                 </div>
-                <div class="col-md-2"><input type="submit" value="Generate token" class="btn btn-primary" /></div>
-                <div class="clearbox"></div>
-            </form>
+                <div class="col-md-2"><a href="{{ path('user_profile_token') }}" class="btn btn-primary">Generate token</a></div>
+            </div>
+            <div class="form-rest">
+                <input type="submit" class="btn btn-primary">
+            </div>
         </div>
 
 

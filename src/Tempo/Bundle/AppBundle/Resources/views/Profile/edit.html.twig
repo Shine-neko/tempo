@@ -18,27 +18,24 @@
         <div class="col-md-8 app-panel">
             <h1 id="page-title" style="font-size: 22px;">Edit profile</h1>
             <form action="{{ path('user_profile_update') }}" method="POST" class="user_profile_edit">
+                <fieldset>
+                    {{ form_row(form.email) }}
+                </fieldset>
 
-               <div class="form-block clearbox">
-                   <fieldset>
-                        {{ form_row(form.email) }}
-                   </fieldset>
-
-                   <fieldset>
+                <fieldset>
                     {{ form_row(form.firstName) }}
                     {{ form_row(form.lastName) }}
-                   </fieldset>
+                </fieldset>
 
-                   <fieldset>
+                <fieldset>
                     {{ form_row(form.phone) }}
                     {{ form_row(form.mobilePhone) }}
-                   </fieldset>
+                </fieldset>
 
-                   <fieldset>
-                       {{ form_row(form.company) }}
-                       {{ form_row(form.jobTitle) }}
-                   </fieldset>
-               </div>
+                <fieldset>
+                   {{ form_row(form.company) }}
+                   {{ form_row(form.jobTitle) }}
+                </fieldset>
                <div class="form-rest">
                    {{ form_rest(form) }}
                     <input type="submit" class="btn btn-primary" value="{{ 'tempo.form.save_changes'|trans }}" />
