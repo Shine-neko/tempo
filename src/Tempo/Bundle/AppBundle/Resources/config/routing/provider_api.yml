@@ -3,5 +3,3 @@ api_provider_activity_notify:
     defaults:
         _controller: TempoAppBundle:ProviderActivity:provider
         provider : default
-    requirements:
-          slug: "\w+\/\w+"
