@@ -45,4 +45,52 @@ class ProviderController extends Controller
             'provider' => $provider
         ));
     }
+
+    /**
+     * @param Request $request
+     * @param Project $project
+     * @param $provider
+     * @return Response
+     * @throws \Exception
+     */
+    public function notifyAction(Request $request, Project $project, $provider)
+    {
+        if (!$this->isGranted('VIEW', $project)) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $projectProvider = $this->getManager('project_provider')->find(array(
+            'name' => $provider,
+            'project' => $project
+        ));
+
+        $provider = $this->getProvider($provider);
+
+        $event = new ActivityProviderEvent($request, $projectProvider);
+        $this->get('event_dispatcher')->dispatch(TempoAppEvents::ACTIVITY_PROVIDER_CREATE_INITIALIZE, $event);
+
+        $activity = $provider->parse($request);
+
+        $this->getManager('activity_provider')->addActivity($activity, $projectProvider);
+
+        $this->get('event_dispatcher')->dispatch(TempoAppEvents::ACTIVITY_PROVIDER_CREATE_SUCCESS, $event);
+
+        return new Response('success');
+    }
+
+    /**
+     * @param $providerName
+     * @return \Tempo\Bundle\AppBundle\Provider\ProviderInterface
+     * @throws \Exception
+     */
+    protected function getProvider($providerName)
+    {
+        $serviceName = sprintf('tempo.activity.provider.%s', $providerName);
+
+        if (!$this->has($serviceName)) {
+            throw new \Exception(sprintf('Provider "%s" does not exists', $providerName));
+        }
+
+        return $this->get($serviceName);
+    }
 }

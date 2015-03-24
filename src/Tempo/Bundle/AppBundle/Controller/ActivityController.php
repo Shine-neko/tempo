@@ -19,11 +19,22 @@ class ActivityController extends Controller
      * @param $type
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function listAction($type = 'all')
+    public function listAction(Request $request, $type = 'all', $parent = null)
     {
-        $activitiesInternal = $this->getManager('activity')->getActivities($this->getUser());
-        $activitiesProvider = $this->getManager('activity_provider')->getActivities($this->getUser());
-        $activities =  array_merge($activitiesInternal, $activitiesProvider);
+        $activities = array();
+
+        if ('all' === $type) {
+            $activities = array_merge(
+                $activities,
+                $this->getManager('activity_provider')->getActivities($parent, $this->getUser()->getId())
+            );
+        }
+
+        $activities = array_merge(
+            $activities,
+            $this->getManager('activity')->getActivities($parent, $this->getUser()->getId())
+        );
+
 
         usort($activities, array($this, 'dateSort'));
         krsort($activities);

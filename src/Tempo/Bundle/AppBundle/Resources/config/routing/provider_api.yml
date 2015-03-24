@@ -1,5 +1,5 @@
 api_provider_activity_notify:
     path: /{project}/notify/{provider}
     defaults:
-        _controller: TempoAppBundle:ProviderActivity:provider
+        _controller: TempoAppBundle:Provider:notifiy
         provider : default

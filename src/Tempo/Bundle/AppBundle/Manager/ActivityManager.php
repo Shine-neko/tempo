@@ -48,10 +48,11 @@ class ActivityManager extends ModelManager
     }
 
     /**
+     * @param Project|null $parent
      * @param $user
      */
-    public function getActivities($user)
+    public function getActivities($project, $user)
     {
-        return $this->getRepository()->getUserActivites($user);
+        return $this->getRepository()->getProjectActivities($project, $user);
     }
 }
