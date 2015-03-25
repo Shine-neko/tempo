@@ -42,6 +42,8 @@ class ActivityProviderListener
         $projectProvider = $event->getActivityProvider();
         $project = $this->serializer->serialize($projectProvider->getProject(), 'json');
 
-        //@todo: see https://github.com/tempo-project/tempo/issues/51
+        $this->elephantIoClient->send('providerEvent', array(
+            'project' => $project
+        ));
     }
 }
