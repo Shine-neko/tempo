@@ -55,6 +55,7 @@
 
         <service id="tempo.elephantio.definition" class="ElephantIO\Client" public="false" >
             <argument type="service" id="tempo.elephantio.engine" />
+            <argument type="service" id="logger" />
         </service>
 
         <service id="tempo.elephantio.client" class="%tempo.elephantio.client.class%">
