@@ -12,8 +12,11 @@
 namespace Tempo\Bundle\AppBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Tempo\Bundle\AppBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 use Tempo\Bundle\AppBundle\Form\Type\ProviderFormType;
+use Tempo\Bundle\AppBundle\Model\Project;
+use Tempo\Bundle\AppBundle\TempoAppEvents;
+use Tempo\Bundle\AppBundle\Event\ActivityProviderEvent;
 
 class ProviderController extends Controller
 {
