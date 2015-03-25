@@ -10,7 +10,7 @@
         <li class="feed clearfix">
            <div class="author">
                <a href="https://github.com/{{ user }}">
-                   <img width="33" src="{{ activity.data.sender.avatar_url }}" />
+                   <img class="avatar" width="33" src="{{ activity.data.sender.avatar_url }}" />
                </a>
            </div>
            <div class="message">
@@ -31,7 +31,7 @@
                {% set commits = activity.data.commits is defined ? activity.data.commits : {0: activity.data.commit} %}
                {% for commit in commits %}
                    <li>
-                       <span> <img height="16" src="{{ gravatar(commit.author.email) }}"> </span>
+                       <span> <img height="16" class="avatar" src="{{ gravatar(commit.author.email) }}"> </span>
                        <a href="{{ commit.url }}"> {{ commit.id|truncate(7, false, '') }} </a>
                        {{ commit.message }}
                    </li>
