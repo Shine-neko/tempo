@@ -36,7 +36,7 @@ Tempo.View.ConnectedUsers = Backbone.View.extend({
      * Render the view
      */
     render: function() {
-        this.$el.html(_.template(this.template, {connectedCount : this.users.length}));
+        this.$el.html(_.template(this.template)({connectedCount : this.users.length}));
         var list = $('ul', this.$el);
         _.forEach(this.users, function(user) {
             var a = $('<a />')

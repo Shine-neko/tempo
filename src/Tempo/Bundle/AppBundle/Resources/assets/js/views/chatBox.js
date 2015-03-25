@@ -31,7 +31,7 @@ Tempo.View.ChatBox = Backbone.View.extend({
      * Render the chat box, and render any messages using the sub view
      **/
     render: function() {
-        this.$el.html(_.template(this.template, {
+        this.$el.html(_.template(this.template)({
             'avatar' : Tempo.Controller.Dashboard.user.avatar
         }));
 
