@@ -154,6 +154,7 @@ class Project implements ProjectInterface
         $this->advancement = 0;
         $this->timesheets = new ArrayCollection();
         $this->children = new ArrayCollection();
+        $this->members = new ArrayCollection();
         $this->parents = new ArrayCollection();
         $this->providers = new ArrayCollection();
         $this->createdAt = new \DateTime();

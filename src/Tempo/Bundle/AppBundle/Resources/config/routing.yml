@@ -73,6 +73,10 @@ _timesheet_api:
   defaults:
       version: v1
 
+
+_activity:
+ resource: "@TempoAppBundle/Resources/config/routing/activity.yml"
+
 _prodiver_api:
   type: rest
   prefix:   /api/{version}/provider
@@ -88,3 +92,5 @@ _comment:
 tempo_setting_backend:
     resource: "@TempoAppBundle/Resources/config/routing/backend/settings.yml"
     prefix: /admin/settings
+
+

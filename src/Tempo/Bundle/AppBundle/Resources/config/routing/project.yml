@@ -66,13 +66,6 @@ project_version:
     requirements:
         slug: ".+"
 
-project_activity_list:
-    path: /{slug}/activity/list/{type}
-    defaults:
-        _controller: TempoAppBundle:Activity:list
-    options:
-      expose: true
-
 _project_settings:
     path: /settings
     methods: [GET]

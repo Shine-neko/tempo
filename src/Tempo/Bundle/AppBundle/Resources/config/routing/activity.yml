@@ -1,0 +1,6 @@
+activity_list:
+    path: /activity/list/{type}
+    defaults:
+        _controller: TempoAppBundle:Activity:list
+    options:
+      expose: true

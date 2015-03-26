@@ -9,3 +9,5 @@ Tempo\Bundle\AppBundle\Model\Project:
         expose: true
       description:
         expose: true
+      members:
+        expose: true

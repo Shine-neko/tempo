@@ -1,4 +1,21 @@
-var io = require('socket.io').listen(8000);
+var
+    fs      = require('fs'),
+    yaml    = require('js-yaml'),
+    logger  = require('winston');
+
+try {
+    var doc = yaml.safeLoad(fs.readFileSync(__dirname +'/../app/config/parameters.yml', 'utf8'));
+    var socket_io_port = doc.parameters['socket_io.client'].split(':')[2];
+} catch (e) {
+    console.log(e);
+}
+
+var server = require('http').createServer();
+var io = require('socket.io')(server);
+
+server.listen(socket_io_port);
+
+logger.info('SocketIO > listening on port ' + socket_io_port);
 
 
 /**
@@ -8,24 +25,28 @@ var usernames = {};
 
 io.sockets.on('connection', function (socket) {
 
+    logger.info('ElephantIO broadcast > ');
+
     /**
      * Get the list of usernames connected to a room
      */
     var getCurrentUsers = function(room) {
-        var currentClients = io.sockets.clients(room);
+        var clients = io.sockets.adapter.rooms[room];
         var returnClients = [];
 
-        for (var i = 0; i < currentClients.length; i++) {
-            var client = currentClients[i];
-            if (usernames[room][client.id] !== 'undefined') {
-                returnClients.push(usernames[room][client.id]);
+        var numClients = (typeof clients !== 'undefined') ? Object.keys(clients).length : 0;
+
+        for (var clientId in clients ) {
+            if (usernames[room][clientId] !== 'undefined') {
+                returnClients.push(usernames[room][clientId]);
             }
         }
+
         return returnClients;
     }
 
     /**
-     * Allow clients to subscribe to a specific board
+     * Allow clients to subscribe to a specific room
      */
     socket.on('subscribe', function(room, username) {
         socket.join(room);
@@ -33,11 +54,12 @@ io.sockets.on('connection', function (socket) {
             usernames[room] = {};
         }
         usernames[room][socket.id] = username;
+
         io.sockets.in(room).emit('user:change', getCurrentUsers(room));
     });
 
     /**
-     * Allow clients to unsubscribe from a board
+     * Allow clients to unsubscribe from a room
      */
     socket.on('unsubscribe', function(room) {
         socket.leave(room);
@@ -50,7 +72,7 @@ io.sockets.on('connection', function (socket) {
         io.sockets.in(room).except(socket.id).emit(eventType, params);
     });
 
-    socket.on('ProviderEvent', function(room) {
-        socket.broadcast.emit('feed:change', room);
+    socket.on('providerEvent', function(project) {
+        socket.broadcast.emit('feed:change', project);
     });
 });

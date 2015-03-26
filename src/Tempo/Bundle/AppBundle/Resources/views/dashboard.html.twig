@@ -10,54 +10,47 @@
         '@TempoAppBundle/Resources/assets/js/views/chatBox.js'
         '@TempoAppBundle/Resources/assets/js/views/chatMessage.js'
         '@TempoAppBundle/Resources/assets/js/views/connectedUsers.js'
-        '@TempoAppBundle/Resources/assets/js/views/room.js'
         '@TempoAppBundle/Resources/assets/js/controllers/dashboard.js'
         output="js/dashboard.js" filter="?uglifyjs"
     %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
     <script type="application/javascript">
-        {% if currentRoom is not null %}
-        {% autoescape false %}
-            Tempo.Controller.Dashboard.room = new Tempo.Model.Room({{ currentRoom| serialize | raw }}, {parse:true});
-            Tempo.Controller.Dashboard.user = {{ app.user| serialize | raw }};
-            Tempo.Controller.Dashboard.user.avatar = "{{ app.user.avatar | raw }}";
-            Tempo.Controller.Dashboard.load();
-        {% endautoescape %}
-        {% endif %}
+        Tempo.Controller.Dashboard.room = new Tempo.Model.Room({{ currentRoom| serialize | raw }}, {parse:true});
+        Tempo.Controller.Dashboard.user = {{ app.user| serialize | raw }};
+        Tempo.Controller.Dashboard.user.avatar = "{{ app.user.avatar | raw }}";
+        Tempo.Controller.Dashboard.load();
     </script>
 {% endblock %}
 
 {% block bodyClass %}home dashboard {% endblock %}
 {% block container %}
-        <div id="row-box" class="row">
-            <div class="col-md-6" id="activity-box">
-                <h3 class="homeTitle">
-                    <span class="glyphicon glyphicon-random"></span>
-                    {{ 'tempo.activity.dashboard.title'|trans }}
-                </h3>
+    <div class="col-md-6" id="activity-box">
+        <h3 class="homeTitle">
+            <span class="glyphicon glyphicon-random"></span>
+            {{ 'tempo.activity.dashboard.title'|trans }}
+        </h3>
 
-                <div id="room-activity-box">
-                    {{ render(controller('TempoAppBundle:Activity:list')) }}
-                </div>
-
-            </div>
-            {% if currentRoom %}
-            <div class="col-md-6" id="chat-box">
-                <nav class="rooms">
-                    <ul class="clearfix">
-                        {% for room in rooms %}
-                            <li class="{% if room.id == currentRoom.id %}current{% endif %}"><a href="?currentRoom={{ room.id }}">{{ room.name }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </nav>
-                <div id="chatbox">
-                    <div class="loader">
-                        <img src="{{ asset('bundles/tempoapp/images/loading-bubbles.svg') }}" width="64" height="64">
-                    </div>
-                </div>
-
-            </div>
-            {% endif %}
+        <div id="room-activity-box" class="dashboard-{{ app.user.id }}">
+            {{ render(controller('TempoAppBundle:Activity:list')) }}
         </div>
+
+    </div>
+    {% if currentRoom %}
+    <div class="col-md-6" id="chat-box">
+        <nav class="rooms">
+            <ul class="clearfix">
+                {% for room in rooms %}
+                    <li class="{% if room.id == currentRoom.id %}current{% endif %}"><a href="?currentRoom={{ room.id }}">{{ room.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </nav>
+        <div id="chatbox">
+            <div class="loader">
+                <img src="{{ asset('bundles/tempoapp/images/loading-bubbles.svg') }}" width="64" height="64">
+            </div>
+        </div>
+
+    </div>
+    {% endif %}
 {% endblock %}
