@@ -73,5 +73,4 @@ Tempo.View.ConnectedUsers = Backbone.View.extend({
         }
 
     }
-
 });

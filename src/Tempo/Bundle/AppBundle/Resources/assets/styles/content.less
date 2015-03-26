@@ -341,12 +341,15 @@ table.table-striped tbody .actions .edit {
 	margin-top: 0;
 }
 .dashboard .rooms {
+    top: 0;
+    position: absolute;
 	padding: 10px 0;
 	background: #FFF;
 	border-color: #D5D5D5;
 	box-shadow: 0 1px 0 #FFFFFF inset, 0 1px 5px rgba(0, 0, 0, 0.1);
-	margin-bottom: 3px;
-	z-index: 2;
+    left: 10px;
+    right: 0;
+    height: 50px;
 }
 
 .dashboard .rooms ul{
@@ -360,25 +363,18 @@ table.table-striped tbody .actions .edit {
 
 .dashboard .rooms ul li a {
 	color: #4183c4;
-	padding: 0 3px 0 3px;
     font-size: 11px;
 	display: inline-block;
 }
-.dashboard .rooms ul li.current{
-	background-color: #005782;
-	background-image: -moz-linear-gradient(center top , #1a719c 0%, #005782 100%);
+.dashboard .rooms ul li.current {
+	background-color: #eee;;
 	border-radius: 3px;
     padding: 5px;
 }
 .dashboard .rooms ul li.current a {
-	color: #484848;
+	color: #337ab7;
 	font-weight: bold;
-	color: #fff;
 	text-decoration: none;
-}
-.dashboard #row-box {
-	position: relative;
-	height: 100%;
 }
 
 .dashboard #activity-box {
@@ -407,15 +403,15 @@ table.table-striped tbody .actions .edit {
 }
 
 .dashboard #connected-users {
-	top: 0;
+	top: 70px;
 	padding: 0 25px;
 	border-color: #D5D5D5;
 	box-shadow: 0 1px 0 #FFFFFF inset, 0 1px 5px rgba(0, 0, 0, 0.1);
 	background: #FFF;
 	position: absolute;
-	width: 100%;
+	left: 10px;
+	right: 0;
 }
-
 .dashboard #connected-users #user-handle {
 	font-weight: normal;
 	color: #4a87b6;
@@ -439,15 +435,20 @@ table.table-striped tbody .actions .edit {
 	padding-left: 0;
 }
 
+.dashboard #chat {
+  position: absolute;
+  left: 10px;
+  right: 0px;
+  top: 107px;
+}
+
 .dashboard #chat .chat-content{
 	background: #fff;
 }
 .dashboard #chat #chat-messages{
 	overflow: scroll;
-	top: 30px;
 	bottom: 60px;
 	width: 100%;
-	position: absolute;
 	border-color: #D5D5D5;
 	box-shadow: 0 1px 0 #FFFFFF inset, 0 1px 5px rgba(0, 0, 0, 0.1);
 	background: #FFF;
@@ -458,18 +459,14 @@ table.table-striped tbody .actions .edit {
 .dashboard #chat form {
 	display: block;
 	padding: 0.531em 13px;
-	position: absolute;
 	bottom: 0px;
 	border-top: 1px solid #C0C0C0;
-	width: 100%;
 	background: none repeat scroll 0 0 #F9F9F9;
 }
 
 .dashboard #chat .form-control {
 	width: 100%;
 	float: left;
-}
-.dashboard #chat #message-input-area {
 }
 .dashboard #chat #message-submit {
 	float: left;
@@ -519,6 +516,11 @@ table.table-striped tbody .actions .edit {
 	margin: 0px;
 	padding: 0px;
 }
+
+.home.dashboard #content .row {
+    height: 100%;
+}
+
 .home.dashboard .events-push {
 	clear: both;
 	padding-top: 10px;
