@@ -5,4 +5,4 @@ Feature: generate a new token project
 
   Scenario: show a project
     When I go to "profile/edit/settings"
-    And I press "Generate token"
+    And I follow "Generate token"
