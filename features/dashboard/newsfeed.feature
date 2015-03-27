@@ -1,3 +1,4 @@
+@dashboard
 Feature: Browser newsfeed
   Scenario: Can see newsfeed
     Given I am connected as "john.doe"
