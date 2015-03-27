@@ -23,7 +23,7 @@ class AvatarType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('avatar', 'file', array(
-            'label' => 'avatar.choose_avatar',
+            'label' => 'tempo.avatar.choose_avatar',
         ));
     }
 

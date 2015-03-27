@@ -2,7 +2,7 @@
 {% block bodyClass %}{{ parent() }} login user{% endblock %}
 {% block body %}
 
-    <div id="container-user" class="col-md-4">
+    <div id="container-user" class="col-md-3">
         <h1>{{ sylius_settings_get('general.name') }} </h1>
         {% block subcontent %}
         {% if error %}

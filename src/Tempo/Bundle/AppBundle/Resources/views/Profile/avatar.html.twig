@@ -15,11 +15,6 @@
     {% include "TempoAppBundle:Profile:_tabs.html.twig" %}
 
     <div class="app-panel col-md-8">
-        <div class="alert alert-warning alert-dismissable">
-            {{ 'tempo.avatar.current_change'|trans }}
-            <a href="{{ path('user_profile_show', { 'slug' : user.slug }) }}">{{ user.getUsername() }}</a>.
-        </div>
-
         <h1 class="page-title" style="font-size: 22px;">{{ 'tempo.avatar.admin_change'|trans }} {{ user.getUsername() }} </h1>
 
         <form action="{{ path('user_profile_picture') }}" method="post" class="form-horizontal" enctype="multipart/form-data">
@@ -29,10 +24,10 @@
 
                 <div class="control-group">
                     <div class="controls">
-                        <div class="avatar" class="pull-right">
+                        <div class="avatar col-md-2">
                             <img src="{{ user.getAvatar() }}" alt="{{ 'tempo.avatar.actual_avatar'|trans }}" />
                         </div>
-                        <div style="margin-left: 110px">
+                        <div class="col-md-6">
                             <p>
                                 {% if user.hasLocalAvatar() %}
                                     <strong>Cet avatar provient de votre ordinateur.</strong>
