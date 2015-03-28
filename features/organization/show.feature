@@ -1,3 +1,4 @@
+@organization
 Feature: Display an organization
 
   Background:

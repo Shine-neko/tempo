@@ -50,4 +50,8 @@ before_script:
 
 script:
     - ./bin/phpunit -c app/
-    - ./bin/behat -fprogress --verbose
+    - ./bin/behat --suite=account -fprogress || EXIT_STATUS=$?
+    - ./bin/behat --suite=organization -fprogress || EXIT_STATUS=$?
+    - ./bin/behat --suite=project  -fprogress || EXIT_STATUS=$?
+    - ./bin/behat --suite=dashboard  -fprogress || EXIT_STATUS=$?
+    - ./bin/behat --suite=timesheet  -fprogress || EXIT_STATUS=$?

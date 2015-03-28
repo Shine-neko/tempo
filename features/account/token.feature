@@ -1,3 +1,4 @@
+@account
 Feature: generate a new token project
 
   Background:

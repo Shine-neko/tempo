@@ -1,3 +1,4 @@
+@timesheet
 Feature: dashboard timesheet
 
   Background:
@@ -12,7 +13,6 @@ Feature: dashboard timesheet
     And I should see "Prometheus"
     And I should see "Spartacus"
     And I should see "Gothlauth"
-
 
   Scenario: list days:
     When I am on "/timesheet/?week=12&year=2014"
