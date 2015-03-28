@@ -1,3 +1,4 @@
+@timesheet
 Feature: Validate timesheet
     Background:
         Given I am connected as "admin"

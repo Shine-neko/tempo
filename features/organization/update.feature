@@ -1,3 +1,4 @@
+@organization
 Feature: update organisation
 
   Background:
