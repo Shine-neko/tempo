@@ -12,8 +12,9 @@
 namespace Tempo\Bundle\AppBundle\Provider;
 
 use Symfony\Component\HttpFoundation\Request;
+use Tempo\Bundle\AppBundle\Model\ActivityProvider;
 
-class DeployProvider implements ProviderInterface
+class DeployerProvider implements ProviderInterface
 {
     public function parse(Request $request)
     {
