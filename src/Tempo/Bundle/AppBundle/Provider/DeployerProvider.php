@@ -21,7 +21,7 @@ class DeployProvider implements ProviderInterface
         $payload = $request->request->get('data');
 
         $activity = new ActivityProvider();
-        $activity->setMessage('Branch master (at '.$payload['release']['sha'].') deployed as release '.$payload['release']['name'].' by '.$payload['author']['name']);
+        $activity->setMessage('Branch '.$payload['release']['branch'].' (at '.$payload['release']['sha'].') deployed as release '.$payload['release']['name'].' by '.$payload['author']['name']);
         $activity->setCreatedAt(new \DateTime());
         $activity->setParameters($payload);
 
@@ -30,11 +30,11 @@ class DeployProvider implements ProviderInterface
 
     public function getName()
     {
-        return 'Deploy';
+        return 'Deployer';
     }
 
     public function getCanonicalName()
     {
-        return 'deploy';
+        return 'deployer';
     }
 }
