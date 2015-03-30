@@ -12,6 +12,9 @@
 namespace Tempo\Bundle\AppBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Pagerfanta\Adapter\ArrayAdapter;
+use Pagerfanta\Pagerfanta;
+
 
 class ActivityController extends Controller
 {
@@ -38,6 +41,9 @@ class ActivityController extends Controller
 
         usort($activities, array($this, 'dateSort'));
         krsort($activities);
+
+        $adapter = new ArrayAdapter($activities);
+        $activities = new Pagerfanta($adapter);
 
         return $this->render('TempoAppBundle:Activity:list.html.twig', array(
             'type' => $type,
