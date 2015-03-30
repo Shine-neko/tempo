@@ -27,7 +27,7 @@ class FrontendMenuBuilder extends MenuBuilder
 
         $menu->addChild(
             $this->translate('tempo.menu.project'),
-            array('route' => 'project_home')
+            array('route' => 'project_dashboard')
         );
         $menu->addChild(
             $this->translate('tempo.menu.timesheet'),

@@ -40,23 +40,6 @@ class ProjectController extends Controller
     }
 
     /**
-     * Lists all organization projects.
-     * @param $organization
-     * @return Response
-     */
-    public function listAction(Organization $organization)
-    {
-        $projects = $organization->getProjects();
-        $organizations = $this->getManager('organization')->findAll();
-
-        return $this->render('TempoAppBundle:Project:list.html.twig', array(
-            'organization' => $organization,
-            'organizations' => $organizations,
-            'projects' => $projects
-        ));
-    }
-
-    /**
      * Finds and displays a Project entity.
      * @return Response
      */
@@ -167,7 +150,7 @@ class ProjectController extends Controller
 
             $this->addFlash('success', 'project.success_delete');
 
-            return $this->redirectToRoute('project_home');
+            return $this->redirectToRoute('project_dashboard');
         }
     }
 

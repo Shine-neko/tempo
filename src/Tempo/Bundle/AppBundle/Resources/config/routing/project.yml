@@ -1,10 +1,6 @@
-project_home:
+project_dashboard:
     path:  /
     defaults: { _controller: TempoAppBundle:Project:dashboard }
-
-project_organization_list:
-    path:  /{slug}/list
-    defaults: { _controller: TempoAppBundle:Project:list }
 
 project_create:
     path:  /{organization}/create

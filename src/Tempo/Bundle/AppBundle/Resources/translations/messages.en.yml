@@ -55,7 +55,6 @@ tempo:
   notification:
     see_all: See all notification
   organization:
-      select: Select an organization to view its projects
       not_found_orga: No organization has been found
       not_found_project: No projects found for this organization
       add:  New organization
