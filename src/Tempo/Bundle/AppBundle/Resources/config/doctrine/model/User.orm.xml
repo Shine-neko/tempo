@@ -12,7 +12,7 @@
             <generator strategy="AUTO" />
         </id>
 
-        <field name="username" column="username" type="string" length="255" />
+        <field name="username" column="username" type="string" length="255" unique="true" />
         <field name="slug" type="string" length="156" unique="true">
             <gedmo:slug unique="true" updatable="true" separator="-" fields="username" />
         </field>
