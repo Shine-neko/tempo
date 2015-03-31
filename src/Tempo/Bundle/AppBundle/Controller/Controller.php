@@ -19,7 +19,7 @@ use Pagerfanta\Adapter\DoctrineORMAdapter;
 
 class Controller extends FOSRestController
 {
-    protected static $_flashTypes = array('normal', 'success', 'warning', 'danger');
+    protected static $_flashTypes = array('normal', 'success', 'error');
 
     protected function addFlash($type, $message, $domain = null)
     {

@@ -63,7 +63,7 @@ class ProfileController extends Controller
                     $avatarProcessError = 'avatar.success_edit';
             }
 
-            $this->addFlash('error', $avatarProcessError, 'TempoUser');
+            $this->addFlash('error', $avatarProcessError);
         }
 
         return $this->render('TempoAppBundle:Profile:avatar.html.twig', array(
@@ -78,9 +78,7 @@ class ProfileController extends Controller
         $form = $this->createForm(new ProfileType(), $user);
 
         if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
-           $em = $this->getDoctrine()->getManager();
-           $em->persist($user);
-           $em->flush();
+           $this->get('tempo.domain_manager')->update($user);
         }
 
         return $this->render( 'TempoAppBundle:Profile:edit.html.twig',  array(
@@ -140,7 +138,7 @@ class ProfileController extends Controller
         $form = $this->createForm(new ChangePasswordFormType(), $profile);
 
         if ($form->handleRequest($request)->isValid()) {
-            $this->getManager('user')->save($profile);
+            $this->get('tempo.domain_manager')->update($profile);
 
             $this->addFlash('success', 'tempo.user.password_change_success');
 
@@ -156,15 +154,10 @@ class ProfileController extends Controller
     public function generateTokenAction()
     {
         $user = $this->getUser();
-
         $random = sha1(uniqid(rand(), true));
-
         $user->setToken($random);
 
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($user);
-        $em->flush();
-
+        $this->get('tempo.domain_manager')->update($user);
         $this->addFlash('success', 'the token was added');
 
         return $this->redirectToRoute('user_profile_edit');
