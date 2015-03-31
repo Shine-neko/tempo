@@ -96,7 +96,7 @@ class UserProvider implements UserProviderInterface
      */
     protected function findUser($username)
     {
-        return $this->userManager->findUserByUsername($username);
+        return $this->userManager->findUserBy(array('username' => $username));
     }
 
     public function getUsernameForApiKey($apiToken)

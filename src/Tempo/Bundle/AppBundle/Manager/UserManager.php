@@ -19,30 +19,6 @@ use Tempo\Bundle\AppBundle\Model\UserInterface;
 class UserManager extends ModelManager
 {
     /**
-     * Finds a user by email
-     *
-     * @param string $email
-     *
-     * @return UserInterface
-     */
-    public function findUserByEmail($email)
-    {
-        return $this->findUserBy(array('email' => $email));
-    }
-
-    /**
-     * Finds a user by username
-     *
-     * @param string $username
-     *
-     * @return UserInterface
-     */
-    public function findUserByUsername($username)
-    {
-        return $this->findUserBy(array('username' => $username));
-    }
-
-    /**
      * Finds a user either by email, or username
      *
      * @param string $usernameOrEmail
@@ -52,14 +28,10 @@ class UserManager extends ModelManager
     public function findUserByUsernameOrEmail($usernameOrEmail)
     {
         if (filter_var($usernameOrEmail, FILTER_VALIDATE_EMAIL)) {
-            return $this->findUserByEmail($usernameOrEmail);
+            return $this->findUserBy(array('email' => $usernameOrEmail));
         }
-        return $this->findUserByUsername($usernameOrEmail);
-    }
 
-    public function findUserByConfirmationToken($criteria)
-    {
-        return $this->findUserBy(array('confirmationToken' => $criteria));
+        return $this->findUserBy(array('username' => $usernameOrEmail));
     }
 
     public function findUserBy($criteria)
@@ -67,8 +39,8 @@ class UserManager extends ModelManager
         return $this->getRepository()->findOneBy($criteria);
     }
 
-    public function totalUsers()
+    public function nbTotalUser()
     {
-        return $this->getRepository()->totalUsers();
+        return $this->getRepository()->totalUser();
     }
 }

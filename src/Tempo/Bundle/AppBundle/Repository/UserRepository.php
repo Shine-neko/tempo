@@ -19,7 +19,7 @@ use Doctrine\ORM\Query;
  */
 class UserRepository extends EntityRepository
 {
-    public function totalUsers()
+    public function totalUser()
     {
         return $this->createQueryBuilder('u')
             ->select('COUNT(u)')
