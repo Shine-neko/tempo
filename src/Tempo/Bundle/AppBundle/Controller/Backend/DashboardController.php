@@ -23,9 +23,9 @@ class DashboardController extends Controller
     public function mainAction()
     {
         return $this->render('TempoAppBundle:Backend:Dashboard/main.html.twig', array(
-            'nbOrganizations' => $this->getManager('organization')->nbTotalOrganisation(),
-            'nbProjects' => $this->getManager('organization')->nbTotalOrganisation(),
-            'nbUsers' => $this->getManager('organization')->nbTotalOrganisation(),
+            'nbOrganizations'   => $this->getManager('organization')->nbTotalOrganisation(),
+            'nbProjects'        => $this->getManager('project')->nbTotalProject(),
+            'nbUsers'           => $this->getManager('user')->nbTotalUser(),
         ));
     }
 }
