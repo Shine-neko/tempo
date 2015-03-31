@@ -1,6 +1,7 @@
 {% extends "TempoAppBundle::layout.html.twig" %}
 {% from 'TempoAppBundle:Macros:actions.html.twig' import pagination %}
 {% import 'TempoAppBundle:Macros:buttons.html.twig' as buttons %}
+{% set activeTab = (app.request.query.get('criteria') is not empty and app.request.query.get('criteria').enabled|default('1') == '0') ? 'disabled' : 'all' %}
 
 {% block bodyClass %}backend users{% endblock %}
 
@@ -14,29 +15,32 @@
     </ol>
  {% endblock breadcrumb %}
 <div>
-    <div class="page-header">
-        <div class="actions-menu pull-right">
-            {{ buttons.create(path('backend_user_create'), 'tempo.user.create'|trans) }}
-        </div>
-        <h1> {{ 'tempo.user.list.page_title'|trans }}</h1>
+
+    <div class="col-md-2">
+        {{ knp_menu_render('admin') }}
     </div>
+    <div class="col-md-9">
+        <div class="page-header">
+            <div class="actions-menu pull-right">
+                {{ buttons.create(path('backend_user_create'), 'tempo.user.create'|trans) }}
+            </div>
+            <h1> {{ 'tempo.user.list.page_title'|trans }}</h1>
+        </div>
+        <div>
+            <div class="pull-left">
+                {% render(url('backend_user_filter_form', {'criteria': app.request.query.get('criteria')})) %}
+            </div>
+            <div class="pull-right">
+                <ul class="nav nav-pills pull-left">
+                    <li class="{{ activeTab == 'all' ? 'active' : '' }}"><a href="{{ path('backend_user_index') }}">{{ 'tempo.user.list.filter.all'|trans }}</a></li>
+                    <li class="{{ activeTab == 'disabled' ? 'active' : '' }}"><a href="{{ path('backend_user_index', {'criteria': {'enabled': false}}) }}"><i class="glyphicon glyphicon-info-sign"></i> {{ 'tempo.user.list.filter.unconfirmed'|trans }}</a></li>
+                </ul>
 
-    <div class="row">
-        <div class="col-md-2 admin-filter">
-
-            {% render(url('backend_user_filter_form', {'criteria': app.request.query.get('criteria')})) %}
-
-            {% set activeTab = (app.request.query.get('criteria') is not empty and app.request.query.get('criteria').enabled|default('1') == '0') ? 'disabled' : 'all' %}
-
-            <ul class="nav nav-pills nav-stacked">
-                <li class="{{ activeTab == 'all' ? 'active' : '' }}"><a href="{{ path('backend_user_index') }}">{{ 'tempo.user.list.filter.all'|trans }}</a></li>
-                <li class="{{ activeTab == 'disabled' ? 'active' : '' }}"><a href="{{ path('backend_user_index', {'criteria': {'enabled': false}}) }}"><i class="glyphicon glyphicon-info-sign"></i> {{ 'tempo.user.list.filter.unconfirmed'|trans }}</a></li>
-            </ul>
-
-            <a class="btn btn-cancel btn-default" href="{{ path('backend_user_index') }}">Reset</a>
+                <a class="pull-left btn btn-cancel btn-default" href="{{ path('backend_user_index') }}">Reset</a>
+            </div>
         </div>
 
-        <div class="col-md-10 app-panel">
+        <div class="app-panel clearbox">
 
             <table id="users" class="table">
                 <thead>
@@ -74,11 +78,10 @@
             </table>
         </div>
     </div>
+</div>
 
-    <div class="container text-center">
-        {{ pagination(users) }}
-    </div>
-
+<div class="container text-center">
+    {{ pagination(users) }}
 </div>
 
 {% endblock %}

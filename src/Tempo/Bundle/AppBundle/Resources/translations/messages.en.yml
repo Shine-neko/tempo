@@ -5,12 +5,7 @@ tempo:
     project: Projets
     home: Home
     timesheet: Timesheets
-    #admin: Admin
-    admin:
-      dashboard: Admin
-      setting:
-        general: General
-        project: Project
+    admin: Admin
 
   form:
       show: 'Show'
@@ -25,6 +20,14 @@ tempo:
       save_changes: 'Save changes'
       submit: Send
       manage: Manage
+
+  admin:
+      dashboard: Admin
+      menu:
+          general: General
+          settings: Settings
+          project: Projects
+          user: Users
 
   security:
     login:

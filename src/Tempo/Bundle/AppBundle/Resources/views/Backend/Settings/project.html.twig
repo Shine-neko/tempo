@@ -1,13 +1,15 @@
 {% extends "TempoAppBundle::layout.html.twig" %}
-{% block bodyClass %}admin settings project{% endblock %}
+{% block bodyClass %}backend admin settings project{% endblock %}
 
 {% block container %}
 
     <div class="col-md-2">
-        {{ knp_menu_render('admin_settings') }}
+        {{ knp_menu_render('admin') }}
     </div>
     <div class="col-md-8">
-        <h1 class="page-title">Settings</h1>
+        <div class="page-header">
+            <h1>Settings</h1>
+        </div>
         <div class="app-panel">
             <form class="form-block" method="post" action="{{ path('admin_configuration_project') }}">
                 {{ form_errors(form) }}

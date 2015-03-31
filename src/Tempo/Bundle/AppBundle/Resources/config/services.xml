@@ -129,7 +129,7 @@
 
         <service id="tempo.menu.admin.settings" class="%tempo.menu.class%">
             <factory service="tempo.menu.builder.admin" method="settingMenu" />
-            <tag name="knp_menu.menu" alias="admin_settings" />
+            <tag name="knp_menu.menu" alias="admin" />
         </service>
 
         <service id="tempo.settings_schema.general" class="%tempo.settings_schema.general.class%">

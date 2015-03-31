@@ -13,57 +13,55 @@
             <li class="last"> List </li>
         </ol>
     {% endblock breadcrumb %}
-    <div class="app-panel">
-        <div class="page-header">
-            <h1> {{ 'tempo.project.list.title'|trans }}</h1>
-        </div>
 
-        <div class="row">
-            <div class="col-md-2 admin-filter">
-
-                {% render(url('backend_project_filter_form', {'criteria': app.request.query.get('criteria')})) %}
-
-                {% set activeTab = (app.request.query.get('criteria') is not empty and app.request.query.get('criteria').enabled|default('1') == '0') ? 'disabled' : 'all' %}
-
-                <a class="btn btn-cancel btn-default" href="{{ path('backend_project_index') }}">Reset</a>
+            <div class="col-md-2">
+                {{ knp_menu_render('admin') }}
             </div>
 
-            <div class="col-md-10">
+            <div class="col-md-9">
 
-                <table id="project" class="table">
-                    <thead>
-                    <tr>
-                        <th>{{ sylius_resource_sort('id', 'tempo.project.form.label.id'|trans) }}</th>
-                        <th>{{ sylius_resource_sort('name', 'tempo.project.form.label.name'|trans) }}</th>
-                        <th>{{ sylius_resource_sort('beginning', 'tempo.project.form.label.beginning'|trans) }}</th>
-                        <th>{{ sylius_resource_sort('ending', 'tempo.project.form.label.ending'|trans) }}</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for project in projects %}
-                        <tr id="{{ project.id }}">
-                            <td>{{ project.id }}</td>
-                            <td>{{ project.name }}</td>
-                            <td>{{ project.beginning|localizeddate('medium', 'none', app.request.locale) }}</td>
-                            <td>{{ project.ending|localizeddate('medium', 'none', app.request.locale) }}</td>
-                            <td>
-                                <div class="pull-right">
-                                    {{ buttons.show(path('project_show', {'slug': project.slug})) }}
-                                    {{ buttons.delete(path('backend_project_delete', {'id': project.id}), null) }}
-                                </div>
-                            </td>
+                <div class="page-header">
+                    <h1> {{ 'tempo.project.list.title'|trans }}</h1>
+                </div>
+
+                <div class="admin-filter">
+                    {% render(url('backend_project_filter_form', {'criteria': app.request.query.get('criteria')})) %}
+
+                    {% set activeTab = (app.request.query.get('criteria') is not empty and app.request.query.get('criteria').enabled|default('1') == '0') ? 'disabled' : 'all' %}
+                </div>
+
+                <div class="app-panel">
+                    <table id="project" class="table">
+                        <thead>
+                        <tr>
+                            <th>{{ sylius_resource_sort('id', 'tempo.project.form.label.id'|trans) }}</th>
+                            <th>{{ sylius_resource_sort('name', 'tempo.project.form.label.name'|trans) }}</th>
+                            <th>{{ sylius_resource_sort('beginning', 'tempo.project.form.label.beginning'|trans) }}</th>
+                            <th>{{ sylius_resource_sort('ending', 'tempo.project.form.label.ending'|trans) }}</th>
+                            <th></th>
                         </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        {% for project in projects %}
+                            <tr id="{{ project.id }}">
+                                <td>{{ project.id }}</td>
+                                <td>{{ project.name }}</td>
+                                <td>{{ project.beginning|localizeddate('medium', 'none', app.request.locale) }}</td>
+                                <td>{{ project.ending|localizeddate('medium', 'none', app.request.locale) }}</td>
+                                <td>
+                                    <div class="pull-right">
+                                        {{ buttons.show(path('project_show', {'slug': project.slug})) }}
+                                        {{ buttons.delete(path('backend_project_delete', {'id': project.id}), null) }}
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
 
         <div class="container text-center">
             {{ pagination(projects) }}
         </div>
-
-    </div>
-
 {% endblock %}
