@@ -21,7 +21,7 @@ class Controller extends FOSRestController
 {
     protected static $_flashTypes = array('normal', 'success', 'warning', 'danger');
 
-    protected function addFlash($type, $message, $domaine = null)
+    protected function addFlash($type, $message, $domain = null)
     {
         if (!in_array($type, self::$_flashTypes)) {
             throw new \Exception(sprintf(
@@ -30,7 +30,7 @@ class Controller extends FOSRestController
             ));
         }
 
-        $this->get('session')->getFlashBag()->add($type, $this->getTranslation($message, array(), $domaine));
+        $this->get('session')->getFlashBag()->add($type, $this->getTranslation($message, array(), $domain));
     }
 
     /**
@@ -52,12 +52,12 @@ class Controller extends FOSRestController
     /**
      * @param $message
      * @param array $parameter
-     * @param null $domaine
+     * @param null $domain
      * @return string
      */
-    protected function getTranslation($message, $parameter = array(), $domaine = null)
+    protected function getTranslation($message, $parameter = array(), $domain = null)
     {
-        return $this->get('translator')->trans($message, $parameter, $domaine);
+        return $this->get('translator')->trans($message, $parameter, $domain);
     }
 
     /**
