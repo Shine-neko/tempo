@@ -39,8 +39,8 @@ class UserManager extends ModelManager
         return $this->getRepository()->findOneBy($criteria);
     }
 
-    public function totalUsers()
+    public function nbTotalUser()
     {
-        return $this->getRepository()->totalUsers();
+        return $this->getRepository()->totalUser();
     }
 }
