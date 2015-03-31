@@ -34,14 +34,14 @@ class FrontendMenuBuilder extends MenuBuilder
             array('route' => 'timesheet')
         );
 
+        $this->eventDispatcher->dispatch(MenuBuilderEvent::FRONTEND_MAIN, new MenuBuilderEvent($this->factory, $menu));
+
         if ($this->authorization->isGranted('ROLE_ADMIN')) {
             $menu->addChild(
-                $this->translate('tempo.menu.admin.dashboard'),
+                $this->translate('tempo.menu.admin'),
                 array('route' => 'backend')
             );
         }
-
-        $this->eventDispatcher->dispatch(MenuBuilderEvent::FRONTEND_MAIN, new MenuBuilderEvent($this->factory, $menu));
 
         return $menu;
     }
@@ -67,6 +67,8 @@ class FrontendMenuBuilder extends MenuBuilder
             $this->translate('tempo.profile.tabs.settings'),
             array('route' => 'user_profile_settings')
         );
+
+        $this->eventDispatcher->dispatch(MenuBuilderEvent::FRONTEND_USER, new MenuBuilderEvent($this->factory, $menu));
 
         return $menu;
     }

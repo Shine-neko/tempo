@@ -22,13 +22,23 @@ class AdminMenuBuilder extends MenuBuilder
         $menu->setChildrenAttribute('id', 'menu');
 
         $menu->addChild(
-            $this->translate('tempo.menu.admin.setting.general'),
+            $this->translate('tempo.admin.menu.general'),
             array('route' => 'admin_configuration_general')
         );
 
         $menu->addChild(
-            $this->translate('tempo.menu.admin.setting.project'),
+            $this->translate('tempo.admin.menu.user'),
+            array('route' => 'backend_user_index')
+        );
+
+        $menu->addChild(
+            $this->translate('tempo.admin.menu.settings'),
             array('route' => 'admin_configuration_project')
+        );
+
+        $menu->addChild(
+            $this->translate('tempo.admin.menu.project'),
+            array('route' => 'backend_project_index')
         );
 
         $this->eventDispatcher->dispatch(MenuBuilderEvent::ADMIN_MAIN, new MenuBuilderEvent($this->factory, $menu));
