@@ -5,7 +5,7 @@
         <ol id="breadcrumb" class="clearfix">
             <li class="first"> <a href="{{ path('dashboard') }}">{{ 'tempo.menu.home'|trans  }}</a> </li>
             <li> <a href="{{ path('backend') }}">{{ 'tempo.menu.admin'|trans  }}</a> </li>
-            <li class="last"> Dashboard </li>
+            <li class="last"> {{ 'tempo.admin.menu.settings'|trans }} </li>
         </ol>
     {% endblock breadcrumb %}
 
@@ -21,6 +21,9 @@
                     {{ form_widget(form) }}
                     {{ form_rest(form) }}
                 </div>
+
+                {{ form_rest(form) }}
+                <input type="submit" class="btn btn-primary" />
             </form>
         </div>
     </div>

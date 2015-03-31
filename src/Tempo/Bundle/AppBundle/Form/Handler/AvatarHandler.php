@@ -98,7 +98,7 @@ class AvatarHandler
 
             //If the user already has a local avatar, it is removed.
             if ($user->hasLocalAvatar()) {
-                unlink($this->getPath(false).$user->getAvatar());
+                @unlink($this->getPath(false).$user->getAvatar());
             }
 
             //Move the temporary file to the avatars.
