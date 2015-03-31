@@ -17,13 +17,6 @@ user_autocomplete:
     prefix:       api/{version}/
     resource: Tempo\Bundle\AppBundle\Controller\Api\UserController
 
-user_notification:
-    type:         rest
-    defaults:
-      version:  v1
-    prefix:       api/{version}/
-    resource: Tempo\Bundle\AppBundle\Controller\NotificationController
-
 tempo_user_notification:
     resource: "@TempoAppBundle/Resources/config/routing/notification.yml"
     prefix: /notifications

@@ -3,7 +3,8 @@
 {% block container %}
     {% block breadcrumb %}
         <ol id="breadcrumb" class="clearfix">
-            <li class="first"> <a href="{{ path('timesheet') }}">{{ 'tempo.menu.timesheet'|trans  }}</a> </li>
+            <li class="first"> <a href="{{ path('homepage') }}">{{ 'tempo.menu.home'|trans  }}</a> </li>
+            <li> <a href="{{ path('timesheet') }}">{{ 'tempo.menu.timesheet'|trans  }}</a> </li>
             <li class="last"> Analyse worklog </li>
         </ol>
     {% endblock breadcrumb %}

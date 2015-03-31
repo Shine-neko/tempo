@@ -69,7 +69,6 @@ _timesheet_api:
   defaults:
       version: v1
 
-
 _activity:
  resource: "@TempoAppBundle/Resources/config/routing/activity.yml"
 
