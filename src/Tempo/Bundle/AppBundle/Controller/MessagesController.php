@@ -21,10 +21,9 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\Get;
 
-use Tempo\Bundle\AppBundle\Controller\Controller;
-use Tempo\Bundle\AppBundle\Model\ChatMessage;
+use Tempo\Bundle\AppBundle\Model\Message;
 use Tempo\Bundle\AppBundle\Model\Room;
-use Tempo\Bundle\AppBundle\Form\Type\ChatMessageType;
+use Tempo\Bundle\AppBundle\Form\Type\MessageType;
 
 
 /**
@@ -34,23 +33,23 @@ class MessagesController extends Controller
 {
     /**
      *
-     * @Get("/room/{room}/message/{$chatMessageId}")
+     * @Get("/room/{room}/message/{$messageId}")
      *
      * Get a single message from this room messages
      *
      * @param Room $room
-     * @param string $chatMessageId
+     * @param string $messageId
      *
      */
-    public function getMessageAction($room, $chatMessageId)
+    public function getMessageAction($room, $messageId)
     {
         $room = $this->getManager('room')->getRepository()->findRoom($room, $this->getUser()->getId());
 
-        $message = $room->getChatMessage($chatMessageId);
+        $message = $room->getMessage($messageId);
         if (!$message) {
             throw $this->createNotFoundException(sprintf(
                 'Could not find message %s',
-                $chatMessageId
+                $messageId
             ));
         }
         return $message;
@@ -94,12 +93,12 @@ class MessagesController extends Controller
 
         $view = View::create();
 
-        $message = new ChatMessage();
+        $message = new Message();
         $message->setRoom($room);
         $message->setUser($this->getUser());
 
-        $room->addChatMessage($message);
-        $form = $this->createForm(new ChatMessageType(), $message);
+        $room->addMessage($message);
+        $form = $this->createForm(new MessageType(), $message);
 
         if ($form->submit($request) && $form->isValid()) {
             $dm = $this->getDoctrine()->getManager();

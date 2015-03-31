@@ -66,11 +66,11 @@ class Room implements RoomInterface
     /**
      * @var Collection
      */
-    protected $chatMessages;
+    protected $messages;
 
     public function __construct()
     {
-        $this->chatMessages = new ArrayCollection();
+        $this->messages = new ArrayCollection();
         $this->members = new ArrayCollection();
     }
 
@@ -103,9 +103,9 @@ class Room implements RoomInterface
     /**
      * {@inheritdoc}
      */
-    public function addChatMessage(ChatMessage $chatMessage)
+    public function addMessage(Message $message)
     {
-        $this->chatMessages[] = $chatMessage;
+        $this->messages[] = $message;
 
         return $this;
     }
@@ -113,18 +113,18 @@ class Room implements RoomInterface
     /**
      * {@inheritdoc}
      */
-    public function getChatMessages()
+    public function getMessages()
     {
-        return $this->chatMessages;
+        return $this->messages;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getChatMessage($id)
+    public function getMessage($id)
     {
-        foreach ($this->chatMessages as $message) {
-            /** @var ChatMessage $message */
+        foreach ($this->messages as $message) {
+            /** @var Message $message */
             if ($id == $message->getId()) {
                 return $message;
             }

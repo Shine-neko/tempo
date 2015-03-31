@@ -6,7 +6,7 @@
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
 
-    <entity name="Tempo\Bundle\AppBundle\Model\ChatMessage" table="tempo_chat_message">
+    <entity name="Tempo\Bundle\AppBundle\Model\Message" table="tempo_message">
 
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO" />
@@ -20,7 +20,7 @@
             <gedmo:timestampable on="update"/>
         </field>
 
-        <many-to-one field="room" inversed-by="chatMessages" target-entity="Room" />
+        <many-to-one field="room" inversed-by="messages" target-entity="Room" />
         <many-to-one field="user" target-entity="Tempo\Bundle\AppBundle\Model\User" />
 
     </entity>

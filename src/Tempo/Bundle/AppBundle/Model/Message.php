@@ -11,7 +11,7 @@
 
 namespace Tempo\Bundle\AppBundle\Model;
 
-class ChatMessage implements ChatMessageInterface
+class Message implements MessageInterface
 {
     /**
      * @var integer

@@ -18,7 +18,7 @@
             <gedmo:slug unique="true" updatable="true" separator="-" fields="name" />
         </field>
 
-        <one-to-many field="chatMessages" target-entity="ChatMessage" mapped-by="room">
+        <one-to-many field="messages" target-entity="Message" mapped-by="room">
             <cascade>
                 <cascade-all/>
             </cascade>

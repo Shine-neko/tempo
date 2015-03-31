@@ -7,9 +7,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Form for chatMessages in the API
+ * Form for messages in the API
  */
-class ChatMessageType extends AbstractType
+class MessageType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -20,7 +20,7 @@ class ChatMessageType extends AbstractType
     {
         $resolver->setDefaults(
             array(
-                'data_class' => 'Tempo\Bundle\AppBundle\Model\ChatMessage',
+                'data_class' => 'Tempo\Bundle\AppBundle\Model\Message',
                 'csrf_protection' => false
             )
         );

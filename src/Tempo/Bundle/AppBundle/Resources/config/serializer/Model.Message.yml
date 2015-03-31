@@ -1,4 +1,4 @@
-Tempo\Bundle\AppBundle\Model\ChatMessage:
+Tempo\Bundle\AppBundle\Model\Message:
     exclusion_policy: ALL
     properties :
       id:

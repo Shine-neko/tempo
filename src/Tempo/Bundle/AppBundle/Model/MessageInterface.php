@@ -11,7 +11,7 @@
 
 namespace Tempo\Bundle\AppBundle\Model;
 
-interface ChatMessageInterface
+interface MessageInterface
 {
     /**
      * Get id
@@ -24,7 +24,7 @@ interface ChatMessageInterface
      * Set content
      *
      * @param  string      $content
-     * @return ChatMessage
+     * @return Message
      */
     public function setContent($content);
 
@@ -39,7 +39,7 @@ interface ChatMessageInterface
      * Set user
      *
      * @param  string      $user
-     * @return ChatMessage
+     * @return Message
      */
     public function setUser($user);
 
@@ -54,7 +54,7 @@ interface ChatMessageInterface
      * Set createdAt
      *
      * @param  \DateTime   $datetime
-     * @return ChatMessage
+     * @return self
      */
     public function setCreatedAt(\DateTime $datetime);
 
@@ -69,7 +69,7 @@ interface ChatMessageInterface
      * Set updateAt
      *
      * @param  \DateTime   $datetime
-     * @return ChatMessage
+     * @return Message
      */
     public function setUpdatedAt(\DateTime $datetime);
 

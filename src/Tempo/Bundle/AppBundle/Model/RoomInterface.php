@@ -33,24 +33,24 @@ interface RoomInterface
     public function setName($name);
     
     /**
-     * Add chatMessage
+     * Add message
      *
-     * @param ChatMessage $chatMessage
+     * @param Message $message
      */
-    public function addChatMessage(ChatMessage $chatMessage);
+    public function addMessage(Message $message);
 
     /**
-     * Get chatMessages
+     * Get messages
      *
-     * @return ArrayCollection $chatMessages
+     * @return ArrayCollection $messages
      */
-    public function getChatMessages();
+    public function getMessages();
 
     /**
      * Get a specfic chat message
      *
      * @param  integer     $id
-     * @return ChatMessage
+     * @return Message
      */
-    public function getChatMessage($id);
+    public function getMessage($id);
 }

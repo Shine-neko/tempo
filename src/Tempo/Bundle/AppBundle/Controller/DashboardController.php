@@ -13,7 +13,7 @@ namespace Tempo\Bundle\AppBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Tempo\Bundle\AppBundle\Controller\Controller;
-use Tempo\Bundle\AppBundle\Form\Type\ChatMessageType;
+use Tempo\Bundle\AppBundle\Form\Type\MessageType;
 
 class DashboardController extends Controller
 {
@@ -29,7 +29,7 @@ class DashboardController extends Controller
 
         $currentRoom = null;
         $manager = $this->getManager('room');
-        $form  = $this->createForm(new ChatMessageType());
+        $form  = $this->createForm(new MessageType());
 
         $rooms = $manager->getRepository()->findRooms($this->getUser()->getId());
 

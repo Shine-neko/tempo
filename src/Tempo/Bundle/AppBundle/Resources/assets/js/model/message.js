@@ -1,7 +1,7 @@
 /**
  * Model for Chat Messages
  */
-Tempo.Model.ChatMessage = Backbone.Model.extend({
+Tempo.Model.Message = Backbone.Model.extend({
     defaults: {
     },
 

@@ -14,7 +14,7 @@ namespace Tempo\Bundle\AppBundle\Repository;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
 
-Class ChatMessageRepository extends EntityRepository
+Class MessageRepository extends EntityRepository
 {
     public function getMessages($room)
     {

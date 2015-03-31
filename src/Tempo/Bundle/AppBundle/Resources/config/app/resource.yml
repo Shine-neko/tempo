@@ -66,8 +66,8 @@ sylius_resource:
       tempo.message:
           driver: doctrine/orm
           classes:
-              model: Tempo\Bundle\AppBundle\Model\ChatMessage
-              repository: Tempo\Bundle\AppBundle\Repository\ChatMessage
+              model: Tempo\Bundle\AppBundle\Model\Message
+              repository: Tempo\Bundle\AppBundle\Repository\Message
 
       tempo.comment:
           driver: doctrine/orm

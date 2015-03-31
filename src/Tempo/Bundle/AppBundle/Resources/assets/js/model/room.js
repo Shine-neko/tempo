@@ -18,7 +18,7 @@ Tempo.Model.Room = Backbone.Model.extend({
      * Put those into collections
      */
     parse: function(response) {
-        response.chat_messages = new Tempo.Collection.ChatMessages(response.chat_messages);
+        response.chat_messages = new Tempo.Collection.Messages(response.chat_messages);
         response.chat_messages.url = Routing.generate('chat_room_get_messages', {
             room: response.slug
         });

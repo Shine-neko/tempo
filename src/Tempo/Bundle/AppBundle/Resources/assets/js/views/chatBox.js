@@ -40,7 +40,7 @@ Tempo.View.ChatBox = Backbone.View.extend({
         var fragment = document.createDocumentFragment();
         if (typeof this.messages !== 'undefined') {
             this.messages.forEach(function(message) {
-                var template = new Tempo.View.ChatMessage({model: message});
+                var template = new Tempo.View.Message({model: message});
                 fragment.appendChild(template.render().el);
             });
         }
@@ -53,7 +53,7 @@ Tempo.View.ChatBox = Backbone.View.extend({
      */
     bindSocketEvents: function() {
         if (typeof Tempo.socket !== 'undefined') {
-            Tempo.socket.on('chatMessage:create', _.bind(this.remoteCreate, this));
+            Tempo.socket.on('message:create', _.bind(this.remoteCreate, this));
         }
     },
 
@@ -84,7 +84,7 @@ Tempo.View.ChatBox = Backbone.View.extend({
     */
     onCreateSuccess: function(message) {
         if (typeof Tempo.socket !== 'undefined') {
-            Tempo.socket.emit('RoomEvent', Tempo.roomId, 'chatMessage:create', {message: message});
+            Tempo.socket.emit('RoomEvent', Tempo.roomId, 'message:create', {message: message});
         }
     },
 
@@ -92,7 +92,7 @@ Tempo.View.ChatBox = Backbone.View.extend({
      * Handler for a message created by a different user
      */
     remoteCreate: function(params) {
-        var newMessage = new Tempo.Model.ChatMessage(params.message);
+        var newMessage = new Tempo.Model.Message(params.message);
         this.messages.add(newMessage);
         $('#chat-handle', this.$el).addClass('new-message');
     },
@@ -102,7 +102,7 @@ Tempo.View.ChatBox = Backbone.View.extend({
      * so we don't need to rerender the whole chat box
      */
     renderNewMessage: function(message) {
-        var view = new Tempo.View.ChatMessage({model: message});
+        var view = new Tempo.View.Message({model: message});
         var messageBox = $('#chat-messages', this.$el);
         messageBox.append(view.render().el);
         messageBox.prop('scrollTop', messageBox.prop('scrollHeight'));
