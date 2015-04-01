@@ -131,32 +131,6 @@ interface UserInterface extends AdvancedUserInterface, \Serializable, Timestampa
     public function getPasswordRequestedAt();
 
     /**
-     * @param GroupInterface $group
-     *
-     * @return boolean
-     */
-    public function hasGroup(GroupInterface $group);
-
-    /**
-     * @param GroupInterface $group
-     *
-     * @return self
-     */
-    public function addGroup(GroupInterface $group);
-
-    /**
-     * @param GroupInterface $group
-     *
-     * @return self
-     */
-    public function removeGroup(GroupInterface $group);
-
-    /**
-     * @return GroupInterface[]|ArrayCollection
-     */
-    public function getGroups();
-
-    /**
      * @param boolean $locked
      *
      * @return self

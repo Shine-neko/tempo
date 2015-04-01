@@ -51,9 +51,6 @@ class User implements UserInterface
     /** @var \DateTime */
     protected $passwordRequestedAt;
 
-    /** @var GroupInterface[]|ArrayCollection */
-    protected $groups;
-
     /** @var boolean */
     protected $locked;
 
@@ -134,7 +131,6 @@ class User implements UserInterface
         $this->createdAt = new \DateTime();
         $this->organizations = new ArrayCollection();
         $this->notifications = new ArrayCollection();
-        $this->groups = new ArrayCollection();
 
         $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
         $this->enabled = false;
@@ -322,46 +318,6 @@ class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function hasGroup(GroupInterface $group)
-    {
-        return $this->getGroups()->contains($group);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function addGroup(GroupInterface $group)
-    {
-        if (!$this->getGroups()->contains($group)) {
-            $this->getGroups()->add($group);
-        }
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function removeGroup(GroupInterface $group)
-    {
-        if ($this->getGroups()->contains($group)) {
-            $this->getGroups()->removeElement($group);
-        }
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getGroups()
-    {
-        return $this->groups;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function setLocked($boolean)
     {
         $this->locked = $boolean;
@@ -452,14 +408,7 @@ class User implements UserInterface
      */
     public function getRoles()
     {
-        $roles = $this->roles;
-        foreach ($this->getGroups() as $group) {
-            $roles = array_merge($roles, $group->getRoles());
-        }
-        // we need to make sure to have at least one role
-        $roles[] = static::ROLE_DEFAULT;
-
-        return array_unique($roles);
+        return $this->roles;
     }
 
     /**
