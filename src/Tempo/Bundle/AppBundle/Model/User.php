@@ -18,197 +18,115 @@ class User implements UserInterface
     const ROLE_DEFAULT = 'ROLE_USER';
     const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $id;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $username;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $slug;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $email;
 
-    /**
-     * @var boolean
-     */
+    /** @var boolean */
     protected $enabled;
 
-    /**
-     * The salt to use for hashing
-     *
-     * @var string
-     */
+    /** @var string */
     protected $salt;
 
-    /**
-     * Encrypted password. Must be persisted.
-     *
-     * @var string
-     */
+    /** @var string */
     protected $password;
 
-    /**
-     * Plain password. Used for model validation. Must not be persisted.
-     *
-     * @var string
-     */
+    /** @var string */
     protected $plainPassword;
 
-    /**
-     * @var \DateTime
-     */
+    /** @var \DateTime */
     protected $lastLogin;
 
-    /**
-     * Random string sent to the user email address in order to verify it
-     *
-     * @var string
-     */
+    /** @var string */
     protected $confirmationToken;
 
-    /**
-     * @var \DateTime
-     */
+    /** @var \DateTime */
     protected $passwordRequestedAt;
 
-    /**
-     * @var Collection
-     */
+    /** @var GroupInterface[]|ArrayCollection */
     protected $groups;
 
-    /**
-     * @var boolean
-     */
+    /** @var boolean */
     protected $locked;
 
-    /**
-     * @var boolean
-     */
+    /** @var boolean */
     protected $expired;
 
-    /**
-     * @var \DateTime
-     */
+    /** @var \DateTime */
     protected $expiresAt;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $roles;
 
-    /**
-     * @var boolean
-     */
+    /** @var boolean */
     protected $credentialsExpired;
 
-    /**
-     * @var \DateTime
-     */
+    /** @var \DateTime */
     protected $credentialsExpireAt;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $token;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $locale;
 
-    /**
-     * @var int
-     */
-    protected $googleId;
-
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $firstName;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $lastName;
 
-    /**
-     * @var \DateTime
-     */
+    /** @var \DateTime */
     protected $createdAt;
 
-    /**
-     * @var \DateTime
-     */
+    /** @var \DateTime */
     protected $updatedAt;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $gender;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $company;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $jobTitle;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $phone;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $mobilePhone;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $avatar;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $skype;
 
-    /**
-     * @var string
-     */
+    /** @var int */
+    protected $googleId;
+
+    /** @var string */
     protected $viadeo;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $linkedin;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $twitter;
 
-    /**
-     * @var Collection
-     */
+    /** @var Organization[]|ArrayCollection */
     protected $organizations;
 
-    /**
-     * @var Collection
-     */
+    /** @var Notification[]|ArrayCollection */
     protected $notifications;
 
     public function __construct()
@@ -216,6 +134,7 @@ class User implements UserInterface
         $this->createdAt = new \DateTime();
         $this->organizations = new ArrayCollection();
         $this->notifications = new ArrayCollection();
+        $this->groups = new ArrayCollection();
 
         $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
         $this->enabled = false;
@@ -223,6 +142,11 @@ class User implements UserInterface
         $this->expired = false;
         $this->roles = array();
         $this->credentialsExpired = false;
+    }
+
+    public function __toString()
+    {
+        return (string) $this->getUsername();
     }
 
     /**
@@ -236,33 +160,27 @@ class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function setToken($token)
+    public function setUsername($username)
     {
-        $this->token = $token;
+        $this->username = $username;
+
+        return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getToken()
+    public function getUsername()
     {
-        return $this->token;
+        return $this->username;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getLocale()
+    public function setSlug($slug)
     {
-        return $this->locale;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setLocale($locale)
-    {
-        $this->locale = $locale;
+        $this->slug = $slug;
 
         return $this;
     }
@@ -278,17 +196,9 @@ class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getCompany()
+    public function setEmail($email)
     {
-        return $this->company;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setCompany($company)
-    {
-        $this->company = $company;
+        $this->email = $email;
 
         return $this;
     }
@@ -296,9 +206,332 @@ class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getOrganizations()
+    public function getEmail()
     {
-        return $this->organizations;
+        return $this->email;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setEnabled($boolean)
+    {
+        $this->enabled = (boolean) $boolean;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSalt()
+    {
+        return $this->salt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setLastLogin(\DateTime $time = null)
+    {
+        $this->lastLogin = $time;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLastLogin()
+    {
+        return $this->lastLogin;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setConfirmationToken($confirmationToken)
+    {
+        $this->confirmationToken = $confirmationToken;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getConfirmationToken()
+    {
+        return $this->confirmationToken;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setPasswordRequestedAt(\DateTime $passwordRequestedAt = null)
+    {
+        $this->passwordRequestedAt = $passwordRequestedAt;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPasswordRequestedAt()
+    {
+        return $this->passwordRequestedAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasGroup(GroupInterface $group)
+    {
+        return $this->getGroups()->contains($group);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addGroup(GroupInterface $group)
+    {
+        if (!$this->getGroups()->contains($group)) {
+            $this->getGroups()->add($group);
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeGroup(GroupInterface $group)
+    {
+        if ($this->getGroups()->contains($group)) {
+            $this->getGroups()->removeElement($group);
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getGroups()
+    {
+        return $this->groups;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setLocked($boolean)
+    {
+        $this->locked = $boolean;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isLocked()
+    {
+        return !$this->isAccountNonLocked();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setExpired($boolean)
+    {
+        $this->expired = $boolean;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isExpired()
+    {
+        return !$this->isAccountNonExpired();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setExpiresAt(\DateTime $expiredAt = null)
+    {
+        $this->expiresAt = $date;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getExpiresAt()
+    {
+        return $this->expiresAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasRole($role)
+    {
+        return in_array(strtoupper($role), $this->getRoles(), true);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addRole($role)
+    {
+        $role = strtoupper($role);
+        if (!in_array($role, $this->roles, true)) {
+            $this->roles[] = $role;
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeRole($role)
+    {
+        if (false !== $key = array_search(strtoupper($role), $this->roles, true)) {
+            unset($this->roles[$key]);
+            $this->roles = array_values($this->roles);
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getRoles()
+    {
+        $roles = $this->roles;
+        foreach ($this->getGroups() as $group) {
+            $roles = array_merge($roles, $group->getRoles());
+        }
+        // we need to make sure to have at least one role
+        $roles[] = static::ROLE_DEFAULT;
+
+        return array_unique($roles);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setCredentialsExpired($credentialsExpired)
+    {
+        $this->credentialsExpired = $credentialsExpired;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isCredentialsExpired()
+    {
+        return !$this->isCredentialsNonExpired();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setCredentialsExpireAt(\DateTime $credentialsExpiredAt = null)
+    {
+        $this->credentialsExpireAt = $date;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCredentialsExpireAt()
+    {
+        return $this->credentialsExpireAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLocale()
+    {
+        return $this->locale;
     }
 
     /**
@@ -343,6 +576,40 @@ class User implements UserInterface
     public function getFullName()
     {
         return $this->firstName.' '.strtoupper($this->lastName);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setGender($gender)
+    {
+        return $this->gender;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setCompany($company)
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCompany()
+    {
+        return $this->company;
     }
 
     /**
@@ -402,25 +669,11 @@ class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function hasAvatar()
+    public function setAvatar($avatar)
     {
-        return $this->hasLocalAvatar() || $this->hasGravatar();
-    }
+        $this->avatar = $avatar;
 
-    /**
-     * {@inheritdoc}
-     */
-    public function hasLocalAvatar()
-    {
-        return (boolean) $this->avatar;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function hasGravatar()
-    {
-        return (boolean) @fopen($this->getGravatarUrl().'?d=404', 'r');
+        return $this;
     }
 
     /**
@@ -438,11 +691,25 @@ class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function setAvatar($avatar)
+    public function hasAvatar()
     {
-        $this->avatar = $avatar;
+        return $this->hasLocalAvatar() || $this->hasGravatar();
+    }
 
-        return $this;
+    /**
+     * {@inheritdoc}
+     */
+    public function hasLocalAvatar()
+    {
+        return null !== $this->avatar;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasGravatar()
+    {
+        return false !== @fopen($this->getGravatarUrl().'?d=404', 'r');
     }
 
     /**
@@ -451,42 +718,6 @@ class User implements UserInterface
     public function getGravatarUrl()
     {
         return 'http://www.gravatar.com/avatar/'.md5(strtolower(trim($this->email)));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setGoogleId($googleId)
-    {
-        $this->googleId = $googleId;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getGoogleId()
-    {
-        return $this->googleId;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setLinkedin($linkedin)
-    {
-        $this->linkedin = $linkedin;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getLinkedin()
-    {
-        return $this->linkedin;
     }
 
     /**
@@ -510,9 +741,9 @@ class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function setTwitter($twitter)
+    public function setGoogleId($googleId)
     {
-        $this->twitter = $twitter;
+        $this->googleId = $googleId;
 
         return $this;
     }
@@ -520,9 +751,9 @@ class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getTwitter()
+    public function getGoogleId()
     {
-        return $this->twitter;
+        return $this->googleId;
     }
 
     /**
@@ -546,17 +777,9 @@ class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getGender()
+    public function setLinkedin($linkedin)
     {
-        return $this->gender;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setNotifications($notifications)
-    {
-        $this->notifications = $notifications;
+        $this->linkedin = $linkedin;
 
         return $this;
     }
@@ -564,9 +787,43 @@ class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function addNotification($notification)
+    public function getLinkedin()
     {
-        $this->notifications[] = $notification;
+        return $this->linkedin;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setTwitter($twitter)
+    {
+        $this->twitter = $twitter;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTwitter()
+    {
+        return $this->twitter;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getOrganizations()
+    {
+        return $this->organizations;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setNotifications(ArrayCollection $notifications)
+    {
+        $this->notifications = $notifications;
 
         return $this;
     }
@@ -582,17 +839,9 @@ class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getCreatedAt()
+    public function addNotification(Notification $notification)
     {
-        return $this->createdAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setCreatedAt(\DateTime $createdAt)
-    {
-        $this->createdAt = $createdAt;
+        $this->notifications[] = $notification;
 
         return $this;
     }
@@ -600,29 +849,100 @@ class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getUpdatedAt()
+    public function eraseCredentials()
     {
-        return $this->createdAt;
+        $this->plainPassword = null;
+
+        return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setUpdatedAt(\DateTime $updatedAt)
+    public function isSuperAdmin()
     {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
+        return $this->hasRole(static::ROLE_SUPER_ADMIN);
     }
 
-    public function addRole($role)
+    /**
+     * {@inheritdoc}
+     */
+    public function setSuperAdmin($yes)
     {
-        $role = strtoupper($role);
-        if (!in_array($role, $this->roles, true)) {
-            $this->roles[] = $role;
+        if ($yes) {
+            $this->addRole(static::ROLE_SUPER_ADMIN);
+        } else {
+            $this->removeRole(static::ROLE_SUPER_ADMIN);
         }
 
         return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isPasswordRequestNonExpired($ttl)
+    {
+        return $this->getPasswordRequestedAt() instanceof \DateTime &&
+        $this->getPasswordRequestedAt()->getTimestamp() + $ttl > time();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setRoles(array $roles)
+    {
+        $this->roles = array();
+        foreach ($roles as $role) {
+            $this->addRole($role);
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function generateToken()
+    {
+        return base_convert(bin2hex(hash('sha256', uniqid(mt_rand(), true), true)), 16, 36);
+    }
+
+    public function isAccountNonExpired()
+    {
+        if (true === $this->expired) {
+            return false;
+        }
+        if (null !== $this->expiresAt && $this->expiresAt->getTimestamp() < time()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return !$this->locked;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        if (true === $this->credentialsExpired) {
+            return false;
+        }
+        if (null !== $this->credentialsExpireAt && $this->credentialsExpireAt->getTimestamp() < time()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isEnabled()
+    {
+        return $this->enabled;
     }
 
     /**
@@ -673,367 +993,38 @@ class User implements UserInterface
     }
 
     /**
-     * Removes sensitive data from the user.
+     * {@inheritdoc}
      */
-    public function eraseCredentials()
+    public function setCreatedAt(\DateTime $createdAt)
     {
-        $this->plainPassword = null;
-    }
-
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    public function getSalt()
-    {
-        return $this->salt;
-    }
-
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Gets the encrypted password.
-     *
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    public function getPlainPassword()
-    {
-        return $this->plainPassword;
-    }
-
-    /**
-     * Gets the last login time.
-     *
-     * @return \DateTime
-     */
-    public function getLastLogin()
-    {
-        return $this->lastLogin;
-    }
-
-    public function getConfirmationToken()
-    {
-        return $this->confirmationToken;
-    }
-    /**
-     * Returns the user roles
-     *
-     * @return array The roles
-     */
-    public function getRoles()
-    {
-        $roles = $this->roles;
-        foreach ($this->getGroups() as $group) {
-            $roles = array_merge($roles, $group->getRoles());
-        }
-        // we need to make sure to have at least one role
-        $roles[] = static::ROLE_DEFAULT;
-
-        return array_unique($roles);
-    }
-    /**
-     * Never use this to check if this user has access to anything!
-     *
-     * Use the SecurityContext, or an implementation of AccessDecisionManager
-     * instead, e.g.
-     *
-     * $securityContext->isGranted('ROLE_USER');
-     *
-     * @param string $role
-     *
-     * @return boolean
-     */
-    public function hasRole($role)
-    {
-        return in_array(strtoupper($role), $this->getRoles(), true);
-    }
-
-    public function isAccountNonExpired()
-    {
-        if (true === $this->expired) {
-            return false;
-        }
-        if (null !== $this->expiresAt && $this->expiresAt->getTimestamp() < time()) {
-            return false;
-        }
-
-        return true;
-    }
-
-    public function isAccountNonLocked()
-    {
-        return !$this->locked;
-    }
-
-    public function isCredentialsNonExpired()
-    {
-        if (true === $this->credentialsExpired) {
-            return false;
-        }
-        if (null !== $this->credentialsExpireAt && $this->credentialsExpireAt->getTimestamp() < time()) {
-            return false;
-        }
-
-        return true;
-    }
-
-    public function isCredentialsExpired()
-    {
-        return !$this->isCredentialsNonExpired();
-    }
-
-    public function isEnabled()
-    {
-        return $this->enabled;
-    }
-
-    public function isExpired()
-    {
-        return !$this->isAccountNonExpired();
-    }
-
-    public function isLocked()
-    {
-        return !$this->isAccountNonLocked();
-    }
-
-    public function isSuperAdmin()
-    {
-        return $this->hasRole(static::ROLE_SUPER_ADMIN);
-    }
-
-    public function removeRole($role)
-    {
-        if (false !== $key = array_search(strtoupper($role), $this->roles, true)) {
-            unset($this->roles[$key]);
-            $this->roles = array_values($this->roles);
-        }
-
-        return $this;
-    }
-
-    public function setUsername($username)
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
     /**
-     * @param \DateTime $date
-     *
-     * @return User
+     * {@inheritdoc}
      */
-    public function setCredentialsExpireAt(\DateTime $date = null)
+    public function getCreatedAt()
     {
-        $this->credentialsExpireAt = $date;
+        return $this->createdAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setUpdatedAt(\DateTime $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
     /**
-     * @param boolean $boolean
-     *
-     * @return User
+     * {@inheritdoc}
      */
-    public function setCredentialsExpired($boolean)
+    public function getUpdatedAt()
     {
-        $this->credentialsExpired = $boolean;
-
-        return $this;
-    }
-
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    public function setEnabled($boolean)
-    {
-        $this->enabled = (Boolean) $boolean;
-
-        return $this;
-    }
-    /**
-     * Sets this user to expired.
-     *
-     * @param Boolean $boolean
-     *
-     * @return User
-     */
-    public function setExpired($boolean)
-    {
-        $this->expired = (Boolean) $boolean;
-
-        return $this;
-    }
-
-    /**
-     * @param \DateTime $date
-     *
-     * @return User
-     */
-    public function setExpiresAt(\DateTime $date = null)
-    {
-        $this->expiresAt = $date;
-
-        return $this;
-    }
-
-    public function setPassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    public function setSuperAdmin($boolean)
-    {
-        if (true === $boolean) {
-            $this->addRole(static::ROLE_SUPER_ADMIN);
-        } else {
-            $this->removeRole(static::ROLE_SUPER_ADMIN);
-        }
-
-        return $this;
-    }
-
-    public function setPlainPassword($password)
-    {
-        $this->plainPassword = $password;
-
-        return $this;
-    }
-
-    public function setLastLogin(\DateTime $time = null)
-    {
-        $this->lastLogin = $time;
-
-        return $this;
-    }
-
-    public function setLocked($boolean)
-    {
-        $this->locked = $boolean;
-
-        return $this;
-    }
-
-    public function setConfirmationToken($confirmationToken)
-    {
-        $this->confirmationToken = $confirmationToken;
-
-        return $this;
-    }
-
-    public function setPasswordRequestedAt(\DateTime $date = null)
-    {
-        $this->passwordRequestedAt = $date;
-
-        return $this;
-    }
-    /**
-     * Gets the timestamp that the user requested a password reset.
-     *
-     * @return null|\DateTime
-     */
-    public function getPasswordRequestedAt()
-    {
-        return $this->passwordRequestedAt;
-    }
-
-    public function isPasswordRequestNonExpired($ttl)
-    {
-        return $this->getPasswordRequestedAt() instanceof \DateTime &&
-        $this->getPasswordRequestedAt()->getTimestamp() + $ttl > time();
-    }
-
-    public function setRoles(array $roles)
-    {
-        $this->roles = array();
-        foreach ($roles as $role) {
-            $this->addRole($role);
-        }
-
-        return $this;
-    }
-    /**
-     * Gets the groups granted to the user.
-     *
-     * @return Collection
-     */
-    public function getGroups()
-    {
-        return $this->groups ?: $this->groups = new ArrayCollection();
-    }
-
-    public function getGroupNames()
-    {
-        $names = array();
-        foreach ($this->getGroups() as $group) {
-            $names[] = $group->getName();
-        }
-
-        return $names;
-    }
-    /**
-     * @param string $name
-     *
-     * @return boolean
-     */
-    public function hasGroup($name)
-    {
-        return in_array($name, $this->getGroupNames());
-    }
-
-    public function addGroup(GroupInterface $group)
-    {
-        if (!$this->getGroups()->contains($group)) {
-            $this->getGroups()->add($group);
-        }
-
-        return $this;
-    }
-
-    public function removeGroup(GroupInterface $group)
-    {
-        if ($this->getGroups()->contains($group)) {
-            $this->getGroups()->removeElement($group);
-        }
-
-        return $this;
-    }
-
-    public function __toString()
-    {
-        return (string) $this->getUsername();
-    }
-
-    /**
-     * Generate unique confirmation token
-     *
-     * @return string Token value
-     */
-    public function generateToken()
-    {
-        return base_convert(bin2hex(hash('sha256', uniqid(mt_rand(), true), true)), 16, 36);
+        return $this->createdAt;
     }
 }
