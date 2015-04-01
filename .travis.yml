@@ -1,3 +1,4 @@
+sudo: false
 language: php
 
 php:
@@ -11,15 +12,15 @@ matrix:
     allow_failures:
         - php: hhvm-nightly
 
+addons:
+    apt:
+        packages:
+            - wkhtmltopdf
+            - xvfb
+
 before_install:
-    - sudo apt-get update
     - composer self-update
     - if [[ $TRAVIS_PHP_VERSION != 'hhvm' && $TRAVIS_PHP_VERSION != 'hhvm-nightly' ]]; then echo "zend.enable_gc = 0" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini; fi;
-
-    # For KnpSnappy
-    - wget https://wkhtmltopdf.googlecode.com/files/wkhtmltopdf-0.11.0_rc1-static-amd64.tar.bz2 --output-document=wkhtmltopdf.tar.bz2
-    - tar -jxvf wkhtmltopdf.tar.bz2
-    - sudo mv wkhtmltopdf-amd64 /usr/bin/wkhtmltopdf
     
 before_script:
     - cp behat.yml.dist behat.yml
@@ -44,13 +45,8 @@ before_script:
 
     # Loading web server for selenium
     - node bin/server.js > error.log &
-    - if [[ $TRAVIS_PHP_VERSION != 'hhvm' && $TRAVIS_PHP_VERSION != 'hhvm-nightly' ]]; then php app/console server:run > error.log &; fi;
+    #- if [[ $TRAVIS_PHP_VERSION != 'hhvm' && $TRAVIS_PHP_VERSION != 'hhvm-nightly' ]]; then php app/console server:run; fi;
 
 
 script:
-    - ./bin/phpunit -c app/
-    - ./bin/behat --tags=account -fprogress || EXIT_STATUS=$?
-    - ./bin/behat --tags=organization -fprogress || EXIT_STATUS=$?
-    - ./bin/behat --tags=project  -fprogress || EXIT_STATUS=$?
-    - ./bin/behat --tags=dashboard  -fprogress || EXIT_STATUS=$?
-    - ./bin/behat --tags=timesheet  -fprogress || EXIT_STATUS=$?
+    - travis/build.sh
