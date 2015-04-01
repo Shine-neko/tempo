@@ -12,6 +12,14 @@ matrix:
     allow_failures:
         - php: hhvm-nightly
 
+cache:
+    bundler: true
+    directories:
+        - vendor
+        - bin
+        - node_modules
+        - web/vendor
+
 addons:
     apt:
         packages:
@@ -25,10 +33,13 @@ before_install:
 before_script:
     - cp behat.yml.dist behat.yml
 
-    - npm install
+    # Npm
     - npm -v
+    - npm install
+
+    # Bower
     - bower -version
-    - bower update --config.interactive=false --allow-root
+    - bower update --config.interactive=false
 
     # Composer
     - composer install --prefer-source --no-interaction
