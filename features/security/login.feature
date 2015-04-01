@@ -4,7 +4,6 @@ Feature: Check login
   Scenario: Check login page when not connected
     When I am on route "user_login"
     Then the response status code should be 200
-    And I should see "Login"
 
   Scenario: Check user login page when connected
     When I fill in "Username" with "john.does"
