@@ -26,12 +26,15 @@ class LoadActivityProviderData extends AbstractFixture implements OrderedFixture
     public function load(ObjectManager $manager)
     {
         $github_provider_content = file_get_contents(__DIR__. '/../Fixtures/github-provider.yml');
-        for ($i=1; $i<5; $i++) {
+        $travis_provider_content = file_get_contents(__DIR__. '/../Fixtures/travis-provider.yml');
+
+
+        for ($i = 1; $i < 5; $i++) {
 
             $activity = (new ActivityProvider())
                 ->setProvider($this->getReference('project_privider_'.$i))
                 ->setMessage('')
-                ->setParameters($github_provider_content)
+                ->setParameters(json_decode($github_provider_content))
                 ->setCreatedAt(new \DateTime());
 
             $manager->persist($activity);
@@ -42,7 +45,7 @@ class LoadActivityProviderData extends AbstractFixture implements OrderedFixture
             ->setProvider($this->getReference('project_privider_6'))
             ->setMessage('Build 1 of tempo-project/tempo Passed')
             ->setCreatedAt(new \DateTime())
-            ->setParameters(file_get_contents(__DIR__. '/../Fixtures/travis-provider.yml'));
+            ->setParameters(json_decode($travis_provider_content));
         $manager->persist($activity);
         $manager->flush();
 
