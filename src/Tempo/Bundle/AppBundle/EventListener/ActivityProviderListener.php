@@ -11,25 +11,36 @@
 
 namespace Tempo\Bundle\AppBundle\EventListener;
 
-use Tempo\Bundle\AppBundle\Manager\RoomManager;
+use Tempo\Bundle\AppBundle\Manager\DomainManager;
 use Tempo\Bundle\AppBundle\Event\ActivityProviderEvent;
 use Tempo\Bundle\AppBundle\ElephantIO\Client;
 use JMS\Serializer\SerializerInterface;
 
 class ActivityProviderListener
 {
-    private $roomManager;
+    /**
+     * @var DomainManager
+     */
+    private $domainManager;
+
+    /**
+     * @var SerializerInterface
+     */
     private $serializer;
+
+    /**
+     * @var Client
+     */
     private $elephantIoClient;
 
     /**
-     * @param RoomManager         $roomManager
+     * @param domainManager       $domainManager
      * @param SerializerInterface $serializer
      * @param Client              $elephantIoClient
      */
-    public function __construct(RoomManager $roomManager, SerializerInterface $serializer, Client $elephantIoClient)
+    public function __construct(DomainManager $domainManager, SerializerInterface $serializer, Client $elephantIoClient)
     {
-        $this->roomManager = $roomManager;
+        $this->domainManager = $domainManager;
         $this->serializer = $serializer;
         $this->elephantIoClient = $elephantIoClient;
     }
