@@ -4,6 +4,7 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
         <parameter key="tempo.activity.provider_registry.class">Tempo\Bundle\AppBundle\Provider\ProviderRegistry</parameter>
+        <parameter key="tempo.activity.provider.generic.class">Tempo\Bundle\AppBundle\Provider\GenericProvider</parameter>
         <parameter key="tempo.activity.provider.github.class">Tempo\Bundle\AppBundle\Provider\GithubProvider</parameter>
         <parameter key="tempo.activity.provider.gitlab.class">Tempo\Bundle\AppBundle\Provider\GitlabProvider</parameter>
         <parameter key="tempo.activity.provider.trello.class">Tempo\Bundle\AppBundle\Provider\TrelloProvider</parameter>
@@ -13,6 +14,10 @@
 
     <services>
         <service id="tempo.activity.provider_registry" class="%tempo.activity.provider_registry.class%" />
+
+        <service id="tempo.activity.provider.generic" class="%tempo.activity.provider.generic.class%">
+            <tag name="tempo.activity.provider" />
+        </service>
 
         <service id="tempo.activity.provider.github" class="%tempo.activity.provider.github.class%">
             <tag name="tempo.activity.provider" />
