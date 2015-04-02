@@ -855,12 +855,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "60bacda685a2a01955dded1c11cc8fd5869d49a4"
+                "reference": "61bcfda1679b49405eba3d09ae7fa2e848a4326c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/60bacda685a2a01955dded1c11cc8fd5869d49a4",
-                "reference": "60bacda685a2a01955dded1c11cc8fd5869d49a4",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/61bcfda1679b49405eba3d09ae7fa2e848a4326c",
+                "reference": "61bcfda1679b49405eba3d09ae7fa2e848a4326c",
                 "shasum": ""
             },
             "require": {
@@ -924,7 +924,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2015-03-25 23:16:30"
+            "time": "2015-03-31 21:13:40"
         },
         {
             "name": "friendsofsymfony/jsrouting-bundle",
@@ -3467,16 +3467,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.6.5",
+            "version": "v2.6.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "80833da9d04b004fa59fd23102e6dfad80c98106"
+                "reference": "48c9e835a877adfb023b8b6d033d9dd14f342b4b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/80833da9d04b004fa59fd23102e6dfad80c98106",
-                "reference": "80833da9d04b004fa59fd23102e6dfad80c98106",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/48c9e835a877adfb023b8b6d033d9dd14f342b4b",
+                "reference": "48c9e835a877adfb023b8b6d033d9dd14f342b4b",
                 "shasum": ""
             },
             "require": {
@@ -3580,7 +3580,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-03-17 14:58:46"
+            "time": "2015-04-01 16:55:26"
         },
         {
             "name": "twig/extensions",
