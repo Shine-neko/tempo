@@ -13,23 +13,26 @@
             <li class="last"> List </li>
         </ol>
     {% endblock breadcrumb %}
-    <div class="app-panel">
-        <div class="page-header">
-            <h1> {{ 'tempo.organization.list.title'|trans }}</h1>
-        </div>
+    <div class="">
 
-        <div class="row">
-            <div class="col-md-2 admin-filter">
+
+
+        <div class="col-md-2">
+            {{ knp_menu_render('admin') }}
+        </div>
+        <div class="col-md-9">
+            <div class="page-header">
+                <h1> {{ 'tempo.organization.list.title'|trans }}</h1>
+            </div>
+
+            <div class="admin-filter">
 
                 {% render(url('backend_organization_filter_form', {'criteria': app.request.query.get('criteria')})) %}
 
                 {% set activeTab = (app.request.query.get('criteria') is not empty and app.request.query.get('criteria').enabled|default('1') == '0') ? 'disabled' : 'all' %}
-
-                <a class="btn btn-cancel btn-default" href="{{ path('backend_organization_index') }}">Reset</a>
             </div>
 
-            <div class="col-md-10">
-
+            <div class="app-panel">
                 <table id="organization" class="table">
                     <thead>
                     <tr>
@@ -51,7 +54,7 @@
                             </td>
                             <td>
                                 <div class="pull-right">
-                                    {{ buttons.show(path('organization_show', {'slug': organization})) }}
+                                    {{ buttons.show(path('organization_show', {'slug': organization.slug})) }}
                                     {{ buttons.delete(path('backend_organization_delete', {'id': organization.id}), null) }}
                                 </div>
                             </td>

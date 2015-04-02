@@ -37,6 +37,11 @@ class AdminMenuBuilder extends MenuBuilder
         );
 
         $menu->addChild(
+            $this->translate('tempo.admin.menu.organization'),
+            array('route' => 'backend_organization_index')
+        );
+
+        $menu->addChild(
             $this->translate('tempo.admin.menu.project'),
             array('route' => 'backend_project_index')
         );

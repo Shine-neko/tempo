@@ -28,8 +28,6 @@ tempo:
       project.joined: joined project at
 
   select_organization:
-      first: Sélectionnez le organization
-      second: Afficher ses projets
       submit: Valider
 
   organization:

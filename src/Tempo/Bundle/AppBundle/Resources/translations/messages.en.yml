@@ -27,6 +27,7 @@ tempo:
           general: General
           settings: Settings
           project: Projects
+          organization: Organizations
           user: Users
 
   security:
