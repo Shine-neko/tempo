@@ -43,9 +43,9 @@ $ node bin/server.js
 You probably need to setting up rights for apache, uses the following commands:
 
 ```bash
-$ mkdir -p app/cache app/logs app/data web/uploads
-$ setfacl -R -m u:www-data:rwx -m u:`whoami`:rwx app/cache app/logs app/data web/uploads
-$ setfacl -dR -m u:www-data:rwx -m u:`whoami`:rwx app/cache app/logs app/data web/uploads
+$ mkdir -p app/data app/cache app/logs app/data web/uploads web/media
+$ setfacl -R -m u:www-data:rwx -m u:`whoami`:rwx app/data app/cache app/logs app/data web/uploads web/media
+$ setfacl -dR -m u:www-data:rwx -m u:`whoami`:rwx app/data app/cache app/logs app/data web/uploads web/media
 ```
 
 [Behat](http://behat.org) scenarios
