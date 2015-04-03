@@ -62,7 +62,7 @@ class ProviderController extends Controller
             throw $this->createAccessDeniedException();
         }
 
-        $projectProvider = $this->getManager('project_provider')->find(array(
+        $projectProvider = $this->getManager('project_provider')->getRepository()->findOneBy(array(
             'name' => $provider,
             'project' => $project
         ));

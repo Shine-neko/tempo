@@ -22,7 +22,6 @@
 
         <service id="tempo.activity.listener.activity_provider" class="%tempo.activity.listener.activity_provider.class%">
             <argument type="service" id="tempo.domain_manager" />
-            <argument type="service" id="tempo.model_manager.room" />
             <argument type="service" id="jms_serializer" />
             <argument type="service" id="tempo.elephantio.client" />
             <tag name="kernel.event_listener" event="tempo.activity.provider.create.success" method="pingActivityRoom" />
