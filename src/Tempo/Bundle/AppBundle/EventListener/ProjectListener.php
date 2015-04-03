@@ -45,7 +45,7 @@ class ProjectListener
             $service = (new ProjectProvider())
                 ->setName($service->getName())
             ;
-            $this->domainManager->create($service);
+            $this->domainManager->create($service, false);
         }
 
         $this->domainManager->flush();
