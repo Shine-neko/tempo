@@ -25,6 +25,7 @@ class GenericProvider implements ProviderInterface
         $post = $request->query->all();
 
         $payload = array_merge($get, $post);
+        unset($payload['access_token']);
 
         $activity = new ActivityProvider();
         $activity->setMessage($payload['message']);
