@@ -84,7 +84,7 @@ class UserListener implements EventSubscriber
     /**
      * @param LifecycleEventArgs $args
      */
-    public function prePersist($args)
+    public function prePersist(LifecycleEventArgs $args)
     {
         $object = $args->getEntity();
         if ($object instanceof UserInterface) {
@@ -95,7 +95,7 @@ class UserListener implements EventSubscriber
     /**
      * @param PreUpdateEventArgs $args
      */
-    public function preUpdate($args)
+    public function preUpdate(PreUpdateEventArgs $args)
     {
         $object = $args->getEntity();
         if ($object instanceof UserInterface) {

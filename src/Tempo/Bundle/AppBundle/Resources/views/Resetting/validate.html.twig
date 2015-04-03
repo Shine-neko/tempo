@@ -1,0 +1,11 @@
+{% extends "TempoAppBundle:Security:login.html.twig" %}
+
+{% block subcontent %}
+    <form action="{{ path("user_resetting_validate", { token: token }) }}" method="post">
+        {{ form_rest(form) }}
+
+        <div class="widget send col-md-6">
+            <input id="login" class="submit btn btn-default" type="submit" value="{{ 'tempo.form.submit'|trans }}"/>
+        </div>
+    </form>
+{% endblock subcontent %}
