@@ -11,6 +11,7 @@
 
 namespace Tempo\Bundle\AppBundle\Controller;
 
+use Doctrine\Common\Util\Debug;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -78,7 +79,8 @@ class ProfileController extends Controller
         $form = $this->createForm(new ProfileType(), $user);
 
         if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
-           $this->get('tempo.domain_manager')->update($user);
+            $this->get('tempo.domain_manager')->update($user);
+            $this->addFlash('success', 'tempo.user.profile_edit_success');
         }
 
         return $this->render( 'TempoAppBundle:Profile:edit.html.twig',  array(
@@ -133,20 +135,19 @@ class ProfileController extends Controller
 
     public function changePasswordAction(Request $request)
     {
-        $profile = $this->getUser();
+        $user = $this->getUser();
+        $form = $this->createForm(new ChangePasswordFormType(), $user);
 
-        $form = $this->createForm(new ChangePasswordFormType(), $profile);
-
-        if ($form->handleRequest($request)->isValid()) {
-            $this->get('tempo.domain_manager')->update($profile);
-
+        if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
+            var_dump($user);
+            $this->get('tempo.domain_manager')->update($user);
+            var_dump($user);
+            die;
             $this->addFlash('success', 'tempo.user.password_change_success');
-
-            $this->redirectToRoute('user_profile_password');
         }
 
         return $this->render('TempoAppBundle:Profile:password.html.twig', array(
-            'profile' => $profile,
+            'user' => $user,
             'form' => $form->createView()
         ));
     }

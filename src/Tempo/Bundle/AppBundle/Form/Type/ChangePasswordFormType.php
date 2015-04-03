@@ -37,11 +37,13 @@ class ChangePasswordFormType extends AbstractType
         ));
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class'      => 'Tempo\Bundle\AppBundle\Model\User',
-            'intention'  => 'change_password',
+            'data_class' => 'Tempo\Bundle\AppBundle\Model\User'
         ));
     }
 
@@ -50,6 +52,6 @@ class ChangePasswordFormType extends AbstractType
      */
     public function getName()
     {
-        return 'user_profile_passwork';
+        return 'user_profile_password';
     }
 }
