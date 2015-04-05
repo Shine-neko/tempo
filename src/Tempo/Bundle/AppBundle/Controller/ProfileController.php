@@ -138,11 +138,8 @@ class ProfileController extends Controller
         $user = $this->getUser();
         $form = $this->createForm(new ChangePasswordFormType(), $user);
 
-        if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
-            var_dump($user);
+        if ($form->handleRequest($request)->isValid()) {
             $this->get('tempo.domain_manager')->update($user);
-            var_dump($user);
-            die;
             $this->addFlash('success', 'tempo.user.password_change_success');
         }
 
