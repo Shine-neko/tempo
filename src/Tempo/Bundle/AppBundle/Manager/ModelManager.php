@@ -25,6 +25,11 @@ class ModelManager
     protected $repository;
 
     /**
+     * @var DomainManager
+     */
+    protected $domainManager;
+
+    /**
      * @var EntityManager
      */
     protected $em;
@@ -35,12 +40,14 @@ class ModelManager
 
     /**
      * @param EntityManager $em
+     * @param DomainManager $domainManager
      * @param $class
      */
-    public function __construct(EntityManager $em, $class)
+    public function __construct(EntityManager $em, DomainManager $domainManager, $class)
     {
         $this->em = $em;
         $this->class = $class;
+        $this->domainManager = $domainManager;
         $this->repository = $this->em->getRepository($this->class);
     }
 
@@ -83,7 +90,7 @@ class ModelManager
         return $this->repository->findAllByUser($user);
     }
 
-    public function getRepository($class = null)
+    public function getRepository()
     {
         return $this->repository;
     }
@@ -96,10 +103,14 @@ class ModelManager
      */
     public function save($entity, $doFlush = true)
     {
-        $this->em->persist($entity);
+        if (null == $entity->getId()) {
+            $this->domainManager->create($entity);
+        } else {
+            $this->domainManager->update($entity);
+        }
 
         if ($doFlush) {
-            $this->em->flush();
+            $this->domainManager->flush();
         }
 
         return $entity;
@@ -107,10 +118,10 @@ class ModelManager
 
     public function remove($entity, $doFlush = true)
     {
-        $this->em->remove($entity);
+        $this->domainManager->delete($entity, false);
 
         if ($doFlush) {
-            $this->em->flush();
+            $this->domainManager->flush();
         }
     }
 }

@@ -90,6 +90,7 @@ class TempoAppExtension extends AbstractResourceExtension
             $container
                 ->register('tempo.model_manager.'.$key, $manager)
                 ->addArgument(new Reference('doctrine.orm.entity_manager'))
+                ->addArgument(new Reference('tempo.domain_manager'))
                 ->addArgument($models[$key]);
         }
     }
