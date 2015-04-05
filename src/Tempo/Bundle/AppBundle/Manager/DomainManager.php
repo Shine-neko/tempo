@@ -91,8 +91,8 @@ class DomainManager
     {
         $event = $this->dispatchEvent($resource, 'pre_create');
 
-        if ($event->isStopped()) {
-            return  $event;
+        if ($event->isPropagationStopped()) {
+            return $event;
         }
 
         $this->objectManager->persist($resource);
@@ -111,7 +111,7 @@ class DomainManager
     {
         $event = $this->dispatchEvent($resource, 'pre_update');
 
-        if ($event->isStopped()) {
+        if ($event->isPropagationStopped()) {
             return  $event;
         }
 
@@ -131,7 +131,7 @@ class DomainManager
     {
         $event = $this->dispatchEvent($resource, 'pre_delete');
 
-        if ($event->isStopped()) {
+        if ($event->isPropagationStopped()) {
             return  $event;
         }
 
