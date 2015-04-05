@@ -73,7 +73,7 @@ class UserListener
     /**
      * @param ResourceEvent $event
      */
-    public function prePersist(ResourceEvent $event)
+    public function preCreate(ResourceEvent $event)
     {
         $object = $event->getSubject();
         $this->updateUserFields($object);
