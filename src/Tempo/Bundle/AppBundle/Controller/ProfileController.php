@@ -141,6 +141,8 @@ class ProfileController extends Controller
         if ($form->handleRequest($request)->isValid()) {
             $this->get('tempo.domain_manager')->update($user);
             $this->addFlash('success', 'tempo.user.password_change_success');
+
+            return $this->redirectToRoute('user_profile_password');
         }
 
         return $this->render('TempoAppBundle:Profile:password.html.twig', array(
