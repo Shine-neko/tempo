@@ -20,7 +20,7 @@
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"  />
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}"  />
-    <title>{% block title %}{{ 'Welcome'|trans }}{% endblock %} - Tempo</title>
+    <title>{% block title %}{{ sylius_settings_get('general.name') }}{% endblock %} - Tempo</title>
 </head>
 <body class="no-js {{ get_browser() }} {% block bodyClass %}{% endblock %}">
 {% block body %}
@@ -39,7 +39,7 @@
                 <div class="head-inner navbar-collapse bs-navbar-collapse collapse">
                     <div id="search">
                         <form method="get" action="/search/index/">
-                            <label label-default="label-default" for="q"> <a accesskey="4" href="#">{{ 'header.search'|trans }}  </a> :</label>
+                            <label label-default="label-default" for="q"> <a accesskey="4" href="#">{{ 'tempo.header.search'|trans }}  </a> :</label>
                             <input  type="text" size="20" name="q" id="q" class="form-control small" accesskey="f" />
                             <button type="submit" class="submit">
                                 <span class="glyphicon glyphicon-search"></span>
