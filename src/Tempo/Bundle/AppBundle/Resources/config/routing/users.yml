@@ -39,10 +39,6 @@ user_resetting_validate:
     requirements:
         _method:  GET|POST
 
-user_change_password:
-    path : /user/change-password
-    defaults: { _controller: "TempoAppBundle:Profile:setting" }
-
 user_backend:
     resource: "@TempoAppBundle/Resources/config/routing/backend/user.yml"
     prefix: /admin/users
