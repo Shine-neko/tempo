@@ -24,7 +24,7 @@
 </head>
 <body class="no-js {{ get_browser() }} {% block bodyClass %}{% endblock %}">
 {% block body %}
-<div id="glob">
+    <div id="glob">
         <header id="header" class="navbar" role="banner">
             <div class="container">
                 <div class="navbar-header">
@@ -49,7 +49,6 @@
                     <nav role="navigation">
                         {{ knp_menu_render('main') }}
                         <ul id="user-menu" class="nav navbar-nav navbar-right">
-
                             {% set notifications_indicator = user_notifications(app.user.id) %}
                             <li class="notifications">
                                 <a href="#" data-toggle="dropdown" class="dropdown-toggle">
@@ -100,16 +99,13 @@
         <div id="content" class="container-fluid">
             <div class="row">
                 {% block container %}
-                {% block breadcrumb %}
-                {% endblock breadcrumb %}
-                <div id="child-content" class="col-md-12">
-                    {% block content %}  {% endblock %}
-                </div>
-
+                    {% block breadcrumb %}{% endblock breadcrumb %}
+                    <div id="child-content" class="col-md-12">
+                        {% block content %}{% endblock %}
+                    </div>
+                {% endblock container %}
             </div>
-            {% endblock container %}
         </div>
-
     </div>
     <div class="flash-container" style="display: none;">
         {% block flashes %}
@@ -173,7 +169,6 @@
         {% endfor %}
         {{ behavior.renderHTML|raw }}
     {% endblock %}
-
 {% endblock body %}
 </body>
 </html>
