@@ -79,6 +79,15 @@ class UserListener
         $this->updateUserFields($object);
     }
 
+    /**
+     * @param ResourceEvent $event
+     */
+    public function preUpdate(ResourceEvent $event)
+    {
+        $object = $event->getSubject();
+        $this->updateUserFields($object);
+    }
+
     protected function updatePassword(UserInterface $user)
     {
         if (0 !== strlen($password = $user->getPlainPassword())) {
