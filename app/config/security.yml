@@ -5,7 +5,7 @@ security:
             id: tempo.user.user_provider.username
 
     encoders:
-        "Tempo\Bundle\AppBundle\Model\UserInterface": sha512
+        Tempo\Bundle\AppBundle\Model\UserInterface: sha512
 
     firewalls:
         dev:

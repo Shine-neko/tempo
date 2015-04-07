@@ -11,65 +11,62 @@
 
 namespace Tempo\Bundle\AppBundle\Controller;
 
+use Doctrine\Common\Util\Debug;
 use Symfony\Component\HttpFoundation\Request;
 use Tempo\Bundle\AppBundle\Form\Type\ResettingFormType;
+use Tempo\Bundle\AppBundle\Manager\UserManager;
+use Tempo\Bundle\AppBundle\Model\UserInterface;
 
 class ResettingController extends Controller
 {
-    /**
-     * Request reset user password: show form
-     */
-    public function requestAction()
+    public function resetAction(Request $request)
     {
-        $error = '';
-        return $this->render('TempoAppBundle:Resetting:request.html.twig', array(
-            'error'         => $error
-        ));
+        if ($request->isMethod('POST') && $username = $request->request->get('username')) {
+            /** @var UserManager $userManager */
+            $userManager = $this->getManager('user');
+
+            $user = $userManager->findUserByUsernameOrEmail($username);
+            if (!$user) {
+                return $this->render('TempoAppBundle:Resetting:reset.html.twig', array(
+                    'error' => $username
+                ));
+            }
+
+            if ($user->isPasswordRequestNonExpired(60*60*24)) {
+                $this->addFlash('normal', 'tempo.security.resetting.request_non_expired');
+            }
+
+            if (!$user->getConfirmationToken()) {
+                $user->setConfirmationToken($user->generateToken());
+                $user->setPasswordRequestedAt(new \DateTime('now', new \DateTimeZone('UTC')));
+                $userManager->save($user);
+            }
+
+            $senderEmail = $this->container->getParameter('tempo.config.email_from');
+            $message = \Swift_Message::newInstance()
+                ->setSubject('[Tempo] Reset password')
+                ->setFrom($senderEmail)
+                ->setTo($user->getEmail())
+                ->setBody(
+                    $this->renderView('TempoAppBundle:Mail:User/reset.html.twig', array('user' => $user)),
+                    'text/html'
+                );
+            $this->get('mailer')->send($message);
+
+            $this->addFlash('success', 'tempo.security.resetting.request_success');
+
+            return $this->redirectToRoute('homepage');
+        }
+
+        return $this->render('TempoAppBundle:Resetting:reset.html.twig');
     }
 
-    public function sendEmailAction(Request $request)
+    public function resetValidateAction(Request $request, $token)
     {
-        $username = $request->request->get('username');
-
-        $user = $this->getManager('user')->findUserByUsernameOrEmail($username);
-        if (null === $user) {
-            return $this->render('TempoAppBundle:Resetting:request.html.twig', array(
-                'invalid_username' => $username
-            ));
-        }
-
-        if ($user->isPasswordRequestNonExpired(5)) {
-            $this->addFlash('warning', 'tempo.security.resetting.request_non_expire');
-        }
-
-        if (null === $user->getConfirmationToken()) {
-            $user->setConfirmationToken($user->generateToken());
-        }
-
-        $senderEmail = $this->container->getParameter('tempo.config.email_from');
-
-        $message = \Swift_Message::newInstance()
-            ->setSubject('[Tempo] Reset password')
-            ->setFrom($senderEmail)
-            ->setTo($user->getEmail())
-            ->setBody(
-                $this->renderView('TempoAppBundle:Mail:User/reset.html.twig', array('user' => $user)),
-                'text/html'
-            );
-
-        $this->get('mailer')->send($message);
-        $user->setPasswordRequestedAt(new \DateTime('now', new \DateTimeZone('UTC')));
-        $this->getManager('user')->save($user);
-
-        $this->addFlash('success', 'tempo.security.resetting.request_success');
-
-        return $this->redirectToRoute('homepage');
-    }
-
-    public function resetAction(Request $request, $token)
-    {
+        /** @var UserManager $userManager */
         $userManager = $this->getManager('user');
-        $user = $userManager->findUserByConfirmationToken($token);
+        /** @var UserInterface $user */
+        $user = $userManager->findUserBy(array('confirmationToken' => $token));
 
         if (null === $user) {
             throw $this->createNotFoundException(sprintf('The user with "confirmation token" does not exist for value "%s"', $token));
@@ -82,15 +79,15 @@ class ResettingController extends Controller
         $form = $this->createForm(new ResettingFormType(), $user);
 
         if ($form->handleRequest($request)->isValid()) {
-            $this->getManager('user')->save($user);
+            $user->setPasswordRequestedAt(new \DateTime('-24hours', new \DateTimeZone('UTC')));
+            $userManager->save($user);
             $this->addFlash('success', 'tempo.security.resetting.request_success_reset');
             return $this->redirectToRoute('homepage');
         }
 
-        return $this->render('TempoAppBundle:Resetting:reset.html.twig', array(
+        return $this->render('TempoAppBundle:Resetting:validate.html.twig', array(
             'form' => $form->createView(),
             'token' => $token
         ));
-
     }
 }

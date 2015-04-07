@@ -15,23 +15,12 @@ use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
-use Doctrine\Common\EventSubscriber;
-use Doctrine\ORM\Events;
-use Doctrine\ORM\Event\LifecycleEventArgs;
-use Doctrine\ORM\Event\PreUpdateEventArgs;
+use Sylius\Component\Resource\Event\ResourceEvent;
 use Tempo\Bundle\AppBundle\Model\UserInterface;
 
-class UserListener implements EventSubscriber
+class UserListener
 {
     protected $encoderFactory;
-
-    public function getSubscribedEvents()
-    {
-        return array(
-            Events::prePersist,
-            Events::preUpdate,
-        );
-    }
 
     /**
      * @param EncoderFactoryInterface $encoder
@@ -82,25 +71,21 @@ class UserListener implements EventSubscriber
     }
 
     /**
-     * @param LifecycleEventArgs $args
+     * @param ResourceEvent $event
      */
-    public function prePersist($args)
+    public function preCreate(ResourceEvent $event)
     {
-        $object = $args->getEntity();
-        if ($object instanceof UserInterface) {
-            $this->updateUserFields($object);
-        }
+        $object = $event->getSubject();
+        $this->updateUserFields($object);
     }
 
     /**
-     * @param PreUpdateEventArgs $args
+     * @param ResourceEvent $event
      */
-    public function preUpdate($args)
+    public function preUpdate(ResourceEvent $event)
     {
-        $object = $args->getEntity();
-        if ($object instanceof UserInterface) {
-            $this->updateUserFields($object);
-        }
+        $object = $event->getSubject();
+        $this->updateUserFields($object);
     }
 
     protected function updatePassword(UserInterface $user)

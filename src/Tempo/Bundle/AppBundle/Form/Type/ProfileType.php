@@ -30,6 +30,16 @@ class ProfileType extends AbstractType
         ;
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'Tempo\Bundle\AppBundle\Model\User',
+        ));
+    }
+
     public function getName()
     {
         return 'user';
