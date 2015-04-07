@@ -158,6 +158,7 @@ tempo:
       email: Email address
       password: Password
       settings: Settings
+      notifications: Notifications
     form:
       id: ID
       username: Username

@@ -11,46 +11,48 @@
                 <li class="last"> <a href="{{ path('user_profile_edit') }}">Notifications</a> </li>
             </ol>
         {% endblock breadcrumb %}
-
     </div>
-    <div class="" style="width: 1177px">
-        <div class="row">
-            <div class="app-panel col-md-12">
-                <div class="head">
-                    <h1 id="page-title" class="pull-left" style="font-size: 22px;">Notifications</h1>
-                    <a class="pull-right" href="{{ path('notification_clear') }}">Mark everything as read</a>
-                </div>
-                <nav>
-                    <ul class="nav nav-tabs clearbox">
-                        <li class="first active">
-                            <a href="{{ path('notification_dashboard') }}">Unread</a>
-                        </li>
-                        <li class="last">
-                            <a href="{{ path('notification_dashboard',{ 'all' : 1 }) }}">All notifications</a>
-                        </li>
-                    </ul>
-                </nav>
-                <table class="table">
-                    {% for notification in notifications %}
-                    <tr>
-                        <td>{{ notification.createdAt|localizeddate('medium', 'none', app.request.locale) }}</td>
-                        <td>
-                            <a href="{{ link_notification(notification) }}">
-                                {{ read_notification(notification) }}
-                            </a>
-                        </td>
-                    </tr>
-                    {% else %}
-                        <tr>
-                            <td>No Notifications</td>
-                        </tr>
-                    {% endfor %}
-                </table>
 
+    {% include "TempoAppBundle:Profile:_tabs.html.twig" %}
+    <div class="page-header">
+        <h1>Notifications</h1>
+    </div>
+    <div class="col-md-10">
+        <div class="app-panel ">
+            <div class="head">
+                <a class="pull-right" href="{{ path('notification_clear') }}">Mark everything as read</a>
             </div>
-            <div style="width: 250px; margin: auto;">
-                {{ pagerfanta(notifications, 'twitter_bootstrap3') }}
-            </div>
+            <nav>
+                <ul class="nav nav-tabs clearbox">
+                    <li class="first active">
+                        <a href="{{ path('notification_dashboard') }}">Unread</a>
+                    </li>
+                    <li class="last">
+                        <a href="{{ path('notification_dashboard',{ 'all' : 1 }) }}">All notifications</a>
+                    </li>
+                </ul>
+            </nav>
+            <table class="table">
+                {% for notification in notifications %}
+                <tr>
+                    <td>{{ notification.createdAt|localizeddate('medium', 'none', app.request.locale) }}</td>
+                    <td>
+                        <a href="{{ link_notification(notification) }}">
+                            {{ read_notification(notification) }}
+                        </a>
+                    </td>
+                </tr>
+                {% else %}
+                    <tr>
+                        <td>No Notifications</td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+        </div>
+        <div style="width: 250px; margin: auto;">
+            {{ pagerfanta(notifications, 'twitter_bootstrap3') }}
+        </div>
 
         </div>
     </div>

@@ -68,6 +68,11 @@ class FrontendMenuBuilder extends MenuBuilder
             array('route' => 'user_profile_settings')
         );
 
+        $menu->addChild(
+            $this->translate('tempo.profile.tabs.notifications'),
+            array('route' => 'notification_dashboard')
+        );
+
         $this->eventDispatcher->dispatch(MenuBuilderEvent::FRONTEND_USER, new MenuBuilderEvent($this->factory, $menu));
 
         return $menu;
