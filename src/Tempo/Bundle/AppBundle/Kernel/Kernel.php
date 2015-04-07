@@ -16,10 +16,10 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 
 class Kernel extends BaseKernel
 {
-    const VERSION = '0.4.0-dev';
-    const VERSION_ID = '00400';
+    const VERSION = '0.5.0-dev';
+    const VERSION_ID = '00500';
     const MAJOR_VERSION = '0';
-    const MINOR_VERSION = '4';
+    const MINOR_VERSION = '5';
     const RELEASE_VERSION = '0';
     const EXTRA_VERSION = 'DEV';
 
