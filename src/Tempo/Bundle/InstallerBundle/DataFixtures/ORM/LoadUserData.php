@@ -21,6 +21,7 @@ use Tempo\Bundle\AppBundle\Model\User;
 
 class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
+    /** @var ContainerInterface */
     private $container;
 
     /**
@@ -36,7 +37,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      */
     public function load(ObjectManager $manager)
     {
-        $userManager = $this->container->get('tempo.model_manager.user');
+        $userManager = $this->container->get('tempo.domain_manager');
         $users = array(
             'admin'           => 'Ad Min',
             'john.doe'        => 'John Doe',
@@ -56,6 +57,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
             'dexter.schwartz' => 'Dexter Schwartz'
         );
 
+        $i = 1;
         foreach ($users as $username => $name) {
             $account = new User();
             $fullName = explode(' ', $name);
@@ -77,9 +79,10 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
                 $account->setEnabled(false);
             }
 
-            $userManager->save($account);
+            $userManager->create($account, $i == count($users));
 
             $this->addReference($username, $account);
+            $i++;
         }
     }
 

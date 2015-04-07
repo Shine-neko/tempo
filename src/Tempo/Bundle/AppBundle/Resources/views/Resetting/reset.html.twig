@@ -1,23 +1,17 @@
 {% extends "TempoAppBundle:Security:login.html.twig" %}
+
 {% block subcontent %}
-    <div>
-        <div class="form-error">
-            {{ form_errors(form) }}
+    <form action="{{ path("user_resetting_reset") }}" method="post">
+        <div class="widget username">
+            <input type="text" id="username" name="username" class="form-control" required="required" placeholder="{{ 'tempo.security.resetting.username'|trans }}" />
         </div>
 
-        <form action="{{ path("user_resetting_check_email", {'token' : token}) }}" method="post">
-            <div class="widget password">
-                {{ form_widget(form.plainPassword) }}
-            </div>
+        <div class="widget already_login col-md-6">
+            <a href="{{ path('user_login') }}"> {{ 'tempo.security.resetting.already_login'|trans }} </a>
+        </div>
 
-            <div class="widget send col-md-6 pull-right">
-                <input id="login" class="submit btn btn-default" type="submit" value="{{ 'tempo.form.submit'|trans }}"/>
-                {{ form_rest(form) }}
-            </div>
-
-            <div class="widget already_login">
-                <a href="{{ path('user_login') }}"> {{ 'tempo.security.resetting.already_login'|trans }} </a>
-            </div>
-        </form>
-    </div>
+        <div class="widget send col-md-6">
+            <input id="login" class="submit btn btn-default" type="submit" value="{{ 'tempo.form.submit'|trans }}"/>
+        </div>
+    </form>
 {% endblock subcontent %}

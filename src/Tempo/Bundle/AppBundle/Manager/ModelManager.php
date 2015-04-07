@@ -12,6 +12,7 @@
 namespace Tempo\Bundle\AppBundle\Manager;
 
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
 
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
@@ -20,7 +21,7 @@ use Doctrine\ORM\EntityManager;
 class ModelManager
 {
     /**
-     * @var \Doctrine\ORM\EntityRepository
+     * @var EntityRepository
      */
     protected $repository;
 

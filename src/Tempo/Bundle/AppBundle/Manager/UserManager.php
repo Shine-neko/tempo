@@ -11,7 +11,7 @@
 
 namespace Tempo\Bundle\AppBundle\Manager;
 
-use Tempo\Bundle\AppBundle\Model\UserInterface;
+use Tempo\Bundle\AppBundle\Model\User;
 
 /**
  * @author Mlanawo Mbechezi <mlanawo.mbechezi@ikimea.com>
@@ -23,7 +23,7 @@ class UserManager extends ModelManager
      *
      * @param string $usernameOrEmail
      *
-     * @return UserInterface
+     * @return User
      */
     public function findUserByUsernameOrEmail($usernameOrEmail)
     {

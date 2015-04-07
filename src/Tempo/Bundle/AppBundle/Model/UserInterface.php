@@ -30,11 +30,6 @@ interface UserInterface extends AdvancedUserInterface, \Serializable, Timestampa
     public function setUsername($username);
 
     /**
-     * @return string
-     */
-    public function getUsername();
-
-    /**
      * @param string $slug
      *
      * @return self
@@ -66,21 +61,11 @@ interface UserInterface extends AdvancedUserInterface, \Serializable, Timestampa
     public function setEnabled($enabled);
 
     /**
-     * @return string $salt
-     */
-    public function getSalt();
-
-    /**
      * @param string $password
      *
      * @return self
      */
     public function setPassword($password);
-
-    /**
-     * @return string $password
-     */
-    public function getPassword();
 
     /**
      * @param string $plainPassword
@@ -186,11 +171,6 @@ interface UserInterface extends AdvancedUserInterface, \Serializable, Timestampa
      * @return self
      */
     public function removeRole($role);
-
-    /**
-     * @return string[]|array
-     */
-    public function getRoles();
 
     /**
      * @param boolean $expired
@@ -457,7 +437,7 @@ interface UserInterface extends AdvancedUserInterface, \Serializable, Timestampa
     public function isSuperAdmin();
 
     /**
-     * @param $boolean
+     * @param $boolean $yes
      *
      * @return self
      */
