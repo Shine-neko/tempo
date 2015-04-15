@@ -11,8 +11,8 @@
 
 namespace Tempo\Bundle\AppBundle\Manager;
 
-use Tempo\Bundle\AppBundle\Timesheet\ProjectTimesheet;
-use Tempo\Bundle\AppBundle\Timesheet\ProjectActivityDayTimesheet;
+use Tempo\Bundle\AppBundle\Timesheet\View\ProjectTimesheet;
+use Tempo\Bundle\AppBundle\Timesheet\View\ProjectActivityDayTimesheet;
 
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>

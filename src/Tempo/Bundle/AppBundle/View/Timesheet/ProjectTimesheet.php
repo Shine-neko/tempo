@@ -9,7 +9,7 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\AppBundle\Timesheet;
+namespace Tempo\Bundle\AppBundle\View\Timesheet;
 
 use Tempo\Bundle\AppBundle\Model\ProjectInterface;
 
