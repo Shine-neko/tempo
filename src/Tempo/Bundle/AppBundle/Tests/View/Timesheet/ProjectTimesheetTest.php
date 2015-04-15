@@ -9,8 +9,9 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\AppBundle\Tests\Timesheet;
-use Tempo\Bundle\AppBundle\Timesheet\ProjectTimesheet;
+namespace Tempo\Bundle\AppBundle\Tests\View\Timesheet;
+
+use Tempo\Bundle\AppBundle\View\Timesheet\ProjectTimesheet;
 
 class ProjectTimesheetTest extends \PHPUnit_Framework_TestCase
 {
@@ -24,7 +25,7 @@ class ProjectTimesheetTest extends \PHPUnit_Framework_TestCase
     public function testExistDay()
     {
         $day = $this->getMock(
-            'Tempo\Bundle\AppBundle\Timesheet\ProjectActivityDayTimesheet',
+            'Tempo\Bundle\AppBundle\View\Timesheet\ProjectActivityDayTimesheet',
             array(),
             array('date' => date('y'))
         );

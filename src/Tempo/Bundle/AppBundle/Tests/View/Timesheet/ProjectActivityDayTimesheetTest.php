@@ -9,9 +9,9 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\AppBundle\Tests\Timesheet;
+namespace Tempo\Bundle\AppBundle\Tests\View\Timesheet;
 
-use Tempo\Bundle\AppBundle\Timesheet\ProjectActivityDayTimesheet;
+use Tempo\Bundle\AppBundle\View\Timesheet\ProjectActivityDayTimesheet;
 
 
 class ProjectActivityDayTimesheetTest extends \PHPUnit_Framework_TestCase
