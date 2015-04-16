@@ -96,8 +96,9 @@ class MessageController extends Controller
         $message = new Message();
         $message
             ->setRoom($room)
-            ->setUser($this->getUser())
-            ->addMessage($message);
+            ->setUser($this->getUser());
+        
+        $room->addMessage($message);
 
         $form = $this->createForm(new MessageType(), $message);
 
