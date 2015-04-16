@@ -9,18 +9,18 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\AppBundle\Controller;
+namespace Tempo\Bundle\AppBundle\Controller\Api;
 
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Request\ParamFetcherInterface;
 use FOS\RestBundle\Controller\Annotations;
 use FOS\RestBundle\View\View;
-use FOS\RestBundle\Controller\Annotations\View As AnnotView;
 
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\Get;
 
+use Tempo\Bundle\AppBundle\Controller\Controller;
 use Tempo\Bundle\AppBundle\Model\Message;
 use Tempo\Bundle\AppBundle\Model\Room;
 use Tempo\Bundle\AppBundle\Form\Type\MessageType;
@@ -29,7 +29,7 @@ use Tempo\Bundle\AppBundle\Form\Type\MessageType;
 /**
  * Rest controller for stories
  */
-class MessagesController extends Controller
+class MessageController extends Controller
 {
     /**
      *
@@ -85,25 +85,24 @@ class MessagesController extends Controller
 
     /**
      * Create a new message
-     * @Post("/room/{room}/messages")
+     * @Post("/room/{room}/message")
      */
-    public function postMessagesAction($room, Request $request)
+    public function postMessageAction($room, Request $request)
     {
         $room = $this->getManager('room')->getRepository()->findRoom($room, $this->getUser()->getId());
 
         $view = View::create();
 
         $message = new Message();
-        $message->setRoom($room);
-        $message->setUser($this->getUser());
+        $message
+            ->setRoom($room)
+            ->setUser($this->getUser())
+            ->addMessage($message);
 
-        $room->addMessage($message);
         $form = $this->createForm(new MessageType(), $message);
 
         if ($form->submit($request) && $form->isValid()) {
-            $dm = $this->getDoctrine()->getManager();
-            $dm->persist($room);
-            $dm->flush();
+            $this->get('tempo.domain_manager')->create($room);
             $view->setStatusCode(201)->setData($message);
         } else {
             $view->setData($form);

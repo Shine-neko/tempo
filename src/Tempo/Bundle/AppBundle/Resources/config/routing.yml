@@ -17,14 +17,10 @@ main_room_api:
   defaults:
       version: v1
 
-main_chat:
-  type: rest
-  resource: "@TempoAppBundle/Resources/config/routing/chat.yml"
-
-main_chat_api:
+message_api:
   type: rest
   prefix:   /api/{version}
-  resource: "@TempoAppBundle/Resources/config/routing/chat_api.yml"
+  resource: "@TempoAppBundle/Resources/config/routing/message_api.yml"
   defaults:
       version: v1
 
