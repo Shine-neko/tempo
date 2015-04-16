@@ -8,6 +8,9 @@ use Tempo\Bundle\AppBundle\Manager\OrganizationManager;
 class OrganizationManagerTest extends \PHPUnit_Framework_TestCase
 {
     const ORGANIZATION_CLASS = 'Tempo\Bundle\AppBundle\Model\Project';
+    private $em;
+    private $repository;
+    private $organizationManager;
 
     public function setUp()
     {
@@ -20,8 +23,14 @@ class OrganizationManagerTest extends \PHPUnit_Framework_TestCase
             ), array(), '', false
         );
 
-        $this->repository = $this->getMock('Doctrine\Common\Persistence\ObjectRepository');
+        $this->repository = $this->getMockBuilder('Tempo\Bundle\AppBundle\Repository\OrganizationRepository')
+            ->disableOriginalConstructor()
+            ->getMock();
+
         $class = $this->getMock('Doctrine\Common\Persistence\Mapping\ClassMetadata');
+        $domainManager = $this->getMockBuilder('Tempo\Bundle\AppBundle\Manager\DomainManager')
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $this->em->expects($this->any())
             ->method('getRepository')
@@ -39,14 +48,14 @@ class OrganizationManagerTest extends \PHPUnit_Framework_TestCase
             ->method('getName')
             ->will($this->returnValue(static::ORGANIZATION_CLASS));
 
-        $this->organizationManager = $this->createOrganizationManager($this->em, static::ORGANIZATION_CLASS);
+        $this->organizationManager = $this->createOrganizationManager($this->em, $domainManager, static::ORGANIZATION_CLASS);
 
     }
 
-    protected function createOrganizationManager($objectManager, $userClass)
+    protected function createOrganizationManager($objectManager, $domainManager, $userClass)
     {
         return new OrganizationManager(
-            $objectManager, $userClass
+            $objectManager, $domainManager, $userClass
         );
     }
 
@@ -57,15 +66,14 @@ class OrganizationManagerTest extends \PHPUnit_Framework_TestCase
         return new $projectClass();
     }
 
-    public function testDeleteOrga()
+    public function testGetStatusProjects()
     {
-        $project = $this->getOrganization();
-        $this->em
-            ->expects($this->once())
-            ->method('remove')
-            ->with($this->equalTo($project));
-        $this->em->expects($this->once())->method('flush');
+        $this
+            ->repository->expects($this->any())
+            ->method('countProject')
+            ->will($this->returnValue(['prj_close' => 0, 'prj_open' => 1 ]));
 
-        $this->organizationManager->remove($project);
+        $status = $this->organizationManager->getStatusProjects(1);
+        $this->assertEquals(['open' => 1, 'close' => 0], $status);
     }
 }

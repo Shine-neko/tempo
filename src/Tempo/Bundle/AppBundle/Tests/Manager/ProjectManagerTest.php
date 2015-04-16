@@ -8,6 +8,8 @@ use Tempo\Bundle\AppBundle\Manager\ProjectManager;
 class ProjectManagerTest extends \PHPUnit_Framework_TestCase
 {
     const PROJECT_CLASS = 'Tempo\Bundle\AppBundle\Model\Project';
+    private $em;
+    private $projectManager;
 
     public function setUp()
     {
@@ -16,6 +18,9 @@ class ProjectManagerTest extends \PHPUnit_Framework_TestCase
 
         $this->repository = $this->getMock('Doctrine\Common\Persistence\ObjectRepository');
         $class = $this->getMock('Doctrine\Common\Persistence\Mapping\ClassMetadata');
+        $domainManager = $this->getMockBuilder('Tempo\Bundle\AppBundle\Manager\DomainManager')
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $this->em->expects($this->any())
             ->method('getRepository')
@@ -29,13 +34,13 @@ class ProjectManagerTest extends \PHPUnit_Framework_TestCase
             ->method('getName')
             ->will($this->returnValue(static::PROJECT_CLASS));
 
-        $this->projectManager = $this->createProjectManager($this->em, static::PROJECT_CLASS);
+        $this->projectManager = $this->createProjectManager($this->em, $domainManager, static::PROJECT_CLASS);
 
     }
 
-    protected function createProjectManager($objectManager, $userClass)
+    protected function createProjectManager($objectManager, $domainManager, $userClass)
     {
-        return new ProjectManager($objectManager, $userClass);
+        return new ProjectManager($objectManager, $domainManager, $userClass);
     }
 
     protected function getProject()
@@ -45,16 +50,10 @@ class ProjectManagerTest extends \PHPUnit_Framework_TestCase
         return new $projectClass();
     }
 
-
-    public function testDeleteProject()
+    public function testNbTotalProject()
     {
-        $project = $this->getProject();
-        $this->em
-            ->expects($this->once())
-            ->method('remove')
-            ->with($this->equalTo($project));
-        $this->em->expects($this->once())->method('flush');
-
-        $this->projectManager->remove($project);
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
     }
 }
