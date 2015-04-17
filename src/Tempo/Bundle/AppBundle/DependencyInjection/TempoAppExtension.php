@@ -71,7 +71,7 @@ class TempoAppExtension extends AbstractResourceExtension
         $models = array();
         $classes = $container->getParameter('sylius.config.classes');
 
-        foreach($classes as $key => $config ) {
+        foreach ($classes as $key => $config) {
 
             $key = str_replace('tempo.', '', $key);
 
@@ -83,12 +83,12 @@ class TempoAppExtension extends AbstractResourceExtension
 
             $manager = sprintf('Tempo\Bundle\AppBundle\Manager\%sManager', ucfirst(Inflector::classify($key)));
 
-            if(!class_exists($manager)) {
+            if (!class_exists($manager)) {
                 $manager = 'Tempo\Bundle\AppBundle\Manager\\ModelManager';
             }
 
             $container
-                ->register('tempo.model_manager.'.$key, $manager)
+                ->register('tempo.model_manager.' . $key, $manager)
                 ->addArgument(new Reference('doctrine.orm.entity_manager'))
                 ->addArgument(new Reference('tempo.domain_manager'))
                 ->addArgument($models[$key]);
@@ -97,13 +97,13 @@ class TempoAppExtension extends AbstractResourceExtension
 
     public function createBackendServices(ContainerBuilder $container, $config)
     {
-        foreach($config['backend'] as $resourceName => $conf ) {
+        foreach ($config['backend'] as $resourceName => $conf) {
             if (!isset($conf['controller'])) {
                 $conf['controller'] = 'Tempo\Bundle\AppBundle\Controller\Backend\BackendController';
             }
 
             $container->setDefinition(
-                'tempo.backend.controller.'.$resourceName,
+                'tempo.backend.controller.' . $resourceName,
                 $this->getControllerDefinition($conf['controller'], $resourceName)
             );
         }
