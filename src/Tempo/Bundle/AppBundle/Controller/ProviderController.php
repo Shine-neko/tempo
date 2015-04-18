@@ -77,6 +77,7 @@ class ProviderController extends Controller
         $this->getManager('activity_provider')->addActivity($activity, $projectProvider);
 
         $this->get('event_dispatcher')->dispatch(TempoAppEvents::ACTIVITY_PROVIDER_CREATE_SUCCESS, $event);
+        $this->get('logger')->info('register an activity', array('project' => $project));
 
         return new Response('success');
     }
