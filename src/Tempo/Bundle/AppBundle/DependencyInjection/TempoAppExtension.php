@@ -60,7 +60,10 @@ class TempoAppExtension extends AbstractResourceExtension
 
         $container->setParameter('sylius.locale', '%locale%');
         $container->setParameter('sylius.translation.mapping', '%sylius.translation.default.mapping%');
+        $container->setParameter('hwi_oauth.connect', $container->getParameter('oauth.enabled'));
         $container->setParameter('tempo.week', $config['week']);
+
+        var_dump($container->getParameter('hwi_oauth.connect'));
 
         $this->createManagerServices($container, $config);
         $this->createBackendServices($container, $config);
