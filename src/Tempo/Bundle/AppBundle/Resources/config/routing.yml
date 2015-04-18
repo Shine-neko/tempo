@@ -5,23 +5,23 @@ backend:
 _user:
   resource: "@TempoAppBundle/Resources/config/routing/users.yml"
 
-main_room:
+room:
   type: rest
   resource: "@TempoAppBundle/Resources/config/routing/room.yml"
   prefix:   /room
 
-main_room_api:
+room_api:
   type: rest
   prefix:   /api/{version}/room
   resource: "@TempoAppBundle/Resources/config/routing/room_api.yml"
   defaults:
       version: v1
 
-main_chat:
+chat:
   type: rest
   resource: "@TempoAppBundle/Resources/config/routing/chat.yml"
 
-main_chat_api:
+chat_api:
   type: rest
   prefix:   /api/{version}
   resource: "@TempoAppBundle/Resources/config/routing/chat_api.yml"
@@ -84,7 +84,7 @@ _comment:
   prefix:   /comment
 
 #Backend
-tempo_setting_backend:
+setting_backend:
     resource: "@TempoAppBundle/Resources/config/routing/backend/settings.yml"
     prefix: /admin/settings
 

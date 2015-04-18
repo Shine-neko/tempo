@@ -1,6 +1,6 @@
 tempo_app:
     backend:
-        organization:
-        project:
-        user:
-        group:
+        organization: ~
+        project: ~
+        user: ~
+        group: ~

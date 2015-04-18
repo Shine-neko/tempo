@@ -9,6 +9,8 @@ use CalendR\Period\Week;
 class TimesheetManagerTest extends \PHPUnit_Framework_TestCase
 {
     const TIMESHEET_CLASS = 'Tempo\Bundle\AppBundle\Model\Timesheet';
+    private $timesheetManager;
+    private $em;
 
     public function setUp()
     {
@@ -21,14 +23,17 @@ class TimesheetManagerTest extends \PHPUnit_Framework_TestCase
             ), array(), '', false
         );
 
+        $domainManager = $this->getMockBuilder('Tempo\Bundle\AppBundle\Manager\DomainManager')
+            ->disableOriginalConstructor()
+            ->getMock();
 
-        $this->timesheetManager = $this->createTimesheetManager($this->em, static::TIMESHEET_CLASS);
+        $this->timesheetManager = $this->createTimesheetManager($this->em, $domainManager, static::TIMESHEET_CLASS);
 
     }
 
-    protected function createTimesheetManager($objectManager, $userClass)
+    protected function createTimesheetManager($objectManager, $domainManager, $userClass)
     {
-        return new TimesheetManager($objectManager, $userClass);
+        return new TimesheetManager($objectManager, $domainManager, $userClass);
     }
 
 

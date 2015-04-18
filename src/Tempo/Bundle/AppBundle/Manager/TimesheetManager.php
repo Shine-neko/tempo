@@ -11,8 +11,8 @@
 
 namespace Tempo\Bundle\AppBundle\Manager;
 
-use Tempo\Bundle\AppBundle\Timesheet\View\ProjectTimesheet;
-use Tempo\Bundle\AppBundle\Timesheet\View\ProjectActivityDayTimesheet;
+use Tempo\Bundle\AppBundle\View\Timesheet\ProjectTimesheet;
+use Tempo\Bundle\AppBundle\View\Timesheet\ProjectActivityDayTimesheet;
 
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
@@ -69,7 +69,6 @@ class TimesheetManager extends ModelManager
               $activities[$project]
                  ->addActivity($activity)
                  ->addTime($activity->getWorkedTime());
-
          }
 
          foreach ($activities as $key => $activityDay) {
