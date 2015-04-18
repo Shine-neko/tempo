@@ -30,7 +30,7 @@ class User implements UserInterface
     /** @var string */
     protected $email;
 
-    /** @var boolean */
+    /** @var bool */
     protected $enabled;
 
     /** @var string */
@@ -51,10 +51,10 @@ class User implements UserInterface
     /** @var \DateTime */
     protected $passwordRequestedAt;
 
-    /** @var boolean */
+    /** @var bool */
     protected $locked;
 
-    /** @var boolean */
+    /** @var bool */
     protected $expired;
 
     /** @var \DateTime */
@@ -63,7 +63,7 @@ class User implements UserInterface
     /** @var array */
     protected $roles;
 
-    /** @var boolean */
+    /** @var bool */
     protected $credentialsExpired;
 
     /** @var \DateTime */
@@ -356,7 +356,7 @@ class User implements UserInterface
      */
     public function setExpiresAt(\DateTime $expiredAt = null)
     {
-        $this->expiresAt = $date;
+        $this->expiresAt = $expiredAt;
 
         return $this;
     }
@@ -434,7 +434,7 @@ class User implements UserInterface
      */
     public function setCredentialsExpireAt(\DateTime $credentialsExpiredAt = null)
     {
-        $this->credentialsExpireAt = $date;
+        $this->credentialsExpireAt = $credentialsExpiredAt;
 
         return $this;
     }

@@ -15,6 +15,10 @@ use ElephantIO\Client as Elephant;
 
 class Client
 {
+
+    /**
+     * @var Elephant
+     */
     protected $elephantIO;
 
     /**
@@ -28,9 +32,9 @@ class Client
     }
 
     /**
-     * Send to socketio
+     * Send to Socket I/O
      * @param string $eventName event name
-     * @param mixed  $data      data to send must be serializable
+     * @param mixed  $data to send must be serializable
      */
     public function send($eventName, $data)
     {
@@ -40,3 +44,4 @@ class Client
         $this->elephantIO->close();
     }
 }
+

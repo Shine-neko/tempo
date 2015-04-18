@@ -18,7 +18,6 @@
     <script type="application/javascript">
         Tempo.Controller.Dashboard.room = new Tempo.Model.Room({{ currentRoom| serialize | raw }}, {parse:true});
         Tempo.Controller.Dashboard.user = {{ app.user| serialize | raw }};
-        Tempo.Controller.Dashboard.user.avatar = "{{ app.user.avatar | raw }}";
         Tempo.Controller.Dashboard.load();
     </script>
 {% endblock %}

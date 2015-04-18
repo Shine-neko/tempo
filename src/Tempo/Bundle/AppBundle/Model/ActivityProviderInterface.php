@@ -27,7 +27,7 @@ interface ActivityProviderInterface
     /**
      * Set provider
      *
-     * @param  string   $provider
+     * @param  ProjectProviderInterface $provider
      * @return Activity
      */
     public function setProvider(ProjectProviderInterface $provider);
