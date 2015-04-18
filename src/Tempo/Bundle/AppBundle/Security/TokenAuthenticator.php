@@ -46,12 +46,7 @@ class TokenAuthenticator implements SimplePreAuthenticatorInterface
     public function authenticateToken(TokenInterface $token, UserProviderInterface $userProvider, $providerKey)
     {
         $apiKey = $token->getCredentials();
-
-        if(is_object($apiKey)) {
-            $apiKey = $apiKey->getToken();
-        }
-
-        $user = $userProvider->getUsernameForApiKey($apiKey);
+        $user = $userProvider->loadUserByUsername($token->getUsername());
 
         if (!$user) {
             throw new AuthenticationException(

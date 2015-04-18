@@ -1,0 +1,54 @@
+# REST Configuration
+fos_rest:
+    allowed_methods_listener: true
+    body_listener:
+        array_normalizer: fos_rest.normalizer.camel_keys
+    format_listener:
+        media_type:
+            version_regex: '/(v|version)=(?P<version>[0-9\.]+)/'
+        rules:
+            -
+                path: '^/api'
+                priorities: ['application/json', '*/*']
+                fallback_format: json
+                prefer_extension: true
+            -
+                path: '^/'
+                priorities: [ 'text/html', '*/*']
+                fallback_format: html
+                prefer_extension: true
+    param_fetcher_listener: true
+    routing_loader:
+        default_format: json
+        include_format: false
+    view:
+        serialize_null: true
+        view_response_listener: force
+        mime_types:
+            json:
+                - 'application/json'
+                - 'application/vnd.api+json'
+        formats:
+            xml: false
+            json: true
+        templating_formats:
+            html: false
+
+nelmio_cors:
+    defaults:
+        allow_credentials: true
+    paths:
+        '^/api/':
+            allow_origin: ['*']
+            allow_headers: ['Authorization', 'Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Id']
+            allow_methods: ['POST', 'PUT', 'GET', 'DELETE', 'OPTIONS']
+            max_age: 3600
+
+nelmio_api_doc:
+    name: 'Tempo-Project API documentation'
+    request_listener: false
+    sandbox:
+        request_format:
+            formats:
+                json: application/json
+            method: accept_header

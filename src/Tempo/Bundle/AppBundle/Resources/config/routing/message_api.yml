@@ -1,0 +1,6 @@
+messages_api:
+    type:     rest
+    name_prefix: api_message_
+    resource: Tempo\Bundle\AppBundle\Controller\Api\MessageController
+    options:
+        expose: true

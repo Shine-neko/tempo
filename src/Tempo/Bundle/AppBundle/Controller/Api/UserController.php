@@ -13,20 +13,11 @@ namespace Tempo\Bundle\AppBundle\Controller\Api;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-
-use FOS\RestBundle\Controller\Annotations\Get;
-use FOS\RestBundle\Controller\Annotations\NamePrefix;
-
 use Tempo\Bundle\AppBundle\Controller\Controller;
 
-/**
- * @NamePrefix("user_api_")
- */
 class UserController extends Controller
 {
-    /**
-     * @Get("/users/search/{username}", defaults={"username" = ""})
-     *
+    /*
      * @param Request $request
      * @param null $username
      * @return Response
@@ -34,27 +25,20 @@ class UserController extends Controller
     public function autocompleteAction(Request $request, $username = null)
     {
         $username = $request->query->get('term', $username);
-
-        $em = $this->getDoctrine()->getManager();
         $users = array();
 
         $list_user = ($username == 'all'  ) ?
-            $em->getRepository('TempoAppBundle:User')->findAll() :
-            $em->getRepository('TempoAppBundle:User')->autocomplete($username);
+            $this->get('tempo.repository.user')->findAll() :
+            $this->get('tempo.repository.user')->autocomplete($username);
 
         foreach ($list_user as $name) {
             $users[] = $name['username'];
         }
 
-        // create a JSON-response with a 200 status code
-        $response = new Response(json_encode($users ));
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
+        return $this->handleView($this->view($users));
     }
 
     /**
-     * @Get("/users/current")
      * @return Response
      */
     public function currentAction()

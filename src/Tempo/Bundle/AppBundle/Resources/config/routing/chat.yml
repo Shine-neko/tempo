@@ -1,6 +1,0 @@
-chat_room_messages:
-    type:     rest
-    resource: Tempo\Bundle\AppBundle\Controller\MessagesController
-    name_prefix:  chat_room_
-    options:
-        expose: true

@@ -11,11 +11,16 @@ user_logout:
     defaults: { _controller: "TempoAppBundle:Security:logout" }
 
 user_autocomplete:
-    type:         rest
+    path: /api/{version}/users/search/{username}
     defaults:
-      version:  internal
-    prefix:       api/{version}/
-    resource: Tempo\Bundle\AppBundle\Controller\Api\UserController
+        _controller: "TempoAppBundle:Api/User:autocomplete"
+        version:  internal
+
+user_current:
+    path: /api/{version}/users/current
+    defaults:
+        _controller: "TempoAppBundle:Api/User:current"
+        version:  internal
 
 tempo_user_notification:
     resource: "@TempoAppBundle/Resources/config/routing/notification.yml"
