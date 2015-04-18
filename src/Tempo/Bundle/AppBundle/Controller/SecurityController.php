@@ -47,6 +47,7 @@ class SecurityController extends Controller
             'last_username' => $lastUsername,
             'error'         => $error,
             'csrf_token' => $csrfToken,
+            'oauth' => array('enabled' => $this->container->getParameter('oauth.enabled')),
         ));
     }
 
