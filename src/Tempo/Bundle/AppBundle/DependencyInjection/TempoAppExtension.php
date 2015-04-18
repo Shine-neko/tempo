@@ -63,8 +63,6 @@ class TempoAppExtension extends AbstractResourceExtension
         $container->setParameter('hwi_oauth.connect', $container->getParameter('oauth.enabled'));
         $container->setParameter('tempo.week', $config['week']);
 
-        var_dump($container->getParameter('hwi_oauth.connect'));
-
         $this->createManagerServices($container, $config);
         $this->createBackendServices($container, $config);
     }
