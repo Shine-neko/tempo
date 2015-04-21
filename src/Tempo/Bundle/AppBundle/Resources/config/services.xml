@@ -4,6 +4,7 @@
 
     <parameters>
         <parameter key="tempo.eventlistener.class">Tempo\Bundle\AppBundle\EventListener\ControllerListener</parameter>
+        <parameter key="tempo.serializer.class">Tempo\Bundle\AppBundle\Serializer\Serializer</parameter>
         <parameter key="tempo.elephantio.client.class">Tempo\Bundle\AppBundle\ElephantIO\Client</parameter>
         <parameter key="tempo.elephantio.engine.class">ElephantIO\Engine\SocketIO\Version1X</parameter>
         <parameter key="tempo.data_collector.class">Tempo\Bundle\AppBundle\DataCollector\TempoDataCollector</parameter>

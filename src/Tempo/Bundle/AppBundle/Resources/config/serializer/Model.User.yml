@@ -9,3 +9,5 @@ Tempo\Bundle\AppBundle\Model\User:
         expose : true
       avatar:
         expose : true
+      twitter:
+       expose: true

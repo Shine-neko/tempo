@@ -43,7 +43,7 @@ class UserController extends Controller
      */
     public function currentAction()
     {
-        $view = $this->view(array($this->getUser()), 200);
+        $view = $this->view($this->getUser(), 200);
         return $this->handleView($view);
     }
 }

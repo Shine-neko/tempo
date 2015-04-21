@@ -40,8 +40,8 @@ Tempo.View.ConnectedUsers = Backbone.View.extend({
         var list = $('ul', this.$el);
         _.forEach(this.users, function(user) {
             var a = $('<a />')
-                .attr('href', '/profile/' + user.username_canonical)
-                .append('<img src="http://www.gravatar.com/avatar/'+md5(user.username_canonical)+'?s=30&d=mm" />');
+                .attr('href', '/profile/' + user.slug)
+                .append(user.avatar);
             list.append($('<li>').html(a));
         });
         return this;

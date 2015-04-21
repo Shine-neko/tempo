@@ -11,6 +11,7 @@
 
 namespace Tempo\Bundle\AppBundle\Controller;
 
+use JMS\Serializer\SerializationContext;
 use Symfony\Component\HttpFoundation\Request;
 use Tempo\Bundle\AppBundle\Controller\Controller;
 use Tempo\Bundle\AppBundle\Form\Type\MessageType;
@@ -26,6 +27,7 @@ class DashboardController extends Controller
     public function mainAction(Request $request)
     {
         $session = $request->getSession();
+        $serializeContext = (new SerializationContext())->setSerializeNull(true);
 
         $currentRoom = null;
         $manager = $this->getManager('room');
@@ -42,6 +44,7 @@ class DashboardController extends Controller
         return $this->render('@TempoApp/dashboard.html.twig', array(
             'rooms' => $rooms,
             'currentRoom' => $currentRoom,
+            'currentUser' => $this->get('serializer')->serialize($this->getUser(), 'json', $serializeContext),
             'form' => $form->createView()
         ));
     }
