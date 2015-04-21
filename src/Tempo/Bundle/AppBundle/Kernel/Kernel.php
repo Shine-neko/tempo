@@ -53,6 +53,8 @@ class Kernel extends BaseKernel
             new \JMS\SerializerBundle\JMSSerializerBundle($this),
             new \Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new \Bazinga\Bundle\JsTranslationBundle\BazingaJsTranslationBundle(),
+            new \Nelmio\ApiDocBundle\NelmioApiDocBundle(),
+            new \Nelmio\CorsBundle\NelmioCorsBundle(),
             new \WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
 
             //Tempo

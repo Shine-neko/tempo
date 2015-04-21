@@ -23,6 +23,7 @@ parameters:
   uglifycss_bin: /usr/local/bin/uglifycss
   java_bin:       /usr/bin/java
 
+  oauth.enabled: false
   oauth.google.clientid:     <google_client_id>
   oauth.google.clientsecret: <google_client_secret>
   oauth.github.clientid:     <github_client_id>

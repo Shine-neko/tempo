@@ -19,8 +19,11 @@ fos_rest:
                 prefer_extension: true
     param_fetcher_listener: true
     routing_loader:
-        default_format: json
+        default_format: html
         include_format: false
+
+    serializer:
+        serialize_null: true
     view:
         serialize_null: true
         view_response_listener: force
@@ -31,8 +34,7 @@ fos_rest:
         formats:
             xml: false
             json: true
-        templating_formats:
-            html: false
+            html: true
 
 nelmio_cors:
     defaults:

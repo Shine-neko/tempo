@@ -3,6 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: imagine.yml }
     - { resource: @TempoAppBundle/Resources/config/app/main.yml }
+    - { resource: @TempoAppBundle/Resources/config/app/api.yml }
 
 framework:
     #esi:             ~
