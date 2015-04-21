@@ -26,7 +26,7 @@ sensio_framework_extra:
         annotations: false
 
 fos_js_routing:
-    routes_to_expose: ['room_list', 'api_message_post_message', 'api_message_get_messages', 'timesheet_create', 'user_current']
+    routes_to_expose: ['room_list', 'api_message_post_message', 'api_message_get_messages', 'timesheet_create', 'api_user_current']
 
 hwi_oauth:
     firewall_name: main
