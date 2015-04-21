@@ -28,7 +28,7 @@ class AdminMenuBuilder extends MenuBuilder
 
         $menu->addChild(
             $this->translate('tempo.admin.menu.user'),
-            array('route' => 'backend_user_index')
+            array('route' => 'admin_user_index')
         );
 
         $menu->addChild(
@@ -38,12 +38,12 @@ class AdminMenuBuilder extends MenuBuilder
 
         $menu->addChild(
             $this->translate('tempo.admin.menu.organization'),
-            array('route' => 'backend_organization_index')
+            array('route' => 'admin_organization_index')
         );
 
         $menu->addChild(
             $this->translate('tempo.admin.menu.project'),
-            array('route' => 'backend_project_index')
+            array('route' => 'admin_project_index')
         );
 
         $this->eventDispatcher->dispatch(MenuBuilderEvent::ADMIN_MAIN, new MenuBuilderEvent($this->factory, $menu));

@@ -4,7 +4,7 @@ admin_configuration_general:
     defaults:
         _controller: sylius.controller.settings:updateAction
         namespace: general
-        template: TempoAppBundle:Backend/Settings:general.html.twig
+        template: TempoAppBundle:Admin/Settings:general.html.twig
 
 admin_configuration_project:
     path: /project
@@ -12,4 +12,4 @@ admin_configuration_project:
     defaults:
         _controller: sylius.controller.settings:updateAction
         namespace: project
-        template: TempoAppBundle:Backend/Settings:project.html.twig
+        template: TempoAppBundle:Admin/Settings:project.html.twig

@@ -1,45 +1,45 @@
-backend_user_index:
+admin_user_index:
     pattern: /
     methods: [GET]
     defaults:
-        _controller: tempo.backend.controller.user:indexAction
+        _controller: tempo.admin.controller.user:indexAction
         _sylius:
-            template: TempoAppBundle:Backend/User:index.html.twig
+            template: TempoAppBundle:Admin/User:index.html.twig
             arguments: [$criteria, $sorting]
 
-backend_user_filter_form:
+admin_user_filter_form:
     pattern: /filter-form
     methods: [GET]
     defaults:
-        _controller: tempo.backend.controller.user:filterFormAction
+        _controller: tempo.admin.controller.user:filterFormAction
         _sylius:
-            template: TempoAppBundle:Backend/User:filterForm.html.twig
-            form: Tempo\Bundle\AppBundle\Form\Type\Backend\Filter\UserFilterType
+            template: TempoAppBundle:Admin/User:filterForm.html.twig
+            form: Tempo\Bundle\AppBundle\Form\Type\Admin\Filter\UserFilterType
 
-backend_user_create:
+admin_user_create:
     pattern: /new
     methods: [GET, POST]
     defaults:
-        _controller: tempo.backend.controller.user:createAction
+        _controller: tempo.admin.controller.user:createAction
         _sylius:
-            template: TempoAppBundle:Backend/User:create.html.twig
-            form: Tempo\Bundle\AppBundle\Form\Type\Backend\UserType
-            redirect: backend_user_update
+            template: TempoAppBundle:Admin/User:create.html.twig
+            form: Tempo\Bundle\AppBundle\Form\Type\Admin\UserType
+            redirect: admin_user_update
 
-backend_user_update:
+admin_user_update:
     pattern: /{id}/edit
     methods: [GET, PUT, POST]
     defaults:
-        _controller: tempo.backend.controller.user:updateAction
+        _controller: tempo.admin.controller.user:updateAction
         _sylius:
-            template: TempoAppBundle:Backend/User:update.html.twig
-            form: Tempo\Bundle\AppBundle\Form\Type\Backend\UserType
-            redirect: backend_user_index
+            template: TempoAppBundle:Admin/User:update.html.twig
+            form: Tempo\Bundle\AppBundle\Form\Type\Admin\UserType
+            redirect: admin_user_index
 
-backend_user_delete:
+admin_user_delete:
     pattern: /{id}
     methods: [DELETE]
     defaults:
-        _controller: tempo.backend.controller.user:deleteAction
+        _controller: tempo.admin.controller.user:deleteAction
         _sylius:
-            redirect: backend_user_index
+            redirect: admin_user_index

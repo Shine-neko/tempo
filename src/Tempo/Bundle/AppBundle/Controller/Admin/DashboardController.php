@@ -9,7 +9,7 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\AppBundle\Controller\Backend;
+namespace Tempo\Bundle\AppBundle\Controller\Admin;
 
 use Tempo\Bundle\AppBundle\Controller\Controller;
 
@@ -22,7 +22,7 @@ class DashboardController extends Controller
 {
     public function mainAction()
     {
-        return $this->render('TempoAppBundle:Backend:Dashboard/main.html.twig', array(
+        return $this->render('TempoAppBundle:Admin:Dashboard/main.html.twig', array(
             'nbOrganizations'   => $this->getManager('organization')->nbTotalOrganisation(),
             'nbProjects'        => $this->getManager('project')->nbTotalProject(),
             'nbUsers'           => $this->getManager('user')->nbTotalUser(),

@@ -10,17 +10,17 @@
 */
 
 
-namespace Tempo\Bundle\AppBundle\Controller\Backend;
+namespace Tempo\Bundle\AppBundle\Controller\Admin;
 
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Symfony\Component\HttpFoundation\Request;
 
-class BackendController extends ResourceController
+class AdminController extends ResourceController
 {
     public function filterFormAction(Request $request)
     {
         $form  = $this->getForm($request->query->get('criteria'));
-        return $this->render('TempoAppBundle:Backend/Organization:filterForm.html.twig', array(
+        return $this->render('TempoAppBundle:Admin/Organization:filterForm.html.twig', array(
             'form' => $form->createView()
         ));
     }

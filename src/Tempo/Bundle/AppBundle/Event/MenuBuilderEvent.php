@@ -19,7 +19,7 @@ class MenuBuilderEvent extends Event
 {
     const FRONTEND_MAIN = 'tempo.menu.builder.frontend.main';
     const FRONTEND_USER = 'tempo.menu.builder.frontend.user';
-    const ADMIN_MAIN = 'tempo.menu.builder.backend.main';
+    const ADMIN_MAIN = 'tempo.menu.builder.admin.main';
 
     /**
      * @var FactoryInterface

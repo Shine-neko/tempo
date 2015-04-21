@@ -64,7 +64,7 @@ class TempoAppExtension extends AbstractResourceExtension
         $container->setParameter('tempo.week', $config['week']);
 
         $this->createManagerServices($container, $config);
-        $this->createBackendServices($container, $config);
+        $this->createAdminServices($container, $config);
     }
 
     private function createManagerServices(ContainerBuilder $container, $config)
@@ -96,15 +96,15 @@ class TempoAppExtension extends AbstractResourceExtension
         }
     }
 
-    public function createBackendServices(ContainerBuilder $container, $config)
+    public function createAdminServices(ContainerBuilder $container, $config)
     {
-        foreach ($config['backend'] as $resourceName => $conf) {
+        foreach ($config['admin'] as $resourceName => $conf) {
             if (!isset($conf['controller'])) {
-                $conf['controller'] = 'Tempo\Bundle\AppBundle\Controller\Backend\BackendController';
+                $conf['controller'] = 'Tempo\Bundle\AppBundle\Controller\Admin\AdminController';
             }
 
             $container->setDefinition(
-                'tempo.backend.controller.' . $resourceName,
+                'tempo.admin.controller.' . $resourceName,
                 $this->getControllerDefinition($conf['controller'], $resourceName)
             );
         }

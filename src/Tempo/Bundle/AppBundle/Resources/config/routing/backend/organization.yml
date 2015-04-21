@@ -1,24 +1,24 @@
-backend_organization_index:
+admin_organization_index:
     pattern: /
     methods: [GET]
     defaults:
-        _controller: tempo.backend.controller.organization:indexAction
+        _controller: tempo.admin.controller.organization:indexAction
         _sylius:
-            template: TempoAppBundle:Backend/Organization:index.html.twig
+            template: TempoAppBundle:Admin/Organization:index.html.twig
             arguments: [$criteria, $sorting]
 
-backend_organization_filter_form:
+admin_organization_filter_form:
     pattern: /filter-form
     methods: [GET]
     defaults:
-        _controller: tempo.backend.controller.organization:filterFormAction
+        _controller: tempo.admin.controller.organization:filterFormAction
         _sylius:
-            form: Tempo\Bundle\AppBundle\Form\Type\Backend\Filter\OrganizationFilterType
+            form: Tempo\Bundle\AppBundle\Form\Type\Admin\Filter\OrganizationFilterType
 
-backend_organization_delete:
+admin_organization_delete:
     pattern: /{id}
     methods: [DELETE]
     defaults:
-        _controller: tempo.backend.controller.organization:deleteAction
+        _controller: tempo.admin.controller.organization:deleteAction
         _sylius:
-            redirect: backend_organization_index
+            redirect: admin_organization_index

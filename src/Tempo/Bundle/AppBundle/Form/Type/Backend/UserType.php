@@ -9,7 +9,7 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\AppBundle\Form\Type\Backend;
+namespace Tempo\Bundle\AppBundle\Form\Type\Admin;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -76,6 +76,6 @@ class UserType extends AbstractType
 
     public function getName()
     {
-        return 'tempo_backend_user';
+        return 'tempo_admin_user';
     }
 }

@@ -1,4 +1,4 @@
-@backend
+@admin
 Feature: Users management
   In order to manager users
   As a manager

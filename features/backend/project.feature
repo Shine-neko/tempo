@@ -1,4 +1,4 @@
-@backend
+@admin
 Feature: Products
 
   Background:

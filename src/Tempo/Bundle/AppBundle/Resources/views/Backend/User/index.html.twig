@@ -3,13 +3,13 @@
 {% import 'TempoAppBundle:Macros:buttons.html.twig' as buttons %}
 {% set activeTab = (app.request.query.get('criteria') is not empty and app.request.query.get('criteria').enabled|default('1') == '0') ? 'disabled' : 'all' %}
 
-{% block bodyClass %}backend users{% endblock %}
+{% block bodyClass %}admin users{% endblock %}
 
 {% block container %}
  {% block breadcrumb %}
     <ol id="breadcrumb" class="clearfix">
         <li class="first"> <a href="{{ path('homepage') }}">{{ 'tempo.menu.home'|trans  }}</a> </li>
-        <li class=""> <a href="{{ path('backend') }}">{{ 'tempo.menu.admin'|trans  }}</a> </li>
+        <li class=""> <a href="{{ path('admin') }}">{{ 'tempo.menu.admin'|trans  }}</a> </li>
         <li> User </li>
         <li class="last"> List </li>
     </ol>
@@ -22,21 +22,21 @@
     <div class="col-md-9">
         <div class="page-header">
             <div class="actions-menu pull-right">
-                {{ buttons.create(path('backend_user_create'), 'tempo.user.create'|trans) }}
+                {{ buttons.create(path('admin_user_create'), 'tempo.user.create'|trans) }}
             </div>
             <h1> {{ 'tempo.user.list.page_title'|trans }}</h1>
         </div>
         <div>
             <div class="pull-left">
-                {% render(url('backend_user_filter_form', {'criteria': app.request.query.get('criteria')})) %}
+                {% render(url('admin_user_filter_form', {'criteria': app.request.query.get('criteria')})) %}
             </div>
             <div class="pull-right">
                 <ul class="nav nav-pills pull-left">
-                    <li class="{{ activeTab == 'all' ? 'active' : '' }}"><a href="{{ path('backend_user_index') }}">{{ 'tempo.user.list.filter.all'|trans }}</a></li>
-                    <li class="{{ activeTab == 'disabled' ? 'active' : '' }}"><a href="{{ path('backend_user_index', {'criteria': {'enabled': false}}) }}"><i class="glyphicon glyphicon-info-sign"></i> {{ 'tempo.user.list.filter.unconfirmed'|trans }}</a></li>
+                    <li class="{{ activeTab == 'all' ? 'active' : '' }}"><a href="{{ path('admin_user_index') }}">{{ 'tempo.user.list.filter.all'|trans }}</a></li>
+                    <li class="{{ activeTab == 'disabled' ? 'active' : '' }}"><a href="{{ path('admin_user_index', {'criteria': {'enabled': false}}) }}"><i class="glyphicon glyphicon-info-sign"></i> {{ 'tempo.user.list.filter.unconfirmed'|trans }}</a></li>
                 </ul>
 
-                <a class="pull-left btn btn-cancel btn-default" href="{{ path('backend_user_index') }}">Reset</a>
+                <a class="pull-left btn btn-cancel btn-default" href="{{ path('admin_user_index') }}">Reset</a>
             </div>
         </div>
 
@@ -68,8 +68,8 @@
                         <td>
                             <div class="pull-right">
                                 {{ buttons.show(path('user_profile_show', {'slug': user.slug})) }}
-                                {{ buttons.edit(path('backend_user_update', {'id': user.id})) }}
-                                {{ buttons.delete(path('backend_user_delete', {'id': user.id}), null, user.id is sameas(app.user.id)) }}
+                                {{ buttons.edit(path('admin_user_update', {'id': user.id})) }}
+                                {{ buttons.delete(path('admin_user_delete', {'id': user.id}), null, user.id is sameas(app.user.id)) }}
                             </div>
                         </td>
                     </tr>

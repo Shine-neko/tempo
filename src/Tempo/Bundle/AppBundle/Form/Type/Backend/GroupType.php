@@ -10,7 +10,7 @@
 */
 
 
-namespace Tempo\Bundle\AppBundle\Form\Type\Backend;
+namespace Tempo\Bundle\AppBundle\Form\Type\Admin;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

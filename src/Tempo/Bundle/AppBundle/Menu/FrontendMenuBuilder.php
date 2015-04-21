@@ -39,7 +39,7 @@ class FrontendMenuBuilder extends MenuBuilder
         if ($this->authorization->isGranted('ROLE_ADMIN')) {
             $menu->addChild(
                 $this->translate('tempo.menu.admin'),
-                array('route' => 'backend')
+                array('route' => 'admin')
             );
         }
 

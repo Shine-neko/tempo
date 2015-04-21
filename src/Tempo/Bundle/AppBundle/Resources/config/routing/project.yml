@@ -68,7 +68,7 @@ _project_settings:
     defaults:
         _controller: sylius.controller.settings:updateAction
         namespace: general
-        template: TempoAppBundle:Backend/Settings:general.html.twig
+        template: TempoAppBundle:Admin/Settings:general.html.twig
 
 project_show:
     path:  /{slug}

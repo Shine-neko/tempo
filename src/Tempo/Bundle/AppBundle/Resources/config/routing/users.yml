@@ -44,6 +44,6 @@ user_resetting_validate:
     requirements:
         _method:  GET|POST
 
-user_backend:
-    resource: "@TempoAppBundle/Resources/config/routing/backend/user.yml"
+user_admin:
+    resource: "@TempoAppBundle/Resources/config/routing/admin/user.yml"
     prefix: /admin/users

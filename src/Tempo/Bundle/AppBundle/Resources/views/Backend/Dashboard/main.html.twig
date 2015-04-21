@@ -1,10 +1,10 @@
 {% extends 'TempoAppBundle::layout.html.twig' %}
-{% block bodyClass %}backend admin dashboard {% endblock %}
+{% block bodyClass %}admin admin dashboard {% endblock %}
 {% block container %}
     {% block breadcrumb %}
         <ol id="breadcrumb" class="clearfix">
             <li class="first"> <a href="{{ path('homepage') }}">{{ 'tempo.menu.home'|trans  }}</a> </li>
-            <li> <a href="{{ path('backend') }}">{{ 'tempo.menu.admin'|trans  }}</a> </li>
+            <li> <a href="{{ path('admin') }}">{{ 'tempo.menu.admin'|trans  }}</a> </li>
             <li class="last"> Dashboard </li>
         </ol>
     {% endblock breadcrumb %}
@@ -26,7 +26,7 @@
                         <div class="app-panel">
                             <h4>Organization</h4>
                             <div class="data">
-                                <a href="{{ path('backend_organization_index') }}"><h1>{{ nbOrganizations }}</h1>
+                                <a href="{{ path('admin_organization_index') }}"><h1>{{ nbOrganizations }}</h1>
                                 </a><hr>
                             </div>
                         </div>
@@ -36,7 +36,7 @@
                         <div class="app-panel">
                             <h4>Projects</h4>
                             <div class="data">
-                                <a href="{{ path('backend_project_index') }}"><h1>{{ nbProjects }}</h1>
+                                <a href="{{ path('admin_project_index') }}"><h1>{{ nbProjects }}</h1>
                                 </a><hr>
                             </div>
                         </div>
@@ -45,7 +45,7 @@
                         <div class="app-panel">
                             <h4>Users</h4>
                             <div class="data">
-                                <a href="{{ path('backend_user_index') }}"><h1>{{ nbUsers }}</h1>
+                                <a href="{{ path('admin_user_index') }}"><h1>{{ nbUsers }}</h1>
                                 </a><hr>
                             </div>
                         </div>
