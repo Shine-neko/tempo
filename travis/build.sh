@@ -8,5 +8,6 @@ bin/behat --tags=organization -fprogress || EXIT_STATUS=$?
 bin/behat --tags=project  -fprogress || EXIT_STATUS=$?
 bin/behat --tags=dashboard  -fprogress || EXIT_STATUS=$?
 bin/behat --tags=timesheet  -fprogress || EXIT_STATUS=$?
+bin/behat --tags=admin  -fprogress || EXIT_STATUS=$?
 
 exit $EXIT_STATUS;

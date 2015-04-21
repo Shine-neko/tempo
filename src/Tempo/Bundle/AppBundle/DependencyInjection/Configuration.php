@@ -51,7 +51,7 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
-                ->arrayNode('backend')
+                ->arrayNode('admin')
                     ->prototype('variable')->end()
                     ->defaultValue(array())
                 ->end()

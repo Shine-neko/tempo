@@ -1,0 +1,33 @@
+admin_group_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: tempo.controller.group:indexAction
+        _sylius:
+            template: TempoAppBundle:Admin/Group:index.html.twig
+
+admin_group_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: tempo.controller.group:createAction
+        _sylius:
+            template: TempoAppBundle:Admin/Group:create.html.twig
+            redirect: admin_group_index
+
+admin_group_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: tempo.controller.group:updateAction
+        _sylius:
+            template: TempoAppBundle:Admin/Group:update.html.twig
+            redirect: admin_group_index
+
+admin_group_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: tempo.controller.group:deleteAction
+        _sylius:
+            redirect: admin_group_index

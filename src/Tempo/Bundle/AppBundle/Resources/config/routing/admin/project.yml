@@ -1,0 +1,25 @@
+admin_project_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: tempo.admin.controller.project:indexAction
+        _sylius:
+            template: TempoAppBundle:Admin/Project:index.html.twig
+            arguments: [$criteria, $sorting]
+
+
+admin_project_filter_form:
+    pattern: /filter-form
+    methods: [GET]
+    defaults:
+        _controller: tempo.admin.controller.project:filterFormAction
+        _sylius:
+            form: Tempo\Bundle\AppBundle\Form\Type\Admin\Filter\OrganizationFilterType
+
+admin_project_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: tempo.admin.controller.project:deleteAction
+        _sylius:
+            redirect: admin_project_index

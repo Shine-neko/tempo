@@ -1,6 +1,6 @@
-backend:
+admin:
     path: /admin
-    defaults: { _controller: TempoAppBundle:Backend\Dashboard:main }
+    defaults: { _controller: TempoAppBundle:Admin\Dashboard:main }
 
 _user:
   resource: "@TempoAppBundle/Resources/config/routing/users.yml"
@@ -36,7 +36,7 @@ _project_api:
       version: v1
 
 _project_admin:
-    resource: "@TempoAppBundle/Resources/config/routing/backend/project.yml"
+    resource: "@TempoAppBundle/Resources/config/routing/admin/project.yml"
     prefix: /admin/project
 
 _organization:
@@ -51,7 +51,7 @@ _organization_api:
       version: v1
 
 _organization_admin:
-    resource: "@TempoAppBundle/Resources/config/routing/backend/organization.yml"
+    resource: "@TempoAppBundle/Resources/config/routing/admin/organization.yml"
     prefix: /admin/organization
 
 _timesheet:
@@ -79,9 +79,9 @@ _comment:
   resource: "@TempoAppBundle/Resources/config/routing/comment.yml"
   prefix:   /comment
 
-#Backend
-setting_backend:
-    resource: "@TempoAppBundle/Resources/config/routing/backend/settings.yml"
+#Admin
+setting_admin:
+    resource: "@TempoAppBundle/Resources/config/routing/admin/settings.yml"
     prefix: /admin/settings
 
 

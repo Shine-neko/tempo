@@ -1,0 +1,45 @@
+admin_user_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: tempo.admin.controller.user:indexAction
+        _sylius:
+            template: TempoAppBundle:Admin/User:index.html.twig
+            arguments: [$criteria, $sorting]
+
+admin_user_filter_form:
+    pattern: /filter-form
+    methods: [GET]
+    defaults:
+        _controller: tempo.admin.controller.user:filterFormAction
+        _sylius:
+            template: TempoAppBundle:Admin/User:filterForm.html.twig
+            form: Tempo\Bundle\AppBundle\Form\Type\Admin\Filter\UserFilterType
+
+admin_user_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: tempo.admin.controller.user:createAction
+        _sylius:
+            template: TempoAppBundle:Admin/User:create.html.twig
+            form: Tempo\Bundle\AppBundle\Form\Type\Admin\UserType
+            redirect: admin_user_update
+
+admin_user_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: tempo.admin.controller.user:updateAction
+        _sylius:
+            template: TempoAppBundle:Admin/User:update.html.twig
+            form: Tempo\Bundle\AppBundle\Form\Type\Admin\UserType
+            redirect: admin_user_index
+
+admin_user_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: tempo.admin.controller.user:deleteAction
+        _sylius:
+            redirect: admin_user_index

@@ -35,7 +35,7 @@ class AccessType extends AbstractType
     {
         $builder
             ->add('username', 'autocomplete', array(
-                'behavior' => array('name' => 'access_username', 'callback' => 'user_api_autocomplete' )
+                'behavior' => array('name' => 'access_username', 'callback' => 'api_user_autocomplete' )
             ))
             ->add('role', 'choice', array(
                 'choices' => array(

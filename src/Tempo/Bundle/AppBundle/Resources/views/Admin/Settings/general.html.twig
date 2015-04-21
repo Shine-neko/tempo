@@ -1,0 +1,35 @@
+{% extends "TempoAppBundle::layout.html.twig" %}
+
+{% block container %}
+    {% block breadcrumb %}
+        <ol id="breadcrumb" class="clearfix">
+            <li class="first"> <a href="{{ path('homepage') }}">{{ 'tempo.menu.home'|trans  }}</a> </li>
+            <li> <a href="{{ path('admin') }}">{{ 'tempo.menu.admin'|trans  }}</a> </li>
+            <li class="last"> {{ 'tempo.admin.menu.settings'|trans }} </li>
+        </ol>
+    {% endblock breadcrumb %}
+
+    <div class="col-md-2">
+        {{ knp_menu_render('admin') }}
+    </div>
+    <div class="col-md-8">
+        <div class="page-header">
+            <h1>Settings</h1>
+        </div>
+        <div class="app-panel">
+            {{ form_errors(form) }}
+
+            <form class="form-block" method="post" action="{{ path('admin_configuration_general') }}">
+                <div id="settings">
+                    {{ form_widget(form) }}
+                    {{ form_rest(form) }}
+                </div>
+
+                {{ form_rest(form) }}
+                <input type="submit" class="btn btn-primary" />
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}

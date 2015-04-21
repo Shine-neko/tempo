@@ -1,0 +1,74 @@
+{% extends "TempoAppBundle::layout.html.twig" %}
+{% from 'TempoAppBundle:Macros:actions.html.twig' import pagination %}
+{% import 'TempoAppBundle:Macros:buttons.html.twig' as buttons %}
+
+{% block bodyClass %}admin organizations{% endblock %}
+
+{% block container %}
+    {% block breadcrumb %}
+        <ol id="breadcrumb" class="clearfix">
+            <li class="first"> <a href="{{ path('homepage') }}">{{ 'tempo.menu.home'|trans  }}</a> </li>
+            <li class=""> <a href="{{ path('admin') }}">{{ 'tempo.menu.admin'|trans  }}</a> </li>
+            <li> Organization </li>
+            <li class="last"> List </li>
+        </ol>
+    {% endblock breadcrumb %}
+    <div class="">
+
+
+
+        <div class="col-md-2">
+            {{ knp_menu_render('admin') }}
+        </div>
+        <div class="col-md-9">
+            <div class="page-header">
+                <h1> {{ 'tempo.organization.list.title'|trans }}</h1>
+            </div>
+
+            <div class="admin-filter">
+
+                {% render(url('admin_organization_filter_form', {'criteria': app.request.query.get('criteria')})) %}
+
+                {% set activeTab = (app.request.query.get('criteria') is not empty and app.request.query.get('criteria').enabled|default('1') == '0') ? 'disabled' : 'all' %}
+            </div>
+
+            <div class="app-panel">
+                <table id="organization" class="table">
+                    <thead>
+                    <tr>
+                        <th>{{ sylius_resource_sort('id', 'tempo.organization.form.id'|trans) }}</th>
+                        <th>{{ sylius_resource_sort('name', 'tempo.organization.form.name'|trans) }}</th>
+                        <th>{{ sylius_resource_sort('contact', 'tempo.organization.form.contact'|trans) }}</th>
+                        <th>{{ sylius_resource_sort('users', 'tempo.organization.form.users'|trans) }}</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for organization in organizations %}
+                        <tr id="{{ organization.id }}">
+                            <td>{{ organization.id }}</td>
+                            <td>{{ organization.name }}</td>
+                            <td>{{ organization.contact }}</td>
+                            <td>
+                                <span class="label label-default"> {{ organization.members|length }}</span>
+                            </td>
+                            <td>
+                                <div class="pull-right">
+                                    {{ buttons.show(path('organization_show', {'slug': organization.slug})) }}
+                                    {{ buttons.delete(path('admin_organization_delete', {'id': organization.id}), null) }}
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="container text-center">
+            {{ pagination(organizations) }}
+        </div>
+
+    </div>
+
+{% endblock %}

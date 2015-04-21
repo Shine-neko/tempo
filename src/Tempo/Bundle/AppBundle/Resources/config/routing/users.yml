@@ -10,23 +10,24 @@ user_logout:
     path: /logout
     defaults: { _controller: "TempoAppBundle:Security:logout" }
 
-user_autocomplete:
+api_user_autocomplete:
     path: /api/{version}/users/search/{username}
     defaults:
         _controller: "TempoAppBundle:Api/User:autocomplete"
         version:  internal
+        username:  null
 
-user_current:
+api_user_current:
     path: /api/{version}/users/current
     defaults:
         _controller: "TempoAppBundle:Api/User:current"
         version:  internal
 
-tempo_user_notification:
+user_notification:
     resource: "@TempoAppBundle/Resources/config/routing/notification.yml"
     prefix: /notifications
 
-tempo_user_profile:
+user_profile:
     resource: "@TempoAppBundle/Resources/config/routing/profile.yml"
     prefix: /profile
 
@@ -44,6 +45,6 @@ user_resetting_validate:
     requirements:
         _method:  GET|POST
 
-user_backend:
-    resource: "@TempoAppBundle/Resources/config/routing/backend/user.yml"
+user_admin:
+    resource: "@TempoAppBundle/Resources/config/routing/admin/user.yml"
     prefix: /admin/users

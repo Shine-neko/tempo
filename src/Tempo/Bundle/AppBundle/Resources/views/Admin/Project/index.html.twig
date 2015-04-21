@@ -1,0 +1,66 @@
+{% extends "TempoAppBundle::layout.html.twig" %}
+{% from 'TempoAppBundle:Macros:actions.html.twig' import pagination %}
+{% import 'TempoAppBundle:Macros:buttons.html.twig' as buttons %}
+
+{% block bodyClass %}admin projects{% endblock %}
+
+{% block container %}
+    {% block breadcrumb %}
+        <ol id="breadcrumb" class="clearfix">
+            <li class="first"> <a href="{{ path('homepage') }}">{{ 'tempo.menu.home'|trans  }}</a> </li>
+            <li> <a href="{{ path('admin') }}">{{ 'tempo.menu.admin'|trans  }}</a> </li>
+            <li class="last"> {{ 'tempo.menu.project'|trans }} </li>
+        </ol>
+    {% endblock breadcrumb %}
+
+        <div class="col-md-2">
+            {{ knp_menu_render('admin') }}
+        </div>
+
+        <div class="col-md-9">
+
+            <div class="page-header">
+                <h1> {{ 'tempo.project.list.title'|trans }}</h1>
+            </div>
+
+            <div class="admin-filter">
+                {% render(url('admin_project_filter_form', {'criteria': app.request.query.get('criteria')})) %}
+
+                {% set activeTab = (app.request.query.get('criteria') is not empty and app.request.query.get('criteria').enabled|default('1') == '0') ? 'disabled' : 'all' %}
+            </div>
+
+            <div class="app-panel">
+                <table id="project" class="table">
+                    <thead>
+                    <tr>
+                        <th>{{ sylius_resource_sort('id', 'tempo.project.form.label.id'|trans) }}</th>
+                        <th>{{ sylius_resource_sort('name', 'tempo.project.form.label.name'|trans) }}</th>
+                        <th>{{ sylius_resource_sort('beginning', 'tempo.project.form.label.beginning'|trans) }}</th>
+                        <th>{{ sylius_resource_sort('ending', 'tempo.project.form.label.ending'|trans) }}</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for project in projects %}
+                        <tr id="{{ project.id }}">
+                            <td>{{ project.id }}</td>
+                            <td>{{ project.name }}</td>
+                            <td>{{ project.beginning|localizeddate('medium', 'none', app.request.locale) }}</td>
+                            <td>{{ project.ending|localizeddate('medium', 'none', app.request.locale) }}</td>
+                            <td>
+                                <div class="pull-right">
+                                    {{ buttons.show(path('project_show', {'slug': project.fullSlug})) }}
+                                    {{ buttons.delete(path('admin_project_delete', {'id': project.id}), null) }}
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="container text-center">
+            {{ pagination(projects) }}
+        </div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "TempoAppBundle::layout.html.twig" %}
+
+{% from 'TempoAppBundle:Macros:actions.html.twig' import create %}
+
+{% block container %}
+    {% block breadcrumb %}
+        <ol id="breadcrumb" class="clearfix">
+            <li class="first"> <a href="{{ path('homepage') }}">{{ 'tempo.menu.home'|trans  }}</a> </li>
+            <li class=""> <a href="{{ path('admin') }}">{{ 'tempo.menu.admin'|trans  }}</a> </li>
+            <li class=""> User  </li>
+            <li class="last"> User create </li>
+        </ol>
+    {% endblock breadcrumb %}
+<div class="page-header">
+    <h1> {{ 'tempo.user.create.page_title'|trans|raw }}</h1>
+</div>
+
+<form action="{{ path('admin_user_create') }}" method="post" class="form-horizontal" novalidate>
+    {% include 'TempoAppBundle:Admin/User:_form.html.twig' %}
+    {{ create() }}
+</form>
+{% endblock %}
