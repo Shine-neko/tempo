@@ -17,9 +17,11 @@
                         <a href="{{ commit.url }}"> {{ commit.id| truncate(7, true, '') }} </a>
                         {{ commit.message }}
                     {% endfor %}
+                    <li class="meta">
+                        {{ activity.createdAt|localizeddate('medium', 'none', app.request.locale) }} - Gitlab
+                    </li>
                 </ul>
             {% endif %}
         </li>
-
     </ul>
 </div>

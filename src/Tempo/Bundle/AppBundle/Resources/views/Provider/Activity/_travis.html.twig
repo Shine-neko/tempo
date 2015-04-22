@@ -9,6 +9,7 @@
             <div class="message">
                     <strong>{{ activity.message }}</strong>
             </div>
+            <div class="meta">{{ activity.createdAt|localizeddate('medium', 'none', app.request.locale) }} - Travis </div>
         </li>
     </ul>
 </div>

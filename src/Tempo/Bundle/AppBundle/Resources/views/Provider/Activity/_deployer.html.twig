@@ -9,6 +9,9 @@
             <div class="message">
                 {{ activity.message }}
             </div>
+            <div class="meta">
+                {{ activity.createdAt|localizeddate('medium', 'none', app.request.locale) }} - Github
+            </div>
         </li>
     </ul>
 </div>
