@@ -1,3 +1,26 @@
+<div class="events-filters">
+    <label>Sort By</label>
+    <div class="btn-group">
+        <button type="button" class="btn btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            Project <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+           {% for project in projects %}
+           <li><a href="{{ path('homepage', {'project' : project.fullSlug}) }}">{{ project.organization.name }} / {{ project.name }}</a></li>
+           {% endfor %}
+        </ul>
+    </div>
+    <div class="btn-group">
+        <button type="button" class="btn btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            Date <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="{{ path('homepage', {'date' : 'today'}) }}">Today</a></li>
+            <li><a href="{{ path('homepage', {'date' : 'week'}) }}">Last 7 days</a></li>
+            <li><a href="{{ path('homepage', {'date' : 'month'}) }}">Last 30 Days</a></li>
+        </ul>
+    </div>
+</div>
 <div class="events-push">
     {% for activity in activities %}
         {% if activity.provider is not defined %}

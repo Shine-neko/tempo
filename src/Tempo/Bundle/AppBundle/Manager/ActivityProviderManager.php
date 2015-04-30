@@ -31,13 +31,12 @@ class ActivityProviderManager extends ModelManager
     }
 
     /**
-     * @param $project
-     * @param $user
+     * @param array $criteria
      * @return mixed
      */
-    public function getActivities($project, $user)
+    public function getActivities($criteria)
     {
-        return $this->getRepository()->findActivities($project, $user);
+        return $this->getRepository()->findActivities($criteria);
     }
 
 }

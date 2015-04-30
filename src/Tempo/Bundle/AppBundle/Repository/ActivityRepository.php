@@ -37,17 +37,16 @@ class ActivityRepository extends EntityRepository
     }
 
     /**
-     * @param $parent
-     * @param $user
+     * @param $criteria
      * @return mixed
      */
-    public function getProjectActivities($parent, $user)
+    public function getProjectActivities($criteria)
     {
-        $query =  $this->getUserActivites($user);
-        if ($parent !== null) {
+        $query =  $this->getUserActivites($criteria['user']);
+        if (!empty($criteria['project'])) {
             $query
                 ->andWhere('activity.project = :project')
-                ->setParameter(':project', $parent);
+                ->setParameter(':project', $criteria['project']);
         }
 
         $query

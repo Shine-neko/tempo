@@ -31,7 +31,7 @@
         </h3>
 
         <div id="room-activity-box" class="dashboard-{{ app.user.id }}">
-            {{ render(controller('TempoAppBundle:Activity:list')) }}
+            {{ render(controller('TempoAppBundle:Activity:list', {'parentRequest': app.request})) }}
         </div>
 
     </div>

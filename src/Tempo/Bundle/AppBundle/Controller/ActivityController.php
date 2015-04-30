@@ -18,26 +18,40 @@ use Pagerfanta\Pagerfanta;
 
 class ActivityController extends Controller
 {
+    private $period = array(
+        'today' => 1,
+        'week' => 7,
+        'month' => 30
+    );
+
     /**
      * @param $type
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function listAction(Request $request, $type = 'all', $parent = null)
+    public function listAction(Request $parentRequest, $type = 'all')
     {
         $activities = array();
+        $criteria = array(
+            'createdAt' => $this->period[$parentRequest->query->get('date', 'month')],
+            'user' => $this->getUser()->getId()
+        );
+
+        if (null !== $project = $parentRequest->query->get('project', null)) {
+            $project = $this->get('tempo.repository.project')->findOneBy(array('slug' => $project));
+            $criteria['project'] = $project;
+        }
 
         if ('all' === $type) {
             $activities = array_merge(
                 $activities,
-                $this->getManager('activity_provider')->getActivities($parent, $this->getUser()->getId())
+                $this->getManager('activity_provider')->getActivities($criteria)
             );
         }
 
         $activities = array_merge(
             $activities,
-            $this->getManager('activity')->getActivities($parent, $this->getUser()->getId())
+            $this->getManager('activity')->getActivities($criteria)
         );
-
 
         usort($activities, array($this, 'dateSort'));
         krsort($activities);
@@ -47,12 +61,12 @@ class ActivityController extends Controller
 
         return $this->render('TempoAppBundle:Activity:list.html.twig', array(
             'type' => $type,
-            'activities' => $activities
+            'activities' => $activities,
+            'projects' => $this->getManager('project')->findAllByUser($this->getUser()->getId()),
         ));
     }
 
-
-    function dateSort($a,$b)
+    private function dateSort($a,$b)
     {
         $val1 = $a->getCreatedAt()->format('Y-m-d H:i:s');
         $val2 = $b->getCreatedAt()->format('Y-m-d H:i:s');
