@@ -19,9 +19,9 @@ use Pagerfanta\Pagerfanta;
 class ActivityController extends Controller
 {
     private $period = array(
-        'today' => 1,
-        'week' => 7,
-        'month' => 30
+        'today' => '-1day',
+        'week' => '-1week',
+        'month' => '-1month'
     );
 
     /**
@@ -32,7 +32,7 @@ class ActivityController extends Controller
     {
         $activities = array();
         $criteria = array(
-            'createdAt' => $this->period[$parentRequest->query->get('date', 'month')],
+            'createdAt' => new \DateTime($this->period[$parentRequest->query->get('date', 'month')]),
             'user' => $this->getUser()->getId()
         );
 
