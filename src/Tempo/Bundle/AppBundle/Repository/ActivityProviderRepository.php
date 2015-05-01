@@ -40,6 +40,12 @@ class ActivityProviderRepository extends EntityRepository
                 ->setParameter('project', $criteria['project']);
         }
 
+        if (!empty($criteria['provider'])) {
+            $query
+                ->andWhere('provider.name IN(:provider)')
+                ->setParameter('provider', $criteria['provider']);
+        }
+
         return $query->getQuery()->execute();
     }
 }

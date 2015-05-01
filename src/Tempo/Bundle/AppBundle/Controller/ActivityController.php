@@ -30,15 +30,23 @@ class ActivityController extends Controller
      */
     public function listAction(Request $parentRequest, $type = 'all')
     {
+        $filter = $parentRequest->get('filter');
         $activities = array();
         $criteria = array(
-            'createdAt' => new \DateTime($this->period[$parentRequest->query->get('date', 'month')]),
+            'createdAt' => new \DateTime($this->period[(!empty($filter['period']) ? $filter['period'] : 'month')]),
             'user' => $this->getUser()->getId()
         );
 
-        if (null !== $project = $parentRequest->query->get('project', null)) {
-            $project = $this->get('tempo.repository.project')->findOneBy(array('slug' => $project));
-            $criteria['project'] = $project;
+        if (!empty($filter['project'])) {
+            $project = $this->get('tempo.repository.project')->findOneBy(array('slug' => $filter['project']));
+
+            if (!$project) {
+                $criteria['project'] = $project;
+            }
+        }
+
+        if(!empty($filter['provider'])) {
+            $criteria['provider'] = $filter['provider'];
         }
 
         if ('all' === $type) {
@@ -58,15 +66,20 @@ class ActivityController extends Controller
 
         $adapter = new ArrayAdapter($activities);
         $activities = new Pagerfanta($adapter);
+        $providers = $this->getManager('project_provider')->getProviders(
+            $this->getManager('project')->findAllByUser($this->getUser())
+        );
 
         return $this->render('TempoAppBundle:Activity:list.html.twig', array(
+            'filter' => $filter,
             'type' => $type,
             'activities' => $activities,
             'projects' => $this->getManager('project')->findAllByUser($this->getUser()->getId()),
+            'providers' => $providers,
         ));
     }
 
-    private function dateSort($a,$b)
+    private function dateSort($a, $b)
     {
         $val1 = $a->getCreatedAt()->format('Y-m-d H:i:s');
         $val2 = $b->getCreatedAt()->format('Y-m-d H:i:s');
