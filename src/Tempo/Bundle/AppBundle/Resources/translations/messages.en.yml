@@ -50,6 +50,11 @@ tempo:
       dashboard:
         title: Activity Feed
         activity_not_found: Not found activity
+        sort:
+          today: Today
+          week: Last 7 days
+          month: Last 30 days
+
       events:
         user.update: updates its own information
         commented: Commented on

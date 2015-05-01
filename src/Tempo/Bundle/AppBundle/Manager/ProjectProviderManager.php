@@ -17,4 +17,16 @@ namespace Tempo\Bundle\AppBundle\Manager;
 
 class ProjectProviderManager extends ModelManager
 {
+    public function getProviders($projects)
+    {
+        $providers = array();
+
+        foreach ($projects as $project) {
+            foreach ($project->getProviders() as $provider) {
+                $providers[$provider->getName()] = $provider;
+            }
+        }
+
+        return $providers;
+    }
 }

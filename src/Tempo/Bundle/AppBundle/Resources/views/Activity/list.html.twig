@@ -1,3 +1,41 @@
+<div class="events-filters">
+    <label>Sort By</label>
+    <div class="btn-group">
+        <button type="button" class="btn btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            Provider <span class="caret"></span>
+        </button>
+
+        <ul class="dropdown-menu" role="menu">
+            {% for provider in providers %}
+                <li><a href="{{ path('homepage') ~ '?' ~ filter|merge({'filter[provider]' : provider.name})|url_encode }}">{{ provider.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="btn-group">
+        <button type="button" class="btn btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            Project <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+           {% for project in projects %}
+           <li>
+               <a href="{{ path('homepage') ~ '?' ~ filter|merge({'filter[project]' : project.fullSlug})|url_encode }}">
+                   {{ project.organization.name }} / {{ project.name }}
+               </a>
+           </li>
+           {% endfor %}
+        </ul>
+    </div>
+    <div class="btn-group">
+        <button type="button" class="btn btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            Date <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="{{ path('homepage') ~ '?' ~ filter|merge({'filter[period]' : 'today'})|url_encode }}">{{ 'tempo.activity.dashboard.sort.today'|trans }}</a></li>
+            <li><a href="{{ path('homepage') ~ '?' ~ filter|merge({'filter[period]' : 'week'})|url_encode }}">{{ 'tempo.activity.dashboard.sort.week'|trans  }}</a></li>
+            <li><a href="{{ path('homepage') ~ '?' ~ filter|merge({'filter[period]' : 'month'})|url_encode }}">{{ 'tempo.activity.dashboard.sort.month'|trans  }}</a></li>
+        </ul>
+    </div>
+</div>
 <div class="events-push">
     {% for activity in activities %}
         {% if activity.provider is not defined %}

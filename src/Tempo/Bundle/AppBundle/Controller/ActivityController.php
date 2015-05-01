@@ -18,41 +18,68 @@ use Pagerfanta\Pagerfanta;
 
 class ActivityController extends Controller
 {
+    private $period = array(
+        'today' => '-1day',
+        'week' => '-1week',
+        'month' => '-1month'
+    );
+
     /**
      * @param $type
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function listAction(Request $request, $type = 'all', $parent = null)
+    public function listAction(Request $parentRequest, $type = 'all')
     {
+        $filter = $parentRequest->get('filter');
         $activities = array();
+        $criteria = array(
+            'createdAt' => new \DateTime($this->period[(!empty($filter['period']) ? $filter['period'] : 'month')]),
+            'user' => $this->getUser()->getId()
+        );
+
+        if (!empty($filter['project'])) {
+            $project = $this->get('tempo.repository.project')->findOneBy(array('slug' => $filter['project']));
+
+            if (!$project) {
+                $criteria['project'] = $project;
+            }
+        }
+
+        if(!empty($filter['provider'])) {
+            $criteria['provider'] = $filter['provider'];
+        }
 
         if ('all' === $type) {
             $activities = array_merge(
                 $activities,
-                $this->getManager('activity_provider')->getActivities($parent, $this->getUser()->getId())
+                $this->getManager('activity_provider')->getActivities($criteria)
             );
         }
 
         $activities = array_merge(
             $activities,
-            $this->getManager('activity')->getActivities($parent, $this->getUser()->getId())
+            $this->getManager('activity')->getActivities($criteria)
         );
-
 
         usort($activities, array($this, 'dateSort'));
         krsort($activities);
 
         $adapter = new ArrayAdapter($activities);
         $activities = new Pagerfanta($adapter);
+        $providers = $this->getManager('project_provider')->getProviders(
+            $this->getManager('project')->findAllByUser($this->getUser())
+        );
 
         return $this->render('TempoAppBundle:Activity:list.html.twig', array(
+            'filter' => $filter,
             'type' => $type,
-            'activities' => $activities
+            'activities' => $activities,
+            'projects' => $this->getManager('project')->findAllByUser($this->getUser()->getId()),
+            'providers' => $providers,
         ));
     }
 
-
-    function dateSort($a,$b)
+    private function dateSort($a, $b)
     {
         $val1 = $a->getCreatedAt()->format('Y-m-d H:i:s');
         $val2 = $b->getCreatedAt()->format('Y-m-d H:i:s');
