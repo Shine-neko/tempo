@@ -30,7 +30,7 @@ class ActivityController extends Controller
      */
     public function listAction(Request $parentRequest, $type = 'all')
     {
-        $filter = $parentRequest->get('filter');
+        $filter = $parentRequest->get('filter', array());
         $activities = array();
         $criteria = array(
             'createdAt' => new \DateTime($this->period[(!empty($filter['period']) ? $filter['period'] : 'month')]),
