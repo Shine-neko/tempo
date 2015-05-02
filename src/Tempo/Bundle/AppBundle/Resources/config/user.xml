@@ -8,7 +8,6 @@
         <parameter key="tempo.user.user_provider.username.class">Tempo\Bundle\AppBundle\Security\UserProvider</parameter>
         <parameter key="tempo.user.oauth.user_provider.class">Tempo\Bundle\AppBundle\OAuth\UserProvider</parameter>
         <parameter key="tempo.user.security.interactive_login_listener.class">Tempo\Bundle\AppBundle\EventListener\UserListener</parameter>
-        <parameter key="tempo.user.security.api_token_user_provider.class">Tempo\Bundle\AppBundle\Security\ApiTokenUserProvider</parameter>
         <parameter key="tempo.user.security.api_token_authenticator.class">Tempo\Bundle\AppBundle\Security\TokenAuthenticator</parameter>
         <parameter key="tempo.user.twig.extension.class">Tempo\Bundle\AppBundle\Twig\Extension\UserExtension</parameter>
     </parameters>
@@ -58,12 +57,9 @@
             <tag name="kernel.event_listener" event="kernel.request" method="setLocaleForUnauthenticatedUser" />
         </service>
 
-        <service id="tempo.user.security.api_token_user_provider" class="%tempo.user.security.api_token_user_provider.class%">
-            <argument type="service" id="tempo.model_manager.user" />
-        </service>
-
         <service id="tempo.user.security.api_token_authenticator" class="%tempo.user.security.api_token_authenticator.class%">
             <argument type="service" id="security.http_utils" />
+            <argument type="service" id="tempo.user.user_provider.username" />
         </service>
 
         <service id="tempo.user.twig.extension" class="%tempo.user.twig.extension.class%">
