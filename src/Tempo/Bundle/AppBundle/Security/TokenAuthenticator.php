@@ -17,28 +17,39 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Authentication\Token\PreAuthenticatedToken;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
-use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\Security\Http\HttpUtils;
+use Tempo\Bundle\AppBundle\Security\UserProvider;
 
 class TokenAuthenticator implements SimplePreAuthenticatorInterface
 {
+    /**
+     * @var HttpUtils
+     */
+    protected $httpUtils;
+
+    /**
+     * @var UserProvider
+     */
     protected $userProvider;
 
-    public function __construct(HttpUtils $httpUtils)
+    public function __construct(HttpUtils $httpUtils, UserProvider $userProvider)
     {
         $this->httpUtils = $httpUtils;
+        $this->userProvider = $userProvider;
     }
 
     public function createToken(Request $request, $providerKey)
     {
-        if (!$request->query->has('access_token')) {
+        $apiKey = $request->query->get('access_token');
+
+        if (!$apiKey) {
             throw new BadCredentialsException('No API key found');
         }
 
         return new PreAuthenticatedToken(
             'anon.',
-            $request->query->get('access_token'),
+            $apiKey,
             $providerKey
         );
     }
@@ -46,7 +57,7 @@ class TokenAuthenticator implements SimplePreAuthenticatorInterface
     public function authenticateToken(TokenInterface $token, UserProviderInterface $userProvider, $providerKey)
     {
         $apiKey = $token->getCredentials();
-        $user = $userProvider->loadUserByUsername($token->getUsername());
+        $user = $this->userProvider->getUsernameForApiKey($apiKey);
 
         if (!$user) {
             throw new AuthenticationException(
