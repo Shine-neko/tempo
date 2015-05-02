@@ -9,12 +9,13 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\AppBundle\Tests;
+namespace Tempo\Bundle\AppBundle\Tests\Provider;
 
 use Tempo\Bundle\AppBundle\Provider\ProviderRegistry;
 
 class ProviderRegistryTest extends \PHPUnit_Framework_TestCase
 {
+
     protected $register;
     protected $provider;
 
