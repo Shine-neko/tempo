@@ -3,14 +3,14 @@
         <li class="feed clearfix">
             <div class="author">
                 <a href="#">
-                    <img width="33" src="{{ gravatar(activity.data['author']['name'], 30) }}" />
+                    <img width="33" src="{{ gravatar(activity.data['author_name'], 30) }}" />
                 </a>
             </div>
             <div class="message">
                 {{ activity.message }}
             </div>
             <div class="meta">
-                {{ activity.createdAt|localizeddate('medium', 'none', app.request.locale) }} - Github
+                {{ activity.createdAt|localizeddate('medium', 'none', app.request.locale) }} -
             </div>
         </li>
     </ul>

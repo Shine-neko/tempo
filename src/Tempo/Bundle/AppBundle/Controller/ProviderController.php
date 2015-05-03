@@ -67,6 +67,10 @@ class ProviderController extends Controller
             'project' => $project
         ));
 
+        if (!$projectProvider) {
+            throw $this->createNotFoundException('Project provider not found');
+        }
+
         $provider = $this->getProvider($provider);
 
         $event = new ActivityProviderEvent($request, $projectProvider);

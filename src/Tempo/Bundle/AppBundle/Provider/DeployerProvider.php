@@ -19,10 +19,18 @@ class DeployerProvider implements ProviderInterface
     public function parse(Request $request)
     {
         $request->headers->get('X-provider');
-        $payload = $request->request->get('data');
+        $payload = $request->get('payload');
+
+        if (is_array($payload)) {
+            $payload = (object) $payload;
+        }
+
+        if (is_string($payload)) {
+            $payload = json_decode($payload);
+        }
 
         $activity = new ActivityProvider();
-        $activity->setMessage('Branch '.$payload['release']['branch'].' (at '.$payload['release']['sha'].') deployed as release '.$payload['release']['name'].' by '.$payload['author']['name']);
+        $activity->setMessage($payload->message);
         $activity->setCreatedAt(new \DateTime());
         $activity->setParameters($payload);
 
