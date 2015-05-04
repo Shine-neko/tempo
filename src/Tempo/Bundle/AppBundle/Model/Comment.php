@@ -34,6 +34,11 @@ class Comment
     protected $updatedAt;
 
     /**
+     * @var \DateTime
+     */
+    protected $deletedAt;
+
+    /**
      * @var object
      */
     protected $author;

@@ -78,10 +78,10 @@ trait TimestampTrait
     /**
      * {@inheritdoc}
      */
-    public function setDeleteAt($deleteAt)
+    public function setDeletedAt(\DateTime $deletedAt)
     {
         $this->enabled = false;
-        $this->deleteAt = $deleteAt;
+        $this->deletedAt = $deletedAt;
 
         return $this;
     }

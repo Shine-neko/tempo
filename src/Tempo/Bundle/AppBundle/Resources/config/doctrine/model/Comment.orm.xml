@@ -17,9 +17,14 @@
         <field name="updatedAt" type="datetime">
             <gedmo:timestampable on="create"/>
         </field>
+
+        <field name="deletedAt" type="datetime" column="deleted_at" nullable="true" />
+
         <field name="body" column="body" type="text"  nullable="true"  />
         <many-to-one field="author" target-entity="Tempo\Bundle\AppBundle\Model\User" />
         <many-to-one field="project" inversed-by="comments" target-entity="Project" />
+
+        <gedmo:soft-deleteable field-name="deletedAt" />
 
     </entity>
 

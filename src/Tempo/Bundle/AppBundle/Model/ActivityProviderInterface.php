@@ -75,7 +75,7 @@ interface ActivityProviderInterface
      * @param  \DateTime $datetime
      * @return Activity
      */
-    public function setCreatedAt($datetime);
+    public function setCreatedAt(\DateTime $datetime);
 
     /**
      * Get datetime
@@ -83,6 +83,14 @@ interface ActivityProviderInterface
      * @return \DateTime
      */
     public function getCreatedAt();
+
+    /**
+     * Set datetime
+     *
+     * @param  \DateTime $datetime
+     * @return Activity
+     */
+    public function setDeletedAt(\DateTime $datetime);
 
     /**
      * @return Object

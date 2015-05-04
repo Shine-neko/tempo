@@ -55,6 +55,10 @@
             <gedmo:timestampable on="update"/>
         </field>
 
+        <field name="deletedAt" type="datetime" column="deleted_at" nullable="true" />
+
+        <gedmo:soft-deleteable field-name="deletedAt" />
+
         <one-to-many field="notifications" target-entity="Tempo\Bundle\AppBundle\Model\Notification" mapped-by="user" />
 
     </mapped-superclass>

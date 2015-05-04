@@ -115,7 +115,7 @@ interface OrganizationInterface
     /**
      * @param $enabled
      */
-    public function setDeleteAt($enabled);
+    public function setDeletedAt(\DateTime $enabled);
 
     /**
      *  set contact
@@ -126,7 +126,7 @@ interface OrganizationInterface
     /**
      * Add projects
      *
-     * @param \Tempo\Bundle\AppBundle\Model\ProjectInterface $project
+     * @param \Tempo\Bundle\AppBundle\Model\s $project
      */
     public function addProject($project);
 

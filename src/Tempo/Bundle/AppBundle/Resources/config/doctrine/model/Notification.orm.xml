@@ -18,7 +18,15 @@
 
         <field name="data" column="data" type="array"  nullable="false"  />
 
+        <field name="createdAt" type="datetime">
+            <gedmo:timestampable on="create"/>
+        </field>
+
+        <field name="deletedAt" type="datetime" column="deleted_at" nullable="true" />
+
         <many-to-one field="user" inversed-by="notifications" target-entity="Tempo\Bundle\AppBundle\Model\User" />
+
+        <gedmo:soft-deleteable field-name="deletedAt" />
 
     </entity>
 

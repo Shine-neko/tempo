@@ -7,21 +7,24 @@
 
 <entity name="Tempo\Bundle\AppBundle\Model\Activity" repository-class="Tempo\Bundle\AppBundle\Repository\ActivityRepository" table="tempo_activity">
 
-        <id name="id" type="integer" column="id">
-            <generator strategy="AUTO" />
-        </id>
+    <id name="id" type="integer" column="id">
+        <generator strategy="AUTO" />
+    </id>
 
-        <field name="createdAt" type="datetime">
-            <gedmo:timestampable on="create"/>
-        </field>
-        <field name="action" column="action" type="string"  nullable="false"  />
-        <field name="data" column="data" type="object"  nullable="false"  />
-        <field name="target" column="target"  type="string" nullable="true"  />
+    <field name="createdAt" type="datetime">
+        <gedmo:timestampable on="create"/>
+    </field>
+    <field name="deletedAt" type="datetime" column="deleted_at" nullable="true" />
+    <field name="action" column="action" type="string"  nullable="false"  />
+    <field name="data" column="data" type="object"  nullable="false"  />
+    <field name="target" column="target"  type="string" nullable="true"  />
 
-        <many-to-one field="author" target-entity="Tempo\Bundle\AppBundle\Model\User" />
-        <many-to-one field="user" target-entity="Tempo\Bundle\AppBundle\Model\User" />
-        <many-to-one field="project" target-entity="Project" />
+    <many-to-one field="author" target-entity="Tempo\Bundle\AppBundle\Model\User" />
+    <many-to-one field="user" target-entity="Tempo\Bundle\AppBundle\Model\User" />
+    <many-to-one field="project" target-entity="Project" />
 
-    </entity>
+    <gedmo:soft-deleteable field-name="deletedAt" />
+
+</entity>
 
 </doctrine-mapping>

@@ -10,6 +10,8 @@
 */
 
 namespace Tempo\Bundle\AppBundle\Model;
+use Tempo\Bundle\AppBundle\Behavior\StateTrait;
+use Tempo\Bundle\AppBundle\Behavior\TimestampTrait;
 
 /**
  * Activity
@@ -17,6 +19,8 @@ namespace Tempo\Bundle\AppBundle\Model;
  */
 class ActivityProvider implements ActivityProviderInterface
 {
+    use TimestampTrait;
+
     /**
      * @var integer
      */
@@ -32,6 +36,16 @@ class ActivityProvider implements ActivityProviderInterface
      * @var \DateTime
      */
     protected $createdAt;
+
+    /**
+     * @var \DateTime
+     */
+    protected $updatedAt;
+
+    /**
+     * @var \DateTime
+     */
+    protected $deletedAt;
 
     /**
      * @var string
@@ -108,24 +122,6 @@ class ActivityProvider implements ActivityProviderInterface
     public function getParameters()
     {
         return $this->parameters;
-    }
-
-    /**
-     * {inheritedDoc}
-     */
-    public function setCreatedAt($datetime)
-    {
-        $this->createdAt = $datetime;
-
-        return $this;
-    }
-
-    /**
-     * {inheritedDoc}
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
     }
 
     /**

@@ -27,7 +27,7 @@
         <field name="website" type="string" length="255" nullable="true" />
 
         <field name="enabled" column="enabled" type="boolean" nullable="true"  />
-        <field name="deletedAt" type="datetime" nullable="true"/>
+        <field name="deletedAt" type="datetime" column="deleted_at" nullable="true" />
 
         <gedmo:soft-deleteable field-name="deletedAt" />
 

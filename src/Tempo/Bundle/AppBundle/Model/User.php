@@ -60,6 +60,11 @@ class User implements UserInterface
     /** @var \DateTime */
     protected $expiresAt;
 
+    /**
+     * @var \DateTime
+     */
+    protected $deletedAt;
+
     /** @var array */
     protected $roles;
 

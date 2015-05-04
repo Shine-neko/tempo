@@ -50,6 +50,11 @@ class Activity implements ActivityInterface
     protected $createdAt;
 
     /**
+     * @var \DateTime
+     */
+    protected $deletedAt;
+
+    /**
      * @var Project
      */
     protected $project;
