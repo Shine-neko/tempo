@@ -106,7 +106,7 @@ class GithubProvider implements ProviderInterface
         $activity->setCreatedAt(new \DateTime());
         $activity->setParameters($payload);
 
-        return $activity;
+        //return $activity;
     }
 
     /**
