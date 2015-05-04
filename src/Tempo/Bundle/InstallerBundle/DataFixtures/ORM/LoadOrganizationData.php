@@ -62,12 +62,14 @@ class LoadOrganizationData extends AbstractFixture implements OrderedFixtureInte
             $organization->addAccess($this->getReference('john.doe'));
             $organization->addAccess($this->getReference('olivia.pace'));
 
-            $manager->persist($organization);
-            $manager->flush();
+            $this->container->get('tempo.domain_manager')->create($organization, false);
 
             $this->addReference('organization'.$i, $organization);
             $i++;
         }
+
+        $this->container->get('tempo.domain_manager')->flush();
+
     }
 
     /**
