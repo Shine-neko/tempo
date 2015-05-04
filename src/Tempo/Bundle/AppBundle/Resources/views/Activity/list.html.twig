@@ -16,13 +16,13 @@
             Project <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu">
-           {% for project in projects %}
-           <li>
-               <a href="{{ path('homepage') ~ '?' ~ filter|merge({'filter[project]' : project.fullSlug})|url_encode }}">
-                   {{ project.organization.name }} / {{ project.name }}
-               </a>
-           </li>
-           {% endfor %}
+            {% for project in projects %}
+                <li>
+                    <a href="{{ path('homepage') ~ '?' ~ filter|merge({'filter[project]' : project.fullSlug})|url_encode }}">
+                        {{ project.organization.name }} / {{ project.name }}
+                    </a>
+                </li>
+            {% endfor %}
         </ul>
     </div>
     <div class="btn-group">
@@ -40,8 +40,11 @@
     {% for activity in activities %}
         {% if activity.provider is not defined %}
             {% include 'TempoAppBundle:Activity:_' ~ activity.target|lower ~ '.html.twig' %}
+        {% elseif activity.data['context'] is defined and activity.data['context'] == 'Scrutinizer' %}
         {% else %}
-            {% include 'TempoAppBundle:Activity:_' ~ activity.provider.name ~ '.html.twig' %}
+            {% if activity.data['context'] is defined and 'continuous-integration/travis-ci' not in activity.data['context'] %}
+                {% include 'TempoAppBundle:Activity:_' ~ activity.provider.name ~ '.html.twig' %}
+            {% endif %}
         {% endif %}
     {% else %}
         <p class="text-center">{{ 'tempo.activity.dashboard.activity_not_found'|trans }}</p>
