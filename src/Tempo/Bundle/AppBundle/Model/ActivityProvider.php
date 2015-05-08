@@ -10,7 +10,6 @@
 */
 
 namespace Tempo\Bundle\AppBundle\Model;
-use Tempo\Bundle\AppBundle\Behavior\StateTrait;
 use Tempo\Bundle\AppBundle\Behavior\TimestampTrait;
 
 /**
