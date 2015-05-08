@@ -5,7 +5,7 @@
     {% block content %}
         <div class="container">
 
-            {% if is_granted('ROLE_ADMIN') %}
+            {% if is_granted(sylius_settings_get('project.right_create_orga')) %}
                 <a href="{{ path('organization_create') }}" class="pull-right btn btn-primary btn-sm">{{ 'tempo.organization.add' |trans }}</a>
             {% endif %}
 
