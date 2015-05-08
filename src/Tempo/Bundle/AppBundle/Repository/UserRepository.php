@@ -32,6 +32,7 @@ class UserRepository extends EntityRepository
         return $this->createQueryBuilder('u')
             ->select('u.id, u.username')
             ->where('u.username LIKE :slug')
+            ->andWhere('u.deletedAt IS NULL')
             ->setParameter('slug', '%'.$slug. '%')
             ->getQuery()
             ->getResult(Query::HYDRATE_OBJECT);

@@ -30,6 +30,8 @@ class ProjectRepository extends EntityRepository
                     ->leftJoin('project.organization', 'org')
                     ->where('project.slug = ?1')
                     ->andWhere('org.slug = ?2')
+                    ->andWhere('project.deletedAt IS NULL')
+                    ->andWhere('org.deletedAt IS NULL')
                     ->setParameters(array(
                         1 => $project,
                         2 => $organization

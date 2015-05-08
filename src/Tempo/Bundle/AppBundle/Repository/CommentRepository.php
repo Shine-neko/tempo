@@ -19,13 +19,14 @@ class CommentRepository extends EntityRepository
     public function findAllWithType($parent, $type)
     {
         $query = $this->createQueryBuilder('comment')
-            ->select('comment');
+            ->select('comment')
+            ->andWhere('comment.deletedAt IS NULL');
 
         switch ($type) {
             case 'project':
                 $query
                     ->leftJoin('comment.project', 'project')
-                    ->where('project = :project')
+                    ->andWhere('project = :project')
                     ->setParameter('project', $parent);
                 break;
         }

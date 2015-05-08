@@ -17,12 +17,14 @@ class OrganizationRepository extends EntityRepository
 {
     public function findOrganizationByUser($user)
     {
-        $query = $this->createQueryBuilder('o')
+        $query =
+            $this->createQueryBuilder('o')
                 ->leftJoin('o.members', 'pm')
-                ->leftJoin('pm.user', 'user');
+                ->leftJoin('pm.user', 'user')
+                ->where('o.deletedAt IS NULL');
 
         if (null !== $user) {
-            $query->where('user = ?1')
+            $query->andWhere('user = ?1')
                 ->setParameter(1, $user);
         }
 

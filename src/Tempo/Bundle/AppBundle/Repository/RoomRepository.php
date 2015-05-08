@@ -26,7 +26,8 @@ class RoomRepository extends EntityRepository
             ->select('room')
             ->leftJoin('room.members', 'team')
             ->leftJoin('team.user', 'user')
-            ->where('user.id = :key');
+            ->where('user.id = :key')
+            ->where('room.deletedAt IS NULL');
 
         if (is_integer($key)) {
             $query->andWhere('room.id = :user');

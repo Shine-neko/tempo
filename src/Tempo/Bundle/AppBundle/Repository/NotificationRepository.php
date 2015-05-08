@@ -30,6 +30,7 @@ class NotificationRepository extends EntityRepository
             ->leftJoin('n.user', 'user')
             ->where('user = :user')
             ->andWhere('n.state = :state')
+            ->andWhere('n.deletedAt IS NULL')
             ->setParameters(array(
                 'state'  => $state,
                 'user'   => $user

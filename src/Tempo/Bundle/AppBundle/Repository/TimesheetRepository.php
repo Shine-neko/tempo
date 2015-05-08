@@ -37,6 +37,7 @@ class TimesheetRepository extends EntityRepository
                 ->where('timesheet.workedDate BETWEEN :begin AND :end')
                 ->andWhere('user = :user')
                 ->andWhere('timesheet.user = :user')
+                ->andWhere('project.deletedAt IS NULL')
                 ->setParameters(array(
                     'begin' => $weekBegin,
                     'end'   => $weekEnd,

@@ -26,9 +26,10 @@ class ActivityProviderRepository extends EntityRepository
         $query
             ->leftJoin('activity.provider', 'provider')
             ->leftJoin('provider.project', 'project')
-            ->where("activity.createdAt > :createdAt")
             ->leftJoin('project.members', 'access')
+            ->where("activity.createdAt > :createdAt")
             ->andWhere('access.user = :user')
+            ->andWhere('activity.deletedAt IS NULL')
             ->setParameters([
                 'user' => $criteria['user'],
                 'createdAt' => $criteria['createdAt']
