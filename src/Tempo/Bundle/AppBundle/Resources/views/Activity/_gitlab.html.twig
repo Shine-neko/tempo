@@ -3,7 +3,7 @@
         <li class="feed clearfix">
             <div class="author">
                 <a href="#">
-                    <img width="33" src="http://www.gravatar.com/avatar/5b37040e6200edb3c7f409e994076872?s=24&d=mm" />
+                    <img width="33" src="{{ gravatar(activity.data['userEmail']) }}" />
                 </a>
             </div>
             <div class="message">
@@ -13,9 +13,11 @@
             {% if activity.data['commits'] is defined %}
                 <ul class="commits">
                     {% for commit in activity.data.commits %}
-                        <span> <img height="16" src="{{ gravatar(commit.author.email, 16) }}"> </span>
-                        <a href="{{ commit.url }}"> {{ commit.id| truncate(7, true, '') }} </a>
-                        {{ commit.message }}
+                        <li>
+                            <span> <img height="16" src="{{ gravatar(commit.author.email, 16) }}"> </span>
+                            <a href="{{ commit.url }}"> {{ commit.id| truncate(7, true, '') }} </a>
+                            {{ commit.message }}
+                        </li>
                     {% endfor %}
                     <li class="meta">
                         {{ activity.createdAt|localizeddate('medium', 'none', app.request.locale) }} - Gitlab

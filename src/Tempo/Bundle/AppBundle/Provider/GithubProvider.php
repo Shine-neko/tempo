@@ -32,9 +32,9 @@ class GithubProvider implements ProviderInterface
         }
 
         try {
-            return $this->$methodName($payload);
+            return  $this->$methodName($payload);
         } catch (\Exception $e) {
-            return $this->statusEvent($payload);
+            return;
         }
     }
 
@@ -99,6 +99,19 @@ class GithubProvider implements ProviderInterface
         throw new \Exception(sprintf('Not implemented: %s::%s', __CLASS__, __FUNCTION__));
     }
 
+    protected function deleteEvent($payload)
+    {
+        $branch = str_replace('refs/heads/Shine', '', $payload['ref']);
+        $repository = isset($payload['repository']['html_url']) ? $payload['repository']['html_url'] : $payload['repository']['htmlUrl'];
+
+        $activity = new ActivityProvider();
+        $activity->setMessage('Deleted branch '.$branch.' in '.$repository);
+        $activity->setCreatedAt(new \DateTime());
+        $activity->setParameters($payload);
+
+        return $activity;
+    }
+
     protected function statusEvent($payload)
     {
         $activity = new ActivityProvider();
@@ -106,7 +119,7 @@ class GithubProvider implements ProviderInterface
         $activity->setCreatedAt(new \DateTime());
         $activity->setParameters($payload);
 
-        //return $activity;
+        return $activity;
     }
 
     /**
