@@ -52,10 +52,10 @@ class Room implements RoomInterface
     /**
      * @var \DateTime
      */
-    protected $deleteAt;
+    protected $deletedAt;
 
     /**
-     * @var Collection
+     * @var Collections
      */
     protected $members;
     /**

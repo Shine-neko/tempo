@@ -4,11 +4,14 @@ var
     logger  = require('winston');
 
 try {
-    var doc = yaml.safeLoad(fs.readFileSync(__dirname +'/../app/config/parameters.yml', 'utf8'));
-    var socket_io_port = doc.parameters['socket_io.client'].split(':')[2];
+    var config = yaml.safeLoad(fs.readFileSync(__dirname +'/../app/config/parameters.yml', 'utf8'));
+    var socket_io_port = config.parameters['socket_io.client'].split(':')[2];
 } catch (e) {
     console.log(e);
 }
+
+console.log(socket_io_port);
+
 
 var server = require('http').createServer();
 var io = require('socket.io')(server);
