@@ -10,6 +10,7 @@
         <parameter key="tempo.activity.provider.trello.class">Tempo\Bundle\AppBundle\Provider\TrelloProvider</parameter>
         <parameter key="tempo.activity.provider.travis.class">Tempo\Bundle\AppBundle\Provider\TravisProvider</parameter>
         <parameter key="tempo.activity.provider.deployer.class">Tempo\Bundle\AppBundle\Provider\DeployerProvider</parameter>
+        <parameter key="tempo.activity.provider.scrutinizer.class">Tempo\Bundle\AppBundle\Provider\ScrutinizerProvider</parameter>
     </parameters>
 
     <services>
@@ -36,6 +37,10 @@
         </service>
 
         <service id="tempo.activity.provider.deployer" class="%tempo.activity.provider.deployer.class%">
+            <tag name="tempo.activity.provider" />
+        </service>
+
+        <service id="tempo.activity.provider.scrutinizer" class="%tempo.activity.provider.scrutinizer.class%">
             <tag name="tempo.activity.provider" />
         </service>
     </services>
