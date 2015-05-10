@@ -43,7 +43,7 @@ class EnvInfoCommand extends ContainerAwareCommand
         $installedPhpVersion = phpversion();
         $output->writeln('PHP version >= '.self::REQUIRED_PHP_VERSION.'? ... ');
 
-        if (version_compare(phpversion(), self::REQUIRED_REDIS_VERSION, '<')) {
+        if (version_compare($installedPhpVersion, self::REQUIRED_REDIS_VERSION, '<')) {
             $output->writeln(sprintf(
                 'You are running PHP version "<strong>%s</strong>", but Tempo needs at least PHP "<strong>%s</strong>" to run.',
                  $installedPhpVersion, self::REQUIRED_PHP_VERSION
@@ -56,7 +56,7 @@ class EnvInfoCommand extends ContainerAwareCommand
 
         $nodeProcess = new Process('node -v');
         $nodeProcess->run();
-        $nodeVersion = trim(str_replace(['v', ''],'', $nodeProcess->getOutput()));
+        $nodeVersion = trim(str_replace('v','', $nodeProcess->getOutput()));
         $output->writeln('NodeJS version >= '.self::REQUIRED_NODEJS_VERSION.'? ... ');
 
         if (version_compare($nodeVersion, self::REQUIRED_NODEJS_VERSION, '<')) {
@@ -71,7 +71,7 @@ class EnvInfoCommand extends ContainerAwareCommand
         // NPM
         $npmProcess = new Process('npm -v');
         $npmProcess->run();
-        $npmVersion = trim(str_replace(['v', ''],'', $npmProcess->getOutput()));
+        $npmVersion = trim(str_replace('v','', $npmProcess->getOutput()));
         $output->writeln('NPM version >= '.self::REQUIRED_NPM_VERSION.'? ...');
 
         if (version_compare($npmVersion, self::REQUIRED_NPM_VERSION, '<')) {
@@ -86,7 +86,7 @@ class EnvInfoCommand extends ContainerAwareCommand
         // REDIS
         $redisProcess = new Process('redis-cli --version');
         $redisProcess->run();
-        $redisVersion = str_replace('redis-cli ','', $redisProcess->getOutput());
+        $redisVersion = trim(str_replace('redis-cli ','', $redisProcess->getOutput()));
         $output->writeln('Redis version >= '.self::REQUIRED_REDIS_VERSION.'? ... ');
 
         if (version_compare($redisVersion, self::REQUIRED_REDIS_VERSION, '<')) {
@@ -95,7 +95,7 @@ class EnvInfoCommand extends ContainerAwareCommand
                 $redisVersion, self::REQUIRED_REDIS_VERSION
             ));
         } else {
-            $output->writeln(sprintf('<info>yes. You are running NPM version "%s"</info>', $redisVersion));
+            $output->writeln(sprintf('<info>yes. You are running Redis server version "%s"</info>', $redisVersion));
         }
 
         $socketIOClient = explode(':', str_replace(['https://', 'http://'], '', $this->getContainer()->getParameter('socket_io.client')));
