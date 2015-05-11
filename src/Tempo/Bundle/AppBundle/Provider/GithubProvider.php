@@ -38,7 +38,7 @@ class GithubProvider implements ProviderInterface
         }
     }
 
-    protected function pushEvent($payload)
+    protected function anyEvent($payload)
     {
         $activity = new ActivityProvider();
         $activity->setMessage('');
@@ -48,24 +48,30 @@ class GithubProvider implements ProviderInterface
         return $activity;
     }
 
+
+    protected function pushEvent($payload)
+    {
+        $this->anyEvent($payload);
+    }
+
     protected function pingEvent($payload)
     {
-        return $this->pushEvent($payload);
+        $this->anyEvent($payload);
     }
 
     protected function issuesEvent($payload)
     {
-        throw new \Exception(sprintf('Not implemented: %s::%s', __CLASS__, __FUNCTION__));
+        $this->anyEvent($payload);
     }
 
     protected function issue_commentEvent($payload)
     {
-        throw new \Exception(sprintf('Not implemented: %s::%s', __CLASS__, __FUNCTION__));
+        $this->anyEvent($payload);
     }
 
     protected function commitCommentEvent($payload)
     {
-        throw new \Exception(sprintf('Not implemented: %s::%s', __CLASS__, __FUNCTION__));
+        $this->anyEvent($payload);
     }
 
     protected function pullRequestEvent($payload)
@@ -80,8 +86,7 @@ class GithubProvider implements ProviderInterface
 
     protected function pullRequestReviewCommentEvent($payload)
     {
-        throw new \Exception(sprintf('Not implemented: %s::%s', __CLASS__, __FUNCTION__));
-
+        $this->anyEvent($payload);
     }
 
     protected function watchEvent($payload)
@@ -114,12 +119,7 @@ class GithubProvider implements ProviderInterface
 
     protected function statusEvent($payload)
     {
-        $activity = new ActivityProvider();
-        $activity->setMessage($payload['description']);
-        $activity->setCreatedAt(new \DateTime());
-        $activity->setParameters($payload);
-
-        return $activity;
+        throw new \Exception(sprintf('Not supported: %s::%s', __CLASS__, __FUNCTION__));
     }
 
     /**
