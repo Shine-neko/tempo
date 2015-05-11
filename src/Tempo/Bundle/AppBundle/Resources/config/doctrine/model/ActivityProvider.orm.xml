@@ -17,6 +17,7 @@
         </field>
         <field name="deletedAt" type="datetime" column="deleted_at" nullable="true" />
         <field name="message" column="message" type="string"  nullable="false"  />
+        <field name="headers" column="headers" type="json_array"  nullable="true"  />
         <field name="parameters" column="parameters" type="json_array"  nullable="true"  />
 
         <many-to-one field="provider" inversed-by="activities" target-entity="Tempo\Bundle\AppBundle\Model\ProjectProvider" />
