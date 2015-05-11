@@ -10,6 +10,7 @@
 */
 
 namespace Tempo\Bundle\AppBundle\Model;
+
 use Tempo\Bundle\AppBundle\Behavior\TimestampTrait;
 
 /**
@@ -50,6 +51,11 @@ class ActivityProvider implements ActivityProviderInterface
      * @var string
      */
     protected $message;
+
+    /**
+     * @var array
+     */
+    protected $headers;
 
     /**
      * @var array
@@ -103,6 +109,24 @@ class ActivityProvider implements ActivityProviderInterface
     public function getMessage()
     {
         return $this->message;
+    }
+
+    /**
+     * {inheritedDoc}
+     */
+    public function setHeaders($headers)
+    {
+        $this->headers = $headers;
+
+        return $this;
+    }
+
+    /**
+     * {inheritedDoc}
+     */
+    public function getHeaders()
+    {
+        return $this->headers;
     }
 
     /**

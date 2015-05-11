@@ -55,6 +55,21 @@ interface ActivityProviderInterface
     public function getMessage();
 
     /**
+     * Set headers
+     *
+     * @param  array    $headers
+     * @return Activity
+     */
+    public function setHeaders($headers);
+
+    /**
+     * Get headers
+     *
+     * @return array
+     */
+    public function getHeaders();
+
+    /**
      * Set parameters
      *
      * @param  array    $parameters
