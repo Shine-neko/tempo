@@ -15,15 +15,21 @@
                     {% for organization in organizations %}
 
                     <section class="organization">
-                        <h3>
+                        <h3 class="pull-left">
                             <a class="avatar" href="{{ path('organization_show', { 'slug' : organization.slug } ) }}">
                                 <img class="leaderboard-gravatar js-avatar" src="{{ organization.avatar }}" width="25" heigh="25">
                                 {{ organization.name }}
                             </a>
                         </h3>
+                        {% if is_granted('EDIT', organization) %}
+                            <a href="{{ path('project_create', {'organization': organization.slug}) }}" class="pull-right new-project" data-toggle="tooltip" data-placement="bottom" title="{{ 'tempo.project.title_add'|trans }}">
+                                <span class="ion-plus"></span>
+                            </a>
+                        {% endif %}
+
                         <ul class="projects">
                             {% for project in organization.projects %}
-                            <li>
+                            <li class="{% if loop.first %}first{% endif %}">
                                 <a href="{{ path('project_show', {'slug': project.fullSlug}) }}">{{ project.name }}</a>
                             </li>
                             {% endfor %}
