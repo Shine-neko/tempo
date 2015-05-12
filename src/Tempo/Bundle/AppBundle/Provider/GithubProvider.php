@@ -41,7 +41,6 @@ class GithubProvider implements ProviderInterface
     protected function anyEvent($payload)
     {
         $activity = new ActivityProvider();
-        $activity->setMessage('');
         $activity->setCreatedAt(new \DateTime());
         $activity->setParameters($payload);
 

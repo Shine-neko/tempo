@@ -16,7 +16,7 @@
             <gedmo:timestampable on="create"/>
         </field>
         <field name="deletedAt" type="datetime" column="deleted_at" nullable="true" />
-        <field name="message" column="message" type="string"  nullable="false"  />
+        <field name="message" column="message" type="string" nullable="true"  />
         <field name="headers" column="headers" type="json_array"  nullable="true"  />
         <field name="parameters" column="parameters" type="json_array"  nullable="true"  />
 

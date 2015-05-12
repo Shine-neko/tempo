@@ -41,7 +41,7 @@ class ProviderRegistry
     /**
      * Register a provider for given provider name.
      *
-     * @param string            $namespace
+     * @param string            $name
      * @param ProviderInterface $provider
      */
     public function registerProvider($name, $provider)
@@ -74,9 +74,9 @@ class ProviderRegistry
      *
      * @return Boolean
      */
-    public function hasProvider($namespace)
+    public function hasProvider($name)
     {
-        return isset($this->providers[$namespace]);
+        return isset($this->providers[$name]);
     }
 
     /**
