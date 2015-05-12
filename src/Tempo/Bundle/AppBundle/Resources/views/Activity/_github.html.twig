@@ -1,6 +1,7 @@
+{% set avatar = '/bundles/tempoapp/images/avatar-default.png' %}
 {% if activity.data.pusher is not defined and activity.data.sender %}
     {% set user = activity.data.sender.login %}
-    {% set gravatar = activity.data.sender.avatar_url %}
+    {% set avatar = activity.data.sender.avatar_url is defined? activity.data.sender.avatar_url : activity.data.sender.avatarUrl %}
 {% else %}
     {% set user = '' %}
 {% endif %}
@@ -9,12 +10,12 @@
         <li class="feed clearfix">
             <div class="author">
                 <a href="https://github.com/{{ user }}">
-                    <img class="avatar" width="33" src="{{ activity.data.sender.avatar_url is defined? activity.data.sender.avatar_url : activity.data.sender.avatarUrl }}" />
+                    <img class="avatar" width="33" src="{{ avatar }}" />
                 </a>
             </div>
             <div class="message">
                 {% if activity.message != '' %}
-                    <strong>{{ activity.message }}</strong>
+                    {{ activity.message }}
                 {% endif %}
             </div>
             {% if activity.data.pusher.name is defined %}
@@ -25,7 +26,7 @@
                     </a>
                 </div>
             {% endif %}
-            {% if activity.data['pull_request'] is not defined %}
+            {% if activity.data['pull_request'] is not defined and activity.data['pullRequest'] is not defined %}
                 <ul class="commits">
                     {% set commits = activity.data.commits is defined ? activity.data.commits : {0: activity.data.commit} %}
                     {% for commit in commits %}
