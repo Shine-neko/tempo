@@ -124,6 +124,8 @@ $(function() {
 
     $('body').removeClass('no-js').addClass('js');
     $('select').selectize();
+    $('[data-toggle="tooltip"]').tooltip();
+
 
     $('.datetimepicker-instance').datetimepicker({
         separator: '-',
