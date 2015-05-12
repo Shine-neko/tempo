@@ -15,7 +15,7 @@
             </div>
             <div class="message">
                 {% if activity.message != '' %}
-                    {{ activity.message }}
+                    {{ activity.message|provider_parse_content }}
                 {% endif %}
             </div>
             {% if activity.data.pusher.name is defined %}

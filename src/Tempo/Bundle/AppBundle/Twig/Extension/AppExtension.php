@@ -44,6 +44,7 @@ class AppExtension extends \Twig_Extension
     {
         return array(
             'size' => new \Twig_Filter_Method($this, 'size'),
+            'provider_parse_content' => new \Twig_Filter_Method($this, 'providerContentParse'),
         );
     }
 
@@ -81,7 +82,7 @@ class AppExtension extends \Twig_Extension
 
         return strtolower($browser->getBrowser(). ' ' .
             $browser->getBrowser().$navigateurFinal[0]). ' '.
-            $browser->getPlatform();
+        $browser->getPlatform();
     }
 
     // get gravatar image
@@ -110,11 +111,24 @@ class AppExtension extends \Twig_Extension
         return ($secure ? 'https://secure' : 'http://www') . '.gravatar.com/avatar/' . $hash . '?' . http_build_query(array_filter($map));
     }
 
+    public function providerContentParse($content)
+    {
+        $rules = array(
+            '/\[([^\[]+)\]\(([^\)]+)\)/' => '<a href="\2">\1</a>'
+        );
+
+        foreach ($rules as $regex => $replacement) {
+            $content = preg_replace($regex, $replacement, $content);
+        }
+
+        return rtrim($content);
+    }
+
     /**
      * {@inheritdoc}
      */
     public function getName()
     {
-       return 'main_extension';
+        return 'main_extension';
     }
 }
