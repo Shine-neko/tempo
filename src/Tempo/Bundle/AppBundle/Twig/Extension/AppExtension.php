@@ -12,12 +12,22 @@
 
 namespace Tempo\Bundle\AppBundle\Twig\Extension;
 
+use Symfony\Component\PropertyAccess\PropertyAccess;
+use Doctrine\Common\Util\Inflector;
 use Ikimea\Browser\Browser;
 use Tempo\Bundle\AppBundle\Helper\Behavior;
 
 class AppExtension extends \Twig_Extension
 {
+    /**
+     * @var Behavior
+     */
     private $behavior;
+
+    /**
+     * @var  PropertyAccess
+     */
+    protected $accessor;
 
     /**
      * @param Behavior $behavior
@@ -25,6 +35,7 @@ class AppExtension extends \Twig_Extension
     public function __construct(Behavior $behavior)
     {
         $this->behavior = $behavior;
+        $this->accessor = PropertyAccess::createPropertyAccessor();
     }
 
     /**
@@ -57,6 +68,7 @@ class AppExtension extends \Twig_Extension
             'get_browser' => new \Twig_Function_Method($this, 'getBrowser'),
             'icon' => new \Twig_Function_Method($this, 'getIcon'),
             'gravatar'    => new \Twig_Function_Method($this, 'getGravatar'),
+            new \Twig_SimpleFunction('get_attribute', array($this, 'getAttribute'))
         );
     }
 
@@ -70,6 +82,31 @@ class AppExtension extends \Twig_Extension
         $units = array(' B', ' KB', ' MB', ' GB', ' TB');
         for ($i = 0; $size >= 1024 && $i < 4; $i++) $size /= 1024;
         return round($size, 2).$units[$i];
+    }
+
+    /**
+     * @param $model
+     * @param $property
+     * @return bool|mixed
+     */
+    public function getAttribute($model, $property)
+    {
+        try {
+            return $this->accessor->getValue($model, $property);
+        } catch (\Exception $e) {
+
+            $camelize = Inflector::camelize($property);
+
+            if (isset($model[$camelize])) {
+                return $model[$camelize];
+            }
+
+            if (isset($model[$property])) {
+                return $model[$property];
+            }
+        }
+
+        return false;
     }
 
     /**

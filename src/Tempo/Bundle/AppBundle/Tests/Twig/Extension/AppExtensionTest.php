@@ -40,4 +40,15 @@ class AppExtensionTest extends \PHPUnit_Framework_TestCase
             '<a href="http://ikimea.com">Visit Ikimea!</a>'
         );
     }
+
+    public function testGetAttribute()
+    {
+        $this->assertEquals($this->appExtension->getAttribute(array('firstName' => 'Nawo'), 'firstName'), 'Nawo');
+        $this->assertEquals($this->appExtension->getAttribute(array('firstName' => 'Nawo'), '[firstName]'), 'Nawo');
+        $this->assertEquals($this->appExtension->getAttribute(array('firstName' => 'Nawo'),'first_name'), 'Nawo');
+        $this->assertEquals($this->appExtension->getAttribute(array('firstName' => 'Nawo'),'first_name'), 'Nawo');
+
+        $this->assertFalse($this->appExtension->getAttribute(array(),'first_name'), 'Kamini');
+
+    }
 }
