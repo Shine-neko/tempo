@@ -4,6 +4,9 @@ namespace Tempo\Bundle\AppBundle\Model;
 
 interface ProjectProviderInterface
 {
+    const STATE_ACTIVE = 'on';
+    const STATE_UNACTIVE = 'off';
+
     /**
      * Get id
      *

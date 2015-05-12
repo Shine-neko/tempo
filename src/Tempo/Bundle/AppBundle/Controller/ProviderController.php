@@ -15,17 +15,47 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Tempo\Bundle\AppBundle\Form\Type\ProviderFormType;
 use Tempo\Bundle\AppBundle\Model\Project;
+use Tempo\Bundle\AppBundle\Model\ProjectProvider;
+use Tempo\Bundle\AppBundle\Model\ProjectProviderInterface;
 use Tempo\Bundle\AppBundle\TempoAppEvents;
 use Tempo\Bundle\AppBundle\Event\ActivityProviderEvent;
 
 class ProviderController extends Controller
 {
-    public function listAction($slug)
+    public function listAction(Project $project)
     {
+        $providers = array();
+
+        foreach ($project->getProviders() as $provider) {
+            $providers[$provider->getName()] = $provider;
+        }
+
         return $this->render('TempoAppBundle:Provider:list.html.twig', array(
-            'slug' => $slug,
+            'project' => $project,
+            'project_activated' => $providers,
             'providers' => $this->get('tempo.activity.provider_registry')->getProviders()
         ));
+    }
+
+    public function stateAction(Request $request, Project $project, $provider)
+    {
+        $state = $request->get('state');
+        $provider = $this->getProvider($provider);
+
+        $projectProvider = new ProjectProvider();
+        $projectProvider
+            ->setName($provider->getCanonicalName())
+            ->setProject($project);
+
+        if ('on' === $state) {
+            $projectProvider->setState(ProjectProviderInterface::STATE_ACTIVE);
+            $this->get('tempo.domain_manager')->create($projectProvider);
+        } else {
+            $projectProvider->setState(ProjectProviderInterface::STATE_UNACTIVE);
+            $this->get('tempo.domain_manager')->update($projectProvider);
+        }
+
+        return $this->redirectToRoute('project_settings', array('slug' => $project->getFullSlug()));
     }
 
     public function updateAction(Request $request, $slug, $provider)
@@ -35,7 +65,7 @@ class ProviderController extends Controller
 
         if ($form->handleRequest($request)->isValid()) {
 
-            $this->get('tempo.domain_manager')->create($projectProvider);
+            $this->get('tempo.domain_manager')->update($projectProvider);
 
             return $this->redirectToRoute('project_show', array(
                 'slug' => $slug,

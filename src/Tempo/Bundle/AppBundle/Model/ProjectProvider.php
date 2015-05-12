@@ -35,6 +35,11 @@ class ProjectProvider implements ProjectProviderInterface
     protected $name;
 
     /**
+     * @var string
+     */
+    protected $state;
+
+    /**
      * @var \DateTime
      *
      */
@@ -153,6 +158,22 @@ class ProjectProvider implements ProjectProviderInterface
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * @param string $state
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
     }
 
     /**

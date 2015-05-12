@@ -41,13 +41,6 @@ class ProjectListener
         //create room
         $this->roomManager->create($project->getName(), $project->getMembers());
 
-        foreach($this->providerRegistry->getProviders() as $service) {
-            $service = (new ProjectProvider())
-                ->setName($service->getName())
-            ;
-            $this->domainManager->create($service, false);
-        }
-
         $this->domainManager->flush();
     }
 }
