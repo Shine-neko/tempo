@@ -50,6 +50,12 @@ project_provider_list:
     requirements:
         slug: ".+"
 
+project_provider_state:
+    path:  /{slug}/provider/state/{provider}
+    defaults: { _controller: TempoAppBundle:Provider:state }
+    requirements:
+        slug: ".+"
+
 project_provider_update:
     path:  /{slug}/provider/update/{provider}
     defaults: { _controller: TempoAppBundle:Provider:update }

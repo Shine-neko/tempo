@@ -1,4 +1,6 @@
-<h1>{{ 'tempo.project.services.description'|trans }}</h1>
+<div class="page-title">
+    <h1>{{ 'tempo.project.services.title'|trans }}</h1>
+</div>
 <div class="container-provider">
     <div class="app-panel">
         <p>{{ 'tempo.project.services.description'|trans }}</p>
@@ -12,9 +14,18 @@
             </thead>
             <tbody>
                 {% for provider in providers %}
+                    {% set active  = project_activated[provider.canonicalName] is defined  %}
                 <tr>
-                    <td><span class="glyphicon glyphicon-off clgray"></span></td>
-                    <td><a data-toggle="modal" role="dialog" data-target="#" data-title="{{ provider.name }} provider" href="{{ path('project_provider_update', { 'slug': slug, 'provider': provider.name } ) }}">{{ provider.name }}</a></td>
+                    <td>
+                        <a href="{{ path('project_provider_state', { 'slug': project.fullSlug, 'provider': provider.name, 'state' : active ? 'on': 'off' } ) }}" class="state-{{ active ? 'active' : 'unactive'  }}">
+                            <span class="glyphicon glyphicon-off clgray"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <a data-toggle="modal" role="dialog" data-target="#" data-title="{{ provider.name }} provider" href="{{ path('project_provider_update', { 'slug': project.fullSlug, 'provider': provider.name } ) }}">
+                            {{ provider.canonicalName }}
+                        </a>
+                    </td>
                     <td></td>
                 </tr>
                 {% endfor %}
