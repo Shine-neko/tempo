@@ -116,7 +116,7 @@ class ProjectController extends Controller
 
             $this->addFlash('success', 'project.success_updated');
 
-            return $this->redirectToRoute('project_upgrade', array('slug' => $project->getSlug()));
+            return $this->redirectToRoute('project_update', array('slug' => $project->getSlug()));
         }
 
         return $this->render('TempoAppBundle:Project:update.html.twig', array(
