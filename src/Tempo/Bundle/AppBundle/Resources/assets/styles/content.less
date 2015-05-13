@@ -47,8 +47,10 @@
 }
 
 #page-title {
-  margin: 0px 25px 50px 0px;
+  margin-bottom: 30px;
+  font-size: 30px;
 }
+
 
 ul.autocompleter-choices {
   position: absolute;
@@ -858,19 +860,28 @@ table.table-striped tbody .actions .edit {
 
 .project.dashboard .list-organizations ul {
   clear: both;
+  padding-left: 0;
 
-
-  padding-left: 25px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #eee;
-  border-radius: 3px;
-  position: relative;
-  list-style: none;
-  background: #fff;
-  a {
-    color: #007dce;
-    font-size: 21px;
+  li {
+    padding-left: 25px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    list-style: none;
+    background: #fff;
+    a {
+      color: #007dce;
+      font-size: 21px;
+    }
+  }
+  li.first {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+  li.last {
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
   }
 }
 
@@ -908,12 +919,13 @@ table.table-striped tbody .actions .edit {
   display: none;
 }
 
-.project.show #content .infos .app-panel h1 {
+.project.show #content .infos h1 {
   position: relative;
 }
 
-.project.show #content .infos .app-panel h1 small.label {
-  font-size: 12px;
+.project.show #content .infos h1 small.label {
+  font-size: 8px;
+  margin-left: 10px;
   position: absolute;
 }
 

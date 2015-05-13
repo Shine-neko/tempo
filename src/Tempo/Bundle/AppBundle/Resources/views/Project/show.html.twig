@@ -26,19 +26,18 @@
 {% endblock breadcrumb %}
 
 <div class="col-md-8 infos">
-    <div class="app-panel">
+    <h1 id="page-title">
+        {{ project.name }}
 
-        <h1 id="page-title" class="col-md-6">
-            {{ project.name }} <br />
-
-            {% if project.code is not null %}
+        {% if project.code is not null %}
             <small class="label label-default">
                 {{ project.code }}
             </small>
-            {% endif %}
-        </h1>
+        {% endif %}
+    </h1>
+    <div class="app-panel">
 
-        <div class="col-md-4">
+        <div class="pull-right">
             {% if is_granted('EDIT', organization) %}
             <a class="btn btn-xs btn-primary" href="{{ path('project_create', { 'parent' : project.id, 'organization': organization.slug }) }}"> <span class="glyphicon glyphicon-plus"></span> {{ 'tempo.project.title_subprojects'|trans }}</a>
             <a class="btn btn-xs btn-info " href="{{ path('project_update', { 'slug': project.slug }) }}"> <span class="glyphicon glyphicon-edit"></span> Edit</a>

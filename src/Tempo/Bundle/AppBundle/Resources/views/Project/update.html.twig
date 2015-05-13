@@ -21,12 +21,10 @@
             <li class="last"> Edit </li>
         </ol>
     {% endblock breadcrumb %}
+    <h1 id="page-title">{{ project.name }}</h1>
 
     <form action="{{ path('project_update', { 'slug': project.slug }) }}" method="post">
-        {% include 'TempoAppBundle::Project/_form.html.twig' with {
-            'form' : form,
-            'page_title' : project.name
-        } %}
+        {% include 'TempoAppBundle::Project/_form.html.twig' with { 'form' : form } %}
 
         <div class="clearbox form_rest">
             <button type="submit" class="btn btn-primary">{{ 'tempo.form.save_changes'|trans }}</button>

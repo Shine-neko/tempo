@@ -20,11 +20,10 @@
             <li class="last"> new </li>
         </ol>
     {% endblock breadcrumb %}
+
+    <h1 id="page-title">{{ 'tempo.project.title_add'|trans }}</h1>
     <form id="project_form" name="project_form" action="{{ path('project_create', {'organization': organization.slug }) }}{% if form.vars.value.parent.id is defined %}?parent={{ form.vars.value.parent.id }}{% endif %}" method="post" {{ form_enctype(form) }}>
-        {% include 'TempoAppBundle::Project/_form.html.twig' with {
-           'form' : form,
-           'page_title' :  'tempo.project.title_add'|trans
-        } %}
+        {% include 'TempoAppBundle::Project/_form.html.twig' with { 'form' : form } %}
 
         <div class="clearbox form_rest">
             <button type="submit" class="btn btn-primary">{{ 'tempo.form.create'|trans }}</button>
