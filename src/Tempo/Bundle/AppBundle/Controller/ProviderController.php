@@ -31,6 +31,7 @@ class ProviderController extends Controller
         }
 
         return $this->render('TempoAppBundle:Provider:list.html.twig', array(
+            'host' => $this->container->getParameter('tempo.config.host'),
             'project' => $project,
             'project_activated' => $providers,
             'providers' => $this->get('tempo.activity.provider_registry')->getProviders()

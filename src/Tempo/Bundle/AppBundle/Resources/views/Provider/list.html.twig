@@ -1,5 +1,5 @@
 <div class="page-title">
-    <h1>{{ 'tempo.project.services.title'|trans }}</h1>
+    <h1 id="page-title">{{ 'tempo.project.services.title'|trans }}</h1>
 </div>
 <div class="container-provider">
     <div class="app-panel">
@@ -10,23 +10,35 @@
                     <th></th>
                     <th>Service</th>
                     <th>Description</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 {% for provider in providers %}
                     {% set active  = project_activated[provider.canonicalName] is defined  %}
                 <tr>
-                    <td>
+                    <td width="5%">
                         <a href="{{ path('project_provider_state', { 'slug': project.fullSlug, 'provider': provider.name, 'state' : active ? 'on': 'off' } ) }}" class="state-{{ active ? 'active' : 'unactive'  }}">
                             <span class="glyphicon glyphicon-off clgray"></span>
                         </a>
                     </td>
-                    <td>
+                    <td width="40%">
                         <a data-toggle="modal" role="dialog" data-target="#" data-title="{{ provider.name }} provider" href="{{ path('project_provider_update', { 'slug': project.fullSlug, 'provider': provider.name } ) }}">
-                            {{ provider.canonicalName }}
+                            {{ provider.name }}
                         </a>
                     </td>
-                    <td></td>
+                    <td width="40%"></td>
+                    <td width="40%">
+                        {% set link = host ~'/api/v1/provider/' ~ project.id ~'/notify/' ~ provider.canonicalName ~ '?access_token=' ~ app.user.token %}
+                        <div class="zeroclipboard-pre input-group">
+                            <pre class="bash">{{ link }}</pre>
+                            <span class="input-group-btn zeroclipboard-group-btn" data-original-title="" title="">
+                                <button data-clipboard-text="{{ link }}" class="zeroclipboard btn zeroclipboard-is-hover" type="button">
+                                    <span class="ion-clipboard"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>

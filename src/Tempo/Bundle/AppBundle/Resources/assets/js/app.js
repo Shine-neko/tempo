@@ -136,6 +136,8 @@ $(function() {
         format: 'YYYY/MM/DD'
     });
 
+    ZeroClipboard.config( { swfPath: "/vendor/zeroclipboard/dist/ZeroClipboard.swf" } );
+    var zeroClipboard = new ZeroClipboard($(".zeroclipboard-pre button"));
 
     $(document).on('click', '[data-toggle="modal"]', function(e) {
         e.preventDefault();
