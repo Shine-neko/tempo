@@ -30,6 +30,8 @@ class ActivityController extends Controller
      */
     public function listAction(Request $parentRequest, $type = 'all')
     {
+        $masterRequest = $this->get('request_stack')->getMasterRequest();
+
         $filter = $parentRequest->get('filter', array());
         $activities = array();
         $criteria = array(
@@ -72,6 +74,7 @@ class ActivityController extends Controller
 
         return $this->render('TempoAppBundle:Activity:list.html.twig', array(
             'filter' => $filter,
+            'masterRequest' => $masterRequest,
             'type' => $type,
             'activities' => $activities,
             'projects' => $this->getManager('project')->findAllByUser($this->getUser()->getId()),

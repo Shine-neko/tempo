@@ -1,3 +1,4 @@
+{% if masterRequest.attributes.get('_route') == 'homepage' %}
 <div class="events-filters">
     <label>Sort By</label>
     <div class="btn-group">
@@ -36,6 +37,7 @@
         </ul>
     </div>
 </div>
+{% endif %}
 <div class="events-push">
     {% for activity in activities %}
         {% if activity.provider is not defined %}
