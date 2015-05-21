@@ -62,6 +62,11 @@ class ProjectProvider implements ProjectProviderInterface
      */
     protected $activities;
 
+    public function __construct()
+    {
+        $this->state = self::STATE_ACTIVE;
+    }
+
     /**
      * {@inheritdoc}
      */
