@@ -38,9 +38,10 @@ class ProjectListener
     {
         $project = $event->getSubject();
 
-        //create room
-        $this->roomManager->create($project->getName(), $project->getMembers());
-
-        $this->domainManager->flush();
+        if ($project->getParent() == null) {
+            //create room
+            $this->roomManager->create($project->getName(), $project->getMembers());
+            $this->domainManager->flush();
+        }
     }
 }
