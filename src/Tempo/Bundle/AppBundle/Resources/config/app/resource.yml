@@ -27,12 +27,7 @@ sylius_resource:
           driver: doctrine/orm
           classes:
               model: Tempo\Bundle\AppBundle\Model\User
-              repository: Tempo\Bundle\Repository\Model\UserRepository
-
-      tempo.group:
-          driver: doctrine/orm
-          classes:
-              model: Tempo\Bundle\AppBundle\Model\Group
+              repository: Tempo\Bundle\AppBundle\Repository\UserRepository
 
       tempo.activity:
           driver: doctrine/orm
@@ -44,7 +39,7 @@ sylius_resource:
           driver: doctrine/orm
           classes:
               model: Tempo\Bundle\AppBundle\Model\ActivityProvider
-              repository: Tempo\Bundle\AppBundle\repository\ActivityProviderRepository
+              repository: Tempo\Bundle\AppBundle\Repository\ActivityProviderRepository
 
       tempo.access:
           driver: doctrine/orm
@@ -67,10 +62,10 @@ sylius_resource:
           driver: doctrine/orm
           classes:
               model: Tempo\Bundle\AppBundle\Model\Message
-              repository: Tempo\Bundle\AppBundle\Repository\Message
+              repository: Tempo\Bundle\AppBundle\Repository\MessageRepository
 
       tempo.comment:
           driver: doctrine/orm
           classes:
               model: Tempo\Bundle\AppBundle\Model\Comment
-              repository: Tempo\Bundle\AppBundle\Repository\Comment
+              repository: Tempo\Bundle\AppBundle\Repository\CommentRepository
