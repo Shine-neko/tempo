@@ -91,10 +91,10 @@ class ActivitySubscriber implements EventSubscriberInterface
                 break;
         }
 
-        if (method_exists($event->getSubject(), 'getAuthor')) {
-            $author = $event->getSubject()->getAuthor();
+        if (method_exists($resource, 'getAuthor')) {
+            $author = $resource->getAuthor();
         } elseif (method_exists($event->getSubject(), 'getUser')) {
-            $author = $event->getSubject()->getUser();
+            $author = $resource->getUser();
         }
 
         $activity
