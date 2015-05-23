@@ -71,10 +71,6 @@ a {
   border: 0;
 }
 
-#header .navbar-header .navbar-toggle {
-
-}
-
 #header .navbar-toggle .icon-bar {
   background-color: #fff;
 }
@@ -105,27 +101,24 @@ a {
   color: #007cc2;
 }
 
+
 #header #search {
-  float: left;
-  margin-right: 30px;
-  margin-top: 11px;
+  border: 0px;
+  margin-top: 12px;
+
+  a {
+    color: #F8F8F8;
+    text-decoration: none;
+  }
+
+  label {
+    display: none;
+    color: #FFF;
+    font-size: 11px;
+  }
 }
 
-#header #search a {
-  color: #F8F8F8;
-  text-decoration: none;
-}
-
-#header #search label {
-  display: none;
-}
-
-#header #search form label {
-  color: #FFF;
-  font-size: 11px;
-}
-
-#header #search form input[type="text"] {
+#header form#search input[type="text"] {
   border: 1px solid #FFF;
   height: 18px;
   border-top-left-radius: 3px;
@@ -137,7 +130,7 @@ a {
   width: 180px;
 }
 
-#header #search form .submit {
+#header form#search .submit {
   float: left;
   background: #173455;
   border: 1px solid #FFF;
@@ -150,7 +143,7 @@ a {
   width: 26px;
 }
 
-#header #search form .submit span {
+#header form#search .submit span {
   color: #FFF;
 }
 
@@ -165,13 +158,19 @@ a {
   border-radius: 3px;
 }
 
-#header #user-menu {
-  margin-top: 5px;
+#header #user-menu a.dropdown-toggle {
+  font-weight: bold;
+  color: #fff;
 }
 
-#header #user-menu li.notification, #header #user-menu li.avatar {
+#header #user-menu .dropdown-menu a {
+  color: #4a87b6
+}
+
+#header #user-menu li.notifications, #header #user-menu li.avatar {
   height: 30px;
   position: relative;
+  margin-top: 7px;
 }
 
 #header #user-menu li.avatar .dropdown-menu {
@@ -188,6 +187,15 @@ a {
 
 #header #user-menu li.avatar a.dropdown-toggle {
   padding: 0px;
+  line-height: 20px;
+  .username {
+    display: inline-block;
+    max-width: 125px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: top;
+  }
 }
 
 #header #user-menu li.notifications {
@@ -230,15 +238,14 @@ a {
   -moz-user-select: none;
   border-radius: 3px;
   display: block;
-  font-weight: bold;
-  height: 24px;
   line-height: 30px;
-  padding-right: 8px;
-  margin-top: 1px;
-  min-width: 30px;
-  padding: 2px 0 0 5px;
+  padding: 1px 5px 0 5px;
   position: relative;
   text-decoration: none;
+
+  .sr-label {
+    display: none;
+  }
 }
 
 #header #user-menu li.notifications a.dropdown-toggle:focus {
@@ -246,7 +253,7 @@ a {
 }
 
 #header #user-menu li.notifications a .glyphicon {
-  font-size: 21px;
+  font-size: 20px;
 }
 
 #header #user-menu li.notifications a:hover {
@@ -264,9 +271,6 @@ a {
 
 #header nav ul#menu {
   color: #FFFFFF;
-  height: 28px;
-  margin-left: 25px;
-  margin-bottom: 1px;
   list-style-type: none;
 }
 
@@ -280,10 +284,7 @@ a {
   color: #FFF;
   font-size: 12px;
   text-decoration: none;
-  text-align: center;
-  display: block;
-  padding: 4px 15px 8px;
-  height: 27px;
+  padding: 4px 15px 5px;
 }
 
 #header nav ul#menu li .notification {
@@ -430,22 +431,26 @@ a {
 
 @media (max-width: @screen-xs-min) {
   #header #search {
-    float: left;
+    border: 0;
+    margin-bottom: 15px;
+    margin-top: 0px;
+    height: 50px;
   }
 
-  #header #user-menu {
-    position: absolute;
-    top: 56px;
-    right: 25px;
-    li {
-      float: left;
+
+  #header #user-menu li.notifications a.dropdown-toggle {
+    padding: 4px 15px 8px;
+    .sr-label {
+      display: block;
     }
   }
 
-  #header nav {
-    clear: both;
-    ul#menu li {
-      float: left;
+  #header #user-menu {
+    a {
+      padding: 4px 15px 8px;
+      img, .glyphicon {
+        display: none;
+      }
     }
   }
 }
