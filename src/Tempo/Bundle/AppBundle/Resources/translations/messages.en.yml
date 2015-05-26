@@ -2,15 +2,14 @@ tempo:
   header:
     search: Search
   menu:
-    project: Projets
+    project: Projects
     home: Home
     timesheet: Timesheets
-    admin: Admin
 
   form:
       show: 'Show'
       create: 'Create'
-      delete: 'delete'
+      delete: 'Delete'
       edit: 'Edit'
       search: "Search"
       cancel: "Cancel"
@@ -37,11 +36,10 @@ tempo:
       remember_me: Remember me
       submit: Login
     resetting:
-      request: Forgotten password?
+      request: Forgot your password ?
       old_password: Current password
       request_non_expired: The password for this user has already been requested within the last 24 hours.
       request_success: An email with instructions on how to retrieve your password has been sent.
-      request_success_request: An email with instructions on how to retrieve your password has been sent.
       username: Username or E-mail
       password: "New password"
       password_again: "Verification"
@@ -49,7 +47,7 @@ tempo:
   activity:
       dashboard:
         title: Activity Feed
-        activity_not_found: Not found activity
+        activity_not_found: No activity found
         sort:
           today: Today
           week: Last 7 days
@@ -58,6 +56,7 @@ tempo:
       events:
         user.update: updates its own information
         commented: Commented on
+        project.created: create project
         project.update: update project %name%
         project.joined : joined project %name%
 
@@ -82,23 +81,22 @@ tempo:
       title_delete: Delete project
       email_contact: E-mail contact
       web_site: Website
-      undefined_info: undefined
+      undefined_info: Undefined
       success_create: Organization created
       success_updated: Organization successfully edited
       success_delete: Organization successfully removed
       failed_delete: Unable to delete organization
 
   project:
-      title_add: New projet
+      title_add: New project
       list:
-          title: Projects
+       title: Project list
       filter:
           query: search
       add: Add new project
       edit: Edit project
       title_subprojects: Sub project
       add_membre: Assignment
-      display_projects: Display projects
       msg_delete: Once you proceed the project will be permanently deleted. Restoring is not possible so please be certain.
       nbr_project: Number of projects
       success_create: Project successfully created
@@ -124,7 +122,7 @@ tempo:
               beginning: Starting
               ending: Finishing
               type: Type
-              advancement: Avancement
+              advancement: Advancement
               code: Code
               status: Status
               priority: Priority
@@ -145,16 +143,16 @@ tempo:
       submit: Submit
       delete: Delete
 
-  notification.organization.team.add.completed: You have been given read access to %name%
-  notification.project.team.add.completed: You have been given read access to %name%
+  notification.organization.team.add.completed: You have been given access to %name%
+  notification.project.team.add.completed: You have been given access to %name%
 
   errors:
     internal_error: Internal error
     format_file: Invalid format type
 
   msg_success:
-    avatar_deleted: %owner% avatar has been deleted.
-    avatar_modified: %owner% avatar has been modified.
+    avatar_deleted: Avatar has been deleted.
+    avatar_modified: Avatar has been modified.
 
   profile:
     tabs:
@@ -181,25 +179,25 @@ tempo:
     title: Change my profile picture
     choose_avatar: Choose a new picture
     actual_avatar: Current profile picture
-    avatar_info: You can use a picture of %balise%100x100 pixels%balise2%. If your picture it is too large, it will be automatically resized.%balise3% Following formats are supported : PNG, JPEG ou GIF.
+    avatar_info: You can use a picture of <strong>100x100 pixels</strong>. If your picture it is too large, it will be automatically resized.%balise3% Following formats are supported : PNG, JPEG ou GIF.
     admin_change: Change the profile picture of
     current_change: Your are modifying the picture of
-    current_gravart: This avatar from Gravatar.
+    current_gravart: This avatar comes from Gravatar.
     current_default: This avatar is the default image.
     submit: Edit Avatar
     success_delete: The avatar has been deleted.
-    success_edit: Votre avatar a bien été modifié.
+    success_edit: The avatar has been modified
     failed_internal_error: An internal error occurred, please try again.
-    failed_valid_file: Uploaded file is not a valid
+    failed_valid_file: Uploaded file is not valid
   user:
     logout: Logout
     profile: Profile
     settings: Settings
     create: Create User
     list:
-      title: 'Organization List'
+      title: 'Users List'
       filter:
-        all: All
+        all: All users
         unconfirmed: Unconfirmed accounts
         query: Search
       page_title : User list
@@ -214,5 +212,5 @@ tempo:
 
   setting:
     form:
-      right_create_orga: Role has right create an organization
-      buisness_day: Buisness Day
+      right_create_orga: Role entitled to create organizations
+      buisness_day: Business Day
