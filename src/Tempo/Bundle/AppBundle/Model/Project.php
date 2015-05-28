@@ -116,11 +116,6 @@ class Project implements ProjectInterface
     /**
      * @var integer
      */
-    protected $advancement;
-
-    /**
-     * @var integer
-     */
     protected $priority;
 
     /**
@@ -156,7 +151,6 @@ class Project implements ProjectInterface
     public function __construct()
     {
         $this->active = true;
-        $this->advancement = 0;
         $this->timesheets = new ArrayCollection();
         $this->children = new ArrayCollection();
         $this->members = new ArrayCollection();

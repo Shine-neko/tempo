@@ -43,9 +43,6 @@
         <field name="beginning" type="date" nullable="true" />
         <field name="ending" type="date" nullable="true" />
         <field name="status" column="status" type="integer" nullable="true" />
-
-        <field name="advancement" column="advancement" type="integer" nullable="true"  />
-
         <field name="budget_estimated" column="budget_estimated" type="decimal" nullable="true" />
 
         <one-to-many field="children" target-entity="Project" mapped-by="parent" />
