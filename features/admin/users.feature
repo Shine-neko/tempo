@@ -32,5 +32,5 @@ Feature: Users management
 
   Scenario: Deleting user
     Given I am on "/admin/users/16/edit"
-    When I press "delete"
+    When I press "Delete"
     And I should see "User has been successfully deleted."

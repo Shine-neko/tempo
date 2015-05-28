@@ -1,84 +1,130 @@
 tempo:
   header:
-    search: Search
+    search: Rechercher
   menu:
-    project: Projects
+    project: Projets
     home: Accueil
     timesheet: Timesheets
-    admin: Admin
+
   form:
-    show: 'Vue'
-    create: 'Crée'
-    delete: 'Supprimer'
-    edit: 'Editer'
-    search: "Recherche"
-    cancel: "Annuler@"
-    save: 'Sauvegard'
-    save_changes: 'Sauvegarde les changements'
-    submit: Valider
+      show: 'Vue'
+      create: 'Créer'
+      delete: 'Supprimer'
+      edit: 'Modifier'
+      search: "Rechercher"
+      cancel: "Annuler"
+      reset: "Réinitialiser"
+      save: 'Sauvegarder'
+      update: 'Mettre à jour'
+      save_changes: 'Sauvegarder les changements'
+      submit: Envoyer
+      manage: Administrer
+
+  admin:
+      dashboard: Admin
+      menu:
+          general: Général
+          settings: Paramètres
+          project: Projets
+          organization: Organisations
+          user: Utilisateurs
+
+  security:
+    login:
+      username: Nom d'utilisateur
+      password: Mot de passe
+      remember_me: Se souvenir de moi
+      submit: Login
+    resetting:
+      request: Vous avez oublié votre mot de passe ?
+      old_password: Mot de passe actuel
+      request_non_expired: Le mot de passe pour cet utilisateur a déjà été demandé dans les dernières 24 heures.
+      request_success: Un email contenant les instructions pour retrouver votre mot de pass a été envoyé.
+      username: Nom d'utilisateur ou email
+      password: Nouveau mot de passe
+      password_again: Vérification
+      already_login:  Vous avez déjà votre nom d'utilisateur et votre mot de passe ? Connectez-vous
   activity:
     dashboard:
-      title: Flux d'activité
-      form.status.label: Partagez quelque chose. Utilisez @ pour mentionner des personnes.
+        title: Flux d'activité
+        activity_not_found: Aucune d'activité trouvée
+        sort:
+          today: Aujourd'hui
+          week: 7 derniers jours
+          month: 30 derniers jours
+
     events:
-      user.update: updates its own information
-      comment.commented: Commented
-      project.created: create project
-      project.update: update project
-      project.joined: joined project at
+        user.update: a mis à jour ses informations
+        commented: a commenté
+        project.created: Créer un projet
+        project.update: Mettre à jour le projet %name%
+        project.joined : a rejoint le projet %name%
 
-  select_organization:
-      submit: Valider
-
+  notification:
+    see_all: Voir toutes les notifications
   organization:
-      add:  Ajouter un organization
-      edit: Modifier un organization
-      team: Team
+      not_found_orga: Aucune organisation trouvée
+      not_found_project: Aucun projet trouvé pour cette organisation
+      add:  Nouvelle organisation
+      edit: Modifier l'organisation
+      team: Membres
+      form:
+        id: ID
+        name: Nom
+        contact: Contact
+        users: Utilisateurs
       list:
-        title: 'Liste des organizations'
-      select_first: Selectionner une organisation
-      select_second: pour afficher ses projets
-      not_found: Aucune organization n'a été trouvé
-      add:  Ajouter une organization
-      edit: Modifier une organization
-      team: Team
-      list:
-        title: 'Liste des organizations'
-      msg_delete: Une fois que vous supprimez une organisation, il n'y a pas de retour en arrière. Il sera supprimé pour toujours.
-      title_delete: Supprimer projet
-      email_contact : Adresse électronique de contact
+        title: Liste des organisations
+        filter:
+          query: Rechercher
+      msg_delete: Si vous continuez l'organisation sera supprimée de manière définitive. ill be permanently deleted. Il n'est pas possible de revenir en arrière.
+      title_delete: Supprimer le projet
+      email_contact: E-mail contact
       web_site: Site web
-      undefined_info: non défini
-      success_create: Organization ajouté avec succès
-      success_modify: Organization modifié avec succès
-      success_delete: Organisation supprimé avec succès
-      failed_delete: Impossible de supprimer l'organization
+      undefined_info: Indéfini
+      success_create: L'organisation a été créée
+      success_updated: Organisation modifiée avec succès
+      success_delete: Organisation supprimée avec succès
+      failed_delete: Impossible de supprimer l'organisation
 
   project:
-      title_add: new Project
-      label_list: Liste des projets
+      title_add: Nouveau projet
+      list:
+       title: Liste des projets
+      filter:
+          query: Rechercher
       add: Ajouter un nouveau projet
-      edit: Modifier un projet
-      title_subprojects: Sous project
-      add_membre: Affecter un membre
-      display_projects: Afficher les projets
-      msg_delete: Une fois que vous supprimez un project, il n'y a pas de retour en arrière. Il sera supprimé pour toujours.
+      edit: Modificer un projet
+      title_subprojects: Sous-projet
+      add_membre: Affectation
+      msg_delete: Si vous continuez le projet sera supprimé de manière définitive. Il n'est pas possible de revenir en arrière.
       nbr_project: Nombre de projets
+      success_create: Projet créé avec succès
+      success_updated: Projet modifié avec succès
+      success_delete: Projet supprimé avec succès
       open: Ouvert
       close: Fermé
-
+      activity: Activité
+      sub_project: Sous-projet de
+      settings: Paramètres
+      services:
+          title: Services
+          description: Les services vous autorisent à utiliser Tempo avec d'autres applications
       form:
+          version: Version
           label:
+              id: ID
+              organization: Organisation
               name: Nom
               isactive: Actif
-              created: Crée le
-              updated: Mise à jour
+              created: Créé
+              updated: Mis à jour
               beginning: Commence
-              ending: Fini
+              ending: Se termine
               type: Type
               advancements: Avancement
               code: Code
-              status: Status
+              status: Statut
               priority: Priorité
               estimated: Budget estimé
 
@@ -87,6 +133,7 @@ tempo:
      last_week: Semaine précédente
      next_week: Semaine suivante
      week: Semaine
+     success_add: Rapport d'activité créé avec succès
 
   team:
     success_add: L'utilisateur a bien été ajouté à l'équipe
@@ -96,13 +143,16 @@ tempo:
       submit: Valider
       delete: Supprimer
 
+  notification.organization.team.add.completed: L'accès à %name% vous a été donné
+  notification.project.team.add.completed: L'accès à %name% vous a été donné
+
   errors:
     internal_error: Une erreur interne est survenue
     format_file: Le format de votre fichier est invalide
 
   msg_success:
-    avatar_deleted: %owner% avatar a été supprimé.
-    avatar_modified: %owner% avatar a été modifié.
+    avatar_deleted: L'avatar a été supprimé.
+    avatar_modified: L'avatar a été modifié.
 
   profile:
     tabs:
@@ -111,30 +161,56 @@ tempo:
       email: Adresse email
       password: Mot de passe
       settings: Préférences
-
+      notifications: Notifications
+    form:
+      id: ID
+      username: Nom d'utilisateur
+      email: E-Mail
+      registration_date: Date d'inscription
+      enabled: Autorisé
+      firstName: Prénom
+      lastName: Nom
+      password: Mot de passe
+      skype: Skype
+      linkedin: Linkedin
+      viadeo: Viadeo
+      twitter: Twitter
   avatar:
-    title: Modifier mon avatar
-    title_second: Changez la façon dont les autres utilisateurs vous voient
-    choose_avatar: Choisir un nouvel avatar
+    title: Changer d'avatar
+    choose_avatar: Choisir une nouvelle image
     actual_avatar: Avatar actuel
-    avatar_info: Vous pouvez envoyer une image mesurant jusqu'à <strong>100x100 pixels</strong> aux formats PNG, JPEG ou GIF.%balise3%Si celle-ci est trop grande elle sera automatiquement redimensionnée à la taille maximale autorisée.
-    admin_change: Modifier l'avatar de
-    current_change: Vous êtes entrain de modifier l'avatar de
-    current_gravart: Cet avatar provient de Gravatar.
-    current_default: Cet avatar est l’image par défaut.
+    avatar_info: Vous pouvez utiliser une image d'une dimension de <strong>100x100 pixels</strong>. Si votre image est trop large, elle sera automatiquement redimensionnée.%balise3% Les formats suivants sont supportés : PNG, JPEG ou GIF.
+    admin_change: Changer l'avatar de
+    current_change: Vous êtes en train de modifier l'image de
+    current_gravart: Cet avatar vient de Gravatar.
+    current_default: Cet avatar est l'image par défaut.
     submit: Modifier l'avatar
-    success_delete: L'avatar a bien été supprimé.
-    success_edit: Your avatar has been changed.
+    success_delete: L'avatar a été supprimé.
+    success_edit: L'avatar a été modifié
     failed_internal_error: Une erreur interne est survenue, veuillez réessayer.
-
-  see_all_notification: Voir toutes les modifications
+    failed_valid_file: Le fichier téléchargé est invalide.
+  user:
+    logout: Déconnexion
+    profile: Profil
+    settings: Paramètres
+    create: Créer un utilisateur
+    list:
+      title: Liste des utilisateurs
+      filter:
+        all: Tous les utilisateurs
+        unconfirmed: Comptes non confirmés
+        query: Rechercher
+      page_title : Liste des utilisateurs
+    create.page_title: Créer un utilisateur
+    update.page_title: Modifier l'utilisateur
+    password_change_success: Mot de passe modifié avec succès.
 
   room:
     form:
       name: Nom
-      enableChat: Active le chat
+      enableChat: Activer le chat
 
   setting:
     form:
-      right_create_orga:
+      right_create_orga: Rôle autorisé à créer des organisations
       buisness_day: Jour ouvré
