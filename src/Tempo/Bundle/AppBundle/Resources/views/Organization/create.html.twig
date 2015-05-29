@@ -11,7 +11,7 @@
 
 {% block container %}
     <div class="container">
-        <h1 id="page-title">Create an organization</h1>
+        <h1 id="page-title">{{ 'tempo.organization.create'|trans }}</h1>
         <div class="row">
             <div class="col-md-8">
                 <div class="panel panel-default">
@@ -30,20 +30,20 @@
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3>Organizations</h3>
+                        <h3>{{ 'tempo.organization.title'|trans }}</h3>
                     </div>
                     <div class="panel-body">
 
                         <ul class="features-list no-list">
-                            <li><span class="glyphicon glyphicon-ok"></span> Project management</li>
-                            <li><span class="glyphicon glyphicon-ok"></span> Fine-grained permissions</li>
-                            <li><span class="glyphicon glyphicon-ok"></span> Focused dashboard</li>
+                            <li><span class="glyphicon glyphicon-ok"></span>{{ 'tempo.organization.project_management'|trans }}</li>
+                            <li><span class="glyphicon glyphicon-ok"></span>{{ 'tempo.organization.permissions'|trans }}</li>
+                            <li><span class="glyphicon glyphicon-ok"></span>{{ 'tempo.organization.focused_dashboard'|trans }}</li>
                         </ul>
 
                         <hr>
 
-                        <h3>Managed by admins</h3>
-                        <p>On the next screen you’ll be able to grant administrative access to other users. These people will be able to manage every aspect of the organization (project, teams, etc).</p>
+                        <h3>{{ 'tempo.organization.managed_admins'|trans }}</h3>
+                        <p>{{ 'tempo.organization.managed_admins_msg'|trans }}</p>
                     </div>
                 </div>
             </div>

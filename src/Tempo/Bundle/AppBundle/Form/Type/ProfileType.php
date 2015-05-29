@@ -20,13 +20,28 @@ class ProfileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email')
-            ->add('firstName')
-            ->add('lastName')
-            ->add('company')
-            ->add('jobTitle')
-            ->add('phone')
-            ->add('mobilePhone')
+            ->add('email', null, array(
+                'label' => 'tempo.profile.form.email',
+                'required' => true
+            ))
+            ->add('firstName', null, array(
+                'label' => 'tempo.profile.form.firstName'
+            ))
+            ->add('lastName', null, array(
+                'label' => 'tempo.profile.form.lastName'
+            ))
+            ->add('company', null, array(
+                'label' => 'tempo.profile.form.company'
+            ))
+            ->add('jobTitle', null, array(
+                'label' => 'tempo.profile.form.job_title'
+            ))
+            ->add('phone', null, array(
+                'label' => 'tempo.profile.form.phone'
+            ))
+            ->add('mobilePhone', null, array(
+                'label' => 'tempo.profile.form.mobile_phone'
+            ))
         ;
     }
 

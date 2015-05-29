@@ -17,9 +17,9 @@
             <td>{{ children.code }}</td>
             <td>
                 {% if children.active %}
-                    <span class="label label-default">Inactive</span>
+                    <span class="label label-default">{{ 'tempo.project.form.label.not_active'|trans }}</span>
                 {% else %}
-                    <span class="label label-success">Active</span>
+                    <span class="label label-success">{{ 'tempo.project.form.label.isactive'|trans }}</span>
                 {% endif %}
             </td>
             <td><a href="{{ path('project_show', { 'slug' : children.slug } ) }}">{{ children.name }}</a> </td>
@@ -31,7 +31,3 @@
     {% endfor %}
     </tbody>
 </table>
-
-<div id="delete_project" style="display: none">
-    {{ 'tempo.project.msg_delete'|trans([], 'TempoProject') }}
-</div>

@@ -6,7 +6,7 @@
     {% block breadcrumb %}
         <ol id="breadcrumb" class="clearfix">
             <li class="first"> <a href="{{ path('homepage') }}">{{ 'tempo.menu.home'|trans }}</a> </li>
-            <li> <a href="{{ path('user_profile_edit') }}">Profile</a> </li>
+            <li> <a href="{{ path('user_profile_edit') }}">{{ 'tempo.profile.title'|trans }}</a> </li>
             <li class="last"> {{ profile.username }} </li>
         </ol>
     {% endblock breadcrumb %}
@@ -23,7 +23,7 @@
         </div>
         <div class="col-md-8 app-panel">
             <ul class="nav nav-tabs" id="myTab">
-                <li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
+                <li class="active"><a href="#activity" data-toggle="tab">{{ 'tempo.profile.activity'|trans }}</a></li>
             </ul>
 
             <div class="tab-content">

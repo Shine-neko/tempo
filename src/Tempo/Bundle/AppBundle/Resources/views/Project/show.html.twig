@@ -1,4 +1,4 @@
-    {% extends "TempoAppBundle::layout.html.twig" %}
+{% extends "TempoAppBundle::layout.html.twig" %}
 {% block bodyClass %}project show{% endblock %}
 {% block javascripts %}
     {{ parent() }}
@@ -44,14 +44,14 @@
             <a class="btn btn-xs btn-primary" href="{{ path('project_settings', { 'slug': project.fullSlug }) }}"> <span class="glyphicon glyphicon-cog"></span> {{ 'tempo.project.settings'|trans }} </a>
             {% endif %}
             {% if is_granted('DELETE', project) %}
-            <a class="btn btn-xs btn-danger" data-toggle="modal" data-target="#" data-title="Delete project" href="#delete_project"> <span class="glyphicon glyphicon-trash"></span> Delete</a>
+                <a class="btn btn-xs btn-danger" data-toggle="modal" data-target="#" data-title={{ 'tempo.project.title_delete'|trans }} href="#delete_project"> <span class="glyphicon glyphicon-trash"></span> Delete</a>
             {% endif %}
         </div>
         <div class="row">
             <div class="col-md-12">
                 <ul class="nav nav-tabs" id="project-tab">
-                    <li class="active"><a href="#tab-project">Project</a></li>
-                    <li><a href="#tab-sub-project">Sub-Projects</a></li>
+                    <li class="active"><a href="#tab-project">{{ 'tempo.project.title'|trans }}</a></li>
+                    <li><a href="#tab-sub-project">{{ 'tempo.project.title_subprojects'|trans }}</a></li>
                 </ul>
 
                 <div class="tab-content">
@@ -101,4 +101,9 @@
         </div>
     </div>
 </div>
+
+<div id="delete_project" style="display: none">
+    {{ 'tempo.project.msg_delete'|trans }}
+</div>
+    
 {% endblock %}

@@ -6,8 +6,8 @@
     {% block breadcrumb %}
         <ol id="breadcrumb" class="clearfix">
             <li class="first"><a href="{{ path('homepage') }}">{{ 'tempo.menu.home'|trans }}</a></li>
-            <li><a href="{{ path('user_profile_edit') }}">Profile</a></li>
-            <li class="last"> Edit profile</li>
+            <li><a href="{{ path('user_profile_edit') }}">{{ 'tempo.profile.title'|trans }}</a></li>
+            <li class="last">{{ 'tempo.profile.tabs.edit'|trans }}</li>
         </ol>
     {% endblock breadcrumb %}
 
@@ -15,7 +15,7 @@
 
         {% include "TempoAppBundle:Profile:_tabs.html.twig" %}
         <div class="page-header">
-            <h1>Edit profile</h1>
+            <h1>{{ 'tempo.profile.tabs.edit'|trans }}</h1>
         </div>
         <div class="col-md-8 app-panel">
             <form action="{{ path('user_profile_update') }}" method="POST" class="user_profile_edit">

@@ -16,8 +16,8 @@
     {% block breadcrumb %}
         <ol id="breadcrumb" class="clearfix">
             <li class="first"> <a href="{{ path('homepage') }}">{{ 'tempo.menu.home'|trans  }}</a> </li>
-            <li> <a href="{{ path('project_dashboard') }}">Project</a> </li>
-            <li class="last"> new </li>
+            <li> <a href="{{ path('project_dashboard') }}">{{ 'tempo.project.title'|trans }}</a> </li>
+            <li class="last">{{ 'tempo.project.title_add'|trans }}</li>
         </ol>
     {% endblock breadcrumb %}
 
