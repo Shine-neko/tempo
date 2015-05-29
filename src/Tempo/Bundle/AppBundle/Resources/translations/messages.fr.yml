@@ -238,7 +238,7 @@ tempo:
     title: Changer d'avatar
     choose_avatar: Choisir une nouvelle image
     actual_avatar: Avatar actuel
-    avatar_info: Vous pouvez utiliser une image d'une dimension de <strong>100x100 pixels</strong>. Si votre image est trop large, elle sera automatiquement redimensionnée.%balise3% Les formats suivants sont supportés : PNG, JPEG ou GIF.
+    avatar_info: "Vous pouvez utiliser une image d'une dimension de <strong>100x100 pixels</strong>. Si votre image est trop large, elle sera automatiquement redimensionnée. Les formats suivants sont supportés : PNG, JPEG ou GIF."
     admin_change: Changer l'avatar de
     current_change: Vous êtes en train de modifier l'image de
     current_gravart: Cet avatar vient de Gravatar.

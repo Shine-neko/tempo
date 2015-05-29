@@ -36,8 +36,8 @@ tempo:
 
   security:
     login:
-      username: "Username"
-      password: "Password"
+      username: Username
+      password: Password
       remember_me: Remember me
       submit: Login
     resetting:
@@ -237,12 +237,12 @@ tempo:
     title: Change my profile picture
     choose_avatar: Choose a new picture
     actual_avatar: Current profile picture
-    avatar_info: You can use a picture of <strong>100x100 pixels</strong>. If your picture it is too large, it will be automatically resized.%balise3% Following formats are supported : PNG, JPEG ou GIF.
+    avatar_info: "You can use a picture of <strong>100x100 pixels</strong>. If your picture it is too large, it will be automatically resized. Following formats are supported : PNG, JPEG ou GIF."
     admin_change: Change the profile picture of
     current_change: Your are modifying the picture of
     current_gravart: This avatar comes from Gravatar.
     current_default: This avatar is the default image.
-    submit: Edit Avatar
+    submit: Edit avatar
     success_delete: The avatar has been deleted.
     success_edit: The avatar has been modified
     failed_internal_error: An internal error occurred, please try again.
@@ -274,7 +274,7 @@ tempo:
       right_create_orga: Role entitled to create organizations
       buisness_day: Business Day
       
-   layout:
+  layout:
      toggle_navigation: Toggle navigation
      powered_by: Powered by
      write: Write
