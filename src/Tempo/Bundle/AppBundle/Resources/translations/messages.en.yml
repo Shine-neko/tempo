@@ -1,10 +1,13 @@
 tempo:
+ 
   header:
     search: Search
+ 
   menu:
     project: Projects
     home: Home
     timesheet: Timesheets
+    admin: Admin
 
   form:
       show: 'Show'
@@ -22,6 +25,8 @@ tempo:
 
   admin:
       dashboard: Admin
+      area: Admin area
+      ability_msg: You can manage projects, users and other Tempo data from here.
       menu:
           general: General
           settings: Settings
@@ -31,8 +36,8 @@ tempo:
 
   security:
     login:
-      username: "Username"
-      password: "Password"
+      username: Username
+      password: Password
       remember_me: Remember me
       submit: Login
     resetting:
@@ -44,15 +49,16 @@ tempo:
       password: "New password"
       password_again: "Verification"
       already_login:  Already have login and password? Sign in
+      
   activity:
       dashboard:
         title: Activity Feed
         activity_not_found: No activity found
+        sort_by: Sort by
         sort:
           today: Today
           week: Last 7 days
           month: Last 30 days
-
       events:
         user.update: updates its own information
         commented: Commented on
@@ -61,8 +67,18 @@ tempo:
         project.joined : joined project %name%
 
   notification:
+    title: Notifications
     see_all: See all notification
+    organization.team.add.completed: You have been given access to %name%
+    project.team.add.completed: You have been given access to %name%
+    unread: Unread
+    all: All notifications
+    mark_everything_as_read: Mark everything as read
+    no_notification: No notification
+
   organization:
+      title: Organization
+      create: Create an organization
       not_found_orga: No organization has been found
       not_found_project: No projects found for this organization
       add:  New organization
@@ -78,7 +94,7 @@ tempo:
         filter:
           query: Search
       msg_delete: If you proceed the organization will be permanently deleted. Restoring is not possible so please be certain.
-      title_delete: Delete project
+      title_delete: Delete organization
       email_contact: E-mail contact
       web_site: Website
       undefined_info: Undefined
@@ -86,18 +102,30 @@ tempo:
       success_updated: Organization successfully edited
       success_delete: Organization successfully removed
       failed_delete: Unable to delete organization
+      project_management: Project management
+      permissions: Fine-grained permissions
+      focused_dashboard: Focused on the dashboard
+      managed_admins: Managed by admins
+      managed_admins_msg: On the next screen you’ll be able to grant administrative access to other users. These people will be able to manage every aspect of the organization (project, teams, etc).
 
   project:
+      title: Project
       title_add: New project
+      revisions: Revisions
       list:
        title: Project list
       filter:
           query: search
+      attributes: Project attributes
+      service_hooks: Service hooks
+      hook: Web hooks
+      publish: Publish
       add: Add new project
       edit: Edit project
       title_subprojects: Sub project
       add_membre: Assignment
       msg_delete: Once you proceed the project will be permanently deleted. Restoring is not possible so please be certain.
+      title_delete: Delete project
       nbr_project: Number of projects
       success_create: Project successfully created
       success_updated: Project successfully edited
@@ -107,6 +135,8 @@ tempo:
       activity: Activity
       sub_project: Sub project of
       settings: Settings
+      service: Service
+      description: Description
       services:
           title: Project services
           description: Project services allow you to integrate Tempo with other applications
@@ -117,23 +147,38 @@ tempo:
               organization: Organization
               name: Name
               isactive: Active
+              not_active: Inactive
               created: Created
               updated: Updated
               beginning: Starting
               ending: Finishing
               type: Type
-              advancement: Advancement
               code: Code
               status: Status
               priority: Priority
               estimated: Estimated budget
 
   timesheets:
+      analyse: Analyse worklog
       page_title: Time Management
       last_week: Last week
       next_week: Next week
       week: Week
       success_add: activity report successfully created
+      assign: Assign
+      date: Date
+      time_spent: Time spent
+      hourly_rate: Hourly rate
+      details: Details of work
+      actions: Actions
+      user: User
+      export:
+        id: ID
+        date: Date
+        status: Status
+        action: Action
+        period: Period
+        cost: Cost
 
   team:
      success_add: The user has been added
@@ -142,9 +187,6 @@ tempo:
       edit: Edit
       submit: Submit
       delete: Delete
-
-  notification.organization.team.add.completed: You have been given access to %name%
-  notification.project.team.add.completed: You have been given access to %name%
 
   errors:
     internal_error: Internal error
@@ -155,6 +197,10 @@ tempo:
     avatar_modified: Avatar has been modified.
 
   profile:
+    title: Profile
+    change_password: Changer de mot de passe
+    password_change_success: Mot de passe modifié avec succès.
+    activity: Activity
     tabs:
       profil: Profile
       avatar: Profile picture
@@ -162,6 +208,10 @@ tempo:
       password: Password
       settings: Settings
       notifications: Notifications
+      edit: Edit profile
+    avatar:
+      title: Avatar
+      
     form:
       id: ID
       username: Username
@@ -175,36 +225,45 @@ tempo:
       linkedin: Linkedin
       viadeo: Viadeo
       twitter: Twitter
+      lang: Language
+      token: Token
+      generate_token: Generate token
+      job_title: Job title
+      phone: Phone
+      mobile_phone: Mobile phone
+      company: Company
+      
   avatar:
     title: Change my profile picture
     choose_avatar: Choose a new picture
     actual_avatar: Current profile picture
-    avatar_info: You can use a picture of <strong>100x100 pixels</strong>. If your picture it is too large, it will be automatically resized.%balise3% Following formats are supported : PNG, JPEG ou GIF.
+    avatar_info: "You can use a picture of <strong>100x100 pixels</strong>. If your picture it is too large, it will be automatically resized. Following formats are supported : PNG, JPEG ou GIF."
     admin_change: Change the profile picture of
     current_change: Your are modifying the picture of
     current_gravart: This avatar comes from Gravatar.
     current_default: This avatar is the default image.
-    submit: Edit Avatar
+    submit: Edit avatar
     success_delete: The avatar has been deleted.
     success_edit: The avatar has been modified
     failed_internal_error: An internal error occurred, please try again.
     failed_valid_file: Uploaded file is not valid
+    
   user:
+    user: User
     logout: Logout
     profile: Profile
     settings: Settings
-    create: Create User
+    create: Create user
     list:
-      title: 'Users List'
+      title: Users list
       filter:
         all: All users
         unconfirmed: Unconfirmed accounts
         query: Search
       page_title : User list
-    create.page_title: Create User
-    update.page_title: Update User
-    password_change_success: Password changed successfully.
-
+    create.page_title: Create user
+    update.page_title: Update user
+    
   room:
     form:
       name: Name
@@ -214,3 +273,8 @@ tempo:
     form:
       right_create_orga: Role entitled to create organizations
       buisness_day: Business Day
+      
+  layout:
+     toggle_navigation: Toggle navigation
+     powered_by: Powered by
+     write: Write

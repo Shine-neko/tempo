@@ -14,17 +14,17 @@
         </div>
         <div class="admin-dashboard col-md-9">
             <h3 class="page-title">
-                Admin area
+                {{ 'tempo.admin.area'|trans }}
             </h3>
             <p class="light">
-                You can manage projects, users and other Tempo data from here.
+                {{ 'tempo.admin.ability_msg'|trans }}
             </p>
 
             <div class="fluid-panel">
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="app-panel">
-                            <h4>Organization</h4>
+                            <h4>{{ 'tempo.admin.menu.organization'|trans }}</h4>
                             <div class="data">
                                 <a href="{{ path('admin_organization_index') }}"><h1>{{ nbOrganizations }}</h1>
                                 </a><hr>

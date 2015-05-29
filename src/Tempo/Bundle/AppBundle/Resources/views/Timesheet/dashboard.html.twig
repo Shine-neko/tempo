@@ -20,7 +20,7 @@
 {% block container %}
     <ol id="breadcrumb" class="clearfix">
         <li class="first"> <a href="{{ path('homepage') }}">{{ 'tempo.menu.home'|trans }}</a> </li>
-        <li><a href="{{ path('timesheet') }}">{{ 'tempo.timesheets.page_title' }}</a></li>
+        <li><a href="{{ path('timesheet') }}">{{ 'tempo.timesheets.page_title'|trans }}</a></li>
         <li>Dashboard</li>
     </ol>
 <div class="app-panel">
@@ -76,7 +76,7 @@
             </colgroup>
             <thead>
             <tr class="header">
-                <th class="first">Projets</th>
+                <th class="first">{{ 'tempo.admin.menu.project'|trans }}</th>
                 {% for day in week %}
                     <th>{{ day }}</th>
                 {% endfor %}

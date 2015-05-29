@@ -1,10 +1,13 @@
 tempo:
+  
   header:
     search: Rechercher
+ 
   menu:
     project: Projets
     home: Accueil
     timesheet: Timesheets
+    admin: Admin
 
   form:
       show: 'Vue'
@@ -22,6 +25,8 @@ tempo:
 
   admin:
       dashboard: Admin
+      area: Espace administrateur
+      ability_msg: Vous pouvez gérer des projets, des utilisateurs et d'autres données Tempo à partir d'ici.
       menu:
           general: Général
           settings: Paramètres
@@ -44,10 +49,12 @@ tempo:
       password: Nouveau mot de passe
       password_again: Vérification
       already_login:  Vous avez déjà votre nom d'utilisateur et votre mot de passe ? Connectez-vous
+  
   activity:
     dashboard:
         title: Flux d'activité
         activity_not_found: Aucune d'activité trouvée
+        sort_by: Trier par
         sort:
           today: Aujourd'hui
           week: 7 derniers jours
@@ -61,8 +68,18 @@ tempo:
         project.joined : a rejoint le projet %name%
 
   notification:
+    title: Notifications
     see_all: Voir toutes les notifications
+    organization.team.add.completed: L'accès à %name% vous a été donné
+    project.team.add.completed: L'accès à %name% vous a été donné
+    unread: Non lues
+    all: Toutes les notifications
+    mark_everything_as_read: Tout marquer comme lu
+    no_notification: Aucune notification
+
   organization:
+      title: Organisation
+      create: Créer une organisation
       not_found_orga: Aucune organisation trouvée
       not_found_project: Aucun projet trouvé pour cette organisation
       add:  Nouvelle organisation
@@ -78,7 +95,7 @@ tempo:
         filter:
           query: Rechercher
       msg_delete: Si vous continuez l'organisation sera supprimée de manière définitive. ill be permanently deleted. Il n'est pas possible de revenir en arrière.
-      title_delete: Supprimer le projet
+      title_delete: Supprimer l'organisation
       email_contact: E-mail contact
       web_site: Site web
       undefined_info: Indéfini
@@ -86,18 +103,30 @@ tempo:
       success_updated: Organisation modifiée avec succès
       success_delete: Organisation supprimée avec succès
       failed_delete: Impossible de supprimer l'organisation
+      project_management: Gestion de projet
+      permissions: Permissions affinées
+      focused_dashboard: Focalisé sur le dashboard
+      managed_admins: Géré par les administrateurs
+      managed_admins_msg: A la page suivante vous serez en mesure d'accorder un accès administrateur à d'autres utilisateurs. Ces personnes pourront gérer tous les aspects de l'organization (projet, équipe, etc).
 
   project:
+      title: Projet
       title_add: Nouveau projet
+      revisions: Révisions
       list:
        title: Liste des projets
       filter:
           query: Rechercher
+      attributes: Attributs du projet
+      service_hooks: Liens
+      hook: Crochets
+      publish: Publier
       add: Ajouter un nouveau projet
       edit: Modificer un projet
       title_subprojects: Sous-projet
       add_membre: Affectation
       msg_delete: Si vous continuez le projet sera supprimé de manière définitive. Il n'est pas possible de revenir en arrière.
+      title_delete: Supprimer le projet
       nbr_project: Nombre de projets
       success_create: Projet créé avec succès
       success_updated: Projet modifié avec succès
@@ -107,6 +136,8 @@ tempo:
       activity: Activité
       sub_project: Sous-projet de
       settings: Paramètres
+      service: Service
+      description: Description
       services:
           title: Services
           description: Les services vous autorisent à utiliser Tempo avec d'autres applications
@@ -117,23 +148,38 @@ tempo:
               organization: Organisation
               name: Nom
               isactive: Actif
+              not_active: Inactif
               created: Créé
               updated: Mis à jour
               beginning: Commence
               ending: Se termine
               type: Type
-              advancements: Avancement
               code: Code
               status: Statut
               priority: Priorité
               estimated: Budget estimé
 
   timesheets:
+     analyse: Analyse du flux d'activité
      page_title: Gestion du temps
      last_week: Semaine précédente
      next_week: Semaine suivante
      week: Semaine
      success_add: Rapport d'activité créé avec succès
+     assign: Assigner
+     date: Date
+     time_spent: Temps passé
+     hourly_rate: Taux horaire
+     details: Détail des tâches
+     actions: Actions
+     user: Utilisateur
+     export:
+        id: ID
+        date: Date
+        status: Etat
+        action: Action
+        period: Durée
+        cost: Coût
 
   team:
     success_add: L'utilisateur a bien été ajouté à l'équipe
@@ -142,9 +188,6 @@ tempo:
       edit: Editer
       submit: Valider
       delete: Supprimer
-
-  notification.organization.team.add.completed: L'accès à %name% vous a été donné
-  notification.project.team.add.completed: L'accès à %name% vous a été donné
 
   errors:
     internal_error: Une erreur interne est survenue
@@ -155,6 +198,10 @@ tempo:
     avatar_modified: L'avatar a été modifié.
 
   profile:
+    title: Profil
+    change_password: Changer de mot de passe
+    password_change_success: Mot de passe modifié avec succès.
+    activity: Activité
     tabs:
       profil: Profil
       avatar: Avatar
@@ -162,6 +209,10 @@ tempo:
       password: Mot de passe
       settings: Préférences
       notifications: Notifications
+      edit: Modifier le profil
+    avatar:
+      title: Avatar
+      
     form:
       id: ID
       username: Nom d'utilisateur
@@ -175,11 +226,19 @@ tempo:
       linkedin: Linkedin
       viadeo: Viadeo
       twitter: Twitter
+      lang: Langue
+      token: Jeton
+      company: Compagnie
+      job_title: Poste
+      phone: Téléphone
+      mobile_phone: Téléphone mobile
+      generate_token: Générer le jeton
+      
   avatar:
     title: Changer d'avatar
     choose_avatar: Choisir une nouvelle image
     actual_avatar: Avatar actuel
-    avatar_info: Vous pouvez utiliser une image d'une dimension de <strong>100x100 pixels</strong>. Si votre image est trop large, elle sera automatiquement redimensionnée.%balise3% Les formats suivants sont supportés : PNG, JPEG ou GIF.
+    avatar_info: "Vous pouvez utiliser une image d'une dimension de <strong>100x100 pixels</strong>. Si votre image est trop large, elle sera automatiquement redimensionnée. Les formats suivants sont supportés : PNG, JPEG ou GIF."
     admin_change: Changer l'avatar de
     current_change: Vous êtes en train de modifier l'image de
     current_gravart: Cet avatar vient de Gravatar.
@@ -189,7 +248,9 @@ tempo:
     success_edit: L'avatar a été modifié
     failed_internal_error: Une erreur interne est survenue, veuillez réessayer.
     failed_valid_file: Le fichier téléchargé est invalide.
+    
   user:
+    user: Utilisateur
     logout: Déconnexion
     profile: Profil
     settings: Paramètres
@@ -203,7 +264,6 @@ tempo:
       page_title : Liste des utilisateurs
     create.page_title: Créer un utilisateur
     update.page_title: Modifier l'utilisateur
-    password_change_success: Mot de passe modifié avec succès.
 
   room:
     form:
@@ -214,3 +274,11 @@ tempo:
     form:
       right_create_orga: Rôle autorisé à créer des organisations
       buisness_day: Jour ouvré
+      
+  layout:
+    toggle_navigation: Basculer la navigation
+    powered_by: Produit par
+    write: Ecrire
+    
+
+    
