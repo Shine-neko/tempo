@@ -142,16 +142,13 @@ class ProjectController extends Controller
     public function deleteAction(Request $request, Project $project)
     {
         //check CSRF token
-        if ($this->tokenIsValid('delete-organization', $request->get('token'))) {
+        $this->tokenIsValid('delete-project', $request->get('token'));
+        $project = $this->getProject($project, 'DELETE');
 
-            $project = $this->getProject($project, 'DELETE');
+        $this->get('tempo.domain_manager')->delete($project);
+        $this->addFlash('success', 'project.success_delete');
 
-            $this->get('tempo.domain_manager')->delete($project);
-
-            $this->addFlash('success', 'project.success_delete');
-
-            return $this->redirectToRoute('project_dashboard');
-        }
+        return $this->redirectToRoute('project_dashboard');
     }
 
     /**

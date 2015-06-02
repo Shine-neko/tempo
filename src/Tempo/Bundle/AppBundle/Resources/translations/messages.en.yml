@@ -4,6 +4,7 @@ tempo:
     search: Search
  
   menu:
+    organization: Projects
     project: Projects
     home: Home
     timesheet: Timesheets

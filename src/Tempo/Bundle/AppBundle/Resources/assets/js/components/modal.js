@@ -2,24 +2,34 @@ $(function() {
     $(document).on('click', '[data-toggle="modal"]', function(e) {
         e.preventDefault();
 
+        var btn = $(this);
+        var url = btn.attr('href');
+        var title = btn.data('title');
+        var role = btn.attr('role');
+        var data_target = btn.data('target');
+        var modal =  $('#myModal').clone();
+
         $('.navbar-brand').html('<div class="loader"><img src="/bundles/tempoapp/images/loading-bubbles.svg" /></div>');
 
-        var btn = $(this),
-            url = btn.attr('href'),
-            title = btn.data('title'),
-            role = btn.attr('role'),
-            redirect = btn.data('redirect'),
-            data_target = 'modal'+parseInt(Math.random()*1000),
-            modal =  $('#myModal').clone();
-
-        modal.attr('id', data_target);
+        modal.attr('id', 'modal' + parseInt(Math.random()*1000));
         modal.find('.modal-title').html(title);
-        var modalData = '';
+
+        if (btn.hasClass('btn-danger')) {
+            modal.find('button.confirm').removeClass('btn-primary').addClass('btn-danger');
+        }
 
         if (role != 'dialog') {
             modal.find('.modal-footer button.confirm').remove();
         }
         $('#dialog').append(modal);
+
+        if (data_target != 'undefined') {
+            url = data_target;
+            modal.find('button.confirm').on('click', function(e) {
+                window.location = btn.attr('href');
+            });
+        }
+
 
         if (url.indexOf('#') === 0) {
             $(url).show().appendTo(modal.find('.modal-body'));
@@ -34,6 +44,11 @@ $(function() {
                 $('input:text:visible:first').focus();
             });
         }
+
+        modal.on('hidden.bs.modal', function (event) {
+            $('.navbar-brand').html('Tempo');
+            $(".modal-backdrop").remove();
+        });
 
         var fantomas = $(modal).find('button.fantomas');
         if(fantomas) {
