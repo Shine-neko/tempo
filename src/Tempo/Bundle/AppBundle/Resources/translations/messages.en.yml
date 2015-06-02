@@ -11,16 +11,16 @@ tempo:
     admin: Admin
 
   form:
-      show: 'Show'
-      create: 'Create'
-      delete: 'Delete'
-      edit: 'Edit'
-      search: "Search"
-      cancel: "Cancel"
-      reset: "Reset"
-      save: 'Save'
-      update: 'Update'
-      save_changes: 'Save changes'
+      show: Show
+      create: Create
+      delete: Delete
+      edit: Edit
+      search: Search
+      cancel: Cancel
+      reset: Reset
+      save: Save
+      update: Update
+      save_changes: Save changes
       submit: Send
       manage: Manage
 
@@ -47,8 +47,8 @@ tempo:
       request_non_expired: The password for this user has already been requested within the last 24 hours.
       request_success: An email with instructions on how to retrieve your password has been sent.
       username: Username or E-mail
-      password: "New password"
-      password_again: "Verification"
+      password: New password
+      password_again: Verification
       already_login:  Already have login and password? Sign in
       
   activity:
@@ -91,7 +91,7 @@ tempo:
         contact: Contact
         users: Users
       list:
-        title: 'Organization List'
+        title: Organization List
         filter:
           query: Search
       msg_delete: If you proceed the organization will be permanently deleted. Restoring is not possible so please be certain.
