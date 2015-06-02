@@ -41,7 +41,7 @@ class DateTimePickerType extends AbstractType
         $resolver->setDefaults(array(
             'widget_addon_append' => array('icon' => 'calendar'),
             'attr' => array(
-                'class' => 'datepicker'
+                'class' => 'datepicker-instance'
             )
         ));
     }
