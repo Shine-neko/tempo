@@ -123,6 +123,7 @@ tempo:
       publish: Publish
       add: Add new project
       edit: Edit project
+      delete: Delete
       title_subprojects: Sub project
       add_membre: Assignment
       msg_delete: Once you proceed the project will be permanently deleted. Restoring is not possible so please be certain.

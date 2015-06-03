@@ -37,6 +37,7 @@ class Configuration implements ConfigurationInterface
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('model')->defaultValue('Tempo\Bundle\AppBundle\Model\User')->end()
+                                ->scalarNode('repository')->defaultValue('Tempo\Bundle\AppBundle\Repository\UserRepository')->end()
                             ->end()
                         ->end()
                     ->end()
