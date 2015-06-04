@@ -163,7 +163,7 @@ tempo:
      analyse: Analyse du flux d'activité
      page_title: Gestion du temps
      last_week: Semaine précédente
-     next_week: Semaine suivante
+     next_week: Semaine suivantes
      week: Semaine
      success_add: Rapport d'activité créé avec succès
      assign: Assigner
@@ -182,7 +182,8 @@ tempo:
         cost: Coût
 
   team:
-    success_add: L'utilisateur a bien été ajouté à l'équipe
+    success_add: L'utilisateur a bien été ajouté à l'équipe.
+    already_exist: L'utilisateur est déjà assigné à cette ressource.
 
     buttons:
       edit: Editer

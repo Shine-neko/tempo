@@ -183,7 +183,8 @@ tempo:
         cost: Cost
 
   team:
-     success_add: The user has been added
+     success_add: The user was successfully added to the team.
+     already_exist: This user has already been assigned to this resource.
 
   buttons:
       edit: Edit

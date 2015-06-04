@@ -40,13 +40,16 @@ class AccessController extends Controller
 
             $event = new AccessEvent($request, $resource, $user, $this->getUser());
 
-            $resource->addAccess($user);
-            $this->get('tempo.domain_manager')->create($resource);
-            $this->get('event_dispatcher')->dispatch($objectManager['event'], $event);
+            if ($resource->getMemberByUser($user) == '') {
+                $resource->addAccess($user);
 
-            $this->addFlash('success', 'tempo.team.success_add');
+                $this->get('tempo.domain_manager')->create($resource);
+                $this->get('event_dispatcher')->dispatch($objectManager['event'], $event);
 
-            return $this->redirect($routeRedirect);
+                $this->addFlash('success', 'tempo.team.success_add');
+            }
+
+            $this->addFlash('error', 'tempo.team.already_exist');
         }
 
         return $this->redirect($routeRedirect);
