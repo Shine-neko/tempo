@@ -8,14 +8,14 @@
         {% block breadcrumb %}
             <ol id="breadcrumb" class="clearfix">
                 <li class="first"> <a href="{{ path('homepage') }}">{{ 'tempo.menu.home'|trans }}</a> </li>
-                <li class="last"> <a href="{{ path('user_profile_edit') }}">{{ 'tempo.notifcation.title'|trans }}</a> </li>
+                <li class="last"> <a href="{{ path('user_profile_edit') }}">{{ 'tempo.notification.title'|trans }}</a> </li>
             </ol>
         {% endblock breadcrumb %}
     </div>
 
     {% include "TempoAppBundle:Profile:_tabs.html.twig" %}
     <div class="page-header">
-        <h1>{{ 'tempo.notifcation.title'|trans }}</h1>
+        <h1>{{ 'tempo.notification.title'|trans }}</h1>
     </div>
     <div class="col-md-10">
         <div class="app-panel ">

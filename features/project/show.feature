@@ -7,7 +7,7 @@ Feature: show a project
     When I go to "project/selenium/luciole"
 
     And I should see "Project"
-    And I should see "Sub-Projects"
+    And I should see "Sub projects"
 
   Scenario: browsing sub projects
     When I go to "project/selenium/luciole"

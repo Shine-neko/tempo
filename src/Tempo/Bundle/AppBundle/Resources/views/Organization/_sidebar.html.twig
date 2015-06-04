@@ -1,5 +1,5 @@
 <h4>{{ 'tempo.organization.team'|trans({}) }} </h4>
-<a data-toggle="modal" role="dialog" data-target="#add_membre" data-title="Adding a team member" class="add-member btn btn-xs btn-info">Add membre<span></span></a>
+<a data-toggle="modal" role="dialog" data-target="#add_membre" data-title="{{ 'tempo.organization.add_membre'|trans }}" class="add-member btn btn-xs btn-info">{{ 'tempo.organization.add_membre'|trans }}<span></span></a>
 
 <div class="list_membre">
     {% include 'TempoAppBundle:Team:list.html.twig' with {'users': organization.members, 'category' : organization, 'route_deleted' : 'organization_team_delete' } %}

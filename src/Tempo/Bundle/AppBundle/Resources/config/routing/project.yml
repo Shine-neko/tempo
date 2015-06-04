@@ -19,12 +19,6 @@ project_settings:
     requirements:
         slug: ".+"
 
-project_delete:
-    path:  /{slug}/delete
-    defaults: { _controller: TempoAppBundle:Project:delete }
-    requirements:
-        slug: ".+"
-
 project_team_add:
     path:  /{slug}/team/add
     defaults: { _controller: TempoAppBundle:Access:add }
@@ -39,7 +33,7 @@ project_team_create:
         slug: ".+"
 
 project_team_delete:
-    path:  /{slug}/team/delete
+    path:  /{slug}/team/{user}/delete
     defaults: { _controller: TempoAppBundle:Access:delete }
     requirements:
         slug: ".+"
@@ -75,6 +69,12 @@ _project_settings:
         _controller: sylius.controller.settings:updateAction
         namespace: general
         template: TempoAppBundle:Admin/Settings:general.html.twig
+
+project_delete:
+    path:  /{slug}/delete
+    defaults: { _controller: TempoAppBundle:Project:delete }
+    requirements:
+        slug: ".+"
 
 project_show:
     path:  /{slug}

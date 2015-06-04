@@ -85,6 +85,7 @@ tempo:
       add:  New organization
       edit: Edit organization
       team: Members
+      add_membre: Add member
       form:
         id: ID
         name: Name
@@ -124,7 +125,7 @@ tempo:
       add: Add new project
       edit: Edit project
       delete: Delete
-      title_subprojects: Sub project
+      title_subprojects: Sub projects
       add_membre: Assignment
       msg_delete: Once you proceed the project will be permanently deleted. Restoring is not possible so please be certain.
       title_delete: Delete project

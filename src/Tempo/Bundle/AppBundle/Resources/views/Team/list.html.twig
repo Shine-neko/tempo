@@ -5,10 +5,10 @@
         <a href="{{ path('user_profile_show', { 'slug': user.slug }) }}"> <img src="{{ user.avatar(28) }}" />
             <span>{{ user.getFullName }} </span>
         </a>
-        {% if userTeam.getUser() is defined %}
 
-        {% endif %}
-        <a href="{{ path(route_deleted, { 'slug' : category.slug, 'user' : user.id }) }}" title="Remove {{ user.getFullName }}"><span class="glyphicon glyphicon-remove"></span></a>
+        <a href="{{ path(route_deleted, { 'slug' : category.fullSlug is defined ? category.fullSlug : category.slug , 'user' : user.id }) }}" title="Remove {{ user.getFullName }}">
+            <span class="glyphicon glyphicon-remove"></span>
+        </a>
     </li>
     {% endfor %}
 </ul>
