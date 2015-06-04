@@ -23,13 +23,12 @@ $(function() {
         }
         $('#dialog').append(modal);
 
-        if (data_target != 'undefined') {
+        if (data_target !== undefined) {
             url = data_target;
             modal.find('button.confirm').on('click', function(e) {
                 window.location = btn.attr('href');
             });
         }
-
 
         if (url.indexOf('#') === 0) {
             $(url).show().appendTo(modal.find('.modal-body'));

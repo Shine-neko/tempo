@@ -184,6 +184,7 @@ tempo:
   team:
     success_add: L'utilisateur a bien été ajouté à l'équipe.
     already_exist: L'utilisateur est déjà assigné à cette ressource.
+    username: Username
 
     buttons:
       edit: Editer

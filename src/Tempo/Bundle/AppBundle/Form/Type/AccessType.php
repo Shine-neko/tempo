@@ -35,7 +35,8 @@ class AccessType extends AbstractType
     {
         $builder
             ->add('username', 'autocomplete', array(
-                'behavior' => array('name' => 'access_username', 'callback' => 'api_user_autocomplete' )
+                'behavior' => array('name' => 'access_username', 'callback' => 'api_user_autocomplete' ),
+                'label' => 'tempo.team.username'
             ))
             ->add('role', 'choice', array(
                 'choices' => array(
@@ -51,7 +52,10 @@ class AccessType extends AbstractType
             $form = $event->getForm();
 
             if ($this->resource instanceof ProjectInterface) {
-                $form->add('cost', 'text');
+                $form->add('cost', 'text', array(
+                    'required' => true,
+                    'label' => 'tempo.team.cost'
+                ));
             }
         });
     }

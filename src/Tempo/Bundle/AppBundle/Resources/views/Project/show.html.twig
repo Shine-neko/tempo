@@ -79,7 +79,7 @@
 
         <h4 class="pull-left">{{ 'tempo.organization.team'|trans }} </h4>
 
-        <a data-toggle="modal" data-target="#" data-title="Adding a team member" href="#add_membre" class="add-member pull-right btn btn-xs btn-info"> <span class="glyphicon glyphicon-plus"></span> {{ 'tempo.project.add_membre'|trans }}</a>
+        <a data-toggle="modal" href="#add_membre" data-title="Adding a team member" role="dialog" class="add-member pull-right btn btn-xs btn-info"> <span class="glyphicon glyphicon-plus"></span> {{ 'tempo.project.add_membre'|trans }}</a>
 
         <div id="add_membre" style="display: none;">
             {% include 'TempoAppBundle:Team:new.html.twig' with {'form': teamForm, 'category': project, 'route_category' : 'project_team_add' } %}
