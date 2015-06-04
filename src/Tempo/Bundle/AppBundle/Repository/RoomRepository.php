@@ -20,23 +20,19 @@ use Doctrine\ORM\Query;
 
 class RoomRepository extends EntityRepository
 {
-    public function findRoom($key, $user)
+    public function findRoom($room, $user)
     {
         $query = $this->createQueryBuilder('room')
             ->select('room')
             ->leftJoin('room.members', 'team')
             ->leftJoin('team.user', 'user')
-            ->where('user.id = :key')
-            ->where('room.deletedAt IS NULL');
-
-        if (is_integer($key)) {
-            $query->andWhere('room.id = :user');
-        } else {
-            $query->andWhere('room.slug  = :user');
-        }
-
-        $query->setParameter('user', $key)
-            ->setParameter(':key', $user)
+            ->where('user.id = :user')
+            ->andWhere('room.deletedAt IS NULL')
+            ->andWhere('room.'.(is_integer($room) ? 'id' : 'slug').' = :room')
+            ->setParameters(array(
+                'room' => $room,
+                'user' => $user,
+            ))
             ->setMaxResults(1);
 
         return $query->getQuery()->getSingleResult();

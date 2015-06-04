@@ -18,6 +18,15 @@
             <gedmo:slug unique="true" updatable="true" separator="-" fields="name" />
         </field>
 
+        <field name="createdAt" type="datetime" column="created_at">
+            <gedmo:timestampable on="create" />
+        </field>
+        <field name="updatedAt" type="datetime" column="updated_at">
+            <gedmo:timestampable on="update"/>
+        </field>
+
+        <field name="deletedAt" type="datetime" column="deleted_at" nullable="true" />
+
         <one-to-many field="messages" target-entity="Message" mapped-by="room">
             <cascade>
                 <cascade-all/>
