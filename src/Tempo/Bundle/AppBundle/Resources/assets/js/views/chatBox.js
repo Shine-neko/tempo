@@ -3,9 +3,9 @@
  */
 Tempo.View.ChatBox = Backbone.View.extend({
     tagName: 'div',
-    template: '<div id="chat-handle" class="live-box-heading"></div>' +
-        '<div id="chat-window"><div class="chat-content"> <div id="chat-messages"></div></div>' +
-        '<form name="chat-input"><a  class="js-avatar"><img height="30" src="<%= avatar %>" width="30"></a><div id="message-input-area" class="clearfix"><input name="chat[content]" required="required" id="message-input" class="form-control" value=""/><button id="message-submit" type="submit" value="" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-send"></button></div></form>',
+    template:
+        '<div id="chat-messages"></div>' +
+        '<form name="chat-input" class="form-inline"><div id="message-input-area"><input name="chat[content]" required="required" id="message-input" class="form-control" placeholder="Message" /><button id="message-submit" type="submit" value="" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-send"></button></div></form>',
     id: 'chat',
 
     events: {
@@ -32,7 +32,6 @@ Tempo.View.ChatBox = Backbone.View.extend({
      **/
     render: function() {
         this.$el.html(_.template(this.template)({
-            'avatar' : Tempo.Controller.Dashboard.user.avatar
         }));
 
         var messageList = $('#chat-messages', this.$el);
@@ -71,6 +70,7 @@ Tempo.View.ChatBox = Backbone.View.extend({
                     content: textbox.val()
                 },
                 {
+                    room: this.room,
                     wait: true,
                     success:  _.bind(this.onCreateSuccess, this)
                 }

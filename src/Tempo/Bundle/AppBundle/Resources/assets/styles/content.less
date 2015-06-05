@@ -352,6 +352,10 @@ table.table-striped tbody .actions .edit {
   border-bottom: none;
 }
 
+.home.dashboard {
+  overflow: hidden;
+}
+
 .dashboard #content {
   margin-top: 0;
 }
@@ -424,7 +428,7 @@ table.table-striped tbody .actions .edit {
 }
 
 .dashboard #connected-users {
-  top: 70px;
+  top: 55px;
   padding: 0 25px;
   border-color: #D5D5D5;
   box-shadow: 0 1px 0 #FFFFFF inset, 0 1px 5px rgba(0, 0, 0, 0.1);
@@ -459,71 +463,52 @@ table.table-striped tbody .actions .edit {
   padding-left: 0;
 }
 
-.dashboard #chat {
+.dashboard #chat #chat-messages {
   position: absolute;
   left: 10px;
   right: 0px;
-  top: 107px;
-}
-
-.dashboard #chat .chat-content {
-  background: #fff;
-}
-
-.dashboard #chat #chat-messages {
-  overflow: scroll;
-  bottom: 60px;
-  width: 100%;
-  border-color: #D5D5D5;
-  box-shadow: 0 1px 0 #FFFFFF inset, 0 1px 5px rgba(0, 0, 0, 0.1);
+  top: 95px;
+  bottom: 88px;
+  overflow-y: scroll;
+  border-color: #d5d5d5;
+  box-shadow: 0 1px 0 #ffffff inset, 0 1px 5px rgba(0, 0, 0, 0.1);
   background: #FFF;
-  padding: 10px 25px;
   margin-top: 10px;
 }
 
 .dashboard #chat form {
-  display: block;
-  padding: 0.531em 13px;
-  bottom: 0px;
-  border-top: 1px solid #C0C0C0;
+  bottom: 13px;
+  left: 10px;
+  right: 0;
+  position: absolute;
   background: none repeat scroll 0 0 #F9F9F9;
 }
 
-.dashboard #chat .form-control {
-  width: 100%;
-  float: left;
+.dashboard #chat #message-submit {
+  border-radius: 0;
 }
 
-.dashboard #chat #message-submit {
-  float: left;
-  margin-top: 5px;
-  height: 30px;
-  border-radius: 0;
+.dashboard #chat form #message-input-area {
+  padding-left: 10px;
+  padding-right: 40px;
 }
 
 .dashboard #chat form #message-input {
   border-radius: 0;
-  border-radius: 0;
   margin: 5px 3px 10px 0px;
   height: 30px;
-  width: 75%;
+  width: 100%;
 }
 
 .dashboard #chat .chat-message {
   font-size: 13px;
 }
 
-.dashboard #chat .js-avatar {
-  float: left;
-  margin-right: 10px;
-  padding-top: 6px;
-}
-
 .dashboard #chat .message-head {
   float: left;
   font-weight: bold;
   margin-right: 1em;
-  text-align: left;
+  text-align: right;
   width: 10%;
   color: #000;
 }

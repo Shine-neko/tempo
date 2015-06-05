@@ -28,7 +28,7 @@ class RoomRepository extends EntityRepository
             ->leftJoin('team.user', 'user')
             ->where('user.id = :user')
             ->andWhere('room.deletedAt IS NULL')
-            ->andWhere('room.'.(is_integer($room) ? 'id' : 'slug').' = :room')
+            ->andWhere('room.'.(ctype_digit($room) ? 'id' : 'slug').' = :room')
             ->setParameters(array(
                 'room' => $room,
                 'user' => $user,
