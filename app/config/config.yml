@@ -16,7 +16,8 @@ framework:
     templating:      { engines: ['twig'] }
     default_locale: %locale%
     trusted_proxies: ~
-    session:         ~
+    session:
+        handler_id: blablacar_redis.session_handler
     fragments:       ~
 
 # Twig Configuration
@@ -25,7 +26,6 @@ twig:
     strict_variables: %kernel.debug%
     form:
         resources: ['bootstrap_3_layout.html.twig']
-
 
 # Assetic Configuration
 assetic:

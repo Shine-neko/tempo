@@ -15,13 +15,16 @@ parameters:
   locale:            en
   secret:            cb8f190153190ebe8598ac49e86ebf37
 
-  socket_io.client: http://localhost:8000
-
   node_bin:       /usr/bin/node
   node_modules:   /usr/lib/node_modules
   uglifyjs_bin: /usr/local/bin/uglifyjs
   uglifycss_bin: /usr/local/bin/uglifycss
   java_bin:       /usr/bin/java
+
+  socket_io.client: http://localhost:8000
+  redis.logger: true
+  redis.host: 127.0.0.1
+  redis.port: 6379
 
   oauth.enabled: false
   oauth.google.clientid:     <google_client_id>

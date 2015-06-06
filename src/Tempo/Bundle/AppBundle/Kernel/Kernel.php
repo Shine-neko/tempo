@@ -56,6 +56,7 @@ class Kernel extends BaseKernel
             new \Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new \Nelmio\CorsBundle\NelmioCorsBundle(),
             new \WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
+            new \Blablacar\RedisBundle\BlablacarRedisBundle(),
 
             //Tempo
             new \Tempo\Bundle\AppBundle\TempoAppBundle(),

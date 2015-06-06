@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e2b23adb778ddbea2800286de1bf087f",
+    "hash": "9b657840f6eec946ee98e8225c3549f7",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -45,6 +45,99 @@
                 "transliterator"
             ],
             "time": "2014-05-15 22:08:22"
+        },
+        {
+            "name": "blablacar/redis-bundle",
+            "version": "v1.0.1",
+            "target-dir": "Blablacar/RedisBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/blablacar/BlablacarRedisBundle.git",
+                "reference": "b3f222913639640946de3fd0ac59cde4fd3118af"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/blablacar/BlablacarRedisBundle/zipball/b3f222913639640946de3fd0ac59cde4fd3118af",
+                "reference": "b3f222913639640946de3fd0ac59cde4fd3118af",
+                "shasum": ""
+            },
+            "require": {
+                "blablacar/redis-client": "~1.0",
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpspec/prophecy": "~1.1",
+                "phpunit/phpunit": "~3.7",
+                "symfony/config": "@stable",
+                "symfony/dependency-injection": "@stable",
+                "symfony/http-kernel": "@stable"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Blablacar\\RedisBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Olivier Dolbeau",
+                    "homepage": "http://odolbeau.fr/"
+                }
+            ],
+            "description": "BlaBlarCar Redis bundle",
+            "keywords": [
+                "bundle",
+                "redis"
+            ],
+            "time": "2015-03-26 14:46:57"
+        },
+        {
+            "name": "blablacar/redis-client",
+            "version": "v1.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/blablacar/redis-client.git",
+                "reference": "4b8f4a6c7a847bf65028a28321026032fc888e83"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/blablacar/redis-client/zipball/4b8f4a6c7a847bf65028a28321026032fc888e83",
+                "reference": "4b8f4a6c7a847bf65028a28321026032fc888e83",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpspec/prophecy": "~1.1",
+                "phpunit/phpunit": "~3.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Blablacar": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Olivier Dolbeau",
+                    "homepage": "http://odolbeau.fr/"
+                }
+            ],
+            "description": "BlaBlarCar Redis client",
+            "keywords": [
+                "client",
+                "redis"
+            ],
+            "time": "2014-04-24 12:09:03"
         },
         {
             "name": "doctrine/annotations",

@@ -83,3 +83,13 @@ jms_serializer:
     metadata:
       debug: "%kernel.debug%"
       auto_detection: true
+
+blablacar_redis:
+  clients:
+      app:
+          host: %redis.host%
+          port: %redis.port%
+  session:
+      client: app
+      ttl: 1440
+  enable_logger: %redis.logger%
