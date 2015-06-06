@@ -71,10 +71,11 @@ class ProjectController extends Controller
      */
     public function createAction(Request $request, $organization)
     {
-        if (false === $this->isGranted('ROLE_ADMIN')) {
+        $organization = $this->getOrganizaton($organization);
+
+        if (false === $this->isGranted('EDIT', $organization)) {
             throw new AccessDeniedException();
         }
-        $organization = $this->getOrganizaton($organization);
 
         $project  = new Project();
         $project
