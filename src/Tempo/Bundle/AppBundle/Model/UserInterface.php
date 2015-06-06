@@ -54,7 +54,7 @@ interface UserInterface extends AdvancedUserInterface, \Serializable, Timestampa
     public function getEmail();
 
     /**
-     * @param boolean $enabled
+     * @param bool $enabled
      *
      * @return self
      */
@@ -116,26 +116,26 @@ interface UserInterface extends AdvancedUserInterface, \Serializable, Timestampa
     public function getPasswordRequestedAt();
 
     /**
-     * @param boolean $locked
+     * @param bool $locked
      *
      * @return self
      */
     public function setLocked($locked);
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isLocked();
 
     /**
-     * @param boolean $expired
+     * @param bool $expired
      *
      * @return self
      */
     public function setExpired($expired);
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isExpired();
 
@@ -154,7 +154,7 @@ interface UserInterface extends AdvancedUserInterface, \Serializable, Timestampa
     /**
      * @param string $role
      *
-     * @return boolean
+     * @return bool
      */
     public function hasRole($role);
 
@@ -173,14 +173,14 @@ interface UserInterface extends AdvancedUserInterface, \Serializable, Timestampa
     public function removeRole($role);
 
     /**
-     * @param boolean $expired
+     * @param bool $expired
      *
      * @return self
      */
     public function setCredentialsExpired($credentialsExpired);
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isCredentialsExpired();
 
@@ -317,8 +317,8 @@ interface UserInterface extends AdvancedUserInterface, \Serializable, Timestampa
     public function setAvatar($avatar);
 
     /**
-     * @param  int    $size
-     * @param  string $default
+     * @param int    $size
+     * @param string $default
      *
      * @return string
      */
@@ -432,7 +432,7 @@ interface UserInterface extends AdvancedUserInterface, \Serializable, Timestampa
     public function eraseCredentials();
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isSuperAdmin();
 
@@ -446,7 +446,7 @@ interface UserInterface extends AdvancedUserInterface, \Serializable, Timestampa
     /**
      * @param int $ttl
      *
-     * @return boolean
+     * @return bool
      */
     public function isPasswordRequestNonExpired($ttl);
 
@@ -462,4 +462,20 @@ interface UserInterface extends AdvancedUserInterface, \Serializable, Timestampa
      */
     public function generateToken();
 
+    /**
+     * @param Session $session
+     *
+     * @return self
+     */
+    public function addSession($session);
+
+    /**
+     * @return Session[]|ArrayCollection
+     */
+    public function getSessions();
+
+    /**
+     * @return Session[]|ArrayCollection
+     */
+    public function setSessions($sessions);
 }

@@ -14,11 +14,13 @@ namespace Tempo\Bundle\AppBundle\EventListener;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\Security\Http\SecurityEvents;
+use Tempo\Bundle\AppBundle\Model\Session;
 use Tempo\Bundle\AppBundle\Model\UserInterface;
 use Tempo\Bundle\AppBundle\Manager\UserManager;
 use Tempo\Bundle\AppBundle\TempoAppEvents;
+use Ikimea\Browser\Browser;
 
-class LastLoginListener
+class LastLoginListener implements EventSubscriberInterface
 {
     protected $userManager;
 
@@ -41,7 +43,7 @@ class LastLoginListener
     public function onImplicitLogin(UserEvent $event)
     {
         $user = $event->getUser();
-        $user->setLastLogin(new \DateTime());
+        $user = $this->createSession($user);
         $this->userManager->save($user);
     }
 
@@ -52,8 +54,31 @@ class LastLoginListener
     {
         $user = $event->getAuthenticationToken()->getUser();
         if ($user instanceof UserInterface) {
-            $user->setLastLogin(new \DateTime());
+            $user = $this->createSession($user);
             $this->userManager->save($user);
         }
+    }
+
+    protected function createSession($user)
+    {
+        $browser = new Browser();
+
+        $session = (new Session())
+            ->setCreatedAt(new \DateTime())
+            ->setBrowser(array(
+                'brower' => $browser->getBrowser().' '.$browser->getVersion(),
+                'plateform' => $browser->getPlatform(),
+                'user_agent' => $browser->getUserAgent()
+            ))
+            ->setUser($user)
+        ;
+        //@Todo get country
+
+        $user
+            ->setLastLogin(new \DateTime())
+            ->addSession($session)
+        ;
+
+        return $user;
     }
 }

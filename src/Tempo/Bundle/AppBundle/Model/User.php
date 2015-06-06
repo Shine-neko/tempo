@@ -131,6 +131,9 @@ class User implements UserInterface
     /** @var Notification[]|ArrayCollection */
     protected $notifications;
 
+    /** @var Notification[]|ArrayCollection */
+    protected $sessions;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
@@ -980,5 +983,33 @@ class User implements UserInterface
     public function getUpdatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addSession($session)
+    {
+        $this->sessions[] = $session;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSessions()
+    {
+        return $this->sessions;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setSessions($sessions)
+    {
+        $this->sessions = $sessions;
+
+        return $this;
     }
 }
