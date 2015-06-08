@@ -4,7 +4,7 @@ tempo:
     search: Search
  
   menu:
-    organization: Projects
+    organization: Organizations
     project: Projects
     home: Home
     timesheet: Timesheets
@@ -60,6 +60,7 @@ tempo:
           today: Today
           week: Last 7 days
           month: Last 30 days
+          
       events:
         user.update: updates its own information
         commented: Commented on
@@ -136,7 +137,7 @@ tempo:
       open: Open
       close: Close
       activity: Activity
-      sub_project: Sub project of
+      sub_project: Sub project of 
       settings: Settings
       service: Service
       description: Description
@@ -184,9 +185,13 @@ tempo:
         cost: Cost
 
   team:
-     success_add: The user was successfully added to the team.
-     already_exist: This user has already been assigned to this resource.
-     username: Username
+    success_add: The user was successfully added to the team.
+    already_exist: This user has already been assigned to this resource.
+    username: Username
+    cost: Cost
+    owner: Owner
+    collaborator: Collaborator
+    partner: Partner
 
   buttons:
       edit: Edit
@@ -280,6 +285,6 @@ tempo:
       buisness_day: Business Day
       
   layout:
-     toggle_navigation: Toggle navigation
-     powered_by: Powered by
-     write: Write
+    toggle_navigation: Toggle navigation
+    powered_by: Powered by
+    write: Write

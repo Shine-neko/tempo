@@ -14,7 +14,7 @@ namespace Tempo\Bundle\AppBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Response;
-
+use Tempo\Bundle\AppBundle\Model\AccessInterface;
 use Tempo\Bundle\AppBundle\Model\Project;
 use Tempo\Bundle\AppBundle\Model\Organization;
 use Tempo\Bundle\AppBundle\Form\Type\ProjectType;
@@ -80,7 +80,7 @@ class ProjectController extends Controller
         $project  = new Project();
         $project
             ->setOrganization($organization)
-            ->addAccess($this->getUser());
+            ->addAccess($this->getUser(), AccessInterface::TYPE_OWNER);
         $project = $this->getParent($project);
 
         $form  = $this->createForm(new ProjectType(), $project, array('user_id' => $this->getUser()->getId() ));
@@ -88,7 +88,7 @@ class ProjectController extends Controller
         if ($form->handleRequest($request)->isValid()) {
 
             $this->get('tempo.domain_manager')->create($project);
-            $this->addFlash('success', 'project.success_create');
+            $this->addFlash('success', 'tempo.project.success_create');
 
             return $this->redirectToRoute('project_show', array('slug' => $project->getFullSlug()));
         }
@@ -115,7 +115,7 @@ class ProjectController extends Controller
 
             $this->get('tempo.domain_manager')->update($project);
 
-            $this->addFlash('success', 'project.success_updated');
+            $this->addFlash('success', 'tempo.project.success_updated');
 
             return $this->redirectToRoute('project_update', array('slug' => $project->getSlug()));
         }
@@ -147,7 +147,7 @@ class ProjectController extends Controller
         $project = $this->getProject($project, 'DELETE');
 
         $this->get('tempo.domain_manager')->delete($project);
-        $this->addFlash('success', 'project.success_delete');
+        $this->addFlash('success', 'tempo.project.success_delete');
 
         return $this->redirectToRoute('project_dashboard');
     }
@@ -209,14 +209,12 @@ class ProjectController extends Controller
     protected function getParent(Project $project)
     {
         $parent = $this->get('request_stack')->getCurrentRequest()->query->get('parent');
-
         if (!empty($parent)) {
-            $parent = $this->getManager('project')->getProject(intval($parent));
+            $parent = $this->getManager('project')->find(intval($parent));
             if ($parent) {
                 $project->setParent($parent);
             }
         }
-
         return $project;
     }
 }
