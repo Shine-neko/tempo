@@ -4,8 +4,9 @@ tempo:
     search: Rechercher
  
   menu:
-    project: Projets
-    home: Accueil
+    organization: Organisations
+    project: Projects
+    home: Home
     timesheet: Timesheets
     admin: Admin
 
@@ -85,6 +86,7 @@ tempo:
       add:  Nouvelle organisation
       edit: Modifier l'organisation
       team: Membres
+      add_member: Ajouter un membre
       form:
         id: ID
         name: Nom
@@ -123,6 +125,7 @@ tempo:
       publish: Publier
       add: Ajouter un nouveau projet
       edit: Modificer un projet
+      delete: Supprimer
       title_subprojects: Sous-projet
       add_membre: Affectation
       msg_delete: Si vous continuez le projet sera supprimé de manière définitive. Il n'est pas possible de revenir en arrière.
@@ -134,7 +137,7 @@ tempo:
       open: Ouvert
       close: Fermé
       activity: Activité
-      sub_project: Sous-projet de
+      sub_project: Sous-projet de 
       settings: Paramètres
       service: Service
       description: Description
@@ -160,20 +163,20 @@ tempo:
               estimated: Budget estimé
 
   timesheets:
-     analyse: Analyse du flux d'activité
-     page_title: Gestion du temps
-     last_week: Semaine précédente
-     next_week: Semaine suivantes
-     week: Semaine
-     success_add: Rapport d'activité créé avec succès
-     assign: Assigner
-     date: Date
-     time_spent: Temps passé
-     hourly_rate: Taux horaire
-     details: Détail des tâches
-     actions: Actions
-     user: Utilisateur
-     export:
+      analyse: Analyse du flux d'activité
+      page_title: Gestion du temps
+      last_week: Semaine précédente
+      next_week: Semaine suivantes
+      week: Semaine
+      success_add: Rapport d'activité créé avec succès
+      assign: Assigner
+      date: Date
+      time_spent: Temps passé
+      hourly_rate: Taux horaire
+      details: Détail des tâches
+      actions: Actions
+      user: Utilisateur
+      export:
         id: ID
         date: Date
         status: Etat
@@ -185,6 +188,10 @@ tempo:
     success_add: L'utilisateur a bien été ajouté à l'équipe.
     already_exist: L'utilisateur est déjà assigné à cette ressource.
     username: Username
+    cost: Coût
+    owner: Leader
+    collaborator: Collaborateur
+    partner: Partenaire
 
     buttons:
       edit: Editer
@@ -281,6 +288,3 @@ tempo:
     toggle_navigation: Basculer la navigation
     powered_by: Produit par
     write: Ecrire
-    
-
-    

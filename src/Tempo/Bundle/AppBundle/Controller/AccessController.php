@@ -48,10 +48,11 @@ class AccessController extends Controller
 
                 $this->addFlash('success', 'tempo.team.success_add');
             }
-
-            $this->addFlash('error', 'tempo.team.already_exist');
+            
+            else {
+                $this->addFlash('error', 'tempo.team.already_exist');                
+            }
         }
-
         return $this->redirect($routeRedirect);
     }
 

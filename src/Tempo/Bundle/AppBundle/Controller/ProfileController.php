@@ -22,7 +22,8 @@ use Tempo\Bundle\AppBundle\Form\Type\ProfileType;
 class ProfileController extends Controller
 {
     /**
-     * @return Response
+     * @param $slug
+     * @return mixed
      */
     public function editAction()
     {
@@ -34,12 +35,13 @@ class ProfileController extends Controller
         ));
     }
 
-
     /**
      * @param Request $request
-     * @return Response
+     * @param null $id
+     * @return mixed
+     * @todo : Urgent refactor
      */
-    public function avatarAction(Request $request)
+    public function pictureAction(Request $request)
     {
         $user = $this->getUser();
 
@@ -106,9 +108,9 @@ class ProfileController extends Controller
         $organizations = $this->getManager('organization')->findAllByUser($profile->getId());
         $activities = $this->getManager('activity')
             ->getRepository()->createQueryBuilder('activity')
-                ->where('activity.author = :author')
-                ->setParameter('author', $profile)
-                ->getQuery()->execute();
+            ->where('activity.author = :author')
+            ->setParameter('author', $profile)
+            ->getQuery()->execute();
 
 
         return $this->render('TempoAppBundle:Profile:show.html.twig', array(

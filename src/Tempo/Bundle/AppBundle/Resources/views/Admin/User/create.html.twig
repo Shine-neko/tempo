@@ -15,8 +15,15 @@
     <h1> {{ 'tempo.user.create.page_title'|trans|raw }}</h1>
 </div>
 
-<form action="{{ path('admin_user_create') }}" method="post" class="form-horizontal" novalidate>
-    {% include 'TempoAppBundle:Admin/User:_form.html.twig' %}
-    {{ create() }}
-</form>
+<div class="col-md-2">
+    {{ knp_menu_render('admin') }}
+</div>
+
+<div class="col-md-9">
+    <form action="{{ path('admin_user_create') }}" method="post" class="form-horizontal" novalidate>
+        {% include 'TempoAppBundle:Admin/User:_form.html.twig' %}
+        {{ create() }}
+    </form>
+</div>
+
 {% endblock %}
