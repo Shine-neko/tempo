@@ -17,8 +17,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Security\Acl\Permission\MaskBuilder;
-
+use Tempo\Bundle\AppBundle\Model\AccessInterface;
 use Tempo\Bundle\AppBundle\Model\Project;
 
 class LoadProjectData extends AbstractFixture implements ContainerAwareInterface, OrderedFixtureInterface
@@ -72,8 +71,8 @@ class LoadProjectData extends AbstractFixture implements ContainerAwareInterface
             $manager->persist($project);
             $manager->flush();
 
-            $project->addAccess($userEntity, 1);
-            $project->addAccess($this->getReference('olivia.pace'), 3);
+            $project->addAccess($userEntity, AccessInterface::TYPE_OWNER);
+            $project->addAccess($this->getReference('olivia.pace'), AccessInterface::TYPE_PARTNER);
 
             $manager->persist($project);
             $manager->flush();
