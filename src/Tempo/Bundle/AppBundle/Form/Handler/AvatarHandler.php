@@ -14,8 +14,6 @@ namespace Tempo\Bundle\AppBundle\Form\Handler;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\Form\Form;
-use Imagine\Image\Box;
-use Imagine\Image\ImagineInterface;
 use Tempo\Bundle\AppBundle\Model\User;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -31,19 +29,18 @@ class AvatarHandler
     const WRONG_FORMAT = 4;
 
     protected $request;
-    protected $imagine;
+    protected $domainManager;
     protected $path;
 
     /**
      *
      * @param Request
      */
-    public function __construct($request, Form $form, $em, ImagineInterface $imagine)
+    public function __construct($request, Form $form, $domainManager)
     {
         $this->request = $request;
         $this->form = $form;
-        $this->imagine = $imagine;
-        $this->em = $em;
+        $this->domainManager = $domainManager;
     }
 
     /**
@@ -70,25 +67,23 @@ class AvatarHandler
      *
      * @param User $user
      */
-    protected function onSuccess(User $user)
+    protected function onSuccess($resource)
     {
         if ($this->request->request->has('delete')) {
             unlink($this->path.$user->getAvatar());
             $user->setAvatar('');
-            $user->save();
-
+            $this->domainManager->update($user);        
+            
             return self::AVATAR_DELETED;
         }
 
         //Upload depuis le disque dur
         if ($this->request->files->has('avatar') && $this->request->files->get('avatar')) {
-            $file = $this->request->files->get('avatar');
-            $file = $file['avatar'];
-
+            $file = $this->request->files->get('avatar')['avatar'];
+            
             if (!$file->isValid()) {
                 return self::INTERNAL_ERROR;
             }
-
 
             //Checking the extension and mime type.
             $mimetypes = array('image/jpeg', 'image/png', 'image/gif');
@@ -97,49 +92,48 @@ class AvatarHandler
             }
 
             //If the user already has a local avatar, it is removed.
-            if ($user->hasLocalAvatar()) {
-                @unlink($this->getPath(false).$user->getAvatar());
+            if (null !== $user->getAvatar() && strpos($user->getAvatar(), 'gravatar') === false) {
+                @unlink($this->getPath().$user->getAvatar());
             }
 
             //Move the temporary file to the avatars.
-            $extension = $file->guessExtension();
-
-            $path = array($this->getPath(), $user->getId().'.'.$extension);
+            $resourceName = (new \ReflectionClass($resource))->getShortName();
+            $filename = strtolower($resourceName).$user->getId().'.'.$file->guessExtension()
+ 
             try {
-                $file->move($path[0], $path[1]);
+                $file->move($this->getPath(), $filename);
             } catch (FileException $e) {
                 return self::INTERNAL_ERROR;
             }
 
-            //Resize the avatar if necessary so as not to exceed 100x100..
-            $size = getimagesize($path[0].'/'.$path[1]);
-            if ($size[0] > 100 || $size[1] > 100)  {
-                $this
-                    ->imagine
-                    ->open($path[0].'/'.$path[1])
-                    ->thumbnail(new Box(100, 100))
-                    ->save($path[0].'/'.$path[1]);
-            }
-
             //We end by changing the user to tie its new avatar.
-            $user->setAvatar($path[1]);
-
-            $this->em->persist($user);
-            $this->em->flush();
+            $user->setAvatar($filename);
+            $this->domainManager->update($user);        
 
             return self::AVATAR_CHANGED;
         }
 
         return false;
     }
-
+    
+    /**
+     * 
+     * @param type $path
+     * @return this
+     */
     public function setPath($path)
     {
         $this->path = $path;
+        
+        return $this;
     }
-
-    public function getPath($folder = true)
+    
+    /**
+     * 
+     * @return type
+     */
+    public function getPath()
     {
-        return $this->path.($folder ? 'uploads/avatars/' : '' );
+        return $this->path. '/avatars/';
     }
 }

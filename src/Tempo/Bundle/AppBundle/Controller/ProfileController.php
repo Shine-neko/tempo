@@ -52,19 +52,21 @@ class ProfileController extends Controller
 
             switch($retval) {
                 case $handler::INTERNAL_ERROR:
-                    $avatarProcessError = 'avatar.failed_internal_error';
+                    $avatarProcessError = 'tempo.avatar.failed_internal_error';
+                    $this->addFlash('error', $avatarProcessError);
                     break;
                 case $handler::WRONG_FORMAT:
-                    $avatarProcessError = 'avatar.failed_valid_file';
+                    $avatarProcessError = 'tempo.avatar.failed_valid_file';
+                    $this->addFlash('error', $avatarProcessError);
                     break;
                 case $handler::AVATAR_DELETED:
-                    $avatarProcessError = 'avatar.success_delete';
+                    $avatarProcessError = 'tempo.avatar.success_delete';
+                    $this->addFlash('success', $avatarProcessError);
                     break;
                 default:
-                    $avatarProcessError = 'avatar.success_edit';
+                    $avatarProcessError = 'tempo.avatar.success_edit';
+                    $this->addFlash('success', $avatarProcessError);
             }
-
-            $this->addFlash('error', $avatarProcessError);
         }
 
         return $this->render('TempoAppBundle:Profile:avatar.html.twig', array(
