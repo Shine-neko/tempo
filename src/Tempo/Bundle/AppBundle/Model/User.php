@@ -638,13 +638,11 @@ class User implements UserInterface
      */
     public function getAvatar()
     {
-        if ($this->avatar) {
+        if (strpos($this->avatar, 'http') === false) {
             return '/uploads/avatars/'.$this->avatar;
         }
 
-        $hash = md5(strtolower(trim($this->email)));
-
-        return $this->getGravatarUrl().'?s='.$size.'&d='.$default;
+        return $this->avatar;
     }
 
     /**

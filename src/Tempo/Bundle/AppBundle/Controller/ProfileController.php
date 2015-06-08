@@ -22,8 +22,7 @@ use Tempo\Bundle\AppBundle\Form\Type\ProfileType;
 class ProfileController extends Controller
 {
     /**
-     * @param $slug
-     * @return mixed
+     * @return Response
      */
     public function editAction()
     {
@@ -35,13 +34,12 @@ class ProfileController extends Controller
         ));
     }
 
+
     /**
      * @param Request $request
-     * @param null $id
-     * @return mixed
-     * @todo : Urgent refactor
+     * @return Response
      */
-    public function pictureAction(Request $request)
+    public function avatarAction(Request $request)
     {
         $user = $this->getUser();
 

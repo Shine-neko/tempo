@@ -86,7 +86,7 @@ class AvatarHandler
 
         //If the user already has a local avatar, it is removed.
         if (null !== $resource->getAvatar() && strpos($resource->getAvatar(), 'gravatar') === false) {
-            @unlink($this->getPath().$resource->getAvatar());
+            $this->deleteFile($resource);
         }
 
         //Move the temporary file to the avatars.
