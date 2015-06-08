@@ -531,7 +531,8 @@ class User implements UserInterface
      */
     public function getFullName()
     {
-        return $this->firstName.' '.strtoupper($this->lastName);
+        $fullName = $this->firstName.' '.strtoupper($this->lastName);
+        return empty($fullName) ? $this->username : $fullName;
     }
 
     /**
