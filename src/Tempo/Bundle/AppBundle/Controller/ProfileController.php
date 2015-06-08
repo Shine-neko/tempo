@@ -64,7 +64,7 @@ class ProfileController extends Controller
                     $avatarProcessError = 'avatar.success_edit';
             }
 
-            $this->addFlash('error', $avatarProcessError);
+            $this->addFlash('error', 'tempo.'.$avatarProcessError);
         }
 
         return $this->render('TempoAppBundle:Profile:avatar.html.twig', array(
