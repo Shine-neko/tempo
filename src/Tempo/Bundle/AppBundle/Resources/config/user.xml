@@ -42,7 +42,7 @@
         <service id="tempo.user.profile.handler.avatar" class="%tempo.user.profile.form.handler.avatar.class%" scope="request">
             <argument type="service" id="request"/>
             <argument type="service" id="tempo.user.profile.form.avatar.factory"/>
-            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument type="service" id="tempo.domain_manager"/>
             <argument type="service" id="liip_imagine"/>
             <call method="setPath">
                 <argument type="string">%tempo.upload_dir%</argument>

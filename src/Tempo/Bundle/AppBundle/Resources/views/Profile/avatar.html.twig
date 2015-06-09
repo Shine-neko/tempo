@@ -17,7 +17,7 @@
     <div class="app-panel col-md-8">
         <h1 class="page-title" style="font-size: 22px;">{{ 'tempo.avatar.admin_change'|trans }} {{ user.getUsername() }} </h1>
 
-        <form action="{{ path('user_profile_picture') }}" method="post" class="form-horizontal" enctype="multipart/form-data">
+        <form action="{{ path('user_profile_avatar') }}" method="post" class="form-horizontal" enctype="multipart/form-data">
             {{ form_errors(form) }}
 
             <div class="form-block clearbox">

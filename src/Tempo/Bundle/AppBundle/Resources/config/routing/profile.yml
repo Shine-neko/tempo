@@ -2,9 +2,9 @@ user_profile_edit:
    pattern:  /edit
    defaults: { _controller: TempoAppBundle:Profile:edit }
 
-user_profile_picture:
-   pattern:  /edit/picture
-   defaults: { _controller: TempoAppBundle:Profile:picture }
+user_profile_avatar:
+   pattern:  /edit/avatar
+   defaults: { _controller: TempoAppBundle:Profile:avatar }
 
 user_profile_password:
   pattern:  /edit/password

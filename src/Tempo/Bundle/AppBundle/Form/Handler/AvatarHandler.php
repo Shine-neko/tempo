@@ -11,11 +11,8 @@
 
 namespace Tempo\Bundle\AppBundle\Form\Handler;
 
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\Form\Form;
-use Tempo\Bundle\AppBundle\Model\User;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Manages the form submission change avatar.
@@ -46,16 +43,22 @@ class AvatarHandler
     /**
      * Performs the form submission.
      *
-     * @param  User $user Use it to change
+     * @param $resource Resource it to change
      * @return boolean
      */
-    public function process(User $user)
+    public function process($resource)
     {
         if ($this->request->getMethod() === 'POST') {
             $this->form->submit($this->request);
 
             if ($this->form->isValid()) {
-                return $this->onSuccess($user);
+                if (isset($this->form->getData()['avatar'])) {
+                    return $this->uploading($resource, $this->form->getData()['avatar']);
+                }
+
+                if ($this->request->request->has('delete')) {
+                    return $this->deleteFile($resource);
+                }
             }
         }
 
@@ -65,71 +68,72 @@ class AvatarHandler
     /**
      * Action to take when the form is valid.
      *
-     * @param User $user
+     * @param $resource
+     * @param $file
+     * @return bool|int
      */
-    protected function onSuccess($resource)
+    protected function uploading($resource, $file)
     {
-        if ($this->request->request->has('delete')) {
-            unlink($this->path.$user->getAvatar());
-            $user->setAvatar('');
-            $this->domainManager->update($user);        
-            
-            return self::AVATAR_DELETED;
+        if (!$file->isValid()) {
+            return self::INTERNAL_ERROR;
         }
 
-        //Upload depuis le disque dur
-        if ($this->request->files->has('avatar') && $this->request->files->get('avatar')) {
-            $file = $this->request->files->get('avatar')['avatar'];
-            
-            if (!$file->isValid()) {
-                return self::INTERNAL_ERROR;
-            }
-
-            //Checking the extension and mime type.
-            $mimetypes = array('image/jpeg', 'image/png', 'image/gif');
-            if (!in_array($file->getMimeType(), $mimetypes)) {
-                return self::WRONG_FORMAT;
-            }
-
-            //If the user already has a local avatar, it is removed.
-            if (null !== $user->getAvatar() && strpos($user->getAvatar(), 'gravatar') === false) {
-                @unlink($this->getPath().$user->getAvatar());
-            }
-
-            //Move the temporary file to the avatars.
-            $resourceName = (new \ReflectionClass($resource))->getShortName();
-            $filename = strtolower($resourceName).$user->getId().'.'.$file->guessExtension()
- 
-            try {
-                $file->move($this->getPath(), $filename);
-            } catch (FileException $e) {
-                return self::INTERNAL_ERROR;
-            }
-
-            //We end by changing the user to tie its new avatar.
-            $user->setAvatar($filename);
-            $this->domainManager->update($user);        
-
-            return self::AVATAR_CHANGED;
+        //Checking the extension and mime type.
+        $mimetypes = array('image/jpeg', 'image/png', 'image/gif');
+        if (!in_array($file->getMimeType(), $mimetypes)) {
+            return self::WRONG_FORMAT;
         }
 
-        return false;
+        //If the user already has a local avatar, it is removed.
+        if (null !== $resource->getAvatar() && strpos($resource->getAvatar(), 'gravatar') === false) {
+            @unlink($this->getPath().$resource->getAvatar());
+        }
+
+        //Move the temporary file to the avatars.
+        $resourceName = (new \ReflectionClass($resource))->getShortName();
+        $filename = strtolower($resourceName).$resource->getId().'.'.$file->guessExtension();
+
+        try {
+            $file->move($this->getPath(), $filename);
+        } catch (FileException $e) {
+            return self::INTERNAL_ERROR;
+        }
+
+        //We end by changing the user to tie its new avatar.
+        $resource->setAvatar($filename);
+        $this->domainManager->update($resource);
+
+        return self::AVATAR_CHANGED;
     }
-    
+
+    protected function deleteFile($resource)
+    {
+        $file = $this->path. $resource->getAvatar();
+
+        if (is_file($file)) {
+            unlink($file);
+        }
+
+        $resource->setAvatar('');
+        $this->domainManager->update($resource);
+
+        return self::AVATAR_DELETED;
+    }
+
     /**
-     * 
+     *
      * @param type $path
      * @return this
      */
     public function setPath($path)
     {
         $this->path = $path;
-        
+
         return $this;
     }
-    
+
     /**
-     * 
+     *
      * @return type
      */
     public function getPath()
