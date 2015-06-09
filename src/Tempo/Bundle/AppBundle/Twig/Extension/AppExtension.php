@@ -123,13 +123,12 @@ class AppExtension extends \Twig_Extension
     }
 
     // get gravatar image
-    public function getGravatar($email, $size = null, $default = null, $rating = null, $secure = null)
+    public function getGravatar($email, $size = null, $default = null, $rating = null)
     {
         $defaults = array(
             'size'    => 80,
             'rating'  => 'g',
             'default' => null,
-            'secure'  => false,
         );
 
         $map = array(
@@ -140,12 +139,7 @@ class AppExtension extends \Twig_Extension
 
         $hash = md5(strtolower(trim($email)));
 
-
-        if (null === $secure) {
-            $secure = $defaults['secure'];
-        }
-
-        return ($secure ? 'https://secure' : 'http://www') . '.gravatar.com/avatar/' . $hash . '?' . http_build_query(array_filter($map));
+        return 'https://secure.gravatar.com/avatar/' . $hash . '?' . http_build_query(array_filter($map));
     }
 
     public function providerContentParse($content)
