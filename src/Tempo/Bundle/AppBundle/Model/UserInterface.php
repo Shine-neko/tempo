@@ -317,32 +317,9 @@ interface UserInterface extends AdvancedUserInterface, \Serializable, Timestampa
     public function setAvatar($avatar);
 
     /**
-     * @param  int    $size
-     * @param  string $default
-     *
      * @return string
      */
-    public function getAvatar($size = 80, $default = 'mm');
-
-    /**
-     * @return bool
-     */
-    public function hasAvatar();
-
-    /**
-     * @return string
-     */
-    public function hasLocalAvatar();
-
-    /**
-     * @return string
-     */
-    public function hasGravatar();
-
-    /**
-     * @return mixed
-     */
-    public function getGravatarUrl();
+    public function getAvatar();
 
     /**
      * @param string $skype

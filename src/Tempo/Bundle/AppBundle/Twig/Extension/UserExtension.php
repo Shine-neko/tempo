@@ -16,6 +16,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Tempo\Bundle\AppBundle\Manager\NotificationManager;
 use Tempo\Bundle\AppBundle\Model\Notification;
+use Tempo\Bundle\AppBundle\Model\User;
 
 class UserExtension extends \Twig_Extension
 {
@@ -101,7 +102,7 @@ class UserExtension extends \Twig_Extension
                 'thumbnail' => array( 'size' => array(50, 50))
             ));
         } else {
-            return $path . '&s='. $size;
+            return $path . '&s='. $size. '&d='. User::AVATAR_DEFAUlT;
         }
     }
 
