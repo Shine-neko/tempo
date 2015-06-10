@@ -22,8 +22,7 @@ use Tempo\Bundle\AppBundle\Form\Type\ProfileType;
 class ProfileController extends Controller
 {
     /**
-     * @param $slug
-     * @return mixed
+     * @return Response
      */
     public function editAction()
     {
@@ -35,13 +34,12 @@ class ProfileController extends Controller
         ));
     }
 
+
     /**
      * @param Request $request
-     * @param null $id
-     * @return mixed
-     * @todo : Urgent refactor
+     * @return Response
      */
-    public function pictureAction(Request $request)
+    public function avatarAction(Request $request)
     {
         $user = $this->getUser();
 
@@ -52,19 +50,21 @@ class ProfileController extends Controller
 
             switch($retval) {
                 case $handler::INTERNAL_ERROR:
-                    $avatarProcessError = 'avatar.failed_internal_error';
+                    $avatarProcessError = 'tempo.avatar.failed_internal_error';
+                    $this->addFlash('error', $avatarProcessError);
                     break;
                 case $handler::WRONG_FORMAT:
-                    $avatarProcessError = 'avatar.failed_valid_file';
+                    $avatarProcessError = 'tempo.avatar.failed_valid_file';
+                    $this->addFlash('error', $avatarProcessError);
                     break;
                 case $handler::AVATAR_DELETED:
-                    $avatarProcessError = 'avatar.success_delete';
+                    $avatarProcessError = 'tempo.avatar.success_delete';
+                    $this->addFlash('success', $avatarProcessError);
                     break;
                 default:
-                    $avatarProcessError = 'avatar.success_edit';
+                    $avatarProcessError = 'tempo.avatar.success_edit';
+                    $this->addFlash('success', $avatarProcessError);
             }
-
-            $this->addFlash('error', 'tempo.'.$avatarProcessError);
         }
 
         return $this->render('TempoAppBundle:Profile:avatar.html.twig', array(
@@ -106,9 +106,9 @@ class ProfileController extends Controller
         $organizations = $this->getManager('organization')->findAllByUser($profile->getId());
         $activities = $this->getManager('activity')
             ->getRepository()->createQueryBuilder('activity')
-                ->where('activity.author = :author')
-                ->setParameter('author', $profile)
-                ->getQuery()->execute();
+            ->where('activity.author = :author')
+            ->setParameter('author', $profile)
+            ->getQuery()->execute();
 
 
         return $this->render('TempoAppBundle:Profile:show.html.twig', array(

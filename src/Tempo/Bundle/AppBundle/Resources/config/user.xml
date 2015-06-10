@@ -42,8 +42,7 @@
         <service id="tempo.user.profile.handler.avatar" class="%tempo.user.profile.form.handler.avatar.class%" scope="request">
             <argument type="service" id="request"/>
             <argument type="service" id="tempo.user.profile.form.avatar.factory"/>
-            <argument type="service" id="doctrine.orm.entity_manager"/>
-            <argument type="service" id="liip_imagine"/>
+            <argument type="service" id="tempo.domain_manager"/>
             <call method="setPath">
                 <argument type="string">%tempo.upload_dir%</argument>
             </call>
@@ -66,6 +65,7 @@
             <argument type="service" id="router" />
             <argument type="service" id="translator" />
             <argument type="service" id="tempo.model_manager.notification" />
+            <argument type="service" id="liip_imagine.cache.manager" />
             <tag name="twig.extension" />
         </service>
 

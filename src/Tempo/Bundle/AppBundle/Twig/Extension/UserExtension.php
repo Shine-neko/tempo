@@ -13,8 +13,10 @@ namespace Tempo\Bundle\AppBundle\Twig\Extension;
 
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Translation\TranslatorInterface;
+use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Tempo\Bundle\AppBundle\Manager\NotificationManager;
 use Tempo\Bundle\AppBundle\Model\Notification;
+use Tempo\Bundle\AppBundle\Model\User;
 
 class UserExtension extends \Twig_Extension
 {
@@ -23,16 +25,30 @@ class UserExtension extends \Twig_Extension
      */
     private $translator;
 
+    /**
+     * @var RouterInterface
+     */
+    private $router;
+
+    /**
+     * @var NotificationManager
+     */
     private $notificationManager;
+
+    /**
+     * @var CacheManager
+     */
+    private $imagineCacheManager;
 
     /**
      * @param $notificationManager
      */
-    public function __construct(RouterInterface $router, TranslatorInterface $translator, NotificationManager $notificationManager)
+    public function __construct(RouterInterface $router, TranslatorInterface $translator, NotificationManager $notificationManager, CacheManager $imagineCacheManager)
     {
         $this->router = $router;
         $this->translator = $translator;
         $this->notificationManager = $notificationManager;
+        $this->imagineCacheManager = $imagineCacheManager;
     }
 
     /**
@@ -52,6 +68,7 @@ class UserExtension extends \Twig_Extension
             'user_notifications' => new \Twig_Function_Method($this, 'getNotifications'),
             'read_notification' => new \Twig_Function_Method($this, 'readNotification'),
             'link_notification' => new \Twig_Function_Method($this, 'linkNotification'),
+            'avatar' => new \Twig_Function_Method($this, 'getAvatar'),
         );
     }
 
@@ -76,6 +93,22 @@ class UserExtension extends \Twig_Extension
         return $this->router->generate($shortName.'_show', array(
             'slug' => $shortName == 'Project' ? $resource->getFullSlug() : $resource->getSlug(  )
         )). '#'.$resource->getId();
+    }
+
+    /**
+     * @param $path
+     * @param $size
+     * @return string
+     */
+    public function getAvatar($path, $size)
+    {
+        if (strpos($path, 'gravatar') == false) {
+            return $this->imagineCacheManager->getBrowserPath($path, 'avatar', array(
+                'thumbnail' => array( 'size' => array($size, $size))
+            ));
+        } else {
+            return $path . '&s='. $size. '&d='. User::AVATAR_DEFAUlT;
+        }
     }
 
     /**

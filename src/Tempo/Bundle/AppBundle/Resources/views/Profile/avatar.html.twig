@@ -17,7 +17,7 @@
     <div class="app-panel col-md-8">
         <h1 class="page-title" style="font-size: 22px;">{{ 'tempo.avatar.admin_change'|trans }} {{ user.getUsername() }} </h1>
 
-        <form action="{{ path('user_profile_picture') }}" method="post" class="form-horizontal" enctype="multipart/form-data">
+        <form action="{{ path('user_profile_avatar') }}" method="post" class="form-horizontal" enctype="multipart/form-data">
             {{ form_errors(form) }}
 
             <div class="form-block clearbox">
@@ -25,20 +25,11 @@
                 <div class="control-group">
                     <div class="controls">
                         <div class="avatar col-md-2">
-                            <img src="{{ user.getAvatar() }}" alt="{{ 'tempo.avatar.actual_avatar'|trans }}" />
+                            <img src="{{ avatar(user.avatar, 100) }}" alt="{{ 'tempo.avatar.actual_avatar'|trans }}" />
                         </div>
                         <div class="col-md-6">
                             <p>
-                                {% if user.hasLocalAvatar() %}
-                                    <strong>Cet avatar provient de votre ordinateur.</strong>
-                                {% elseif user.hasGravatar() %}
-                                    <strong>{{ 'tempo.avatar.current_gravart'|trans }} .</strong>
-                                {% else %}
-                                    <em>{{ 'tempo.avatar.current_default'|trans }}</em>
-                                {% endif %}
-                            </p>
-                            <p>
-                                {{ 'tempo.avatar.avatar_info'|trans({'%balise%' : '<strong>', '%balise2%' : '</strong>', '%balise3%' : '<br/>'})|raw }}
+                                {{ 'tempo.avatar.avatar_info'|trans }}
                             </p>
                         </div>
                     </div>
@@ -58,6 +49,4 @@
     </div>
 
 </div>
-
-
 {% endblock %}

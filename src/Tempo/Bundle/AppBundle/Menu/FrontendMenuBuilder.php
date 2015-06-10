@@ -57,7 +57,7 @@ class FrontendMenuBuilder extends MenuBuilder
         );
         $menu->addChild(
             $this->translate('tempo.profile.tabs.avatar'),
-            array('route' => 'user_profile_picture')
+            array('route' => 'user_profile_avatar')
         );
         $menu->addChild(
             $this->translate('tempo.profile.tabs.password'),

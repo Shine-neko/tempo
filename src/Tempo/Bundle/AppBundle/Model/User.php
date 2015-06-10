@@ -17,6 +17,7 @@ class User implements UserInterface
 {
     const ROLE_DEFAULT = 'ROLE_USER';
     const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
+    const AVATAR_DEFAUlT  = '/bundles/tempomain/images/avatar-defaut.png';
 
     /** @var int */
     protected $id;
@@ -143,6 +144,7 @@ class User implements UserInterface
         $this->expired = false;
         $this->roles = array();
         $this->credentialsExpired = false;
+        $this->avatar = self::AVATAR_DEFAUlT;
     }
 
     public function __toString()
@@ -634,45 +636,13 @@ class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getAvatar($size = 80, $default = 'mm')
+    public function getAvatar()
     {
-        if ($this->avatar) {
+        if (strpos($this->avatar, 'http') === false) {
             return '/uploads/avatars/'.$this->avatar;
         }
 
-        return $this->getGravatarUrl().'?s='.$size.'&d='.$default;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function hasAvatar()
-    {
-        return $this->hasLocalAvatar() || $this->hasGravatar();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function hasLocalAvatar()
-    {
-        return null !== $this->avatar;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function hasGravatar()
-    {
-        return false !== @fopen($this->getGravatarUrl().'?d=404', 'r');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getGravatarUrl()
-    {
-        return 'http://www.gravatar.com/avatar/'.md5(strtolower(trim($this->email)));
+        return $this->avatar;
     }
 
     /**
@@ -914,6 +884,7 @@ class User implements UserInterface
             $this->salt,
             $this->slug,
             $this->username,
+            $this->avatar,
             $this->expired,
             $this->locked,
             $this->credentialsExpired,
