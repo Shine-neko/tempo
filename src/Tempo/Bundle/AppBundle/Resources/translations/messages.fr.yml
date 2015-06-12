@@ -5,7 +5,7 @@ tempo:
  
   menu:
     organization: Organisations
-    project: Projects
+    project: Projets
     home: Home
     timesheet: Timesheets
     admin: Admin
@@ -235,7 +235,10 @@ tempo:
       linkedin: Linkedin
       viadeo: Viadeo
       twitter: Twitter
-      lang: Langue
+      locale: Langue
+      language:
+        french: Français
+        english: Anglais
       token: Jeton
       company: Compagnie
       job_title: Poste

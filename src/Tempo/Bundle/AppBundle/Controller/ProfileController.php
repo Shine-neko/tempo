@@ -78,7 +78,7 @@ class ProfileController extends Controller
         $user = $this->getUser();
         $form = $this->createForm(new ProfileType(), $user);
 
-        if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
+        if ($form->handleRequest($request)->isValid()) {
             $this->get('tempo.domain_manager')->update($user);
             $this->addFlash('success', 'tempo.user.profile_edit_success');
         }
@@ -121,11 +121,20 @@ class ProfileController extends Controller
     /**
      * @return Response
      */
-    public function settingAction()
+    public function settingAction(Request $request)
     {
         $profile = $this->getUser();
 
-        $form = $this->createForm(new SettingsType());
+        $form = $this->createForm(new SettingsType(), $profile);
+
+        if ($form->handleRequest($request)->isValid()) {
+            $this->get('tempo.domain_manager')->update($profile);
+
+            $request->setLocale($profile->getLocale());
+            $request->getSession()->set('_locale', $profile->getLocale());
+
+            $this->addFlash('success', 'tempo.user.profile_edit_success');
+        }
 
         return $this->render('TempoAppBundle:Profile:settings.html.twig', array(
             'profile' => $profile,
@@ -160,6 +169,6 @@ class ProfileController extends Controller
         $this->get('tempo.domain_manager')->update($user);
         $this->addFlash('success', 'the token was added');
 
-        return $this->redirectToRoute('user_profile_edit');
+        return $this->redirectToRoute('user_profile_settings');
     }
 }

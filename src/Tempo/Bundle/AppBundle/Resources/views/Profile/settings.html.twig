@@ -20,28 +20,29 @@
             <h1>{{ 'tempo.user.settings'|trans }}</h1>
         </div>
         <div class="col-md-8 app-panel">
-            <div class="form-block clearbox">
-                {{ form_widget(form) }}
-            </div>
 
-            <div class="row">
-                <div class="col-md-8">
-                    <fieldset>
-                        <div class="form-group">
-                            <label for="setting_lang" class=" control-label col-sm-3 required">{{ 'tempo.profile.form.token'|trans }}</label>
-                            <div class="col-sm-9">
-                                <input style="float: left" type="text" value="{{ profile.token }}" class="form-control" />
-                            </div>
-                        </div>
-                    </fieldset>
+            <form method="post" action="{{ path('user_profile_settings') }}">
+                <div class="form-block clearbox">
+                    {{ form_widget(form) }}
                 </div>
-                <div class="col-md-2"><a href="{{ path('user_profile_token') }}" class="btn btn-primary">{{ 'tempo.profile.form.generate_token'|trans }}</a></div>
-            </div>
-            <div class="form-rest">
-                <input type="submit" class="btn btn-primary" value="{{ 'tempo.form.update'|trans }}">
-            </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="setting_lang" class=" control-label col-sm-3 required">{{ 'tempo.profile.form.token'|trans }}</label>
+                                <div class="col-sm-9">
+                                    <input style="float: left" type="text" value="{{ profile.token }}" class="form-control" />
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="col-md-2"><a href="{{ path('user_profile_token') }}" class="btn btn-primary">{{ 'tempo.profile.form.generate_token'|trans }}</a></div>
+                </div>
+                <div class="form-rest">
+                    <input type="submit" class="btn btn-primary" value="{{ 'tempo.form.update'|trans }}">
+                </div>
+            </form>
         </div>
-
 
     </div>
 

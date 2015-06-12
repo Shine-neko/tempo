@@ -19,8 +19,12 @@ class SettingsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('lang', 'language', array(
-            'label' => 'tempo.profile.form.lang',
+        $builder->add('locale', 'choice', array(
+            'choices'   => array(
+                'fr'   => 'tempo.profile.form.language.french',
+                'en' => 'tempo.profile.form.language.english',
+            ),
+            'label' => 'tempo.profile.form.locale',
             'required' => true 
         ));
     }
