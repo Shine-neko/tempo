@@ -21,6 +21,7 @@ use Tempo\Bundle\AppBundle\Behavior\TimestampTrait;
 class Organization implements OrganizationInterface
 {
     use AccessTrait, TimestampTrait;
+    const AVATAR_DEFAUlT  = '/bundles/tempomain/images/default-icon-project.png';
 
     /**
      * @var integer $id
@@ -149,37 +150,17 @@ class Organization implements OrganizationInterface
     /**
      * {@inheritdoc}
      */
-    public function hasAvatar()
+    public function getAvatar()
     {
-        return $this->hasLocalAvatar() || $this->hasGravatar();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function hasLocalAvatar()
-    {
-        return (boolean) $this->avatar;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function hasGravatar()
-    {
-        return (boolean) @fopen($this->getGravatarUrl().'?d=404', 'r');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getAvatar($size = 80, $default = 'mm')
-    {
-        if ($this->avatar) {
-            return '/uploads/covers/'.$this->avatar;
+        if(null === $this->avatar ) {
+            return self::AVATAR_DEFAUlT;
         }
 
-        return $this->getGravatarUrl().'?s='.$size.'&d='.$default;
+        if (strpos($this->avatar, 'http') === false && strpos($this->avatar, 'bundle') === false ) {
+            return '/uploads/avatars/'.$this->avatar;
+        }
+
+        return $this->avatar;
     }
 
     /**

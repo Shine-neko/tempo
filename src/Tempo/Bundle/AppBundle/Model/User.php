@@ -638,7 +638,11 @@ class User implements UserInterface
      */
     public function getAvatar()
     {
-        if (strpos($this->avatar, 'http') === false) {
+        if(null === $this->avatar ) {
+            return self::AVATAR_DEFAUlT;
+        }
+
+        if (strpos($this->avatar, 'http') === false && strpos($this->avatar, 'bundle') === false ) {
             return '/uploads/avatars/'.$this->avatar;
         }
 
