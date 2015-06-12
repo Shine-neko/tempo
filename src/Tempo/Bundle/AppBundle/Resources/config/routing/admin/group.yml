@@ -1,5 +1,5 @@
 admin_group_index:
-    pattern: /
+    path: /
     methods: [GET]
     defaults:
         _controller: tempo.controller.group:indexAction
@@ -7,7 +7,7 @@ admin_group_index:
             template: TempoAppBundle:Admin/Group:index.html.twig
 
 admin_group_create:
-    pattern: /new
+    path: /new
     methods: [GET, POST]
     defaults:
         _controller: tempo.controller.group:createAction
@@ -16,7 +16,7 @@ admin_group_create:
             redirect: admin_group_index
 
 admin_group_update:
-    pattern: /{id}/edit
+    path: /{id}/edit
     methods: [GET, PUT, POST]
     defaults:
         _controller: tempo.controller.group:updateAction
@@ -25,7 +25,7 @@ admin_group_update:
             redirect: admin_group_index
 
 admin_group_delete:
-    pattern: /{id}
+    path: /{id}
     methods: [DELETE]
     defaults:
         _controller: tempo.controller.group:deleteAction

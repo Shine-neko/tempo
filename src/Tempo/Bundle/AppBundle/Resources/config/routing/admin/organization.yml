@@ -1,5 +1,5 @@
 admin_organization_index:
-    pattern: /
+    path: /
     methods: [GET]
     defaults:
         _controller: tempo.admin.controller.organization:indexAction
@@ -8,7 +8,7 @@ admin_organization_index:
             arguments: [$criteria, $sorting]
 
 admin_organization_filter_form:
-    pattern: /filter-form
+    path: /filter-form
     methods: [GET]
     defaults:
         _controller: tempo.admin.controller.organization:filterFormAction
@@ -16,7 +16,7 @@ admin_organization_filter_form:
             form: Tempo\Bundle\AppBundle\Form\Type\Admin\Filter\OrganizationFilterType
 
 admin_organization_delete:
-    pattern: /{id}
+    path: /{id}
     methods: [DELETE]
     defaults:
         _controller: tempo.admin.controller.organization:deleteAction

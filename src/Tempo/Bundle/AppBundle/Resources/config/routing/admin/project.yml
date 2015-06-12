@@ -1,5 +1,5 @@
 admin_project_index:
-    pattern: /
+    path: /
     methods: [GET]
     defaults:
         _controller: tempo.admin.controller.project:indexAction
@@ -9,7 +9,7 @@ admin_project_index:
 
 
 admin_project_filter_form:
-    pattern: /filter-form
+    path: /filter-form
     methods: [GET]
     defaults:
         _controller: tempo.admin.controller.project:filterFormAction
@@ -17,7 +17,7 @@ admin_project_filter_form:
             form: Tempo\Bundle\AppBundle\Form\Type\Admin\Filter\OrganizationFilterType
 
 admin_project_delete:
-    pattern: /{id}
+    path: /{id}
     methods: [DELETE]
     defaults:
         _controller: tempo.admin.controller.project:deleteAction

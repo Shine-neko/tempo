@@ -1,15 +1,15 @@
 notification_dashboard:
-    pattern:  /
+    path:  /
     defaults: { _controller: "TempoAppBundle:Notification:dashboard" }
 
 notification_read:
-    pattern:  /{date}/show
+    path:  /{date}/show
     defaults: { _controller: "TempoAppBundle:Notification:state" }
 
 notification_unread:
-    pattern:  /{date}/show
+    path:  /{date}/show
     defaults: { _controller: "TempoAppBundle:Notification:state" }
 
 notification_clear:
-    pattern:  /clear
+    path:  /clear
     defaults: { _controller: "TempoAppBundle:Notification:clear" }

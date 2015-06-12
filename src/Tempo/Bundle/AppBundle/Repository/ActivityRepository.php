@@ -24,7 +24,7 @@ class ActivityRepository extends EntityRepository
      * @param $user
      * @return \Doctrine\ORM\QueryBuilder
      */
-    public function getUserActivites($user)
+    public function getUserActivities($user)
     {
         $query = $this->createQueryBuilder('activity');
         $query
@@ -43,7 +43,7 @@ class ActivityRepository extends EntityRepository
      */
     public function getProjectActivities($criteria)
     {
-        $query =  $this->getUserActivites($criteria['user']);
+        $query =  $this->getUserActivities($criteria['user']);
         if (!empty($criteria['project'])) {
             $query
                 ->andWhere('activity.project = :project')
