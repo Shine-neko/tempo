@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": ">=5.3.9",
-        "symfony/asset": "2.7.*@dev"
+        "symfony/asset": "~2.7"
     },
     "autoload": {
         "psr-4": { "Tempo\\Component\\Resource\\": "" }
