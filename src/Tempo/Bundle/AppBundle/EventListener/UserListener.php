@@ -43,14 +43,20 @@ class UserListener
      *
      * @param \Symfony\Component\HttpKernel\Event\GetResponseEvent $event
      */
-    public function setLocaleForUnauthenticatedUser(GetResponseEvent $event)
+    public function setLocale(GetResponseEvent $event)
     {
-        if (HttpKernelInterface::MASTER_REQUEST !== $event->getRequestType()) {
+        $request = $event->getRequest();
+        if (!$request->hasPreviousSession()) {
             return;
         }
-        $request = $event->getRequest();
-        if ('undefined' == $request->getLocale()) {
-            $request->setLocale($request->getPreferredLanguage());
+
+        // try to see if the locale has been set as a _locale routing parameter
+        if ($locale = $request->attributes->get('_locale')) {
+            $request->getSession()->set('_locale', $locale);
+        }
+
+        if ($locale = $request->getSession()->get('_locale')) {
+            $request->setLocale($locale);
         }
     }
 
@@ -66,7 +72,7 @@ class UserListener
         $user = $event->getAuthenticationToken()->getUser();
 
         if ($user->getLocale()) {
-            $event->getRequest()->setLocale($user->getLocale());
+            $event->getRequest()->setLocale($event->getRequest()->getSession()->get('_locale', $user->getLocale()));
         }
     }
 

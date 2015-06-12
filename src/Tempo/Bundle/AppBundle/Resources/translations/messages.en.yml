@@ -235,7 +235,10 @@ tempo:
       linkedin: Linkedin
       viadeo: Viadeo
       twitter: Twitter
-      lang: Language
+      locale: Language
+      language:
+          french: French
+          english: English
       token: Token
       generate_token: Generate token
       job_title: Job title
