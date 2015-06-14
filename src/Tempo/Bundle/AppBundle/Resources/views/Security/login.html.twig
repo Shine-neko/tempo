@@ -35,13 +35,13 @@
                     </div>
                 </div>
 
-                <div class="widget remember col-md-6">
+                <div class="widget remember col-md-8">
                     <label for="remember_me">{{ 'tempo.security.login.remember_me'|trans }}</label></br>
                     <input type="checkbox" class="pull-left" id="remember_me" name="_remember_me" value="on" />
 
                     <a class="forgotten_password" href="{{ path('user_resetting_reset') }}">{{ 'tempo.security.resetting.request'|trans }}</a>
                 </div>
-                <div class="widget send col-md-6">
+                <div class="widget send col-md-4">
                     <input id="login" class="submit btn btn-default" type="submit" value="{{ 'tempo.security.login.submit'|trans }}" />
                 </div>
                 <div class="widget reset">
