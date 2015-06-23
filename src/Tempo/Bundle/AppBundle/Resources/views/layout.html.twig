@@ -2,6 +2,9 @@
 <html lang="{{ app.request.locale }}">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"  />
+
     {% stylesheets
         '@TempoAppBundle/Resources/assets/styles/style.less'
         filter='less, ?cssrewrite,?uglifycss' debug=true
@@ -18,7 +21,6 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"  />
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}"  />
     <title>{% block title %}{{ sylius_settings_get('general.name') }}{% endblock %} - Tempo</title>
 </head>
@@ -38,7 +40,6 @@
                 </div>
                 <div class="head-inner navbar-collapse">
                     <form id="search" class="navbar-form navbar-left" role="search">
-                        <label label-default="label-default" for="q"> <a accesskey="4" href="#">{{ 'tempo.header.search'|trans }}  </a> :</label>
                         <input  type="text" size="20" name="q" id="q" class="form-control small" accesskey="f" />
                         <button type="submit" class="submit">
                             <span class="glyphicon glyphicon-search"></span>

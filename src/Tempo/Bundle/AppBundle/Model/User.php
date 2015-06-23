@@ -17,7 +17,7 @@ class User implements UserInterface
 {
     const ROLE_DEFAULT = 'ROLE_USER';
     const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
-    const AVATAR_DEFAUlT  = '/bundles/tempomain/images/avatar-defaut.png';
+    const AVATAR_DEFAUlT  = '/bundles/tempoapp/images/avatar-defaut.png';
 
     /** @var int */
     protected $id;

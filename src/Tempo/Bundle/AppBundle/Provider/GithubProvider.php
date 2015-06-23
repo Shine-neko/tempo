@@ -32,7 +32,7 @@ class GithubProvider implements ProviderInterface
         }
 
         try {
-            return  $this->$methodName($payload);
+            return $this->$methodName($payload);
         } catch (\Exception $e) {
             return;
         }
@@ -50,27 +50,27 @@ class GithubProvider implements ProviderInterface
 
     protected function pushEvent($payload)
     {
-        $this->anyEvent($payload);
+        return $this->anyEvent($payload);
     }
 
     protected function pingEvent($payload)
     {
-        $this->anyEvent($payload);
+        return $this->anyEvent($payload);
     }
 
     protected function issuesEvent($payload)
     {
-        $this->anyEvent($payload);
+        return $this->anyEvent($payload);
     }
 
     protected function issue_commentEvent($payload)
     {
-        $this->anyEvent($payload);
+        return $this->anyEvent($payload);
     }
 
     protected function commitCommentEvent($payload)
     {
-        $this->anyEvent($payload);
+        return $this->anyEvent($payload);
     }
 
     protected function pullRequestEvent($payload)

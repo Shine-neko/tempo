@@ -21,7 +21,7 @@ use Tempo\Bundle\AppBundle\Behavior\TimestampTrait;
 class Organization implements OrganizationInterface
 {
     use AccessTrait, TimestampTrait;
-    const AVATAR_DEFAUlT  = '/bundles/tempomain/images/default-icon-project.png';
+    const AVATAR_DEFAUlT  = '/bundles/tempoapp/images/default-icon-project.png';
 
     /**
      * @var integer $id
