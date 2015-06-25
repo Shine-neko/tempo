@@ -41,7 +41,7 @@ class LoadProjectData extends AbstractFixture implements ContainerAwareInterface
         $userList = array('admin', 'john.doe');
         $projectList = array(
             'Bebop','Galasphere','Messie','Sérénité','Luciole ', 'Prometheus',
-            'Nimbus','Spartacus','Gothlauth','Dentless'
+            'Nimbus','Spartacus'
         );
 
         foreach ($projectList as $name) {
@@ -57,16 +57,9 @@ class LoadProjectData extends AbstractFixture implements ContainerAwareInterface
             $project->setDescription('Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression.');
             $project->setOrganization( $this->getReference('organization'.$i));
             $project->setStatus( $this->getReference('projectType'.(rand(1, 3))) );
-            $project->setCreatedAt(new \DateTime());
-            $project->setUpdatedAt(new \DateTime());
             $project->setActive(true);
             $project->setBeginning(new \DateTime());
             $project->setEnding(new \DateTime());
-
-            if ($i > 5) {
-                $digit = str_shuffle('12345');
-                $project->setParent($this->getReference('project'.$digit[0]));
-            }
 
             $manager->persist($project);
             $manager->flush();
@@ -80,6 +73,32 @@ class LoadProjectData extends AbstractFixture implements ContainerAwareInterface
             $this->addReference('project'.$i, $project);
             $i++;
         }
+        
+        $parent = $this->getReference('project1');
+        $parent->setUpdatedAt(new \DateTime());
+        
+        $project = (new Project())
+                ->setName('Gauthlauth')
+                ->setParent($parent)
+                ->setOrganization($parent->getOrganization())
+                ->addAccess($this->getReference('olivia.pace'));
+        
+        $manager->persist($project);
+        
+        $parent = $this->getReference('project2');
+        $parent->setUpdatedAt(new \DateTime());
+
+        $project = (new Project())
+               ->setName('Dentless')
+               ->setParent($parent)
+               ->setOrganization($parent->getOrganization())
+               ->addAccess($this->getReference('olivia.pace'));
+       
+        $manager->persist($project);
+        
+        $manager->flush();
+
+       
     }
 
     /**
