@@ -9,6 +9,10 @@ user_login_check:
 user_logout:
     path: /logout
     defaults: { _controller: "TempoAppBundle:Security:logout" }
+    
+user_register:
+    path: /register
+    defaults: { _controller: "TempoAppBundle:Security:register"}
 
 api_user_autocomplete:
     path: /api/{version}/users/search/{username}

@@ -36,21 +36,42 @@ class AccessController extends Controller
         if ($form->handleRequest($request)->isValid()) {
 
             $formData = $form->getData();
-            $user = $this->findUser(array('username' => $formData['username']));
-
-            $event = new AccessEvent($request, $resource, $user, $this->getUser());
-
-            if ($resource->getMemberByUser($user) == '') {
-                $resource->addAccess($user);
-
-                $this->get('tempo.domain_manager')->create($resource);
-                $this->get('event_dispatcher')->dispatch($objectManager['event'], $event);
-
-                $this->addFlash('success', 'tempo.team.success_add');
-            }
             
-            else {
-                $this->addFlash('error', 'tempo.team.already_exist');                
+            if (filter_var($formData['username'], FILTER_VALIDATE_EMAIL)) {
+                $access = (new Access())
+                    ->setInviteEmail($formData['username'])
+                    ->setInviteToken(sha1(uniqid(rand(), true)))
+                    ->setSource($resource);
+                
+                
+                $senderEmail = $this->container->getParameter('tempo.config.email_from');
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('[Tempo] Invitation')
+                    ->setFrom($senderEmail)
+                    ->setTo($formData['username'])
+                    ->setBody($this->renderView('TempoAppBundle:Mail:Access/invitation.html.twig', array(
+                        'resource' => $resource,
+                        'user' => $this->getUser()
+                        )),
+                        'text/html'
+                    );
+                $this->get('mailer')->send($message);
+
+                $this->addFlash('success', 'tempo.team.success_send_invitation');
+            } else {
+                $user = $this->findUser(array('username' => $formData['username']));
+                $event = new AccessEvent($request, $resource, $user, $this->getUser());
+                                
+                if ($resource->getMemberByUser($user) == '') {
+                    $resource->addAccess($user);
+
+                    $this->get('tempo.domain_manager')->create($resource);
+                    $this->get('event_dispatcher')->dispatch($objectManager['event'], $event);
+
+                    $this->addFlash('success', 'tempo.team.success_add');
+                }  else {
+                    $this->addFlash('error', 'tempo.team.already_exist');                
+                }
             }
         }
         return $this->redirect($routeRedirect);

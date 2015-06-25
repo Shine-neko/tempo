@@ -1,0 +1,6 @@
+{% extends "TempoAppBundle:Mail:layout.html.twig" %}
+
+{% block content %}
+    You recieved an invitation from {{ user.fullName }}. 
+    To start sharing tasks and working on {{ resource.name }}, simply click on the button below to create your account. 
+{% endblock %}

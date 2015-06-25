@@ -11,6 +11,10 @@
 
 namespace Tempo\Bundle\AppBundle\Controller;
 
+use Tempo\Bundle\AppBundle\Model\User;
+use Symfony\Component\HttpFoundation\Request;
+use Tempo\Bundle\AppBundle\Form\Type\RegisterType;
+
 class SecurityController extends Controller
 {
     public function loginAction()
@@ -23,6 +27,34 @@ class SecurityController extends Controller
             'error'         => $helper->getLastAuthenticationError(),
             'csrf_token'    => $csrfToken,
             'oauth'         => array('enabled' => $this->container->getParameter('oauth.enabled')),
+        ));
+    }
+    
+    
+    public function registerAction(Request $request)
+    {
+        $signupEnable = $this->get("sylius.templating.helper.settings")->getSettingsParameter('general.signup_enable');
+        if (false === $signupEnable || !$request->has('token')) {
+            //throw $this->createNotFoundException();
+        }
+        
+        $user = $this->getManager('access')->getRepository()->findOneBy(array(
+            'inviteToken' => $request->get('token')
+        ));
+        
+        if (null === $user) {
+            $user = new User();
+        }
+                
+        $form = $this->createForm(new RegisterType(), $user);
+        if ($form->handleRequest($request)->isValid()) {
+            $this->get('tempo.domain_manager')->create($user);
+            $this->addFlash('success', 'tempo.security.register.success_register');
+            return $this->redirectToRoute('homepage');
+        }
+        
+        return $this->render('TempoAppBundle:Security:register.html.twig', array(
+            'form' => $form->createView()
         ));
     }
 

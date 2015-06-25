@@ -24,6 +24,16 @@ class Access implements AccessInterface
     protected $source;
 
     /**
+     * @var string
+     */
+    protected $inviteEmail;
+
+    /**
+     * @var string
+     */
+    protected $inviteToken;
+
+    /**
      * @var User
      */
     protected $user;
@@ -48,13 +58,14 @@ class Access implements AccessInterface
      */
     protected $room;
 
-        /**
+    /**
      * @var \DateTime
      */
     protected $createdAt;
 
     /**
      * @param $source
+     *
      * @return self
      */
     public function setSource($source)
@@ -67,7 +78,48 @@ class Access implements AccessInterface
     }
 
     /**
-     * @param  \DateTime $createdAt
+     * @return string
+     */
+    public function getInviteToken()
+    {
+        return $this->inviteToken;
+    }
+
+    /**
+     * @param type $inviteToken
+     *
+     * @return self
+     */
+    public function setInviteToken($inviteToken)
+    {
+        $this->inviteToken = $inviteToken;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getInviteEmail()
+    {
+        return $this->inviteEmail;
+    }
+
+    /**
+     * @param type $inviteEmail
+     *
+     * @return self
+     */
+    public function setInviteEmail($inviteEmail)
+    {
+        $this->inviteEmail = $inviteEmail;
+
+        return $this;
+    }
+
+    /**
+     * @param \DateTime $createdAt
+     *
      * @return self
      */
     public function setCreatedAt(\DateTime $createdAt)
@@ -86,7 +138,8 @@ class Access implements AccessInterface
     }
 
     /**
-     * @param  UserInterface $user
+     * @param UserInterface $user
+     *
      * @return self
      */
     public function setUser(UserInterface $user)
@@ -106,6 +159,7 @@ class Access implements AccessInterface
 
     /**
      * @param $label
+     *
      * @return self
      */
     public function setLabel($label)
@@ -132,7 +186,8 @@ class Access implements AccessInterface
     }
 
     /**
-     * @param  OrganizationInterface $organization
+     * @param OrganizationInterface $organization
+     *
      * @return self
      */
     public function setOrganization(OrganizationInterface $organization = null)
@@ -143,7 +198,8 @@ class Access implements AccessInterface
     }
 
     /**
-     * @param  ProjectInterface $project
+     * @param ProjectInterface $project
+     *
      * @return self
      */
     public function setProject(ProjectInterface $project = null)
@@ -162,7 +218,8 @@ class Access implements AccessInterface
     }
 
     /**
-     * @param  RoomInterface $room
+     * @param RoomInterface $room
+     *
      * @return self
      */
     public function setRoom(RoomInterface $room = null)

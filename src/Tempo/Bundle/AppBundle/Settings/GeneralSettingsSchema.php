@@ -22,9 +22,11 @@ class GeneralSettingsSchema implements SchemaInterface
         $builder
             ->setDefaults(array(
                 'name' => 'Tempo',
+                'signup_enable' => false
             ))
             ->setAllowedTypes(array(
                 'name' => array('string'),
+                'signup_enable' => array('boolean')
             ))
         ;
     }

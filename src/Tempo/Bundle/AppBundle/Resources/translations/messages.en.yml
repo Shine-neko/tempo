@@ -36,6 +36,9 @@ tempo:
           user: Users
 
   security:
+    register:
+      success_register: You have been registered successfuly.
+      button: Sign up
     login:
       username: Username
       password: Password
@@ -185,6 +188,7 @@ tempo:
         cost: Cost
 
   team:
+    success_send_invitation: The invitation was sent successfuly.
     success_add: The user was successfully added to the team.
     already_exist: This user has already been assigned to this resource.
     username: Username

@@ -16,6 +16,10 @@
 
         <field name="source" type="string" />
         
+        <field name="inviteEmail" column="invite_email" type="string" />
+        
+        <field name="inviteToken" type="string" />
+        
         <many-to-one field="organization" target-entity="Tempo\Bundle\AppBundle\Model\Organization" inversed-by="members" />
         <many-to-one field="project" target-entity="Tempo\Bundle\AppBundle\Model\Project" inversed-by="members" />
         <many-to-one field="user" target-entity="Tempo\Bundle\AppBundle\Model\User" />
