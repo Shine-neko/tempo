@@ -2,7 +2,7 @@
 Feature: dashboard timesheet
 
   Background:
-    Given I am connected as "olivia.pace"
+    Given I am connected as "admin"
 
   Scenario: Viewing projects on dasboard timesheet
     When I am on "/timesheet/?week=12&year=2014"
@@ -12,7 +12,6 @@ Feature: dashboard timesheet
     And I should see "Messie"
     And I should see "Prometheus"
     And I should see "Spartacus"
-    And I should see "Gothlauth"
 
   Scenario: list days:
     When I am on "/timesheet/?week=12&year=2014"

@@ -8,4 +8,4 @@ Feature: Display an organization
     When I am on "organization/ikimea"
 
     And I should see "0 Open"
-    And I should see "1 close"
+    And I should see "2 close"
