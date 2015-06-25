@@ -17,6 +17,7 @@ use Tempo\Bundle\AppBundle\Form\Type\ProviderFormType;
 use Tempo\Bundle\AppBundle\Model\Project;
 use Tempo\Bundle\AppBundle\Model\ProjectProvider;
 use Tempo\Bundle\AppBundle\Model\ProjectProviderInterface;
+use Tempo\Bundle\AppBundle\Model\ActivityProviderInterface;
 use Tempo\Bundle\AppBundle\TempoAppEvents;
 use Tempo\Bundle\AppBundle\Event\ActivityProviderEvent;
 
@@ -108,14 +109,18 @@ class ProviderController extends Controller
         $this->get('event_dispatcher')->dispatch(TempoAppEvents::ACTIVITY_PROVIDER_CREATE_INITIALIZE, $event);
 
         $activity = $provider->parse($request);
-        $activity->setHeaders($request->header->all());
 
-        $this->getManager('activity_provider')->addActivity($activity, $projectProvider);
+        if ($activity instanceof ProviderInterface) {
+            $activity->setHeaders($request->headers->all());
+            $this->getManager('activity_provider')->addActivity($activity, $projectProvider);
 
-        $this->get('event_dispatcher')->dispatch(TempoAppEvents::ACTIVITY_PROVIDER_CREATE_SUCCESS, $event);
-        $this->get('logger')->info('register an activity', array('project' => $project));
+            $this->get('event_dispatcher')->dispatch(TempoAppEvents::ACTIVITY_PROVIDER_CREATE_SUCCESS, $event);
+            $this->get('logger')->info('register an activity', array('project' => $project));
 
-        return new Response('success');
+            return new Response('success');
+        } else {
+            return new Response('Not Implemented', 501);
+        }
     }
 
     /**
