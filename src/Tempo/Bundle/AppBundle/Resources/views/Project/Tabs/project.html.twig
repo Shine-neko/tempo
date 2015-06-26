@@ -16,11 +16,19 @@
         <li>
             <dl>
                 <dt>{{ 'tempo.project.form.label.beginning'|trans }}:</dt>
-                <dd> {{ project.beginning|localizeddate('medium', 'none', app.request.locale) }} </dd>
+                <dd>
+                    {% if project.beginning is not null %}
+                        {{ project.beginning|localizeddate('medium', 'none', app.request.locale) }}
+                    {% endif %}
+                </dd>
             </dl>
             <dl>
                 <dt>{{ 'tempo.project.form.label.ending'|trans }}:</dt>
-                <dd>{{ project.ending|localizeddate('medium', 'none', app.request.locale) }}</dd>
+                <dd>
+                    {% if project.beginning is not null %}
+                        {{ project.ending|localizeddate('medium', 'none', app.request.locale) }}
+                    {% endif %}
+                </dd>
             </dl>
         </li>
 

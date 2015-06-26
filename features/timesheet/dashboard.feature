@@ -2,7 +2,7 @@
 Feature: dashboard timesheet
 
   Background:
-    Given I am connected as "admin"
+    Given I am connected as "olivia.pace"
 
   Scenario: Viewing projects on dasboard timesheet
     When I am on "/timesheet/?week=12&year=2014"

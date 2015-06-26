@@ -5,7 +5,6 @@
         <th>{{ 'tempo.project.form.label.code'|trans }}</th>
         <th>{{ 'tempo.project.form.label.status'|trans }}</th>
         <th>{{ 'tempo.project.form.label.name'|trans }}</th>
-        <th>{{ 'tempo.project.form.label.type'|trans }}</th>
         <th>{{ 'tempo.project.form.label.beginning'|trans }}</th>
         <th>{{ 'tempo.project.form.label.ending'|trans }}</th>
     </tr>
@@ -22,11 +21,18 @@
                     <span class="label label-success">{{ 'tempo.project.form.label.isactive'|trans }}</span>
                 {% endif %}
             </td>
-            <td><a href="{{ path('project_show', { 'slug' : children.slug } ) }}">{{ children.name }}</a> </td>
-            <td>{{ children.type }}</td>
+            <td><a href="{{ path('project_show', { 'slug' : children.fullSlug } ) }}">{{ children.name }}</a> </td>
 
-            <td>{{ children.beginning.format("Y-m-j") }}</td>
-            <td>{{ children.ending.format("Y-m-j") }}</td>
+            <td>
+                {% if children.beginning is not null %}
+                    {{ children.beginning|localizeddate('medium', 'none', app.request.locale) }}
+                {% endif %}
+            </td>
+            <td>
+                {% if children.ending %}
+                    {{ children.ending|localizeddate('medium', 'none', app.request.locale) }}
+                {% endif %}
+            </td>
         </tr>
     {% endfor %}
     </tbody>
