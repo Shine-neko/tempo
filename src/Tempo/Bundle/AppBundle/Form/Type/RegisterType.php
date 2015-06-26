@@ -53,6 +53,16 @@ class RegisterType extends AbstractType
                 }
             });
     }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(
+            array(
+                'data_class' => 'Tempo\Bundle\AppBundle\Model\User',
+                'csrf_protection' => false
+            )
+        );
+    }
     
     
     public function getName()

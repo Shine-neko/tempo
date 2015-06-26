@@ -96,7 +96,11 @@
 
         <service id="tempo.twig.extension" class="%tempo.twig.extension.class%">
             <argument type="service" id="tempo.behavior" />
+            <argument type="collection">
+                <argument type="string" key="appHost">%tempo.config.host%</argument>
+            </argument>
             <tag name="twig.extension" />
+
         </service>
 
         <service id="tempo.menu.builder.frontend" class="%tempo.menu.builder.frontend.class%">

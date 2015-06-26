@@ -14,6 +14,7 @@ namespace Tempo\Bundle\AppBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Tempo\Bundle\AppBundle\Form\Type\AccessType;
 use Tempo\Bundle\AppBundle\Event\AccessEvent;
+use Tempo\Bundle\AppBundle\Model\Access;
 use Tempo\Bundle\AppBundle\TempoAppEvents;
 
 /*
@@ -29,21 +30,25 @@ class AccessController extends Controller
     {
         $objectManager = $this->getObjectManager($request->get('_route'), $slug);
         $resource  = $objectManager['model'];
-        $routeRedirect = $this->generateUrl($objectManager['route'], array('slug' => $resource->getSlug()));
+        $slug = $objectManager['route'] == 'project_show' ? $resource->getFullSlug() : $resource->getSlug();
+
+        $routeRedirect = $this->generateUrl($objectManager['route'], array('slug' => $slug));
 
         $form = $this->createForm(new AccessType($resource));
 
         if ($form->handleRequest($request)->isValid()) {
 
             $formData = $form->getData();
-            
+
             if (filter_var($formData['username'], FILTER_VALIDATE_EMAIL)) {
                 $access = (new Access())
                     ->setInviteEmail($formData['username'])
                     ->setInviteToken(sha1(uniqid(rand(), true)))
+                    ->setLabel($formData['role'])
                     ->setSource($resource);
-                
-                
+
+                $this->get('tempo.domain_manager')->create($access);
+
                 $senderEmail = $this->container->getParameter('tempo.config.email_from');
                 $message = \Swift_Message::newInstance()
                     ->setSubject('[Tempo] Invitation')
@@ -51,6 +56,7 @@ class AccessController extends Controller
                     ->setTo($formData['username'])
                     ->setBody($this->renderView('TempoAppBundle:Mail:Access/invitation.html.twig', array(
                         'resource' => $resource,
+                        'access' => $access,
                         'user' => $this->getUser()
                         )),
                         'text/html'
@@ -63,7 +69,7 @@ class AccessController extends Controller
                 $event = new AccessEvent($request, $resource, $user, $this->getUser());
                                 
                 if ($resource->getMemberByUser($user) == '') {
-                    $resource->addAccess($user);
+                    $resource->addAccess($user, $formData['role']);
 
                     $this->get('tempo.domain_manager')->create($resource);
                     $this->get('event_dispatcher')->dispatch($objectManager['event'], $event);

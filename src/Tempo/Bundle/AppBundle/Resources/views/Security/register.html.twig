@@ -18,7 +18,7 @@
         {% endfor %}
 
         {% block subcontent %}
-            <form action="{{ path("user_register") }}" method="post">
+            <form action="{{ path("user_register", {'token' : token}) }}" method="post">
 
                 <div class="form-group">
                     {{ form_label(form.username, 'tempo.security.login.username') }}
@@ -34,8 +34,8 @@
                     {{ form_widget(form.email) }}
                 </div>
 
-                <div class="widget send col-md-4">
-                    <input id="login" class="submit btn btn-default" type="submit" value="{{ 'tempo.security.register.button'|trans }}" />
+                <div class="widget">
+                    <input class="submit btn btn-default" type="submit" value="{{ 'tempo.security.register.button'|trans }}" />
                 </div>
                 <div class="widget reset">
                 </div>

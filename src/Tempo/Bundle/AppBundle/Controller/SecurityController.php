@@ -33,28 +33,39 @@ class SecurityController extends Controller
     
     public function registerAction(Request $request)
     {
-        $signupEnable = $this->get("sylius.templating.helper.settings")->getSettingsParameter('general.signup_enable');
-        if (false === $signupEnable || !$request->has('token')) {
-            //throw $this->createNotFoundException();
+        $signupEnable = $this->get('sylius.templating.helper.settings')->getSettingsParameter('general.signup_enable');
+        if (false === $signupEnable && !$request->query->has('token') && $request->query->get('token') !== null) {
+            throw $this->createNotFoundException();
         }
-        
-        $user = $this->getManager('access')->getRepository()->findOneBy(array(
+
+        $token = $request->query->get('token');
+        $user = new User();
+        $access = $this->getManager('access')->getRepository()->findOneBy(array(
             'inviteToken' => $request->get('token')
         ));
-        
-        if (null === $user) {
-            $user = new User();
+
+        if (null !== $access) {
+            $user->setEmail($access->getInviteEmail());
         }
-                
+
         $form = $this->createForm(new RegisterType(), $user);
         if ($form->handleRequest($request)->isValid()) {
             $this->get('tempo.domain_manager')->create($user);
+
+            if (null !== $access) {
+                $access
+                    ->setInviteToken(null)
+                    ->setInviteEmail(null)
+                    ->setUser($user);
+            }
+
             $this->addFlash('success', 'tempo.security.register.success_register');
             return $this->redirectToRoute('homepage');
         }
         
         return $this->render('TempoAppBundle:Security:register.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'token' => $token
         ));
     }
 
