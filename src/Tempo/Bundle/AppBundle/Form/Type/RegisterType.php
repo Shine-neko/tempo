@@ -24,21 +24,21 @@ class RegisterType extends AbstractType
         $builder
             ->add('username', 'text', array(
                 'required' => true,
-                'label' => 'tempo.security.login.username'
+                'label' => 'tempo.security.login.username',
             ))
             ->add('password', 'repeated', array(
                 'type' => 'password',
                 'invalid_message' => 'The password fields must match.',
                 'options' => array('attr' => array('class' => 'password-field')),
                 'required' => true,
-                'first_options'  => array('label' => 'tempo.security.login.password'),
-                'second_options' => array('label' => 'tempo.security.resetting.password_again')
+                'first_options' => array('label' => 'tempo.security.login.password'),
+                'second_options' => array('label' => 'tempo.security.resetting.password_again'),
             ))
             ->add('email', 'email', array(
                 'required' => true,
-                'label' => 'tempo.profile.tabs.email'
+                'label' => 'tempo.profile.tabs.email',
             ))
-            ->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event){
+            ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
                 $data = $event->getData();
                 $form = $event->getForm();
                 if ($data->getEmail() !== null) {
@@ -47,8 +47,7 @@ class RegisterType extends AbstractType
                         'label' => 'tempo.profile.tabs.email',
                         'attr' => array(
                             'readonly' => 'readonly',
-                            'disabled' => 'disabled'
-                        )
+                        ),
                     ));
                 }
             });
@@ -59,12 +58,11 @@ class RegisterType extends AbstractType
         $resolver->setDefaults(
             array(
                 'data_class' => 'Tempo\Bundle\AppBundle\Model\User',
-                'csrf_protection' => false
+                'csrf_protection' => false,
             )
         );
     }
-    
-    
+
     public function getName()
     {
         return 'register';

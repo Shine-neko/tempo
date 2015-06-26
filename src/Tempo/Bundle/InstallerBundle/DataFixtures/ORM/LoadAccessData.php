@@ -37,7 +37,7 @@ class LoadAccessData extends AbstractFixture implements OrderedFixtureInterface,
     {
         $access = (new Access())
             ->setInviteEmail('dexter.schwartz@tempo-project.org')
-            ->setInviteToken(sha1(uniqid(rand(), true)))
+            ->setInviteToken('c7f59c75b88da6104422ff94658cbfd32e70463c')
             ->setLabel(Access::TYPE_COLLABORATOR)
             ->setSource($this->getReference('project1'));
 

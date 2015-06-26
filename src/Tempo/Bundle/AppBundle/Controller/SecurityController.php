@@ -30,19 +30,20 @@ class SecurityController extends Controller
         ));
     }
     
-    
     public function registerAction(Request $request)
     {
         $signupEnable = $this->get('sylius.templating.helper.settings')->getSettingsParameter('general.signup_enable');
-        if (false === $signupEnable && !$request->query->has('token') && $request->query->get('token') !== null) {
+        $access = $this->getManager('access')->getRepository()->findOneBy(array(
+            'inviteToken' => $request->get('token', 0)
+        ));
+
+        if (!($signupEnable || $access)) {
             throw $this->createNotFoundException();
         }
-
+        
         $token = $request->query->get('token');
         $user = new User();
-        $access = $this->getManager('access')->getRepository()->findOneBy(array(
-            'inviteToken' => $request->get('token')
-        ));
+       
 
         if (null !== $access) {
             $user->setEmail($access->getInviteEmail());

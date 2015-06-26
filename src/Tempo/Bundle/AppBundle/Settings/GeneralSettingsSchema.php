@@ -22,11 +22,11 @@ class GeneralSettingsSchema implements SchemaInterface
         $builder
             ->setDefaults(array(
                 'name' => 'Tempo',
-                'signup_enable' => false
+                'signup_enable' => false,
             ))
             ->setAllowedTypes(array(
                 'name' => array('string'),
-                'signup_enable' => array('boolean')
+                'signup_enable' => array('boolean'),
             ))
         ;
     }
@@ -34,7 +34,12 @@ class GeneralSettingsSchema implements SchemaInterface
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('name')
+            ->add('name', 'text', array(
+                'required' => true,
+            ))
+            ->add('signup_enable', 'checkbox', array(
+                'required' => false,
+            ))
         ;
     }
 }
