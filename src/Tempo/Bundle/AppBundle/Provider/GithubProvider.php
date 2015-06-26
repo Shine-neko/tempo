@@ -47,7 +47,6 @@ class GithubProvider implements ProviderInterface
         return $activity;
     }
 
-
     protected function pushEvent($payload)
     {
         return $this->anyEvent($payload);
@@ -63,10 +62,11 @@ class GithubProvider implements ProviderInterface
         return $this->anyEvent($payload);
     }
 
-    protected function issue_commentEvent($payload)
+    protected function issueCcommentEvent($payload)
     {
         return $this->anyEvent($payload);
     }
+
 
     protected function commitCommentEvent($payload)
     {
@@ -85,22 +85,33 @@ class GithubProvider implements ProviderInterface
 
     protected function pullRequestReviewCommentEvent($payload)
     {
-        $this->anyEvent($payload);
+        return $this->anyEvent($payload);
+    }
+
+    protected function createEvent($payload)
+    {
+        $branch = str_replace('refs/heads/Shine', '', $payload['ref']);
+        $repository = isset($payload['repository']['html_url']) ? $payload['repository']['html_url'] : $payload['repository']['htmlUrl'];
+
+        $activity = new ActivityProvider();
+        $activity->setMessage('Create branch '.$branch.' in '.$repository);
+        $activity->setCreatedAt(new \DateTime());
+        $activity->setParameters($payload);
     }
 
     protected function watchEvent($payload)
     {
-        throw new \Exception(sprintf('Not implemented: %s::%s', __CLASS__, __FUNCTION__));
+        return $this->anyEvent($payload);
     }
 
     protected function releaseEvent($payload)
     {
-        throw new \Exception(sprintf('Not implemented: %s::%s', __CLASS__, __FUNCTION__));
+        return $this->anyEvent($payload);
     }
 
     protected function teamAddEvent($payload)
     {
-        throw new \Exception(sprintf('Not implemented: %s::%s', __CLASS__, __FUNCTION__));
+        return $this->anyEvent($payload);
     }
 
     protected function deleteEvent($payload)
