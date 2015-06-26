@@ -11,7 +11,6 @@
 
 namespace Tempo\Bundle\AppBundle\Controller;
 
-use Doctrine\Common\Util\Debug;
 use Symfony\Component\HttpFoundation\Request;
 use Tempo\Bundle\AppBundle\Form\Type\ResettingFormType;
 use Tempo\Bundle\AppBundle\Manager\UserManager;
