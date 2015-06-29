@@ -1,32 +1,29 @@
+<div>
+    <div>
+        <fieldset>
+            <legend>Account</legend>
+            {{ form_row(form.username) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.plainPassword) }}
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="app-panel">
-            <fieldset>
-                <legend>Account</legend>
-                {{ form_row(form.username) }}
-                {{ form_row(form.email) }}
-                {{ form_row(form.plainPassword) }}
-
-            </fieldset>
-        </div>
-        <div class="app-panel">
-            <fieldset>
-                <legend>Social</legend>
-                {{ form_row(form.firstName) }}
-                {{ form_row(form.lastName) }}
-                {{ form_row(form.enabled) }}
-            </fieldset>
-        </div>
-        <div class="app-panel">
-            <fieldset>
-                <legend>Social</legend>
-                {{ form_row(form.skype) }}
-                {{ form_row(form.linkedin) }}
-                {{ form_row(form.viadeo) }}
-                {{ form_row(form.twitter) }}
-            </fieldset>
-        </div>
+        </fieldset>
+    </div>
+    <div>
+        <fieldset>
+            <legend>Social</legend>
+            {{ form_row(form.firstName) }}
+            {{ form_row(form.lastName) }}
+            {{ form_row(form.enabled) }}
+        </fieldset>
+    </div>
+    <div>
+        <fieldset>
+            <legend>Social</legend>
+            {{ form_row(form.skype) }}
+            {{ form_row(form.linkedin) }}
+            {{ form_row(form.viadeo) }}
+            {{ form_row(form.twitter) }}
+        </fieldset>
     </div>
 </div>
 {{ form_rest(form) }}
