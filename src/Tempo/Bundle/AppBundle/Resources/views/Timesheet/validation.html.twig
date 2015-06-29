@@ -17,7 +17,9 @@
                     </label>
                     <select name="user_id" class="col-md-8" onChange="this.form.submit()">>
                         {% for assignment in assignments %}
+                            {% if assignment.user is not null %}
                             <option value="{{ assignment.user.id }}">{{ assignment.user.fullName }}</option>
+                            {% endif %}
                         {% endfor %}
                     </select>
                 </div>

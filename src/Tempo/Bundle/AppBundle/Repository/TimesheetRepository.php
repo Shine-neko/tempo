@@ -63,8 +63,8 @@ class TimesheetRepository extends EntityRepository
         if (!is_object($user)) {
             $query
                 ->andWhere('timesheet.user = :user')
-                ->setParameter('user', $user)
-                ->andWhere('team.role', AccessInterface::TYPE_OWNER);
+                ->andWhere('team.label = :role' )
+                ->setParameters(array('user' => $user, 'role' => AccessInterface::TYPE_OWNER));
         }
 
         return $query->getQuery()->getResult();
