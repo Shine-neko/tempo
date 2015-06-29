@@ -25,6 +25,11 @@ class AppExtension extends \Twig_Extension
     private $behavior;
 
     /**
+     * @var array
+     */
+    protected $parameters;
+
+    /**
      * @var  PropertyAccess
      */
     protected $accessor;
@@ -32,9 +37,10 @@ class AppExtension extends \Twig_Extension
     /**
      * @param Behavior $behavior
      */
-    public function __construct(Behavior $behavior)
+    public function __construct(Behavior $behavior, array $parameters)
     {
         $this->behavior = $behavior;
+        $this->parameters = $parameters;
         $this->accessor = PropertyAccess::createPropertyAccessor();
     }
 
@@ -44,6 +50,9 @@ class AppExtension extends \Twig_Extension
     public function getGlobals()
     {
         return array(
+            'tempo' => array(
+                'host' => $this->parameters['appHost']
+            ),
             'behavior'  => $this->behavior
         );
     }

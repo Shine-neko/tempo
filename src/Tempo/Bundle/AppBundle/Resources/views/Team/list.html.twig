@@ -1,16 +1,18 @@
 <ul class="list">
     {% for userTeam in users %}
-        {% set user = userTeam.getUser() is defined ? userTeam.user : userTeam %}
-    <li>
-        <a href="{{ path('user_profile_show', { 'slug': user.slug }) }}"> <img src="{{ avatar(user.avatar, 28) }}" />
-            {{ user.getFullName }} 
-        </a>
-            
-        <span class="label label-default role-label">{{ ('tempo.team.'~userTeam.label)|trans}}</span>
-        
-        <a href="{{ path(route_deleted, { 'slug' : category.fullSlug is defined ? category.fullSlug : category.slug , 'user' : user.id }) }}" title="Remove {{ user.getFullName }}">
-            <span class="glyphicon glyphicon-remove"></span>
-        </a>
-    </li>
+        {% if(userTeam.inviteEmail is null) %}
+            {% set user = userTeam.getUser() is defined ? userTeam.user : userTeam %}
+        <li>
+            <a href="{{ path('user_profile_show', { 'slug': user.slug }) }}"> <img src="{{ avatar(user.avatar, 28) }}" />
+                {{ user.getFullName }}
+            </a>
+
+            <span class="label label-default role-label">{{ ('tempo.team.'~userTeam.label)|trans}}</span>
+
+            <a href="{{ path(route_deleted, { 'slug' : category.fullSlug is defined ? category.fullSlug : category.slug , 'user' : user.id }) }}" title="Remove {{ user.getFullName }}">
+                <span class="glyphicon glyphicon-remove"></span>
+            </a>
+        </li>
+        {% endif %}
     {% endfor %}
 </ul>

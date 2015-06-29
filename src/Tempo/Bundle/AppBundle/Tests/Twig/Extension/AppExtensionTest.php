@@ -30,6 +30,7 @@ class AppExtensionTest extends \PHPUnit_Framework_TestCase
                 ->getMockBuilder('Tempo\Bundle\AppBundle\Helper\Behavior')
                 ->disableOriginalConstructor()
                 ->getMock()
+        , array()
         );
     }
 
