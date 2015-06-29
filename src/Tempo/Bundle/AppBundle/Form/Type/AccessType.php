@@ -40,9 +40,9 @@ class AccessType extends AbstractType
             ))
             ->add('role', 'choice', array(
                 'choices' => array(
-                    AccessInterface::TYPE_OWNER,
-                    AccessInterface::TYPE_COLLABORATOR,
-                    AccessInterface::TYPE_PARTNER
+                    AccessInterface::TYPE_OWNER => AccessInterface::TYPE_OWNER,
+                    AccessInterface::TYPE_COLLABORATOR => AccessInterface::TYPE_COLLABORATOR,
+                    AccessInterface::TYPE_PARTNER => AccessInterface::TYPE_PARTNER
                 )
             ))
         ;
@@ -53,7 +53,7 @@ class AccessType extends AbstractType
 
             if ($this->resource instanceof ProjectInterface) {
                 $form->add('cost', 'text', array(
-                    'required' => true,
+                    'required' => false,
                     'label' => 'tempo.team.cost'
                 ));
             }
