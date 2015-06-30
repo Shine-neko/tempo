@@ -285,6 +285,7 @@ tempo:
     form:
       name: Nom
       enableChat: Activer le chat
+    no_room: No active rooms.
 
   setting:
     form:

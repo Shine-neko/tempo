@@ -14,12 +14,17 @@ Tempo.Controller.Dashboard = Tempo.baseObject.extend({
     load: function() {
         var chatbox = $('#chatbox');
 
-        this.connectedUsersView = new Tempo.View.ConnectedUsers();
-        this.messagesView = new Tempo.View.ChatBox({messages: this.room.get('chat_messages'), room: this.room});
+        console.log(this.room);
 
-        chatbox.html(''); //Remove loader
-        chatbox.append(this.connectedUsersView.render().el);
-        chatbox.append(this.messagesView.render().el);
+        if (this.room != null) {
+
+            this.connectedUsersView = new Tempo.View.ConnectedUsers();
+            this.messagesView = new Tempo.View.ChatBox({messages: this.room.get('chat_messages'), room: this.room});
+
+            chatbox.html(''); //Remove loader
+            chatbox.append(this.connectedUsersView.render().el);
+            chatbox.append(this.messagesView.render().el);
+        }
 
         //Open a socket
         Tempo.socket = io.connect(window.location.hostname + ':8000');
@@ -28,12 +33,15 @@ Tempo.Controller.Dashboard = Tempo.baseObject.extend({
 
     //Handler for socket connections and reconnections
     onSocketConnect: function() {
-        //Join the room for this scrumboard
-        Tempo.socket.emit('subscribe', this.room.id, this.user);
 
-        //We now have a socket so bind on events from it
-        this.connectedUsersView.bindSocketEvents();
-        this.messagesView.bindSocketEvents();
+        if (this.room != null) {
+            //Join the room for this scrumboard
+            Tempo.socket.emit('subscribe', this.room.id, this.user);
+
+            //We now have a socket so bind on events from it
+            this.connectedUsersView.bindSocketEvents();
+            this.messagesView.bindSocketEvents();
+        }
 
         Tempo.socket.on('feed:change', function(data) {
             var project = JSON.parse(data.project);

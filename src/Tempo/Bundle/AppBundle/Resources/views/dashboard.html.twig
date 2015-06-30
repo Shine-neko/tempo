@@ -16,7 +16,10 @@
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
     <script type="application/javascript">
+        {% if currentRoom is not null %}
         Tempo.Controller.Dashboard.room = new Tempo.Model.Room({{ currentRoom| serialize | raw }}, {parse:true});
+        {% endif %}
+
         Tempo.Controller.Dashboard.user = {{ currentUser| raw }};
         Tempo.Controller.Dashboard.load();
     </script>
@@ -35,8 +38,8 @@
         </div>
 
     </div>
-    {% if currentRoom %}
     <div class="col-md-6" id="chat-box">
+        {% if currentRoom %}
         <nav class="rooms">
             <ul class="clearfix">
                 {% for room in rooms %}
@@ -49,7 +52,8 @@
                 <img src="{{ asset('bundles/tempoapp/images/loading-bubbles.svg') }}" width="64" height="64">
             </div>
         </div>
-
+        {% else %}
+        <div class="no-rooms"><p>{{ 'tempo.room.no_room'|trans }}</p></div>
+        {% endif %}
     </div>
-    {% endif %}
 {% endblock %}
