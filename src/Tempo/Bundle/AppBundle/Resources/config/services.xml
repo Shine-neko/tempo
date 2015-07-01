@@ -12,7 +12,7 @@
         <parameter key="tempo.form.type.datetimepicker.class">Tempo\Bundle\AppBundle\Form\Type\DateTimePickerType</parameter>
         <parameter key="tempo.form.type.list.class">Tempo\Bundle\AppBundle\Form\Type\ListType</parameter>
         <parameter key="tempo.form.type.wysiwyg.class">Tempo\Bundle\AppBundle\Form\Type\SummernoteType</parameter>
-        <parameter key="tempo.menu.builder.frontend.class">Tempo\Bundle\AppBundle\Menu\FrontendMenuBuilder</parameter>
+        <parameter key="tempo.menu.builder.main.class">Tempo\Bundle\AppBundle\Menu\MainMenuBuilder</parameter>
         <parameter key="tempo.menu.builder.admin.class">Tempo\Bundle\AppBundle\Menu\AdminMenuBuilder</parameter>
         <parameter key="tempo.form.extension.security.class">Tempo\Bundle\AppBundle\Form\Extension\SecurityTypeExtension</parameter>
 	    <parameter key="tempo.menu_builder.class">Tempo\Bundle\AppBundle\Menu\MenuBuilder</parameter>
@@ -77,7 +77,7 @@
             <argument type="service" id="tempo.behavior" />
             <tag name="form.type" alias="wysiwyg" />
         </service>
-        
+
         <service id="tempo.form.extension.security" class="%tempo.form.extension.security.class%">
             <argument type="service" id="security.authorization_checker" />
             <tag name="form.type_extension" alias="form_security" />
@@ -103,7 +103,7 @@
 
         </service>
 
-        <service id="tempo.menu.builder.frontend" class="%tempo.menu.builder.frontend.class%">
+        <service id="tempo.menu.builder.main" class="%tempo.menu.builder.main.class%">
             <argument type="service" id="knp_menu.factory" />
             <argument type="service" id="security.authorization_checker"/>
             <argument type="service" id="translator" />
@@ -123,8 +123,8 @@
             </call>
         </service>
 
-        <service id="tempo.menu.frontend" class="%tempo.menu.class%">
-            <factory service="tempo.menu.builder.frontend" method="mainMenu" />
+        <service id="tempo.menu.main" class="%tempo.menu.class%">
+            <factory service="tempo.menu.builder.main" method="mainMenu" />
             <tag name="knp_menu.menu" alias="main" />
         </service>
 

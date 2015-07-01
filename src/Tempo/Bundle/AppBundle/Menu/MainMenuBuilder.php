@@ -13,7 +13,7 @@ namespace Tempo\Bundle\AppBundle\Menu;
 
 use Tempo\Bundle\AppBundle\Event\MenuBuilderEvent;
 
-class FrontendMenuBuilder extends MenuBuilder
+class MainMenuBuilder extends MenuBuilder
 {
     /**
      * Builds main menu.
@@ -34,7 +34,7 @@ class FrontendMenuBuilder extends MenuBuilder
             array('route' => 'timesheet')
         );
 
-        $this->eventDispatcher->dispatch(MenuBuilderEvent::FRONTEND_MAIN, new MenuBuilderEvent($this->factory, $menu));
+        $this->eventDispatcher->dispatch(MenuBuilderEvent::MAIN, new MenuBuilderEvent($this->factory, $menu));
 
         if ($this->authorization->isGranted('ROLE_ADMIN')) {
             $menu->addChild(
@@ -73,7 +73,7 @@ class FrontendMenuBuilder extends MenuBuilder
             array('route' => 'notification_dashboard')
         );
 
-        $this->eventDispatcher->dispatch(MenuBuilderEvent::FRONTEND_USER, new MenuBuilderEvent($this->factory, $menu));
+        $this->eventDispatcher->dispatch(MenuBuilderEvent::USER, new MenuBuilderEvent($this->factory, $menu));
 
         return $menu;
     }

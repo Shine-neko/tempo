@@ -17,8 +17,9 @@ use Symfony\Component\EventDispatcher\Event;
 
 class MenuBuilderEvent extends Event
 {
-    const FRONTEND_MAIN = 'tempo.menu.builder.frontend.main';
-    const FRONTEND_USER = 'tempo.menu.builder.frontend.user';
+    const MAIN = 'tempo.menu.builder.main';
+    const MAIN_USER = 'tempo.menu.builder.main.user';
+    const USER = 'tempo.menu.builder.user';
     const ADMIN_MAIN = 'tempo.menu.builder.admin.main';
 
     /**
