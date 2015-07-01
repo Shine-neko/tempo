@@ -53,7 +53,7 @@
                                 <a href="#" data-toggle="dropdown" class="dropdown-toggle">
                                     <span class="glyphicon glyphicon-bell"></span>
                                     {% if notifications_indicator|length >0 %}
-                                    <span class="indicator">
+                                        <span class="indicator">
                                         <span>{{ notifications_indicator|length }}</span>
                                     </span>
                                     {% endif %}
@@ -62,10 +62,10 @@
                                 <ul class="dropdown-menu">
                                     {% for notification in notifications_indicator %}
                                         <li>
-                                        <a href="{{ path('notification_dashboard') }}">
-                                            {{ read_notification(notification)| truncate(30, true, '...') }}
-                                            <span class="text-muted small">{{ notification.createdAt|localizeddate('short', 'none', app.request.locale) }}</span>
-                                        </a>
+                                            <a href="{{ path('notification_dashboard') }}">
+                                                {{ read_notification(notification)| truncate(30, true, '...') }}
+                                                <span class="text-muted small">{{ notification.createdAt|localizeddate('short', 'none', app.request.locale) }}</span>
+                                            </a>
                                         </li>
                                     {% else %}
                                         <li><a href="{{ path('notification_dashboard') }}">{{ 'tempo.notification.no_notification'|trans }}</a></li>
@@ -83,7 +83,7 @@
                                 <a href="#" data-toggle="dropdown" class="dropdown-toggle">
                                     <img src=" {{ avatar(app.user.avatar, 20) }}" alt="Avatar" />
                                     <span class="username">{{ app.user.username }}</span>
-
+                                    <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a href="{{ path('user_profile_edit') }}"><span class="glyphicon glyphicon-user"></span> {{ 'tempo.user.profile'|trans }}</a> </li>
