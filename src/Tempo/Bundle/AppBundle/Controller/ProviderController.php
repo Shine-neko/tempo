@@ -109,8 +109,8 @@ class ProviderController extends Controller
         $this->get('event_dispatcher')->dispatch(TempoAppEvents::ACTIVITY_PROVIDER_CREATE_INITIALIZE, $event);
 
         $activity = $provider->parse($request);
-
-        if ($activity instanceof ProviderInterface) {
+        
+        if ($activity instanceof ActivityProviderInterface) {
             $activity->setHeaders($request->headers->all());
             $this->getManager('activity_provider')->addActivity($activity, $projectProvider);
 
