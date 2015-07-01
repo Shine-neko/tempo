@@ -26,7 +26,7 @@
         </service>
 
         <service id="tempo.user.profil.tabs" class="Knp\Menu\MenuItem">
-            <factory service="tempo.menu.builder.frontend" method="userProfile" />
+            <factory service="tempo.menu.builder.main" method="userProfile" />
             <tag name="knp_menu.menu" alias="profile_tab"/>
         </service>
 
