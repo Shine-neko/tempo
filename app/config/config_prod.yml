@@ -11,13 +11,16 @@ imports:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    java: %java_bin%
+    node: %node_bin%
     filters:
         cssrewrite: ~
         uglifycss:
              bin: %uglifycss_bin%
+             node: %node_bin%
         uglifyjs2:
             bin: %uglifyjs_bin%
+            node: %node_bin%
+
 
 monolog:
     handlers:
