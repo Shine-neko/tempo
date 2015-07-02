@@ -41,17 +41,7 @@ class ResettingController extends Controller
                 $userManager->save($user);
             }
 
-            $senderEmail = $this->container->getParameter('tempo.config.email_from');
-            $message = \Swift_Message::newInstance()
-                ->setSubject('[Tempo] Reset password')
-                ->setFrom($senderEmail)
-                ->setTo($user->getEmail())
-                ->setBody(
-                    $this->renderView('TempoAppBundle:Mail:User/reset.html.twig', array('user' => $user)),
-                    'text/html'
-                );
-            $this->get('mailer')->send($message);
-
+            $this->get('tempo.mailer.sender')->sender('TempoAppBundle:Mail:User/reset.html.twig', array('user' => $user));
             $this->addFlash('success', 'tempo.security.resetting.request_success');
 
             return $this->redirectToRoute('homepage');

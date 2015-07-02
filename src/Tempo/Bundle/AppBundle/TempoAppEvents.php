@@ -15,6 +15,9 @@ final class TempoAppEvents
 {
     const SECURITY_IMPLICIT_LOGIN = 'tempo.security.implicit_login';
 
+    const EMAIL_PRE_RENDER = 'tempo.mail.pre_render';
+    const EMAIL_RENDER = 'tempo.mail.render';
+
     const ACTIVITY_CREATE_INITIALIZE            = 'tempo.activity.create.initialize';
     const ACTIVITY_CREATE_SUCCESS               = 'tempo.activity.create.success';
     const ACTIVITY_EDIT_INITIALIZE              = 'tempo.activity.edit.initialize';

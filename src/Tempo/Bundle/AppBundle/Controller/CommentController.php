@@ -41,15 +41,26 @@ class CommentController extends Controller
         $comment = new Comment();
         $comment->setAuthor($this->getUser());
 
-        if ('project' == $type) {
-            $project =  $this->getManager('project')->find($parent);
-            $comment->setProject($project);
+        $resource = $this->getManager($type)->find($parent);
+
+        if (!$resource) {
+            throw $this->createNotFoundException('Resource parent not found');
         }
+
+        $comment->{'set'. $type}($resource);
 
         $form = $this->createForm(new CommentType(), $comment);
 
         if ($form->handleRequest($request)->isValid()) {
+
             $this->get('tempo.domain_manager')->create($comment);
+            $this->get('tempo.mailer.sender')->sender('TempoAppBundle:Mail/Comment:create.html.twig', array(
+                'resource' => $resource,
+                'comment' => $comment,
+                'emails' => array_map(function($member) {
+                    return $member->getUser()->getEmail();
+                }, $resource->getMembers()->toArray()),
+            ));
         }
 
         return $this->getUrlRedirect($request);

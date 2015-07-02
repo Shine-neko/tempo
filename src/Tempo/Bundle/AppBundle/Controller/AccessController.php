@@ -48,20 +48,12 @@ class AccessController extends Controller
                     ->setSource($resource);
 
                 $this->get('tempo.domain_manager')->create($access);
-
-                $senderEmail = $this->container->getParameter('tempo.config.email_from');
-                $message = \Swift_Message::newInstance()
-                    ->setSubject('[Tempo] Invitation')
-                    ->setFrom($senderEmail)
-                    ->setTo($formData['username'])
-                    ->setBody($this->renderView('TempoAppBundle:Mail:Access/invitation.html.twig', array(
-                        'resource' => $resource,
-                        'access' => $access,
-                        'user' => $this->getUser()
-                        )),
-                        'text/html'
-                    );
-                $this->get('mailer')->send($message);
+                $this->get('tempo.mailer.sender')->sender('TempoAppBundle:Mail:Access/invitation.html.twig', array(
+                    'resource' => $resource,
+                    'access' => $access,
+                    'user' => $this->getUser(),
+                    'emails' => $formData['username']
+                ));
 
                 $this->addFlash('success', 'tempo.team.success_send_invitation');
             } else {

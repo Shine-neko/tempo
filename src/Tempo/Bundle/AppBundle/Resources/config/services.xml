@@ -28,6 +28,7 @@
         <parameter key="tempo.model.activity.class">Tempo\Bundle\AppBundle\Model\Activity</parameter>
 
         <parameter key="tempo.builder.activities.class">Tempo\Bundle\AppBundle\Builder\ActivitiesBuilder</parameter>
+        <parameter key="tempo.mailer.sender.class">Tempo\Bundle\AppBundle\Mailer\Sender</parameter>
     </parameters>
 
     <services>
@@ -144,6 +145,15 @@
         <service id="tempo.builder.activities" class="%tempo.builder.activities.class%">
             <argument type="service" id="tempo.model_manager.activity"/>
             <argument type="service" id="tempo.model_manager.activity_provider"/>
+        </service>
+
+        <service id="tempo.mailer.sender" class="%tempo.mailer.sender.class%">
+            <argument type="service" id="event_dispatcher" />
+            <argument type="service" id="twig" />
+            <argument type="service" id="mailer" />
+            <argument type="collection">
+                <argument key="from">%tempo.config.email_from%</argument>
+            </argument>
         </service>
     </services>
 </container>
