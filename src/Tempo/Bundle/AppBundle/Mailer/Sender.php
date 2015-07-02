@@ -11,7 +11,6 @@
 
 namespace Tempo\Bundle\AppBundle\Mailer;
 
-use Symfony\Bundle\TwigBundle\TwigEngine;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Tempo\Bundle\AppBundle\TempoAppEvents;
 use Tempo\Bundle\AppBundle\Event\MailerEvent;
@@ -34,10 +33,11 @@ class Sender
 
     /**
      * @param EventDispatcherInterface $dispatcher
-     * @param TwigEngine $twig
+     * @param \Twig_Environment        $twig
      * @param $mailer
+     * @param array $parameters
      */
-    public function __construct(EventDispatcherInterface $dispatcher, $twig, $mailer, $parameters)
+    public function __construct(EventDispatcherInterface $dispatcher, \Twig_Environment $twig, $mailer, $parameters)
     {
         $this->dispatcher = $dispatcher;
         $this->twig = $twig;
@@ -58,7 +58,7 @@ class Sender
 
         $this->dispatcher->dispatch(TempoAppEvents::EMAIL_PRE_RENDER, new MailerEvent($subject, $body));
 
-        $content =  $this->twig->render($view, $data);
+        $content = $this->twig->render($view, $data);
 
         $this->dispatcher->dispatch(TempoAppEvents::EMAIL_RENDER, new MailerEvent($subject, $body));
 
@@ -67,7 +67,7 @@ class Sender
         }
 
         $message = (new \Swift_Message())
-            ->setSubject('[Tempo]'. $subject)
+            ->setSubject('[Tempo]'.$subject)
             ->setFrom($this->parameters['from'])
             ->setTo($data['emails'])
             ->setBody($content, 'text/html');

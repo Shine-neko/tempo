@@ -152,7 +152,7 @@
             <argument type="service" id="twig" />
             <argument type="service" id="mailer" />
             <argument type="collection">
-                <argument key="from">%tempo.config.email_from%%</argument>
+                <argument key="from">%tempo.config.email_from%</argument>
             </argument>
         </service>
     </services>
