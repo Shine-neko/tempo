@@ -1,0 +1,13 @@
+{% extends "TempoAppBundle:Mail:layout.html.twig" %}
+
+{% block subject %} New comment for {{ resource.fullSlug is defined ? resource.name : resource.fullSlug }}{% endblock %}
+{% block content %}
+
+    {{ comment.author }}
+
+    <hr />
+
+    {{ comment.body }}
+
+    <br />
+{% endblock %}
