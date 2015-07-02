@@ -76,8 +76,8 @@ class GithubProvider implements ProviderInterface
     protected function pullRequestEvent($payload)
     {
         $activity = new ActivityProvider();
-        $activity->setMessage('Opened pull request #'.$payload['pull_request']['number']. ' '. $payload['pull_request']['title']);
-        $activity->setCreatedAt(new \DateTime($payload['pull_request']['created_at']));
+        $activity->setMessage('Opened pull request #'.$payload['pullRequest']['number']. ' '. $payload['pullRequest']['title']);
+        $activity->setCreatedAt(new \DateTime($payload['pullRequest']['created_at']));
         $activity->setParameters($payload);
 
         return $activity;
