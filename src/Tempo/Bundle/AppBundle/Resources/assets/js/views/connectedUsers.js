@@ -5,9 +5,9 @@ Tempo.View.ConnectedUsers = Backbone.View.extend({
 
     tagName: 'div',
     id: 'connected-users',
-    template: '<h5 id="user-handle" class="live-box-heading"><%= connectedCount %> Connected users</h5>' +
+    template: '<h5 id="user-handle" class="live-box-heading"><%= connectedCount %> connected users</h5>' +
         '<a href="#" class="toolbar-btn"><span class="glyphicon glyphicon-chevron-up"></span> </a>'+
-        '<ul id="users-list" class="clearfix"></ul>',
+        '<ul id="users-list" class="clearfix" style="display: none;"></ul>',
     users: [],
     events: {
         'click .toolbar-btn' : 'toggleShowUsers'
@@ -41,7 +41,7 @@ Tempo.View.ConnectedUsers = Backbone.View.extend({
         _.forEach(this.users, function(user) {
             var a = $('<a />')
                 .attr('href', '/profile/' + user.slug)
-                .append(user.avatar);
+                .append('<img src="'+user.avatar+'" width="30px" class="avatar" />');
             list.append($('<li>').html(a));
         });
         return this;

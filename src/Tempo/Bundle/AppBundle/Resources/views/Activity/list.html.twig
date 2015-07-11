@@ -37,18 +37,22 @@
         </ul>
     </div>
 </div>
+<div class="dashboard-{{ app.user.id }} dashboard-user" data-activities="{{ lastEvent['internal'] ~ ',' ~ lastEvent['provider'] }}">
 {% endif %}
-<div class="events-push">
-    {% for activity in activities %}
-        {% if activity.provider is not defined %}
-            {% include 'TempoAppBundle:Activity:_' ~ activity.target|lower ~ '.html.twig' %}
-        {% elseif activity.data['context'] is defined and activity.data['context'] == 'Scrutinizer' %}
-        {% else %}
-            {% if activity.data['context'] is not defined or (activity.data['context'] is defined and 'continuous-integration/travis-ci' not in activity.data['context']) %}
+    <div class="events-push">
+        {% for activity in activities %}
+            {% if activity.provider is not defined %}
+                {% include 'TempoAppBundle:Activity:_' ~ activity.target|lower ~ '.html.twig' %}
+            {% elseif activity.data['context'] is defined and activity.data['context'] == 'Scrutinizer' %}
+            {% else %}
                 {% include 'TempoAppBundle:Activity:_' ~ activity.provider.name ~ '.html.twig' %}
             {% endif %}
-        {% endif %}
-    {% else %}
-        <p class="text-center">{{ 'tempo.activity.dashboard.activity_not_found'|trans }}</p>
-    {% endfor %}
+        {% else %}
+            <p class="text-center">{{ 'tempo.activity.dashboard.activity_not_found'|trans }}</p>
+        {% endfor %}
+    </div>
+
+{% if masterRequest.attributes.get('_route') == 'homepage' %}
 </div>
+    <a href="{{ path('homepage', lastEvent) }}" id="more-activity">{{ 'tempo.activity.dashboard.more_activity'|trans }}</a>
+{% endif %}

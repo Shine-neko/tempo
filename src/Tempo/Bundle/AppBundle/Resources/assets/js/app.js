@@ -139,20 +139,6 @@ $(function() {
     ZeroClipboard.config( { swfPath: "/vendor/zeroclipboard/dist/ZeroClipboard.swf" } );
     var zeroClipboard = new ZeroClipboard($(".zeroclipboard-pre button"));
 
-
-    var flash = $(".flash-container");
-    if (flash.length > 0) {
-        flash.show();
-        flash.click(function() {
-            return $(this).slideUp("slow");
-        });
-
-        flash.slideDown("slow");
-        setTimeout((function() {
-            return flash.slideUp("slow");
-        }), 3000);
-    }
-
     Tempo.Provide('router', function() {
         Backbone.Router.extend({
             el:undefined,

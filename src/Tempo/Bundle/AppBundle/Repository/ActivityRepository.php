@@ -50,9 +50,16 @@ class ActivityRepository extends EntityRepository
                 ->setParameter(':project', $criteria['project']);
         }
 
+        if(!empty($criteria['activity'])) {
+            $query
+                ->andWhere('activity.id < :activity')
+                ->setParameter('activity', $criteria['activity']);
+        }
+
         $query
             ->AndWhere('activity.target IN(:target)')
-            ->setParameter('target', array('Project', 'Comment'));
+            ->setParameter('target', array('Project', 'Comment'))
+            ->setMaxResults(10);
 
         return $query->getQuery()->execute();
     }

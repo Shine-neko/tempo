@@ -12,9 +12,6 @@
 namespace Tempo\Bundle\AppBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Pagerfanta\Adapter\ArrayAdapter;
-use Pagerfanta\Pagerfanta;
-
 
 class ActivityController extends Controller
 {
@@ -31,12 +28,15 @@ class ActivityController extends Controller
     public function listAction(Request $parentRequest, $type = 'all')
     {
         $masterRequest = $this->get('request_stack')->getMasterRequest();
+        $lastEvent = array('internal' => null, 'provider' => null);
 
-        $filter = $parentRequest->get('filter', array());
+        $filter = $parentRequest->get('filter', array('period' => 'month'));
         $activities = array();
         $criteria = array(
-            'createdAt' => new \DateTime($this->period[(!empty($filter['period']) ? $filter['period'] : 'month')]),
-            'user' => $this->getUser()->getId()
+            'createdAt' => new \DateTime($this->period[$filter['period']]),
+            'user' => $this->getUser()->getId(),
+            'activity' => $parentRequest->get('internal'),
+            'activity_provider' => $parentRequest->get('provider')
         );
 
         if (!empty($filter['project'])) {
@@ -56,29 +56,30 @@ class ActivityController extends Controller
                 $activities,
                 $this->getManager('activity_provider')->getActivities($criteria)
             );
+            $lastEvent['provider']  = end($activities)->getId();
         }
 
         $activities = array_merge(
             $activities,
             $this->getManager('activity')->getActivities($criteria)
         );
+        $lastEvent['internal']  = end($activities)->getId();
 
         usort($activities, array($this, 'dateSort'));
         krsort($activities);
 
-        $adapter = new ArrayAdapter($activities);
-        $activities = new Pagerfanta($adapter);
         $providers = $this->getManager('project_provider')->getProviders(
             $this->getManager('project')->findAllByUser($this->getUser())
         );
 
         return $this->render('TempoAppBundle:Activity:list.html.twig', array(
-            'filter' => $filter,
-            'masterRequest' => $masterRequest,
             'type' => $type,
+            'filter' => $filter,
             'activities' => $activities,
-            'projects' => $this->getManager('project')->findAllByUser($this->getUser()->getId()),
             'providers' => $providers,
+            'masterRequest' => $masterRequest,
+            'lastEvent' => $lastEvent,
+            'projects' => $this->getManager('project')->findAllByUser($this->getUser()->getId()),
         ));
     }
 

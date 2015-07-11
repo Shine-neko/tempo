@@ -12,9 +12,9 @@ Tempo.Controller.Dashboard = Tempo.baseObject.extend({
     user:  null,
 
     load: function() {
-        var chatbox = $('#chatbox');
 
-        console.log(this.room);
+        var thas = this;
+        var chatbox = $('#chatbox');
 
         if (this.room != null) {
 
@@ -26,6 +26,11 @@ Tempo.Controller.Dashboard = Tempo.baseObject.extend({
             chatbox.append(this.messagesView.render().el);
         }
 
+        $('#more-activity').click(function(event) {
+            event.preventDefault();
+            thas.reloadActivity(Tempo.Controller.Dashboard.user.id);
+        });
+
         //Open a socket
         Tempo.socket = io.connect(window.location.hostname + ':8000');
         Tempo.socket.on('connect', _.bind(this.onSocketConnect, this));
@@ -33,6 +38,7 @@ Tempo.Controller.Dashboard = Tempo.baseObject.extend({
 
     //Handler for socket connections and reconnections
     onSocketConnect: function() {
+        var thas = this;
 
         if (this.room != null) {
             //Join the room for this scrumboard
@@ -45,16 +51,24 @@ Tempo.Controller.Dashboard = Tempo.baseObject.extend({
 
         Tempo.socket.on('feed:change', function(data) {
             var project = JSON.parse(data.project);
-            _.each(project.members, function(val) {
-                if(Tempo.Controller.Dashboard.user.id == val.user.id) {
-                    $.ajax({
-                        type: "GET",
-                        url: Routing.generate('activity_list', { type: 'all' })
-                    }) .done(function( content ) {
-                        $('.dashboard-1-' + val.user.id).html(content);
-                    });
+            _.each(project.members, function(member) {
+                if(Tempo.Controller.Dashboard.user.id == member.user.id) {
+                    thas.reloadActivity(member.user.id);
                 }
             });
+        });
+    },
+
+    reloadActivity: function(userId) {
+        var $dashboard = $('.dashboard-' + userId);
+        var lastEvent = $dashboard.data('activities').split(',');
+
+        $.ajax({
+            type: "GET",
+            url: Routing.generate('activity_list', { type: 'all', internal: lastEvent[0], provider: lastEvent[1] })
+        }) .done(function( content ) {
+            $dashboard.prepend(content);
+            //$dashboard.toggle("highlight");
         });
     }
 });

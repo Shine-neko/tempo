@@ -47,6 +47,14 @@ class ActivityProviderRepository extends EntityRepository
                 ->setParameter('provider', $criteria['provider']);
         }
 
+        if(!empty($criteria['activity_provider'])) {
+            $query
+                ->andWhere('activity.id < :activity')
+                ->setParameter('activity', $criteria['activity_provider']);
+        }
+
+        $query->setMaxResults(10);
+
         return $query->getQuery()->execute();
     }
 }
