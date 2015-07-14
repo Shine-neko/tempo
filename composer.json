@@ -67,8 +67,8 @@
         "doctrine/data-fixtures": "1.1.1"
     },
     "replace": {
-        "tempo-project/resource": "self.version",
-        "tempo-project/jsconfiguration-bundle": "self.version"
+        "tempo/resource": "self.version",
+        "tempo/jsconfiguration-bundle": "self.version"
     },
     "scripts": {
         "post-install-cmd": [
