@@ -36,6 +36,10 @@ class ActivityProviderManager extends ModelManager
      */
     public function getActivities($criteria)
     {
+        if (null !== $criteria['activity'] || null !== $criteria['activity_provider']) {
+            unset($criteria['createdAt']);
+        }
+
         return $this->getRepository()->findActivities($criteria);
     }
 

@@ -12,6 +12,7 @@
 namespace Tempo\Bundle\AppBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Tempo\Bundle\AppBundle\Model\ActivityInterface;
 
 class ActivityController extends Controller
 {
@@ -29,8 +30,9 @@ class ActivityController extends Controller
     {
         $masterRequest = $this->get('request_stack')->getMasterRequest();
         $lastEvent = array('internal' => null, 'provider' => null);
+        $filter = $parentRequest->get('filter', array());
+        $filter['period'] = isset($filter['period']) ? $filter['period'] :'month';
 
-        $filter = $parentRequest->get('filter', array('period' => 'month'));
         $activities = array();
         $criteria = array(
             'createdAt' => new \DateTime($this->period[$filter['period']]),
@@ -51,19 +53,15 @@ class ActivityController extends Controller
             $criteria['provider'] = $filter['provider'];
         }
 
-        if ('all' === $type) {
-            $activities = array_merge(
-                $activities,
-                $this->getManager('activity_provider')->getActivities($criteria)
-            );
-            $lastEvent['provider']  = end($activities)->getId();
+        if ('all' === $type || $type === 'provider') {
+            $this->mergeActivities($this->getManager('activity_provider')->getActivities($criteria), $activities, $lastEvent);
         }
 
-        $activities = array_merge(
-            $activities,
-            $this->getManager('activity')->getActivities($criteria)
-        );
-        $lastEvent['internal']  = end($activities)->getId();
+        $this->mergeActivities($this->getManager('activity')->getActivities($criteria), $activities, $lastEvent);
+
+        if (count($activities) < 3) {
+            $lastEvent = null;
+        }
 
         usort($activities, array($this, 'dateSort'));
         krsort($activities);
@@ -81,6 +79,18 @@ class ActivityController extends Controller
             'lastEvent' => $lastEvent,
             'projects' => $this->getManager('project')->findAllByUser($this->getUser()->getId()),
         ));
+    }
+
+    private function mergeActivities($activitiesList, &$activities, &$lastEvent)
+    {
+        if (empty($activitiesList)) {
+            return;
+        }
+
+        $end = $activitiesList[0];
+        $lastEvent[$end instanceof ActivityInterface ? 'internal' : 'provider'] = $end->getId();
+
+        $activities = array_merge($activities, $activitiesList);
     }
 
     private function dateSort($a, $b)

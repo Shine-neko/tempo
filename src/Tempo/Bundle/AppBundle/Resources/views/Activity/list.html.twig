@@ -37,9 +37,9 @@
         </ul>
     </div>
 </div>
-<div class="dashboard-{{ app.user.id }} dashboard-user" data-activities="{{ lastEvent['internal'] ~ ',' ~ lastEvent['provider'] }}">
+<div class="dashboard-{{ app.user.id }} dashboard-user">
 {% endif %}
-    <div class="events-push">
+    <div class="events-push" {% if lastEvent is null %}data-activities="{{ lastEvent['internal'] ~ ',' ~ lastEvent['provider'] }}"{% endif %}>
         {% for activity in activities %}
             {% if activity.provider is not defined %}
                 {% include 'TempoAppBundle:Activity:_' ~ activity.target|lower ~ '.html.twig' %}
@@ -54,5 +54,7 @@
 
 {% if masterRequest.attributes.get('_route') == 'homepage' %}
 </div>
-    <a href="{{ path('homepage', lastEvent) }}" id="more-activity">{{ 'tempo.activity.dashboard.more_activity'|trans }}</a>
+    {% if lastEvent is not null %}
+        <a href="{{ path('homepage', lastEvent) }}" id="more-activity">{{ 'tempo.activity.dashboard.more_activity'|trans }}</a>
+    {% endif %}
 {% endif %}

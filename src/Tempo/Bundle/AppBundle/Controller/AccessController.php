@@ -63,7 +63,7 @@ class AccessController extends Controller
                 if ($resource->getMemberByUser($user) == '') {
                     $resource->addAccess($user, $formData['role']);
 
-                    $this->get('tempo.domain_manager')->create($resource);
+                    $this->get('tempo.domain_manager')->update($resource);
                     $this->get('event_dispatcher')->dispatch($objectManager['event'], $event);
 
                     $this->addFlash('success', 'tempo.team.success_add');

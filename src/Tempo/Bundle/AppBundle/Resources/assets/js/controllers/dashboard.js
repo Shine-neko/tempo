@@ -41,7 +41,7 @@ Tempo.Controller.Dashboard = Tempo.baseObject.extend({
         var thas = this;
 
         if (this.room != null) {
-            //Join the room for this scrumboard
+            //Join the room
             Tempo.socket.emit('subscribe', this.room.id, this.user);
 
             //We now have a socket so bind on events from it
@@ -60,15 +60,24 @@ Tempo.Controller.Dashboard = Tempo.baseObject.extend({
     },
 
     reloadActivity: function(userId) {
-        var $dashboard = $('.dashboard-' + userId);
-        var lastEvent = $dashboard.data('activities').split(',');
+
+        var params = { type: 'all' };
+        var eventPush = $('.events-push:first');
+
+        if (eventPush.hasData('activities')) {
+            var lastEvent = eventPush.data('activities').split(',');
+            params['internal'] = lastEvent[0];
+            params['provider'] = lastEvent[1];
+        } else {
+            $('#more-activity').attr('href', '#');
+        }
 
         $.ajax({
             type: "GET",
-            url: Routing.generate('activity_list', { type: 'all', internal: lastEvent[0], provider: lastEvent[1] })
+            url: Routing.generate('activity_list', params)
         }) .done(function( content ) {
-            $dashboard.prepend(content);
-            //$dashboard.toggle("highlight");
+            $('.dashboard-' + userId).prepend(content);
+            $('#more-activity').attr('href', Routing.generate('homepage', params));
         });
     }
 });
