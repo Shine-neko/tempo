@@ -17,6 +17,8 @@ _bazinga_jstranslation:
 homepage:
     pattern:  /
     defaults: { _controller: TempoAppBundle:Dashboard:main }
+    options:
+        expose: true
 
 _tempo_users:
     resource: "@TempoAppBundle/Resources/config/routing.yml"
