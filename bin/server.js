@@ -1,3 +1,5 @@
+'use strict';
+
 var
     fs      = require('fs'),
     yaml    = require('js-yaml'),
@@ -10,16 +12,12 @@ try {
     console.log(e);
 }
 
-console.log(socket_io_port);
-
-
 var server = require('http').createServer();
 var io = require('socket.io')(server);
 
 server.listen(socket_io_port);
 
 logger.info('SocketIO > listening on port ' + socket_io_port);
-
 
 /**
  * Map of client IDs to usernames
@@ -28,7 +26,7 @@ var usernames = {};
 
 io.sockets.on('connection', function (socket) {
 
-    logger.info('ElephantIO broadcast > ');
+    logger.info('ElephantIO > broadcast');
 
     /**
      * Get the list of usernames connected to a room
@@ -38,15 +36,16 @@ io.sockets.on('connection', function (socket) {
         var returnClients = [];
 
         var numClients = (typeof clients !== 'undefined') ? Object.keys(clients).length : 0;
+        var clientId;
 
-        for (var clientId in clients ) {
+        for ( clientId in clients ) {
             if (usernames[room][clientId] !== 'undefined') {
                 returnClients.push(usernames[room][clientId]);
             }
         }
 
         return returnClients;
-    }
+    };
 
     /**
      * Allow clients to subscribe to a specific room
@@ -56,6 +55,9 @@ io.sockets.on('connection', function (socket) {
         if (typeof(usernames[room]) == 'undefined') {
             usernames[room] = {};
         }
+
+        logger.info(username.username + ' join room ' + room + ' on socket '+ socket.id);
+
         usernames[room][socket.id] = username;
 
         io.sockets.in(room).emit('user:change', getCurrentUsers(room));
@@ -66,6 +68,9 @@ io.sockets.on('connection', function (socket) {
      */
     socket.on('unsubscribe', function(room) {
         socket.leave(room);
+
+        logger.info(usernames[room][socket.id].username + ' join room ' + room + ' on socket '+ socket.id);
+
         delete usernames[room][socket.id];
 
         io.sockets.in(room).emit('user:change', getCurrentUsers(room));
