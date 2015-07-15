@@ -70,12 +70,23 @@ class AccessController extends Controller
         return $this->redirect($routeRedirect);
     }
     
-    public function inviteAction(Access $access)
+    /**
+     * 
+     * @param Request $request
+     * @param Access $access
+     * @return type
+     */
+    public function inviteAction(Request $request, Access $access)
     {
-        $this->sentEmail($access);
+        if ($this->isGranted('EDIT', $access->getResource())) {
+            $this->sentEmail($access);
+            $this->addFlash('success', 'tempo.team.invite_again_success');
+        } else {
+            $this->addFlash('error', 'tempo.team.not_allowed');
+        }
+        return $this->redirect($request->headers->get('referer'));
     }
     
-
     /**
      * @param  Request $request
      * @return RedirectResponse
@@ -138,14 +149,17 @@ class AccessController extends Controller
         return $user;
     }
     
+    /**
+     * 
+     * @param Access $access
+     */
     private function sentEmail(Access $access)
-    {
-        
+    { 
         $this->get('tempo.mailer.sender')->sender('TempoAppBundle:Mail:Access/invitation.html.twig', array(
-                    'resource' => $access->getResource(),
-                    'access' => $access,
-                    'user' => $this->getUser(),
-                    'emails' => $access->getInviteEmail()
-                ));
+            'resource' => $access->getResource(),
+            'access' => $access,
+            'user' => $this->getUser(),
+            'emails' => $access->getInviteEmail()
+        ));
     }
 }

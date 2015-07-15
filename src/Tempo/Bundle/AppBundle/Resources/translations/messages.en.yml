@@ -197,6 +197,8 @@ tempo:
     collaborator: Collaborator
     partner: Partner
     invite_again: Send the invitation again
+    invite_again_success: The invitation was sent successfuly.
+    not_allowed: You don't have the rights to do this action.
 
 
   buttons:
