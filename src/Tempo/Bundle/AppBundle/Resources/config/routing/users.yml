@@ -52,3 +52,8 @@ user_resetting_validate:
 user_admin:
     resource: "@TempoAppBundle/Resources/config/routing/admin/user.yml"
     prefix: /admin/users
+    
+user_invite_resent:
+    path: /user/invite/{id}
+    defaults:
+        _controller: "TempoAppBundle:Access:invite"

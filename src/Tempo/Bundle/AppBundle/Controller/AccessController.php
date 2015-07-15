@@ -46,14 +46,9 @@ class AccessController extends Controller
                     ->setInviteToken(sha1(uniqid(rand(), true)))
                     ->setLabel($formData['role'])
                     ->setSource($resource);
-
+                
                 $this->get('tempo.domain_manager')->create($access);
-                $this->get('tempo.mailer.sender')->sender('TempoAppBundle:Mail:Access/invitation.html.twig', array(
-                    'resource' => $resource,
-                    'access' => $access,
-                    'user' => $this->getUser(),
-                    'emails' => $formData['username']
-                ));
+                $this->sentEmail($access);
 
                 $this->addFlash('success', 'tempo.team.success_send_invitation');
             } else {
@@ -74,6 +69,12 @@ class AccessController extends Controller
         }
         return $this->redirect($routeRedirect);
     }
+    
+    public function inviteAction(Access $access)
+    {
+        $this->sentEmail($access);
+    }
+    
 
     /**
      * @param  Request $request
@@ -135,5 +136,16 @@ class AccessController extends Controller
         }
 
         return $user;
+    }
+    
+    private function sentEmail(Access $access)
+    {
+        
+        $this->get('tempo.mailer.sender')->sender('TempoAppBundle:Mail:Access/invitation.html.twig', array(
+                    'resource' => $access->getResource(),
+                    'access' => $access,
+                    'user' => $this->getUser(),
+                    'emails' => $access->getInviteEmail()
+                ));
     }
 }

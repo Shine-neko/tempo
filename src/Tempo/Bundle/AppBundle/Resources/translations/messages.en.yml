@@ -196,6 +196,8 @@ tempo:
     owner: Owner
     collaborator: Collaborator
     partner: Partner
+    invite_again: Send the invitation again
+
 
   buttons:
       edit: Edit

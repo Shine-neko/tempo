@@ -62,6 +62,11 @@ class Access implements AccessInterface
      * @var \DateTime
      */
     protected $createdAt;
+    
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * @param $source
@@ -77,6 +82,18 @@ class Access implements AccessInterface
         return $this;
     }
 
+    public function getResource()
+    {
+        if (null !== $this->project) {
+            return $this->project;
+        }
+        if (null !== $this->organization) {
+            return $this->organization;
+        }
+        if (null !== $this->room) {
+            return $this->room;
+        }
+    }
     /**
      * @return string
      */

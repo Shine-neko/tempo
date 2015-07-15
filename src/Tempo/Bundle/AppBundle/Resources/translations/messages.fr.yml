@@ -196,6 +196,7 @@ tempo:
     owner: Leader
     collaborator: Collaborateur
     partner: Partenaire
+    invite_again: Renvoyer l'invitation
 
     buttons:
       edit: Editer
