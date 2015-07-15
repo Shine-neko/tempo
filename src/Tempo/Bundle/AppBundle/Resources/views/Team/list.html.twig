@@ -1,8 +1,8 @@
 <ul class="list">
     {% for userTeam in users %}
-        {% if(userTeam.inviteEmail is null) %}
-            {% set user = userTeam.getUser() is defined ? userTeam.user : userTeam %}
         <li>
+        {% if(userTeam.inviteEmail is empty) %}
+            {% set user = userTeam.getUser() is defined ? userTeam.user : userTeam %}
             <a href="{{ path('user_profile_show', { 'slug': user.slug }) }}"> <img src="{{ avatar(user.avatar, 28) }}" />
                 {{ user.getFullName }}
             </a>
@@ -12,7 +12,15 @@
             <a href="{{ path(route_deleted, { 'slug' : category.fullSlug is defined ? category.fullSlug : category.slug , 'user' : user.id }) }}" title="Remove {{ user.getFullName }}">
                 <span class="glyphicon glyphicon-remove"></span>
             </a>
-        </li>
+        {% elseif is_granted('EDIT', userTeam.getResource) %}
+            {{ userTeam.inviteEmail }}
+            
+            <a href="{{ path('user_invite_resent', { 'id' : userTeam.id }) }}">
+                <span class="label label-warning role-label">
+                    {{ 'tempo.team.invite_again'|trans }}
+                </span>
+            </a>
         {% endif %}
+        </li>
     {% endfor %}
 </ul>
