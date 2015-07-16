@@ -13,10 +13,9 @@ namespace Tempo\Bundle\AppBundle\EventListener;
 
 use Tempo\Bundle\AppBundle\Manager\DomainManager;
 use Tempo\Bundle\AppBundle\Manager\RoomManager;
-use Tempo\Bundle\AppBundle\Model\ProjectProvider;
 use Sylius\Component\Resource\Event\ResourceEvent;
 
-class ProjectListener
+class OrganizationListener
 {
     private $roomManager;
     private $providerRegistry;
@@ -34,14 +33,11 @@ class ProjectListener
     /**
      * @param ResourceEvent $event
      */
-    public function createProject(ResourceEvent $event)
+    public function createOrganization(ResourceEvent $event)
     {
-        $project = $event->getSubject();
+        $organization = $event->getSubject();
 
-        if ($project->getParent() == null) {
-            //create room
-            $this->roomManager->create($project->getName(), $project->getMembers());
-            $this->domainManager->flush();
-        }
+        $this->roomManager->create($organization->getName(), $organization->getMembers());
+        $this->domainManager->flush();
     }
 }
