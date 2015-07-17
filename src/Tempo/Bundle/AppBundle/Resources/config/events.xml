@@ -4,7 +4,7 @@
 
     <parameters>
         <parameter key="tempo.event.listener.activity.class">Tempo\Bundle\AppBundle\EventListener\ActivitySubscriber</parameter>
-        <parameter key="tempo.listener.project.class">Tempo\Bundle\AppBundle\EventListener\ProjectListener</parameter>
+        <parameter key="tempo.listener.organization.class">Tempo\Bundle\AppBundle\EventListener\OrganizationListener</parameter>
         <parameter key="tempo.activity.listener.activity_provider.class">Tempo\Bundle\AppBundle\EventListener\ActivityProviderListener</parameter>
     </parameters>
 
@@ -27,11 +27,11 @@
             <tag name="kernel.event_listener" event="tempo.activity.provider.create.success" method="pingActivityRoom" />
         </service>
 
-        <service id="tempo.listener.project" class="%tempo.listener.project.class%">
+        <service id="tempo.listener.organization" class="%tempo.listener.organization.class%">
             <argument type="service" id="tempo.domain_manager" />
             <argument type="service" id="tempo.model_manager.room" />
             <argument type="service" id="tempo.activity.provider_registry" />
-            <tag name="kernel.event_listener" event="tempo.project.pre_create" method="createProject" />
+            <tag name="kernel.event_listener" event="tempo.organization.pre_create" method="createOrganization" />
         </service>
     </services>
 
