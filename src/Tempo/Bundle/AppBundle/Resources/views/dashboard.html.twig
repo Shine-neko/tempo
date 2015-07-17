@@ -23,6 +23,7 @@
 
         Tempo.Controller.Dashboard.user = {{ currentUser| raw }};
         Tempo.Controller.Dashboard.load();
+        new Tempo.View.Room;
     </script>
 {% endblock %}
 
@@ -56,7 +57,9 @@
         {% else %}
         <div class="no-rooms">
             <p>{{ 'tempo.room.no_room'|trans }}</p>
-            <a href=""><span class="ion-plus"></span> {{'tempo.user.create_room'|trans}}</a>
+            <div class="room-add">
+                <a href="#" id="create-room"><span class="ion-plus"></span> {{ 'tempo.room.create'|trans }}</a>
+            </div>
         </div>
         {% endif %}
     </div>

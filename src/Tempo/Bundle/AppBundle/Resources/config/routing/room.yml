@@ -2,6 +2,10 @@ room_list:
     path: /list
     defaults: { _controller: TempoAppBundle:Room:list }
 
+room_create:
+    path: /create
+    defaults: { _controller: TempoAppBundle:Room:list }
+
 room_update:
     path: /{id}/update
     defaults: { _controller: TempoAppBundle:Room:update}

@@ -290,8 +290,6 @@ tempo:
     delete_success: La room a bien été supprimée.
     create: Créer une room
     create_success: La room a bien été créée.
-
-  room:
     form:
       name: Nom
       enableChat: Activer le chat

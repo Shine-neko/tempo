@@ -1,8 +1,12 @@
+api_room_all:
+  path: /room/all
+  defaults: { _controller: TempoAppBundle:Api/Room:getRoom }
+
+api_room_create:
+  path: /create
+  defaults: { _controller: TempoAppBundle:Api/Room:postRoom }
+
 api_room_show:
     path:  /room/{slug}
     defaults: { _controller: TempoAppBundle:Api/Room:getRoom }
     requirements:
-
-api_room_all:
-  path: /room/all
-  defaults: { _controller: TempoAppBundle:Api/Room:getRoom }

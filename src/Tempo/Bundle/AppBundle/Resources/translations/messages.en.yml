@@ -227,6 +227,7 @@ tempo:
       password: Password
       settings: Settings
       notifications: Notifications
+      room: Rooms
       edit: Edit profile
     avatar:
       title: Avatar
@@ -291,9 +292,6 @@ tempo:
     delete_success: The room has been deleted successfuly.
     create: Create room
     create_success: Room has been created successfuly.
-    
-    
-  room:
     form:
       name: Name
       enableChat: Enable chat

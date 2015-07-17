@@ -67,10 +67,13 @@ class MainMenuBuilder extends MenuBuilder
             $this->translate('tempo.profile.tabs.settings'),
             array('route' => 'user_profile_settings')
         );
-
         $menu->addChild(
             $this->translate('tempo.profile.tabs.notifications'),
             array('route' => 'notification_dashboard')
+        );
+        $menu->addChild(
+            $this->translate('tempo.profile.tabs.room'),
+            array('route' => 'room_list')
         );
 
         $this->eventDispatcher->dispatch(MenuBuilderEvent::USER, new MenuBuilderEvent($this->factory, $menu));
