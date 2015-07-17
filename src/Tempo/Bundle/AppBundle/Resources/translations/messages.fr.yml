@@ -196,6 +196,9 @@ tempo:
     owner: Leader
     collaborator: Collaborateur
     partner: Partenaire
+    invite_again: Renvoyer l'invitation
+    invite_again_success: L'invitation a été envoyée.
+    not_allowed: Vous n'avez pas les droits pour effectuer cette action.
 
     buttons:
       edit: Editer
