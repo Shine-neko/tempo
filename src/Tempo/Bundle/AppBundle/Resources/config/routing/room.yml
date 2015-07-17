@@ -4,18 +4,18 @@ room_list:
 
 room_create:
     path: /create
-    defaults: { _controller: TempoAppBundle:Room:list }
+    defaults: { _controller: TempoAppBundle:Room:create }
 
 room_update:
     path: /{id}/update
-    defaults: { _controller: TempoAppBundle:Room:update}
+    defaults: { _controller: TempoAppBundle:Room:update }
     
 room_delete:
     path: /{id}/delete
-    defaults: { _controller: TempoAppBundle:Room:delete}
+    defaults: { _controller: TempoAppBundle:Room:delete }
     
 room_leave:
-    path:  /{id}/team/{user}/delete
+    path:  /{slug}/team/{user}/delete
     defaults: { _controller: TempoAppBundle:Access:delete }
     
     

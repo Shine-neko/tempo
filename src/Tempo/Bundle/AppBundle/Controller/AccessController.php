@@ -33,14 +33,13 @@ class AccessController extends Controller
         $slug = $objectManager['route'] == 'project_show' ? $resource->getFullSlug() : $resource->getSlug();
 
         $routeRedirect = $this->generateUrl($objectManager['route'], array('slug' => $slug));
-
         $form = $this->createForm(new AccessType($resource));
 
         if ($form->handleRequest($request)->isValid()) {
 
             $formData = $form->getData();
 
-            if (filter_var($formData['username'], FILTER_VALIDATE_EMAIL)) {
+            if (filter_var($formData['identifiant'], FILTER_VALIDATE_EMAIL)) {
                 $access = (new Access())
                     ->setInviteEmail($formData['username'])
                     ->setInviteToken(sha1(uniqid(rand(), true)))
@@ -52,13 +51,13 @@ class AccessController extends Controller
 
                 $this->addFlash('success', 'tempo.team.success_send_invitation');
             } else {
-                $user = $this->findUser(array('username' => $formData['username']));
+                $user = $this->findUser(array('username' => $formData['identifiant']));
                 $event = new AccessEvent($request, $resource, $user, $this->getUser());
                                 
                 if ($resource->getMemberByUser($user) == '') {
                     $resource->addAccess($user, $formData['role']);
 
-                    $this->get('tempo.domain_manager')->create($resource);
+                    $this->get('tempo.domain_manager')->update($resource);
                     $this->get('event_dispatcher')->dispatch($objectManager['event'], $event);
 
                     $this->addFlash('success', 'tempo.team.success_add');
@@ -130,7 +129,7 @@ class AccessController extends Controller
                 );
                 break;
             case 'room_team_add':
-            case 'room_team_delete':
+            case 'room_leave':
                 $objectManager = array(
                     'manager' => $this->getManager('room'),
                     'route' => 'room_list',
@@ -139,7 +138,15 @@ class AccessController extends Controller
                 break;
         }
 
-        $objectManager['model'] = $objectManager['manager']->findOneBySlug($slug);
+        $key = is_string($slug) ? 'slug' : 'id';
+
+        $objectManager['model'] = $objectManager['manager']->findOneBySlug(array(
+            $key => $slug
+        ));
+
+        if (null === $objectManager['model']) {
+            throw $this->createNotFoundException();
+        }
 
         return $objectManager;
     }

@@ -14,6 +14,7 @@ namespace Tempo\Bundle\AppBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Tempo\Bundle\AppBundle\Form\Type\RoomType;
 use Tempo\Bundle\AppBundle\Model\Room;
+use Tempo\Bundle\AppBundle\Model\AccessInterface;
 
 class RoomController extends Controller
 {
@@ -51,10 +52,10 @@ class RoomController extends Controller
             $this->get('tempo.domain_manager')->create($room);
             $this->addFlash('success', 'tempo.room.create_success');
 
-            $this->redirect($request->headers->get('referer'));
+            return $this->redirect($request->headers->get('referer'));
         }
 
-       return $this->redirectToRoute('room_list');
+        return $this->redirectToRoute('room_list');
     }
     
     public function deleteAction(Room $room)
@@ -67,12 +68,5 @@ class RoomController extends Controller
         $this->addFlash('success', 'tempo.room.delete_success');
         
         return $this->redirectToRoute('room_list');
-    }
-    
-    public function leaveAction(Room $room)
-    {
-        if ($this->isGranted('DELETE', $room)) {
-            throw $this->createAccessDeniedException();
-        }
     }
 }

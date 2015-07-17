@@ -38,6 +38,7 @@
                         <th>Created</th>
                         <th>Users</th>
                         <th>Messages</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,11 +48,16 @@
                         <td>{{ room.createdAt|localizeddate('medium', 'none', app.request.locale) }}</td>
                         <td>{{ room.members|length }}</td>
                         <td>{{ room.messages|length }}</td>
-                        {% if is_granted('DELETE', room) %}
-                        <td><a class="btn btn-xs btn-danger" href="{{ path('room_delete', {'id' : room.id}) }}">{{ 'tempo.form.delete'|trans }}</a></td>
-                        {% else %}
-                        <td><a class="btn btn-xs btn-default" href="{{ path('room_leave', {'id' : room.id, 'user' : app.user.id}) }}">{{ 'tempo.form.leave'|trans }}</a></td>
-                        {% endif %}
+                        <td>
+                            {% if is_granted('DELETE', room) %}
+                             <a class="btn btn-xs btn-danger" href="{{ path('room_delete', {'id' : room.id}) }}">{{ 'tempo.form.delete'|trans }}</a></td>
+                            {% else %}
+                            <a id="delete-room-{{ room.id }}" class="btn btn-xs btn-danger" href="{{ path('room_leave', {'slug' : room.id, 'user' : app.user.id}) }}">
+                                {{ 'tempo.form.leave'|trans }}
+                            </a>
+                            {% endif %}
+                        </td>
+
                     </tr>
                     {% endfor %}
                 </tbody>

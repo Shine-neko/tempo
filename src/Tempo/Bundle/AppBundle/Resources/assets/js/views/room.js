@@ -21,7 +21,11 @@ Tempo.View.Room = Backbone.View.extend({
             'action' : Routing.generate('room_create')
         });
 
-        $('.room-add').append(template);
+        var roomAdd = $('.room-add');
+
+        if (roomAdd.find('form').length === 0) {
+            roomAdd.append(template);
+        }
     }
 
 });
