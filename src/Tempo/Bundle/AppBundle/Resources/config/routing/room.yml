@@ -6,4 +6,8 @@ room_update:
     path: /{id}/update
     defaults: { _controller: TempoAppBundle:Room:update}
     
+room_delete:
+    path: /{id}/delete
+    defaults: { _controller: TempoAppBundle:Room:delete}
+    
     

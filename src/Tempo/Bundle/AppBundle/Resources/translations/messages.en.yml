@@ -285,6 +285,7 @@ tempo:
     create.page_title: Create user
     update.page_title: Update user
     room: Rooms
+    room_delete_success: The room has been deleted successfuly.
     
   room:
     form:

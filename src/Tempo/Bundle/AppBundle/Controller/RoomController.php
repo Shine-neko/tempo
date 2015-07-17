@@ -39,4 +39,16 @@ class RoomController extends Controller
         
         return $this->render('TempoAppBundle:Room:list.html.twig', array('rooms' => $rooms));
     }
+    
+    public function deleteAction(Room $room)
+    {
+        if (false === $this->isGranted('DELETE' ,$room)) {
+            throw new AccessDeniedException();
+        }
+        
+        $this->get('tempo.domain_manager')->delete($room);
+        $this->addFlash('success', 'tempo.user.room_delete_success');
+        
+        return $this->redirectToRoute('room_list');
+    }
 }
