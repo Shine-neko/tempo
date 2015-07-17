@@ -14,6 +14,7 @@ namespace Tempo\Bundle\AppBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Tempo\Bundle\AppBundle\Form\Type\RoomType;
 use Tempo\Bundle\AppBundle\Model\Room;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class RoomController extends Controller
 {
@@ -42,13 +43,22 @@ class RoomController extends Controller
     
     public function deleteAction(Room $room)
     {
-        if (false === $this->isGranted('DELETE' ,$room)) {
+        if (false === $this->isGranted('DELETE', $room)) {
             throw new AccessDeniedException();
         }
         
         $this->get('tempo.domain_manager')->delete($room);
-        $this->addFlash('success', 'tempo.user.room_delete_success');
+        $this->addFlash('success', 'tempo.room.delete_success');
         
         return $this->redirectToRoute('room_list');
+    }
+    
+    public function leaveAction(Room $room)
+    {
+        if ($this->isGranted('DELETE', $room)) {
+            throw new AccessDeniedException();
+        }
+        
+        
     }
 }

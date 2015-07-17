@@ -23,6 +23,7 @@ tempo:
       save_changes: Save changes
       submit: Send
       manage: Manage
+      leave: Leave
 
   admin:
       dashboard: Admin
@@ -284,8 +285,13 @@ tempo:
       page_title : User list
     create.page_title: Create user
     update.page_title: Update user
-    room: Rooms
-    room_delete_success: The room has been deleted successfuly.
+    
+  room:
+    title: Rooms
+    delete_success: The room has been deleted successfuly.
+    create: Create room
+    create_success: Room has been created successfuly.
+    
     
   room:
     form:

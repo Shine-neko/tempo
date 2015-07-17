@@ -129,6 +129,14 @@ class AccessController extends Controller
                     'event' => TempoAppEvents::ORGANIZATION_ASSIGN_USER
                 );
                 break;
+            case 'room_team_add':
+            case 'room_team_delete':
+                $objectManager = array(
+                    'manager' => $this->getManager('room'),
+                    'route' => 'room_list',
+                    'event' => TempoAppEvents::ROOM_ASSIGN_USER
+                );
+                break;
         }
 
         $objectManager['model'] = $objectManager['manager']->findOneBySlug($slug);

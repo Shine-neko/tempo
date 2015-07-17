@@ -10,6 +10,7 @@
         '@TempoAppBundle/Resources/assets/js/views/chatBox.js'
         '@TempoAppBundle/Resources/assets/js/views/message.js'
         '@TempoAppBundle/Resources/assets/js/views/connectedUsers.js'
+        '@TempoAppBundle/Resources/assets/js/views/room.js'        
         '@TempoAppBundle/Resources/assets/js/controllers/dashboard.js'
         output="js/dashboard.js" filter="?uglifyjs2"
     %}
@@ -53,7 +54,10 @@
             </div>
         </div>
         {% else %}
-        <div class="no-rooms"><p>{{ 'tempo.room.no_room'|trans }}</p></div>
+        <div class="no-rooms">
+            <p>{{ 'tempo.room.no_room'|trans }}</p>
+            <a href=""><span class="ion-plus"></span> {{'tempo.user.create_room'|trans}}</a>
+        </div>
         {% endif %}
     </div>
 {% endblock %}

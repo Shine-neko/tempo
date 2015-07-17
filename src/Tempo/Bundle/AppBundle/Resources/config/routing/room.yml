@@ -10,4 +10,8 @@ room_delete:
     path: /{id}/delete
     defaults: { _controller: TempoAppBundle:Room:delete}
     
+room_leave:
+    path:  /{id}/team/{user}/delete
+    defaults: { _controller: TempoAppBundle:Access:delete }
+    
     
