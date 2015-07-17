@@ -284,6 +284,7 @@ tempo:
       page_title : User list
     create.page_title: Create user
     update.page_title: Update user
+    room: Rooms
     
   room:
     form:

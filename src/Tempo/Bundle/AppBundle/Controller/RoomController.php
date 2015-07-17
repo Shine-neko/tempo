@@ -17,28 +17,7 @@ use Tempo\Bundle\AppBundle\Model\Room;
 
 class RoomController extends Controller
 {
-    /**
-     * Get a single room
-     */
-    public function getRoomAction($slug)
-    {
-        try {
-            $room = $this->getManager('room')->getRepository()->findRoom($slug, $this->getUser()->getId());
-        } catch (\Exception $e) {
-            throw $this->createNotFoundException();
-        }
-
-        return $room;
-    }
-
-    public function getRoomsAction()
-    {
-        $rooms = $this->getManager('room')->getRepository()->findRooms($this->getUser()->getId());
-
-        return $rooms;
-    }
-
-    public function updateAction(Request $request, Room $room, $_format = 'html')
+    public function updateAction(Request $request, Room $room)
     {
         $form = $this->createForm(new RoomType(), $room);
 
@@ -48,16 +27,16 @@ class RoomController extends Controller
             return $this->redirectToRoute('homepage');
         }
 
-        $data = array(
+        return $this->render('TempoAppBundle:Room:update.html.twig', array(
             'form' => $form->createView(),
             'room' => $room
-         );
-
-        $view = $this->view($data, 200)
-            ->setFormat('html')
-            ->setTemplate('TempoAppBundle:Room:update.html.twig')
-        ;
-        return $this->handleView($view);
+         ));
     }
-
+    
+    public function listAction()
+    {
+        $rooms = $this->getManager('room')->getRepository()->findRooms($this->getUser()->getId());
+        
+        return $this->render('TempoAppBundle:Room:list.html.twig', array('rooms' => $rooms));
+    }
 }

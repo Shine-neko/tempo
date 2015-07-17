@@ -283,6 +283,7 @@ tempo:
       page_title : Liste des utilisateurs
     create.page_title: Créer un utilisateur
     update.page_title: Modifier l'utilisateur
+    room: Rooms
 
   room:
     form:
