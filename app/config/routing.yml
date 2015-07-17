@@ -15,7 +15,7 @@ _bazinga_jstranslation:
     resource: "@BazingaJsTranslationBundle/Resources/config/routing/routing.yml"
 
 homepage:
-    pattern:  /
+    path:  /
     defaults: { _controller: TempoAppBundle:Dashboard:main }
     options:
         expose: true
@@ -32,7 +32,7 @@ hwi_oauth_redirect:
   prefix: /login
 
 google_login:
-  pattern: /login/check-google
+  path: /login/check-google
 
 _tempo_app:
     resource: "@TempoAppBundle/Resources/config/routing.yml"
