@@ -66,21 +66,23 @@ class ResourceVoter implements VoterInterface
         }
 
         foreach ($attributes as $attribute) {
-            $this->checkAttribute($resource, $attribute, $member);
+            $this->checkAttribute(strtolower($attribute), $member);
         }
+
+        return VoterInterface::ACCESS_GRANTED;
     }
 
-    public function checkAttribute($resource, $attribute, $member)
+    public function checkAttribute($attribute, $member)
     {
         switch ($attribute) {
             case self::EDIT:
             case self::DELETE:
             case self::ASSIGN:
             case self::DELETE_ASSIGN:
-                // we assume that our data object has a method getOwner() to
+             // we assume that our data object has a method getOwner() to
                 // get the current owner user entity for this data object
-                if ($member->getLabel() == AccessInterface::TYPE_OWNER) {
-                    return VoterInterface::ACCESS_GRANTED;
+                if ($member->getLabel() !== AccessInterface::TYPE_OWNER) {
+                    return VoterInterface::ACCESS_DENIED;
                 }
                 break;
         }
