@@ -50,7 +50,7 @@
                         <td>{{ room.messages|length }}</td>
                         <td>
                             {% if is_granted('DELETE', room) %}
-                             <a class="btn btn-xs btn-danger" href="{{ path('room_delete', {'id' : room.id}) }}">{{ 'tempo.form.delete'|trans }}</a></td>
+                             <a class="btn btn-xs btn-danger" title="delete-{{ room.name }}" href="{{ path('room_delete', {'id' : room.id}) }}">{{ 'tempo.form.delete'|trans }}</a></td>
                             {% else %}
                             <a id="delete-room-{{ room.id }}" class="btn btn-xs btn-danger" href="{{ path('room_leave', {'slug' : room.id, 'user' : app.user.id}) }}">
                                 {{ 'tempo.form.leave'|trans }}
