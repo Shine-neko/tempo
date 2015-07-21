@@ -27,13 +27,15 @@ class ActivityProviderRepository extends EntityRepository
             ->leftJoin('activity.provider', 'provider')
             ->leftJoin('provider.project', 'project')
             ->leftJoin('project.members', 'access')
-            ->where("activity.createdAt > :createdAt")
-            ->andWhere('access.user = :user')
+            ->where('access.user = :user')
             ->andWhere('activity.deletedAt IS NULL')
-            ->setParameters([
-                'user' => $criteria['user'],
-                'createdAt' => $criteria['createdAt']
-            ]);
+            ->setParameter('user', $criteria['user']);
+
+        if (!empty($criteria['createdAt'])) {
+            $query
+                ->andWhere('activity.createdAt > :createdAt')
+                ->setParameter('createdAt', $criteria['createdAt']);
+        }
 
         if (!empty($criteria['project'])) {
             $query
@@ -46,6 +48,14 @@ class ActivityProviderRepository extends EntityRepository
                 ->andWhere('provider.name IN(:provider)')
                 ->setParameter('provider', $criteria['provider']);
         }
+
+        if(!empty($criteria['activity_provider'])) {
+            $query
+                ->andWhere('activity.id < :activity')
+                ->setParameter('activity', $criteria['activity_provider']);
+        }
+
+        $query->setMaxResults(10);
 
         return $query->getQuery()->execute();
     }

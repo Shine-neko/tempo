@@ -12,9 +12,7 @@
 namespace Tempo\Bundle\AppBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Pagerfanta\Adapter\ArrayAdapter;
-use Pagerfanta\Pagerfanta;
-
+use Tempo\Bundle\AppBundle\Model\ActivityInterface;
 
 class ActivityController extends Controller
 {
@@ -31,12 +29,16 @@ class ActivityController extends Controller
     public function listAction(Request $parentRequest, $type = 'all')
     {
         $masterRequest = $this->get('request_stack')->getMasterRequest();
-
+        $lastEvent = array('internal' => null, 'provider' => null);
         $filter = $parentRequest->get('filter', array());
+        $filter['period'] = isset($filter['period']) ? $filter['period'] :'month';
+
         $activities = array();
         $criteria = array(
-            'createdAt' => new \DateTime($this->period[(!empty($filter['period']) ? $filter['period'] : 'month')]),
-            'user' => $this->getUser()->getId()
+            'createdAt' => new \DateTime($this->period[$filter['period']]),
+            'user' => $this->getUser()->getId(),
+            'activity' => $parentRequest->get('internal'),
+            'activity_provider' => $parentRequest->get('provider')
         );
 
         if (!empty($filter['project'])) {
@@ -51,35 +53,44 @@ class ActivityController extends Controller
             $criteria['provider'] = $filter['provider'];
         }
 
-        if ('all' === $type) {
-            $activities = array_merge(
-                $activities,
-                $this->getManager('activity_provider')->getActivities($criteria)
-            );
+        if ('all' === $type || $type === 'provider') {
+            $this->mergeActivities($this->getManager('activity_provider')->getActivities($criteria), $activities, $lastEvent);
         }
 
-        $activities = array_merge(
-            $activities,
-            $this->getManager('activity')->getActivities($criteria)
-        );
+        $this->mergeActivities($this->getManager('activity')->getActivities($criteria), $activities, $lastEvent);
+
+        if (count($activities) < 3) {
+            $lastEvent = null;
+        }
 
         usort($activities, array($this, 'dateSort'));
         krsort($activities);
 
-        $adapter = new ArrayAdapter($activities);
-        $activities = new Pagerfanta($adapter);
         $providers = $this->getManager('project_provider')->getProviders(
             $this->getManager('project')->findAllByUser($this->getUser())
         );
 
         return $this->render('TempoAppBundle:Activity:list.html.twig', array(
-            'filter' => $filter,
-            'masterRequest' => $masterRequest,
             'type' => $type,
+            'filter' => $filter,
             'activities' => $activities,
-            'projects' => $this->getManager('project')->findAllByUser($this->getUser()->getId()),
             'providers' => $providers,
+            'masterRequest' => $masterRequest,
+            'lastEvent' => $lastEvent,
+            'projects' => $this->getManager('project')->findAllByUser($this->getUser()->getId()),
         ));
+    }
+
+    private function mergeActivities($activitiesList, &$activities, &$lastEvent)
+    {
+        if (empty($activitiesList)) {
+            return;
+        }
+
+        $end = $activitiesList[0];
+        $lastEvent[$end instanceof ActivityInterface ? 'internal' : 'provider'] = $end->getId();
+
+        $activities = array_merge($activities, $activitiesList);
     }
 
     private function dateSort($a, $b)

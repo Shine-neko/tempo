@@ -22,18 +22,26 @@ class GitlabProvider implements ProviderInterface
      */
     public function parse(Request $request)
     {
-        if ($request->request->has('object_kind')) {
-            $methodName = sprintf('%sEvent', Inflector::camelize($request->request->get('object_kind')));
-            return $this->$methodName($request->request->all()['object_attributes']);
+        if ($request->headers->has('x-gitlab-event')) {
+            $eventName = $request->headers->get('x-gitlab-event');
+        } else if ($request->request->has('object_kind')) {
+            $eventName = $request->request->get('object_kind');
         }
 
-        return $this->pushEvent($request->request->all());
+        $eventName = sprintf('%sEvent', Inflector::camelize($eventName));
+
+        if (method_exists($this, $eventName)) {
+            return $this->$eventName($request->request->all());
+        }
     }
 
     public function pushEvent($payload)
     {
         $activity = new ActivityProvider();
-        $activity->setMessage('Pushed to '. str_replace('refs/heads/', '', $payload['ref']). ' '.$payload['repository']['name']);
+        $activity->setMessage('Pushed to %s %s',
+            str_replace('refs/heads/', '', $payload['ref']),
+            $payload['repository']['name']
+        );
         $activity->setCreatedAt(new \DateTime());
         $activity->setParameters($payload);
 
@@ -43,7 +51,10 @@ class GitlabProvider implements ProviderInterface
     public function mergeRequest($payload)
     {
         $activity = new ActivityProvider();
-        $activity->setMessage('Opened pull request #'.$payload['pull_request']['number']. ' '. $payload['pull_request']['title']);
+        $activity->setMessage(sprintf('Opened pull request #%d %s',
+            $payload['pull_request']['number'],
+            $payload['pull_request']['title']
+        ));
         $activity->setCreatedAt($payload['created_at']);
         $activity->setParameters($payload);
 
@@ -53,7 +64,7 @@ class GitlabProvider implements ProviderInterface
     public function issueEvent($payload)
     {
         $activity = new ActivityProvider();
-        $activity->setMessage($payload['action']. ' issue '. $payload['title']);
+        $activity->setMessage(sprintf('%s issue %s', $payload['action'], $payload['title']));
         $activity->setCreatedAt($payload['created_at']);
         $activity->setParameters($payload);
 
@@ -75,5 +86,4 @@ class GitlabProvider implements ProviderInterface
     {
         return 'GitLab';
     }
-
 }

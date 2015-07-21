@@ -35,7 +35,7 @@
             {{ 'tempo.activity.dashboard.title'|trans }}
         </h3>
 
-        <div id="room-activity-box" class="dashboard-{{ app.user.id }}">
+        <div id="list-activity-box">
             {{ render(controller('TempoAppBundle:Activity:list', {'parentRequest': app.request})) }}
         </div>
 

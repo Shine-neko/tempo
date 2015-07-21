@@ -59,6 +59,7 @@ tempo:
       dashboard:
         title: Activity Feed
         activity_not_found: No activity found
+        more_activity: More Activity
         sort_by: Sort by
         sort:
           today: Today

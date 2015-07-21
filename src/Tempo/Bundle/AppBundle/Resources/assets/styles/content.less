@@ -405,6 +405,7 @@ table.table-striped tbody .actions .edit {
   box-shadow: 0 1px 0 #fff inset, 0 1px 5px rgba(0, 0, 0, 0.1);
   background: #fff;
   position: relative;
+  height: 100%;
 }
 
 .dashboard #activity-box ul:first-child {
@@ -417,8 +418,22 @@ table.table-striped tbody .actions .edit {
   float: left;
 }
 
-.dashboard #room-activity-box {
+.dashboard #list-activity-box {
   clear: both;
+
+  .dashboard-user {
+    overflow-y: scroll;
+    position: absolute;
+    top: 80px;
+    bottom: 88px;
+    left: 15px;
+    right: 0;
+  }
+
+  #more-activity {
+    position: absolute;
+    bottom: 55px;
+  }
 }
 
 .dashboard #chat-box {
@@ -436,6 +451,7 @@ table.table-striped tbody .actions .edit {
   position: absolute;
   left: 10px;
   right: 0;
+  z-index: 1;
 }
 
 .dashboard #connected-users #user-handle {
@@ -473,7 +489,7 @@ table.table-striped tbody .actions .edit {
   border-color: #d5d5d5;
   box-shadow: 0 1px 0 #ffffff inset, 0 1px 5px rgba(0, 0, 0, 0.1);
   background: #FFF;
-  margin-top: 10px;
+  margin-top: 0px;
 }
 
 .dashboard #chat form {
@@ -524,6 +540,8 @@ table.table-striped tbody .actions .edit {
 }
 
 .dashboard h3.homeTitle {
+  margin-top: 0;
+  padding-top: 20px;
   font-size: 15px;
   font-weight: normal;
   color: #4a87b6;
@@ -544,6 +562,7 @@ table.table-striped tbody .actions .edit {
 
 .home.dashboard .events-filters {
   margin-bottom: 10px;
+  position: absolute;
   .btn-group .dropdown-toggle {
     background: #eee;
   }

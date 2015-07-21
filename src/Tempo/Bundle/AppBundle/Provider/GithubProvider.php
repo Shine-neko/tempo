@@ -49,7 +49,14 @@ class GithubProvider implements ProviderInterface
 
     protected function pushEvent($payload)
     {
-        return $this->anyEvent($payload);
+        $activity = new ActivityProvider();
+        $activity->setMessage(sprintf('Pushed to %d %d',
+            str_replace('refs/heads/', '', $payload['ref']),
+            $this->getRepository($payload)
+        ));
+        $activity->setParameters($payload);
+
+        return $activity;
     }
 
     protected function pingEvent($payload)
@@ -59,7 +66,14 @@ class GithubProvider implements ProviderInterface
 
     protected function issuesEvent($payload)
     {
-        return $this->anyEvent($payload);
+        $activity = new ActivityProvider();
+        $activity->setMessage(sprintf('%s issue #%d %s in %',
+            $payload['action'],
+            $payload['issue']['id'],
+            $this->getRepository($payload)
+        ));
+        $activity->setCreatedAt(new \DateTime());
+        $activity->setParameters($payload);
     }
 
     protected function issueCommentEvent($payload)
@@ -76,7 +90,8 @@ class GithubProvider implements ProviderInterface
     protected function pullRequestEvent($payload)
     {
         $activity = new ActivityProvider();
-        $activity->setMessage('Opened pull request #'.$payload['pullRequest']['number']. ' '. $payload['pullRequest']['title']);
+        $activity->setMessage(sprintf('%s pull request #%d %s',$payload['action'], $payload['pullRequest']['title']));
+
         $activity->setCreatedAt(new \DateTime($payload['pullRequest']['created_at']));
         $activity->setParameters($payload);
 
@@ -90,11 +105,9 @@ class GithubProvider implements ProviderInterface
 
     protected function createEvent($payload)
     {
-        $branch = str_replace('refs/heads/Shine', '', $payload['ref']);
-        $repository = isset($payload['repository']['html_url']) ? $payload['repository']['html_url'] : $payload['repository']['htmlUrl'];
-
+        $branch = str_replace('refs/heads', '', $payload['ref']);
         $activity = new ActivityProvider();
-        $activity->setMessage('Create branch '.$branch.' in '.$repository);
+        $activity->setMessage(sprintf('Create branch %s in %', $branch, $this->getRepository($payload)));
         $activity->setCreatedAt(new \DateTime());
         $activity->setParameters($payload);
     }
@@ -116,11 +129,10 @@ class GithubProvider implements ProviderInterface
 
     protected function deleteEvent($payload)
     {
-        $branch = str_replace('refs/heads/Shine', '', $payload['ref']);
-        $repository = isset($payload['repository']['html_url']) ? $payload['repository']['html_url'] : $payload['repository']['htmlUrl'];
+        $branch = str_replace('refs/heads', '', $payload['ref']);
 
         $activity = new ActivityProvider();
-        $activity->setMessage('Deleted branch '.$branch.' in '.$repository);
+        $activity->setMessage(sprintf('Deleted branch %s in %s', $branch, $this->getRepository($payload)));
         $activity->setCreatedAt(new \DateTime());
         $activity->setParameters($payload);
 
@@ -130,6 +142,15 @@ class GithubProvider implements ProviderInterface
     protected function statusEvent($payload)
     {
         throw new \Exception(sprintf('Not supported: %s::%s', __CLASS__, __FUNCTION__));
+    }
+
+    /**
+     * @param $payload
+     * @return string
+     */
+    private function getRepository($payload)
+    {
+        return isset($payload['repository']['html_url']) ? $payload['repository']['html_url'] : $payload['repository']['htmlUrl'];
     }
 
     /**

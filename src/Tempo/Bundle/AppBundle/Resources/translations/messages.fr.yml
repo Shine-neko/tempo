@@ -59,6 +59,7 @@ tempo:
     dashboard:
         title: Flux d'activité
         activity_not_found: Aucune d'activité trouvée
+        more_activity: Plus d'activité
         sort_by: Trier par
         sort:
           today: Aujourd'hui

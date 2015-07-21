@@ -12,9 +12,9 @@ Tempo.Controller.Dashboard = Tempo.baseObject.extend({
     user:  null,
 
     load: function() {
-        var chatbox = $('#chatbox');
 
-        console.log(this.room);
+        var thas = this;
+        var chatbox = $('#chatbox');
 
         if (this.room != null) {
 
@@ -26,6 +26,11 @@ Tempo.Controller.Dashboard = Tempo.baseObject.extend({
             chatbox.append(this.messagesView.render().el);
         }
 
+        $('#more-activity').click(function(event) {
+            event.preventDefault();
+            thas.reloadActivity(Tempo.Controller.Dashboard.user.id);
+        });
+
         //Open a socket
         Tempo.socket = io.connect(window.location.hostname + ':8000');
         Tempo.socket.on('connect', _.bind(this.onSocketConnect, this));
@@ -33,9 +38,10 @@ Tempo.Controller.Dashboard = Tempo.baseObject.extend({
 
     //Handler for socket connections and reconnections
     onSocketConnect: function() {
+        var thas = this;
 
         if (this.room != null) {
-            //Join the room for this scrumboard
+            //Join the room
             Tempo.socket.emit('subscribe', this.room.id, this.user);
 
             //We now have a socket so bind on events from it
@@ -45,16 +51,33 @@ Tempo.Controller.Dashboard = Tempo.baseObject.extend({
 
         Tempo.socket.on('feed:change', function(data) {
             var project = JSON.parse(data.project);
-            _.each(project.members, function(val) {
-                if(Tempo.Controller.Dashboard.user.id == val.user.id) {
-                    $.ajax({
-                        type: "GET",
-                        url: Routing.generate('activity_list', { type: 'all' })
-                    }) .done(function( content ) {
-                        $('.dashboard-1-' + val.user.id).html(content);
-                    });
+            _.each(project.members, function(member) {
+                if(Tempo.Controller.Dashboard.user.id == member.user.id) {
+                    thas.reloadActivity(member.user.id);
                 }
             });
+        });
+    },
+
+    reloadActivity: function(userId) {
+
+        var params = { type: 'all' };
+        var eventPush = $('.events-push:first');
+
+        if (eventPush.hasData('activities')) {
+            var lastEvent = eventPush.data('activities').split(',');
+            params['internal'] = lastEvent[0];
+            params['provider'] = lastEvent[1];
+        } else {
+            $('#more-activity').attr('href', '#');
+        }
+
+        $.ajax({
+            type: "GET",
+            url: Routing.generate('activity_list', params)
+        }) .done(function( content ) {
+            $('.dashboard-' + userId).prepend(content);
+            $('#more-activity').attr('href', Routing.generate('homepage', params));
         });
     }
 });
