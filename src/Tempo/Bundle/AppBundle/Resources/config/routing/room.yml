@@ -1,11 +1,21 @@
-room_show:
-    path:  /{slug}
-    defaults: { _controller: TempoAppBundle:Room:getRoom }
-
 room_list:
     path: /list
-    defaults: { _controller: TempoAppBundle:Room:getRooms }
+    defaults: { _controller: TempoAppBundle:Room:list }
+
+room_create:
+    path: /create
+    defaults: { _controller: TempoAppBundle:Room:create }
 
 room_update:
     path: /{id}/update
-    defaults: { _controller: TempoAppBundle:Room:update, _format: html }
+    defaults: { _controller: TempoAppBundle:Room:update }
+    
+room_delete:
+    path: /{id}/delete
+    defaults: { _controller: TempoAppBundle:Room:delete }
+    
+room_leave:
+    path:  /{slug}/team/{user}/delete
+    defaults: { _controller: TempoAppBundle:Access:delete }
+    
+    

@@ -23,6 +23,7 @@ tempo:
       save_changes: Save changes
       submit: Send
       manage: Manage
+      leave: Leave
 
   admin:
       dashboard: Admin
@@ -191,7 +192,7 @@ tempo:
     success_send_invitation: The invitation was sent successfuly.
     success_add: The user was successfully added to the team.
     already_exist: This user has already been assigned to this resource.
-    username: Username
+    identifiant: Identifiant
     cost: Cost
     owner: Owner
     collaborator: Collaborator
@@ -226,6 +227,7 @@ tempo:
       password: Password
       settings: Settings
       notifications: Notifications
+      room: Rooms
       edit: Edit profile
     avatar:
       title: Avatar
@@ -286,6 +288,10 @@ tempo:
     update.page_title: Update user
     
   room:
+    title: Rooms
+    delete_success: The room has been deleted successfuly.
+    create: Create room
+    create_success: Room has been created successfuly.
     form:
       name: Name
       enableChat: Enable chat

@@ -66,6 +66,11 @@ class ModelManager
         return $this->repository->find($id);
     }
 
+    public function findOneBy(array $criteria)
+    {
+        return $this->repository->findOneBy($criteria);
+    }
+
     /**
      * @param $slug
      * @return mixed

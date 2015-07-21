@@ -6,7 +6,6 @@ _user:
   resource: "@TempoAppBundle/Resources/config/routing/users.yml"
 
 room:
-  type: rest
   resource: "@TempoAppBundle/Resources/config/routing/room.yml"
   prefix:   /room
 

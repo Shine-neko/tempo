@@ -1,0 +1,67 @@
+{% extends "TempoAppBundle::layout.html.twig" %}
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+        '@TempoAppBundle/Resources/assets/js/views/room.js'
+        output="js/room-list.js" filter="?uglifyjs2"
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script type="application/javascript">
+        new Tempo.View.Room;
+    </script>
+{% endblock %}
+
+{% block container %}
+    {% block breadcrumb %}
+        <ol id="breadcrumb" class="clearfix">
+            <li class="first"><a href="{{ path('homepage') }}">{{ 'tempo.menu.home'|trans }}</a></li>
+            <li class="last">{{ 'tempo.room.title'|trans }}</li>
+        </ol>
+    {% endblock breadcrumb %}
+
+    <div class="container-panel">
+        {% include "TempoAppBundle:Profile:_tabs.html.twig" %}
+        <div class="page-header">
+            <h1>{{ 'tempo.room.title'|trans }}</h1>
+
+        </div>
+        <div class="col-md-8 app-panel">
+            <div class="room-add pull-right">
+                <a href="#" id="create-room"><span class="ion-plus"></span> {{ 'tempo.room.create'|trans }} </a>
+            </div>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Created</th>
+                        <th>Users</th>
+                        <th>Messages</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for room in rooms %}
+                    <tr>    
+                        <td>{{ room.name }}</td>
+                        <td>{{ room.createdAt|localizeddate('medium', 'none', app.request.locale) }}</td>
+                        <td>{{ room.members|length }}</td>
+                        <td>{{ room.messages|length }}</td>
+                        <td>
+                            {% if is_granted('DELETE', room) %}
+                             <a class="btn btn-xs btn-danger" title="delete-{{ room.name }}" href="{{ path('room_delete', {'id' : room.id}) }}">{{ 'tempo.form.delete'|trans }}</a></td>
+                            {% else %}
+                            <a id="delete-room-{{ room.id }}" class="btn btn-xs btn-danger" href="{{ path('room_leave', {'slug' : room.id, 'user' : app.user.id}) }}">
+                                {{ 'tempo.form.leave'|trans }}
+                            </a>
+                            {% endif %}
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

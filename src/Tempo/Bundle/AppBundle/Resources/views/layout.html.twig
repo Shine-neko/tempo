@@ -88,6 +88,7 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="{{ path('user_profile_edit') }}"><span class="glyphicon glyphicon-user"></span> {{ 'tempo.user.profile'|trans }}</a> </li>
                                     <li><a href="{{ path('user_profile_settings') }}"><span class="glyphicon glyphicon-cog"></span> {{ 'tempo.user.settings'|trans }}</a> </li>
+                                    <li><a href="{{ path('room_list') }}" > <span class="glyphicon glyphicon-inbox"></span> {{ 'tempo.room.title'|trans }}</a></li>
                                     <li><a href="{{ path('user_logout') }}"> <span class="glyphicon glyphicon-log-out"></span> {{ 'tempo.user.logout'|trans }} </a> </li>
                                 </ul>
                             </li>
@@ -155,6 +156,7 @@
             'vendor/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js'
             'vendor/selectize/dist/js/standalone/selectize.min.js'
             'vendor/zeroclipboard/dist/ZeroClipboard.js'
+            'js/template-js-compile.js'
             '@TempoAppBundle/Resources/assets/js/routerManager.js'
             '@TempoAppBundle/Resources/assets/js/app.js'
             '@TempoAppBundle/Resources/assets/js/components/modal.js'

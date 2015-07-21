@@ -23,6 +23,7 @@ tempo:
       save_changes: 'Sauvegarder les changements'
       submit: Envoyer
       manage: Administrer
+      leave: Quitter
 
   admin:
       dashboard: Admin
@@ -191,7 +192,7 @@ tempo:
     success_send_invitation: L'invitation a bien été envoyée.
     success_add: L'utilisateur a bien été ajouté à l'équipe.
     already_exist: L'utilisateur est déjà assigné à cette ressource.
-    username: Username
+    Identifiant: Identifiant
     cost: Coût
     owner: Leader
     collaborator: Collaborateur
@@ -283,8 +284,12 @@ tempo:
       page_title : Liste des utilisateurs
     create.page_title: Créer un utilisateur
     update.page_title: Modifier l'utilisateur
-
+    
   room:
+    title: Rooms
+    delete_success: La room a bien été supprimée.
+    create: Créer une room
+    create_success: La room a bien été créée.
     form:
       name: Nom
       enableChat: Activer le chat

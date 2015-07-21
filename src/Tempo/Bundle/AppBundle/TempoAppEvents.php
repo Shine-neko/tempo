@@ -57,4 +57,6 @@ final class TempoAppEvents
     const COMMENT_EDIT_INITIALIZE              = 'tempo.comment.edit.initialize';
     const COMMENT_EDIT_SUCCESS                 = 'tempo.comment.edit.success';
     const COMMENT_DELETE_COMPLETED             = 'tempo.comment.delete.completed';
+
+    const ROOM_ASSIGN_USER                     = 'tempo.room.team.add.completed';
 }

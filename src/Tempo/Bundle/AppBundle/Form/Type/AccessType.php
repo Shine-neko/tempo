@@ -34,9 +34,9 @@ class AccessType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', 'autocomplete', array(
-                'behavior' => array('name' => 'access_username', 'callback' => 'api_user_autocomplete' ),
-                'label' => 'tempo.team.username'
+            ->add('identifiant', 'autocomplete', array(
+                'behavior' => array('name' => 'access_identifiant', 'callback' => 'api_user_autocomplete' ),
+                'label' => 'tempo.team.identifiant'
             ))
             ->add('role', 'choice', array(
                 'choices' => array(
