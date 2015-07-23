@@ -45,8 +45,8 @@
                         <tr id="{{ project.id }}">
                             <td>{{ project.id }}</td>
                             <td>{{ project.name }}</td>
-                            <td>{{ project.beginning|localizeddate('medium', 'none', app.request.locale) }}</td>
-                            <td>{{ project.ending|localizeddate('medium', 'none', app.request.locale) }}</td>
+                            <td>{{ time_ago(project.beginning) }}</td>
+                            <td>{{ time_ago(project.ending) }}</td>
                             <td>
                                 <div class="pull-right">
                                     {{ buttons.show(path('project_show', {'slug': project.fullSlug})) }}

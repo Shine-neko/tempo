@@ -52,7 +52,7 @@
                 {% for timesheet in timesheets %}
                     <tr>
                         <td>{{ timesheet.user.fullName }}</td>
-                        <td>{{ timesheet.workedDate |localizeddate('long', 'none') }}</td>
+                        <td>{{ time_ago(timesheet.workedDate) }}</td>
                         <td class="text-center">{{ timesheet.workedTime }}h</td>
                         <td></td>
                         <td>{{ timesheet.description }}</td>

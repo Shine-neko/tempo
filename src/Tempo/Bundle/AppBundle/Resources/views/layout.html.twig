@@ -64,7 +64,7 @@
                                         <li>
                                             <a href="{{ path('notification_dashboard') }}">
                                                 {{ read_notification(notification)| truncate(30, true, '...') }}
-                                                <span class="text-muted small">{{ notification.createdAt|localizeddate('short', 'none', app.request.locale) }}</span>
+                                                <span class="text-muted small">{{ time_ago(notification.createdAt) }}</span>
                                             </a>
                                         </li>
                                     {% else %}
@@ -147,6 +147,7 @@
             'vendor/bootstrap/dist/js/bootstrap.min.js'
             'vendor/tinycon/tinycon.min.js'
             'vendor/moment/moment.js'
+            'vendor/moment-timezone/builds/moment-timezone-with-data.min.js'
             'vendor/modernizr/modernizr.js'
             'vendor/underscore/underscore.js'
             'vendor/blueimp-md5/js/md5.js'

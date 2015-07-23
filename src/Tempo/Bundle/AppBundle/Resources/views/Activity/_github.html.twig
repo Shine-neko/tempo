@@ -32,7 +32,7 @@
                         {{ commit.message }}
                     </li>
                 {% endfor %}
-                <li class="meta">{{ activity.createdAt|localizeddate('medium', 'none', app.request.locale) }} - Github </li>
+                <li class="meta">{{ time_ago(activity.createdAt) }} - Github </li>
             </ul>
         {% endif %}
     </li>

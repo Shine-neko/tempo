@@ -139,6 +139,13 @@ $(function() {
     ZeroClipboard.config( { swfPath: "/vendor/zeroclipboard/dist/ZeroClipboard.swf" } );
     var zeroClipboard = new ZeroClipboard($(".zeroclipboard-pre button"));
 
+    $( "time" ).each(function( index ) {
+        var element = $(this);
+        var time = $(this).attr('datetime');
+
+        element.html(moment(time).fromNow());
+    });
+
     Tempo.Provide('router', function() {
         Backbone.Router.extend({
             el:undefined,
