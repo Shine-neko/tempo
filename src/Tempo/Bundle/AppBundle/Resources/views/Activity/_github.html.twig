@@ -2,40 +2,38 @@
 {% if activity.data.pusher is not defined and activity.data.sender %}
     {% set avatar = get_attribute(activity.data.sender, 'avatar_url') %}
 {% endif %}
-<div class="action">
-    <ul>
-        <li class="feed clearfix">
-            <div class="author">
-                <a href="https://github.com/{{ activity.data.sender.login }}">
-                    <img class="avatar" width="33" src="{{ avatar }}" />
+<ul>
+    <li class="feed clearfix">
+        <div class="author">
+            <a href="https://github.com/{{ activity.data.sender.login }}">
+                <img class="avatar" width="33" src="{{ avatar }}" />
+            </a>
+        </div>
+        <div class="message">
+            {% if activity.message != '' %}
+                {{ activity.message }}
+            {% endif %}
+        </div>
+        {% if activity.data.pusher.name is defined %}
+            {% set gravatar = gravatar(activity.data.pusher.email, 30) %}
+            <div class="details">
+                <a href="https://github.com/{{ activity.data.pusher.name }}">
                 </a>
             </div>
-            <div class="message">
-                {% if activity.message != '' %}
-                    {{ activity.message }}
-                {% endif %}
-            </div>
-            {% if activity.data.pusher.name is defined %}
-                {% set gravatar = gravatar(activity.data.pusher.email, 30) %}
-                <div class="details">
-                    <a href="https://github.com/{{ activity.data.pusher.name }}">
-                    </a>
-                </div>
-            {% endif %}
+        {% endif %}
 
-            {% if get_attribute(activity.data, 'pull_request') == false %}
-                <ul class="commits">
-                    {% set commits = activity.data.commits is defined ? activity.data.commits : {0: activity.data.commit} %}
-                    {% for commit in commits %}
-                        <li>
-                            <span> <img height="16" class="avatar" src="{{ gravatar(commit.author.email) }}"> </span>
-                            <a href="{{ commit.url }}"> {{ commit.id|truncate(7, false, '') }} </a>
-                            {{ commit.message }}
-                        </li>
-                    {% endfor %}
-                    <li class="meta">{{ activity.createdAt|localizeddate('medium', 'none', app.request.locale) }} - Github </li>
-                </ul>
-            {% endif %}
-        </li>
-    </ul>
-</div>
+        {% if activity.headers['x-github-event'] is defined and activity.headers['x-github-event'][0] == 'push' %}
+            <ul class="commits">
+                {% set commits = activity.data.commits is defined ? activity.data.commits : {0: activity.data.commit} %}
+                {% for commit in commits %}
+                    <li>
+                        <span> <img height="16" class="avatar" src="{{ gravatar(commit.author.email) }}"> </span>
+                        <a href="{{ commit.url }}"> {{ commit.id|truncate(7, false, '') }} </a>
+                        {{ commit.message }}
+                    </li>
+                {% endfor %}
+                <li class="meta">{{ activity.createdAt|localizeddate('medium', 'none', app.request.locale) }} - Github </li>
+            </ul>
+        {% endif %}
+    </li>
+</ul>

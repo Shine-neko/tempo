@@ -41,8 +41,9 @@ class GithubProvider implements ProviderInterface
     protected function anyEvent($payload)
     {
         $activity = new ActivityProvider();
-        $activity->setCreatedAt(new \DateTime());
-        $activity->setParameters($payload);
+        $activity
+            ->setCreatedAt(new \DateTime())
+            ->setParameters($payload);
 
         return $activity;
     }
@@ -50,11 +51,12 @@ class GithubProvider implements ProviderInterface
     protected function pushEvent($payload)
     {
         $activity = new ActivityProvider();
-        $activity->setMessage(sprintf('Pushed to %d %d',
-            str_replace('refs/heads/', '', $payload['ref']),
-            $this->getRepository($payload)
-        ));
-        $activity->setParameters($payload);
+        $activity
+            ->setMessage(sprintf('Pushed to %s %s',
+                str_replace('refs/heads/', '', $payload['ref']),
+                $this->getRepository($payload)
+            ))
+            ->setParameters($payload);
 
         return $activity;
     }
@@ -67,13 +69,16 @@ class GithubProvider implements ProviderInterface
     protected function issuesEvent($payload)
     {
         $activity = new ActivityProvider();
-        $activity->setMessage(sprintf('%s issue #%d %s in %',
-            $payload['action'],
-            $payload['issue']['id'],
-            $this->getRepository($payload)
-        ));
-        $activity->setCreatedAt(new \DateTime());
-        $activity->setParameters($payload);
+        $activity
+            ->setMessage(sprintf('%s issue #%d in %s',
+                $payload['action'],
+                $payload['issue']['id'],
+                $this->getRepository($payload)
+            ))
+            ->setCreatedAt(new \DateTime($payload['issue']['createdAt']))
+            ->setParameters($payload);
+
+        return $activity;
     }
 
     protected function issueCommentEvent($payload)
@@ -89,12 +94,13 @@ class GithubProvider implements ProviderInterface
 
     protected function pullRequestEvent($payload)
     {
+        $createdAt = isset($payload['pullRequest']['createdAt']) ? $payload['pullRequest']['createdAt'] : $payload['pullRequest']['create_at'];
+
         $activity = new ActivityProvider();
-        $activity->setMessage(sprintf('%s pull request #%d %s',$payload['action'], $payload['pullRequest']['title']));
-
-        $activity->setCreatedAt(new \DateTime($payload['pullRequest']['created_at']));
-        $activity->setParameters($payload);
-
+        $activity
+            ->setMessage(sprintf('%s pull request #%d %s',$payload['action'], $payload['pullRequest']['number'], $payload['pullRequest']['title']))
+            ->setCreatedAt(new \DateTime($createdAt))
+            ->setParameters($payload);
         return $activity;
     }
 
@@ -107,9 +113,10 @@ class GithubProvider implements ProviderInterface
     {
         $branch = str_replace('refs/heads', '', $payload['ref']);
         $activity = new ActivityProvider();
-        $activity->setMessage(sprintf('Create branch %s in %', $branch, $this->getRepository($payload)));
-        $activity->setCreatedAt(new \DateTime());
-        $activity->setParameters($payload);
+        $activity
+            ->setMessage(sprintf('Create branch %s in %', $branch, $this->getRepository($payload)))
+            ->setCreatedAt(new \DateTime())
+            ->setParameters($payload);
     }
 
     protected function watchEvent($payload)
@@ -132,9 +139,10 @@ class GithubProvider implements ProviderInterface
         $branch = str_replace('refs/heads', '', $payload['ref']);
 
         $activity = new ActivityProvider();
-        $activity->setMessage(sprintf('Deleted branch %s in %s', $branch, $this->getRepository($payload)));
-        $activity->setCreatedAt(new \DateTime());
-        $activity->setParameters($payload);
+        $activity
+            ->setMessage(sprintf('Deleted branch %s in %s', $branch, $this->getRepository($payload)))
+            ->setCreatedAt(new \DateTime())
+            ->setParameters($payload);
 
         return $activity;
     }

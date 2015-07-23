@@ -1,16 +1,14 @@
-<div class="action">
-    <ul>
-        <li class="feed clearfix">
-            <div class="author">
-                <a href="#">
-                    <img width="33" src="https://scrutinizer-ci.com/images/logo.png" />
-                </a>
-            </div>
-            <div class="message">
-                {{ activity.message|capitalize }}
-                <span class="label label-default">{{ activity.data['metadata']['branch'] }}</span>
-            </div>
-            <div class="meta">{{ activity.createdAt|localizeddate('medium', 'none', app.request.locale) }} - Scrutinizer </div>
-        </li>
-    </ul>
-</div>
+<ul>
+    <li class="feed clearfix">
+        <div class="author">
+            <a href="#">
+                <img width="33" src="https://scrutinizer-ci.com/images/logo.png" />
+            </a>
+        </div>
+        <div class="message">
+            {{ activity.message|capitalize }}
+            <span class="label label-default">{{ activity.data['metadata']['branch'] }}</span>
+        </div>
+        <div class="meta">{{ activity.createdAt|localizeddate('medium', 'none', app.request.locale) }} - Scrutinizer </div>
+    </li>
+</ul>

@@ -1,29 +1,27 @@
-<div class="action">
-    <ul>
-        <li class="feed clearfix">
-            <div class="author">
-                <a href="#">
-                    <img width="33" src="{{ gravatar(activity.data['userEmail']) }}" />
-                </a>
-            </div>
-            <div class="message">
-                {{ activity.message }}
-            </div>
+<ul>
+    <li class="feed clearfix">
+        <div class="author">
+            <a href="#">
+                <img width="33" src="{{ gravatar(activity.data['userEmail']) }}" />
+            </a>
+        </div>
+        <div class="message">
+            {{ activity.message }}
+        </div>
 
-            {% if activity.data['commits'] is defined %}
-                <ul class="commits">
-                    {% for commit in activity.data.commits %}
-                        <li>
-                            <span> <img height="16" src="{{ gravatar(commit.author.email, 16) }}"> </span>
-                            <a href="{{ commit.url }}"> {{ commit.id| truncate(7, true, '') }} </a>
-                            {{ commit.message }}
-                        </li>
-                    {% endfor %}
-                    <li class="meta">
-                        {{ activity.createdAt|localizeddate('medium', 'none', app.request.locale) }} - Gitlab
+        {% if activity.data['commits'] is defined %}
+            <ul class="commits">
+                {% for commit in activity.data.commits %}
+                    <li>
+                        <span> <img height="16" src="{{ gravatar(commit.author.email, 16) }}"> </span>
+                        <a href="{{ commit.url }}"> {{ commit.id| truncate(7, true, '') }} </a>
+                        {{ commit.message }}
                     </li>
-                </ul>
-            {% endif %}
-        </li>
-    </ul>
-</div>
+                {% endfor %}
+                <li class="meta">
+                    {{ activity.createdAt|localizeddate('medium', 'none', app.request.locale) }} - Gitlab
+                </li>
+            </ul>
+        {% endif %}
+    </li>
+</ul>

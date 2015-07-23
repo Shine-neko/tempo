@@ -1,23 +1,21 @@
-<div class="action">
-    <div class="event">
-        <time  datetime="2013-11-14T09:45:16Z" title="2013-11-14 09:45:16">17 minutes ago</time>
+<div class="event">
+    <time  datetime="2013-11-14T09:45:16Z" title="2013-11-14 09:45:16">17 minutes ago</time>
+</div>
+<div class="feed user cleafix">
+    <div class="details">
+        <a href="{{ path('user_profile_show', {'slug': activity.author.slug }) }}">
+            <img height="33" src="{{ activity.author.avatar }}">
+        </a>
     </div>
-    <div class="feed user cleafix">
-        <div class="details">
-            <a href="{{ path('user_profile_show', {'slug': activity.author.slug }) }}">
-                <img height="33" src="{{ activity.author.avatar }}">
+    <div class="message">
+        <a href="{{ path('user_profile_show', {'slug': activity.author.slug }) }}">{{ activity.author }}</a>
+        {{ 'tempo.activity.events.commented'|trans }}
+        {% if activity.project is not null %}
+            <a href="{{ path('project_show', {'slug': activity.project.fullSlug}) }}">
+                {{ activity.project.organization }}/{{ activity.project }}
             </a>
-        </div>
-        <div class="message">
-            <a href="{{ path('user_profile_show', {'slug': activity.author.slug }) }}">{{ activity.author }}</a>
-            {{ 'tempo.activity.events.commented'|trans }}
-            {% if activity.project is not null %}
-                <a href="{{ path('project_show', {'slug': activity.project.fullSlug}) }}">
-                    {{ activity.project.organization }}/{{ activity.project }}
-                </a>
-            {% else %}
-                {{ activity.data }}
-            {% endif %}
-        </div>
+        {% else %}
+            {{ activity.data }}
+        {% endif %}
     </div>
 </div>
