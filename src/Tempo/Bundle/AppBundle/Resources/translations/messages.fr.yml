@@ -248,6 +248,7 @@ tempo:
       language:
         french: Français
         english: Anglais
+      time_zone: Mon fuseau horaire
       token: Jeton
       company: Compagnie
       job_title: Poste
