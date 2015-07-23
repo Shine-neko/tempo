@@ -82,6 +82,9 @@ class User implements UserInterface
     protected $locale;
 
     /** @var string */
+    protected $timeZone;
+
+    /** @var string */
     protected $firstName;
 
     /** @var string */
@@ -488,6 +491,24 @@ class User implements UserInterface
     public function getLocale()
     {
         return $this->locale;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setTimeZone($timeZone)
+    {
+        $this->timeZone = $timeZone;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTimeZone()
+    {
+        return $this->timeZone;
     }
 
     /**

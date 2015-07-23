@@ -250,6 +250,7 @@ tempo:
       language:
           french: French
           english: English
+      time_zone: My time zone
       token: Token
       generate_token: Generate token
       job_title: Job title
