@@ -63,8 +63,8 @@ class AppExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            'size' => new \Twig_Filter_Method($this, 'size'),
-            'provider_parse_content' => new \Twig_Filter_Method($this, 'providerContentParse'),
+            new \Twig_SimpleFilter('size', array($this, 'size')),
+            new \Twig_SimpleFilter('provider_parse_content', array($this, 'providerContentParse'))
         );
     }
 
@@ -74,9 +74,9 @@ class AppExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'get_browser' => new \Twig_Function_Method($this, 'getBrowser'),
-            'icon' => new \Twig_Function_Method($this, 'getIcon'),
-            'gravatar'    => new \Twig_Function_Method($this, 'getGravatar'),
+            new \Twig_SimpleFunction('get_browser', array($this, 'getBrowser')),
+            new \Twig_SimpleFunction('icon', array($this, 'getIcon')),
+            new \Twig_SimpleFunction('gravatar', array($this, 'getGravatar')),
             new \Twig_SimpleFunction('get_attribute', array($this, 'getAttribute'))
         );
     }
@@ -169,6 +169,6 @@ class AppExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'main_extension';
+        return 'app.extension';
     }
 }
