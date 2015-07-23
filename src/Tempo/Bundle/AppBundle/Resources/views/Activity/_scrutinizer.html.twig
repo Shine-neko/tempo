@@ -9,6 +9,6 @@
             {{ activity.message|capitalize }}
             <span class="label label-default">{{ activity.data['metadata']['branch'] }}</span>
         </div>
-        <div class="meta">{{ activity.createdAt|localizeddate('medium', 'none', app.request.locale) }} - Scrutinizer </div>
+        <div class="meta">{{ time_ago(activity.createdAt) }} - Scrutinizer </div>
     </li>
 </ul>

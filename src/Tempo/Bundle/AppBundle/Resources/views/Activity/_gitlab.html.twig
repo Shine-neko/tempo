@@ -19,7 +19,7 @@
                     </li>
                 {% endfor %}
                 <li class="meta">
-                    {{ activity.createdAt|localizeddate('medium', 'none', app.request.locale) }} - Gitlab
+                    {{ time_ago(activity.createdAt) }} - Gitlab
                 </li>
             </ul>
         {% endif %}

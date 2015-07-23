@@ -45,7 +45,7 @@
                     {% for room in rooms %}
                     <tr>    
                         <td>{{ room.name }}</td>
-                        <td>{{ room.createdAt|localizeddate('medium', 'none', app.request.locale) }}</td>
+                        <td>{{ time_ago(room.createdAt) }}</td>
                         <td>{{ room.members|length }}</td>
                         <td>{{ room.messages|length }}</td>
                         <td>

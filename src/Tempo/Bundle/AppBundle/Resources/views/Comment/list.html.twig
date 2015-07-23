@@ -11,7 +11,7 @@
                         <a href="{{ path('user_profile_show', {'slug' : comment.author.slug }) }}">
                             {{ comment.author }}
                         </a>
-                        <span>{{ comment.createdAt|localizeddate('long', 'none', app.request.locale) }}</span>
+                        <span>{{ time_ago(comment.createdAt) }}</span>
                     </div>
                     <div class="pull-right">
                         <a class="edit-comment" onclick="return false;" href="{{ path('comment_update', { 'comment': comment.id }) }}">

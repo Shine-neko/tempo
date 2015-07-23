@@ -1,6 +1,6 @@
 <div class="event">
     <time  datetime="2013-11-14T09:45:16Z" title="2013-11-14 09:45:16">
-        {{ activity.createdAt|localizeddate('medium', 'none', app.request.locale) }}
+        {{ time_ago(activity.createdAt) }}
     </time>
 </div>
 <div class="feed user cleafix">

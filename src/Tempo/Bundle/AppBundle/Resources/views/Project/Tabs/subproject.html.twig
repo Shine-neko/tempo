@@ -25,12 +25,12 @@
 
             <td>
                 {% if children.beginning is not null %}
-                    {{ children.beginning|localizeddate('medium', 'none', app.request.locale) }}
+                    {{ time_ago(children.beginning) }}
                 {% endif %}
             </td>
             <td>
                 {% if children.ending %}
-                    {{ children.ending|localizeddate('medium', 'none', app.request.locale) }}
+                    {{ time_ago(children.ending) }}
                 {% endif %}
             </td>
         </tr>

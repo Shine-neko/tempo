@@ -77,7 +77,11 @@ class AppExtension extends \Twig_Extension
             new \Twig_SimpleFunction('get_browser', array($this, 'getBrowser')),
             new \Twig_SimpleFunction('icon', array($this, 'getIcon')),
             new \Twig_SimpleFunction('gravatar', array($this, 'getGravatar')),
-            new \Twig_SimpleFunction('get_attribute', array($this, 'getAttribute'))
+            new \Twig_SimpleFunction('get_attribute', array($this, 'getAttribute')),
+            new \Twig_SimpleFunction('time_ago', array($this, 'timeAgo'), array(
+                'needs_environment' => true,
+                'is_safe' => array('html')
+            )),
         );
     }
 
@@ -162,6 +166,17 @@ class AppExtension extends \Twig_Extension
         }
 
         return rtrim($content);
+    }
+
+    public function timeAgo(\Twig_Environment $env, \DateTimeInterface $dateTime)
+    {
+        $date = \twig_localized_date_filter($env, $dateTime, 'medium', 'none', $env->getGlobals()['app']->getRequest()->getLocale());
+
+        return sprintf('<time class="timeago" datetime="%sz">%s</time>',
+            explode('+',$dateTime->format('c'))[0],
+            $date
+        );
+
     }
 
     /**

@@ -9,7 +9,7 @@
             {{ activity.message }}
         </div>
         <div class="meta">
-            {{ activity.createdAt|localizeddate('medium', 'none', app.request.locale) }} -
+            {{ time_ago(activity.createdAt) }} -
         </div>
     </li>
 </ul>
