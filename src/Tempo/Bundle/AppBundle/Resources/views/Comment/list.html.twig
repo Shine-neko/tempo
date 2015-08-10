@@ -2,7 +2,7 @@
 {% for comment in comments %}
     <div class="clearfix">
         <div class="col-md-1">
-            <img src="{{ comment.author.avatar(48) }}" />
+            <img src="{{ avatar(comment.author.avatar, 48) }}" />
         </div>
         <div class="col-md-11">
             <div class="panel panel-default">
@@ -17,9 +17,11 @@
                         <a class="edit-comment" onclick="return false;" href="{{ path('comment_update', { 'comment': comment.id }) }}">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </a>
+                        {% if is_granted(comment, 'VIEW') %}
                         <a class="delete-comment"  href="{{ path('comment_delete', { 'comment': comment.id }) }}">
                             <span class="glyphicon glyphicon-remove"></span>
                         </a>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="panel-body">

@@ -39,7 +39,7 @@
 </div>
 <div class="dashboard-{{ app.user.id }} dashboard-user">
 {% endif %}
-    <div class="events-push" {% if lastEvent is null %}data-activities="{{ lastEvent['internal'] ~ ',' ~ lastEvent['provider'] }}"{% endif %}>
+    <div class="events-push" {% if lastEvent is not null %}data-activities="{{ lastEvent['internal'] ~ ',' ~ lastEvent['provider'] }}"{% endif %}>
         {% for activity in activities %}
             <div class="action {% if activity.provider is not defined %} activity_provider {% else %} activity_internal {% endif %} activity-{{ activity.id }} ">
             {% if activity.provider is not defined %}
