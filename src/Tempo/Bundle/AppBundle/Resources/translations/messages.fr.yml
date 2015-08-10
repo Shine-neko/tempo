@@ -193,7 +193,7 @@ tempo:
     success_send_invitation: L'invitation a bien été envoyée.
     success_add: L'utilisateur a bien été ajouté à l'équipe.
     already_exist: L'utilisateur est déjà assigné à cette ressource.
-    Identifiant: Identifiant
+    login: Login
     cost: Coût
     owner: Leader
     collaborator: Collaborateur

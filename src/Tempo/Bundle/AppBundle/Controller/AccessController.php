@@ -39,9 +39,9 @@ class AccessController extends Controller
 
             $formData = $form->getData();
 
-            if (filter_var($formData['identifiant'], FILTER_VALIDATE_EMAIL)) {
+            if (filter_var($formData['login'], FILTER_VALIDATE_EMAIL)) {
                 $access = (new Access())
-                    ->setInviteEmail($formData['username'])
+                    ->setInviteEmail($formData['login'])
                     ->setInviteToken(sha1(uniqid(rand(), true)))
                     ->setLabel($formData['role'])
                     ->setSource($resource);
