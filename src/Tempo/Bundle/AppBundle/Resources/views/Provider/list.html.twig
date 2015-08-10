@@ -18,7 +18,7 @@
                     {% set active  = project_activated[provider.canonicalName] is defined  %}
                 <tr>
                     <td width="5%">
-                        <a href="{{ path('project_provider_state', { 'slug': project.fullSlug, 'provider': provider.name, 'state' : active ? 'on': 'off' } ) }}" class="state-{{ active ? 'active' : 'unactive'  }}">
+                        <a href="{{ path('project_provider_state', { 'slug': project.fullSlug, 'provider': provider.name, 'state' : active ? 'off': 'on' } ) }}" class="state-{{ active ? 'active' : 'unactive'  }}">
                             <span class="glyphicon glyphicon-off clgray"></span>
                         </a>
                     </td>

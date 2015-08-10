@@ -3,3 +3,5 @@ api_provider_activity_notify:
     defaults:
         _controller: TempoAppBundle:Provider:notify
         provider : generic
+    requirements:
+        project: ".+"

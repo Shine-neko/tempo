@@ -20,16 +20,20 @@ use Tempo\Bundle\AppBundle\Manager\ModelManager;
 class ProjectManager extends ModelManager
 {
     /**
-     * @param $slug
+     * @param $key
      * @return mixed
      */
-    public function getProject($slug)
+    public function getProject($key)
     {
-       $project =  $this->getRepository()->findOneBySlug(array(
-            'slug' => $slug,
-       ));
+        if (is_int($key)) {
+            $project = $this->getRepository()->find($key);
+        } else {
+            $project = $this->getRepository()->findOneBy(array(
+                'slug' => $key,
+            ));
+        }
 
-       return $project;
+        return $project;
     }
 
     public function nbTotalProject()
