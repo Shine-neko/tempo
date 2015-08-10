@@ -30,7 +30,7 @@ class OrganizationController extends Controller
      */
     public function showAction(Organization $organization)
     {
-        $token = $this->get('form.csrf_provider')->generateCsrfToken('delete-organization');
+        $token = $this->get('security.csrf.token_manager')->getToken('delete-organization');
 
         if (false === $this->isGranted('VIEW', $organization)) {
             return $this->createAccessDeniedException();

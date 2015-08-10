@@ -65,10 +65,10 @@ class UserExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'user_notifications' => new \Twig_Function_Method($this, 'getNotifications'),
-            'read_notification' => new \Twig_Function_Method($this, 'readNotification'),
-            'link_notification' => new \Twig_Function_Method($this, 'linkNotification'),
-            'avatar' => new \Twig_Function_Method($this, 'getAvatar'),
+            new \Twig_SimpleFunction('user_notifications', array($this, 'getNotifications')),
+            new \Twig_SimpleFunction('read_notification',  array($this, 'readNotification')),
+            new \Twig_SimpleFunction('link_notification', array($this, 'linkNotification')),
+            new \Twig_SimpleFunction('avatar', array($this, 'getAvatar'))
         );
     }
 

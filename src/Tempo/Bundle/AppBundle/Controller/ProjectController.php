@@ -46,7 +46,7 @@ class ProjectController extends Controller
     public function showAction(Request $request, Project $project)
     {
         $page = $request->query->get('page', 1);
-        $token = $this->get('form.csrf_provider')->generateCsrfToken('delete-project');
+        $token = $this->get('security.csrf.token_manager')->getToken('delete-project');
         $project  = $this->getProject($project, 'VIEW');
         $organization = $project->getOrganization();
 
