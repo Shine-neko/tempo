@@ -22,10 +22,10 @@ class GitlabProvider implements ProviderInterface
      */
     public function parse(Request $request)
     {
-        if ($request->headers->has('x-gitlab-event')) {
-            $eventName = $request->headers->get('x-gitlab-event');
-        } else if ($request->request->has('object_kind')) {
+        if ($request->request->has('object_kind')) {
             $eventName = $request->request->get('object_kind');
+        } else if ($request->headers->has('x-gitlab-event')) {
+            $eventName = $request->headers->get('x-gitlab-event');
         }
 
         $eventName = sprintf('%sEvent', Inflector::camelize($eventName));
@@ -35,13 +35,20 @@ class GitlabProvider implements ProviderInterface
         }
     }
 
+    public function pushHookEvent($payload)
+    {
+        return $this->pushEvent($payload);
+    }
+
     public function pushEvent($payload)
     {
+        var_dump($payload);
+
         $activity = new ActivityProvider();
-        $activity->setMessage('Pushed to %s %s',
+        $activity->setMessage(sprintf('Pushed to %s %s',
             str_replace('refs/heads/', '', $payload['ref']),
             $payload['repository']['name']
-        );
+        ));
         $activity->setCreatedAt(new \DateTime());
         $activity->setParameters($payload);
 
