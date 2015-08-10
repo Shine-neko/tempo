@@ -41,21 +41,28 @@ class ProviderController extends Controller
 
     public function stateAction(Request $request, Project $project, $provider)
     {
+        $method = 'update';
         $state = $request->get('state');
         $provider = $this->getProvider($provider);
 
-        $projectProvider = new ProjectProvider();
-        $projectProvider
-            ->setName($provider->getCanonicalName())
-            ->setProject($project);
+        $projectProvider = $this->getProviderByProject($project, $provider);
 
         if ('on' === $state) {
+            if (null === $projectProvider) {
+                $method = 'create';
+                $projectProvider = new ProjectProvider();
+                $projectProvider
+                    ->setName($provider->getCanonicalName())
+                    ->setProject($project);
+            }
+
             $projectProvider->setState(ProjectProviderInterface::STATE_ACTIVE);
-            $this->get('tempo.domain_manager')->create($projectProvider);
+
         } else {
             $projectProvider->setState(ProjectProviderInterface::STATE_UNACTIVE);
-            $this->get('tempo.domain_manager')->update($projectProvider);
         }
+
+        $this->get('tempo.domain_manager')->{$method}($projectProvider);
 
         return $this->redirectToRoute('project_settings', array('slug' => $project->getFullSlug()));
     }
@@ -88,16 +95,19 @@ class ProviderController extends Controller
      * @return Response
      * @throws \Exception
      */
-    public function notifyAction(Request $request, Project $project, $provider)
+    public function notifyAction(Request $request, $project, $provider)
     {
+        $project = $this->getManager('project')->getProject($project);
+
+        if (null === $project) {
+            throw $this->createNotFoundException('Project not found');
+        }
+
         if (!$this->isGranted('VIEW', $project)) {
             throw $this->createAccessDeniedException();
         }
 
-        $projectProvider = $this->getManager('project_provider')->getRepository()->findOneBy(array(
-            'name' => $provider,
-            'project' => $project
-        ));
+        $projectProvider = $this->getProviderByProject();
 
         if (!$projectProvider) {
             throw $this->createNotFoundException('Project provider not found');
@@ -137,5 +147,24 @@ class ProviderController extends Controller
         }
 
         return $this->get($serviceName);
+    }
+
+    /**
+     * @param Project $project
+     * @param $providerName
+     * @return null|object
+     */
+    private function getProviderByProject(Project $project, $providerName)
+    {
+        $projectProvider = $this->getManager('project_provider')->getRepository()->findOneBy(array(
+            'name' => $providerName,
+            'project' => $project
+        ));
+
+        if (!$projectProvider) {
+            throw $this->createNotFoundException('Project provider not found');
+        }
+
+        return $projectProvider;
     }
 }
