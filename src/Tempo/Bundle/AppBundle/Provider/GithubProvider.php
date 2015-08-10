@@ -27,7 +27,7 @@ class GithubProvider implements ProviderInterface
 
         $methodName = sprintf('%sEvent', Inflector::camelize($eventName));
 
-        if (null == $payload) {
+        if (null === $payload) {
             $payload = $request->request->all();
         }
 

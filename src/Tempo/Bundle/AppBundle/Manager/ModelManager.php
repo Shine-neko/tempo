@@ -104,15 +104,16 @@ class ModelManager
     /**
      * Persist the given entity
      *
-     * @param mixed $entity  An entity instance
-     * @param bool  $doFlush Also flush  entity manager?
+     * @param $entity  An entity instance
+     * @param bool|true $doFlush Also flush  entity manager?
+     * @return mixed
      */
     public function save($entity, $doFlush = true)
     {
-        if (null == $entity->getId()) {
-            $this->domainManager->create($entity);
+        if (null === $entity->getId()) {
+            $this->domainManager->create($entity, false);
         } else {
-            $this->domainManager->update($entity);
+            $this->domainManager->update($entity, false);
         }
 
         if ($doFlush) {

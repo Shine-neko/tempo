@@ -11,10 +11,8 @@
 
 namespace Tempo\Bundle\AppBundle\Controller;
 
-use Doctrine\Common\Util\Debug;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-
 use Tempo\Bundle\AppBundle\Form\Type\ChangePasswordFormType;
 use Tempo\Bundle\AppBundle\Form\Type\SettingsType;
 use Tempo\Bundle\AppBundle\Form\Type\ProfileType;

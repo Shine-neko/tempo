@@ -42,8 +42,6 @@ class GitlabProvider implements ProviderInterface
 
     public function pushEvent($payload)
     {
-        var_dump($payload);
-
         $activity = new ActivityProvider();
         $activity->setMessage(sprintf('Pushed to %s %s',
             str_replace('refs/heads/', '', $payload['ref']),

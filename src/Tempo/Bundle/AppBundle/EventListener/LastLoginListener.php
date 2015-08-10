@@ -17,6 +17,7 @@ use Symfony\Component\Security\Http\SecurityEvents;
 use Tempo\Bundle\AppBundle\Model\UserInterface;
 use Tempo\Bundle\AppBundle\Manager\UserManager;
 use Tempo\Bundle\AppBundle\TempoAppEvents;
+use Tempo\Bundle\AppBundle\Event\UserEvent;
 
 class LastLoginListener
 {

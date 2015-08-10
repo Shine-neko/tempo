@@ -2,6 +2,8 @@
 
 namespace Tempo\Bundle\AppBundle\Tests\Manager;
 
+use Tempo\Bundle\AppBundle\Manager\ActivityManager;
+
 class ActivityManagerTest extends \PHPUnit_Framework_TestCases
 {
     private function createActivityManager()

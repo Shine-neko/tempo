@@ -17,7 +17,7 @@ class User implements UserInterface
 {
     const ROLE_DEFAULT = 'ROLE_USER';
     const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
-    const AVATAR_DEFAUlT  = '/bundles/tempoapp/images/avatar-defaut.png';
+    const AVATAR_DEFAULT  = '/bundles/tempoapp/images/avatar-defaut.png';
 
     /** @var int */
     protected $id;
@@ -147,7 +147,7 @@ class User implements UserInterface
         $this->expired = false;
         $this->roles = array();
         $this->credentialsExpired = false;
-        $this->avatar = self::AVATAR_DEFAUlT;
+        $this->avatar = self::AVATAR_DEFAULT;
     }
 
     public function __toString()
@@ -660,7 +660,7 @@ class User implements UserInterface
     public function getAvatar()
     {
         if(null === $this->avatar ) {
-            return self::AVATAR_DEFAUlT;
+            return self::AVATAR_DEFAULT;
         }
 
         if (strpos($this->avatar, 'http') === false && strpos($this->avatar, 'bundle') === false ) {

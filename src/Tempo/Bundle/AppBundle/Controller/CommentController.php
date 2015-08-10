@@ -17,7 +17,6 @@ use Tempo\Bundle\AppBundle\TempoAppEvents;
 use Tempo\Bundle\AppBundle\Event\CommentEvent;
 use Tempo\Bundle\AppBundle\Form\Type\CommentType;
 use Tempo\Bundle\AppBundle\Model\Comment;
-use Tempo\Bundle\AppBundle\Model\Activity;
 
 class CommentController extends Controller
 {

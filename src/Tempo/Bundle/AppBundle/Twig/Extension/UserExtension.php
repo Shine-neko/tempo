@@ -102,12 +102,12 @@ class UserExtension extends \Twig_Extension
      */
     public function getAvatar($path, $size)
     {
-        if (strpos($path, 'gravatar') == false) {
+        if (strpos($path, 'gravatar') === false) {
             return $this->imagineCacheManager->getBrowserPath($path, 'avatar', array(
                 'thumbnail' => array( 'size' => array($size, $size))
             ));
         } else {
-            return $path . '&s='. $size. '&d='. User::AVATAR_DEFAUlT;
+            return $path . '&s='. $size. '&d='. User::AVATAR_DEFAULT;
         }
     }
 

@@ -77,7 +77,7 @@ class MessageController extends Controller
         $room = $this->getManager('room')->getRepository()->findRoom($room, $this->getUser()->getId());
 
         $offset = $paramFetcher->get('offset');
-        $offset = null == $offset ? 0 : $offset;
+        $offset = null === $offset ? 0 : $offset;
         $limit = $paramFetcher->get('limit');
 
         return $this->get('tempo.model_manager.message')->all($room , $limit, $offset, array());
