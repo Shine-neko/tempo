@@ -52,9 +52,10 @@ class Sender
     {
         /** @var \Twig_Template $template */
         $template = $this->twig->loadTemplate($view);
+        $dataContext = array_merge($this->twig->getGlobals(), $data);
 
-        $subject = $template->renderBlock('subject', $data);
-        $body = $template->renderBlock('content', $data);
+        $subject = $template->renderBlock('subject', $dataContext);
+        $body = $template->renderBlock('content', $dataContext);
 
         $this->dispatcher->dispatch(TempoAppEvents::EMAIL_PRE_RENDER, new MailerEvent($subject, $body));
 
