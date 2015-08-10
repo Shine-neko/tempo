@@ -60,4 +60,4 @@ before_script:
 
 
 script:
-    - travis.sh
+    - sh travis.sh
