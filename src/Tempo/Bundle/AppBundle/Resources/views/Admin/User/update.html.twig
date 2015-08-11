@@ -14,24 +14,24 @@
         </ol>
     {% endblock breadcrumb %}
 
-<div class="page-header clearfix">
-    <h1 class="pull-left"> {{ 'tempo.user.update.page_title'|trans}}</h1>
-    <div class="pull-right">
-        {{ buttons.delete(path('admin_user_delete', {'id': user.id}), null, user.id is sameas(app.user.id)) }}
-    </div>
-</div>
-
 <div class="col-md-2">
     {{ knp_menu_render('admin') }}
 </div>
 
 <div class="col-md-9">
+    <div class="page-header clearfix">
+        <h1 class="pull-left"> {{ 'tempo.user.update.page_title'|trans}}</h1>
+        <div class="pull-right">
+            {{ buttons.delete(path('admin_user_delete', {'id': user.id}), null, user.id is sameas(app.user.id)) }}
+        </div>
+    </div>
+
     <div class="app-panel">
         <form action="{{ path('admin_user_update', {'id': user.id}) }}" method="post">
             <input type="hidden" name="_method" value="PUT">
             {% include 'TempoAppBundle:Admin/User:_form.html.twig' %}
-            {{ update() }}
         </form>
     </div>
+    {{ update() }}
 </div>
 {% endblock %}

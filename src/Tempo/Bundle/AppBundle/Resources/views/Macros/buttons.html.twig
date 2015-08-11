@@ -1,17 +1,17 @@
 {% macro show(url, message) %}
-<a href="{{ url }}" class="btn btn-default btn btn-sm btn-inverse">
+<a href="{{ url }}" class="btn btn-default btn btn-sm">
  <span>{{ message is empty ? 'tempo.form.show'|trans : message }}</span>
 </a>
 {% endmacro %}
 
 {% macro create(url, message) %}
-<a href="{{ url }}" class="btn-primary btn btn-sm btn-inverse">
+<a href="{{ url }}" class="btn-primary btn btn-sm">
     <i class="glyphicon glyphicon-plus-sign"></i> <span>{{ message is empty ? 'tempo.form.create'|trans : message }}</span>
 </a>
 {% endmacro %}
 
 {% macro edit(url, message) %}
-<a href="{{ url }}" class="btn-primary btn btn-sm btn-inverse">
+<a href="{{ url }}" class="btn-primary btn btn-sm">
     {{ message is empty ? 'tempo.form.edit'|trans : message }}</span>
 </a>
 {% endmacro %}
@@ -32,7 +32,7 @@
 {% endmacro %}
 
 {% macro manage(url, message) %}
-<a href="{{ url }}" class="btn btn-success btn-sm btn-inverse">
+<a href="{{ url }}" class="btn btn-success btn-sm">
     <i class="glyphicon glyphicon-folder-open"></i> <span>{{ message is empty ? 'tempo.form.manage'|trans : message }}</span>
 </a>
 {% endmacro %}

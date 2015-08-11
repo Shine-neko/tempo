@@ -7,8 +7,8 @@
 
 {% macro update(url) %}
 <div class="form-actions">
-    <button type="submit" class="btn btn-primary btn-inverse"><i class="icon-save"></i> {{ 'tempo.form.save_changes'|trans }}</button>
-    <a href="{{ app.request.headers.get('referer', url) }}" class="btn btn-danger"><i class="icon-remove"></i> {{ 'tempo.form.cancel'|trans }}</a>
+    <button type="submit" class="btn btn-primary btn-sm"><i class="icon-save"></i> {{ 'tempo.form.save_changes'|trans }}</button>
+    <a href="{{ app.request.headers.get('referer', url) }}" class="btn btn-default btn-sm"><i class="icon-remove"></i> {{ 'tempo.form.cancel'|trans }}</a>
 </div>
 {% endmacro %}
 
