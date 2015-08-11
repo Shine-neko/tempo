@@ -24,15 +24,15 @@ class UserFilterType extends AbstractType
         $builder
             ->add('name', 'text', array(
                 'label' => 'tempo.user.list.filter.query',
-                'attr'  => array(
-                    'placeholder' => 'tempo.user.list.filter.query'
-                )
+                'attr' => array(
+                    'placeholder' => 'tempo.user.list.filter.query',
+                ),
             ))
         ;
     }
 
     public function getName()
     {
-        return 'tempo_user_filter';
+        return 'tempo_admin_user_filter';
     }
 }

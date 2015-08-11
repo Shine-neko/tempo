@@ -9,16 +9,14 @@
 * file that was distributed with this source code.
 */
 
-
 namespace Tempo\Bundle\AppBundle\Form\Type\Admin;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * User group form type.
- *
  */
 class GroupType extends AbstractType
 {
@@ -33,26 +31,23 @@ class GroupType extends AbstractType
     {
         $builder
             ->add('name', 'text', array(
-                'label' => 'form.group.name'
+                'label' => 'form.group.name',
             ))
             ->add('roles', 'list', array(
-                'label' => 'form.group.roles'
+                'label' => 'form.group.roles',
             ))
         ;
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver
-            ->setDefaults(array(
-                'data_class'        => $this->dataClass,
-                'translation_domain' => 'TempoUser'
-            )
-        );
+        $resolver->setDefaults(array(
+            'data_class' => $this->dataClass,
+        ));
     }
 
     public function getName()
     {
-        return 'tempo_group';
+        return 'tempo_admin_group';
     }
 }

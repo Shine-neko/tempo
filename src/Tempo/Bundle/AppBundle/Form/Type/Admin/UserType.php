@@ -13,7 +13,7 @@ namespace Tempo\Bundle\AppBundle\Form\Type\Admin;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserType extends AbstractType
 {
@@ -25,52 +25,52 @@ class UserType extends AbstractType
         $builder
             ->add('username', 'text', array(
                 'label' => 'tempo.profile.form.username',
-                'required'  => true,
+                'required' => true,
             ))
             ->add('firstName', 'text', array(
                 'label' => 'tempo.profile.form.firstName',
-                'required'  => true,
+                'required' => true,
             ))
             ->add('lastName', 'text', array(
                 'label' => 'tempo.profile.form.lastName',
-                'required'  => true,
+                'required' => true,
             ))
             ->add('email', 'email', array(
                 'label' => 'tempo.profile.form.email',
-                'required'  => true,
+                'required' => true,
             ))
             ->add('plainPassword', 'password', array(
                 'label' => 'tempo.profile.form.password',
-                'required'  => true,
+                'required' => true,
             ))
             ->add('enabled', 'checkbox', array(
                 'label' => 'tempo.profile.form.enabled',
-                'attr'  => array('checked'   => 'checked'),
-                'required'  => true,
+                'attr' => array('checked' => 'checked'),
+                'required' => true,
             ))
             ->add('skype', null, array(
                 'label' => 'tempo.profile.form.skype',
-                'required'  => false,
+                'required' => false,
             ))
             ->add('linkedin', null, array(
                 'label' => 'tempo.profile.form.linkedin',
-                'required'  => false,
+                'required' => false,
             ))
             ->add('viadeo', null, array(
                 'label' => 'tempo.profile.form.viadeo',
-                'required'  => false,
+                'required' => false,
             ))
             ->add('twitter', null, array(
                 'label' => 'tempo.profile.form.twitter',
-                'required'  => false,
+                'required' => false,
             ))
         ;
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Tempo\Bundle\AppBundle\Model\User'
+            'data_class' => 'Tempo\Bundle\AppBundle\Model\User',
         ));
     }
 

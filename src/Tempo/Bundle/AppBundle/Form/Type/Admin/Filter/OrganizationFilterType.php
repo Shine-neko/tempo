@@ -21,15 +21,15 @@ class OrganizationFilterType extends AbstractType
         $builder
             ->add('name', 'text', array(
                 'label' => 'tempo.organization.filter.query',
-                'attr'  => array(
-                    'placeholder' => 'tempo.organization.list.filter.query'
-                )
+                'attr' => array(
+                    'placeholder' => 'tempo.organization.list.filter.query',
+                ),
             ))
         ;
     }
 
     public function getName()
     {
-        return 'tempo_organization_filter';
+        return 'tempo_admin_organization_filter';
     }
 }

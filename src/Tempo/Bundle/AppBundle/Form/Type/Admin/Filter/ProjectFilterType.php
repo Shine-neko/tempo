@@ -14,7 +14,6 @@ namespace Tempo\Bundle\AppBundle\Form\Type\Admin\Filter;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-
 class ProjectFilterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -22,15 +21,15 @@ class ProjectFilterType extends AbstractType
         $builder
             ->add('name', 'text', array(
                 'label' => 'tempo.project.filter.query',
-                'attr'  => array(
-                    'placeholder' => 'tempo.project.list.filter.query'
-                )
+                'attr' => array(
+                    'placeholder' => 'tempo.project.list.filter.query',
+                ),
             ))
         ;
     }
 
     public function getName()
     {
-        return 'tempo_project_filter';
+        return 'tempo_admin_project_filter';
     }
 }
