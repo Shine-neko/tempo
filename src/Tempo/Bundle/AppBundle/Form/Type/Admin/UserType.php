@@ -14,6 +14,8 @@ namespace Tempo\Bundle\AppBundle\Form\Type\Admin;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormEvent;
 
 class UserType extends AbstractType
 {
@@ -64,6 +66,18 @@ class UserType extends AbstractType
                 'label' => 'tempo.profile.form.twitter',
                 'required' => false,
             ))
+            ->addEventListener(FormEvents::POST_SET_DATA, function (FormEvent $event) {
+
+                $data = $event->getData();
+                $form = $event->getForm();
+
+                if (null !== $data->getPassword()) {
+                    $form->add('plainPassword', 'password', array(
+                        'label' => 'tempo.profile.form.password',
+                        'required' => false,
+                    ));
+                }
+            })
         ;
     }
 
