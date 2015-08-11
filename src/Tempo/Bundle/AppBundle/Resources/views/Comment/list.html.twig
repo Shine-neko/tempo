@@ -17,7 +17,7 @@
                         <a class="edit-comment" onclick="return false;" href="{{ path('comment_update', { 'comment': comment.id }) }}">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </a>
-                        {% if is_granted(comment, 'VIEW') %}
+                        {% if is_granted('DELETE', comment) %}
                         <a class="delete-comment"  href="{{ path('comment_delete', { 'comment': comment.id }) }}">
                             <span class="glyphicon glyphicon-remove"></span>
                         </a>

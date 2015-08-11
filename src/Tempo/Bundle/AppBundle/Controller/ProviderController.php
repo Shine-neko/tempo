@@ -45,7 +45,7 @@ class ProviderController extends Controller
         $state = $request->get('state');
         $provider = $this->getProvider($provider);
 
-        $projectProvider = $this->getProviderByProject($project, $provider);
+        $projectProvider = $this->getProviderByProject($project, $provider->getCanonicalName());
 
         if ('on' === $state) {
             if (null === $projectProvider) {
@@ -107,7 +107,7 @@ class ProviderController extends Controller
             throw $this->createAccessDeniedException();
         }
 
-        $projectProvider = $this->getProviderByProject();
+        $projectProvider = $this->getProviderByProject($project, $provider);
 
         if (!$projectProvider) {
             throw $this->createNotFoundException('Project provider not found');
@@ -119,7 +119,7 @@ class ProviderController extends Controller
         $this->get('event_dispatcher')->dispatch(TempoAppEvents::ACTIVITY_PROVIDER_CREATE_INITIALIZE, $event);
 
         $activity = $provider->parse($request);
-        
+
         if ($activity instanceof ActivityProviderInterface) {
             $activity->setHeaders($request->headers->all());
             $this->getManager('activity_provider')->addActivity($activity, $projectProvider);
@@ -160,10 +160,6 @@ class ProviderController extends Controller
             'name' => $providerName,
             'project' => $project
         ));
-
-        if (!$projectProvider) {
-            throw $this->createNotFoundException('Project provider not found');
-        }
 
         return $projectProvider;
     }
