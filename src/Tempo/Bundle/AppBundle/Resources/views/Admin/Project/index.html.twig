@@ -45,8 +45,8 @@
                         <tr id="{{ project.id }}">
                             <td>{{ project.id }}</td>
                             <td>{{ project.name }}</td>
-                            <td>{{ time_ago(project.beginning) }}</td>
-                            <td>{{ time_ago(project.ending) }}</td>
+                            <td>{{ project.beginning is not null ? time_ago(project.beginning): '' }}</td>
+                            <td>{{ project.ending is not null ? time_ago(project.ending): '' }}</td>
                             <td>
                                 <div class="pull-right">
                                     {{ buttons.show(path('project_show', {'slug': project.fullSlug})) }}
