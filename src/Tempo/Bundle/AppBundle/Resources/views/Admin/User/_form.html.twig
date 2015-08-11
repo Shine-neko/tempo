@@ -5,6 +5,7 @@
             {{ form_row(form.username) }}
             {{ form_row(form.email) }}
             {{ form_row(form.plainPassword) }}
+            {{ form_row(form.enabled) }}
 
         </fieldset>
     </div>
@@ -13,12 +14,11 @@
             <legend>Social</legend>
             {{ form_row(form.firstName) }}
             {{ form_row(form.lastName) }}
-            {{ form_row(form.enabled) }}
         </fieldset>
     </div>
     <div>
         <fieldset>
-            <legend>Social</legend>
+            <legend>Informations</legend>
             {{ form_row(form.skype) }}
             {{ form_row(form.linkedin) }}
             {{ form_row(form.viadeo) }}

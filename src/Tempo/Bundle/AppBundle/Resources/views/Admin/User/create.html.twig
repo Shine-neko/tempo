@@ -17,15 +17,15 @@
 </div>
 
 <div class="col-md-9">
-    <div class="app-panel">
-        <form action="{{ path('admin_user_create') }}" method="post">
+    <form action="{{ path('admin_user_create') }}" method="post">
+        <div class="app-panel">
             <div class="page-header">
                 <h1> {{ 'tempo.user.create.page_title'|trans|raw }}</h1>
             </div>
             {% include 'TempoAppBundle:Admin/User:_form.html.twig' %}
-            {{ create() }}
-        </form>
-    </div>
+        </div>
+        {{ create() }}
+    </form>
 </div>
 
 {% endblock %}

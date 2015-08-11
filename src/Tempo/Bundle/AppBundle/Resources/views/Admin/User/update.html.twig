@@ -26,12 +26,12 @@
         </div>
     </div>
 
-    <div class="app-panel">
-        <form action="{{ path('admin_user_update', {'id': user.id}) }}" method="post">
+    <form action="{{ path('admin_user_update', {'id': user.id}) }}" method="post">
+        <div class="app-panel">
             <input type="hidden" name="_method" value="PUT">
             {% include 'TempoAppBundle:Admin/User:_form.html.twig' %}
-        </form>
-    </div>
-    {{ update() }}
+        </div>
+        {{ update() }}
+    </form>
 </div>
 {% endblock %}
