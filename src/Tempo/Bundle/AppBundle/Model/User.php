@@ -15,8 +15,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 class User implements UserInterface
 {
-    const ROLE_DEFAULT = 'ROLE_USER';
-    const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
+
     const AVATAR_DEFAULT  = '/bundles/tempoapp/images/avatar-defaut.png';
 
     /** @var int */

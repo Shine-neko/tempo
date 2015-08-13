@@ -17,6 +17,9 @@ use Sylius\Component\Resource\Model\TimestampableInterface;
 
 interface UserInterface extends AdvancedUserInterface, \Serializable, TimestampableInterface
 {
+    const ROLE_DEFAULT = 'ROLE_USER';
+    const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
+
     /**
      * @return int
      */

@@ -13,6 +13,7 @@ namespace Tempo\Bundle\AppBundle\Repository;
 
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
+use Tempo\Bundle\AppBundle\Model\UserInterface;
 
 /**
  * UserRepository
@@ -24,10 +25,10 @@ class UserRepository extends EntityRepository
      */
     public function createNew()
     {
-        $className = $this->getClassName();
-        $className->addRole($className::ROLE_DEFAULT);
+        $className = parent::createNew();
+        $className->addRole(UserInterface::ROLE_DEFAULT);
 
-        return new $className;
+        return $className;
     }
     
     public function totalUser()
