@@ -19,6 +19,17 @@ use Doctrine\ORM\Query;
  */
 class UserRepository extends EntityRepository
 {
+     /**
+     * {@inheritdoc}
+     */
+    public function createNew()
+    {
+        $className = $this->getClassName();
+        $className->addRole($className::ROLE_DEFAULT);
+
+        return new $className;
+    }
+    
     public function totalUser()
     {
         return $this->createQueryBuilder('u')
