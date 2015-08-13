@@ -8,109 +8,113 @@ interface ProjectProviderInterface
     const STATE_UNACTIVE = 'off';
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId();
 
     /**
-     * Get appId
+     * Get appId.
      *
-     * @return integer
+     * @return int
      */
     public function getAppId();
 
     /**
-     * Set appId
+     * Set appId.
      *
-     * @return integer
+     * @return int
      */
     public function setAppId($appId);
 
     /**
-     * Get secret
+     * Get secret.
      *
-     * @return integer
+     * @return int
      */
     public function getSecret();
 
     /**
-     * Set secret
+     * Set secret.
      *
-     * @return integer
+     * @return int
      */
     public function setSecret($secret);
 
     /**
-     * Get Token
+     * Get Token.
      *
-     * @return integer
+     * @return int
      */
     public function getToken();
 
     /**
-     * Set Token
+     * Set Token.
      *
-     * @return integer
+     * @return int
      */
     public function setToken($secret);
 
     /**
-     * Set provider
+     * Set provider.
      *
-     * @param  string           $names
+     * @param string $name
+     *
      * @return ActivityProvider
      */
     public function setName($name);
 
     /**
-     * Get provider
+     * Get provider.
      *
      * @return string
      */
     public function getName();
 
     /**
-     * Set url
+     * Set url.
      *
-     * @param  string           $url
+     * @param string $url
+     *
      * @return ActivityProvider
      */
     public function setUrl($url);
 
     /**
-     * Get url
+     * Get url.
      *
      * @return string
      */
     public function getUrl();
 
     /**
-     * Set project
+     * Set project.
      *
-     * @param  Project          $project
+     * @param ProjectInterface $project
+     *
      * @return ActivityProvider
      */
     public function setProject(ProjectInterface $project);
 
     /**
-     * Get project
+     * Get project.
      *
      * @return Project
      */
     public function getProject();
 
     /**
-     * Set datetime
+     * Set datetime.
      *
-     * @param  \DateTime        $datetime
+     * @param \DateTime $createdAt
+     *
      * @return ActivityProvider
      */
-    public function setCreatedAt(\Datetime $datetime);
+    public function setCreatedAt(\Datetime $createdAt);
 
     /**
-     * Get datetime
+     * Get datetime.
      *
      * @return \DateTime
      */

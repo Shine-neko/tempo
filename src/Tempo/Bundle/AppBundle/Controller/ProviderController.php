@@ -53,7 +53,8 @@ class ProviderController extends Controller
                 $projectProvider = new ProjectProvider();
                 $projectProvider
                     ->setName($provider->getCanonicalName())
-                    ->setProject($project);
+                    ->setProject($project)
+                    ->setToken(sha1(uniqid(rand(), true)));
             }
 
             $projectProvider->setState(ProjectProviderInterface::STATE_ACTIVE);

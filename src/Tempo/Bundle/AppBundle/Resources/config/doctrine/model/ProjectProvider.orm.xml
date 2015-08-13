@@ -14,7 +14,7 @@
 
         <field name="appId" column="app_id" type="string"  nullable="true"  />
         <field name="secret" column="secret" type="string"  nullable="true"  />
-        <field name="token" column="token" type="string"  nullable="true"  />
+        <field name="token" column="token" type="string"  nullable="true" unique="true"  />
         <field name="state" column="state" type="string"  nullable="false"  />
 
         <field name="createdAt" type="datetime">
