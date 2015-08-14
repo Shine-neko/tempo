@@ -16,6 +16,9 @@ use Tempo\Bundle\AppBundle\Form\Type\AccessType;
 use Tempo\Bundle\AppBundle\Event\AccessEvent;
 use Tempo\Bundle\AppBundle\Model\Access;
 use Tempo\Bundle\AppBundle\TempoAppEvents;
+use Tempo\Bundle\AppBundle\Util\ClassUtils;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 
 /*
  * @author Mlanawo Mbechezi <mlanawo.mbechezi@ikimea.com>
@@ -29,42 +32,43 @@ class AccessController extends Controller
     public function addAction(Request $request, $slug)
     {
         $objectManager = $this->getObjectManager($request->get('_route'), $slug);
-        $resource  = $objectManager['model'];
+        $resource  = $objectManager['resource'];
         $slug = $objectManager['route'] == 'project_show' ? $resource->getFullSlug() : $resource->getSlug();
 
         $routeRedirect = $this->generateUrl($objectManager['route'], array('slug' => $slug));
         $form = $this->createForm(new AccessType($resource));
 
         if ($form->handleRequest($request)->isValid()) {
-
             $formData = $form->getData();
+            $user = $this->getManager('user')->findUserByUsernameOrEmail($formData['login']);
 
-            if (filter_var($formData['login'], FILTER_VALIDATE_EMAIL)) {
-                $access = (new Access())
-                    ->setInviteEmail($formData['login'])
-                    ->setInviteToken(sha1(uniqid(rand(), true)))
-                    ->setLabel($formData['role'])
-                    ->setSource($resource);
-                
-                $this->get('tempo.domain_manager')->create($access);
-                $this->sentEmail($access);
+            try {
+                $this->get('tempo.repository.access')->findAccess($resource, $formData['login']);
+                $this->addFlash('error', 'tempo.team.already_exist');
+            } catch(\NonUniqueResultException  $e) {
+                $this->addFlash('error', 'tempo.team.already_exist');
+            } catch(NoResultException  $e) {
 
-                $this->addFlash('success', 'tempo.team.success_send_invitation');
-            } else {
-                $user = $this->findUser(array('username' => $formData['identifiant']));
-                $event = new AccessEvent($request, $resource, $user, $this->getUser());
-                                
-                if ($resource->getMemberByUser($user) == '') {
+                if (null === $user && filter_var($formData['login'], FILTER_VALIDATE_EMAIL)) {
+                    $access = (new Access())
+                        ->setInviteEmail($formData['login'])
+                        ->setInviteToken(sha1(uniqid(rand(), true)))
+                        ->setLabel($formData['role'])
+                        ->setSource($resource);
+
+                    $this->get('tempo.domain_manager')->create($access);
+                    $this->sentEmail($access);
+                    $this->addFlash('success', 'tempo.team.success_send_invitation');
+
+                } else {
+                    $event = new AccessEvent($request, $resource, $user, $this->getUser());
                     $resource->addAccess($user, $formData['role']);
 
                     $this->get('tempo.domain_manager')->update($resource);
                     $this->get('event_dispatcher')->dispatch($objectManager['event'], $event);
-
-                    $this->addFlash('success', 'tempo.team.success_add');
-                }  else {
-                    $this->addFlash('error', 'tempo.team.already_exist');                
                 }
             }
+
         }
         return $this->redirect($routeRedirect);
     }
@@ -93,12 +97,12 @@ class AccessController extends Controller
     public function deleteAction(Request $request, $slug, $user)
     {
         $objectManager = $this->getObjectManager($request->get('_route'), $slug);
-        $resource =  $objectManager['model'];
-        $resourceName = (new \ReflectionClass($resource))->getShortName();
+        $resource =  $objectManager['resource'];
+        $resourceName = ClassUtils::getShortName($resource);
 
         $access = $this->get('tempo.repository.access')->findOneBy(array(
             'user' => $user,
-            strtolower($resourceName) => $resource
+            $resourceName => $resource
         ));
 
         $event = new AccessEvent($request, $resource, $access->getUser(), $this->getUser());
@@ -139,29 +143,13 @@ class AccessController extends Controller
         }
 
         $key = is_string($slug) ? 'slug' : 'id';
+        $objectManager['resource'] = $objectManager['manager']->findOneBy(array($key => $slug));
 
-        $objectManager['model'] = $objectManager['manager']->findOneBySlug(array(
-            $key => $slug
-        ));
-
-        if (null === $objectManager['model']) {
+        if (null === $objectManager['resource']) {
             throw $this->createNotFoundException();
         }
 
         return $objectManager;
-    }
-
-    /**
-     * @param $parameters
-     * @return \Tempo\Bundle\AppBundle\Model\User
-     */
-    private function findUser($parameters)
-    {
-        if(!$user = $this->get('tempo.repository.user')->findOneBy($parameters)) {
-           $this->createNotFoundException('User not found');
-        }
-
-        return $user;
     }
     
     /**
