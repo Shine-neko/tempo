@@ -25,12 +25,12 @@ class ProjectManager extends ModelManager
      */
     public function getProject($key)
     {
-        if (is_int($key)) {
-            $project = $this->getRepository()->find($key);
-        } else {
+        if ((int) $key === 0) {
             $project = $this->getRepository()->findOneBy(array(
                 'slug' => $key,
             ));
+        } else {
+            $project = $this->getRepository()->find($key);
         }
 
         return $project;
