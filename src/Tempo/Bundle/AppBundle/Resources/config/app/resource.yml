@@ -45,6 +45,7 @@ sylius_resource:
           driver: doctrine/orm
           classes:
               model: Tempo\Bundle\AppBundle\Model\Access
+              repository: Tempo\Bundle\AppBundle\Repository\AccessRepository
 
       tempo.notification:
           driver: doctrine/orm
