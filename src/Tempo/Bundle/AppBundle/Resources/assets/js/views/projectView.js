@@ -7,11 +7,24 @@
 * file that was distributed with this source code.
 */
 
+$(document).ready(function() {
+    $(document).on("switchChange.bootstrapSwitch",".provider-state-switch", function(event, state) {
+
+        var routeProvider = $(this).attr('rel');
+
+        $.ajax(routeProvider);
+
+        console.log(this); // DOM element
+        console.log(event); // jQuery event
+        console.log(state); // true | false
+    });
+});
+
 Tempo.View.Project = Backbone.View.extend({
 
     el: $("#content"),
     events: {
-        'click .handlediv' : 'toggleSection'
+        'click .handlediv' : 'toggleSection',
     },
 
     initialize: function() {
@@ -27,6 +40,5 @@ Tempo.View.Project = Backbone.View.extend({
     toggleSection: function(e) {
         var target = $( event.target );
         target.parent().parent().children('.inside').toggle('slow');
-    }
-
+    },
 });

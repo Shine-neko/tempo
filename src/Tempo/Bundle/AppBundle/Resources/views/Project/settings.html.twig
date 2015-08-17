@@ -1,5 +1,14 @@
 {% extends "TempoAppBundle::layout.html.twig" %}
 {% block bodyClass %}project settings{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+    '@TempoAppBundle/Resources/assets/js/views/projectView.js'
+    output="js/project.js" filter="?uglifyjs2"
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
 
 {% block container %}
 

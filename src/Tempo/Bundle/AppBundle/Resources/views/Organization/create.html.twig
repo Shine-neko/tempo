@@ -18,9 +18,19 @@
                     <div class="panel-body">
                         <form action="{{ path('organization_create') }}" method="post" class="organization-add clearfix">
 
-                            {{ form_widget(form) }}
+                            {{ form_row(form.name) }}
+
+                            <div class="form-group">
+                                {{ form_label(form.contact) }}
+
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">@</span>
+                                    {{ form_widget(form.contact) }}
+                                </div>
+                            </div>
 
                             <div class="rest clearbox">
+                                {{ form_rest(form) }}
                                 <button type="submit" class="submit btn btn-primary fantomas">{{ 'tempo.form.save'|trans }}</button>
                             </div>
                         </form>

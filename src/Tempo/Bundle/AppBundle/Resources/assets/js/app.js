@@ -146,6 +146,8 @@ $(function() {
         element.html(moment(time).fromNow());
     });
 
+    $('.switch').bootstrapSwitch();
+
     Tempo.Provide('router', function() {
         Backbone.Router.extend({
             el:undefined,

@@ -18,9 +18,7 @@
                     {% set active  = project_activated[provider.canonicalName] is defined  %}
                 <tr>
                     <td width="5%">
-                        <a href="{{ path('project_provider_state', { 'slug': project.fullSlug, 'provider': provider.name, 'state' : active ? 'off': 'on' } ) }}" class="state-{{ active ? 'active' : 'unactive'  }}">
-                            <span class="glyphicon glyphicon-off clgray"></span>
-                        </a>
+                        <input type="checkbox" {% if active %}checked="false"{% endif %} class="switch provider-state-switch" data-size="mini" rel="{{ path('project_provider_state', { 'slug': project.fullSlug, 'provider': provider.name, 'state' : active ? 'off': 'on' } ) }}" />
                     </td>
                     <td width="40%">
                         <a data-toggle="modal" role="dialog" data-target="#" data-title="{{ provider.name }} provider" href="{{ path('project_provider_update', { 'slug': project.fullSlug, 'provider': provider.name } ) }}">

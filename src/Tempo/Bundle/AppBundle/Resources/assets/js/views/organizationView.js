@@ -8,12 +8,5 @@
 */
 
 (function($) {
-    $('.organization-add').click('submit', function(e){
-        e.preventDefault();
-    });
 
-    $('.btn.add-organization').click('click', function(e){
-        e.preventDefault();
-    });
-
-})(jQuery);
+});

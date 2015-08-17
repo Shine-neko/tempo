@@ -85,7 +85,13 @@
             </div>
         </li>
     {% else %}
-        <p>{{ 'tempo.organization.not_found_project'|trans }}.</p>
+        <p>
+            {{ 'tempo.organization.not_found_project'|trans }}
+            {% if is_granted('EDIT', organization) %}
+            <br />
+                <a href="{{ path('project_create', { 'organization' : organization.slug }) }}" class="btn btn-xs btn-primary"> {{ 'tempo.project.add'|trans }} </a>
+            {% endif %}
+        </p>
     {% endfor %}
     </ul>
 
