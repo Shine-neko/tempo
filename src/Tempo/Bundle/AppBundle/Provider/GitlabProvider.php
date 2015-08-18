@@ -91,4 +91,12 @@ class GitlabProvider implements ProviderInterface
     {
         return 'GitLab';
     }
+
+    /**
+     * {inheritedDoc}
+     */
+    public function getDescription()
+    {
+        return 'Gitlab notifications (commits, pushes, issues, pull requests, and more)';
+    }
 }

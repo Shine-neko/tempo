@@ -1,6 +1,24 @@
-<form method="post" action="{{ path('project_provider_update', { 'slug' : slug, 'provider' : provider}) }}">
-    {{ form_errors(form) }}
+{% extends "TempoAppBundle::layout.html.twig" %}
+{% block bodyClass %}user profile avatar{% endblock %}
 
-    {{ form_widget(form) }}
-    <input type="submit" class="btn btn-primary fantomas" />
-</form>
+{% block container %}
+
+{{ include('@TempoApp/Project/_sidebar.html.twig') }}
+<div class="col-md-8">
+    <h1 id="page-title">{{ project.organization.name }}/{{ project.name }} ~  {{ provider }}</h1>
+    <form method="post" action="{{ path('project_provider_update', { 'slug' : slug, 'provider' : provider}) }}">
+        <div class="app-panel clearfix">
+            {{ form_row(form.token) }}
+            <a href="{{ path('project_provider_update', { 'slug' : slug, 'provider' : provider, 'regenerate-token': true}) }}" class="pull-right">Regenerate</a>
+        </div>
+
+        <div class="app-panel">
+            {{ form_widget(form) }}
+        </div>
+
+        <div class="form-actions">
+            <input type="submit" class="btn btn-primary btn-sm" />
+        </div>
+    </form>
+</div>
+{% endblock container %}

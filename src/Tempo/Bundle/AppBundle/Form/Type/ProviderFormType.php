@@ -23,9 +23,22 @@ class ProviderFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('url')
-            ->add('appId')
-            ->add('secret')
+
+            ->add('token', 'text', array(
+                'required' => false,
+                'attr' => array(
+                    'readonly'=> true
+                )
+            ))
+            ->add('url', 'url', array(
+                'required' => false
+            ))
+            ->add('appId', 'text', array(
+                'required' => false
+            ))
+            ->add('secret', 'text', array(
+                'required' => false
+            ))
         ;
     }
 

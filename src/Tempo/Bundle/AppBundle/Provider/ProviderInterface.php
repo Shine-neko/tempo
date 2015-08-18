@@ -22,12 +22,17 @@ interface ProviderInterface
     public function parse(Request $request);
 
     /**
-     * @return name
+     * @return string
      */
     public function getName();
 
     /**
-     * @return name
+     * @return string
      */
     public function getCanonicalName();
+
+    /**
+     * @return string
+     */
+    public function getDescription();
 }

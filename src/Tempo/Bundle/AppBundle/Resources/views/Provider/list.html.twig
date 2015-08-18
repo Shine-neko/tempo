@@ -11,6 +11,7 @@
                     <th>{{ 'tempo.project.service'|trans }}</th>
                     <th>{{ 'tempo.project.description'|trans }}</th>
                     <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -18,14 +19,16 @@
                     {% set active  = project_activated[provider.canonicalName] is defined  %}
                 <tr>
                     <td width="5%">
-                        <input type="checkbox" {% if active %}checked="false"{% endif %} class="switch provider-state-switch" data-size="mini" rel="{{ path('project_provider_state', { 'slug': project.fullSlug, 'provider': provider.name, 'state' : active ? 'off': 'on' } ) }}" />
+                        <input type="checkbox" {% if active %}checked="false"{% endif %} class="switch provider-state-switch" data-size="mini" rel="{{ path('project_provider_state', { 'slug': project.fullSlug, 'provider': provider.canonicalName, 'state' : active ? 'off': 'on' } ) }}" />
                     </td>
-                    <td width="40%">
-                        <a data-toggle="modal" role="dialog" data-target="#" data-title="{{ provider.name }} provider" href="{{ path('project_provider_update', { 'slug': project.fullSlug, 'provider': provider.name } ) }}">
+                    <td width="30%">
+                        <a href="{{ path('project_provider_update', { 'slug': project.fullSlug, 'provider': provider.canonicalName } ) }}">
                             {{ provider.name }}
                         </a>
                     </td>
-                    <td width="40%"></td>
+                    <td width="50%">
+                        {{ provider.description }}
+                    </td>
                     <td width="40%">
                         {% set link = host ~'/api/v1/provider/' ~ project.id ~'/notify/' ~ provider.canonicalName ~ '?access_token=' ~ app.user.token %}
                         <div class="zeroclipboard-pre input-group">
@@ -36,6 +39,9 @@
                                 </button>
                             </span>
                         </div>
+                    </td>
+                    <td>
+                        <a href="{{ path('project_provider_update', { 'slug': project.fullSlug, 'provider': provider.name } ) }}">Configure</a>
                     </td>
                 </tr>
                 {% endfor %}

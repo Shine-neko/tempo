@@ -13,10 +13,6 @@ $(document).ready(function() {
         var routeProvider = $(this).attr('rel');
 
         $.ajax(routeProvider);
-
-        console.log(this); // DOM element
-        console.log(event); // jQuery event
-        console.log(state); // true | false
     });
 });
 

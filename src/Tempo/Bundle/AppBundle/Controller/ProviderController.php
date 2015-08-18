@@ -50,14 +50,8 @@ class ProviderController extends Controller
         if ('on' === $state) {
             if (null === $projectProvider) {
                 $method = 'create';
-                $projectProvider = new ProjectProvider();
-                $projectProvider
-                    ->setName($provider->getCanonicalName())
-                    ->setProject($project)
-                    ->setToken(sha1(uniqid(rand(), true)));
+                $this->getManager('project_provider')->createProvider($provider->getCanonicalName(), $project);
             }
-
-            $projectProvider->setState(ProjectProviderInterface::STATE_ACTIVE);
 
         } else {
             $projectProvider->setState(ProjectProviderInterface::STATE_UNACTIVE);
@@ -68,23 +62,39 @@ class ProviderController extends Controller
         return $this->redirectToRoute('project_settings', array('slug' => $project->getFullSlug()));
     }
 
-    public function updateAction(Request $request, $slug, $provider)
+    public function updateAction(Request $request, Project $project, $provider)
     {
-        $projectProvider = $this->getManager('project_provider')->getRepository()->findOneByName($provider);
+        $manager = $this->getManager('project_provider');
+        $projectProvider = $manager->getRepository()->findOneBy(array(
+            'name' => $provider,
+            'project' => $project
+        ));
+
+        if (!$projectProvider) {
+            $projectProvider = $manager->createProvider($provider, $project);
+            $this->get('tempo.domain_manager')->create($projectProvider);
+        }
+
+        if ($request->query->has('regenerate-token')) {
+            $projectProvider->setToken(sha1(uniqid(rand(), true)));
+        }
+
         $form = $this->createForm(new ProviderFormType(), $projectProvider);
 
         if ($form->handleRequest($request)->isValid()) {
 
             $this->get('tempo.domain_manager')->update($projectProvider);
 
-            return $this->redirectToRoute('project_show', array(
-                'slug' => $slug,
+            return $this->redirectToRoute('project_provider_update', array(
+                'slug' => $project->getFullSlug(),
+                'provider' => $provider
             ));
         }
 
         return $this->render('TempoAppBundle:Provider:update.html.twig', array(
             'form' => $form->createView(),
-            'slug' => $slug,
+            'project' => $project,
+            'slug' => $project->getFullSlug(),
             'provider' => $provider
         ));
     }

@@ -52,4 +52,12 @@ class ScrutinizerProvider implements ProviderInterface
         return 'Scrutinizer';
     }
 
+    /**
+     * {inheritedDoc}
+     */
+    public function getDescription()
+    {
+        return 'Performs advanced static analysis on PHP code';
+    }
+
 }
