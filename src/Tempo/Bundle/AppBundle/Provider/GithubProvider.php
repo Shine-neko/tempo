@@ -176,4 +176,12 @@ class GithubProvider implements ProviderInterface
     {
         return 'github';
     }
+
+    /**
+     * {inheritedDoc}
+     */
+    public function getDescription()
+    {
+        return 'GitHub notifications (commits, pushes, issues, pull requests, and more)';
+    }
 }

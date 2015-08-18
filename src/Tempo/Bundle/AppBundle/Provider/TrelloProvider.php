@@ -38,4 +38,12 @@ class TrelloProvider implements ProviderInterface
     {
         return 'trello';
     }
+
+    /**
+     * {inheritedDoc}
+     */
+    public function getDescription()
+    {
+        return 'Trello is a free web-based project management application';
+    }
 }

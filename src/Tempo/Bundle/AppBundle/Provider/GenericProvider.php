@@ -51,4 +51,12 @@ class GenericProvider implements ProviderInterface
     {
         return 'generic';
     }
+
+    /**
+     * {inheritedDoc}
+     */
+    public function getDescription()
+    {
+        return 'Custom integration with Tempo.';
+    }
 }

@@ -45,4 +45,12 @@ class TravisProvider implements ProviderInterface
         return 'Travis';
     }
 
+    /**
+     * {inheritedDoc}
+     */
+    public function getDescription()
+    {
+        return 'Travis CI is an open-source hosted, distributed continuous integration service used to build and test projects hosted at GitHub';
+    }
+
 }

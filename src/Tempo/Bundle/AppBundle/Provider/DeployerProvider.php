@@ -37,13 +37,27 @@ class DeployerProvider implements ProviderInterface
         return $activity;
     }
 
+    /**
+     * {inheritedDoc}
+     */
     public function getName()
     {
         return 'Deployer';
     }
 
+    /**
+     * {inheritedDoc}
+     */
     public function getCanonicalName()
     {
         return 'deployer';
+    }
+
+    /**
+     * {inheritedDoc}
+     */
+    public function getDescription()
+    {
+        return 'GitHub notifications (commits, pushes, issues, pull requests, and more)';
     }
 }
