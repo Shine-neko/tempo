@@ -11,10 +11,12 @@
 
 namespace Tempo\Bundle\AppBundle\Manager;
 
+use Tempo\Bundle\AppBundle\Model\ProjectProvider;
+
+
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
-
 class ProjectProviderManager extends ModelManager
 {
     public function getProviders($projects)
@@ -28,5 +30,17 @@ class ProjectProviderManager extends ModelManager
         }
 
         return $providers;
+    }
+
+    public function createProvider($name, $project)
+    {
+        $projectProvider = new ProjectProvider();
+        $projectProvider
+            ->setName($name)
+            ->setProject($project)
+            ->setToken(sha1(uniqid(rand(), true)))
+            ->setState(ProjectProviderInterface::STATE_ACTIVE);
+
+        return $projectProvider;
     }
 }

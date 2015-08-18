@@ -12,12 +12,7 @@
 
 {% block container %}
 
-<div class="col-md-2">
-    <ul class="nav nav-pills  nav-stacked">
-        <li><a href="#webhooks" data-toggle="tab">{{ 'tempo.project.hook'|trans }}</a></li>
-        <li class="active"><a href="#providers" data-toggle="tab">{{ 'tempo.project.service_hooks'|trans }}</a></li>
-    </ul>
-</div>
+{{ include('@TempoApp/Project/_sidebar.html.twig') }}
 <div class="col-md-8">
     <div class="tab-content">
         <div class="tab-pane fade" id="options">
