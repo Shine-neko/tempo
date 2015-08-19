@@ -2,6 +2,7 @@
 
 EXIT_STATUS=0
 
+bin/security-checker security:check
 bin/phpunit -c app/
 bin/behat --tags=account -fprogress || EXIT_STATUS=$?
 bin/behat --tags=organization -fprogress || EXIT_STATUS=$?
