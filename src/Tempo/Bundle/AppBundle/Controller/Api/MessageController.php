@@ -43,9 +43,9 @@ class MessageController extends Controller
      */
     public function getMessageAction($room, $messageId)
     {
-        $room = $this->getManager('room')->getRepository()->findRoom($room, $this->getUser()->getId());
-
+        $room = $this->getRoom($room);
         $message = $room->getMessage($messageId);
+
         if (!$message) {
             throw $this->createNotFoundException(sprintf(
                 'Could not find message %s',
@@ -74,23 +74,23 @@ class MessageController extends Controller
      */
     public function getMessagesAction($room, ParamFetcherInterface $paramFetcher)
     {
-        $room = $this->getManager('room')->getRepository()->findRoom($room, $this->getUser()->getId());
+        $room = $this->getRoom($room);
 
         $offset = $paramFetcher->get('offset');
         $offset = null === $offset ? 0 : $offset;
         $limit = $paramFetcher->get('limit');
 
-        return $this->get('tempo.model_manager.message')->all($room , $limit, $offset, array());
-    }
+        $messages = $this->get('tempo.model_manager.message')->all($room , $limit, $offset, array());
 
+        return $this->handleView($this->view($messages));
+    }
     /**
      * Create a new message
      * @Post("/room/{room}/message")
      */
     public function postMessageAction($room, Request $request)
     {
-        $room = $this->getManager('room')->getRepository()->findRoom($room, $this->getUser()->getId());
-
+        $room = $this->getRoom($room);
         $view = View::create();
 
         $message = new Message();
@@ -99,7 +99,6 @@ class MessageController extends Controller
             ->setUser($this->getUser());
         
         $room->addMessage($message);
-
         $form = $this->createForm(new MessageType(), $message);
 
         if ($form->submit($request) && $form->isValid()) {
@@ -109,6 +108,20 @@ class MessageController extends Controller
             $view->setData($form);
         }
 
-        return $view;
+        return $this->handleView($view);
+    }
+
+    /**
+     * @param $room
+     */
+    private function getRoom($room)
+    {
+        $room = $this->getManager('room')->getRepository()->findRoom($room, $this->getUser()->getId());
+
+        if (!$room && $room->getMemberByUser($this->getUser())) {
+            $this->createNotFoundException();
+        }
+
+        return $room;
     }
 }
