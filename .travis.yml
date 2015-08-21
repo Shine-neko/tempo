@@ -45,8 +45,10 @@ before_script:
     - composer install --prefer-source --no-interaction
 
     # Selenium
-    - sh -e /etc/init.d/xvfb start && export DISPLAY=:99 && wget http://selenium.googlecode.com/files/selenium-server-standalone-2.33.0.jar
-    - java -jar selenium-server-standalone-2.33.0.jar > /dev/null &
+    - sh -e /etc/init.d/xvfb start
+    - export DISPLAY=:99
+    - wget http://selenium-release.storage.googleapis.com/2.47/selenium-server-standalone-2.47.1.jar
+    - java -jar selenium-server-standalone-2.47.1.jar > /dev/null &
     - sleep 5
 
     # Install database
@@ -56,8 +58,6 @@ before_script:
 
     # Loading web server for selenium
     - node bin/server.js > error.log &
-    #- if [[ $TRAVIS_PHP_VERSION != 'hhvm' && $TRAVIS_PHP_VERSION != 'hhvm-nightly' ]]; then php app/console server:run; fi;
-
 
 script:
     - sh travis.sh
