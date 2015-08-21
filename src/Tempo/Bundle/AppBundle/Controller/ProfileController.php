@@ -16,23 +16,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Tempo\Bundle\AppBundle\Form\Type\ChangePasswordFormType;
 use Tempo\Bundle\AppBundle\Form\Type\SettingsType;
 use Tempo\Bundle\AppBundle\Form\Type\ProfileType;
+use Tempo\Bundle\AppBundle\Model\User;
 
 class ProfileController extends Controller
 {
-    /**
-     * @return Response
-     */
-    public function editAction()
-    {
-        $form = $this->createForm(new ProfileType(), $this->getUser());
-
-        return $this->render('TempoAppBundle:Profile:edit.html.twig', array(
-            'user' => $this->getUser(),
-            'form' => $form->createView()
-        ));
-    }
-
-
     /**
      * @param Request $request
      * @return Response
@@ -89,18 +76,11 @@ class ProfileController extends Controller
     }
 
     /**
-     * @param $slug
      * @return Response
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    public function showAction($slug)
+    public function showAction(User $profile)
     {
-        $profile = $this->getManager('user')->getRepository()->findOneBy(array('slug' => $slug));
-
-        if(!$profile) {
-            throw $this->createNotFoundException('User not found.');
-        }
-
         $organizations = $this->getManager('organization')->findAllByUser($profile->getId());
         $activities = $this->getManager('activity')
             ->getRepository()->createQueryBuilder('activity')

@@ -1,7 +1,3 @@
-user_profile_edit:
-   path:  /edit
-   defaults: { _controller: TempoAppBundle:Profile:edit }
-
 user_profile_avatar:
    path:  /edit/avatar
    defaults: { _controller: TempoAppBundle:Profile:avatar }

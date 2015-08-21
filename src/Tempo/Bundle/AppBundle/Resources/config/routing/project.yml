@@ -62,7 +62,7 @@ project_version:
     requirements:
         slug: ".+"
 
-_project_settings:
+project_settings:
     path: /settings
     methods: [GET]
     defaults:
