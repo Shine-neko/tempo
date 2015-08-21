@@ -61,7 +61,7 @@ class DataContext extends BaseContext
 
         try {
             \PHPUnit_Framework_Assert::assertRegExp($pattern, $actual);
-        } catch (\AssertException $e) {
+        } catch (AssertException $e) {
             $message = sprintf('The texts "%s" was not found in order anywhere on the current page', implode('", "', $texts));
             throw new ExpectationException($message, $this->getSession(), $e);
         }

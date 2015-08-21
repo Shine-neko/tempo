@@ -8,8 +8,8 @@ Feature: Organisation team
     When I am on "organization/ikimea"
     And I should not see "Warren Spencer"
     When I follow "Add member"
-    And I fill in "Username" with "warren.spencer"
-    And I press "Save"
+    And I fill in "Login" with "warren.spencer"
+    And I press "Save changes"
     And I should see "Warren SPENCER"
 
   Scenario: Remove member
