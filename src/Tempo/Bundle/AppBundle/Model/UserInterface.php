@@ -289,16 +289,16 @@ interface UserInterface extends AdvancedUserInterface, \Serializable, Timestampa
     public function getJobTitle();
 
     /**
-     * @param string $phone
+     * @param string $phones
      *
      * @return self
      */
-    public function setPhone($phone);
+    public function setPhones($phones);
 
     /**
      * @return string
      */
-    public function getPhone();
+    public function getPhones();
 
     /**
      * @param string $mobilePhone

@@ -219,6 +219,7 @@ tempo:
     title: Profil
     change_password: Changer de mot de passe
     password_change_success: Mot de passe modifié avec succès.
+    edit_success: Votre profil a été modifié.
     activity: Activité
     tabs:
       profil: Profil
@@ -229,8 +230,7 @@ tempo:
       notifications: Notifications
       edit: Modifier le profil
     avatar:
-      title: Avatar
-      
+      title: Avatar     
     form:
       id: ID
       username: Nom d'utilisateur
@@ -255,6 +255,11 @@ tempo:
       phone: Téléphone
       mobile_phone: Téléphone mobile
       generate_token: Générer le jeton
+      type: Type
+      number: Numéro
+      cell_phone: Portable
+      landline_phone: Fixe
+            
       
   avatar:
     title: Changer d'avatar

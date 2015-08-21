@@ -14,7 +14,7 @@ namespace Tempo\Bundle\AppBundle\DependencyInjection\CompilerPass;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class OverrideServiceCompilerPass implements CompilerPassInterface
+class ResourceCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
@@ -24,5 +24,10 @@ class OverrideServiceCompilerPass implements CompilerPassInterface
         $lessAsseticFilter = $container->getDefinition('assetic.filter.less');
         $kernelRootDir = $container->getParameter('kernel.root_dir'). '/../web';
         $lessAsseticFilter->addMethodCall('addLoadPath', array($kernelRootDir));
+        
+        $container->setParameter('twig.form.resources', array_merge(
+            array('TempoAppBundle:Form:phone_widget.html.twig'),
+            $container->getParameter('twig.form.resources')
+        ));
     }
 }

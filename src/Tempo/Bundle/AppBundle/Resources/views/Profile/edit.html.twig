@@ -1,6 +1,17 @@
 {% extends "TempoAppBundle::layout.html.twig" %}
 {% block bodyClass %}user profile edit{% endblock %}
-
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+    '@TempoAppBundle/Resources/assets/js/views/user.js'
+    output="js/user.js" filter="?uglifyjs2"
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script>
+        new Tempo.View.User();
+    </script>
+{% endblock %}
 {% block container %}
 
     {% block breadcrumb %}
@@ -29,11 +40,12 @@
                         {{ form_row(form.lastName) }}
                     </fieldset>
 
-                    <fieldset>
-                        {{ form_row(form.phone) }}
-                        {{ form_row(form.mobilePhone) }}
+                    <fieldset id="phone-prototype" data-prototype="{{ form_widget(form.phones.vars.prototype) | e }}">
+                        {{ form_label(form.phones) }}
+                        <a class="add-phone" href="#"><span class="glyphicon glyphicon-plus"></span></a>
+                        {{ form_widget(form.phones) }}
                     </fieldset>
-
+                    
                     <fieldset>
                         {{ form_row(form.company) }}
                         {{ form_row(form.jobTitle) }}

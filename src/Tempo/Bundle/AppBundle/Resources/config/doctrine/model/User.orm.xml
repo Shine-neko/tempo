@@ -41,8 +41,7 @@
         <field name="gender" column="gender" type="integer" nullable="true" />
         <field name="company" column="company" type="string" nullable="true" />
         <field name="jobTitle" column="job_title" type="string" nullable="true" />
-        <field name="phone" column="phone" type="string" nullable="true" />
-        <field name="mobilePhone" column="mobile_phone" type="string" nullable="true" />
+        <field name="phones" column="phones" type="array" nullable="true" />
         <field name="avatar" column="avatar" type="string" nullable="true" />
         <field name="skype" column="skype" type="string" nullable="true" />
         <field name="viadeo" column="viadeo" type="string" nullable="true" />

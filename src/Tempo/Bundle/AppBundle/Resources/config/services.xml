@@ -12,6 +12,7 @@
         <parameter key="tempo.form.type.datetimepicker.class">Tempo\Bundle\AppBundle\Form\Type\DateTimePickerType</parameter>
         <parameter key="tempo.form.type.list.class">Tempo\Bundle\AppBundle\Form\Type\ListType</parameter>
         <parameter key="tempo.form.type.wysiwyg.class">Tempo\Bundle\AppBundle\Form\Type\SummernoteType</parameter>
+        <parameter key="tempo.form.type.phone.class">Tempo\Bundle\AppBundle\Form\Type\PhoneType</parameter>
         <parameter key="tempo.menu.builder.main.class">Tempo\Bundle\AppBundle\Menu\MainMenuBuilder</parameter>
         <parameter key="tempo.menu.builder.admin.class">Tempo\Bundle\AppBundle\Menu\AdminMenuBuilder</parameter>
         <parameter key="tempo.form.extension.security.class">Tempo\Bundle\AppBundle\Form\Extension\SecurityTypeExtension</parameter>
@@ -77,6 +78,10 @@
             <argument type="service" id="tempo.asset_manager" />
             <argument type="service" id="tempo.behavior" />
             <tag name="form.type" alias="wysiwyg" />
+        </service>
+        
+        <service id="tempo.form.type.phone" class="%tempo.form.type.phone.class%">
+            <tag name="form.type" alias="phone" />
         </service>
 
         <service id="tempo.form.extension.security" class="%tempo.form.extension.security.class%">

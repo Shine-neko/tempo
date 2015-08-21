@@ -14,7 +14,7 @@ namespace Tempo\Bundle\AppBundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Sylius\Bundle\ResourceBundle\AbstractResourceBundle;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
-use Tempo\Bundle\AppBundle\DependencyInjection\CompilerPass\OverrideServiceCompilerPass;
+use Tempo\Bundle\AppBundle\DependencyInjection\CompilerPass\ResourceCompilerPass;
 use Tempo\Bundle\AppBundle\DependencyInjection\CompilerPass\RegisterProviderPass;
 
 /**
@@ -29,7 +29,7 @@ class TempoAppBundle extends AbstractResourceBundle
     public function build(ContainerBuilder $container)
     {
         parent::build($container);
-        $container->addCompilerPass(new OverrideServiceCompilerPass());
+        $container->addCompilerPass(new ResourceCompilerPass());
         $container->addCompilerPass(new RegisterProviderPass());
     }
 
