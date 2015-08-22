@@ -105,10 +105,7 @@ class User implements UserInterface
     protected $jobTitle;
 
     /** @var string */
-    protected $phone;
-
-    /** @var string */
-    protected $mobilePhone;
+    protected $phones;
 
     /** @var string */
     protected $avatar;
@@ -139,6 +136,7 @@ class User implements UserInterface
         $this->createdAt = new \DateTime();
         $this->organizations = new ArrayCollection();
         $this->notifications = new ArrayCollection();
+        $this->phones = new ArrayCollection();
 
         $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
         $this->enabled = false;
@@ -607,12 +605,19 @@ class User implements UserInterface
         return $this->jobTitle;
     }
 
+    public function addPhone($phone)
+    {
+        $this->phones[] = $phone;
+        
+        return $this;
+    }
+    
     /**
      * {@inheritdoc}
      */
-    public function setPhone($phone)
+    public function setPhones($phones)
     {
-        $this->phone = $phone;
+        $this->phones = $phones;
 
         return $this;
     }
@@ -620,9 +625,9 @@ class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getPhone()
+    public function getPhones()
     {
-        return $this->phone;
+        return $this->phones;
     }
 
     /**

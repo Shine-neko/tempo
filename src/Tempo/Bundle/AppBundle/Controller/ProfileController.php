@@ -18,6 +18,7 @@ use Tempo\Bundle\AppBundle\Form\Type\SettingsType;
 use Tempo\Bundle\AppBundle\Form\Type\ProfileType;
 use Tempo\Bundle\AppBundle\Model\User;
 
+
 class ProfileController extends Controller
 {
     /**
@@ -65,11 +66,11 @@ class ProfileController extends Controller
 
         if ($form->handleRequest($request)->isValid()) {
             $this->get('tempo.domain_manager')->update($user);
-            $this->addFlash('success', 'tempo.user.profile_edit_success');
+            $this->addFlash('success', 'tempo.profile.edit_success');
         }
 
         return $this->render( 'TempoAppBundle:Profile:edit.html.twig',  array(
-            'user' => $this->getUser(),
+            'user' => $user,
             'form' => $form->createView(),
         ));
 

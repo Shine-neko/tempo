@@ -220,6 +220,7 @@ tempo:
     title: Profile
     change_password: Changer de mot de passe
     password_change_success: Mot de passe modifié avec succès.
+    edit_success: Your profile has been updated.
     activity: Activity
     tabs:
       profil: Profile
@@ -231,8 +232,7 @@ tempo:
       room: Rooms
       edit: Edit profile
     avatar:
-      title: Avatar
-      
+      title: Avatar 
     form:
       id: ID
       username: Username
@@ -257,6 +257,10 @@ tempo:
       phone: Phone
       mobile_phone: Mobile phone
       company: Company
+      type: Type
+      number: Number
+      cell_phone: Cell
+      landline_phone: Landline
       
   avatar:
     title: Change my profile picture

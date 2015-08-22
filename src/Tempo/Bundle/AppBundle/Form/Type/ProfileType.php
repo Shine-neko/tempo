@@ -14,6 +14,7 @@ namespace Tempo\Bundle\AppBundle\Form\Type;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Tempo\Bundle\AppBundle\Form\Form\PhoneType;
 
 class ProfileType extends AbstractType
 {
@@ -36,12 +37,15 @@ class ProfileType extends AbstractType
             ->add('jobTitle', null, array(
                 'label' => 'tempo.profile.form.job_title'
             ))
-            ->add('phone', null, array(
-                'label' => 'tempo.profile.form.phone'
-            ))
-            ->add('mobilePhone', null, array(
-                'label' => 'tempo.profile.form.mobile_phone'
-            ))
+            ->add('phones', 'collection', array(
+                'type' => 'phone',
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true,
+                'by_reference' => false,
+                'options' => array(
+                    'label' => false
+            )))
         ;
     }
 
