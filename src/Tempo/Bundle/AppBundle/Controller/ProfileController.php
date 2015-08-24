@@ -94,6 +94,27 @@ class ProfileController extends Controller
         }
         return $this->redirectToRoute('user_profile_emails');
     }
+    
+    public function setAsMainAction(UserEmail $userEmail)
+    {
+        $user = $this->getUser();
+        
+        if(!$user->getEmails()->contains($userEmail)) {
+            return $this->createAccessDeniedException();
+        }
+        
+        $currentMain = $this->get('tempo.repository.user_email')->findOneBy(array(
+            'main' => true,
+            'user' => $user
+        ))->setMain(false);
+        $userEmail->setMain(true);
+        
+        $this->get('tempo.domain_manager')->update($userEmail);
+        $this->get('tempo.domain_manager')->update($currentMain);
+        $this->addFlash('success', 'tempo.profile.edit_success');
+        
+        return $this->redirectToRoute('user_profile_emails');
+    }
 
     public function updateAction(Request $request)
     {

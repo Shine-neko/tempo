@@ -9,6 +9,10 @@ user_profile_emails:
 user_profile_delete_mail:
     path: /delete/email/{id}
     defaults: { _controller: TempoAppBundle:Profile:deleteEmail}
+    
+user_profile_main_email:
+    path: /set-as-main-email/{id}
+    defaults: { _controller: TempoAppBundle:Profile:setAsMain}
 
 user_profile_password:
   path:  /edit/password

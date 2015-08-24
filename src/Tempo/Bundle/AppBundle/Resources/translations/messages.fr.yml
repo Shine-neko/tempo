@@ -222,9 +222,10 @@ tempo:
     password_change_success: Mot de passe modifié avec succès.
     edit_success: Votre profil a été modifié.
     activity: Activité
-    current_emails: Adresses email actuelles
+    current_emails: Adresses actuelles
     add_email: Ajouter une adresse email
     main_adress: Principale
+    set_as_main: Définir comme adresse principale.
     delete_main_adress: Ceci est l'adresse principale. Veuillez déclarer une autre adresse principale avant de supprimer celle-ci.
     public: Publique
     private: Privée
