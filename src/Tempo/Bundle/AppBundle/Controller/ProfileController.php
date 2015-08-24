@@ -16,7 +16,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Tempo\Bundle\AppBundle\Form\Type\ChangePasswordFormType;
 use Tempo\Bundle\AppBundle\Form\Type\SettingsType;
 use Tempo\Bundle\AppBundle\Form\Type\ProfileType;
+use Tempo\Bundle\AppBundle\Form\Type\EmailType;
 use Tempo\Bundle\AppBundle\Model\User;
+use Tempo\Bundle\AppBundle\Model\UserEmail;
 
 
 class ProfileController extends Controller
@@ -57,6 +59,36 @@ class ProfileController extends Controller
             'user' => $user,
             'form' => $form->createView(),
         ));
+    }
+    
+    public function emailsAction(Request $request)
+    {
+        $user = $this->getUser();
+        $userEmail = (new UserEmail());
+        $form = $this->createForm(new EmailType(), $userEmail);
+        
+        if ($form->handleRequest($request)->isValid()) {
+            $userEmail->setUser($user);
+            $this->get('tempo.domain_manager')->update($user);
+            $this->addFlash('success', 'tempo.profile.edit_success');
+        }
+        
+        return $this->render('TempoAppBundle:Profile:email.html.twig', array(
+            'user' => $user,
+            'form' => $form->createView()
+        ));
+    }
+    
+    public function deleteEmailAction(UserEmail $userEmail)
+    {
+        $user = $this->getUser();
+        if($user->getEmails()->contains($userEmail)) {
+            $this->get('tempo.domain_manager')->delete($userEmail);
+            $this->addFlash('success', 'tempo.profile.edit_success');
+            return $this->redirectToRoute('user_profile_emails');
+        } else {
+            return $this->createAccessDeniedException();
+        }
     }
 
     public function updateAction(Request $request)

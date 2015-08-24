@@ -24,6 +24,7 @@ tempo:
       submit: Envoyer
       manage: Administrer
       leave: Quitter
+      add: Ajouter
 
   admin:
       dashboard: Admin
@@ -221,13 +222,20 @@ tempo:
     password_change_success: Mot de passe modifié avec succès.
     edit_success: Votre profil a été modifié.
     activity: Activité
+    current_emails: Adresses email actuelles
+    add_email: Ajouter une adresse email
+    main_adress: Principale
+    public: Publique
+    private: Privée
     tabs:
       profil: Profil
       avatar: Avatar
       email: Adresse email
+      emails: Adresses email
       password: Mot de passe
       settings: Préférences
       notifications: Notifications
+      rooms: Rooms
       edit: Modifier le profil
     avatar:
       title: Avatar     
@@ -260,7 +268,6 @@ tempo:
       cell_phone: Portable
       landline_phone: Fixe
             
-      
   avatar:
     title: Changer d'avatar
     choose_avatar: Choisir une nouvelle image

@@ -1,0 +1,54 @@
+{% extends "TempoAppBundle::layout.html.twig" %}
+{% block bodyClass %}user email edit{% endblock %}
+
+{% block container %}
+
+    {% block breadcrumb %}
+        <ol id="breadcrumb" class="clearfix">
+            <li class="first"><a href="{{ path('homepage') }}">{{ 'tempo.menu.home'|trans }}</a></li>
+            <li><a href="{{ path('user_profile_update') }}">{{ 'tempo.profile.title'|trans }}</a></li>
+            <li class="last">{{ 'tempo.profile.tabs.emails'|trans }}</li>
+        </ol>
+    {% endblock breadcrumb %}
+    
+     <div class="container-panel">
+
+        {% include "TempoAppBundle:Profile:_tabs.html.twig" %}
+        <div class="page-header">
+            <h1>{{ 'tempo.profile.tabs.emails'|trans }}</h1>
+        </div>
+        
+        <div class="col-md-8 app-panel">
+            <h4>{{ 'tempo.profile.current_emails'|trans }}</h4>
+            <ul>
+            {% for email in user.emails %}
+                <li>
+                    {{ email.email }}
+                    {% if email.main %}
+                    <span class="label label-success">{{ 'tempo.profile.main_adress'|trans }}</span>
+                    {% endif %}
+                    <span class="label label-default">
+                    {% if email.status == constant('Tempo\\Bundle\\AppBundle\\Model\\UserEmail::STATUS_PRIVATE') %}
+                        {{ 'tempo.profile.private'|trans }}
+                    {% elseif email.status == constant('Tempo\\Bundle\\AppBundle\\Model\\UserEmail::STATUS_PUBLIC') %}
+                        {{ 'tempo.profile.public'|trans }}
+                    {% endif %}
+                    </span>
+                    <a class="text-danger" href="{{ path('user_profile_delete_mail', {'id': email.id }) }}"><span class="glyphicon glyphicon-remove"></span></a>
+                </li>
+            {% endfor %}
+            </ul>
+     
+            <h4>{{ 'tempo.profile.add_email'|trans }}</h4>
+            <form action="{{ path('user_profile_emails') }}" method="POST" class="user_profile_update">
+                <div class="form-inline">
+                    <fieldset>
+                        {{ form_widget(form.email) }}
+                        {{ form_rest(form) }}
+                        <input type="submit" class="btn btn-primary btn-sm" value="{{ 'tempo.form.add'|trans }}"/>
+                    </fieldset>
+                </div>
+            </form>
+        </div>
+    
+{% endblock %}

@@ -60,6 +60,12 @@
         <gedmo:soft-deleteable field-name="deletedAt" />
 
         <one-to-many field="notifications" target-entity="Tempo\Bundle\AppBundle\Model\Notification" mapped-by="user" />
+        
+        <one-to-many field="emails" target-entity="Tempo\Bundle\AppBundle\Model\UserEmail" mapped-by="user">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
 
     </mapped-superclass>
 

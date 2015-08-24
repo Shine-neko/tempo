@@ -21,10 +21,6 @@ class ProfileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', null, array(
-                'label' => 'tempo.profile.form.email',
-                'required' => true
-            ))
             ->add('firstName', null, array(
                 'label' => 'tempo.profile.form.firstName'
             ))

@@ -1,6 +1,14 @@
 user_profile_avatar:
    path:  /edit/avatar
    defaults: { _controller: TempoAppBundle:Profile:avatar }
+   
+user_profile_emails:
+   path: /edit/emails
+   defaults: { _controller: TempoAppBundle:Profile:emails}
+   
+user_profile_delete_mail:
+    path: /delete/email/{id}
+    defaults: { _controller: TempoAppBundle:Profile:deleteEmail}
 
 user_profile_password:
   path:  /edit/password

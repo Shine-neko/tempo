@@ -24,6 +24,7 @@ tempo:
       submit: Send
       manage: Manage
       leave: Leave
+      add: Add
 
   admin:
       dashboard: Admin
@@ -202,7 +203,6 @@ tempo:
     invite_again_success: The invitation was sent successfuly.
     not_allowed: You don't have the rights to do this action.
 
-
   buttons:
       edit: Edit
       submit: Submit
@@ -222,10 +222,16 @@ tempo:
     password_change_success: Mot de passe modifié avec succès.
     edit_success: Your profile has been updated.
     activity: Activity
+    current_emails: Current email adresses
+    add_email: Add email adress
+    main_adress: Main
+    public: Public
+    private: Private
     tabs:
       profil: Profile
       avatar: Profile picture
       email: Email address
+      emails: Email adresses
       password: Password
       settings: Settings
       notifications: Notifications

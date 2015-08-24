@@ -56,6 +56,10 @@ class MainMenuBuilder extends MenuBuilder
             array('route' => 'user_profile_update')
         );
         $menu->addChild(
+            $this->translate('tempo.profile.tabs.emails'),
+            array('route' => 'user_profile_emails')
+        );
+        $menu->addChild(
             $this->translate('tempo.profile.tabs.avatar'),
             array('route' => 'user_profile_avatar')
         );
