@@ -225,6 +225,7 @@ tempo:
     current_emails: Adresses email actuelles
     add_email: Ajouter une adresse email
     main_adress: Principale
+    delete_main_adress: Ceci est l'adresse principale. Veuillez déclarer une autre adresse principale avant de supprimer celle-ci.
     public: Publique
     private: Privée
     tabs:

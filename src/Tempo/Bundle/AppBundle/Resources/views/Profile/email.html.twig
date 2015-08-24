@@ -20,25 +20,35 @@
         
         <div class="col-md-8 app-panel">
             <h4>{{ 'tempo.profile.current_emails'|trans }}</h4>
-            <ul>
-            {% for email in user.emails %}
-                <li>
-                    {{ email.email }}
-                    {% if email.main %}
-                    <span class="label label-success">{{ 'tempo.profile.main_adress'|trans }}</span>
-                    {% endif %}
-                    <span class="label label-default">
-                    {% if email.status == constant('Tempo\\Bundle\\AppBundle\\Model\\UserEmail::STATUS_PRIVATE') %}
-                        {{ 'tempo.profile.private'|trans }}
-                    {% elseif email.status == constant('Tempo\\Bundle\\AppBundle\\Model\\UserEmail::STATUS_PUBLIC') %}
-                        {{ 'tempo.profile.public'|trans }}
-                    {% endif %}
-                    </span>
-                    <a class="text-danger" href="{{ path('user_profile_delete_mail', {'id': email.id }) }}"><span class="glyphicon glyphicon-remove"></span></a>
-                </li>
-            {% endfor %}
-            </ul>
-     
+            <table class="table table-striped">
+                <tbody>
+                    {% for email in user.emails %}
+                    <tr>
+                        <td>
+                            {% if email.main %}
+                            <span class="label label-success">{{ 'tempo.profile.main_adress'|trans }}</span>
+                            {% endif %}
+                            <span class="label label-default">
+                            {% if email.status == constant('Tempo\\Bundle\\AppBundle\\Model\\UserEmail::STATUS_PRIVATE') %}
+                                {{ 'tempo.profile.private'|trans }}
+                            {% elseif email.status == constant('Tempo\\Bundle\\AppBundle\\Model\\UserEmail::STATUS_PUBLIC') %}
+                                {{ 'tempo.profile.public'|trans }}
+                            {% endif %}
+                            </span>
+                        </td>
+                        <td>
+                            {{ email.email }}
+                        </td>
+                        <td>
+                            <a class="text-danger" href="{{ path('user_profile_delete_mail', {'id': email.id }) }}">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
             <h4>{{ 'tempo.profile.add_email'|trans }}</h4>
             <form action="{{ path('user_profile_emails') }}" method="POST" class="user_profile_update">
                 <div class="form-inline">

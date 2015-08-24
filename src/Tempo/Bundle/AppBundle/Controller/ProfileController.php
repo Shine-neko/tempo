@@ -82,13 +82,17 @@ class ProfileController extends Controller
     public function deleteEmailAction(UserEmail $userEmail)
     {
         $user = $this->getUser();
-        if($user->getEmails()->contains($userEmail)) {
-            $this->get('tempo.domain_manager')->delete($userEmail);
-            $this->addFlash('success', 'tempo.profile.edit_success');
-            return $this->redirectToRoute('user_profile_emails');
-        } else {
+        
+        if(!$user->getEmails()->contains($userEmail)) {
             return $this->createAccessDeniedException();
         }
+        if($userEmail->getMain()) {
+            $this->addFlash('error', 'tempo.profile.delete_main_adress');
+        } else {
+            $this->get('tempo.domain_manager')->delete($userEmail);
+            $this->addFlash('success', 'tempo.profile.edit_success');
+        }
+        return $this->redirectToRoute('user_profile_emails');
     }
 
     public function updateAction(Request $request)
