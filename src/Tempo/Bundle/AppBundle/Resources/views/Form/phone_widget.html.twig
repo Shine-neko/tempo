@@ -1,0 +1,12 @@
+{% block phone_widget %}
+    <div class="row col-phone">
+        <div class="col-md-8">
+        {{ form_widget(form.number)}}
+        </div>
+        <div class="col-md-2">
+        {{ form_widget(form.type)}}
+        </div>
+        <a class="remove-phone text-danger" href="#"><span class="glyphicon glyphicon-remove"></span></a>
+    </div>    
+    
+{% endblock %}
