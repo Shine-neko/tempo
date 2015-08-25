@@ -102,7 +102,7 @@ tempo:
         title: Liste des organisations
         filter:
           query: Rechercher
-      msg_delete: Si vous continuez l'organisation sera supprimée de manière définitive. ill be permanently deleted. Il n'est pas possible de revenir en arrière.
+      msg_delete: Si vous continuez l'organisation sera supprimée de manière définitive. Il n'est pas possible de revenir en arrière.
       title_delete: Supprimer l'organisation
       email_contact: E-mail contact
       web_site: Site web
@@ -227,6 +227,7 @@ tempo:
     main_adress: Principale
     set_as_main: Définir comme adresse principale.
     delete_main_adress: Ceci est l'adresse principale. Veuillez déclarer une autre adresse principale avant de supprimer celle-ci.
+    main_adress_explain: Votre adresse principale Tempo est utilisée pour les notifications liées à votre compte.
     public: Publique
     private: Privée
     tabs:

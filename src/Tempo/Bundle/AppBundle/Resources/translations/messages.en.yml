@@ -227,6 +227,7 @@ tempo:
     main_adress: Main
     delete_main_adress: This is the main adress. Please declare another primary adress before deleting this one.
     set_as_main: Set as main adress
+    main_adress_explain: Your Tempo main email address will be used for account-related notifications.
     public: Public
     private: Private
     tabs:
