@@ -44,11 +44,12 @@ class UserEmailController extends Controller
             return $this->createAccessDeniedException();
         }
         
-        if($status == 'public') {
+        if($status == 'private') {
             $userEmail->setStatus($userEmail::STATUS_PUBLIC);
-        } elseif ($status == 'private') {
+        } else {
             $userEmail->setStatus($userEmail::STATUS_PRIVATE);
         }
+        $this->get('tempo.domain_manager')->update($userEmail);
         
         return $this->redirectToRoute('user_email_edit');
     }
