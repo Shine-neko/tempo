@@ -25,29 +25,29 @@
                     {% for email in user.emails %}
                     <tr>
                         <td>
-                            {% if email.main %}
-                            <span class="label label-success">{{ 'tempo.profile.main_adress'|trans }}</span>
-                            {% endif %}
                             <span class="label label-default">
                             {% if email.status == constant('Tempo\\Bundle\\AppBundle\\Model\\UserEmail::STATUS_PRIVATE') %}
                                 {{ 'tempo.profile.private'|trans }}
                             {% elseif email.status == constant('Tempo\\Bundle\\AppBundle\\Model\\UserEmail::STATUS_PUBLIC') %}
-                                {{ 'tempo.profile.public'|trans }}
+                                {{ 'tempo.profile.public'|trans }}  
                             {% endif %}
-                            </span>
+                            </span> 
+                            {% if email.main %}
+                            <span class="label label-success">{{ 'tempo.profile.main_adress'|trans }}</span>
+                            {% endif %}
                         </td>
                         <td>
                             {{ email.email }}
                         </td>
                         <td>
                             {% if email.main == false %}
-                            <a class="btn btn-default btn-xs" href="{{ path('user_profile_main_email', {'id': email.id}) }}">
+                            <a class="btn btn-default btn-xs" href="{{ path('user_email_set_main', {'id': email.id}) }}">
                                 {{ 'tempo.profile.set_as_main'|trans }}
                             </a>
                             {% endif %}
                         </td>
                         <td>
-                            <a class="text-danger" href="{{ path('user_profile_delete_mail', {'id': email.id }) }}">
+                            <a class="text-danger" href="{{ path('user_email_delete', {'id': email.id }) }}">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </a>
                         </td>
@@ -57,7 +57,7 @@
             </table>
             
             <h4>{{ 'tempo.profile.add_email'|trans }}</h4>
-            <form action="{{ path('user_profile_emails') }}" method="POST" class="user_profile_update">
+            <form action="{{ path('user_email_edit') }}" method="POST" class="user_profile_update">
                 <div class="form-inline">
                     <fieldset>
                         {{ form_widget(form.email) }}

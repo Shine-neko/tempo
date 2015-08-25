@@ -61,61 +61,6 @@ class ProfileController extends Controller
         ));
     }
     
-    public function emailsAction(Request $request)
-    {
-        $user = $this->getUser();
-        $userEmail = (new UserEmail());
-        $form = $this->createForm(new EmailType(), $userEmail);
-        
-        if ($form->handleRequest($request)->isValid()) {
-            $userEmail->setUser($user);
-            $this->get('tempo.domain_manager')->update($user);
-            $this->addFlash('success', 'tempo.profile.edit_success');
-        }
-        
-        return $this->render('TempoAppBundle:Profile:email.html.twig', array(
-            'user' => $user,
-            'form' => $form->createView()
-        ));
-    }
-    
-    public function deleteEmailAction(UserEmail $userEmail)
-    {
-        $user = $this->getUser();
-        
-        if(!$user->getEmails()->contains($userEmail)) {
-            return $this->createAccessDeniedException();
-        }
-        if($userEmail->getMain()) {
-            $this->addFlash('error', 'tempo.profile.delete_main_adress');
-        } else {
-            $this->get('tempo.domain_manager')->delete($userEmail);
-            $this->addFlash('success', 'tempo.profile.edit_success');
-        }
-        return $this->redirectToRoute('user_profile_emails');
-    }
-    
-    public function setAsMainAction(UserEmail $userEmail)
-    {
-        $user = $this->getUser();
-        
-        if(!$user->getEmails()->contains($userEmail)) {
-            return $this->createAccessDeniedException();
-        }
-        
-        $currentMain = $this->get('tempo.repository.user_email')->findOneBy(array(
-            'main' => true,
-            'user' => $user
-        ))->setMain(false);
-        $userEmail->setMain(true);
-        
-        $this->get('tempo.domain_manager')->update($userEmail);
-        $this->get('tempo.domain_manager')->update($currentMain);
-        $this->addFlash('success', 'tempo.profile.edit_success');
-        
-        return $this->redirectToRoute('user_profile_emails');
-    }
-
     public function updateAction(Request $request)
     {
         $user = $this->getUser();

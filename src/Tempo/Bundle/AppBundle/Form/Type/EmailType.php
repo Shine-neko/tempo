@@ -18,7 +18,7 @@ class EmailType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('email', null, array(
+        $builder->add('email', 'email', array(
             'label' => 'tempo.profile.tabs.emails',
             'required' => true
         ));

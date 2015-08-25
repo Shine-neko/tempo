@@ -1,0 +1,15 @@
+user_email_edit:
+   path: /edit
+   defaults: { _controller: TempoAppBundle:UserEmail:add}
+   
+user_email_change_status:
+    path: /change-email-status/{status}/{id}
+    defaults: { _controller: TempoAppBundle:UserEmail:changeStatus}
+   
+user_email_delete:
+    path: /delete-adress/{id}
+    defaults: { _controller: TempoAppBundle:UserEmail:delete}
+    
+user_email_set_main:
+    path: /set-as-main-adress/{id}
+    defaults: { _controller: TempoAppBundle:UserEmail:setAsMain}

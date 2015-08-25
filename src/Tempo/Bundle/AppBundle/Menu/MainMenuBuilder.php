@@ -57,7 +57,7 @@ class MainMenuBuilder extends MenuBuilder
         );
         $menu->addChild(
             $this->translate('tempo.profile.tabs.emails'),
-            array('route' => 'user_profile_emails')
+            array('route' => 'user_email_edit')
         );
         $menu->addChild(
             $this->translate('tempo.profile.tabs.avatar'),
