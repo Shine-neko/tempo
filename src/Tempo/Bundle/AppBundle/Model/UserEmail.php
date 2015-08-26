@@ -51,11 +51,12 @@ class UserEmail
      */
     protected $status;
 
-    public function __construct()
+    public function __construct($email = '')
     {
         $this->createdAt = new \DateTime();
         $this->main = false;
         $this->status = self::STATUS_PRIVATE;
+        $this->email = $email;
     }
 
     public function getId()
@@ -136,7 +137,7 @@ class UserEmail
         return $this;
     }
 
-    public function toString()
+    public function __toString()
     {
         return $this->email;
     }

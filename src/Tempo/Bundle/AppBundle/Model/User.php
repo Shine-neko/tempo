@@ -187,7 +187,7 @@ class User implements UserInterface
         return $this->emails;
     }
     
-    public function addEmail($email)
+    public function addEmail(UserEmail $email)
     {
         if($this->emails->count() == 0){
             $email->setMain(true);
@@ -220,7 +220,9 @@ class User implements UserInterface
      */
     public function setEmail($email)
     {
-        $this->email = $email;
+        @trigger_error('The'.__METHOD__.' method is deprecated since version 0.5 and will be removed in 0.6');
+        
+        $this->addEmail(new UserEmail($email));
 
         return $this;
     }

@@ -6,7 +6,7 @@
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
 
-    <mapped-superclass name="Tempo\Bundle\AppBundle\Model\UserEmail" table="tempo_user_email">
+    <entity name="Tempo\Bundle\AppBundle\Model\UserEmail" table="tempo_user_email">
         
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO" />
@@ -20,7 +20,7 @@
         
         <gedmo:soft-deleteable field-name="deletedAt" />
         
-        <field name="email" type="string" column="email" length="255" />
+        <field name="email" type="string" column="email" length="255" unique="true" />
         
         <field name="main" type="boolean" column="main" />
         
@@ -28,6 +28,6 @@
         
         <many-to-one target-entity="Tempo\Bundle\AppBundle\Model\User" field="user" inversed-by="emails" />
         
-    </mapped-superclass>
+    </entity>
 
 </doctrine-mapping>

@@ -35,7 +35,8 @@
                                 <span class="label label-default">
                                     {{ ('tempo.profile.'~status)|trans }}
                                 </span>
-                            </a> 
+                            </a>
+                            &nbsp;
                             {% if email.main %}
                             <span class="label label-success">{{ 'tempo.profile.main_adress'|trans }}</span>
                             {% endif %}
@@ -51,7 +52,7 @@
                             {% endif %}
                         </td>
                         <td>
-                            <a class="text-danger" href="{{ path('user_email_delete', {'id': email.id }) }}">
+                            <a class="text-danger" href="{{ path('user_email_delete', {'id': email.id }) }}" alt="remove">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </a>
                         </td>
@@ -60,14 +61,12 @@
                 </tbody>
             </table>
                 
-            <h4>{{ 'tempo.profile.add_email'|trans }}</h4>
             <form action="{{ path('user_email_edit') }}" method="POST" class="user_profile_update">
                 <div class="form-inline">
-                    <fieldset>
-                        {{ form_widget(form.email) }}
-                        {{ form_rest(form) }}
-                        <input type="submit" class="btn btn-primary btn-sm" value="{{ 'tempo.form.add'|trans }}"/>
-                    </fieldset>
+                    <div class="form-group">
+                        {{ form_widget(form) }}
+                    </div>
+                    <input type="submit" class="btn btn-primary btn-sm" value="{{ 'tempo.form.add'|trans }}"/>
                 </div>
             </form>
         </div>

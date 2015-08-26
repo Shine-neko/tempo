@@ -12,7 +12,7 @@
 namespace Tempo\Bundle\AppBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Tempo\Bundle\AppBundle\Form\Type\EmailType;
+use Tempo\Bundle\AppBundle\Form\Type\UserEmailType;
 use Tempo\Bundle\AppBundle\Model\UserEmail;
 
 
@@ -22,7 +22,7 @@ class UserEmailController extends Controller
     {
         $user = $this->getUser();
         $userEmail = (new UserEmail());
-        $form = $this->createForm(new EmailType(), $userEmail);
+        $form = $this->createForm(new UserEmailType(), $userEmail);
         
         if ($form->handleRequest($request)->isValid()) {
             $userEmail->setUser($user);
