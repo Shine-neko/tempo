@@ -25,6 +25,7 @@ addons:
         packages:
             - wkhtmltopdf
             - xvfb
+            - firefox: "40.0"
 
 before_install:
     - composer self-update
