@@ -50,6 +50,7 @@ tempo:
       old_password: Mot de passe actuel
       request_non_expired: Le mot de passe pour cet utilisateur a déjà été demandé dans les dernières 24 heures.
       request_success: Un email contenant les instructions pour retrouver votre mot de pass a été envoyé.
+      request_no_account: Oops, votre adresse e-mail est pas associé à un compte
       username: Nom d'utilisateur ou email
       password: Nouveau mot de passe
       password_again: Vérification
