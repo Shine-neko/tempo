@@ -3,7 +3,7 @@ parameters:
   database_host:     localhost
   database_port:     ~
   database_name:     tempo
-  database_user:     root
+  database_user:     tempo
   database_password: ~
 
   mailer_transport:  smtp

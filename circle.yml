@@ -1,0 +1,30 @@
+machine:
+  php:
+    version: 5.5.21
+  node:
+    version: 0.12.0
+
+dependencies:
+  pre:
+    - sudo apt-get update; sudo apt-get install wkhtmltopdf xvfb
+    - npm install
+    - bower install --config.interactive=false
+    - sudo composer self-update
+    - composer install --prefer-source --no-interaction
+
+
+  post:
+    - wget http://selenium.googlecode.com/files/selenium-server-standalone-2.33.0.jar
+    - cp behat.yml.dist behat.yml
+    - cp app/config/parameters.yml.dist app/config/parameters.yml
+    - sed -i "s/tempo_user/ubuntu/" app/config/parameters.yml
+    - sed -i "s/tempo_db/circle_test/" app/config/parameters.yml
+    - php app/console doctrine:database:create --env=test --no-interaction
+    - php app/console doctrine:schema:update --env=test --no-interaction
+    - php app/console doctrine:fixtures:load --no-interaction --env=test
+
+    - node bin/server.js > error.log &
+
+test:
+  post:
+    - sh travis.sh
