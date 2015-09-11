@@ -14,8 +14,9 @@ namespace Tempo\Bundle\AppBundle\DependencyInjection;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\DependencyInjection\Definition;
-use Sylius\Bundle\ResourceBundle\DependencyInjection\AbstractResourceExtension;
+use Sylius\Bundle\ResourceBundle\DependencyInjection\Extension\AbstractResourceExtension;
 use Doctrine\Common\Util\Inflector;
+use Tempo\Bundle\AppBundle\Util\ClassUtils;
 
 /**
  * This is the class that loads and manages your bundle configuration
@@ -38,12 +39,12 @@ class TempoAppExtension extends AbstractResourceExtension
      * @var array
      */
     protected $configFiles = array(
-        'services',
-        'doctrine_extensions',
-        'providers',
-        'security',
-        'user',
-        'events',
+        'services.xml',
+        'doctrine_extensions.xml',
+        'providers.xml',
+        'security.xml',
+        'user.xml',
+        'events.xml',
     );
 
     /**
@@ -51,7 +52,7 @@ class TempoAppExtension extends AbstractResourceExtension
      */
     public function load(array $config, ContainerBuilder $container)
     {
-        list($config, $loader) = $this->configure(
+        $config = $this->configure(
             $config,
             new Configuration(),
             $container,
@@ -59,40 +60,34 @@ class TempoAppExtension extends AbstractResourceExtension
         );
 
         $container->setParameter('sylius.locale', '%locale%');
-        $container->setParameter('sylius.translation.mapping', '%sylius.translation.default.mapping%');
         $container->setParameter('hwi_oauth.connect', $container->getParameter('oauth.enabled'));
         $container->setParameter('tempo.week', $config['week']);
 
-        $this->createManagerServices($container, $config);
+        $this->createManagerServices($container);
         $this->createAdminServices($container, $config);
     }
 
-    private function createManagerServices(ContainerBuilder $container, $config)
+    private function createManagerServices(ContainerBuilder $container)
     {
-        $models = array();
-        $classes = $container->getParameter('sylius.config.classes');
+        $classes = $container->getParameter('sylius.config.classes')['default'];
 
-        foreach ($classes as $key => $config) {
+        foreach ($classes as $config) {
 
-            $key = str_replace('tempo.', '', $key);
+            $className = ClassUtils::getShortName($config['model'], false);
 
-            if (isset($config['classes'])) {
-                $models[$key] = $config['classes']['model'];
-            } else {
-                $models[$key] = $config['model'];
-            }
+            $model = $config['model'];
+            $manager = sprintf('Tempo\Bundle\AppBundle\Manager\%sManager', ucfirst($className));
 
-            $manager = sprintf('Tempo\Bundle\AppBundle\Manager\%sManager', ucfirst(Inflector::classify($key)));
 
             if (!class_exists($manager)) {
                 $manager = 'Tempo\Bundle\AppBundle\Manager\\ModelManager';
             }
 
             $container
-                ->register('tempo.model_manager.' . $key, $manager)
+                ->register('tempo.model_manager.' . ClassUtils::uncamel($className), $manager)
                 ->addArgument(new Reference('doctrine.orm.entity_manager'))
                 ->addArgument(new Reference('tempo.domain_manager'))
-                ->addArgument($models[$key]);
+                ->addArgument($model);
         }
     }
 

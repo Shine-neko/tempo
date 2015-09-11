@@ -42,7 +42,6 @@ class Kernel extends BaseKernel
             new \FOS\RestBundle\FOSRestBundle(),
             new \FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new \Sylius\Bundle\ResourceBundle\SyliusResourceBundle(),
-            new \Sylius\Bundle\TranslationBundle\SyliusTranslationBundle(),
             new \Sylius\Bundle\SettingsBundle\SyliusSettingsBundle(),
             new \Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new \Knp\Bundle\MenuBundle\KnpMenuBundle(),
