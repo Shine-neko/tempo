@@ -13,6 +13,7 @@ namespace Tempo\Bundle\AppBundle\Manager;
 
 use Tempo\Bundle\AppBundle\Model\Activity;
 use Tempo\Bundle\AppBundle\Model\UserInterface;
+use Tempo\Bundle\ResourceExtraBundle\Manager\ModelManager;
 
 class ActivityManager extends ModelManager
 {

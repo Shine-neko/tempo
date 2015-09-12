@@ -57,6 +57,7 @@ class Kernel extends BaseKernel
             new \WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
 
             //Tempo
+            new \Tempo\Bundle\ResourceExtraBundle\TempoResourceExtraBundle(),
             new \Tempo\Bundle\AppBundle\TempoAppBundle(),
             new \Tempo\Bundle\JsConfigurationBundle\TempoJsConfigurationBundle(),
         );

@@ -12,18 +12,14 @@
 namespace Tempo\Bundle\AppBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Reference;
-use Symfony\Component\DependencyInjection\Definition;
-use Sylius\Bundle\ResourceBundle\DependencyInjection\Extension\AbstractResourceExtension;
-use Doctrine\Common\Util\Inflector;
-use Tempo\Bundle\AppBundle\Util\ClassUtils;
+use Tempo\Bundle\ResourceExtraBundle\DependencyInjection\TempoResourceExtraExtension;
 
 /**
  * This is the class that loads and manages your bundle configuration
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class TempoAppExtension extends AbstractResourceExtension
+class TempoAppExtension extends TempoResourceExtraExtension
 {
     /**
      * @var string
@@ -59,75 +55,8 @@ class TempoAppExtension extends AbstractResourceExtension
             self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS
         );
 
-        $container->setParameter('sylius.locale', '%locale%');
         $container->setParameter('hwi_oauth.connect', $container->getParameter('oauth.enabled'));
         $container->setParameter('tempo.week', $config['week']);
 
-        $this->createManagerServices($container);
-        $this->createAdminServices($container, $config);
-    }
-
-    private function createManagerServices(ContainerBuilder $container)
-    {
-        $classes = $container->getParameter('sylius.config.classes')['default'];
-
-        foreach ($classes as $config) {
-
-            $className = ClassUtils::getShortName($config['model'], false);
-
-            $model = $config['model'];
-            $manager = sprintf('Tempo\Bundle\AppBundle\Manager\%sManager', ucfirst($className));
-
-
-            if (!class_exists($manager)) {
-                $manager = 'Tempo\Bundle\AppBundle\Manager\\ModelManager';
-            }
-
-            $container
-                ->register('tempo.model_manager.' . ClassUtils::uncamel($className), $manager)
-                ->addArgument(new Reference('doctrine.orm.entity_manager'))
-                ->addArgument(new Reference('tempo.domain_manager'))
-                ->addArgument($model);
-        }
-    }
-
-    public function createAdminServices(ContainerBuilder $container, $config)
-    {
-        foreach ($config['admin'] as $resourceName => $conf) {
-            if (!isset($conf['controller'])) {
-                $conf['controller'] = 'Tempo\Bundle\AppBundle\Controller\Admin\AdminController';
-            }
-
-            $container->setDefinition(
-                'tempo.admin.controller.' . $resourceName,
-                $this->getControllerDefinition($conf['controller'], $resourceName)
-            );
-        }
-    }
-
-    protected function getControllerDefinition($class, $resourceName)
-    {
-        $definition = new Definition($class);
-        $definition
-            ->setArguments(array($this->getConfigurationDefinition($resourceName)))
-            ->addMethodCall('setContainer', array(new Reference('service_container')))
-        ;
-
-        return $definition;
-    }
-
-    protected function getConfigurationDefinition($resourceName)
-    {
-        $definition = new Definition('Sylius\Bundle\ResourceBundle\Controller\Configuration');
-        $definition
-            ->setFactory(array(
-                new Reference('sylius.controller.configuration_factory'),
-                'createConfiguration'
-            ))
-            ->setArguments(array('tempo', $resourceName, ''))
-            ->setPublic(false)
-        ;
-
-        return $definition;
     }
 }

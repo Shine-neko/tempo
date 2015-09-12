@@ -9,20 +9,20 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\AppBundle\Tests\Util;
+namespace Tempo\Bundle\ResourceExtraBundle\Tests\Util;
 
-use Tempo\Bundle\AppBundle\Util\ClassUtils;
+use Tempo\Bundle\ResourceExtraBundle\Util\ClassUtils;
 
 class ClassUtilsTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetShortName()
     {
-        $this->assertEquals('classutils', ClassUtils::getShortName('Tempo\Bundle\AppBundle\Util\ClassUtils'));
+        $this->assertEquals('classutils', ClassUtils::getShortName('Tempo\Bundle\ResourceExtraBundle\Util\ClassUtils'));
     }
 
     public function testGetShortNameNotCapitalized()
     {
-        $this->assertEquals('ClassUtils', ClassUtils::getShortName('Tempo\Bundle\AppBundle\Util\ClassUtils', false));
+        $this->assertEquals('ClassUtils', ClassUtils::getShortName('Tempo\Bundle\ResourceExtraBundle\Util\ClassUtils', false));
     }
 
     public function testGetShortNameWithInstance()

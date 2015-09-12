@@ -9,11 +9,8 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\AppBundle\Manager;
+namespace Tempo\Bundle\ResourceExtraBundle\Tests;
 
-use Tempo\Bundle\ResourceExtraBundle\Manager\ModelManager;
-
-class CommentManager extends ModelManager
+class UserModel
 {
-
 }

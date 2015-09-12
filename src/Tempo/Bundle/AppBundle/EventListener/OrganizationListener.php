@@ -11,7 +11,7 @@
 
 namespace Tempo\Bundle\AppBundle\EventListener;
 
-use Tempo\Bundle\AppBundle\Manager\DomainManager;
+use Tempo\Bundle\ResourceExtraBundle\Manager\DomainManager;
 use Tempo\Bundle\AppBundle\Manager\RoomManager;
 use Sylius\Component\Resource\Event\ResourceEvent;
 

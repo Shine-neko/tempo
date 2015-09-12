@@ -12,6 +12,7 @@
 namespace Tempo\Bundle\AppBundle\Manager;
 
 use Tempo\Bundle\AppBundle\Model\Notification;
+use Tempo\Bundle\ResourceExtraBundle\Manager\ModelManager;
 
 /**
  * @author Mlanawo Mbechezi <mlanawo.mbechezi@ikimea.com>

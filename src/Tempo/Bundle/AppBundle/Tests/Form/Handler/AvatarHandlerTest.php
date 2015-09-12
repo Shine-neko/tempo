@@ -23,7 +23,7 @@ class AvatarHandlerTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->domainManager = $this->getMockBuilder('Tempo\Bundle\AppBundle\Manager\DomainManager')
+        $this->domainManager = $this->getMockBuilder('Tempo\Bundle\ResourceExtraBundle\Manager\DomainManager')
             ->disableOriginalConstructor()
             ->getMock();
 

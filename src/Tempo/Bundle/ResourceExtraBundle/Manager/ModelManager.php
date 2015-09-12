@@ -9,7 +9,7 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\AppBundle\Manager;
+namespace Tempo\Bundle\ResourceExtraBundle\Manager;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;

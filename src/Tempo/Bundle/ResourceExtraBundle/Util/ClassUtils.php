@@ -9,7 +9,7 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\AppBundle\Util;
+namespace Tempo\Bundle\ResourceExtraBundle\Util;
 
 use Doctrine\Common\Util\ClassUtils as BaseClassUtils;
 
