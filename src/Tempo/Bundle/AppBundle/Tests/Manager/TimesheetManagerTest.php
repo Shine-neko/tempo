@@ -23,7 +23,7 @@ class TimesheetManagerTest extends \PHPUnit_Framework_TestCase
             ), array(), '', false
         );
 
-        $domainManager = $this->getMockBuilder('Tempo\Bundle\AppBundle\Manager\DomainManager')
+        $domainManager = $this->getMockBuilder('Tempo\Bundle\ResourceExtraBundle\Manager\DomainManager')
             ->disableOriginalConstructor()
             ->getMock();
 

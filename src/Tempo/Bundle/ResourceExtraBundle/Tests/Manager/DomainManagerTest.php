@@ -9,10 +9,10 @@
 * file that was distributed with this source code.
 */
 
-namespace Tempo\Bundle\AppBundle\Tests\Manager;
+namespace Tempo\Bundle\ResourceExtraBundle\Tests\Manager;
 
-use Tempo\Bundle\AppBundle\Manager\DomainManager;
-use Tempo\Bundle\AppBundle\Model\User;
+use Tempo\Bundle\ResourceExtraBundle\Manager\DomainManager;
+use Tempo\Bundle\ResourceExtraBundle\Tests\UserModel;
 
 class DomainManagerTest extends \PHPUnit_Framework_TestCase
 {
@@ -34,11 +34,11 @@ class DomainManagerTest extends \PHPUnit_Framework_TestCase
 
         $eventName = $reflector->invoke(
             $this->domainManager,
-            new User(),
+            new UserModel(),
             'pre_create',
             'tempo'
         );
 
-        $this->assertEquals('tempo.user.pre_create', $eventName);
+        $this->assertEquals('tempo.usermodel.pre_create', $eventName);
     }
 }

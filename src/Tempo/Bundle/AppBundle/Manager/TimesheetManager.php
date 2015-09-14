@@ -13,6 +13,7 @@ namespace Tempo\Bundle\AppBundle\Manager;
 
 use Tempo\Bundle\AppBundle\View\Timesheet\ProjectTimesheet;
 use Tempo\Bundle\AppBundle\View\Timesheet\ProjectActivityDayTimesheet;
+use Tempo\Bundle\ResourceExtraBundle\Manager\ModelManager;
 
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>

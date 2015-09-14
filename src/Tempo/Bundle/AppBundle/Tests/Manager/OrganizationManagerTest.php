@@ -28,7 +28,7 @@ class OrganizationManagerTest extends \PHPUnit_Framework_TestCase
             ->getMock();
 
         $class = $this->getMock('Doctrine\Common\Persistence\Mapping\ClassMetadata');
-        $domainManager = $this->getMockBuilder('Tempo\Bundle\AppBundle\Manager\DomainManager')
+        $domainManager = $this->getMockBuilder('Tempo\Bundle\ResourceExtraBundle\Manager\DomainManager')
             ->disableOriginalConstructor()
             ->getMock();
 

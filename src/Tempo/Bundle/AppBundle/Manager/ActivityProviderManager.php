@@ -14,6 +14,7 @@ namespace Tempo\Bundle\AppBundle\Manager;
 
 use Tempo\Bundle\AppBundle\Model\ProjectProviderInterface;
 use Tempo\Bundle\AppBundle\Model\ActivityProviderInterface;
+use Tempo\Bundle\ResourceExtraBundle\Manager\ModelManager;
 
 class ActivityProviderManager extends ModelManager
 {

@@ -19,7 +19,6 @@
 	    <parameter key="tempo.menu_builder.class">Tempo\Bundle\AppBundle\Menu\MenuBuilder</parameter>
         <parameter key="tempo.behavior_manager.class">Tempo\Bundle\AppBundle\Helper\Behavior</parameter>
         <parameter key="tempo.asset_manager.class">Tempo\Component\Resource\AssetManager</parameter>
-        <parameter key="tempo.domain_manager.class">Tempo\Bundle\AppBundle\Manager\DomainManager</parameter>
         <parameter key="tempo.menu.class">Knp\Menu\MenuItem</parameter>
 
         <parameter key="tempo.settings_schema.general.class">Tempo\Bundle\AppBundle\Settings\GeneralSettingsSchema</parameter>
@@ -42,11 +41,6 @@
             <tag name="twig.extension" />
         </service>
 
-        <service id="tempo.domain_manager" class="%tempo.domain_manager.class%">
-            <argument type="service" id="doctrine.orm.default_entity_manager" />
-            <argument type="service" id="event_dispatcher" />
-            <argument type="service" id="sylius.controller.parameters_parser" />
-        </service>
 
         <service id="tempo.elephantio.engine" class="%tempo.elephantio.engine.class%">
             <argument type="string">%socket_io.client%</argument>

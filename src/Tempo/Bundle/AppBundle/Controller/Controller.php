@@ -62,7 +62,7 @@ class Controller extends FOSRestController
 
     /**
      * @param string $name
-     * @return \Tempo\Bundle\AppBundle\Manager\ModelManager
+     * @return \Tempo\Bundle\ResourceExtraBundle\Manager\ModelManager
      */
     protected function getManager($name)
     {
