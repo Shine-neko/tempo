@@ -1,20 +1,4 @@
 {% extends "TempoAppBundle::layout.html.twig" %}
-{% block javascripts %}
-
-    {{ parent() }}
-    {% javascripts
-        '@TempoAppBundle/Resources/assets/js/views/timesheetView.js'
-        '@TempoAppBundle/Resources/assets/js/controllers/timesheetController.js'
-        output="js/dashboard-timesheet.js"
-    %}
-    <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-    <script type="text/javascript">
-        var timesheet = new Tempo.Controller.Timesheet();
-        timesheet.dashboard();
-    </script>
-{% endblock %}
-
 {% block bodyClass %}timesheet dashboard{% endblock %}
 
 {% block container %}

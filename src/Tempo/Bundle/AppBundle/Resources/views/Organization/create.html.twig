@@ -1,14 +1,6 @@
 {% extends "TempoAppBundle::layout.html.twig" %}
 {% block bodyClass %}organization create{% endblock %}
 
-{% block javascripts %}
-    {% javascripts
-        '@TempoAppBundle/Resources/assets/js/views/organizationView.js'
-    %}
-        <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-{% endblock %}
-
 {% block container %}
     <div class="container">
         <h1 id="page-title">{{ 'tempo.organization.create'|trans }}</h1>

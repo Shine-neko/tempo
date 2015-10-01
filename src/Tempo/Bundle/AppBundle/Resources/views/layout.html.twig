@@ -5,18 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"  />
 
-    {% stylesheets
-        '@TempoAppBundle/Resources/assets/styles/style.less'
-        filter='less, ?cssrewrite,?uglifycss' debug=true
-    %}
-    <link rel="stylesheet" href="{{ asset_url }}" />
-    {% endstylesheets %}
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
 
-    {% for stylesheet in behavior.resource.stylesheets %}
-    <link rel="stylesheet" href="{{ stylesheet }}" />
-    {% endfor %}
-
-    {% block stylesheets %}{% endblock %}
+    {% block stylesheets %}
+        {% for stylesheet in behavior.resource.stylesheets %}
+        <link rel="stylesheet" href="{{ stylesheet }}" />
+        {% endfor %}
+    {% endblock %}
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -139,7 +134,13 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
     </div>
-    {% block javascripts %}
+
+    {%  block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/vendor.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    {%  endblock javascripts %}
+
+    {#% block javascripts %}
         {% javascripts
             'vendor/socket.io-client/socket.io.js'
             'vendor/jquery/dist/jquery.js'
@@ -175,7 +176,7 @@
             <script type="text/javascript" src="{{ javascript }}"></script>
         {% endfor %}
         {{ behavior.renderHTML|raw }}
-    {% endblock %}
+    {% endblock %#}
 {% endblock body %}
 </body>
 </html>
