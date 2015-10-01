@@ -7,21 +7,6 @@ imports:
 #        result_cache_driver: apc
 #        query_cache_driver: apc
 
-# Assetic Configuration
-assetic:
-    debug:          %kernel.debug%
-    use_controller: false
-    node: %node_bin%
-    filters:
-        cssrewrite: ~
-        uglifycss:
-             bin: %uglifycss_bin%
-             node: %node_bin%
-        uglifyjs2:
-            bin: %uglifyjs_bin%
-            node: %node_bin%
-
-
 monolog:
     handlers:
         main:
