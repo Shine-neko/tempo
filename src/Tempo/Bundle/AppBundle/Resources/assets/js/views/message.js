@@ -1,7 +1,7 @@
 /**
  * Simple view to render chat messages in the chatBox
  */
-Tempo.View.Message = Backbone.View.extend({
+var Message = Backbone.View.extend({
     tagName: 'div',
     template: '<div class="message-head" title="<%= created_at %>"><a href="#"> <%= user.username %> </a></div><p class="message-content"><%= content %></p>',
     className: 'chat-message',
@@ -19,3 +19,4 @@ Tempo.View.Message = Backbone.View.extend({
     }
 });
 
+module.exports = Message;

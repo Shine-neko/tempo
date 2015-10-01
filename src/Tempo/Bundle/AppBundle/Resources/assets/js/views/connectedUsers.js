@@ -1,13 +1,15 @@
 /**
  * Room view
  */
+
+var Tempo = Tempo || {};
+Tempo.View = {};
+
 Tempo.View.ConnectedUsers = Backbone.View.extend({
 
     tagName: 'div',
     id: 'connected-users',
-    template: '<h5 id="user-handle" class="live-box-heading"><%= connectedCount %> connected users</h5>' +
-        '<a href="#" class="toolbar-btn"><span class="glyphicon glyphicon-chevron-up"></span> </a>'+
-        '<ul id="users-list" class="clearfix" style="display: none;"></ul>',
+    template: JST["chat/connectedusers.html"],
     users: [],
     events: {
         'click .toolbar-btn' : 'toggleShowUsers'
@@ -25,8 +27,7 @@ Tempo.View.ConnectedUsers = Backbone.View.extend({
     /**
      * Bind to events coming in from the socket connection
      */
-    bindSocketEvents: function() {
-        var socket = Tempo.socket;
+    bindSocketEvents: function(socket) {
         if (typeof socket !== 'undefined') {
             socket.on('user:change', _.bind(this.onUserChange, this));
         }
@@ -36,7 +37,10 @@ Tempo.View.ConnectedUsers = Backbone.View.extend({
      * Render the view
      */
     render: function() {
-        this.$el.html(_.template(this.template)({connectedCount : this.users.length}));
+        this.$el.html(_.template(this.template)({
+            connectedCount : this.users.length,
+            user: 'user' + (this.users.length > 1 ? 's' : '')
+        }));
         var list = $('ul', this.$el);
         _.forEach(this.users, function(user) {
             var a = $('<a />')
@@ -74,3 +78,5 @@ Tempo.View.ConnectedUsers = Backbone.View.extend({
 
     }
 });
+
+module.exports = Tempo.View.ConnectedUsers;

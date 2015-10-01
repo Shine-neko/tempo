@@ -1,4 +1,4 @@
-Tempo.View.Timesheet = Backbone.View.extend({
+var Timesheet = Backbone.View.extend({
 
     el: $("#content"),
     events: {
@@ -17,3 +17,6 @@ Tempo.View.Timesheet = Backbone.View.extend({
         $('.filter-content').toggle('slow');
     }
 });
+
+
+module.exports = Timesheet;

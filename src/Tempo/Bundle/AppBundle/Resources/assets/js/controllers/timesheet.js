@@ -7,10 +7,15 @@
  * file that was distributed with this source code.
  */
 
-Tempo.Controller.Timesheet = Tempo.baseObject.extend({
+var Tempo = Tempo || {};
+var baseObject = require('../core/baseObject.js');
+var timesheetView = require('../views/timesheet.js');
+
+var timesheetController = baseObject.extend({
+    view: false,
 
     dashboard: function() {
-        this.view  = new Tempo.View.Timesheet();
+        this.view  = new timesheetView;
 
         $('.cra_load').on('keypress', function(event) {
             var input = $(event.target);
@@ -27,3 +32,4 @@ Tempo.Controller.Timesheet = Tempo.baseObject.extend({
 
     }
 });
+module.exports = timesheetController;

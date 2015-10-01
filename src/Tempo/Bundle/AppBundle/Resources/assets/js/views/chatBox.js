@@ -1,11 +1,17 @@
 /**
  * View object for the chat box
  */
-Tempo.View.ChatBox = Backbone.View.extend({
+
+var Tempo = Tempo || {};
+Tempo.View = {};
+Tempo.Model = {};
+
+Tempo.Model.Message =  require('../model/message.js');
+Tempo.View.Message =  require('../views/message.js');
+
+var ChatBox = Backbone.View.extend({
     tagName: 'div',
-    template:
-        '<div id="chat-messages"></div>' +
-        '<form name="chat-input" class="form-inline"><div id="message-input-area"><input name="chat[content]" required="required" id="message-input" class="form-control" placeholder="Message" /><button id="message-submit" type="submit" value="" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-send"></button></div></form>',
+    template: JST["chat/chatbox.html"],
     id: 'chat',
 
     events: {
@@ -64,7 +70,7 @@ Tempo.View.ChatBox = Backbone.View.extend({
         event.stopPropagation();
         var textbox = $('#message-input', this.$el);
         if (textbox.val() != '') {
-            var messages = this.room.get('chat_messages');
+            var messages = this.room.get('messages');
             var message = messages.create(
                 {
                     content: textbox.val()
@@ -109,4 +115,5 @@ Tempo.View.ChatBox = Backbone.View.extend({
     }
 });
 
+module.exports = ChatBox;
 

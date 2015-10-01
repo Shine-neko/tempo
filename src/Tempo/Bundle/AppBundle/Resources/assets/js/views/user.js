@@ -1,4 +1,4 @@
-Tempo.View.User = Backbone.View.extend({
+var User = Backbone.View.extend({
     
     el: '#content',
     
@@ -22,5 +22,6 @@ Tempo.View.User = Backbone.View.extend({
         var element = $(event.currentTarget).parent();
         element.remove();
     }
-    
 });
+
+module.exports = User;

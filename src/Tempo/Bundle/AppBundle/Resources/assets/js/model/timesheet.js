@@ -1,4 +1,4 @@
-Tempo.Model.Timesheet = Backbone.Model.extend({
+var TimesheetModel = Backbone.Model.extend({
 
     initialize: function(options) {
 
@@ -12,3 +12,6 @@ Tempo.Model.Timesheet = Backbone.Model.extend({
         return Backbone.Model.prototype.save.call(this, attributes, options);
     }
 });
+
+
+module.export = TimesheetModel;
