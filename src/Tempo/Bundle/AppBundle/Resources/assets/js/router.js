@@ -9,25 +9,6 @@
 
 
 var Router = Backbone.Router.extend({
-
-    constructor: function(options) {
-        options || (options = {});
-        Backbone.Router.prototype.constructor.call(this, options);
-    },
-
-    _bindRoutes: function() {
-        this.routes = _.result(this, 'routes');
-        var route, routes = _.keys(this.routes);
-
-        while ((route = routes.pop()) != null) {
-            var routeAction = this.routes[route];
-            if( typeof routeAction === 'string' ) {
-                var routeParts = routeAction.split('#');
-            }
-            this.route(route, routeAction);
-        }
-    },
-
     routes: {
         "": function() {
             var controller = require('./controllers/dashboard.js');
@@ -35,9 +16,8 @@ var Router = Backbone.Router.extend({
 
             return controller;
         },
-        "timesheet": function() {
+        "timesheet/": function() {
             var controller =  require('./controllers/timesheet.js');
-            controller = new controller;
             controller.dashboard();
 
             return controller;

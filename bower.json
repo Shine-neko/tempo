@@ -7,7 +7,7 @@
     "components"
   ],
   "dependencies": {
-    "backbone": "1.1.2",
+    "backbone": "1.2.3",
     "blueimp-md5": "~1.0.2",
     "bootstrap": "3.3.4",
     "bootstrap-switch": "~3.3.2",
@@ -26,9 +26,5 @@
     "underscore": "1.7.0",
     "underscore.inflection": "1.2.0",
     "zeroclipboard": "2.2.0"
-  },
-  "resolutions": {
-    "bootstrap": "3.3.4",
-    "underscore": "1.7.0"
   }
 }

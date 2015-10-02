@@ -18,13 +18,17 @@ var timesheetController = baseObject.extend({
         this.view  = new timesheetView;
 
         $('.cra_load').on('keypress', function(event) {
-            var input = $(event.target);
-            var value = parseFloat(input.val());
+            var keyCode = event.keyCode || event.which;
 
-            if (!$.isNumeric(value)) {
-                input.css('border', '1px solid red');
-            } else {
-                input.css('border', '1px solid #CCC');
+            if (keyCode == 9) {
+                var input = $(event.target);
+                var value = parseFloat(input.val());
+
+                if (!$.isNumeric(value)) {
+                    input.css('border', '1px solid red');
+                } else {
+                    input.css('border', '1px solid #CCC');
+                }
             }
         }).on('click', function() {
             $(this).parent().find('.cra_desc').show();
