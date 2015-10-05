@@ -1,32 +1,6 @@
 {% extends 'TempoAppBundle::layout.html.twig' %}
 {% block title %}Dashboard{% endblock %}
 
-{% block javascripts %}
-    {{ parent() }}
-    {% javascripts
-        '@TempoAppBundle/Resources/assets/js/model/message.js'
-        '@TempoAppBundle/Resources/assets/js/model/room.js'
-        '@TempoAppBundle/Resources/assets/js/collection/message.js'
-        '@TempoAppBundle/Resources/assets/js/views/chatBox.js'
-        '@TempoAppBundle/Resources/assets/js/views/message.js'
-        '@TempoAppBundle/Resources/assets/js/views/connectedUsers.js'
-        '@TempoAppBundle/Resources/assets/js/views/room.js'        
-        '@TempoAppBundle/Resources/assets/js/controllers/dashboard.js'
-        output="js/dashboard.js" filter="?uglifyjs2"
-    %}
-    <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-    <script type="application/javascript">
-        {% if currentRoom is not null %}
-        Tempo.Controller.Dashboard.room = new Tempo.Model.Room({{ currentRoom| serialize | raw }}, {parse:true});
-        {% endif %}
-
-        Tempo.Controller.Dashboard.user = {{ currentUser| raw }};
-        Tempo.Controller.Dashboard.load();
-        new Tempo.View.Room;
-    </script>
-{% endblock %}
-
 {% block bodyClass %}home dashboard {% endblock %}
 {% block container %}
     <div class="col-md-6" id="activity-box">
@@ -40,7 +14,7 @@
         </div>
 
     </div>
-    <div class="col-md-6" id="chat-box">
+    <div class="col-md-6" id="chat-box" data-currentroom="{% if currentRoom %}{{ currentRoom.id }}{% endif %}">
         {% if currentRoom %}
         <nav class="rooms">
             <ul class="clearfix">

@@ -1,16 +1,4 @@
 {% extends "TempoAppBundle::layout.html.twig" %}
-{% block javascripts %}
-    {{ parent() }}
-    {% javascripts
-        '@TempoAppBundle/Resources/assets/js/views/room.js'
-        output="js/room-list.js" filter="?uglifyjs2"
-    %}
-    <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-    <script type="application/javascript">
-        new Tempo.View.Room;
-    </script>
-{% endblock %}
 
 {% block container %}
     {% block breadcrumb %}

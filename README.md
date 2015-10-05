@@ -34,7 +34,7 @@ $ php app/console tempo:js-configuration:dump
 # Instant messaging ( NodeJs and Npm required)
 $ npm install
 $ bower install
-$ php app/console assetic:dump
+$ gulp
 $ node bin/server.js
 
 

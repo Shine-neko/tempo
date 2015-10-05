@@ -13,7 +13,7 @@ namespace Tempo\Bundle\AppBundle\Manager;
 
 use Tempo\Bundle\AppBundle\Model\ProjectProvider;
 use Tempo\Bundle\ResourceExtraBundle\Manager\ModelManager;
-
+use Tempo\Bundle\AppBundle\Model\ProjectProviderInterface;
 
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>

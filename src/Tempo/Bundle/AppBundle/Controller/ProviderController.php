@@ -50,14 +50,14 @@ class ProviderController extends Controller
         if ('on' === $state) {
             if (null === $projectProvider) {
                 $method = 'create';
-                $this->getManager('project_provider')->createProvider($provider->getCanonicalName(), $project);
+                $projectProvider = $this->getManager('project_provider')->createProvider($provider->getCanonicalName(), $project);
             }
 
         } else {
             $projectProvider->setState(ProjectProviderInterface::STATE_UNACTIVE);
         }
 
-        $this->get('tempo.domain_manager')->{$method}($projectProvider);
+        $this->get('tempo.domain_manager')->$method($projectProvider);
 
         return $this->redirectToRoute('project_settings', array('slug' => $project->getFullSlug()));
     }

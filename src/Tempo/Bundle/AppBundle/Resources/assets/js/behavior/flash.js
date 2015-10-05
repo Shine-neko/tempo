@@ -1,4 +1,4 @@
-(function($) {
+$(function() {
 
     var flash = $(".flash-container");
 
@@ -13,4 +13,4 @@
             return flash.slideUp("slow");
         }), 3000);
     }
-})(jQuery);
+});

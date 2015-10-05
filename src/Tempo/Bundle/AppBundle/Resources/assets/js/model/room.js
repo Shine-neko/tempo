@@ -1,16 +1,14 @@
 /**
  * Model for Room
  */
-Tempo.Model.Room = Backbone.Model.extend({
-    urlRoot: Routing.generate('room_list', { version: 'internal'}),
+
+var Collection = require('../collection/message.js');
+
+var RoomModel = Backbone.Model.extend({
+    urlRoot: Routing.generate('api_room_show', { version: 'internal'}),
 
     defaults: {
-        stories: null,
-        chat_messages: null
-    },
-
-    initialize: function(options) {
-
+        messages: null
     },
 
     /**
@@ -18,13 +16,14 @@ Tempo.Model.Room = Backbone.Model.extend({
      * Put those into collections
      */
     parse: function(response) {
-        response.chat_messages = new Tempo.Collection.Messages(response.chat_messages);
-        response.chat_messages.url = Routing.generate('api_message_get_messages', {
+        response.messages = new Collection(response.messages);
+        response.messages.url = Routing.generate('api_message_get_messages', {
             version: 'internal',
-            room: response.slug
+            room: response.id
         });
-        response.chat_messages.fetch();
+        response.messages.fetch();
         return response;
     }
 });
 
+module.exports = RoomModel;

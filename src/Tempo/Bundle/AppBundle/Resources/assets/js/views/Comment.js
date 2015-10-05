@@ -7,14 +7,11 @@
  * file that was distributed with this source code.
  */
 
-Tempo.View.Comment = Backbone.View.extend({
+var Comment = Backbone.View.extend({
 
   el: $("#content"),
   events: {
-    "click .edit-comment"  : "edit"
-  },
-
-  initialize: function() {
+    "click .edit-comment" : "edit"
   },
 
   edit: function(event) {
@@ -31,4 +28,4 @@ Tempo.View.Comment = Backbone.View.extend({
 
 });
 
-new Tempo.View.Comment();
+module.exports = Comment;

@@ -132,4 +132,9 @@ class Room implements RoomInterface
 
         return;
     }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

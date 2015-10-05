@@ -35,10 +35,7 @@ io.sockets.on('connection', function (socket) {
         var clients = io.sockets.adapter.rooms[room];
         var returnClients = [];
 
-        var numClients = (typeof clients !== 'undefined') ? Object.keys(clients).length : 0;
-        var clientId;
-
-        for ( clientId in clients ) {
+        for ( var clientId in clients ) {
             if (usernames[room][clientId] !== 'undefined') {
                 returnClients.push(usernames[room][clientId]);
             }
@@ -46,6 +43,10 @@ io.sockets.on('connection', function (socket) {
 
         return returnClients;
     };
+
+    socket.on('loadUser', function(user){
+        socket.join(user.id);
+    });
 
     /**
      * Allow clients to subscribe to a specific room
@@ -80,7 +81,12 @@ io.sockets.on('connection', function (socket) {
         io.sockets.in(room).except(socket.id).emit(eventType, params);
     });
 
-    socket.on('providerEvent', function(project) {
-        socket.broadcast.emit('feed:change', project);
+    socket.on('providerEvent', function(data) {
+        //socket.broadcast
+        var project = JSON.parse(data.project);
+
+        project.members.forEach(function(member){
+            socket.broadcast.to(member.user.id).emit('feed:change', data);
+        })
     });
 });

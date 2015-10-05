@@ -1,17 +1,5 @@
 {% extends "TempoAppBundle::layout.html.twig" %}
 {% block bodyClass %}user profile edit{% endblock %}
-{% block javascripts %}
-    {{ parent() }}
-    {% javascripts
-    '@TempoAppBundle/Resources/assets/js/views/user.js'
-    output="js/user.js" filter="?uglifyjs2"
-    %}
-    <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-    <script>
-        new Tempo.View.User();
-    </script>
-{% endblock %}
 {% block container %}
 
     {% block breadcrumb %}

@@ -8,7 +8,7 @@
  */
 
 
-Tempo.View.Room = Backbone.View.extend({
+var Room = Backbone.View.extend({
     el: $("#content"),
 
     events : {
@@ -29,3 +29,5 @@ Tempo.View.Room = Backbone.View.extend({
     }
 
 });
+
+module.exports = Room;

@@ -26,7 +26,7 @@ sensio_framework_extra:
         annotations: false
 
 fos_js_routing:
-    routes_to_expose: ['room_list', 'room_create', 'api_message_post_message', 'api_message_get_messages', 'timesheet_create', 'api_user_current']
+    routes_to_expose: ['room_list', 'room_create', 'api_room_show', 'api_message_post_message', 'api_message_get_messages', 'timesheet_create', 'api_user_current']
 
 hwi_oauth:
     firewall_name: main
@@ -77,7 +77,7 @@ knp_snappy:
         options:    []
 
 tempo_js_configuration:
-  config_to_expose: [locale]
+  config_to_expose: [locale, socket_io.client]
 
 jms_serializer:
     metadata:

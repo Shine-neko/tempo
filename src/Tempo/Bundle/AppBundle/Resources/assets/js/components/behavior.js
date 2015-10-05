@@ -1,31 +1,33 @@
-Tempo.Behavior.create('autocomplete', function(config, statics) {
+module.exports = function(behavior) {
+    behavior.create('autocomplete', function (config, statics) {
 
-    if (!config.options) {
-        config.options = {};
-    }
-
-    if (!config.options.minLength) {
-        config.options.minLength = 2;
-    }
-
-    var cache = {};
-
-    config.options.source =  function( request, response ) {
-        var term = request.term;
-        if ( term in cache ) {
-            response( cache[ term ] );
-            return;
+        if (!config.options) {
+            config.options = {};
         }
 
-        $.getJSON(config.callback, request, function( data, status, xhr ) {
-            cache[ term ] = data;
-            response( data );
-        });
-    };
+        if (!config.options.minLength) {
+            config.options.minLength = 2;
+        }
 
-    $( "#" +  config.id).autocomplete( config.options);
-});
+        var cache = {};
 
-Tempo.Behavior.create('summernote', function(config, statics) {
-    $(".summernote").summernote();
-});
+        config.options.source = function (request, response) {
+            var term = request.term;
+            if (term in cache) {
+                response(cache[term]);
+                return;
+            }
+
+            $.getJSON(config.callback, request, function (data, status, xhr) {
+                cache[term] = data;
+                response(data);
+            });
+        };
+
+        $("#" + config.id).autocomplete(config.options);
+    });
+
+    behavior.create('summernote', function (config, statics) {
+        $(".summernote").summernote();
+    });
+}

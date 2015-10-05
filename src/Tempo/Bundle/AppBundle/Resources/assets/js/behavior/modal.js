@@ -1,4 +1,4 @@
-(function($) {
+$(function() {
     $(document).on('click', '[data-toggle="modal"]', function(e) {
         e.preventDefault();
 
@@ -56,4 +56,4 @@
             });
         }
     });
-})(jQuery);
+});

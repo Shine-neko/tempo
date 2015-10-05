@@ -16,11 +16,11 @@ $(document).ready(function() {
     });
 });
 
-Tempo.View.Project = Backbone.View.extend({
+var Project = Backbone.View.extend({
 
     el: $("#content"),
     events: {
-        'click .handlediv' : 'toggleSection',
+        'click .handlediv' : 'toggleSection'
     },
 
     initialize: function() {
@@ -36,5 +36,7 @@ Tempo.View.Project = Backbone.View.extend({
     toggleSection: function(e) {
         var target = $( event.target );
         target.parent().parent().children('.inside').toggle('slow');
-    },
+    }
 });
+
+module.exports = Project;
