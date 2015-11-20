@@ -5,9 +5,14 @@ Tempo\Bundle\AppBundle\Model\User:
     properties:
         username:
             - NotBlank: ~
-        username:
-            - NotBlack: ~
 
+Tempo\Bundle\AppBundle\Model\UserEmail:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: email
+    properties:
+        email:
+            - Email: ~
+    
 Tempo\Bundle\AppBundle\Model\Organization:
     properties:
         name:

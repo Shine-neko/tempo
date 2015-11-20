@@ -29,6 +29,9 @@ class User implements UserInterface
 
     /** @var string */
     protected $email;
+    
+    /** @var UserEmail[]|ArrayCollection */
+    protected $emails;
 
     /** @var bool */
     protected $enabled;
@@ -137,6 +140,7 @@ class User implements UserInterface
         $this->organizations = new ArrayCollection();
         $this->notifications = new ArrayCollection();
         $this->phones = new ArrayCollection();
+        $this->emails = new ArrayCollection();
 
         $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
         $this->enabled = false;
@@ -177,6 +181,21 @@ class User implements UserInterface
     {
         return $this->username;
     }
+    
+    public function getEmails()
+    {
+        return $this->emails;
+    }
+    
+    public function addEmail(UserEmail $email)
+    {
+        if($this->emails->count() == 0){
+            $email->setMain(true);
+        }
+        $this->emails[] = $email;
+        
+        return $this;
+    }
 
     /**
      * {@inheritdoc}
@@ -201,7 +220,9 @@ class User implements UserInterface
      */
     public function setEmail($email)
     {
-        $this->email = $email;
+        @trigger_error('The'.__METHOD__.' method is deprecated since version 0.5 and will be removed in 0.6');
+        
+        $this->addEmail(new UserEmail($email));
 
         return $this;
     }

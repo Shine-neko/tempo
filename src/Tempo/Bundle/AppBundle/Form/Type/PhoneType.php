@@ -14,7 +14,6 @@ namespace Tempo\Bundle\AppBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
-use Tempo\Bundle\AppBundle\Form\DataTransformer\PhoneTransformer;
 
 class PhoneType extends AbstractType
 {
@@ -32,8 +31,7 @@ class PhoneType extends AbstractType
                 'label' => 'tempo.profile.form.number',
                 'required' => true,
             ))
-        ;
-                
+        ;        
     }
     
     /**

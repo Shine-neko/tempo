@@ -77,6 +77,10 @@ _prodiver_api:
 _comment:
   resource: "@TempoAppBundle/Resources/config/routing/comment.yml"
   prefix:   /comment
+  
+_emails:
+  resource: "@TempoAppBundle/Resources/config/routing/userEmail.yml"
+  prefix: /user/email
 
 #Admin
 setting_admin:

@@ -29,6 +29,11 @@ sylius_resource:
               model: Tempo\Bundle\AppBundle\Model\User
               repository: Tempo\Bundle\AppBundle\Repository\UserRepository
 
+      tempo.user_email:
+          driver: doctrine/orm
+          classes:
+              model: Tempo\Bundle\AppBundle\Model\UserEmail
+      
       tempo.activity:
           driver: doctrine/orm
           classes:

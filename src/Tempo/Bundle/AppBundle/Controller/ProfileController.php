@@ -16,7 +16,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Tempo\Bundle\AppBundle\Form\Type\ChangePasswordFormType;
 use Tempo\Bundle\AppBundle\Form\Type\SettingsType;
 use Tempo\Bundle\AppBundle\Form\Type\ProfileType;
+use Tempo\Bundle\AppBundle\Form\Type\EmailType;
 use Tempo\Bundle\AppBundle\Model\User;
+use Tempo\Bundle\AppBundle\Model\UserEmail;
 
 
 class ProfileController extends Controller
@@ -58,7 +60,7 @@ class ProfileController extends Controller
             'form' => $form->createView(),
         ));
     }
-
+    
     public function updateAction(Request $request)
     {
         $user = $this->getUser();

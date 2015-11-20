@@ -6,7 +6,7 @@
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
 
-    <mapped-superclass name="Tempo\Bundle\AppBundle\Model\User" repository-class="Tempo\Bundle\AppBundle\Repository\UserRepository" table="tempo_user">
+    <entity name="Tempo\Bundle\AppBundle\Model\User" repository-class="Tempo\Bundle\AppBundle\Repository\UserRepository" table="tempo_user">
 
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO" />
@@ -16,7 +16,6 @@
         <field name="slug" type="string" length="156" unique="true">
             <gedmo:slug unique="true" updatable="true" separator="-" fields="username" />
         </field>
-        <field name="email" column="email" type="string" length="255" />
         <field name="enabled" column="enabled" type="boolean" />
         <field name="salt" column="salt" type="string" />
         <field name="password" column="password" type="string" />
@@ -60,7 +59,13 @@
         <gedmo:soft-deleteable field-name="deletedAt" />
 
         <one-to-many field="notifications" target-entity="Tempo\Bundle\AppBundle\Model\Notification" mapped-by="user" />
+        
+        <one-to-many field="emails" target-entity="Tempo\Bundle\AppBundle\Model\UserEmail" mapped-by="user">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
 
-    </mapped-superclass>
+    </entity>
 
 </doctrine-mapping>

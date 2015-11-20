@@ -1,0 +1,74 @@
+{% extends "TempoAppBundle::layout.html.twig" %}
+{% block bodyClass %}user email edit{% endblock %}
+
+{% block container %}
+
+    {% block breadcrumb %}
+        <ol id="breadcrumb" class="clearfix">
+            <li class="first"><a href="{{ path('homepage') }}">{{ 'tempo.menu.home'|trans }}</a></li>
+            <li><a href="{{ path('user_profile_update') }}">{{ 'tempo.profile.title'|trans }}</a></li>
+            <li class="last">{{ 'tempo.profile.tabs.emails'|trans }}</li>
+        </ol>
+    {% endblock breadcrumb %}
+    
+     <div class="container-panel">
+
+        {% include "TempoAppBundle:Profile:_tabs.html.twig" %}
+        <div class="page-header">
+            <h1>{{ 'tempo.profile.tabs.emails'|trans }}</h1>
+        </div>
+        
+        <div class="col-md-8 app-panel">
+            <h4>{{ 'tempo.profile.current_emails'|trans }}</h4>
+            <p>{{ 'tempo.profile.main_adress_explain'|trans }}</p>
+            <table class="table table-striped">
+                <tbody>
+                    {% for email in user.emails %}
+                        {% if email.status == constant('Tempo\\Bundle\\AppBundle\\Model\\UserEmail::STATUS_PRIVATE') %}
+                            {% set status = 'private' %}
+                        {% else %}
+                            {% set status = 'public' %}
+                        {% endif %}    
+                    <tr>
+                        <td>
+                            <a href="{{ path('user_email_change_status', {'id': email.id, 'status': status }) }}">
+                                <span class="label label-default">
+                                    {{ ('tempo.profile.'~status)|trans }}
+                                </span>
+                            </a>
+                            &nbsp;
+                            {% if email.main %}
+                            <span class="label label-success">{{ 'tempo.profile.main_adress'|trans }}</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {{ email.email }}
+                        </td>
+                        <td>
+                            {% if email.main == false %}
+                            <a class="btn btn-default btn-xs" href="{{ path('user_email_set_main', {'id': email.id}) }}">
+                                {{ 'tempo.profile.set_as_main'|trans }}
+                            </a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a class="text-danger" href="{{ path('user_email_delete', {'id': email.id }) }}" alt="remove">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+                
+            <form action="{{ path('user_email_edit') }}" method="POST" class="user_profile_update">
+                <div class="form-inline">
+                    <div class="form-group">
+                        {{ form_widget(form) }}
+                    </div>
+                    <input type="submit" class="btn btn-primary btn-sm" value="{{ 'tempo.form.add'|trans }}"/>
+                </div>
+            </form>
+        </div>
+    
+{% endblock %}

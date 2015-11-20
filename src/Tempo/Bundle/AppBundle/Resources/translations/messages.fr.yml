@@ -24,6 +24,7 @@ tempo:
       submit: Envoyer
       manage: Administrer
       leave: Quitter
+      add: Ajouter
 
   admin:
       dashboard: Admin
@@ -102,7 +103,7 @@ tempo:
         title: Liste des organisations
         filter:
           query: Rechercher
-      msg_delete: Si vous continuez l'organisation sera supprimée de manière définitive. ill be permanently deleted. Il n'est pas possible de revenir en arrière.
+      msg_delete: Si vous continuez l'organisation sera supprimée de manière définitive. Il n'est pas possible de revenir en arrière.
       title_delete: Supprimer l'organisation
       email_contact: E-mail contact
       web_site: Site web
@@ -222,13 +223,23 @@ tempo:
     password_change_success: Mot de passe modifié avec succès.
     edit_success: Votre profil a été modifié.
     activity: Activité
+    current_emails: Adresses actuelles
+    add_email: Ajouter une adresse email
+    main_adress: Principale
+    set_as_main: Définir comme adresse principale.
+    delete_main_adress: Ceci est l'adresse principale. Veuillez déclarer une autre adresse principale avant de supprimer celle-ci.
+    main_adress_explain: Votre adresse principale Tempo est utilisée pour les notifications liées à votre compte.
+    public: Publique
+    private: Privée
     tabs:
       profil: Profil
       avatar: Avatar
       email: Adresse email
+      emails: Adresses email
       password: Mot de passe
       settings: Préférences
       notifications: Notifications
+      rooms: Rooms
       edit: Modifier le profil
     avatar:
       title: Avatar     
@@ -261,7 +272,6 @@ tempo:
       cell_phone: Portable
       landline_phone: Fixe
             
-      
   avatar:
     title: Changer d'avatar
     choose_avatar: Choisir une nouvelle image
