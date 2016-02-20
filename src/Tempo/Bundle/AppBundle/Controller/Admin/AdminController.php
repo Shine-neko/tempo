@@ -24,4 +24,13 @@ class AdminController extends ResourceController
             'form' => $form->createView()
         ));
     }
+
+    public function mainAction()
+    {
+        return $this->render('TempoAppBundle:Admin:Dashboard/main.html.twig', array(
+            'nbOrganizations'   => $this->getManager('organization')->nbTotalOrganisation(),
+            'nbProjects'        => $this->getManager('project')->nbTotalProject(),
+            'nbUsers'           => $this->getManager('user')->nbTotalUser(),
+        ));
+    }
 }

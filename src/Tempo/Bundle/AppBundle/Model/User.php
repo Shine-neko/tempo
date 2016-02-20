@@ -12,9 +12,12 @@
 namespace Tempo\Bundle\AppBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Tempo\Bundle\AppBundle\Behavior\TimestampTrait;
+use Tempo\Bundle\AppBundle\Behavior\EnabledTrait;
 
 class User implements UserInterface
 {
+    use TimestampTrait, EnabledTrait;
 
     const AVATAR_DEFAULT  = '/bundles/tempoapp/images/avatar-defaut.png';
 
@@ -32,9 +35,6 @@ class User implements UserInterface
     
     /** @var UserEmail[]|ArrayCollection */
     protected $emails;
-
-    /** @var bool */
-    protected $enabled;
 
     /** @var string */
     protected $salt;
@@ -63,11 +63,6 @@ class User implements UserInterface
     /** @var \DateTime */
     protected $expiresAt;
 
-    /**
-     * @var \DateTime
-     */
-    protected $deletedAt;
-
     /** @var array */
     protected $roles;
 
@@ -91,12 +86,6 @@ class User implements UserInterface
 
     /** @var string */
     protected $lastName;
-
-    /** @var \DateTime */
-    protected $createdAt;
-
-    /** @var \DateTime */
-    protected $updatedAt;
 
     /** @var string */
     protected $gender;
@@ -629,10 +618,10 @@ class User implements UserInterface
     public function addPhone($phone)
     {
         $this->phones[] = $phone;
-        
+
         return $this;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -814,7 +803,7 @@ class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function addNotification(Notification $notification)
+    public function addNotification(NotificationInterface $notification)
     {
         $this->notifications[] = $notification;
 
@@ -913,14 +902,6 @@ class User implements UserInterface
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function isEnabled()
-    {
-        return $this->enabled;
-    }
-
-    /**
      * Serializes the user.
      *
      * The serialized data have to contain the fields used by the equals method and the username.
@@ -966,41 +947,5 @@ class User implements UserInterface
             $this->enabled,
             $this->id
             ) = $data;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setCreatedAt(\DateTime $createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setUpdatedAt(\DateTime $updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getUpdatedAt()
-    {
-        return $this->createdAt;
     }
 }

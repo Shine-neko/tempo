@@ -1,6 +1,6 @@
 admin:
     path: /admin
-    defaults: { _controller: TempoAppBundle:Admin\Dashboard:main }
+    defaults: { _controller: TempoAppBundle:Admin\Admin:main }
 
 _user:
   resource: "@TempoAppBundle/Resources/config/routing/users.yml"
@@ -15,7 +15,7 @@ room_api:
   resource: "@TempoAppBundle/Resources/config/routing/room_api.yml"
   defaults:
       version: v1
-      
+
 message_api:
   type: rest
   prefix:   /api/{version}

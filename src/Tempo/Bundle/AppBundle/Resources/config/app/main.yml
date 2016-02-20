@@ -2,8 +2,7 @@ imports:
     - { resource: @TempoAppBundle/Resources/config/app/resource.yml }
     - { resource: @TempoAppBundle/Resources/config/app/admin.yml }
 
-sylius_settings:
-    driver: doctrine/orm
+sylius_settings: ~
 
 doctrine_cache:
     providers:
@@ -41,7 +40,7 @@ hwi_oauth:
                 approval_prompt: force
                 display: page
                 login_hint: email address
-  
+
         github:
             type: github
             client_id:     %oauth.github.clientid%

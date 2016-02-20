@@ -14,6 +14,21 @@ namespace Tempo\Bundle\AppBundle\Behavior;
 trait TimestampTrait
 {
     /**
+     * @var \DateTime
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
+     * @var \DateTime
+     */
+    private $deletedAt;
+
+    /**
      * {@inheritdoc}
      */
     public function setCreatedAt(\DateTime $createdAt)
@@ -47,24 +62,6 @@ trait TimestampTrait
     public function getUpdatedAt()
     {
         return $this->updatedAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setEnabled($enabled)
-    {
-        $this->enabled = $enabled;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function isEnabled()
-    {
-        return $this->enabled;
     }
 
     /**

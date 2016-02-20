@@ -11,7 +11,9 @@
 
 namespace Tempo\Bundle\AppBundle\Model;
 
-interface ActivityInterface
+use Sylius\Component\Resource\Model\ResourceInterface;
+
+interface ActivityInterface extends ResourceInterface
 {
     /**
      * Get id.

@@ -11,12 +11,14 @@
 
 namespace Tempo\Bundle\AppBundle\Model;
 
-interface NotificationInterface
+use Sylius\Component\Resource\Model\ResourceInterface;
+
+interface NotificationInterface extends ResourceInterface
 {
     /**
      * Get id
      *
-     * @return id $id
+     * @return int $id
      */
     public function getId();
 

@@ -11,7 +11,9 @@
 
 namespace Tempo\Bundle\AppBundle\DependencyInjection;
 
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Tempo\Bundle\ResourceExtraBundle\DependencyInjection\TempoResourceExtraExtension;
 
 /**
@@ -48,12 +50,13 @@ class TempoAppExtension extends TempoResourceExtraExtension
      */
     public function load(array $config, ContainerBuilder $container)
     {
-        $config = $this->configure(
-            $config,
-            new Configuration(),
-            $container,
-            self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS
-        );
+        $config = $this->processConfiguration(new Configuration(), $config);
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $this->registerResources($this->applicationName, $config['driver'], array(), $container);
+
+        foreach($this->configFiles as $configFile) {
+            $loader->load($configFile);
+        }
 
         $container->setParameter('hwi_oauth.connect', $container->getParameter('oauth.enabled'));
         $container->setParameter('tempo.week', $config['week']);

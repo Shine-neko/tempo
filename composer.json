@@ -46,8 +46,8 @@
         "liip/imagine-bundle": "~1.1",
         "nelmio/api-doc-bundle": "~2.7",
         "willdurand/js-translation-bundle": "~2.1",
-        "sylius/settings-bundle": "0.15",
-        "sylius/resource-bundle": "0.15",
+        "sylius/settings-bundle": "0.16",
+        "sylius/resource-bundle": "0.16",
         "phpoffice/phpexcel": "~1.8",
         "nelmio/cors-bundle": "~1.4"
    },

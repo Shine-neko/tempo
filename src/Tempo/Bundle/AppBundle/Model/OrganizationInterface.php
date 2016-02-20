@@ -12,11 +12,12 @@
 namespace Tempo\Bundle\AppBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Sylius\Component\Resource\Model\ResourceInterface;
 
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
-interface OrganizationInterface
+interface OrganizationInterface extends ResourceInterface
 {
     /**
      * Get id

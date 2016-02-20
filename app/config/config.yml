@@ -75,6 +75,7 @@ stof_doctrine_extensions:
             sluggable: true
 
 sylius_settings:
-    classes:
+    resources:
         parameter:
-            model: Tempo\Bundle\AppBundle\Model\Parameter
+            classes:
+                model: Tempo\Bundle\AppBundle\Model\Parameter

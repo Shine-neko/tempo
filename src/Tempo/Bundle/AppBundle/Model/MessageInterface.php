@@ -11,7 +11,9 @@
 
 namespace Tempo\Bundle\AppBundle\Model;
 
-interface MessageInterface
+use Sylius\Component\Resource\Model\ResourceInterface;
+
+interface MessageInterface extends ResourceInterface
 {
     /**
      * Get id
@@ -66,7 +68,7 @@ interface MessageInterface
     public function getCreatedAt();
 
     /**
-     * Set updateAt
+     * Set updatedAt
      *
      * @param  \DateTime   $datetime
      * @return Message
@@ -74,7 +76,7 @@ interface MessageInterface
     public function setUpdatedAt(\DateTime $datetime);
 
     /**
-     * Get updateAt
+     * Get updatedAt
      *
      * @return \DateTime $datetime
      */

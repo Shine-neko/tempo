@@ -76,21 +76,6 @@ class Project implements ProjectInterface
     /**
      * @var \DateTime
      */
-    protected $createdAt;
-
-    /**
-     * @var \DateTime
-     */
-    protected $updatedAt;
-
-    /**
-     * @var \DateTime
-     */
-    protected $deletedAt;
-
-    /**
-     * @var \DateTime
-     */
     protected $lastActivity;
 
     /**

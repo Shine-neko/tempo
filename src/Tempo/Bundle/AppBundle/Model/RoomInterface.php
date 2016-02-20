@@ -12,8 +12,9 @@
 namespace Tempo\Bundle\AppBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Sylius\Component\Resource\Model\ResourceInterface;
 
-interface RoomInterface
+interface RoomInterface extends ResourceInterface
 {
     /**
      * Get ID
@@ -31,13 +32,13 @@ interface RoomInterface
      * @return Room
      */
     public function setName($name);
-    
+
     /**
      * Add message
      *
-     * @param Message $message
+     * @param MessageInterface $message
      */
-    public function addMessage(Message $message);
+    public function addMessage(MessageInterface $message);
 
     /**
      * Get messages

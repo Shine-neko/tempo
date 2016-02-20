@@ -11,7 +11,9 @@
 
 namespace Tempo\Bundle\AppBundle\Model;
 
-interface ProjectTypeInterface
+use Sylius\Component\Resource\Model\ResourceInterface;
+
+interface ProjectTypeInterface extends ResourceInterface
 {
     /**
      * Get Id
