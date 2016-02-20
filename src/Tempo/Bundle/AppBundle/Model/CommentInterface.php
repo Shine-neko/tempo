@@ -11,11 +11,34 @@
 
 namespace Tempo\Bundle\AppBundle\Model;
 
-interface CommentInterface
+use Sylius\Component\Resource\Model\ResourceInterface;
+
+interface CommentInterface extends ResourceInterface
 {
+    /**
+     * @return int
+     */
     public function getId();
+
+    /**
+     * @return string
+     */
     public function getBody();
+
+    /**
+     * @param $body
+     * @return $this
+     */
     public function setBody($body);
+
+    /**
+     * @return User
+     */
     public function getSender();
-    public function setSender($sender);
+
+    /**
+     * @param UserInterface $sender
+     * @return $this
+     */
+    public function setSender(UserInterface $sender);
 }

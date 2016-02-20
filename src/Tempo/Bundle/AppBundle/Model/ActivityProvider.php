@@ -33,21 +33,6 @@ class ActivityProvider implements ActivityProviderInterface
     protected $provider;
 
     /**
-     * @var \DateTime
-     */
-    protected $createdAt;
-
-    /**
-     * @var \DateTime
-     */
-    protected $updatedAt;
-
-    /**
-     * @var \DateTime
-     */
-    protected $deletedAt;
-
-    /**
      * @var string
      */
     protected $message;

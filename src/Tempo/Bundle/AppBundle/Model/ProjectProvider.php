@@ -11,8 +11,12 @@
 
 namespace Tempo\Bundle\AppBundle\Model;
 
+use Tempo\Bundle\AppBundle\Behavior\TimestampTrait;
+
 class ProjectProvider implements ProjectProviderInterface
 {
+    use TimestampTrait;
+
     /**
      * @var integer
      *
@@ -47,12 +51,6 @@ class ProjectProvider implements ProjectProviderInterface
      * @var string
      */
     protected $state;
-
-    /**
-     * @var \DateTime
-     *
-     */
-    protected $createdAt;
 
     /**
      * @var string
@@ -136,24 +134,6 @@ class ProjectProvider implements ProjectProviderInterface
         $this->token = $token;
 
         return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setCreatedAt(\DateTime $created)
-    {
-        $this->createdAt = $created;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
     }
 
     /**

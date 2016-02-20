@@ -14,13 +14,15 @@ namespace Tempo\Bundle\AppBundle\Model;
 use Doctrine\Common\Collections\ArrayCollection;
 use Tempo\Bundle\AppBundle\Behavior\AccessTrait;
 use Tempo\Bundle\AppBundle\Behavior\TimestampTrait;
+use Tempo\Bundle\AppBundle\Behavior\EnabledTrait;
 
 /**
 * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
 */
 class Organization implements OrganizationInterface
 {
-    use AccessTrait, TimestampTrait;
+    use AccessTrait, TimestampTrait, EnabledTrait;
+
     const AVATAR_DEFAUlT  = '/bundles/tempoapp/images/default-icon-project.png';
 
     /**
@@ -46,11 +48,6 @@ class Organization implements OrganizationInterface
     /**
      * @var integer
      */
-    protected $enabled;
-
-    /**
-     * @var integer
-     */
     protected $members;
 
     /**
@@ -69,24 +66,13 @@ class Organization implements OrganizationInterface
     protected $projects;
 
     /**
-     * @var \DateTime
-     */
-    protected $createdAt;
-
-    /**
-     * @var \DateTime
-     */
-    protected $updatedAt;
-
-    /**
-     * @var \DateTime
-     */
-    protected $deletedAt;
-
-    /**
      * @var ArrayCollection\UserInterface[]
      */
     protected $users;
+
+    /**
+     * @var
+     */
     protected $team;
 
     public function __construct()
@@ -100,7 +86,7 @@ class Organization implements OrganizationInterface
      */
     public function __toString()
     {
-        return $this->getName();
+        return $this->name;
     }
 
     /**

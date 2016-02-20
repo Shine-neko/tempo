@@ -17,6 +17,10 @@ class Notification implements NotificationInterface
 {
     use TimestampTrait;
 
+    const STATE_UNREAD = 0;
+    const STATE_READ = 1;
+    const STATE_DELETED = 2;
+
     /**
      * @var int
      */
@@ -26,16 +30,6 @@ class Notification implements NotificationInterface
      * @var User
      */
     protected $user;
-
-    /**
-     * @var \DateTime
-     */
-    protected $createdAt;
-
-    /**
-     * @var \DateTime
-     */
-    protected $deletedAt;
 
     /**
      * @var int
@@ -51,10 +45,6 @@ class Notification implements NotificationInterface
      * @var string
      */
     protected $message;
-
-    const STATE_UNREAD = 0;
-    const STATE_READ = 1;
-    const STATE_DELETED = 2;
 
     public function __construct()
     {
@@ -86,24 +76,6 @@ class Notification implements NotificationInterface
     public function getUser()
     {
         return $this->user;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setCreatedAt(\DateTime $datetime)
-    {
-        $this->createdAt = $datetime;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
     }
 
     /**

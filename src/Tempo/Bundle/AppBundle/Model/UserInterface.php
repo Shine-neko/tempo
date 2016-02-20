@@ -14,8 +14,9 @@ namespace Tempo\Bundle\AppBundle\Model;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Sylius\Component\Resource\Model\TimestampableInterface;
+use Sylius\Component\Resource\Model\ResourceInterface;
 
-interface UserInterface extends AdvancedUserInterface, \Serializable, TimestampableInterface
+interface UserInterface extends AdvancedUserInterface, \Serializable, TimestampableInterface, ResourceInterface
 {
     const ROLE_DEFAULT = 'ROLE_USER';
     const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
@@ -400,11 +401,11 @@ interface UserInterface extends AdvancedUserInterface, \Serializable, Timestampa
     public function getNotifications();
 
     /**
-     * @param Notification $notification
+     * @param NotificationInterface $notification
      *
      * @return self
      */
-    public function addNotification(Notification $notification);
+    public function addNotification(NotificationInterface $notification);
 
     /**
      * @return self

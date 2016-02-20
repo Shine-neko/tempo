@@ -11,8 +11,12 @@
 
 namespace Tempo\Bundle\AppBundle\Model;
 
+use Tempo\Bundle\AppBundle\Behavior\TimestampTrait;
+
 class Message implements MessageInterface
 {
+    use TimestampTrait;
+
     /**
      * @var integer
      */
@@ -32,16 +36,6 @@ class Message implements MessageInterface
      * @var Object
      */
     protected $user;
-
-    /**
-     * @var \DateTime
-     */
-    protected $createdAt;
-
-    /**
-     * @var \DateTime
-     */
-    protected $updateAt;
 
     /**
      * {@inheritdoc}
@@ -85,42 +79,6 @@ class Message implements MessageInterface
     public function getUser()
     {
         return $this->user;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setCreatedAt(\DateTime $datetime)
-    {
-        $this->createdAt = $datetime;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setUpdatedAt(\DateTime $datetime)
-    {
-        $this->updateAt = $datetime;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updateAt;
     }
 
     /**

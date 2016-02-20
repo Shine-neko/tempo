@@ -15,19 +15,23 @@
         <field name="label" type="string" />
 
         <field name="source" type="string" />
-        
+
         <field name="inviteEmail" column="invite_email" type="string" nullable="true" />
-        
+
         <field name="inviteToken" column="invite_token" type="string" nullable="true" />
-        
+
+        <field name="createdAt" column="created" type="date" nullable="false"  >
+            <gedmo:timestampable on="create"/>
+        </field>
+
+        <field name="updatedAt" column="updated_at" type="date" nullable="false"  >
+            <gedmo:timestampable on="update"/>
+        </field>
+
         <many-to-one field="organization" target-entity="Tempo\Bundle\AppBundle\Model\Organization" inversed-by="members" />
         <many-to-one field="project" target-entity="Tempo\Bundle\AppBundle\Model\Project" inversed-by="members" />
         <many-to-one field="user" target-entity="Tempo\Bundle\AppBundle\Model\User" />
         <many-to-one field="room" target-entity="Tempo\Bundle\AppBundle\Model\Room" inversed-by="members" />
-
-        <field name="createdAt" column="created_at" type="date" nullable="false">
-            <gedmo:timestampable on="create"/>
-        </field>
 
     </entity>
 </doctrine-mapping>

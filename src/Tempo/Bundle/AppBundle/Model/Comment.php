@@ -11,8 +11,12 @@
 
 namespace Tempo\Bundle\AppBundle\Model;
 
+use Tempo\Bundle\AppBundle\Behavior\TimestampTrait;
+
 class Comment
 {
+    use TimestampTrait;
+
     /**
      * @var int
      */
@@ -22,21 +26,6 @@ class Comment
      * @var string
      */
     protected $body;
-
-    /**
-     * @var \DateTime
-     */
-    protected $createdAt;
-
-    /**
-     * @var \DateTime
-     */
-    protected $updatedAt;
-
-    /**
-     * @var \DateTime
-     */
-    protected $deletedAt;
 
     /**
      * @var object

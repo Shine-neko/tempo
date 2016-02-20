@@ -14,10 +14,11 @@ namespace Tempo\Bundle\AppBundle\Model;
 use Doctrine\Common\Collections\ArrayCollection;
 use Tempo\Bundle\AppBundle\Behavior\AccessTrait;
 use Tempo\Bundle\AppBundle\Behavior\TimestampTrait;
+use Tempo\Bundle\AppBundle\Behavior\EnabledTrait;
 
 class Room implements RoomInterface
 {
-    use AccessTrait, TimestampTrait;
+    use AccessTrait, TimestampTrait, EnabledTrait;
 
     /**
      * @var integer
@@ -33,26 +34,6 @@ class Room implements RoomInterface
      * @var string
      */
     protected $slug;
-
-    /**
-     * @var integer
-     */
-    protected $enabled;
-
-    /**
-     * @var \DateTime
-     */
-    protected $createdAt;
-
-    /**
-     * @var \DateTime
-     */
-    protected $updatedAt;
-
-    /**
-     * @var \DateTime
-     */
-    protected $deletedAt;
 
     /**
      * @var Collections
@@ -103,7 +84,7 @@ class Room implements RoomInterface
     /**
      * {@inheritdoc}
      */
-    public function addMessage(Message $message)
+    public function addMessage(MessageInterface $message)
     {
         $this->messages[] = $message;
 

@@ -11,7 +11,9 @@
 
 namespace Tempo\Bundle\AppBundle\Model;
 
-interface AccessInterface
+use Sylius\Component\Resource\Model\ResourceInterface;
+
+interface AccessInterface extends ResourceInterface
 {
     const TYPE_OWNER = 'owner';
     const TYPE_COLLABORATOR = 'collaborator';

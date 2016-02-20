@@ -12,11 +12,12 @@
 namespace Tempo\Bundle\AppBundle\Model;
 
 use Sylius\Component\Resource\Model\TimestampableInterface;
+use Sylius\Component\Resource\Model\ResourceInterface;
 
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
-interface TimesheetInterface extends TimestampableInterface
+interface TimesheetInterface extends TimestampableInterface, ResourceInterface
 {
     const  STATE_DRAFT = 'STATE_DRAFT';
     const  STATE_PENDING = 'STATE_PENDING';
@@ -91,9 +92,9 @@ interface TimesheetInterface extends TimestampableInterface
     public function getProject();
 
     /**
-     * @param integer $user
+     * @param UserInterface $user
      */
-    public function setUser($user);
+    public function setUser(UserInterface $user);
 
     /**
      * @return integer

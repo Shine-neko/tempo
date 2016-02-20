@@ -11,11 +11,15 @@
 
 namespace Tempo\Bundle\AppBundle\Model;
 
+use Tempo\Bundle\AppBundle\Behavior\TimestampTrait;
+
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
 class Timesheet implements TimesheetInterface
 {
+    use TimestampTrait;
+
     /**
      * @var integer
      */
@@ -42,27 +46,6 @@ class Timesheet implements TimesheetInterface
     protected $workedDate;
 
     /**
-     * Creation time.
-     *
-     * @var \DateTime
-     */
-    protected $createdAt;
-
-    /**
-     * Last update time.
-     *
-     * @var \DateTime
-     */
-    protected $updatedAt;
-
-    /**
-     * Deletion time.
-     *
-     * @var \DateTime
-     */
-    protected $deletedAt;
-
-    /**
      * @var string
      */
     protected $description;
@@ -86,42 +69,6 @@ class Timesheet implements TimesheetInterface
     public function __toString()
     {
         return $this->workedDate;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setCreatedAt(\DateTime $createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setUpdatedAt(\DateTime $updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
     }
 
     /**
@@ -245,9 +192,10 @@ class Timesheet implements TimesheetInterface
     /**
      * Set user
      *
-     * @param integer $user
+     * @param UserInterface $user
+     * @return $this
      */
-    public function setUser($user)
+    public function setUser(UserInterface $user)
     {
         $this->user = $user;
 

@@ -11,8 +11,12 @@
 
 namespace Tempo\Bundle\AppBundle\Model;
 
+use Tempo\Bundle\AppBundle\Behavior\TimestampTrait;
+
 class Access implements AccessInterface
 {
+    use TimestampTrait;
+
     /**
      * @var string
      */
@@ -58,11 +62,6 @@ class Access implements AccessInterface
      */
     protected $room;
 
-    /**
-     * @var \DateTime
-     */
-    protected $createdAt;
-    
     public function getId()
     {
         return $this->id;
