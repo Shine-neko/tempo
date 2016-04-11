@@ -12,6 +12,7 @@
 namespace Tempo\Bundle\AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class SettingsType extends AbstractType
@@ -19,7 +20,7 @@ class SettingsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('locale', 'choice', array(
+            ->add('locale', ChoiceType::class, array(
                 'choices'   => array(
                     'fr'   => 'tempo.profile.form.language.french',
                     'en' => 'tempo.profile.form.language.english',
@@ -27,7 +28,7 @@ class SettingsType extends AbstractType
                 'label' => 'tempo.profile.form.locale',
                 'required' => true
             ))
-            ->add('time_zone', 'choice', array(
+            ->add('time_zone', ChoiceType::class, array(
             'label'   => 'tempo.profile.form.time_zone',
             'choices' => array(
                 -43200 => '(GMT -12:00) Eniwetok, Kwajalein',
@@ -65,7 +66,10 @@ class SettingsType extends AbstractType
         ));
     }
 
-    public function getName()
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
     {
         return 'setting';
     }

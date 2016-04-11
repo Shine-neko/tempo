@@ -29,7 +29,7 @@ security:
                 use_forward:  false
                 use_referer: false
             remember_me:
-                key: %secret%
+                key: "%secret%"
                 name: APP_REMEMBER_ME
                 lifetime: 31536000
                 always_remember_me: true
@@ -44,7 +44,7 @@ security:
                   service: tempo.user.oauth.user_provider
             logout: ~
             anonymous:    true
-        
+
     access_control:
         - { path: ^/user/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, role: ROLE_ADMIN }

@@ -12,6 +12,7 @@
 namespace Tempo\Bundle\AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Tempo\Bundle\AppBundle\Repository\ProjectTypeRepository;
@@ -24,7 +25,7 @@ class ProjectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text', array(
+            ->add('name', TextType::class, array(
                 'label' => 'tempo.project.form.label.name',
                 'required' => true,
             ))
@@ -50,7 +51,7 @@ class ProjectType extends AbstractType
                     return $er->findAllTypes();
                 }
             ))
-            ->add('code', null, array(
+            ->add('code', TextType::class, array(
                 'label' => 'tempo.project.form.label.code',
                 'required' => false,
             ))
@@ -71,7 +72,7 @@ class ProjectType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'project';
     }

@@ -17,7 +17,7 @@ use Doctrine\Common\Util\Inflector;
 use Ikimea\Browser\Browser;
 use Tempo\Bundle\AppBundle\Helper\Behavior;
 
-class AppExtension extends \Twig_Extension
+class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
 {
     /**
      * @var Behavior

@@ -12,6 +12,8 @@
 namespace Tempo\Bundle\AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -24,19 +26,19 @@ class ProviderFormType extends AbstractType
     {
         $builder
 
-            ->add('token', 'text', array(
+            ->add('token', TextType::class, array(
                 'required' => false,
                 'attr' => array(
                     'readonly'=> true
                 )
             ))
-            ->add('url', 'url', array(
+            ->add('url', UrlType::class, array(
                 'required' => false
             ))
-            ->add('appId', 'text', array(
+            ->add('appId', TextType::class, array(
                 'required' => false
             ))
-            ->add('secret', 'text', array(
+            ->add('secret', TextType::class, array(
                 'required' => false
             ))
         ;
@@ -55,7 +57,7 @@ class ProviderFormType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'project_provider';
     }

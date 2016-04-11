@@ -73,7 +73,7 @@
             <argument type="service" id="tempo.behavior" />
             <tag name="form.type" alias="wysiwyg" />
         </service>
-        
+
         <service id="tempo.form.type.phone" class="%tempo.form.type.phone.class%">
             <tag name="form.type" alias="phone" />
         </service>

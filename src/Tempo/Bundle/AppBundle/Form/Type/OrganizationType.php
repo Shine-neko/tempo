@@ -12,6 +12,9 @@
 namespace Tempo\Bundle\AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormEvent;
@@ -25,10 +28,10 @@ class OrganizationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text', array(
+            ->add('name', TextType::class, array(
                 'required' => true
             ))
-            ->add('contact', 'email', array(
+            ->add('contact', EmailType::class, array(
                 'required' => false
             ));
 
@@ -38,7 +41,7 @@ class OrganizationType extends AbstractType
 
             if (null !== $organization->getId()) {
                 $form
-                    ->add('avatar')
+                    ->add('avatar', FileType::class)
                     ->add('contact', 'email', array(
                         'required' => true
                     ))
@@ -60,7 +63,7 @@ class OrganizationType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'organization';
     }

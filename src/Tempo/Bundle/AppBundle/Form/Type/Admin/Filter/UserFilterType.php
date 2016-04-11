@@ -12,6 +12,7 @@
 namespace Tempo\Bundle\AppBundle\Form\Type\Admin\Filter;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
@@ -19,10 +20,13 @@ use Symfony\Component\Form\FormBuilderInterface;
  */
 class UserFilterType extends AbstractType
 {
+    /**
+     * {@inheritdoc}
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text', array(
+            ->add('name', TextType::class, array(
                 'label' => 'tempo.user.list.filter.query',
                 'attr' => array(
                     'placeholder' => 'tempo.user.list.filter.query',
@@ -31,7 +35,10 @@ class UserFilterType extends AbstractType
         ;
     }
 
-    public function getName()
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
     {
         return 'tempo_admin_user_filter';
     }

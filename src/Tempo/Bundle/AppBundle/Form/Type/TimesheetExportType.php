@@ -12,6 +12,8 @@
 namespace Tempo\Bundle\AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\RadioType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\FormEvent;
@@ -25,14 +27,14 @@ class TimesheetExportType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('billable', 'radio', array(
+            ->add('billable', RadioType::class, array(
                 'required' => false
             ))
-            ->add('from', 'text', array(
+            ->add('from', TextType::class, array(
                 'label' => 'Form',
                 'attr' => array('class' => 'datetimepicker')
             ))
-            ->add('to', 'text', array(
+            ->add('to', TextType::class, array(
                 'label' => 'To',
                 'attr' => array('class' => 'datetimepicker')
             ))
@@ -42,7 +44,7 @@ class TimesheetExportType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return '';
     }

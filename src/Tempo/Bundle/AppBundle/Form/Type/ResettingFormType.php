@@ -12,6 +12,8 @@
 namespace Tempo\Bundle\AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -22,8 +24,8 @@ class ResettingFormType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('plainPassword', 'repeated', array(
-            'type' => 'password',
+        $builder->add('plainPassword', RepeatedType::class, array(
+            'type' => PasswordType::class,
             'required' => true,
             'first_options' => array('label' => 'tempo.security.resetting.password'),
             'second_options' => array('label' => 'tempo.security.resetting.password_again'),
@@ -43,7 +45,7 @@ class ResettingFormType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'user_resetting';
     }

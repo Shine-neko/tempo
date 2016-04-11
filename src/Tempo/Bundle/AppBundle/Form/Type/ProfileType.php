@@ -11,6 +11,8 @@
 
 namespace Tempo\Bundle\AppBundle\Form\Type;
 
+use Nelmio\ApiDocBundle\Tests\Fixtures\Form\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,19 +23,19 @@ class ProfileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstName', null, array(
+            ->add('firstName', TextType::class, array(
                 'label' => 'tempo.profile.form.firstName'
             ))
-            ->add('lastName', null, array(
+            ->add('lastName', TextType::class, array(
                 'label' => 'tempo.profile.form.lastName'
             ))
-            ->add('company', null, array(
+            ->add('company', TextType::class, array(
                 'label' => 'tempo.profile.form.company'
             ))
-            ->add('jobTitle', null, array(
+            ->add('jobTitle', TextType::class, array(
                 'label' => 'tempo.profile.form.job_title'
             ))
-            ->add('phones', 'collection', array(
+            ->add('phones', CollectionType::class, array(
                 'type' => 'phone',
                 'allow_add' => true,
                 'allow_delete' => true,
@@ -55,7 +57,10 @@ class ProfileType extends AbstractType
         ));
     }
 
-    public function getName()
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
     {
         return 'user';
     }
