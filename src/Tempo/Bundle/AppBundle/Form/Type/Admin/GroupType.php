@@ -46,7 +46,7 @@ class GroupType extends AbstractType
         ));
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'tempo_admin_group';
     }

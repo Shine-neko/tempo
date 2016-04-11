@@ -12,6 +12,10 @@
 namespace Tempo\Bundle\AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormEvents;
@@ -22,19 +26,19 @@ class RegisterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', 'text', array(
+            ->add('username', TextType::class, array(
                 'required' => true,
                 'label' => 'tempo.security.login.username',
             ))
-            ->add('password', 'repeated', array(
-                'type' => 'password',
+            ->add('password', RepeatedType::class, array(
+                'type' => PasswordType::class,
                 'invalid_message' => 'The password fields must match.',
                 'options' => array('attr' => array('class' => 'password-field')),
                 'required' => true,
                 'first_options' => array('label' => 'tempo.security.login.password'),
                 'second_options' => array('label' => 'tempo.security.resetting.password_again'),
             ))
-            ->add('email', 'email', array(
+            ->add('email', EmailType::class, array(
                 'required' => true,
                 'label' => 'tempo.profile.tabs.email',
             ))
@@ -42,7 +46,7 @@ class RegisterType extends AbstractType
                 $data = $event->getData();
                 $form = $event->getForm();
                 if ($data->getEmail() !== null) {
-                    $form->add('email', 'email', array(
+                    $form->add('email', EmailType::class, array(
                         'required' => true,
                         'label' => 'tempo.profile.tabs.email',
                         'attr' => array(
@@ -63,7 +67,10 @@ class RegisterType extends AbstractType
         );
     }
 
-    public function getName()
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
     {
         return 'register';
     }

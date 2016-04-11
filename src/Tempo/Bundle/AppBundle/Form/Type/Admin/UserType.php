@@ -12,6 +12,10 @@
 namespace Tempo\Bundle\AppBundle\Form\Type\Admin;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormEvents;
@@ -25,44 +29,44 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', 'text', array(
+            ->add('username', TextType::class, array(
                 'label' => 'tempo.profile.form.username',
                 'required' => true,
             ))
-            ->add('firstName', 'text', array(
+            ->add('firstName', TextType::class, array(
                 'label' => 'tempo.profile.form.firstName',
                 'required' => true,
             ))
-            ->add('lastName', 'text', array(
+            ->add('lastName', TextType::class, array(
                 'label' => 'tempo.profile.form.lastName',
                 'required' => true,
             ))
-            ->add('email', 'email', array(
+            ->add('email', EmailType::class, array(
                 'label' => 'tempo.profile.form.email',
                 'required' => true,
             ))
-            ->add('plainPassword', 'password', array(
+            ->add('plainPassword', PasswordType::class, array(
                 'label' => 'tempo.profile.form.password',
                 'required' => true,
             ))
-            ->add('enabled', 'checkbox', array(
+            ->add('enabled', CheckboxType::class, array(
                 'label' => 'tempo.profile.form.enabled',
                 'attr' => array('checked' => 'checked'),
                 'required' => true,
             ))
-            ->add('skype', null, array(
+            ->add('skype', TextType::class, array(
                 'label' => 'tempo.profile.form.skype',
                 'required' => false,
             ))
-            ->add('linkedin', null, array(
+            ->add('linkedin', TextType::class, array(
                 'label' => 'tempo.profile.form.linkedin',
                 'required' => false,
             ))
-            ->add('viadeo', null, array(
+            ->add('viadeo', TextType::class, array(
                 'label' => 'tempo.profile.form.viadeo',
                 'required' => false,
             ))
-            ->add('twitter', null, array(
+            ->add('twitter', TextType::class, array(
                 'label' => 'tempo.profile.form.twitter',
                 'required' => false,
             ))
@@ -72,7 +76,7 @@ class UserType extends AbstractType
                 $form = $event->getForm();
 
                 if (null !== $data->getPassword()) {
-                    $form->add('plainPassword', 'password', array(
+                    $form->add('plainPassword', PasswordType::class, array(
                         'label' => 'tempo.profile.form.password',
                         'required' => false,
                     ));
@@ -88,7 +92,7 @@ class UserType extends AbstractType
         ));
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'tempo_admin_user';
     }

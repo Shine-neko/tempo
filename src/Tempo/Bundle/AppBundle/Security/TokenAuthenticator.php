@@ -11,7 +11,7 @@
 
 namespace Tempo\Bundle\AppBundle\Security;
 
-use Symfony\Component\Security\Core\Authentication\SimplePreAuthenticatorInterface;
+use Symfony\Component\Security\Http\Authentication\SimplePreAuthenticatorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Authentication\Token\PreAuthenticatedToken;
@@ -19,7 +19,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\Security\Http\HttpUtils;
-use Tempo\Bundle\AppBundle\Security\UserProvider;
 
 class TokenAuthenticator implements SimplePreAuthenticatorInterface
 {

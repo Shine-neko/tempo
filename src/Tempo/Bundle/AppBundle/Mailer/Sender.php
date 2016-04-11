@@ -17,6 +17,9 @@ use Tempo\Bundle\AppBundle\Event\MailerEvent;
 
 class Sender
 {
+    /**
+     * @var EventDispatcherInterface
+     */
     protected $dispatcher;
 
     /**
@@ -24,6 +27,9 @@ class Sender
      */
     protected $twig;
 
+    /**
+     * @var
+     */
     protected $mailer;
 
     /**

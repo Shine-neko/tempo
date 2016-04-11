@@ -12,32 +12,33 @@
 namespace Tempo\Bundle\AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormInterface;
 
 class PhoneType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('type', 'choice', array(
+            ->add('type', ChoiceType::class, array(
                 'label' => 'tempo.profile.form.type',
                 'required' => true,
                 'choices' => array(
                     'cell' => 'tempo.profile.form.cell_phone',
                     'landline' => 'tempo.profile.form.landline_phone',
             )))
-            ->add('number', null, array(
+            ->add('number', TextType::class, array(
                 'label' => 'tempo.profile.form.number',
                 'required' => true,
             ))
-        ;        
+        ;
     }
-    
+
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'phone';
     }

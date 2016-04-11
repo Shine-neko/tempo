@@ -50,7 +50,7 @@ class ListType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'list';
     }

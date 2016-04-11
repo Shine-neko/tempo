@@ -12,6 +12,7 @@
 namespace Tempo\Bundle\AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class AvatarType extends AbstractType
@@ -21,12 +22,15 @@ class AvatarType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('avatar', 'file', array(
+        $builder->add('avatar', FileType::class, array(
             'label' => 'tempo.avatar.choose_avatar',
         ));
     }
 
-    public function getName()
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
     {
         return 'avatar';
     }

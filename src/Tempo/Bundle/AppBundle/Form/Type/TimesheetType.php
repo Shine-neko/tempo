@@ -12,6 +12,7 @@
 namespace Tempo\Bundle\AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -24,7 +25,7 @@ class TimesheetType extends AbstractType
     {
         $builder
             ->add('workedTime')
-            ->add('workedDate', 'date', array('widget' => 'single_text'))
+            ->add('workedDate', DateType::class, array('widget' => 'single_text'))
             ->add('description', null, array(
                 'required' => false
             ))
@@ -45,7 +46,7 @@ class TimesheetType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'timesheet';
     }

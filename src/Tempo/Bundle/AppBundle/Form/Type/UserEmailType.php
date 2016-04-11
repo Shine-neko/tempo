@@ -12,19 +12,23 @@
 namespace Tempo\Bundle\AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class UserEmailType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('email', 'email', array(
+        $builder->add('email', EmailType::class, array(
             'label' => 'tempo.profile.add_email',
             'required' => true
         ));
     }
-    
-    public function getName()
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
     {
         return 'user_email';
     }

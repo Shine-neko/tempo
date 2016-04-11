@@ -45,7 +45,7 @@ class AccessController extends Controller
             try {
                 $this->get('tempo.repository.access')->findAccess($resource, $formData['login']);
                 $this->addFlash('error', 'tempo.team.already_exist');
-            } catch(\NonUniqueResultException  $e) {
+            } catch(NonUniqueResultException  $e) {
                 $this->addFlash('error', 'tempo.team.already_exist');
             } catch(NoResultException  $e) {
 
@@ -72,9 +72,9 @@ class AccessController extends Controller
         }
         return $this->redirect($routeRedirect);
     }
-    
+
     /**
-     * 
+     *
      * @param Request $request
      * @param Access $access
      * @return type
@@ -89,7 +89,7 @@ class AccessController extends Controller
         }
         return $this->redirect($request->headers->get('referer'));
     }
-    
+
     /**
      * @param  Request $request
      * @return RedirectResponse
@@ -106,7 +106,7 @@ class AccessController extends Controller
         ));
 
         $event = new AccessEvent($request, $resource, $access->getUser(), $this->getUser());
-        
+
         $this->get('tempo.domain_manager')->delete($access);
         $this->get('event_dispatcher')->dispatch($objectManager['event'], $event);
 
@@ -151,13 +151,13 @@ class AccessController extends Controller
 
         return $objectManager;
     }
-    
+
     /**
-     * 
+     *
      * @param Access $access
      */
     private function sentEmail(Access $access)
-    { 
+    {
         $this->get('tempo.mailer.sender')->sender('TempoAppBundle:Mail:Access/invitation.html.twig', array(
             'resource' => $access->getResource(),
             'access' => $access,

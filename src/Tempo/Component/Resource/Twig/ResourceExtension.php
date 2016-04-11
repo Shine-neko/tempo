@@ -22,8 +22,8 @@ class ResourceExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'get_browser' => new \Twig_Function_Method($this, 'getBrowser'),
-            'gravatar'    => new \Twig_Function_Method($this, 'getGravatar'),
+            new \Twig_SimpleFunction('get_browser', array($this, 'getBrowser')),
+            new \Twig_SimpleFunction('gravatar', array($this, 'getGravatar')),
         );
     }
 

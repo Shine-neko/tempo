@@ -12,6 +12,7 @@
 namespace Tempo\Bundle\AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
@@ -38,7 +39,7 @@ class AccessType extends AbstractType
                 'behavior' => array('name' => 'access_identifiant', 'callback' => 'api_user_autocomplete' ),
                 'label' => 'tempo.team.login'
             ))
-            ->add('role', 'choice', array(
+            ->add('role', ChoiceType::class, array(
                 'choices' => array(
                     AccessInterface::TYPE_OWNER => AccessInterface::TYPE_OWNER,
                     AccessInterface::TYPE_COLLABORATOR => AccessInterface::TYPE_COLLABORATOR,
@@ -63,7 +64,7 @@ class AccessType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'access';
     }

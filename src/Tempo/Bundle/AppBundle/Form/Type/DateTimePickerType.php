@@ -46,12 +46,18 @@ class DateTimePickerType extends AbstractType
         ));
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getParent()
     {
         return 'text';
     }
 
-    public function getName()
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
     {
         return 'datetimepicker';
     }
