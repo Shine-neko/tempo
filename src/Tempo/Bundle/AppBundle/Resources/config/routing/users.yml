@@ -9,7 +9,7 @@ user_login_check:
 user_logout:
     path: /logout
     defaults: { _controller: "TempoAppBundle:Security:logout" }
-    
+
 user_register:
     path: /register
     defaults: { _controller: "TempoAppBundle:Security:register"}
@@ -39,20 +39,18 @@ user_resetting_reset:
     path: /user/resetting
     defaults:
         _controller: "TempoAppBundle:Resetting:reset"
-    requirements:
-        _method:  GET|POST
+    methods: [GET|POST]
 
 user_resetting_validate:
     path: /user/resetting/{token}
     defaults:
         _controller: "TempoAppBundle:Resetting:resetValidate"
-    requirements:
-        _method:  GET|POST
+    methods:  [GET,POST]
 
 user_admin:
     resource: "@TempoAppBundle/Resources/config/routing/admin/user.yml"
     prefix: /admin/users
-    
+
 user_invite_resent:
     path: /user/invite/{id}
     defaults:

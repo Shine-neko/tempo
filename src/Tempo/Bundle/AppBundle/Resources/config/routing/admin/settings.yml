@@ -1,6 +1,6 @@
 admin_configuration_general:
     path: /
-    methods: [GET|POST]
+    methods: [GET, POST]
     defaults:
         _controller: sylius.controller.settings:updateAction
         namespace: general
@@ -8,7 +8,7 @@ admin_configuration_general:
 
 admin_configuration_project:
     path: /project
-    methods: [GET|POST]
+    methods: [GET, POST]
     defaults:
         _controller: sylius.controller.settings:updateAction
         namespace: project

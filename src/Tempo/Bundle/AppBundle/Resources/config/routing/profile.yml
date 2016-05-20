@@ -5,8 +5,7 @@ user_profile_avatar:
 user_profile_password:
   path:  /edit/password
   defaults: { _controller: TempoAppBundle:Profile:changePassword }
-  requirements:
-    _method:  GET|POST
+  methods:  [GET, POST]
 
 user_profile_update:
    path:  /edit/update

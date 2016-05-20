@@ -9,17 +9,17 @@ timesheet_show:
 timesheet_create:
     path:  /{project}/create
     defaults: { _controller: TempoAppBundle:Timesheet:create }
-    requirements: { _method: POST }
+    methods: [POST]
 
 timesheet_update:
     path:  /{id}/update
     defaults: { _controller: "TempoAppBundle:Timesheet:update" }
-    requirements: { _method: POST }
+    methods: [POST]
 
 timesheet_delete:
     path:  /{id}/delete
     defaults: { _controller: "TempoAppBundle:Timesheet:delete" }
-    requirements: { _method: POST }
+    methods: [POST]
 
 timesheet_validation:
     path: /validation

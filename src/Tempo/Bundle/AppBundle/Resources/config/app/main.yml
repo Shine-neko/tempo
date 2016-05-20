@@ -1,6 +1,6 @@
 imports:
-    - { resource: @TempoAppBundle/Resources/config/app/resource.yml }
-    - { resource: @TempoAppBundle/Resources/config/app/admin.yml }
+    - { resource: "@TempoAppBundle/Resources/config/app/resource.yml" }
+    - { resource: "@TempoAppBundle/Resources/config/app/admin.yml" }
 
 sylius_settings: ~
 
@@ -10,7 +10,7 @@ doctrine_cache:
             type: file_system
 
 stof_doctrine_extensions:
-    default_locale: %locale%
+    default_locale: "%locale%"
     translation_fallback: true
     orm:
         default:
@@ -32,8 +32,8 @@ hwi_oauth:
     resource_owners:
         google:
             type:          google
-            client_id:     %oauth.google.clientid%
-            client_secret: %oauth.google.clientsecret%
+            client_id:     "%oauth.google.clientid%"
+            client_secret: "%oauth.google.clientsecret%"
             scope:         "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
             options:
                 access_type: offline
@@ -43,8 +43,8 @@ hwi_oauth:
 
         github:
             type: github
-            client_id:     %oauth.github.clientid%
-            client_secret: %oauth.github.clientsecret%
+            client_id:     "%oauth.github.clientid%"
+            client_secret: "%oauth.github.clientsecret%"
 
 tempo_app:
   week:
@@ -68,11 +68,11 @@ tempo_app:
 knp_snappy:
     pdf:
         enabled:    true
-        binary:     %knp_snappy.pdf.binary%
+        binary:     "%knp_snappy.pdf.binary%"
         options:    []
     image:
         enabled:    true
-        binary:     %knp_snappy.image.binary%
+        binary:     "%knp_snappy.image.binary%"
         options:    []
 
 tempo_js_configuration:

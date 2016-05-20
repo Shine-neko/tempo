@@ -35,9 +35,7 @@ class ResourceExtension extends \Twig_Extension
         $browser = new Browser() ;
         $navigateurFinal = explode('.', $browser->getVersion() );
 
-        return strtolower($browser->getBrowser(). ' ' .
-            $browser->getBrowser().$navigateurFinal[0]). ' '.
-        $browser->getPlatform();
+        return strtolower($browser->getBrowser(). ' ' .$browser->getBrowser().$navigateurFinal[0]). ' '. $browser->getPlatform();
     }
 
     // get gravatar image

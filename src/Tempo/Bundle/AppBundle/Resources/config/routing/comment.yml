@@ -5,18 +5,15 @@ comment_list:
 comment_create:
     path:  /create/{type}/{parent}
     defaults: { _controller: TempoAppBundle:Comment:create }
-    requirements:
-        _method:  GET|POST
+    methods: [GET, POST]
 
 comment_update:
     path:  /{comment}/update
     defaults: { _controller: TempoAppBundle:Comment:updated }
-    requirements:
-        _method:  GET|POST
+    methods:  [GET, POST]
 
 comment_delete:
     path:  /{comment}/delete
     defaults: { _controller: TempoAppBundle:Comment:delete }
-    requirements:
-        _method:  GET|POST
+    methods:  [GET, POST]
 

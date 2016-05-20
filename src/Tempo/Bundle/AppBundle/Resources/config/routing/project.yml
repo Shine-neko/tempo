@@ -9,8 +9,8 @@ project_create:
 project_update:
     path:  /{slug}/update
     defaults: { _controller: TempoAppBundle:Project:update }
+    methods: [GET, POST]
     requirements:
-        _method: get|post
         slug: ".+"
 
 project_settings:
@@ -28,8 +28,8 @@ project_team_add:
 project_team_create:
     path:  /{slug}/team/create
     defaults: { _controller: TempoAppBundle:Access:create }
+    methods: [GET]
     requirements:
-        _method:  GET
         slug: ".+"
 
 project_team_delete:
