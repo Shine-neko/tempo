@@ -2,9 +2,7 @@
 
 namespace Tempo\Bundle\AppBundle\Model;
 
-use Sylius\Component\Resource\Model\ResourceInterface;
-
-interface ProjectProviderInterface extends ResourceInterface
+interface ProjectProviderInterface
 {
     const STATE_ACTIVE = 'on';
     const STATE_UNACTIVE = 'off';

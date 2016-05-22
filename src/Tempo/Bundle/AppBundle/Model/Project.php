@@ -12,6 +12,7 @@
 namespace Tempo\Bundle\AppBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Sylius\Component\Resource\Model\ResourceInterface;
 use Tempo\Bundle\AppBundle\Behavior\AccessTrait;
 use Tempo\Bundle\AppBundle\Behavior\TimestampTrait;
 
@@ -19,7 +20,7 @@ use Tempo\Bundle\AppBundle\Behavior\TimestampTrait;
  * Project Model
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
-class Project implements ProjectInterface
+class Project implements ProjectInterface, ResourceInterface
 {
     use AccessTrait, TimestampTrait;
 
@@ -114,7 +115,7 @@ class Project implements ProjectInterface
     protected $budget_estimated;
 
     /**
-     * @var integer
+     * @var array
      */
     protected $parents;
 
@@ -434,6 +435,13 @@ class Project implements ProjectInterface
     public function setChildren($children)
     {
         $this->children = $children;
+
+        return $this;
+    }
+
+    public function setParents($parents)
+    {
+        $this->parents = $parents;
 
         return $this;
     }

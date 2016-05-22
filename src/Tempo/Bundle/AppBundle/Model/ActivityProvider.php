@@ -11,13 +11,14 @@
 
 namespace Tempo\Bundle\AppBundle\Model;
 
+use Sylius\Component\Resource\Model\ResourceInterface;
 use Tempo\Bundle\AppBundle\Behavior\TimestampTrait;
 
 /**
  * Activity
  *
  */
-class ActivityProvider implements ActivityProviderInterface
+class ActivityProvider implements ActivityProviderInterface, ResourceInterface
 {
     use TimestampTrait;
 

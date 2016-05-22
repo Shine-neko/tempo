@@ -11,9 +11,10 @@
 
 namespace Tempo\Bundle\AppBundle\Model;
 
+use Sylius\Component\Resource\Model\ResourceInterface;
 use Tempo\Bundle\AppBundle\Behavior\TimestampTrait;
 
-class ProjectProvider implements ProjectProviderInterface
+class ProjectProvider implements ProjectProviderInterface, ResourceInterface
 {
     use TimestampTrait;
 

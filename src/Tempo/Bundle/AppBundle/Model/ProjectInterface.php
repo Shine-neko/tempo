@@ -11,13 +11,11 @@
 
 namespace Tempo\Bundle\AppBundle\Model;
 
-use Sylius\Component\Resource\Model\ResourceInterface;
-
 /**
 * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
 */
 
-interface ProjectInterface extends ResourceInterface
+interface ProjectInterface
 {
     /**
      * @return integer $id

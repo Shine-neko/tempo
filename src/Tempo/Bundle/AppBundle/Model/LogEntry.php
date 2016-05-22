@@ -12,8 +12,9 @@
 namespace Tempo\Bundle\AppBundle\Model;
 
 use Gedmo\Loggable\Entity\MappedSuperclass\AbstractLogEntry;
+use Sylius\Component\Resource\Model\ResourceInterface;
 
-class LogEntry extends AbstractLogEntry
+class LogEntry extends AbstractLogEntry implements ResourceInterface
 {
     protected $user;
 

@@ -12,10 +12,11 @@
 namespace Tempo\Bundle\AppBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Sylius\Component\Resource\Model\ResourceInterface;
 use Tempo\Bundle\AppBundle\Behavior\TimestampTrait;
 use Tempo\Bundle\AppBundle\Behavior\EnabledTrait;
 
-class User implements UserInterface
+class User implements UserInterface, ResourceInterface
 {
     use TimestampTrait, EnabledTrait;
 
@@ -32,7 +33,7 @@ class User implements UserInterface
 
     /** @var string */
     protected $email;
-    
+
     /** @var UserEmail[]|ArrayCollection */
     protected $emails;
 
@@ -170,19 +171,19 @@ class User implements UserInterface
     {
         return $this->username;
     }
-    
+
     public function getEmails()
     {
         return $this->emails;
     }
-    
+
     public function addEmail(UserEmail $email)
     {
         if($this->emails->count() == 0){
             $email->setMain(true);
         }
         $this->emails[] = $email;
-        
+
         return $this;
     }
 
@@ -210,8 +211,8 @@ class User implements UserInterface
     public function setEmail($email)
     {
         @trigger_error('The'.__METHOD__.' method is deprecated since version 0.5 and will be removed in 0.6');
-        
-        $this->addEmail(new UserEmail($email));
+
+        $this->addEmail((new UserEmail($email))->setUser($this));
 
         return $this;
     }

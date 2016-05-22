@@ -11,7 +11,9 @@
 
 namespace Tempo\Bundle\AppBundle\Model;
 
-class UserEmail
+use Sylius\Component\Resource\Model\ResourceInterface;
+
+class UserEmail implements ResourceInterface
 {
     const STATUS_PRIVATE = 'STATUS_PRIVATE';
     const STATUS_PUBLIC = 'STATUS_PUBLIC';

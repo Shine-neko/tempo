@@ -11,7 +11,9 @@
 
 namespace Tempo\Bundle\AppBundle\Model;
 
-class Activity implements ActivityInterface
+use Sylius\Component\Resource\Model\ResourceInterface;
+
+class Activity implements ActivityInterface, ResourceInterface
 {
     /**
      *
