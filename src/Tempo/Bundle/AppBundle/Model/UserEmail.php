@@ -98,6 +98,11 @@ class UserEmail implements ResourceInterface
         return $this;
     }
 
+    public function isMain()
+    {
+        return (bool) $this->main;
+    }
+
     public function setStatus($status)
     {
         $this->status = $status;
@@ -120,7 +125,6 @@ class UserEmail implements ResourceInterface
     public function setUser(UserInterface $user)
     {
         $this->user = $user;
-        $this->user->addEmail($this);
 
         return $this;
     }

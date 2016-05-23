@@ -45,18 +45,6 @@ interface UserInterface extends AdvancedUserInterface, \Serializable, Timestampa
     public function getSlug();
 
     /**
-     * @param string $email
-     *
-     * @return self
-     */
-    public function setEmail($email);
-
-    /**
-     * @return string $email
-     */
-    public function getEmail();
-
-    /**
      * @param boolean $enabled
      *
      * @return self
