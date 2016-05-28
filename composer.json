@@ -22,6 +22,7 @@
         "php": ">=5.5.9",
         "symfony/symfony": "~2.8",
         "doctrine/orm": "~2.5",
+        "ocramius/proxy-manager": "~1.0",
         "doctrine/doctrine-migrations-bundle": "~1.0",
         "symfony/assetic-bundle": "~2.8",
         "symfony/swiftmailer-bundle": "~2.3",
@@ -46,8 +47,8 @@
         "liip/imagine-bundle": "~1.5",
         "nelmio/api-doc-bundle": "~2.12",
         "willdurand/js-translation-bundle": "~2.5",
-        "sylius/settings-bundle": "0.17",
-        "sylius/resource-bundle": "0.17",
+        "sylius/settings-bundle": "0.18",
+        "sylius/resource-bundle": "0.18",
         "phpoffice/phpexcel": "~1.8",
         "nelmio/cors-bundle": "~1.4"
    },
