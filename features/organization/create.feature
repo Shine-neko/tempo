@@ -1,4 +1,5 @@
 @organization
+@javascript
 Feature: Create organisation
 
   Background:

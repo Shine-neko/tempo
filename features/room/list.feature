@@ -11,4 +11,3 @@ Feature: Manipule room
     And I should see "Room2"
     And I should see "Room3"
     And I should see "Room4"
-    And I should see "Room5"

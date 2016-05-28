@@ -98,6 +98,26 @@ class FeatureContext extends BaseContext
     }
 
     /**
+     * @Given /^I wait (\d+) (seconds|second)$/
+     */
+    public function iWait($time)
+    {
+        $this->getSession()->wait($time * 1000);
+    }
+
+    /**
+     * @When /^(?:|I )wait for "(?P<element>[^"]*)" to be visible$/
+     */
+    public function waitForVisible($element, $time = 5000)
+    {
+        if (!$this->getSession()->getDriver() instanceof Selenium2Driver) {
+            return;
+        }
+
+        $this->getSession()->wait($time, "jQuery('" . $element . "').is(':visible')");
+    }
+
+    /**
      * Wait
      *
      * @param int $time

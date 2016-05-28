@@ -16,17 +16,18 @@ Feature: Users management
   Scenario: Creating user
     Given I am on "/admin/users/new"
     When I fill in the following:
-      | Username   | munio.murai          |
-      | First Name | Kunio                |
-      | Last Name  | Murai                |
-      | Password   | Password             |
-      | E-Mail     | munio.murai@gto.com |
+      | Username    | munio.murai          |
+      | First Name  | Kunio                |
+      | Last Name   | Murai                |
+      | Password    | Password             |
+      | Email       | munio.murai@gto.com  |
+
     And I press "Create"
     And I should see "User has been successfully created."
 
   Scenario: Updating the user
     Given I am on "/admin/users/4/edit"
-    When I fill in "E-Mail" with "jack.gill@gto.com"
+    When I fill in "Email" with "jack.gill@gto.com"
     And I press "Save changes"
     And I should see "jack.gill@gto.com"
 

@@ -20,17 +20,16 @@ use Tempo\Bundle\AppBundle\Model\UserInterface;
  */
 class UserRepository extends EntityRepository
 {
-     /**
-     * {@inheritdoc}
-     */
-    public function createNew()
+    public function findUserByEmails($values)
     {
-        $className = parent::createNew();
-        $className->addRole(UserInterface::ROLE_DEFAULT);
-
-        return $className;
+        return $this->createQueryBuilder('u')
+            ->leftJoin('u.emails', 'emails')
+            ->where('emails.email IN (:emails)')
+            ->setParameter('emails', $values)
+            ->getQuery()
+            ->getSingleResult(Query::HYDRATE_OBJECT);
     }
-    
+
     public function totalUser()
     {
         return $this->createQueryBuilder('u')

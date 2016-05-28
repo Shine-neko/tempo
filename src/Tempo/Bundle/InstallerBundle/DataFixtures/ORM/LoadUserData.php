@@ -18,6 +18,7 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Tempo\Bundle\AppBundle\Model\User;
+use Tempo\Bundle\AppBundle\Model\UserEmail;
 
 class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
@@ -67,7 +68,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
             }
             $account->setUsername($username);
             $account->setSlug($username);
-            $account->setEmail($username. '@tempo-project.org');
+            $account->addEmail(new UserEmail($username. '@tempo-project.org'));
             $account->setLastName($fullName[1]);
             $account->setFirstName($fullName[0]);
             $account->setPlainPassword($username);

@@ -29,10 +29,15 @@ class UserManager extends ModelManager
     public function findUserByUsernameOrEmail($usernameOrEmail)
     {
         if (filter_var($usernameOrEmail, FILTER_VALIDATE_EMAIL)) {
-            return $this->findUserBy(array('email' => $usernameOrEmail));
+            return $this->findUserByEmails(array($usernameOrEmail));
         }
 
         return $this->findUserBy(array('username' => $usernameOrEmail));
+    }
+
+    public function findUserByEmails(array $emails)
+    {
+        return $this->getRepository()->findUserByEmails($emails);
     }
 
     public function findUserBy($criteria)
