@@ -1,17 +1,6 @@
 {% extends "TempoAppBundle::layout.html.twig" %}
 {% block bodyClass %}project edit{% endblock %}
 
-{% block javascripts %}
-    {{ parent() }}
-    {% javascripts
-        '@TempoAppBundle/Resources/assets/js/views/projectView.js'
-        output="js/project-update.js"
-    %}
-    <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-    <script>new Tempo.View.Project(); </script>
-{% endblock %}
-
 {% block container %}
     {% block breadcrumb %}
         <ol id="breadcrumb" class="clearfix">

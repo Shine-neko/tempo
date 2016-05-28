@@ -61,7 +61,7 @@
         </service>
 
         <service id="tempo.form.type.datetimepicker" class="%tempo.form.type.datetimepicker.class%">
-            <tag name="form.type" alias="datetimepicker" />
+            <tag name="form.type" />
         </service>
 
         <service id="tempo.form.type.list" class="%tempo.form.type.list.class%">
@@ -71,7 +71,7 @@
         <service id="tempo.form.type.wysiwyg" class="%tempo.form.type.wysiwyg.class%">
             <argument type="service" id="tempo.asset_manager" />
             <argument type="service" id="tempo.behavior" />
-            <tag name="form.type" alias="wysiwyg" />
+            <tag name="form.type" />
         </service>
 
         <service id="tempo.form.type.phone" class="%tempo.form.type.phone.class%">
@@ -134,11 +134,11 @@
         </service>
 
         <service id="tempo.settings_schema.general" class="%tempo.settings_schema.general.class%">
-            <tag name="sylius.settings_schema" namespace="general" />
+            <tag name="sylius.settings_schema" alias="general" />
         </service>
 
         <service id="tempo.settings_schema.project" class="%tempo.settings_schema.project.class%">
-            <tag name="sylius.settings_schema" namespace="project" />
+            <tag name="sylius.settings_schema" alias="project" />
         </service>
 
         <service id="tempo.builder.activities" class="%tempo.builder.activities.class%">

@@ -17,7 +17,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}"  />
-    <title>{% block title %}{{ sylius_settings_get('general.name') }}{% endblock %} - Tempo</title>
+    <title>{% block title %}{{ sylius_settings('general').get('name') }}{% endblock %} - Tempo</title>
 </head>
 <body class="no-js {{ get_browser() }} {% block bodyClass %}{% endblock %}">
 {% block body %}
@@ -31,7 +31,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="/" class="navbar-brand">{{ sylius_settings_get('general.name') }} </a>
+                    <a href="/" class="navbar-brand">{{ sylius_settings('general').get('name') }} </a>
                 </div>
                 <div class="head-inner navbar-collapse">
                     <form id="search" class="navbar-form navbar-left" role="search">
@@ -137,6 +137,10 @@
 
     {%  block javascripts %}
     <script type="text/javascript" src="{{ asset('js/vendor.js') }}"></script>
+    {% for javascript in behavior.resource.javascripts %}
+    <script type="text/javascript" src="{{ javascript }}"></script>
+    {% endfor %}
+    {{ behavior.renderHTML|raw }}
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
     {%  endblock javascripts %}
 
@@ -172,10 +176,7 @@
         {% endjavascripts %}
         <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 
-        {% for javascript in behavior.resource.javascripts %}
-            <script type="text/javascript" src="{{ javascript }}"></script>
-        {% endfor %}
-        {{ behavior.renderHTML|raw }}
+
     {% endblock %#}
 {% endblock body %}
 </body>

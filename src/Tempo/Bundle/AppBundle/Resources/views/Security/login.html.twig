@@ -3,7 +3,7 @@
 {% block body %}
 
     <div id="container-user" class="col-md-3">
-        <h1>{{ sylius_settings_get('general.name') }} </h1>
+        <h1>{{ sylius_settings('general').get('name') }} </h1>
 
         {% if error is defined and error %}
             <div class="form-error">{{ error.messageKey|trans(error.messageData) }}</div>

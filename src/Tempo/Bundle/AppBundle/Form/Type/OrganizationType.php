@@ -41,11 +41,13 @@ class OrganizationType extends AbstractType
 
             if (null !== $organization->getId()) {
                 $form
-                    ->add('avatar', FileType::class)
+                    ->add('avatar', FileType::class, array(
+                        'data_class' => null
+                    ))
                     ->add('contact', 'email', array(
                         'required' => true
                     ))
-                    ->add('website');
+                    ->add('website', TextType::class);
             }
         });
     }

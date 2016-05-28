@@ -60,7 +60,7 @@ class AutocompleteType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix()
+    public function getName()
     {
         return 'autocomplete';
     }

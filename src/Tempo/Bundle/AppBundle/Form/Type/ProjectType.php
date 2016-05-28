@@ -15,6 +15,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Tempo\Bundle\AppBundle\Form\Type\DateTimePickerType;
 use Tempo\Bundle\AppBundle\Repository\ProjectTypeRepository;
 
 class ProjectType extends AbstractType
@@ -29,18 +30,18 @@ class ProjectType extends AbstractType
                 'label' => 'tempo.project.form.label.name',
                 'required' => true,
             ))
-            ->add('description', 'wysiwyg', array(
+            ->add('description', SummernoteType::class, array(
                 'required' => false,
                 'label'    => 'tempo.project.form.label.description',
             ))
             ->add('active', null, array(
                 'label' => 'tempo.project.form.label.isactive'
             ))
-            ->add('beginning', 'datetimepicker', array(
+            ->add('beginning', DateTimePickerType::class, array(
                 'label' => 'tempo.project.form.label.beginning',
                 'required' => false,
             ))
-            ->add('ending', 'datetimepicker', array(
+            ->add('ending', DateTimePickerType::class, array(
                 'label' => 'tempo.project.form.label.ending',
                 'required' => false,
             ))

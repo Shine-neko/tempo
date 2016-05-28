@@ -1,6 +1,6 @@
 user_profile_avatar:
-   path:  /edit/avatar
-   defaults: { _controller: TempoAppBundle:Profile:avatar }
+  path:  /edit/avatar
+  defaults: { _controller: TempoAppBundle:Profile:avatar }
 
 user_profile_password:
   path:  /edit/password
@@ -8,21 +8,17 @@ user_profile_password:
   methods:  [GET, POST]
 
 user_profile_update:
-   path:  /edit/update
-   defaults: { _controller: TempoAppBundle:Profile:update }
+  path:  /edit
+  defaults: { _controller: TempoAppBundle:Profile:update }
 
 user_profile_settings:
-   path: /edit/settings
-   defaults: { _controller: TempoAppBundle:Profile:setting }
+  path: /edit/settings
+  defaults: { _controller: TempoAppBundle:Profile:setting }
 
 user_profile_token:
-    path: /generate-token
-    defaults: { _controller: TempoAppBundle:Profile:generateToken }
+  path: /generate-token
+  defaults: { _controller: TempoAppBundle:Profile:generateToken }
 
 user_profile_show:
-   path: /{slug}
-   defaults: { _controller: TempoAppBundle:Profile:show }
-
-fos_user_profile_show:
-   path: /edit
-   defaults: {  _controller: TempoAppBundle:Profile:edit }
+  path: /{slug}
+  defaults: { _controller: TempoAppBundle:Profile:show }

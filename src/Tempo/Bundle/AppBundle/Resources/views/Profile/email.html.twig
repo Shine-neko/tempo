@@ -10,14 +10,14 @@
             <li class="last">{{ 'tempo.profile.tabs.emails'|trans }}</li>
         </ol>
     {% endblock breadcrumb %}
-    
+
      <div class="container-panel">
 
         {% include "TempoAppBundle:Profile:_tabs.html.twig" %}
         <div class="page-header">
             <h1>{{ 'tempo.profile.tabs.emails'|trans }}</h1>
         </div>
-        
+
         <div class="col-md-8 app-panel">
             <h4>{{ 'tempo.profile.current_emails'|trans }}</h4>
             <p>{{ 'tempo.profile.main_adress_explain'|trans }}</p>
@@ -28,7 +28,7 @@
                             {% set status = 'private' %}
                         {% else %}
                             {% set status = 'public' %}
-                        {% endif %}    
+                        {% endif %}
                     <tr>
                         <td>
                             <a href="{{ path('user_email_change_status', {'id': email.id, 'status': status }) }}">
@@ -52,7 +52,7 @@
                             {% endif %}
                         </td>
                         <td>
-                            <a class="text-danger" href="{{ path('user_email_delete', {'id': email.id }) }}" alt="remove">
+                            <a class="text-danger" href="{{ path('user_email_delete', {'id': email.id }) }}" title="remove {{ email.email }}">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </a>
                         </td>
@@ -60,9 +60,10 @@
                     {% endfor %}
                 </tbody>
             </table>
-                
+
             <form action="{{ path('user_email_edit') }}" method="POST" class="user_profile_update">
                 <div class="form-inline">
+                    <h5>{{ 'tempo.profile.add_email'|trans }}</h5>
                     <div class="form-group">
                         {{ form_widget(form) }}
                     </div>
@@ -70,5 +71,5 @@
                 </div>
             </form>
         </div>
-    
+
 {% endblock %}

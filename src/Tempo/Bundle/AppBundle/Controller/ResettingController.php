@@ -23,9 +23,10 @@ class ResettingController extends Controller
         if ($request->isMethod('POST') && $username = $request->request->get('username')) {
             /** @var UserManager $userManager */
             $userManager = $this->getManager('user');
-            $user = $userManager->findUserByUsernameOrEmail($username);
 
-            if (!$user) {
+            try {
+                $user = $userManager->findUserByUsernameOrEmail($username);
+            } catch(\Exception $exception) {
                 $this->addFlash('error', 'tempo.security.resetting.request_no_account');
                 return $this->redirectToRoute('user_resetting_reset');
             }
@@ -37,7 +38,7 @@ class ResettingController extends Controller
             if (!$user->getConfirmationToken()) {
                 $user->setConfirmationToken($user->generateToken());
                 $user->setPasswordRequestedAt(new \DateTime('now', new \DateTimeZone('UTC')));
-                $userManager->save($user);
+                $this->get('tempo.domain_manager')->update($user);
 
                 $this->get('tempo.mailer.sender')->sender('TempoAppBundle:Mail:User/reset.html.twig', array(
                     'user' => $user,

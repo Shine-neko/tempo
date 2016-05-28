@@ -15,7 +15,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormEvents;
@@ -38,20 +38,25 @@ class RegisterType extends AbstractType
                 'first_options' => array('label' => 'tempo.security.login.password'),
                 'second_options' => array('label' => 'tempo.security.resetting.password_again'),
             ))
-            ->add('email', EmailType::class, array(
+            ->add('emails', CollectionType::class, array(
+                'entry_type'   => UserEmailType::class,
+                'entry_options' => [
+                    'label' => false,
+                ],
                 'required' => true,
-                'label' => 'tempo.profile.tabs.email',
             ))
             ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
                 $data = $event->getData();
                 $form = $event->getForm();
-                if ($data->getEmail() !== null) {
-                    $form->add('email', EmailType::class, array(
+                if ($data->getEmails()->first() !== null) {
+
+                    $form->add('emails', CollectionType::class, array(
+                        'entry_type'   => UserEmailType::class,
+                        'entry_options' => [
+                            'label' => false,
+                            'attr'  => array('readonly' => 'readonly')
+                        ],
                         'required' => true,
-                        'label' => 'tempo.profile.tabs.email',
-                        'attr' => array(
-                            'readonly' => 'readonly',
-                        ),
                     ));
                 }
             });

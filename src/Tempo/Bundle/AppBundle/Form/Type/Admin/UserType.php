@@ -13,13 +13,14 @@ namespace Tempo\Bundle\AppBundle\Form\Type\Admin;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
+use Tempo\Bundle\AppBundle\Form\Type\UserEmailType;
 
 class UserType extends AbstractType
 {
@@ -41,8 +42,11 @@ class UserType extends AbstractType
                 'label' => 'tempo.profile.form.lastName',
                 'required' => true,
             ))
-            ->add('email', EmailType::class, array(
-                'label' => 'tempo.profile.form.email',
+            ->add('emails', CollectionType::class, array(
+                'entry_type'   => UserEmailType::class,
+                'entry_options' => [
+                    'label' => false,
+                ],
                 'required' => true,
             ))
             ->add('plainPassword', PasswordType::class, array(
