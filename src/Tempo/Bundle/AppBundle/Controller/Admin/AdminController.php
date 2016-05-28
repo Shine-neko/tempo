@@ -12,25 +12,33 @@
 
 namespace Tempo\Bundle\AppBundle\Controller\Admin;
 
-use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Symfony\Component\HttpFoundation\Request;
+use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
+use Sylius\Bundle\ResourceBundle\Form\DefaultFormFactory;
 
 class AdminController extends ResourceController
 {
     public function filterFormAction(Request $request)
     {
         $form  = $this->getForm($request->query->get('criteria'));
+
         return $this->render('TempoAppBundle:Admin/Organization:filterForm.html.twig', array(
             'form' => $form->createView()
         ));
     }
 
-    public function mainAction()
+    public function getForm($resource = null, array $options = array())
     {
-        return $this->render('TempoAppBundle:Admin:Dashboard/main.html.twig', array(
-            'nbOrganizations'   => $this->getManager('organization')->nbTotalOrganisation(),
-            'nbProjects'        => $this->getManager('project')->nbTotalProject(),
-            'nbUsers'           => $this->getManager('user')->nbTotalUser(),
-        ));
+        $configuration = $this->requestConfigurationFactory->create($this->metadata, $this->get('request_stack')->getCurrentRequest());
+        $type = $configuration->getFormType();
+
+        if (strpos($type, '\\') !== false) { // full class name specified
+            $type = new $type();
+        } elseif (!$this->get('form.registry')->hasType($type)) { // form alias is not registered
+            $defaultFormFactory = new DefaultFormFactory($this->get('form.factory'));
+            return $defaultFormFactory->create($resource, $this->manager);
+        }
+
+        return $this->createForm($type, $resource, $options);
     }
 }

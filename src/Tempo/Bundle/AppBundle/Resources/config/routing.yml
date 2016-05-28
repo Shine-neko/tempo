@@ -1,6 +1,6 @@
 admin:
     path: /admin
-    defaults: { _controller: TempoAppBundle:Admin\Admin:main }
+    defaults: { _controller: TempoAppBundle:Admin/Dashboard:main }
 
 _user:
   resource: "@TempoAppBundle/Resources/config/routing/users.yml"
@@ -77,7 +77,7 @@ _prodiver_api:
 _comment:
   resource: "@TempoAppBundle/Resources/config/routing/comment.yml"
   prefix:   /comment
-  
+
 _emails:
   resource: "@TempoAppBundle/Resources/config/routing/userEmail.yml"
   prefix: /user/email
