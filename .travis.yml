@@ -6,15 +6,23 @@ php:
   - 5.5
   - 5.6
   - 7.0
+  - nightly
   - hhvm
+
+env:
+    global:
+        - MIN_PHP=5.5.9
+
 matrix:
     allow_failures:
-        - php: 7.0
+        - php: nightly
         - php: hhvm
+    fast_finish: true
 
 cache:
     bundler: true
     directories:
+        - $HOME/.composer/cache
         - vendor
         - bin
         - node_modules
@@ -25,12 +33,13 @@ addons:
         packages:
             - wkhtmltopdf
             - xvfb
-            - firefox: "40.0"
 
 before_install:
-    - composer self-update
+    - composer self-update --stable --no-interaction
     - if [[ $TRAVIS_PHP_VERSION != 'hhvm' && $TRAVIS_PHP_VERSION != 'hhvm-nightly' ]]; then echo "zend.enable_gc = 0" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini; fi;
-    
+    - mysql -e 'create database tempo;'
+    - mysql -e 'create database tempo_test;'
+
 before_script:
     - cp behat.yml.dist behat.yml
 
@@ -48,18 +57,18 @@ before_script:
     # Selenium
     - export DISPLAY=:99
     - sh -e /etc/init.d/xvfb start
+    - firefox --version
     - wget http://selenium-release.storage.googleapis.com/2.47/selenium-server-standalone-2.47.1.jar
     - java -jar selenium-server-standalone-2.47.1.jar > /dev/null &
     - sleep 5
 
     # Install database
-    - php app/console doctrine:database:create --env=test
-    - php app/console doctrine:schema:create --env=test
+    - php app/console doctrine:schema:create --env=test --no-interaction
     - php app/console doctrine:fixtures:load --no-interaction --env=test
 
     # Loading web server for selenium
     - node bin/server.js > error.log &
-    - if [[ $TRAVIS_PHP_VERSION != 'hhvm' && $TRAVIS_PHP_VERSION != 'hhvm-nightly' ]]; then php app/console server:start localhost:8081; fi;
+    - if [[ $TRAVIS_PHP_VERSION != 'hhvm' && $TRAVIS_PHP_VERSION != 'hhvm-nightly' ]]; then php app/console server:start --env=test --force; fi;
 
 
 script:
