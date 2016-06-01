@@ -68,7 +68,7 @@ before_script:
 
     # Loading web server for selenium
     - node bin/server.js > error.log &
-    - if [[ $TRAVIS_PHP_VERSION != 'hhvm' && $TRAVIS_PHP_VERSION != 'hhvm-nightly' ]]; then php app/console server:start --env=test --force; fi;
+    - if [[ $TRAVIS_PHP_VERSION != 'hhvm' && $TRAVIS_PHP_VERSION != 'hhvm-nightly' ]]; then php app/console server:start localhost:8080 --env=test --force; fi;
 
 
 script:
