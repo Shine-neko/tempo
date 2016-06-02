@@ -11,15 +11,31 @@
 
 namespace Tempo\Bundle\AppBundle\Repository;
 
-use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
-use Tempo\Bundle\AppBundle\Model\UserInterface;
+use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
 /**
  * UserRepository
  */
 class UserRepository extends EntityRepository
 {
+    /**
+     * @param array $infos
+     * @return mixed
+     */
+    public function findUserBy($infos)
+    {
+        $key = key($infos);
+
+        $queryBuilder = $this->createQueryBuilder('u');
+        $queryBuilder
+            ->leftJoin('u.emails', 'emails')
+            ->where(sprintf('u.%s = :user', $key))
+            ->setParameter('user', $infos[$key]);
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
+
     public function findUserByEmails($values)
     {
         return $this->createQueryBuilder('u')
@@ -47,6 +63,5 @@ class UserRepository extends EntityRepository
             ->setParameter('slug', '%'.$slug. '%')
             ->getQuery()
             ->getResult(Query::HYDRATE_OBJECT);
-
     }
 }

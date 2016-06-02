@@ -32,7 +32,7 @@ class UserManager extends ModelManager
             return $this->findUserByEmails(array($usernameOrEmail));
         }
 
-        return $this->findUserBy(array('username' => $usernameOrEmail));
+        return $this->getRepository()->findUserBy(array('username' => $usernameOrEmail));
     }
 
     public function findUserByEmails(array $emails)
@@ -42,7 +42,7 @@ class UserManager extends ModelManager
 
     public function findUserBy($criteria)
     {
-        return $this->getRepository()->findOneBy($criteria);
+        return $this->getRepository()->findUserBy($criteria);
     }
 
     public function nbTotalUser()

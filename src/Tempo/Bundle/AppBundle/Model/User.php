@@ -169,6 +169,9 @@ class User implements UserInterface, ResourceInterface
         return $this->username;
     }
 
+    /**
+     * @return ArrayCollection|UserEmail[]
+     */
     public function getEmails()
     {
         return $this->emails;
@@ -198,7 +201,7 @@ class User implements UserInterface, ResourceInterface
     {
         if (!$this->containsEmail($email)) {
 
-            if($this->emails->count() == 0){
+            if ($this->emails->count() == 0) {
                 $email->setMain(true);
             }
 
