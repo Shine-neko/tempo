@@ -15,7 +15,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Behat\Mink\Driver\Selenium2Driver;
 use Behat\Mink\Exception\ResponseTextException;
 
-
 /**
  * Features context.
  */

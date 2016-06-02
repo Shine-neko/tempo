@@ -77,7 +77,7 @@ class DataContext extends BaseContext
 
         foreach($rows as $row) {
 
-            if ($row->getTagName() === 'th' ) {
+            if ($row->getTagName() === 'th') {
                 $columns[$row->getText()] = array();
             } else {
                 $class = $row->getAttribute('class');
