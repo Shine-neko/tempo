@@ -12,6 +12,7 @@
 namespace Tempo\Bundle\AppBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Sylius\Component\Resource\Model\ResourceInterface;
 use Tempo\Bundle\AppBundle\Behavior\AccessTrait;
 use Tempo\Bundle\AppBundle\Behavior\TimestampTrait;
 use Tempo\Bundle\AppBundle\Behavior\EnabledTrait;
@@ -19,7 +20,7 @@ use Tempo\Bundle\AppBundle\Behavior\EnabledTrait;
 /**
 * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
 */
-class Organization implements OrganizationInterface
+class Organization implements OrganizationInterface, ResourceInterface
 {
     use AccessTrait, TimestampTrait, EnabledTrait;
 
@@ -209,7 +210,7 @@ class Organization implements OrganizationInterface
     /**
      * {@inheritdoc}
      */
-    public function addProject($project)
+    public function addProject(ProjectInterface $project)
     {
         $this->projects[] = $project;
 

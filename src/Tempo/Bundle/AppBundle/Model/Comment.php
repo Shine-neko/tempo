@@ -11,9 +11,10 @@
 
 namespace Tempo\Bundle\AppBundle\Model;
 
+use Sylius\Component\Resource\Model\ResourceInterface;
 use Tempo\Bundle\AppBundle\Behavior\TimestampTrait;
 
-class Comment
+class Comment implements CommentInterface, ResourceInterface
 {
     use TimestampTrait;
 
@@ -65,7 +66,7 @@ class Comment
     }
 
     /**
-     * @return object
+     * @return User
      */
     public function getAuthor()
     {
@@ -73,48 +74,12 @@ class Comment
     }
 
     /**
-     * {@inheritdoc}
+     * @param UserInterface $author
+     * @return $this
      */
-    public function setCreatedAt(\DateTime $created)
+    public function setAuthor(UserInterface $author)
     {
-        $this->createdAt = $created;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setUpdatedAt(\DateTime $updated)
-    {
-        $this->updatedAt = $updated;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * @param $sender
-     * @return mixed
-     */
-    public function setAuthor($sender)
-    {
-        $this->author = $sender;
+        $this->author = $author;
 
         return $this;
     }

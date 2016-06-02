@@ -18,7 +18,8 @@ var Room = Backbone.View.extend({
     renderForm: function (event) {
 
         var template = _.template(JST["room/create.html"])({
-            'action' : Routing.generate('room_create')
+            'action' : Routing.generate('room_create'),
+            'save': Translator.trans('tempo.form.save')
         });
 
         var roomAdd = $('.room-add');

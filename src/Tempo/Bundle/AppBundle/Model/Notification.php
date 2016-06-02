@@ -11,9 +11,10 @@
 
 namespace Tempo\Bundle\AppBundle\Model;
 
+use Sylius\Component\Resource\Model\ResourceInterface;
 use Tempo\Bundle\AppBundle\Behavior\TimestampTrait;
 
-class Notification implements NotificationInterface
+class Notification implements NotificationInterface, ResourceInterface
 {
     use TimestampTrait;
 

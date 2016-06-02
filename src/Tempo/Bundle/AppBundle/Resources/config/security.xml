@@ -3,7 +3,7 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="tempo.security.login_manager.class">Tempo\AppBundle\EventListener\LastLoginListener</parameter>
+        <parameter key="tempo.security.login_manager.class">Tempo\Bundle\AppBundle\EventListener\LastLoginListener</parameter>
         <parameter key="tempo.security.access.voter.organization.class">Tempo\Bundle\AppBundle\Security\Authorization\Voter\OrganizationVoter</parameter>
         <parameter key="tempo.security.access.voter.project.class">Tempo\Bundle\AppBundle\Security\Authorization\Voter\ProjectVoter</parameter>
         <parameter key="tempo.security.access.voter.room.class">Tempo\Bundle\AppBundle\Security\Authorization\Voter\RoomVoter</parameter>

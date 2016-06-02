@@ -14,6 +14,7 @@ namespace Tempo\Bundle\AppBundle\Behat;
 use Behat\Behat\Context\Context;
 use Behat\MinkExtension\Context\RawMinkContext;
 use Behat\Symfony2Extension\Context\KernelAwareContext;
+use Behat\Mink\Driver\Selenium2Driver;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Doctrine\Common\Util\Inflector;
 
@@ -32,6 +33,10 @@ abstract class BaseContext extends RawMinkContext implements Context, KernelAwar
         $this->kernel = $kernel;
     }
 
+    /**
+     * @param string $route
+     * @return string
+     */
     public function generateUrl($route)
     {
         return $this->kernel->getContainer()->get('router')->generate($route);
@@ -64,6 +69,7 @@ abstract class BaseContext extends RawMinkContext implements Context, KernelAwar
 
     /**
      * Fills in form field with specified id|name|label|value.
+     * @param string $field
      */
     protected function fillField($field, $value)
     {
@@ -84,6 +90,7 @@ abstract class BaseContext extends RawMinkContext implements Context, KernelAwar
 
     /**
      * Presses button with specified id|name|title|alt|value.
+     * @param string $button
      */
     protected function pressButton($button)
     {
@@ -92,6 +99,7 @@ abstract class BaseContext extends RawMinkContext implements Context, KernelAwar
 
     /**
      * Clicks link with specified id|title|alt|text.
+     * @param string $link
      */
     protected function clickLink($link)
     {
@@ -101,5 +109,17 @@ abstract class BaseContext extends RawMinkContext implements Context, KernelAwar
     public function assertPageContainsText($text)
     {
         $this->assertSession()->pageTextContains($this->fixStepArgument($text));
+    }
+
+    /***
+     * Assert that given code equals the current one.
+     *
+     * @param integer $code
+     */
+    protected function assertStatusCodeEquals($code)
+    {
+        if (!$this->getSession()->getDriver() instanceof Selenium2Driver) {
+            $this->assertSession()->statusCodeEquals($code);
+        }
     }
 }

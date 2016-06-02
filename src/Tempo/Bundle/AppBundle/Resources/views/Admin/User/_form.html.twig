@@ -3,7 +3,11 @@
         <fieldset>
             <legend>Account</legend>
             {{ form_row(form.username) }}
-            {{ form_row(form.email) }}
+
+            {% for email in form.emails %}
+                {{ form_row(email) }}
+            {% endfor %}
+
             {{ form_row(form.plainPassword) }}
             {{ form_row(form.enabled) }}
 

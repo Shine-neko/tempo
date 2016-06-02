@@ -2,7 +2,12 @@ imports:
     - { resource: "@TempoAppBundle/Resources/config/app/resource.yml" }
     - { resource: "@TempoAppBundle/Resources/config/app/admin.yml" }
 
-sylius_settings: ~
+sylius_settings:
+    driver: doctrine/orm
+    resources:
+        settings:
+            classes:
+                model: Tempo\Bundle\AppBundle\Model\Parameter
 
 doctrine_cache:
     providers:

@@ -11,8 +11,10 @@
 
 namespace Tempo\Bundle\AppBundle\Model;
 
-use Sylius\Bundle\SettingsBundle\Model\Parameter as BaseParameter;
+use Sylius\Bundle\SettingsBundle\Model\Settings as BaseParameter;
+use Sylius\Component\Resource\Model\ResourceInterface;
 
-class Parameter extends BaseParameter
+class Parameter extends BaseParameter implements ResourceInterface
 {
+
 }

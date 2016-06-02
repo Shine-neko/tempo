@@ -25,11 +25,15 @@
                     </fieldset>
 
                     <fieldset id="phone-prototype" data-prototype="{{ form_widget(form.phones.vars.prototype) | e }}">
-                        {{ form_label(form.phones) }}
-                        <a class="add-phone" href="#"><span class="glyphicon glyphicon-plus"></span></a>
-                        {{ form_widget(form.phones) }}
+                        <div class="form-group">
+                            {{ form_label(form.phones) }}
+                            <a id="add-phone" href="#" title="{{ 'tempo.profile.form.add_phone'|trans }}" data-toggle="tooltip" data-placement="top">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </a>
+                            {{ form_widget(form.phones) }}
+                        </div>
                     </fieldset>
-                    
+
                     <fieldset>
                         {{ form_row(form.company) }}
                         {{ form_row(form.jobTitle) }}

@@ -11,26 +11,41 @@
 
 namespace Tempo\Bundle\AppBundle\Repository;
 
-use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
-use Tempo\Bundle\AppBundle\Model\UserInterface;
+use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
 /**
  * UserRepository
  */
 class UserRepository extends EntityRepository
 {
-     /**
-     * {@inheritdoc}
+    /**
+     * @param array $infos
+     * @return mixed
      */
-    public function createNew()
+    public function findUserBy($infos)
     {
-        $className = parent::createNew();
-        $className->addRole(UserInterface::ROLE_DEFAULT);
+        $key = key($infos);
 
-        return $className;
+        $queryBuilder = $this->createQueryBuilder('u');
+        $queryBuilder
+            ->leftJoin('u.emails', 'emails')
+            ->where(sprintf('u.%s = :user', $key))
+            ->setParameter('user', $infos[$key]);
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
     }
-    
+
+    public function findUserByEmails($values)
+    {
+        return $this->createQueryBuilder('u')
+            ->leftJoin('u.emails', 'emails')
+            ->where('emails.email IN (:emails)')
+            ->setParameter('emails', $values)
+            ->getQuery()
+            ->getSingleResult(Query::HYDRATE_OBJECT);
+    }
+
     public function totalUser()
     {
         return $this->createQueryBuilder('u')
@@ -48,6 +63,5 @@ class UserRepository extends EntityRepository
             ->setParameter('slug', '%'.$slug. '%')
             ->getQuery()
             ->getResult(Query::HYDRATE_OBJECT);
-
     }
 }

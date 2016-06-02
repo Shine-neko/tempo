@@ -1,8 +1,8 @@
 tempo:
-  
+
   header:
     search: Rechercher
- 
+
   menu:
     organization: Organisations
     project: Projets
@@ -56,7 +56,7 @@ tempo:
       password: Nouveau mot de passe
       password_again: Vérification
       already_login:  Vous avez déjà votre nom d'utilisateur et votre mot de passe ? Connectez-vous
-  
+
   activity:
     dashboard:
         title: Flux d'activité
@@ -144,7 +144,7 @@ tempo:
       open: Ouvert
       close: Fermé
       activity: Activité
-      sub_project: Sous-projet de 
+      sub_project: Sous-projet de
       settings: Paramètres
       service: Service
       description: Description
@@ -225,6 +225,7 @@ tempo:
     activity: Activité
     current_emails: Adresses actuelles
     add_email: Ajouter une adresse email
+    email: E-mail
     main_adress: Principale
     set_as_main: Définir comme adresse principale.
     delete_main_adress: Ceci est l'adresse principale. Veuillez déclarer une autre adresse principale avant de supprimer celle-ci.
@@ -242,7 +243,7 @@ tempo:
       rooms: Rooms
       edit: Modifier le profil
     avatar:
-      title: Avatar     
+      title: Avatar
     form:
       id: ID
       username: Nom d'utilisateur
@@ -265,13 +266,13 @@ tempo:
       company: Compagnie
       job_title: Poste
       phone: Téléphone
-      mobile_phone: Téléphone mobile
+      add_phone: Ajouter un numéro de téléphone
       generate_token: Générer le jeton
       type: Type
       number: Numéro
       cell_phone: Portable
       landline_phone: Fixe
-            
+
   avatar:
     title: Changer d'avatar
     choose_avatar: Choisir une nouvelle image
@@ -286,7 +287,7 @@ tempo:
     success_edit: L'avatar a été modifié
     failed_internal_error: Une erreur interne est survenue, veuillez réessayer.
     failed_valid_file: Le fichier téléchargé est invalide.
-    
+
   user:
     user: Utilisateur
     logout: Déconnexion
@@ -302,7 +303,7 @@ tempo:
       page_title : Liste des utilisateurs
     create.page_title: Créer un utilisateur
     update.page_title: Modifier l'utilisateur
-    
+
   room:
     title: Rooms
     delete_success: La room a bien été supprimée.
@@ -317,7 +318,7 @@ tempo:
     form:
       right_create_orga: Rôle autorisé à créer des organisations
       buisness_day: Jour ouvré
-      
+
   layout:
     toggle_navigation: Basculer la navigation
     powered_by: Produit par

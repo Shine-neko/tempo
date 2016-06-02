@@ -66,4 +66,38 @@ class DataContext extends BaseContext
             throw new ExpectationException($message, $this->getSession(), $e);
         }
     }
+
+    /**
+     * @Then /^I should see the table "([^"]*)"$/
+     */
+    public function IShouldSeeTheTable($tableName, TableNode $table)
+    {
+        $rows =  $this->getSession()->getPage()->findAll('css', $tableName. ' th, '. $tableName.' td');
+        $columns = array();
+
+        foreach($rows as $row) {
+
+            if ($row->getTagName() === 'th') {
+                $columns[$row->getText()] = array();
+            } else {
+                $class = $row->getAttribute('class');
+                $classes = explode(' ', $class);
+                foreach ($classes as $className) {
+                    $className = ucfirst($className);
+                    if (isset($columns[$className])) {
+                        $columns[$className][] = $row->getText();
+                    }
+                }
+            }
+        }
+
+        foreach ($table as $row) {
+            foreach(array_keys($row) as $index) {
+                if (!in_array($row[$index], $columns[$index])) {
+                    $message = sprintf('"%s" was not found in "%s"', $row[$index], $index);
+                    throw new ExpectationException($message, $this->getSession());
+                }
+            }
+        }
+    }
 }

@@ -7,9 +7,8 @@
  * file that was distributed with this source code.
  */
 
-
 var Router = Backbone.Router.extend({
-    routes: {
+  routes: {
         "": function() {
             var controller = require('./controllers/dashboard.js');
             controller.initialize();
@@ -32,7 +31,7 @@ var Router = Backbone.Router.extend({
             new projectView;
         },
 
-        "profile/edit/update": function () {
+        "profile/edit": function () {
             var userView = require('./views/user.js');
             new userView;
         },

@@ -12,10 +12,11 @@
 namespace Tempo\Bundle\AppBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Sylius\Component\Resource\Model\ResourceInterface;
 use Tempo\Bundle\AppBundle\Behavior\TimestampTrait;
 use Tempo\Bundle\AppBundle\Behavior\EnabledTrait;
 
-class User implements UserInterface
+class User implements UserInterface, ResourceInterface
 {
     use TimestampTrait, EnabledTrait;
 
@@ -30,9 +31,6 @@ class User implements UserInterface
     /** @var string */
     protected $slug;
 
-    /** @var string */
-    protected $email;
-    
     /** @var UserEmail[]|ArrayCollection */
     protected $emails;
 
@@ -170,19 +168,48 @@ class User implements UserInterface
     {
         return $this->username;
     }
-    
+
+    /**
+     * @return ArrayCollection|UserEmail[]
+     */
     public function getEmails()
     {
         return $this->emails;
     }
-    
+
+    /**
+     * @todo: Impossible to do Doctrine\Collection::contains on object
+     * @param UserEmail $email
+     * @return bool
+     */
+    protected function containsEmail(UserEmail $email)
+    {
+        $emails = array();
+
+        foreach($this->emails as $email) {
+            $emails[] = $email->getEmail();
+        }
+
+        return in_array($email->getEmail(), $emails);
+    }
+
+    /**
+     * @param UserEmail $email
+     * @return $this
+     */
     public function addEmail(UserEmail $email)
     {
-        if($this->emails->count() == 0){
-            $email->setMain(true);
+        if (!$this->containsEmail($email)) {
+
+            if ($this->emails->count() == 0) {
+                $email->setMain(true);
+            }
+
+             $email->setUser($this);
+
+            $this->emails[] = $email;
         }
-        $this->emails[] = $email;
-        
+
         return $this;
     }
 
@@ -204,14 +231,11 @@ class User implements UserInterface
         return $this->slug;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setEmail($email)
+    public function setEmails($emails)
     {
-        @trigger_error('The'.__METHOD__.' method is deprecated since version 0.5 and will be removed in 0.6');
-        
-        $this->addEmail(new UserEmail($email));
+        foreach($emails as $email) {
+            $this->addEmail($email);
+        }
 
         return $this;
     }
@@ -221,7 +245,11 @@ class User implements UserInterface
      */
     public function getEmail()
     {
-        return $this->email;
+        foreach ($this->emails as $email) {
+            if ($email->isMain()) {
+                return $email->getEmail();
+            }
+        }
     }
 
     /**

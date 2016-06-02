@@ -14,9 +14,8 @@ namespace Tempo\Bundle\AppBundle\Model;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Sylius\Component\Resource\Model\TimestampableInterface;
-use Sylius\Component\Resource\Model\ResourceInterface;
 
-interface UserInterface extends AdvancedUserInterface, \Serializable, TimestampableInterface, ResourceInterface
+interface UserInterface extends AdvancedUserInterface, \Serializable, TimestampableInterface
 {
     const ROLE_DEFAULT = 'ROLE_USER';
     const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
@@ -44,18 +43,6 @@ interface UserInterface extends AdvancedUserInterface, \Serializable, Timestampa
      * @return string $slug
      */
     public function getSlug();
-
-    /**
-     * @param string $email
-     *
-     * @return self
-     */
-    public function setEmail($email);
-
-    /**
-     * @return string $email
-     */
-    public function getEmail();
 
     /**
      * @param boolean $enabled

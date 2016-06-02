@@ -12,11 +12,26 @@ default:
                 - Tempo\Bundle\AppBundle\Behat\FeatureContext
                 - Tempo\Bundle\AppBundle\Behat\DataContext
                 - Tempo\Bundle\AppBundle\Behat\UserContext
+            mink_javascript_session: selenium2
 
     extensions:
         Behat\MinkExtension:
-            selenium2: ~
+            base_url: 'http://localhost:8080'
+            sessions:
+                default:
+                    goutte: ~
+                selenium2:
+                    selenium2: ~
+            browser_name: firefox
+            show_auto: false
+        Behat\Symfony2Extension: ~
 
+javascript:
+    extensions:
+        Behat\MinkExtension:
+            base_url: 'http://localhost:8080'
+            sessions:
+                javascript:
+                    selenium2: ~
             browser_name: firefox
             show_auto:    false
-        Behat\Symfony2Extension: ~

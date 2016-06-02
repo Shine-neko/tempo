@@ -2,7 +2,7 @@
 {% block bodyClass %}{{ parent() }} register login user {% endblock %}
 {% block body %}
     <div id="container-user" class="col-md-3">
-        <h1>{{ sylius_settings_get('general.name') }} </h1>
+        <h1>{{ sylius_settings('general').get('name') }} </h1>
 
         {% if error is defined and error %}
             <div class="form-error">{{ error.messageKey|trans(error.messageData) }}</div>
@@ -27,9 +27,11 @@
                 <div class="form-group">
                     {{ form_widget(form.password) }}
                 </div>
-                
+
                 <div class="form-group">
-                    {{ form_row(form.email) }}
+                    {% for email in form.emails  %}
+                        {{ form_widget(email) }}
+                    {% endfor %}
                 </div>
 
                 <div class="widget">

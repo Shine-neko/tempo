@@ -13,6 +13,7 @@ namespace Tempo\Bundle\AppBundle\Behat;
 
 use Symfony\Component\HttpFoundation\Request;
 use Behat\Mink\Driver\Selenium2Driver;
+use Behat\Mink\Exception\ResponseTextException;
 
 /**
  * Features context.
@@ -93,8 +94,39 @@ class FeatureContext extends BaseContext
             throw new \Exception('No flash messages found');
         }
 
+        if ($this->getSession()->getDriver() instanceof Selenium2Driver) {
+            $message = $this->getSession()->getPage()->find('css', '.flash-message')->getText();
+            $message = ltrim($message, '× ');
+
+            if ($message !== $text) {
+                throw new ResponseTextException($text, $this->getSession());
+            }
+
+            return;
+        }
+
         $this->assertSession()->pageTextContains($text);
 
+    }
+
+    /**
+     * @Given /^I wait (\d+) (seconds|second)$/
+     */
+    public function iWait($time)
+    {
+        $this->getSession()->wait($time * 1000);
+    }
+
+    /**
+     * @When /^(?:|I )wait for "(?P<element>[^"]*)" to be visible$/
+     */
+    public function waitForVisible($element, $time = 5000)
+    {
+        if (!$this->getSession()->getDriver() instanceof Selenium2Driver) {
+            return;
+        }
+
+        $this->getSession()->wait($time, "jQuery('" . $element . "').is(':visible')");
     }
 
     /**

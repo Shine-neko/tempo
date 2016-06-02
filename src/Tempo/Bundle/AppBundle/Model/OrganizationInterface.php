@@ -12,12 +12,11 @@
 namespace Tempo\Bundle\AppBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Sylius\Component\Resource\Model\ResourceInterface;
 
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
-interface OrganizationInterface extends ResourceInterface
+interface OrganizationInterface
 {
     /**
      * Get id
@@ -127,9 +126,9 @@ interface OrganizationInterface extends ResourceInterface
     /**
      * Add projects
      *
-     * @param \Tempo\Bundle\AppBundle\Model\s $project
+     * @param ProjectInterface $project
      */
-    public function addProject($project);
+    public function addProject(ProjectInterface $project);
 
     /**
      * Set projects

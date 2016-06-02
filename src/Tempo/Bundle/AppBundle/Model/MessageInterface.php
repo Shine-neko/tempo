@@ -11,9 +11,7 @@
 
 namespace Tempo\Bundle\AppBundle\Model;
 
-use Sylius\Component\Resource\Model\ResourceInterface;
-
-interface MessageInterface extends ResourceInterface
+interface MessageInterface
 {
     /**
      * Get id
@@ -40,10 +38,10 @@ interface MessageInterface extends ResourceInterface
     /**
      * Set user
      *
-     * @param  string      $user
+     * @param  UserInterface $user
      * @return Message
      */
-    public function setUser($user);
+    public function setUser(UserInterface $user);
 
     /**
      * Get user
@@ -83,9 +81,10 @@ interface MessageInterface extends ResourceInterface
     public function getUpdatedAt();
 
     /**
-     * @param $room
+     * @param RoomInterface $room
+     * @return self
      */
-    public function setRoom($room);
+    public function setRoom(RoomInterface $room);
 
     /**
      * @return $room

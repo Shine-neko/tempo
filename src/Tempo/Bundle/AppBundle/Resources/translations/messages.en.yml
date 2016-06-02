@@ -1,8 +1,8 @@
 tempo:
- 
+
   header:
     search: Search
- 
+
   menu:
     organization: Organizations
     project: Projects
@@ -56,7 +56,7 @@ tempo:
       password: New password
       password_again: Verification
       already_login:  Already have login and password? Sign in
-      
+
   activity:
       dashboard:
         title: Activity Feed
@@ -67,7 +67,7 @@ tempo:
           today: Today
           week: Last 7 days
           month: Last 30 days
-          
+
       events:
         user.update: updates its own information
         commented: Commented on
@@ -144,7 +144,7 @@ tempo:
       open: Open
       close: Close
       activity: Activity
-      sub_project: Sub project of 
+      sub_project: Sub project of
       settings: Settings
       service: Service
       description: Description
@@ -225,6 +225,7 @@ tempo:
     activity: Activity
     current_emails: Current adresses
     add_email: Add email adress
+    email: Email
     main_adress: Main
     delete_main_adress: This is the main adress. Please declare another primary adress before deleting this one.
     set_as_main: Set as main adress
@@ -242,7 +243,7 @@ tempo:
       room: Rooms
       edit: Edit profile
     avatar:
-      title: Avatar 
+      title: Avatar
     form:
       id: ID
       username: Username
@@ -265,13 +266,13 @@ tempo:
       generate_token: Generate token
       job_title: Job title
       phone: Phone
-      mobile_phone: Mobile phone
+      add_phone: Add a phone number
       company: Company
       type: Type
       number: Number
       cell_phone: Cell
       landline_phone: Landline
-      
+
   avatar:
     title: Change my profile picture
     choose_avatar: Choose a new picture
@@ -286,7 +287,7 @@ tempo:
     success_edit: The avatar has been modified
     failed_internal_error: An internal error occurred, please try again.
     failed_valid_file: Uploaded file is not valid
-    
+
   user:
     user: User
     logout: Logout
@@ -302,7 +303,7 @@ tempo:
       page_title : User list
     create.page_title: Create user
     update.page_title: Update user
-    
+
   room:
     title: Rooms
     delete_success: The room has been deleted successfuly.
@@ -317,7 +318,7 @@ tempo:
     form:
       right_create_orga: Role entitled to create organizations
       buisness_day: Business Day
-      
+
   layout:
     toggle_navigation: Toggle navigation
     powered_by: Powered by

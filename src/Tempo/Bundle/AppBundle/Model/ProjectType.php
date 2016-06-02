@@ -12,11 +12,12 @@
 namespace Tempo\Bundle\AppBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Sylius\Component\Resource\Model\ResourceInterface;
 
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
-class ProjectType implements ProjectTypeInterface
+class ProjectType implements ProjectTypeInterface, ResourceInterface
 {
     /**
      * @var string

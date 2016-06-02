@@ -353,7 +353,7 @@ table.table-striped tbody .actions .edit {
     display: inline-block;
 }
 
-.user.email.edit label[for="user_email_email"] {
+.user.email.edit h5 {
     display: block;
     font-size: 18px;
     line-height: 1.1;
@@ -361,8 +361,8 @@ table.table-striped tbody .actions .edit {
     margin-bottom: 5px;
 }
 
-.user.email.edit input[type="submit"] {
-     margin-top: 24px;
+.user.email.edit label[for="user_email_email"] {
+     margin-right: 24px;
 }
 
 .notification .nav-tabs {
@@ -672,6 +672,21 @@ table.table-striped tbody .actions .edit {
 .organization.show #content .row {
   margin-right: 15px;
   margin-left: 15px;
+}
+.organization.show #add_membre {
+
+    .control-label {
+      margin-right: 10px;
+      display: block;
+      float: left;
+    }
+
+    .selectize-control {
+      float: left;
+    }
+    input, .selectize-control {
+      width: 80%;
+    }
 }
 
 .organization.show .list-project {
@@ -1101,7 +1116,7 @@ table.table-striped tbody .actions .edit {
 .project.show .list_membre .list li {
   margin-bottom: 5px;
   display: table;
-  
+
   a, span:not(.glyphicon) {
     width: 30%;
   }

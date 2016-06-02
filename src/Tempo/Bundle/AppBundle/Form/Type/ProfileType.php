@@ -11,12 +11,11 @@
 
 namespace Tempo\Bundle\AppBundle\Form\Type;
 
-use Nelmio\ApiDocBundle\Tests\Fixtures\Form\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Tempo\Bundle\AppBundle\Form\Form\PhoneType;
 
 class ProfileType extends AbstractType
 {
@@ -30,20 +29,22 @@ class ProfileType extends AbstractType
                 'label' => 'tempo.profile.form.lastName'
             ))
             ->add('company', TextType::class, array(
-                'label' => 'tempo.profile.form.company'
+                'label' => 'tempo.profile.form.company',
+                'required' => false
             ))
             ->add('jobTitle', TextType::class, array(
-                'label' => 'tempo.profile.form.job_title'
+                'label' => 'tempo.profile.form.job_title',
+                'required' => false
             ))
             ->add('phones', CollectionType::class, array(
-                'type' => 'phone',
+                'entry_type' => PhoneType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
                 'prototype' => true,
-                'by_reference' => false,
-                'options' => array(
+                'entry_options' => array(
                     'label' => false
-            )))
+                )
+            ))
         ;
     }
 

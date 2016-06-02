@@ -12,8 +12,9 @@
 namespace Tempo\Bundle\AppBundle\Model;
 
 use Tempo\Bundle\AppBundle\Behavior\TimestampTrait;
+use Sylius\Component\Resource\Model\ResourceInterface;
 
-class Message implements MessageInterface
+class Message implements MessageInterface, ResourceInterface
 {
     use TimestampTrait;
 
@@ -66,7 +67,7 @@ class Message implements MessageInterface
     /**
      * {@inheritdoc}
      */
-    public function setUser($user)
+    public function setUser(UserInterface $user)
     {
         $this->user = $user;
 
@@ -84,7 +85,7 @@ class Message implements MessageInterface
     /**
      * {@inheritdoc}
      */
-    public function setRoom($room)
+    public function setRoom(RoomInterface $room)
     {
         $this->room = $room;
 

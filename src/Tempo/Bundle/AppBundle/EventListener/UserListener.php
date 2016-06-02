@@ -13,9 +13,9 @@ namespace Tempo\Bundle\AppBundle\EventListener;
 
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
-use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 use Sylius\Component\Resource\Event\ResourceEvent;
+use Symfony\Component\EventDispatcher\GenericEvent;
 use Tempo\Bundle\AppBundle\Model\UserInterface;
 
 class UserListener
@@ -77,18 +77,18 @@ class UserListener
     }
 
     /**
-     * @param ResourceEvent $event
+     * @param GenericEvent $event
      */
-    public function preCreate(ResourceEvent $event)
+    public function preCreate(GenericEvent $event)
     {
         $object = $event->getSubject();
         $this->updateUserFields($object);
     }
 
     /**
-     * @param ResourceEvent $event
+     * @param GenericEvent $event
      */
-    public function preUpdate(ResourceEvent $event)
+    public function preUpdate(GenericEvent $event)
     {
         $object = $event->getSubject();
         $this->updateUserFields($object);

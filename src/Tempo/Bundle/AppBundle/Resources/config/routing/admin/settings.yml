@@ -3,7 +3,7 @@ admin_configuration_general:
     methods: [GET, POST]
     defaults:
         _controller: sylius.controller.settings:updateAction
-        namespace: general
+        schema: general
         template: TempoAppBundle:Admin/Settings:general.html.twig
 
 admin_configuration_project:
@@ -11,5 +11,5 @@ admin_configuration_project:
     methods: [GET, POST]
     defaults:
         _controller: sylius.controller.settings:updateAction
-        namespace: project
+        schema: project
         template: TempoAppBundle:Admin/Settings:project.html.twig

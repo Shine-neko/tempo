@@ -9,6 +9,7 @@ Feature: Check login
     When I fill in "Username" with "john.does"
     And I fill in "Password" with "john.does"
     And I press "Login"
+    And I should not see "Invalid credentials"
 
   Scenario: Log in with bad credentials
     When I am on route "user_login"

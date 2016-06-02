@@ -11,9 +11,10 @@
 
 namespace Tempo\Bundle\AppBundle\Model;
 
+use Sylius\Component\Resource\Model\ResourceInterface;
 use Tempo\Bundle\AppBundle\Behavior\TimestampTrait;
 
-class Access implements AccessInterface
+class Access implements AccessInterface, ResourceInterface
 {
     use TimestampTrait;
 

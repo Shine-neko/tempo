@@ -39,13 +39,13 @@ user_resetting_reset:
     path: /user/resetting
     defaults:
         _controller: "TempoAppBundle:Resetting:reset"
-    methods: [GET|POST]
+    methods: [GET, POST]
 
 user_resetting_validate:
     path: /user/resetting/{token}
     defaults:
         _controller: "TempoAppBundle:Resetting:resetValidate"
-    methods:  [GET,POST]
+    methods: [GET, POST]
 
 user_admin:
     resource: "@TempoAppBundle/Resources/config/routing/admin/user.yml"

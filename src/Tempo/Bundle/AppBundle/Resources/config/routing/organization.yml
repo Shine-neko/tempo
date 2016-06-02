@@ -1,11 +1,11 @@
 organization_create:
-    path:  /create
-    defaults: { _controller: TempoAppBundle:Organization:create }
-    methods: [GET, POST]
+   path:  /create
+   defaults: { _controller: TempoAppBundle:Organization:create }
+   methods: [GET, POST]
 
 organization_update:
-     path:  /{slug}/update
-     defaults: { _controller: TempoAppBundle:Organization:update }
+    path:  /{slug}/update
+    defaults: { _controller: TempoAppBundle:Organization:update }
     methods: [GET, POST]
 
 organization_delete:
@@ -13,7 +13,7 @@ organization_delete:
     defaults: { _controller: TempoAppBundle:Organization:delete }
 
 organization_team_add:
-    path:  /{slug}/team/add
+    path:  /{slug}/team/add-member
     defaults: { _controller: TempoAppBundle:Access:add }
 
 organization_team_create:

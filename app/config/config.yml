@@ -74,8 +74,4 @@ stof_doctrine_extensions:
             timestampable: true
             sluggable: true
 
-sylius_settings:
-    resources:
-        parameter:
-            classes:
-                model: Tempo\Bundle\AppBundle\Model\Parameter
+
