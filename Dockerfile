@@ -11,7 +11,7 @@ RUN apt-get install -y software-properties-common python-software-properties pyt
 RUN apt-add-repository ppa:chris-lea/node.js
 RUN apt-get update -y
 RUN apt-get install -y nodejs
-RUN npm install -g bower less@1.7
+RUN npm install -g bower less@2.5
 
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
