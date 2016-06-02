@@ -14,7 +14,6 @@ var srcDir = './src/Tempo/Bundle/AppBundle/Resources/assets/';
 var vendorFiles = [
     'web/vendor/socket.io-client/socket.io.js',
     'web/vendor/jquery/dist/jquery.js',
-    'web/vendor/jquery-ui/ui/jquery-ui.js',
     'web/vendor/bootstrap/dist/js/bootstrap.min.js',
     'web/vendor/tinycon/tinycon.min.js',
     'web/vendor/moment/moment.js',
@@ -39,6 +38,7 @@ var vendorFiles = [
 ];
 
 gulp.task('default', function() {
+    gulp.start('build');
 });
 
 gulp.task('scripts', function(){
@@ -76,6 +76,7 @@ gulp.task('styles', function (cb) {
 
 
 gulp.task('build', function() {
+    gulp.start('styles');
     gulp.start('scripts');
 });
 
