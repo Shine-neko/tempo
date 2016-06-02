@@ -16,7 +16,7 @@ use Tempo\Bundle\AppBundle\Form\Type\AccessType;
 use Tempo\Bundle\AppBundle\Event\AccessEvent;
 use Tempo\Bundle\AppBundle\Model\Access;
 use Tempo\Bundle\AppBundle\TempoAppEvents;
-use Tempo\Bundle\AppBundle\Util\ClassUtils;
+use Tempo\Bundle\ResourceExtraBundle\Util\ClassUtils;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 

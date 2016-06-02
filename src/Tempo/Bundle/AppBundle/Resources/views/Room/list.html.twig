@@ -19,24 +19,24 @@
                 <a href="#" id="create-room"><span class="ion-plus"></span> {{ 'tempo.room.create'|trans }} </a>
             </div>
 
-            <table class="table table-striped">
+            <table class="table table-striped" id="room-list">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Created</th>
-                        <th>Users</th>
-                        <th>Messages</th>
-                        <th>Actions</th>
+                        <th class="name">Name</th>
+                        <th class="created">Created</th>
+                        <th class="users">Users</th>
+                        <th class="messages">Messages</th>
+                        <th class="actions">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for room in rooms %}
-                    <tr>    
-                        <td>{{ room.name }}</td>
-                        <td>{{ time_ago(room.createdAt) }}</td>
-                        <td>{{ room.members|length }}</td>
-                        <td>{{ room.messages|length }}</td>
-                        <td>
+                    <tr>
+                        <td class="name">{{ room.name }}</td>
+                        <td class="created">{{ time_ago(room.createdAt) }}</td>
+                        <td class="users">{{ room.members|length }}</td>
+                        <td class="messages">{{ room.messages|length }}</td>
+                        <td class="actions">
                             {% if is_granted('DELETE', room) %}
                              <a class="btn btn-xs btn-danger" title="delete-{{ room.name }}" href="{{ path('room_delete', {'id' : room.id}) }}">{{ 'tempo.form.delete'|trans }}</a></td>
                             {% else %}
@@ -45,7 +45,6 @@
                             </a>
                             {% endif %}
                         </td>
-
                     </tr>
                     {% endfor %}
                 </tbody>

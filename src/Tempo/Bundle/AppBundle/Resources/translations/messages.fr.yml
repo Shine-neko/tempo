@@ -266,7 +266,7 @@ tempo:
       company: Compagnie
       job_title: Poste
       phone: Téléphone
-      mobile_phone: Téléphone mobile
+      add_phone: Ajouter un numéro de téléphone
       generate_token: Générer le jeton
       type: Type
       number: Numéro

@@ -35,7 +35,7 @@ class SecurityController extends Controller
     {
         $signupEnable = $this->get('sylius.templating.helper.settings')->getSettings('general')->get('signup_enable');
         $access = $this->getManager('access')->getRepository()->findOneBy(array(
-            'inviteToken' => $request->get('token', 0)
+            'inviteToken' => $request->get('token', 1)
         ));
 
         if (!($signupEnable || $access)) {

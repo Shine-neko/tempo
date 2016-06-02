@@ -41,9 +41,10 @@ class ProfileType extends AbstractType
                 'allow_add' => true,
                 'allow_delete' => true,
                 'prototype' => true,
-                'options' => array(
+                'entry_options' => array(
                     'label' => false
-            )))
+                )
+            ))
         ;
     }
 

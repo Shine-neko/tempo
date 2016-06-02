@@ -12,7 +12,7 @@
 
 namespace Tempo\Bundle\AppBundle\Repository;
 
-use Tempo\Bundle\AppBundle\Util\ClassUtils;
+use Tempo\Bundle\ResourceExtraBundle\Util\ClassUtils;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
 class AccessRepository extends EntityRepository

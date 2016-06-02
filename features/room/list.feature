@@ -7,7 +7,9 @@ Feature: Manipule room
   Scenario: room list
 
     Given I am on route "room_list"
-    Then I should see "Room1"
-    And I should see "Room2"
-    And I should see "Room3"
-    And I should see "Room4"
+    Then I should see the table "#room-list"
+      | Name   | Users | Messages |
+      | Room1  | 1     | 0        |
+      | Room2  | 1     | 0        |
+      | Room3  | 1     | 0        |
+      | Room4  | 1     | 0        |

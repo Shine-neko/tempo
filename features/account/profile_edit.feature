@@ -4,7 +4,7 @@ Feature: User account profile edition
     Given I am connected as "john.doe"
 
   Scenario: Viewing my personal information page
-    Given I am on "/profile/edit"
+    Given I am on route "user_profile_update"
     When I should see "Edit profile"
     And I fill in the following:
       | First Name   | Doe        |

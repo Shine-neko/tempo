@@ -266,7 +266,7 @@ tempo:
       generate_token: Generate token
       job_title: Job title
       phone: Phone
-      mobile_phone: Mobile phone
+      add_phone: Add a phone number
       company: Company
       type: Type
       number: Number

@@ -58,15 +58,16 @@ class UserContext extends BaseContext
         $this->assertStatusCodeEquals(200);
     }
 
-    /***
-     * Assert that given code equals the current one.
-     *
-     * @param integer $code
+    /**
+     * @When /^I Adding an additional phone "([^"]*)" with as type "([^"]*)"$/
      */
-    private function assertStatusCodeEquals($code)
+    public function IAddingAnAdditionalPhone($phone, $option)
     {
-        if (!$this->getSession()->getDriver() instanceof Selenium2Driver) {
-            $this->assertSession()->statusCodeEquals($code);
-        }
+        $rows = count($this->getSession()->getPage()->findAll('css', '.col-phone'));
+        $this->clickLink('add-phone');
+        $select = 'user_phones_'.$rows.'_type';
+        $input = 'user_phones_'.$rows.'_number';
+        $this->fillField($input, $phone);
+        $this->getSession()->getPage()->selectFieldOption($this->fixStepArgument($select), $this->fixStepArgument($option));
     }
 }

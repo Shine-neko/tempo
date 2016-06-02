@@ -102,4 +102,16 @@ abstract class BaseContext extends RawMinkContext implements Context, KernelAwar
     {
         $this->assertSession()->pageTextContains($this->fixStepArgument($text));
     }
+
+    /***
+     * Assert that given code equals the current one.
+     *
+     * @param integer $code
+     */
+    protected function assertStatusCodeEquals($code)
+    {
+        if (!$this->getSession()->getDriver() instanceof Selenium2Driver) {
+            $this->assertSession()->statusCodeEquals($code);
+        }
+    }
 }
