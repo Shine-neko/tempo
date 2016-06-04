@@ -12,16 +12,16 @@
 namespace Tempo\Bundle\AppBundle;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Sylius\Bundle\ResourceBundle\AbstractResourceBundle;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use Tempo\Bundle\AppBundle\DependencyInjection\CompilerPass\ResourceCompilerPass;
 use Tempo\Bundle\AppBundle\DependencyInjection\CompilerPass\RegisterProviderPass;
+use Tempo\Bundle\ResourceExtraBundle\TempoResourceExtraBundle;
 
 /**
  * @author Mbechezi Mlanawo <mlanawo.mbechezi@ikimea.com>
  */
 
-class TempoAppBundle extends AbstractResourceBundle
+class TempoAppBundle extends TempoResourceExtraBundle
 {
     /**
      * {@inheritDoc}
@@ -29,18 +29,9 @@ class TempoAppBundle extends AbstractResourceBundle
     public function build(ContainerBuilder $container)
     {
         parent::build($container);
+
         $container->addCompilerPass(new ResourceCompilerPass());
         $container->addCompilerPass(new RegisterProviderPass());
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getSupportedDrivers()
-    {
-        return array(
-            SyliusResourceBundle::DRIVER_DOCTRINE_ORM
-        );
     }
 
     /**
