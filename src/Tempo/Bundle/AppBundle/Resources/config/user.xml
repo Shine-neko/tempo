@@ -39,8 +39,8 @@
             <argument type="service" id="tempo.user.profile.form.type.avatar"></argument>
         </service>
 
-        <service id="tempo.user.profile.handler.avatar" class="%tempo.user.profile.form.handler.avatar.class%" scope="request">
-            <argument type="service" id="request"/>
+        <service id="tempo.user.profile.handler.avatar" class="%tempo.user.profile.form.handler.avatar.class%">
+            <argument type="expression">service('request_stack').getCurrentRequest()</argument>
             <argument type="service" id="tempo.user.profile.form.avatar.factory"/>
             <argument type="service" id="tempo.domain_manager"/>
             <call method="setPath">
